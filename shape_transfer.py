@@ -168,9 +168,9 @@ if __name__ == "__main__":
     # Drawing also the line-set
     # Problem is that the point correspondences are not necessarily at the same positions
     ls = o3d.geometry.LineSet()
-    total_points = np.concatenate((pcd1.points, final_pcd.points))
+    total_points = np.concatenate((src_pcd, warped_vert))
     ls.points = o3d.utility.Vector3dVector(total_points) # shape: (num_points, 3)
-    n_points = pcd1.points.shape[0]
+    n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
     ls.lines = o3d.utility.Vector2iVector(total_lines)   # shape: (num_lines, 2)
     o3d.io.write_line_set("sim3_demo/line-set-fit.ply", ls)
