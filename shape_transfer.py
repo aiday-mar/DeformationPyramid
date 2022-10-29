@@ -72,7 +72,7 @@ if __name__ == "__main__":
     pcd1.paint_uniform_color([0, 0.706, 1])
     src_pcd = np.asarray(pcd1.points, dtype=np.float32)
 
-    o3d.visualization.draw_geometries([src_mesh])
+    #o3d.visualization.draw_geometries([src_mesh])
 
     """read T, sample pts"""
     tgt_mesh = o3d.io.read_triangle_mesh( T )
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     pcd2 =  tgt_mesh.sample_points_uniformly(number_of_points=config.samples)
     tgt_pcd = np.asarray(pcd2.points, dtype=np.float32)
 
-    o3d.visualization.draw_geometries([tgt_mesh])
+    #o3d.visualization.draw_geometries([tgt_mesh])
 
 
     """load data"""
@@ -98,20 +98,14 @@ if __name__ == "__main__":
                               rotation_format=config.rotation_format,
                               motion=config.motion_type)
 
-
-
     """cancel global translation"""
     src_mean = src_pcd.mean(dim=0, keepdims=True)
     tgt_mean = tgt_pcd.mean(dim=0, keepdims=True)
     src_pcd = src_pcd - src_mean
     tgt_pcd = tgt_pcd - tgt_mean
 
-
-
-
     s_sample = src_pcd
     t_sample = tgt_pcd
-
 
     for level in range(NDP.n_hierarchy):
 
@@ -126,18 +120,14 @@ if __name__ == "__main__":
         """optimize current level"""
         for iter in range(config.iters):
 
-
             s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
-
             loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
-
 
             if level > 0 and config.w_reg > 0:
                 nonrigidity = data[level][1]
                 target = torch.zeros_like(nonrigidity)
                 reg_loss = BCE(nonrigidity, target)
                 loss = loss + config.w_reg * reg_loss
-
 
             # early stop
             if loss.item() < 1e-4:
@@ -152,11 +142,8 @@ if __name__ == "__main__":
             loss.backward()
             optimizer.step()
 
-
         # use warped points for next level
         s_sample = s_sample_warped.detach()
-
-
 
     """warp-original mesh verttices"""
     NDP.gradient_setup(optimized_level=-1)
@@ -165,7 +152,7 @@ if __name__ == "__main__":
     warped_vert, data = NDP.warp(mesh_vert)
     warped_vert = warped_vert.detach().cpu().numpy()
     src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
-    o3d.visualization.draw_geometries([src_mesh])
+    # o3d.visualization.draw_geometries([src_mesh])
 
     """dump results"""
-    # o3d.io.write_triangle_mesh("sim3_demo/things4D/" + sname + "-fit.ply", src_mesh)
+    o3d.io.write_triangle_mesh("sim3_demo/things4D/result-fit.ply", src_mesh)
