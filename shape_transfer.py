@@ -168,7 +168,7 @@ if __name__ == "__main__":
     # Drawing also the line-set
     # Problem is that the point correspondences are not necessarily at the same positions
     ls = o3d.geometry.LineSet()
-    total_points = np.concatenate((src_pcd, np.array(final_pcd.points.cpu())))
+    total_points = np.concatenate((src_pcd.cpu(), np.array(final_pcd.points.cpu())))
     ls.points = o3d.utility.Vector3dVector(total_points) # shape: (num_points, 3)
     n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
