@@ -8,10 +8,7 @@ from outlier_rejection.pipeline import Outlier_Rejection
 from lib.utils import setup_seed
 from lib.tester import get_trainer
 from lib.tictok import Timers
-
 from torch import optim
-
-
 
 setup_seed(0)
 
@@ -20,7 +17,6 @@ def join(loader, node):
     return '_'.join([str(i) for i in seq])
 
 yaml.add_constructor('!join', join)
-
 
 if __name__ == '__main__':
 
@@ -87,7 +83,6 @@ if __name__ == '__main__':
             weight_decay=config.weight_decay,
         )
     
-
     #create learning rate scheduler
     if  'overfit' in config.exp_dir :
         config.scheduler = optim.lr_scheduler.MultiStepLR(
@@ -102,17 +97,16 @@ if __name__ == '__main__':
             gamma=config.scheduler_gamma,
         )
 
-
     config.timers = Timers()
 
     # create dataset and dataloader
     train_set, val_set, test_set = get_datasets(config)
+    # Find out the train set how it looks like and what are the inputs needed here in order to train the network
     print('train_set : ', train_set)
     config.train_loader, neighborhood_limits = get_dataloader(train_set,config, shuffle=False)
     config.val_loader, _ = get_dataloader(val_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)
     config.test_loader, _ = get_dataloader(test_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)
     
-
     trainer = get_trainer(config)
     if(config.mode=='train'):
         trainer.train()

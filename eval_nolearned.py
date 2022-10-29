@@ -22,7 +22,6 @@ yaml.add_constructor('!join', join)
 setup_seed(0)
 
 
-
 if __name__ == "__main__":
 
 
