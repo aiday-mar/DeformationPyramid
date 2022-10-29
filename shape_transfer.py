@@ -155,4 +155,4 @@ if __name__ == "__main__":
     # o3d.visualization.draw_geometries([src_mesh])
 
     """dump results"""
-    o3d.io.write_triangle_mesh("sim3_demo/things4D/result-fit.ply", src_mesh)
+    o3d.io.write_triangle_mesh("sim3_demo/mesh-fit.ply", src_mesh)
