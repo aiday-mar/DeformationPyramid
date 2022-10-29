@@ -157,8 +157,8 @@ if __name__ == "__main__":
     
     """dump results"""
     # Writing the mesh
-    src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
-    o3d.io.write_triangle_mesh("sim3_demo/mesh-fit.ply", src_mesh)
+    # src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
+    # o3d.io.write_triangle_mesh("sim3_demo/mesh-fit.ply", src_mesh)
 
     # Writing the poin-cloud
     final_pcd = o3d.geometry.PointCloud()
