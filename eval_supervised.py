@@ -4,11 +4,8 @@ import torch
 import sys
 sys.path.append("correspondence")
 
-
 from tqdm import tqdm
 import argparse
-
-
 
 from model.registration import Registration
 import  yaml
@@ -21,8 +18,6 @@ from utils.tiktok import Timers
 
 from correspondence.landmark_estimator import Landmark_Model
 
-
-
 def join(loader, node):
     seq = loader.construct_sequence(node)
     return '_'.join([str(i) for i in seq])
@@ -30,10 +25,8 @@ yaml.add_constructor('!join', join)
 
 setup_seed(0)
 
-
-
+# If LineSet idea does not work, print all the necessary results from here
 if __name__ == "__main__":
-
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
@@ -45,9 +38,7 @@ if __name__ == "__main__":
     config['snapshot_dir'] = 'snapshot/%s/%s' % (config['folder'], config['exp_dir'])
     os.makedirs(config['snapshot_dir'], exist_ok=True)
 
-
     config = edict(config)
-
 
     # backup the experiment
     os.system(f'cp -r config {config.snapshot_dir}')
@@ -55,12 +46,10 @@ if __name__ == "__main__":
     os.system(f'cp -r model {config.snapshot_dir}')
     os.system(f'cp -r utils {config.snapshot_dir}')
 
-
     if config.gpu_mode:
         config.device = torch.cuda.current_device()
     else:
         config.device = torch.device('cpu')
-
 
     ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
     config['kpfcn_config'] = ldmk_model.kpfcn_config
@@ -68,36 +57,28 @@ if __name__ == "__main__":
     model = Registration(config)
     timer = Timers()
 
-
-
-
     from correspondence.datasets._4dmatch import _4DMatch
     from correspondence.datasets.dataloader import get_dataloader
 
-
     splits = [ '4DMatch-F', '4DLoMatch-F' ]
-
 
     for split in splits:
 
         config.split['test'] = split
-
         stats_meter = None
         
+        # Modify test_Set so that it returns our data
         test_set = _4DMatch(config, 'test', data_augmentation=False)
+        print('test_set : ', test_set)
         test_loader, _ = get_dataloader(test_set, config, shuffle=False)
 
-
         logger = Logger(os.path.join(config.snapshot_dir, config.split["test"] + ".log"))
-
         num_iter =  len(test_set)
         c_loader_iter = test_loader.__iter__()
 
         for c_iter in tqdm(range(num_iter)):
 
             inputs = c_loader_iter.next()
-
-
             for k, v in inputs.items():
                 if type(v) == list:
                     inputs [k] = [item.to(config.device) for item in v]
@@ -110,27 +91,25 @@ if __name__ == "__main__":
             """predict landmarks"""
             ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
-
+            # Seems to be the input of the test_loader hence need to have as ground-truth data the flow and the correspondences
             src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
             s2t_flow = inputs['sflow_list'][0]
             rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
             correspondence = inputs['correspondences_list'][0]
-
+            print('correspondence : ', correspondence)
 
             """compute scene flow GT"""
             src_pcd_deformed = src_pcd + s2t_flow
             s_pc_wrapped = ( rot @ src_pcd_deformed.T + trn ).T
             s2t_flow = s_pc_wrapped - src_pcd
+            # Indeed the ground truth flow is given in the test_loader
             flow_gt = s2t_flow.to(config.device)
-
 
             """compute overlap mask"""
             overlap = torch.zeros(len(src_pcd))
             overlap[correspondence[:, 0]] = 1
             overlap = overlap.bool()
             overlap =  overlap.to(config.device)
-
-
 
             if config.deformation_model in ["NDP"]:
                 model.load_pcds(src_pcd, tgt_pcd, landmarks=(ldmk_s, ldmk_t))
@@ -170,14 +149,11 @@ if __name__ == "__main__":
                 flow_gt = flow_gt[point_mask]
                 overlap = overlap[point_mask]
 
-
             else:
                 raise KeyError()
 
-
-
+            # Can then find the difference between flow and flow_gt
             metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
-
 
             if stats_meter is None:
                 stats_meter = dict()
@@ -186,18 +162,12 @@ if __name__ == "__main__":
             for key, value in metric_info.items():
                 stats_meter[key].update(value)
 
-
-
-
         message = f'{c_iter}/{len(test_set)}: '
         for key, value in stats_meter.items():
             message += f'{key}: {value.avg:.3f}\t'
         logger.write(message + '\n')
 
         print("score on ", split, '\n', message)
-
-
-
 
     # note down average time cost
     print('time cost average')
