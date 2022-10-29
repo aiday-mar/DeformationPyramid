@@ -66,27 +66,29 @@ if __name__ == "__main__":
     T=args.t
 
     """read S, sample pts"""
+    '''
     src_mesh = o3d.io.read_triangle_mesh( S )
     src_mesh.compute_vertex_normals()
-    pcd1 =  src_mesh.sample_points_uniformly(number_of_points=config.samples)
-    pcd1.paint_uniform_color([0, 0.706, 1])
+    pcd1 =  src_mesh.sample_points_uniformly(number_of_points=config.samples) # Returns a point-cloud, instead can input directly a point-cloud
+    '''
+    pcd1 = o3d.io.read_point_cloud(S)
     src_pcd = np.asarray(pcd1.points, dtype=np.float32)
 
     #o3d.visualization.draw_geometries([src_mesh])
 
     """read T, sample pts"""
+    '''
     tgt_mesh = o3d.io.read_triangle_mesh( T )
     tgt_mesh.compute_vertex_normals()
     pcd2 =  tgt_mesh.sample_points_uniformly(number_of_points=config.samples)
+    '''
+    pcd2 = o3d.io.read_point_cloud(T)
     tgt_pcd = np.asarray(pcd2.points, dtype=np.float32)
 
     #o3d.visualization.draw_geometries([tgt_mesh])
 
-
     """load data"""
     src_pcd, tgt_pcd = map( lambda x: torch.from_numpy(x).to(config.device), [src_pcd, tgt_pcd ] )
-
-
 
     """construct model"""
     NDP = Deformation_Pyramid(depth=config.depth,
@@ -146,13 +148,19 @@ if __name__ == "__main__":
         s_sample = s_sample_warped.detach()
 
     """warp-original mesh verttices"""
+    src_mesh = o3d.io.read_triangle_mesh( S )
     NDP.gradient_setup(optimized_level=-1)
     mesh_vert = torch.from_numpy(np.asarray(src_mesh.vertices, dtype=np.float32)).to(config.device)
     mesh_vert = mesh_vert - src_mean
     warped_vert, data = NDP.warp(mesh_vert)
     warped_vert = warped_vert.detach().cpu().numpy()
-    src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
-    # o3d.visualization.draw_geometries([src_mesh])
-
+    
     """dump results"""
+    # Writing the mesh
+    src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
     o3d.io.write_triangle_mesh("sim3_demo/mesh-fit.ply", src_mesh)
+
+    # Writing the poin-cloud
+    final_pcd = o3d.geometry.PointCloud()
+    final_pcd.points = o3d.utility.Vector3dVector(warped_vert)
+    o3d.io.write_point_cloud("sim3_demo/pcd-fit.ply", final_pcd)
