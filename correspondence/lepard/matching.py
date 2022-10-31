@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from correspondence.lepard.position_encoding import VolumetricPositionEncoding as VolPE
+from lepard.position_encoding import VolumetricPositionEncoding as VolPE
 
 def log_optimal_transport(scores, alpha, iters, src_mask, tgt_mask ):
 
