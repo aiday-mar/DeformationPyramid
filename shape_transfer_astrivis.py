@@ -136,6 +136,7 @@ if __name__ == "__main__":
                               nonrigidity_est=config.w_reg > 0,
                               rotation_format=config.rotation_format,
                               motion=config.motion_type)
+    print('After having created NDP network')
 
     """cancel global translation"""
     src_mean = src_pcd.mean(dim=0, keepdims=True)
