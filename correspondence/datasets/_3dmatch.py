@@ -6,8 +6,8 @@ import torch
 import random
 from scipy.spatial.transform import Rotation
 from torch.utils.data import Dataset
-from lib.benchmark_utils import to_o3d_pcd, to_tsfm, KDTree_corr
-from lib.utils import load_obj
+from correspondence.lib.benchmark_utils import to_o3d_pcd, to_tsfm, KDTree_corr
+from correspondence.lib.utils import load_obj
 
 from lib.benchmark_utils import to_o3d_pcd, to_tsfm, get_correspondences
 
