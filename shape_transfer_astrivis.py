@@ -140,7 +140,7 @@ if __name__ == "__main__":
     t_sample = tgt_pcd
 
     for level in range(NDP.n_hierarchy):
-
+        print('Level : ', level)
         """freeze non-optimized level"""
         NDP.gradient_setup(optimized_level=level)
 
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
         """optimize current level"""
         for iter in range(config.iters):
-
+            print('Iter : ', iter, '/', config.iters)
             s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
             flow_s = s_sample_warped - s_sample
             loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
@@ -178,7 +178,7 @@ if __name__ == "__main__":
         # use warped points for next level
         s_sample = s_sample_warped.detach()
 
-    """warp-original mesh verttices"""
+    """warp-original mesh vertices"""
     src_mesh = o3d.io.read_triangle_mesh( S )
     NDP.gradient_setup(optimized_level=-1)
     mesh_vert = torch.from_numpy(np.asarray(src_mesh.vertices, dtype=np.float32)).to(config.device)
@@ -209,6 +209,7 @@ if __name__ == "__main__":
 
     ## --- ADDED FROM EVALUATION
     # Run the code and find the missing information for the inference
+    print('Evaluation')
     inputs = []
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
 
