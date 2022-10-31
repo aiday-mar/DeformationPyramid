@@ -75,7 +75,7 @@ if __name__ == "__main__":
         logger = Logger(os.path.join(config.snapshot_dir, config.split["test"] + ".log"))
         num_iter =  len(test_set)
         c_loader_iter = test_loader.__iter__()
-
+        
         for c_iter in tqdm(range(num_iter)):
 
             inputs = c_loader_iter.next()
@@ -163,15 +163,15 @@ if __name__ == "__main__":
             for key, value in metric_info.items():
                 stats_meter[key].update(value)
 
-        message = f'{c_iter}/{len(test_set)}: '
-        for key, value in stats_meter.items():
-            message += f'{key}: {value.avg:.3f}\t'
-        logger.write(message + '\n')
+            message = f'{c_iter}/{len(test_set)}: '
+            for key, value in stats_meter.items():
+                message += f'{key}: {value.avg:.3f}\t'
+            logger.write(message + '\n')
 
-        print("score on ", split, '\n', message)
+            print("score on ", split, '\n', message)
 
-    # note down average time cost
-    print('time cost average')
-    for ele in timer.get_strings():
-        logger.write(ele + '\n')
-        print(ele)
+        # note down average time cost
+        print('time cost average')
+        for ele in timer.get_strings():
+            logger.write(ele + '\n')
+            print(ele)
