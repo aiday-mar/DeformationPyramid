@@ -11,10 +11,10 @@ HMN_intrin = np.array( [443, 256, 443, 250 ])
 cam_intrin = np.array( [443, 256, 443, 250 ])
 
 
-class _4DMatch(Dataset):
+class _AstrivisCustom(Dataset):
 
     def __init__(self, config, split, data_augmentation=True):
-        super(_4DMatch, self).__init__()
+        super(_AstrivisCustom, self).__init__()
 
         assert split in ['train','val','test']
 
@@ -153,14 +153,7 @@ class _4DMatch(Dataset):
         print('src_pcd : ', src_pcd)
         print('tgt_pcd : ', tgt_pcd)
         print('src_feats : ', src_feats)
-        print('tgt_feats : ', tgt_feats)
-        print('correspondences : ', correspondences)
-        print('rot : ', rot)
-        print('trans : ', trans)
-        print('s2t_flow : ', s2t_flow)
-        print('metric_index : ', metric_index)
-        print('depth_paths : ', depth_paths)
-        print('cam_intrin : ', cam_intrin)
+        print('tgt_feats')
         return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin
 
 

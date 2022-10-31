@@ -174,7 +174,7 @@ class Trainer(object):
             ##################################
             if self.timers: self.timers.tic('load batch')
             inputs = c_loader_iter.next()
-            print('inputs : ', inputs)
+            print('inputs.keys() : ', inputs.keys())
             
             # for gpu_div_i, _ in enumerate(inputs):
             for k, v in inputs.items():
