@@ -63,7 +63,7 @@ folder: deploy
 batch_size: 8
 num_workers: 10 # used to be 16
 augment_noise: 0.002
-data_root: /path/to/4DMatch
+data_root: ../4DMatch
 split: {
   "train": split/train,
   "val": split/4DLoMatch,
