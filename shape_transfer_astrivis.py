@@ -69,6 +69,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ## --- ADDED FROM EVALUATION FILE
+    '''
     with open(args.config,'r') as f:
         config_eval = yaml.load(f, Loader=yaml.Loader)
 
@@ -95,7 +96,7 @@ if __name__ == "__main__":
 
     model = Registration(config_eval)
     print('Registration model created')
-    
+    '''
     ## --- END
 
     S=args.s
@@ -215,6 +216,7 @@ if __name__ == "__main__":
 
     ## --- ADDED FROM EVALUATION
     # Run the code and find the missing information for the inference
+    '''
     print('Evaluation')
     inputs = []
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
@@ -225,4 +227,5 @@ if __name__ == "__main__":
         flow = warped_pcd - model.src_pcd
     else:
         raise KeyError()
+    '''
     ## --
