@@ -7,7 +7,7 @@ from correspondence.datasets._3dmatch import _3DMatch
 from correspondence.datasets._4dmatch import _4DMatch
 from correspondence.datasets._4dmatch_multiview import _4DMatch_Multiview
 from correspondence.datasets.utils import blend_scene_flow, multual_nn_correspondence
-from lib.visualization import *
+from correspondence.lib.visualization import *
 
 from torch.utils.data import DataLoader
 
