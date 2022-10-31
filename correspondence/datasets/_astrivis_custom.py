@@ -150,10 +150,6 @@ class _AstrivisCustom(Dataset):
 
 
         #R * ( Ps + flow ) + t  = Pt
-        print('src_pcd : ', src_pcd)
-        print('tgt_pcd : ', tgt_pcd)
-        print('src_feats : ', src_feats)
-        print('tgt_feats')
         return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin
 
 
