@@ -90,6 +90,7 @@ if __name__ == "__main__":
     print('Config_eval device chosen')
     
     ldmk_model =  Landmark_Model(config_file = config_eval.ldmk_config, device=config_eval.device)
+    print('Landmark model created')
     config_eval['kpfcn_config'] = ldmk_model.kpfcn_config
 
     model = Registration(config_eval)
