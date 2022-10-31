@@ -18,6 +18,7 @@ import argparse
 
 from correspondence.landmark_estimator import Landmark_Model
 from model.registration import Registration
+import matplotlib.pyplot as plt
 
 def join(loader, node):
     seq = loader.construct_sequence(node)
@@ -193,6 +194,16 @@ if __name__ == "__main__":
     warped_vert, data = NDP.warp(mesh_vert)
     warped_vert = warped_vert.detach().cpu().numpy()
     
+    flow = warped_vert - src_pcd
+    X = src_pcd[:, 0]
+    Y = src_pcd[:, 1]
+    Z = src_pcd[:, 2]
+    U = warped_vert[:, 0]
+    V = warped_vert[:, 1]
+    W = warped_vert[:, 2]
+    plt.quiver(X, Y, Z, U, V, W)
+    plt.savefig('vector_flow.png')
+    
     """dump results"""
     # Writing the mesh
     # src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
@@ -216,7 +227,7 @@ if __name__ == "__main__":
 
     ## --- ADDED FROM EVALUATION
     # Run the code and find the missing information for the inference
-
+    '''
     print('Evaluation')
     inputs = {}
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
@@ -227,4 +238,5 @@ if __name__ == "__main__":
         flow = warped_pcd - model.src_pcd
     else:
         raise KeyError()
+    '''
     ## --
