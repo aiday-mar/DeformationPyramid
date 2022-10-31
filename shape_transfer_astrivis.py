@@ -194,7 +194,7 @@ if __name__ == "__main__":
     warped_vert, data = NDP.warp(mesh_vert)
     warped_vert = warped_vert.detach().cpu().numpy()
     
-    flow = np.array(warped_vert) - np.array(src_pcd)
+    flow = warped_vert - src_pcd.cpu().numpy()
     X = src_pcd[:, 0]
     Y = src_pcd[:, 1]
     Z = src_pcd[:, 2]
