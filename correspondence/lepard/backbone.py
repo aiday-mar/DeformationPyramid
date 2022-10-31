@@ -1,4 +1,4 @@
-from lepard.blocks import *
+from correspondence.lepard.blocks import *
 import torch.nn.functional as F
 import numpy as np
 
