@@ -18,25 +18,31 @@ class Landmark_Model ():
         with open(config_file, 'r') as f:
             config = yaml.load(f, Loader=yaml.Loader)
             config = edict(config)
+            print('Finished opening config')
 
         with open(config['matcher_config'], 'r') as f_:
             matcher_config = yaml.load(f_, Loader=yaml.Loader)
             matcher_config = edict(matcher_config)
+            print('Finished matcher_config config')
 
         with open(config['outlier_rejection_config'], 'r') as f_:
             outlier_rejection_config = yaml.load(f_, Loader=yaml.Loader)
             outlier_rejection_config = edict(outlier_rejection_config)
+            print('Finished outlier_rejection_config config')
+            
         config['kpfcn_config'] = matcher_config['kpfcn_config']
 
         # matcher initialization
         self.matcher = Matcher(matcher_config).to(device)  # pretrained point cloud matcher model
         state = torch.load(config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
+        print('Loaded state dict for matcher')
 
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
         state = torch.load(config.outlier_rejection_weights)
         self.outlier_model.load_state_dict(state['state_dict'])
+        print('Loaded state dict for outlier_model')
 
         self.device = device
 
