@@ -54,7 +54,7 @@ if __name__ == '__main__':
         os.system(f'cp -r lepard {config.snapshot_dir}')
         os.system(f'cp -r lib {config.snapshot_dir}')
         os.system(f'cp -r outlier_rejection {config.snapshot_dir}')
-        shutil.copy2('correspondence/main.py', config.snapshot_dir)
+        shutil.copy2('main.py', config.snapshot_dir)
 
     
     # model initialization

@@ -5,9 +5,9 @@ from easydict import EasyDict as edict
 
 import sys
 sys.path.append("")
-from correspondence.lepard.pipeline import Pipeline as Matcher
-from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
-from correspondence.outlier_rejection.loss import   NeCoLoss
+from lepard.pipeline import Pipeline as Matcher
+from outlier_rejection.pipeline import   Outlier_Rejection
+from outlier_rejection.loss import   NeCoLoss
 
 
 
