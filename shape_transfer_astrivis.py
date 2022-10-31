@@ -201,7 +201,10 @@ if __name__ == "__main__":
     U = flow[:, 0]
     V = flow[:, 1]
     W = flow[:, 2]
-    plt.quiver(X, Y, Z, U, V, W)
+    fig = plt.figure()
+    ax = plt.axes(projection = "3d")  
+    q = ax.quiver(X, Y, Z, U, V, W)
+    # plt.quiver(X, Y, Z, U, V, W)
     plt.savefig('vector_flow.png')
     
     """dump results"""
