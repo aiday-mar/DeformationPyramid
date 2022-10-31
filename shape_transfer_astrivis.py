@@ -206,7 +206,7 @@ if __name__ == "__main__":
     ax = plt.axes(projection = "3d")  
     q = ax.quiver(X, Y, Z, U, V, W)
     # plt.quiver(X, Y, Z, U, V, W)
-    plt.savefig('vector_flow.png')
+    plt.savefig('sim3_demo/vector_flow.png')
     
     """dump results"""
     # Writing the mesh
