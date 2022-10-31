@@ -1,6 +1,6 @@
 matcher_config: './configs/lepard.yaml'
 matcher_weights: './pretrained/lepard_weights.pth'
-
+use_depth: False
 
 model:
   in_dim: 6
