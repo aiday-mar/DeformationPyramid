@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
     # Additionally translating the point-cloud
     warped_mean = np.mean(warped_vert, axis=0)
-    translation_vec = tgt_mean - warped_mean
+    translation_vec = tgt_mean.cpu().numpy() - warped_mean
     print('translation vector : ', translation_vec)
     final_pcd_after_trans = o3d.geometry.PointCloud()
     warped_vert_translated = warped_vert + translation_vec
