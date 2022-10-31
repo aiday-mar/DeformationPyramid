@@ -151,13 +151,17 @@ class _4DMatch(Dataset):
 
         #R * ( Ps + flow ) + t  = Pt
         print('src_pcd : ', src_pcd)
+        print('src_pcd length : ', len(src_pcd))
         print('tgt_pcd : ', tgt_pcd)
+        print('tgt_pcd length : ', len(tgt_pcd))
         print('src_feats : ', src_feats)
         print('tgt_feats : ', tgt_feats)
         print('correspondences : ', correspondences)
+        print('correspondences length : ', len(correspondences))
         print('rot : ', rot)
         print('trans : ', trans)
         print('s2t_flow : ', s2t_flow)
+        print('s2t_flow length : ', len(s2t_flow))
         print('metric_index : ', metric_index)
         print('depth_paths : ', depth_paths)
         print('cam_intrin : ', cam_intrin)
