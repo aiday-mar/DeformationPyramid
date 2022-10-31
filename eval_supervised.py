@@ -74,6 +74,7 @@ if __name__ == "__main__":
 
         logger = Logger(os.path.join(config.snapshot_dir, config.split["test"] + ".log"))
         num_iter =  len(test_set)
+        print('num_iter : ', num_iter)
         c_loader_iter = test_loader.__iter__()
         
         for c_iter in tqdm(range(num_iter)):
