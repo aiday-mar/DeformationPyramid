@@ -57,8 +57,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', type=str, help= 'Path to the src mesh.')
     parser.add_argument('-t', type=str, help='Path to the tgt mesh.')
+    ## --- ADDED FROM EVALUATION FILE ---
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
+    ## --- END
     args = parser.parse_args()
 
     ## --- ADDED FROM EVALUATION FILE
