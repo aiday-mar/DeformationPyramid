@@ -76,10 +76,12 @@ if __name__ == "__main__":
     os.makedirs(config_eval['snapshot_dir'], exist_ok=True)
     config_eval = edict(config_eval)
 
+    print('Before starting the copying')
     os.system(f'cp -r config {config_eval.snapshot_dir}')
     os.system(f'cp -r data {config_eval.snapshot_dir}')
     os.system(f'cp -r model {config_eval.snapshot_dir}')
     os.system(f'cp -r utils {config_eval.snapshot_dir}')
+    print('After having finished the copying')
 
     if config_eval.gpu_mode:
         config_eval.device = torch.cuda.current_device()
@@ -90,6 +92,8 @@ if __name__ == "__main__":
     config_eval['kpfcn_config'] = ldmk_model.kpfcn_config
 
     model = Registration(config_eval)
+    print('Registration model created')
+    
     ## --- END
 
     S=args.s
