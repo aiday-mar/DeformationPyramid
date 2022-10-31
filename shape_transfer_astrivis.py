@@ -194,13 +194,13 @@ if __name__ == "__main__":
     warped_vert, data = NDP.warp(mesh_vert)
     warped_vert = warped_vert.detach().cpu().numpy()
     
-    flow = warped_vert - src_pcd
+    flow = np.array(warped_vert) - np.array(src_pcd)
     X = src_pcd[:, 0]
     Y = src_pcd[:, 1]
     Z = src_pcd[:, 2]
-    U = warped_vert[:, 0]
-    V = warped_vert[:, 1]
-    W = warped_vert[:, 2]
+    U = flow[:, 0]
+    V = flow[:, 1]
+    W = flow[:, 2]
     plt.quiver(X, Y, Z, U, V, W)
     plt.savefig('vector_flow.png')
     
