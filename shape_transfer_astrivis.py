@@ -69,7 +69,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ## --- ADDED FROM EVALUATION FILE
-    '''
+
     with open(args.config,'r') as f:
         config_eval = yaml.load(f, Loader=yaml.Loader)
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     model = Registration(config_eval)
     print('Registration model created')
-    '''
+
     ## --- END
 
     S=args.s
@@ -159,7 +159,6 @@ if __name__ == "__main__":
 
         """optimize current level"""
         for iter in range(config.iters):
-            print('Iter : ', iter, '/', config.iters)
             s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
             flow_s = s_sample_warped - s_sample
             loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
@@ -217,7 +216,7 @@ if __name__ == "__main__":
 
     ## --- ADDED FROM EVALUATION
     # Run the code and find the missing information for the inference
-    '''
+
     print('Evaluation')
     inputs = []
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
@@ -228,5 +227,4 @@ if __name__ == "__main__":
         flow = warped_pcd - model.src_pcd
     else:
         raise KeyError()
-    '''
     ## --
