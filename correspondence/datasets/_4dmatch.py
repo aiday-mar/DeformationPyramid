@@ -41,6 +41,7 @@ class _4DMatch(Dataset):
 
 
     def read_entries (self, split, data_root, d_slice=None, shuffle= False):
+        print('os.path.join(data_root, split, "*/*.npz") : ', os.path.join(data_root, split, "*/*.npz"))
         entries = glob.glob(os.path.join(data_root, split, "*/*.npz"))
         print('entries : ', entries)
         if shuffle:
