@@ -65,8 +65,8 @@ if __name__ == "__main__":
     parser.add_argument('-t', type=str, help='Path to the tgt mesh.')
     ## --- ADDED FROM EVALUATION FILE ---
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
+    parser.add_argument('--directory', type=str, help= 'Directory where to save files')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
-    parser.add_argument('--directory', action = 'store_true', help= 'directory where to save files')
     ## --- END
     args = parser.parse_args()
 
