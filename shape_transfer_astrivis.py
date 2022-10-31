@@ -66,6 +66,7 @@ if __name__ == "__main__":
     ## --- ADDED FROM EVALUATION FILE ---
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
+    parser.add_argument('--directory', action = 'store_true', help= 'directory where to save files')
     ## --- END
     args = parser.parse_args()
 
@@ -205,8 +206,7 @@ if __name__ == "__main__":
     fig = plt.figure()
     ax = plt.axes(projection = "3d")  
     q = ax.quiver(X, Y, Z, U, V, W)
-    # plt.quiver(X, Y, Z, U, V, W)
-    plt.savefig('sim3_demo/vector_flow.png')
+    plt.savefig(args.directory + '/vector_flow.png')
     
     """dump results"""
     # Writing the mesh
@@ -216,7 +216,7 @@ if __name__ == "__main__":
     # Writing the poin-cloud
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(warped_vert)
-    o3d.io.write_point_cloud("sim3_demo/pcd-fit.ply", final_pcd)
+    o3d.io.write_point_cloud(args.directory + "/pcd-fit.ply", final_pcd)
 
     # Drawing also the line-set
     # Problem is that the point correspondences are not necessarily at the same positions
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
     ls.lines = o3d.utility.Vector2iVector(total_lines)   # shape: (num_lines, 2)
-    o3d.io.write_line_set("sim3_demo/line-set-fit.ply", ls)
+    o3d.io.write_line_set(args.directory + "/line-set-fit.ply", ls)
 
     ## --- ADDED FROM EVALUATION
     # Run the code and find the missing information for the inference
