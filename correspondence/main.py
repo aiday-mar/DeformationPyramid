@@ -24,9 +24,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('config', type=str, help= 'Path to the config file.')
     args = parser.parse_args()
-    with open('correspondence/' + args.config,'r') as f:
+    with open(args.config,'r') as f:
         config = yaml.load(f, Loader=yaml.Loader)
-        with open( 'correspondence/' + config['matcher_config'], 'r' ) as f_ :
+        with open(config['matcher_config'], 'r' ) as f_ :
             matcher_config = yaml.load(f_, Loader=yaml.Loader)
             matcher_config=edict(matcher_config)
         config['kpfcn_config'] = matcher_config['kpfcn_config']
