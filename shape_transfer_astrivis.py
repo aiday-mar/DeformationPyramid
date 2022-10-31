@@ -87,7 +87,8 @@ if __name__ == "__main__":
         config_eval.device = torch.cuda.current_device()
     else:
         config_eval.device = torch.device('cpu')
-
+    print('Config_eval device chosen')
+    
     ldmk_model =  Landmark_Model(config_file = config_eval.ldmk_config, device=config_eval.device)
     config_eval['kpfcn_config'] = ldmk_model.kpfcn_config
 
