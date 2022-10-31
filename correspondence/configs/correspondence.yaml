@@ -1,8 +1,8 @@
-matcher_config: 'correspondence/configs/lepard.yaml'
-matcher_weights: 'correspondence/pretrained/lepard_weights.pth'
+matcher_config: 'configs/lepard.yaml'
+matcher_weights: 'pretrained/lepard_weights.pth'
 
-outlier_rejection_config: 'correspondence/configs/outlier_rejection.yaml'
-outlier_rejection_weights: 'correspondence/pretrained/outlier_weights.pth'
+outlier_rejection_config: 'configs/outlier_rejection.yaml'
+outlier_rejection_weights: 'pretrained/outlier_weights.pth'
 
 
 mode: test
@@ -17,9 +17,9 @@ folder: deploy
 batch_size: 1
 num_workers: 1
 augment_noise: 0.002
-data_root: /path/to/4DMatch
+data_root: ../4DMatch
 split: {
-  "train": split/train,
-  "val": split/4DLoMatch,
-  "test": split/4DMatch
+  "train": train, # split/
+  "val": 4DLoMatch-F, # split/
+  "test": 4DMatch-F # split/
 }

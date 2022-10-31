@@ -65,9 +65,9 @@ num_workers: 10 # used to be 16
 augment_noise: 0.002
 data_root: ../4DMatch
 split: {
-  "train": split/train,
-  "val": split/4DLoMatch,
-  "test": split/4DMatch
+  "train": train, # split/
+  "val": 4DLoMatch-F, # split/
+  "test": 4DMatch-F # split/
 }
 
 # change params for test
