@@ -168,12 +168,14 @@ class Trainer(object):
 
         self.optimizer.zero_grad()
         for c_iter in tqdm(range(num_iter)):  # loop through this epoch
-
+            print('c_iter : ', c_iter, '/', num_iter)
             if self.timers: self.timers.tic('one_iteration')
 
             ##################################
             if self.timers: self.timers.tic('load batch')
             inputs = c_loader_iter.next()
+            print('inputs : ', inputs)
+            
             # for gpu_div_i, _ in enumerate(inputs):
             for k, v in inputs.items():
                 if type(v) == list:
@@ -248,13 +250,13 @@ class Trainer(object):
     def train(self):
         print('start training...')
         for epoch in range(self.start_epoch, self.max_epoch):
+            print('epoch : ', epoch, '/', self.max_epoch)
             with torch.autograd.set_detect_anomaly(True):
                 if self.timers: self.timers.tic('run one epoch')
                 stats_meter = self.inference_one_epoch(epoch, 'train')
                 if self.timers: self.timers.toc('run one epoch')
 
             self.scheduler.step()
-
 
             if  'overfit' in self.config.exp_dir :
                 if stats_meter['loss'].avg < self.best_loss:
