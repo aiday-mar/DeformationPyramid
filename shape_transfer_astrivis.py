@@ -218,7 +218,7 @@ if __name__ == "__main__":
     # Run the code and find the missing information for the inference
 
     print('Evaluation')
-    inputs = []
+    inputs = {}
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
 
     if config_eval.deformation_model in ["NDP"]:
