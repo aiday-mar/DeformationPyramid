@@ -1,4 +1,5 @@
-for i in 018 036 053 057 068 070 082 094 100 101 113 116 141 166 175
+# for i in 018 036 053 057 068 070 082 094 100 101 113 116 141 166 175
+for i in 207 210 211 215
 do
 #folder='DynamicStrongMotion'
 folder='DynamicFlipMerge'
