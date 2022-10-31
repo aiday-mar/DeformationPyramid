@@ -209,28 +209,40 @@ if __name__ == "__main__":
     plt.savefig(args.directory + '/vector_flow.png')
     
     """dump results"""
-    # Writing the mesh
-    # src_mesh.vertices = o3d.utility.Vector3dVector(warped_vert)
-    # o3d.io.write_triangle_mesh("sim3_demo/mesh-fit.ply", src_mesh)
 
-    # Writing the poin-cloud
-    final_pcd = o3d.geometry.PointCloud()
-    final_pcd.points = o3d.utility.Vector3dVector(warped_vert)
-    o3d.io.write_point_cloud(args.directory + "/pcd-fit.ply", final_pcd)
+    # Writing the point-cloud
+    final_pcd_before_trans = o3d.geometry.PointCloud()
+    final_pcd_before_trans.points = o3d.utility.Vector3dVector(warped_vert)
+    o3d.io.write_point_cloud(args.directory + "/pcd-fit-before-trans.ply", final_pcd_before_trans)
 
     # Drawing also the line-set
-    # Problem is that the point correspondences are not necessarily at the same positions
-    # But I also added the flow from before!
     ls = o3d.geometry.LineSet()
-    total_points = np.concatenate((src_pcd, np.array(final_pcd.points)))
+    total_points = np.concatenate((src_pcd, np.array(final_pcd_before_trans.points)))
     ls.points = o3d.utility.Vector3dVector(total_points) # shape: (num_points, 3)
     n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
     ls.lines = o3d.utility.Vector2iVector(total_lines)   # shape: (num_lines, 2)
-    o3d.io.write_line_set(args.directory + "/line-set-fit.ply", ls)
+    o3d.io.write_line_set(args.directory + "/line-set-before-trans.ply", ls)
 
+    # Additionally translating the point-cloud
+    warped_mean = warped_vert.mean(dim=0, keepdims=True)
+    translation_vec = tgt_mean - warped_mean
+    print('translation vector : ', translation_vec)
+    final_pcd_after_trans = o3d.geometry.PointCloud()
+    warped_vert_translated = warped_vert + translation_vec
+    final_pcd_after_trans.points = o3d.utility.Vector3dVector(warped_vert_translated)
+    o3d.io.write_point_cloud(args.directory + "/pcd-fit-after-trans.ply", final_pcd_after_trans)
+    
+    # Drawing the second line set
+    ls2 = o3d.geometry.LineSet()
+    total_points = np.concatenate((src_pcd, np.array(final_pcd_after_trans.points)))
+    ls2.points = o3d.utility.Vector3dVector(total_points)
+    n_points = src_pcd.shape[0]
+    total_lines = [[i, i + n_points] for i in range(0, n_points)]
+    ls2.lines = o3d.utility.Vector2iVector(total_lines)
+    o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls)
+    
     ## --- ADDED FROM EVALUATION
-    # Run the code and find the missing information for the inference
     '''
     print('Evaluation')
     inputs = {}
@@ -243,4 +255,3 @@ if __name__ == "__main__":
     else:
         raise KeyError()
     '''
-    ## --
