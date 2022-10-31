@@ -3,11 +3,11 @@ from functools import partial
 import torch
 import cpp_wrappers.cpp_subsampling.grid_subsampling as cpp_subsampling
 import cpp_wrappers.cpp_neighbors.radius_neighbors as cpp_neighbors
-from correspondence.datasets._3dmatch import _3DMatch
-from correspondence.datasets._4dmatch import _4DMatch
-from correspondence.datasets._4dmatch_multiview import _4DMatch_Multiview
-from correspondence.datasets.utils import blend_scene_flow, multual_nn_correspondence
-from correspondence.lib.visualization import *
+from datasets._3dmatch import _3DMatch
+from datasets._4dmatch import _4DMatch
+from datasets._4dmatch_multiview import _4DMatch_Multiview
+from datasets.utils import blend_scene_flow, multual_nn_correspondence
+from lib.visualization import *
 
 from torch.utils.data import DataLoader
 
