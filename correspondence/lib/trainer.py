@@ -161,6 +161,8 @@ class Trainer(object):
         # init stats meter
         stats_meter = None #  self.stats_meter()
 
+        print('len(self.loader[phase].dataset : ', len(self.loader[phase].dataset))
+        print('self.loader[phase].batch_size : ', self.loader[phase].batch_size)
         num_iter = int(len(self.loader[phase].dataset) // self.loader[phase].batch_size) # drop last incomplete batch
         c_loader_iter = self.loader[phase].__iter__()
 
