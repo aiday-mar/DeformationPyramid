@@ -19,6 +19,11 @@ import argparse
 from correspondence.landmark_estimator import Landmark_Model
 from model.registration import Registration
 
+def join(loader, node):
+    seq = loader.construct_sequence(node)
+    return '_'.join([str(i) for i in seq])
+yaml.add_constructor('!join', join)
+
 setup_seed(0)
 
 if __name__ == "__main__":
