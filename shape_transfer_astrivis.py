@@ -225,7 +225,7 @@ if __name__ == "__main__":
     o3d.io.write_line_set(args.directory + "/line-set-before-trans.ply", ls)
 
     # Additionally translating the point-cloud
-    warped_mean = warped_vert.mean(dim=0, keepdims=True)
+    warped_mean = np.mean(warped_vert, axis=0)
     translation_vec = tgt_mean - warped_mean
     print('translation vector : ', translation_vec)
     final_pcd_after_trans = o3d.geometry.PointCloud()
