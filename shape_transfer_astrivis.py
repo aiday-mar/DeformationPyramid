@@ -240,7 +240,7 @@ if __name__ == "__main__":
     n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
     ls2.lines = o3d.utility.Vector2iVector(total_lines)
-    o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls)
+    o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls2)
     
     ## --- ADDED FROM EVALUATION
     '''
