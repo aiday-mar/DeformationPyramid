@@ -250,10 +250,10 @@ if __name__ == "__main__":
         n_neighbors = 0
         for other_row in src_pcd:
             norm = np.linalg.norm(row - other_row)
-            if norm < 0.004:
+            if norm < 0.005:
                 n_neighbors += 1
         print('n_neighbors : ', n_neighbors)
-        if n_neighbors <= 6:
+        if n_neighbors <= 5:
             filtered_lines.append([i, i + n_points])
     
     ls3 = o3d.geometry.LineSet()
