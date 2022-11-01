@@ -242,6 +242,7 @@ if __name__ == "__main__":
     ls2.lines = o3d.utility.Vector2iVector(total_lines)
     o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls2)
     
+    ## -- 
     ## --- ADDED FROM EVALUATION
     '''
     print('Evaluation')
