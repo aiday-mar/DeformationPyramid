@@ -2,8 +2,8 @@
 for i in 207 210 211 215
 # for i in 036 053 057
 do
-#folder='DynamicStrongMotion'
+# folder='DynamicStrongMotionSampled003'
 folder='DynamicFlipMergeSampled003'
-# folder='DynamicStrongMotionTransformed'
+# folder='DynamicStrongMotionSampled003Transformed'
 python3 shape_transfer_astrivis.py -s=astrivis_data/${folder}/model${i}/dense1.ply -t=astrivis_data/${folder}/model${i}/dense2.ply --config=config/LNDP.yaml --directory=astrivis_data/${folder}/model${i}
 done
