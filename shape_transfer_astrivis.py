@@ -250,7 +250,7 @@ if __name__ == "__main__":
         n_neighbors = 0
         for other_row in src_pcd:
             norm = np.linalg.norm(row - other_row)
-            if norm < 0.02:
+            if norm < 0.003:
                 n_neighbors += 1
         print('n_neighbors : ', n_neighbors)
         if n_neighbors <= 8:
