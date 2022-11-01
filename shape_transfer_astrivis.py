@@ -245,6 +245,7 @@ if __name__ == "__main__":
     # Keeping only the correspondences on the edge of the model
     filtered_lines = []
     for i in range(0, n_points):
+        print('i/n_points : ', i, '/', n_points)
         row = src_pcd[i]
         n_neighbors = 0
         for other_row in src_pcd:
