@@ -90,46 +90,23 @@ if __name__ == "__main__":
         config_eval.device = torch.cuda.current_device()
     else:
         config_eval.device = torch.device('cpu')
-    print('Config_eval device chosen')
     
     ldmk_model =  Landmark_Model(config_file = config_eval.ldmk_config, device=config_eval.device)
-    print('Landmark model created')
     config_eval['kpfcn_config'] = ldmk_model.kpfcn_config
-
     model = Registration(config_eval)
-    print('Registration model created')
 
     ## --- END
 
     S=args.s
     T=args.t
 
-    """read S, sample pts"""
-    '''
-    src_mesh = o3d.io.read_triangle_mesh( S )
-    src_mesh.compute_vertex_normals()
-    pcd1 =  src_mesh.sample_points_uniformly(number_of_points=config.samples) # Returns a point-cloud, instead can input directly a point-cloud
-    '''
     pcd1 = o3d.io.read_point_cloud(S)
     src_pcd = np.asarray(pcd1.points, dtype=np.float32)
 
-    #o3d.visualization.draw_geometries([src_mesh])
-
-    """read T, sample pts"""
-    '''
-    tgt_mesh = o3d.io.read_triangle_mesh( T )
-    tgt_mesh.compute_vertex_normals()
-    pcd2 =  tgt_mesh.sample_points_uniformly(number_of_points=config.samples)
-    '''
     pcd2 = o3d.io.read_point_cloud(T)
     tgt_pcd = np.asarray(pcd2.points, dtype=np.float32)
 
-    #o3d.visualization.draw_geometries([tgt_mesh])
-
-    """load data"""
     src_pcd, tgt_pcd = map( lambda x: torch.from_numpy(x).to(config.device), [src_pcd, tgt_pcd ] )
-
-    """construct model"""
     NDP = Deformation_Pyramid(depth=config.depth,
                               width=config.width,
                               device=config.device,
@@ -138,9 +115,7 @@ if __name__ == "__main__":
                               nonrigidity_est=config.w_reg > 0,
                               rotation_format=config.rotation_format,
                               motion=config.motion_type)
-    print('After having created NDP network')
 
-    """cancel global translation"""
     src_mean = src_pcd.mean(dim=0, keepdims=True)
     tgt_mean = tgt_pcd.mean(dim=0, keepdims=True)
     src_pcd = src_pcd - src_mean
@@ -150,8 +125,6 @@ if __name__ == "__main__":
     t_sample = tgt_pcd
 
     for level in range(NDP.n_hierarchy):
-        print('Level : ', level)
-        """freeze non-optimized level"""
         NDP.gradient_setup(optimized_level=level)
 
         optimizer = optim.Adam(NDP.pyramid[level].parameters(), lr=config.lr)
@@ -159,7 +132,6 @@ if __name__ == "__main__":
         break_counter = 0
         loss_prev = 1e+6
 
-        """optimize current level"""
         for iter in range(config.iters):
             s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
             flow_s = s_sample_warped - s_sample
@@ -184,10 +156,8 @@ if __name__ == "__main__":
             loss.backward()
             optimizer.step()
 
-        # use warped points for next level
         s_sample = s_sample_warped.detach()
 
-    """warp-original mesh vertices"""
     src_mesh = o3d.io.read_triangle_mesh( S )
     NDP.gradient_setup(optimized_level=-1)
     mesh_vert = torch.from_numpy(np.asarray(src_mesh.vertices, dtype=np.float32)).to(config.device)
@@ -211,20 +181,23 @@ if __name__ == "__main__":
     """dump results"""
 
     # Writing the point-cloud
+    print('pcd fit before translation')
     final_pcd_before_trans = o3d.geometry.PointCloud()
     final_pcd_before_trans.points = o3d.utility.Vector3dVector(warped_vert)
     o3d.io.write_point_cloud(args.directory + "/pcd-fit-before-trans.ply", final_pcd_before_trans)
 
     # Drawing also the line-set
+    print('line set before translation')
     ls = o3d.geometry.LineSet()
     total_points = np.concatenate((src_pcd, np.array(final_pcd_before_trans.points)))
-    ls.points = o3d.utility.Vector3dVector(total_points) # shape: (num_points, 3)
+    ls.points = o3d.utility.Vector3dVector(total_points)
     n_points = src_pcd.shape[0]
     total_lines = [[i, i + n_points] for i in range(0, n_points)]
-    ls.lines = o3d.utility.Vector2iVector(total_lines)   # shape: (num_lines, 2)
+    ls.lines = o3d.utility.Vector2iVector(total_lines)
     o3d.io.write_line_set(args.directory + "/line-set-before-trans.ply", ls)
 
     # Additionally translating the point-cloud
+    print('pcd fit after translation')
     warped_mean = np.mean(warped_vert, axis=0)
     translation_vec = tgt_mean.cpu().numpy() - warped_mean
     print('translation vector : ', translation_vec)
@@ -234,6 +207,7 @@ if __name__ == "__main__":
     o3d.io.write_point_cloud(args.directory + "/pcd-fit-after-trans.ply", final_pcd_after_trans)
     
     # Drawing the second line set
+    print('line set after translation')
     ls2 = o3d.geometry.LineSet()
     total_points = np.concatenate((src_pcd, np.array(final_pcd_after_trans.points)))
     ls2.points = o3d.utility.Vector3dVector(total_points)
@@ -243,6 +217,7 @@ if __name__ == "__main__":
     o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls2)
     
     # Keeping only the correspondences on the edge of the model
+    print('line set after translation filtered')
     filtered_lines = []
     for i in range(0, n_points):
         print('i/n_points : ', i, '/', n_points)
@@ -252,7 +227,6 @@ if __name__ == "__main__":
             norm = np.linalg.norm(row - other_row)
             if norm < 0.005:
                 n_neighbors += 1
-        print('n_neighbors : ', n_neighbors)
         if n_neighbors <= 4:
             filtered_lines.append([i, i + n_points])
     
@@ -263,7 +237,6 @@ if __name__ == "__main__":
     
     ## --- ADDED FROM EVALUATION
     '''
-    print('Evaluation')
     inputs = {}
     ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
 
