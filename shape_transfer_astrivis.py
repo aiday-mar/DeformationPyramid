@@ -252,7 +252,8 @@ if __name__ == "__main__":
             norm = np.linalg.norm(row - other_row)
             if norm < 0.04:
                 n_neighbors += 1
-        if n_neighbors <= 6:
+        print('n_neighbors : ', n_neighbors)
+        if n_neighbors <= 8:
             filtered_lines.append([i, i + n_points])
     
     ls3 = o3d.geometry.LineSet()
