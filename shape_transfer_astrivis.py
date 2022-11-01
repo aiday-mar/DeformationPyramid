@@ -242,6 +242,23 @@ if __name__ == "__main__":
     ls2.lines = o3d.utility.Vector2iVector(total_lines)
     o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls2)
     
+    # Keeping only the correspondences on the edge of the model
+    filtered_lines = []
+    for i in range(0, n_points):
+        row = src_pcd[i]
+        n_neighbors = 0
+        for other_row in src_pcd:
+            norm = np.linalg.norm(row - other_row)
+            if norm < 0.04:
+                n_neighbors += 1
+        if n_neighbors <= 4:
+            filtered_lines.append([i, i + n_points])
+    
+    ls3 = o3d.geometry.LineSet()
+    ls3.points = o3d.utility.Vector3dVector(total_points)
+    ls3.lines = o3d.utility.Vector2iVector(filtered_lines)
+    o3d.io.write_line_set(args.directory + "/line-set-after-trans-filtered.ply", ls3)
+    
     ## --- ADDED FROM EVALUATION
     '''
     print('Evaluation')
