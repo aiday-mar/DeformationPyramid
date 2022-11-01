@@ -253,7 +253,7 @@ if __name__ == "__main__":
             if norm < 0.005:
                 n_neighbors += 1
         print('n_neighbors : ', n_neighbors)
-        if n_neighbors <= 4:
+        if n_neighbors <= 3:
             filtered_lines.append([i, i + n_points])
     
     ls3 = o3d.geometry.LineSet()
