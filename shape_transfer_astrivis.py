@@ -250,7 +250,7 @@ if __name__ == "__main__":
         n_neighbors = 0
         for other_row in src_pcd:
             norm = np.linalg.norm(row - other_row)
-            if norm < 0.04:
+            if norm < 0.06:
                 n_neighbors += 1
         if n_neighbors <= 4:
             filtered_lines.append([i, i + n_points])
