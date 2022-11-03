@@ -148,7 +148,7 @@ class _4DMatch(Dataset):
         rot = rot.astype(np.float32)
         trans = trans.astype(np.float32)
         trans = np.expand_dims(trans, axis=0)
-        trans = trans.transpose()
+        print('trans : ', trans)
 
         #R * ( Ps + flow ) + t  = Pt
         print('src_pcd : ', src_pcd)
