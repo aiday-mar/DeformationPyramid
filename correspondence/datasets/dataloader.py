@@ -362,8 +362,6 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
 def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
-
-    print('pairwise_data : ', pairwise_data)
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
@@ -566,9 +564,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         coarse_matches.append(coarse_match_gt)
         coarse_flow.append(torch.from_numpy(c_flow))
 
-
         accumu = accumu + n_s_pts + n_t_pts
-
 
         vis=False # for debug
         if vis :
