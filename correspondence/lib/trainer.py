@@ -260,6 +260,7 @@ class Trainer(object):
             self.scheduler.step()
             
             stats_meter = self.inference_one_epoch(epoch, 'val')
+            print('average loss : ', stats_meter['loss'].avg)
             self._snapshot(epoch)
                 
             '''
