@@ -20,6 +20,7 @@ class _AstrivisCustom(Dataset):
 
         assert split in ['train','val','test']
 
+        self.split = split
         self.matches = {}
         self.number_matches = 0
         self.n_files_per_folder = 0
@@ -27,9 +28,15 @@ class _AstrivisCustom(Dataset):
         
         n_files_per_folder_found = False
         
-        for folder in os.listdir('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal'):
+        path = ''
+        if self.split == 'train':
+            path = '/home/aiday.kyzy/dataset/TrainingDataDeformedFinal'
+        elif self.split == 'val':
+            path = '/home/aiday.kyzy/dataset/ValidationDataDeformedFinal'
+            
+        for folder in os.listdir(path):
             self.matches[folder] = []
-            for filename in os.listdir('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder + '/matches'):
+            for filename in os.listdir(path + '/' + folder + '/matches'):
                 self.matches[folder].append(filename)
                 self.number_matches += 1
                 if not n_files_per_folder_found:
@@ -41,7 +48,6 @@ class _AstrivisCustom(Dataset):
         print('number folders : ', len(self.matches))
         
     def __len__(self):
-        # Removing one in order to avoid indexing problems on the last index
         return self.number_matches
 
 
@@ -49,17 +55,13 @@ class _AstrivisCustom(Dataset):
 
         folder_number = index // self.n_files_per_folder
         idx_inside_folder = index % self.n_files_per_folder
-        
-        print('folder_number : ', folder_number)
-        print('idx_inside_folder : ', idx_inside_folder)
-        
+                
         folder_string = 'model' + str(folder_number).zfill(3)
         files_array = self.matches[folder_string]
         filename = files_array[idx_inside_folder]
                 
         file_pointers = filename[:-4]
         file_pointers = file_pointers.split('_')
-        print('file_pointers : ', file_pointers)
         
         src_pcd_file = file_pointers[0] + '_' + file_pointers[2] + '.ply'
         tgt_pcd_file = file_pointers[1] + '_' + file_pointers[3] + '.ply'
@@ -89,34 +91,17 @@ class _AstrivisCustom(Dataset):
         
         tgt_trans_file=h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + tgt_pcd_trans, "r")
         tgt_pcd_transform = np.array(tgt_trans_file['transformation'])
-        print('src_pcd_transform : ', tgt_pcd_transform)
         
         final_transform = np.dot(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
         rot = final_transform[:3, :3]
         trans = final_transform[:3, 3]
         trans = np.expand_dims(trans, axis=0)
         trans = trans.transpose()
-        print('trans : ', trans)
         
         metric_index = None
         depth_paths = None 
         cam_intrin = None
         
-        print('src_pcd : ', src_pcd)
-        print('src_pcd length : ', len(src_pcd))
-        print('tgt_pcd : ', tgt_pcd)
-        print('tgt_pcd length : ', len(tgt_pcd))
-        print('src_feats : ', src_feats)
-        print('tgt_feats : ', tgt_feats)
-        print('correspondences : ', correspondences)
-        print('correspondences length : ', len(correspondences))
-        print('rot : ', rot)
-        print('trans : ', trans)
-        print('s2t_flow : ', s2t_flow)
-        print('s2t_flow length : ', len(s2t_flow))
-        print('metric_index : ', metric_index)
-        print('depth_paths : ', depth_paths)
-        print('cam_intrin : ', cam_intrin)
         return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin
 
 
