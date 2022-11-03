@@ -94,6 +94,9 @@ class _AstrivisCustom(Dataset):
         final_transform = np.dot(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
         rot = final_transform[:3, :3]
         trans = final_transform[:3, 3]
+        trans = np.expand_dims(trans, axis=0)
+        trans = trans.transpose()
+        print('trans : ', trans)
         
         metric_index = None
         depth_paths = None 
