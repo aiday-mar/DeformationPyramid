@@ -169,10 +169,12 @@ class NeCoLoss(nn.Module):
         s_pcd_deformed = s_pcd + s2t_flow
         print('batched_rot :', batched_rot)
         print('s_pcd_deformed.transpose(1, 2) :', s_pcd_deformed.transpose(1, 2))
-        print('batched_trn : ', batched_trn)
+        
         if batched_trn.ndim == 2:
             batched_trn = torch.unsqueeze(batched_trn, 0)
-            
+        
+        print('batched_trn : ', batched_trn)
+        
         s_pcd_wrapped = (torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) + batched_trn).transpose(1,2)
 
         batch_vec6d = data['vec_6d']
