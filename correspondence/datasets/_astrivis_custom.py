@@ -59,6 +59,7 @@ class _AstrivisCustom(Dataset):
         
         matches = np.load('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/matches/' + filename)
         correspondences = np.array(matches['matches'])
+        print('correspondences : ', correspondences)
         
         file_pointers = filename[:-4]
         file_pointers = file_pointers.split('_')
