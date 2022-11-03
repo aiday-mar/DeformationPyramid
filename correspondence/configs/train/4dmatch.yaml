@@ -46,7 +46,7 @@ pretrain: ''
 
 # optimiser:
 optimizer: SGD
-max_epoch: 1500
+max_epoch: 1 # Used to 1500 epochs
 lr: 0.001
 weight_decay: 0.000001
 momentum: 0.93
