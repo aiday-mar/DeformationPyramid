@@ -178,7 +178,7 @@ class _4DMatchTester(Trainer):
 def get_trainer(config):
     if config.dataset == '3dmatch':
         return None #_3DMatchTester(config)
-    elif config.dataset == '4dmatch' or  config.dataset == '4dmatch_mv' or config.datatset == 'astrivis':
+    elif config.dataset == '4dmatch' or  config.dataset == '4dmatch_mv' or config.dataset == 'astrivis':
         return _4DMatchTester(config)
     else:
         raise NotImplementedError
