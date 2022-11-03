@@ -188,6 +188,9 @@ class NeCoLoss(nn.Module):
         print('s_pcd_wrapped : ', s_pcd_wrapped)
         print('s_pcd_wrapped.shape : ', s_pcd_wrapped.shape)
         
+        print('batch_index : ', batch_index)
+        print('batch_mask : ', batch_mask)
+        
         for i in range(bsize):
             print('i : ', i)
             print('batch_index[i][:,0] : ', batch_index[i][:,0])
