@@ -56,11 +56,7 @@ class _AstrivisCustom(Dataset):
         folder_string = 'model' + str(folder_number).zfill(3)
         files_array = self.matches[folder_string]
         filename = files_array[idx_inside_folder]
-        
-        matches = np.load('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/matches/' + filename)
-        correspondences = np.array(matches['matches'])
-        print('correspondences : ', correspondences)
-        
+                
         file_pointers = filename[:-4]
         file_pointers = file_pointers.split('_')
         print('file_pointers : ', file_pointers)
@@ -76,7 +72,14 @@ class _AstrivisCustom(Dataset):
         src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
         
-        s2t_flow = tgt_pcd - src_pcd
+        matches = np.load('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/matches/' + filename)
+        correspondences = np.array(matches['matches'])
+        indices_src = correspondences[:, 0]
+        indices_tgt = correspondences[:, 1]
+        src_flow = [src_pcd[i] for i in indices_src]
+        tgt_flow = [tgt_pcd[i] for i in indices_tgt]
+        
+        s2t_flow = tgt_flow - src_flow
         
         src_pcd_trans = file_pointers[0] + '_' + file_pointers[2] + '_se4.h5'
         tgt_pcd_trans = file_pointers[1] + '_' + file_pointers[3] + '_se4.h5'
