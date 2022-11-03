@@ -147,7 +147,7 @@ class _4DMatch(Dataset):
         tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
         rot = rot.astype(np.float32)
         trans = trans.astype(np.float32)
-
+        trans.transpose()
 
         #R * ( Ps + flow ) + t  = Pt
         print('src_pcd : ', src_pcd)
