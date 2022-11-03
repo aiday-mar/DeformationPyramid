@@ -185,8 +185,13 @@ class NeCoLoss(nn.Module):
         inlier_rate = []
         inlier_mask = []
 
+        print('s_pcd_wrapped : ', s_pcd_wrapped)
+        print('s_pcd_wrapped.shape : ', s_pcd_wrapped.shape)
+        
         for i in range(bsize):
-
+            print('i : ', i)
+            print('batch_index[i][:,0] : ', batch_index[i][:,0])
+            print('batch_mask[i] : ', batch_mask[i])
             s_pcd_match_warp_gt = s_pcd_wrapped[i][batch_index[i][:,0]] [batch_mask[i]]
             t_pcd_matched = batch_vec6d[i][:,3:] [batch_mask[i]]
             inlier = torch.sum( (s_pcd_match_warp_gt - t_pcd_matched)**2 , dim= 1) <  inlier_thr**2
