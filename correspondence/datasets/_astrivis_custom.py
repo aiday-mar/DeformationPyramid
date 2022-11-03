@@ -86,9 +86,11 @@ class _AstrivisCustom(Dataset):
         
         with h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + src_pcd_trans, "r") as f:
             src_pcd_transform = f['transformation']
+            print('src_pcd_transform : ', src_pcd_transform)
         
         with h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + tgt_pcd_trans, "r") as f:
             tgt_pcd_transform = f['transformation']
+            print('tgt_pcd_transform : ', tgt_pcd_transform)
         
         final_transform = np.dot(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
         rot = final_transform[:3, :3]
