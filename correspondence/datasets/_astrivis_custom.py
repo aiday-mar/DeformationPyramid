@@ -86,7 +86,6 @@ class _AstrivisCustom(Dataset):
         
         src_trans_file=h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + src_pcd_trans, "r")
         src_pcd_transform = np.array(src_trans_file['transformation'])
-        print('src_pcd_transform : ', src_pcd_transform)
         
         tgt_trans_file=h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + tgt_pcd_trans, "r")
         tgt_pcd_transform = np.array(tgt_trans_file['transformation'])
@@ -100,6 +99,21 @@ class _AstrivisCustom(Dataset):
         depth_paths = None 
         cam_intrin = None
         
+        print('src_pcd : ', src_pcd)
+        print('src_pcd length : ', len(src_pcd))
+        print('tgt_pcd : ', tgt_pcd)
+        print('tgt_pcd length : ', len(tgt_pcd))
+        print('src_feats : ', src_feats)
+        print('tgt_feats : ', tgt_feats)
+        print('correspondences : ', correspondences)
+        print('correspondences length : ', len(correspondences))
+        print('rot : ', rot)
+        print('trans : ', trans)
+        print('s2t_flow : ', s2t_flow)
+        print('s2t_flow length : ', len(s2t_flow))
+        print('metric_index : ', metric_index)
+        print('depth_paths : ', depth_paths)
+        print('cam_intrin : ', cam_intrin)
         return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin
 
 
