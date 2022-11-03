@@ -176,7 +176,7 @@ class NeCoLoss(nn.Module):
         print('batched_trn : ', batched_trn)
         
         print('torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) : ', torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)))
-        s_pcd_wrapped = (torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)).transpose(1, 2) + batched_trn).transpose(1,2)
+        s_pcd_wrapped = (torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) + batched_trn).transpose(1,2)  # .transpose(1, 2) added before but maybe not correct
 
         batch_vec6d = data['vec_6d']
         batch_mask = data['vec_6d_mask']
@@ -185,11 +185,9 @@ class NeCoLoss(nn.Module):
         inlier_rate = []
         inlier_mask = []
 
-        print('s_pcd_wrapped : ', s_pcd_wrapped)
         print('s_pcd_wrapped.shape : ', s_pcd_wrapped.shape)
-        
-        print('batch_index : ', batch_index)
-        print('batch_mask : ', batch_mask)
+        print('batch_index.shape : ', batch_index.shape)
+        print('batch_mask.shape : ', batch_mask.shape)
         
         for i in range(bsize):
             print('i : ', i)
