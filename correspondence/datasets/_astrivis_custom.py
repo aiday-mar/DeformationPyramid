@@ -7,6 +7,7 @@ import random
 from scipy.spatial.transform import Rotation
 from torch.utils.data import Dataset
 import h5py
+import open3d as o3d
 
 HMN_intrin = np.array( [443, 256, 443, 250 ])
 cam_intrin = np.array( [443, 256, 443, 250 ])
