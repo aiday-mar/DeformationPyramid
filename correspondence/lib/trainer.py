@@ -164,6 +164,7 @@ class Trainer(object):
         print('len(self.loader[phase].dataset : ', len(self.loader[phase].dataset))
         print('self.loader[phase].batch_size : ', self.loader[phase].batch_size)
         num_iter = int(len(self.loader[phase].dataset) // self.loader[phase].batch_size) # drop last incomplete batch
+        print('num_iter : ', num_iter)
         c_loader_iter = self.loader[phase].__iter__()
 
         self.optimizer.zero_grad()

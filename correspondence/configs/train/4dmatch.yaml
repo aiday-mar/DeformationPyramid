@@ -60,7 +60,7 @@ iter_size: 1
 #dataset:
 dataset: 4dmatch
 folder: deploy
-batch_size: 8
+batch_size: 1 # Used to be 8, put to 1 for testing on one datapoint
 num_workers: 10 # used to be 16
 augment_noise: 0.002
 data_root: ../4DMatch
