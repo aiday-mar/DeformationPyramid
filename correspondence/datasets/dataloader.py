@@ -561,8 +561,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         print('c_src_pcd_deformed.T : ', c_src_pcd_deformed.T)
         print('batched_trn [entry_id].numpy() : ', batched_trn [entry_id].numpy())
         modified_trans = batched_trn [entry_id].numpy()
-        if np.shape(batched_trn [entry_id].numpy()) == (3,):
+        if batched_trn [entry_id].numpy().ndim == 1:
             modified_trans[None, :]
+        print('modified_trans', modified_trans)
         s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + modified_trans ).T
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
         coarse_matches.append(coarse_match_gt)
