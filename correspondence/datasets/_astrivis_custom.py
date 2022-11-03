@@ -76,8 +76,8 @@ class _AstrivisCustom(Dataset):
         correspondences = np.array(matches['matches'])
         indices_src = correspondences[:, 0]
         indices_tgt = correspondences[:, 1]
-        src_flow = [src_pcd[i] for i in indices_src]
-        tgt_flow = [tgt_pcd[i] for i in indices_tgt]
+        src_flow = np.array([src_pcd[i] for i in indices_src])
+        tgt_flow = np.array([tgt_pcd[i] for i in indices_tgt])
         
         s2t_flow = tgt_flow - src_flow
         
