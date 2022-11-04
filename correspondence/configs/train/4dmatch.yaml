@@ -43,10 +43,9 @@ do_valid: True
 do_test: True
 pretrain: ''
 
-
 # optimiser:
 optimizer: SGD
-max_epoch: 2 # Used to 1500 epochs
+max_epoch: 1500
 lr: 0.001
 weight_decay: 0.000001
 momentum: 0.93
@@ -55,12 +54,10 @@ scheduler_gamma: 0.95
 scheduler_freq: 1
 iter_size: 1
 
-
-
 #dataset:
 dataset: 4dmatch
 folder: deploy
-batch_size: 1 # Used to be 8, put to 1 for testing on one datapoint
+batch_size: 8
 num_workers: 10 # used to be 16
 augment_noise: 0.002
 data_root: ../4DMatch
