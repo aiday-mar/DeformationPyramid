@@ -78,8 +78,8 @@ class Trainer(object):
             filename = os.path.join(self.save_dir, f'model_{epoch}.pth')
         else:
             filename = os.path.join(self.save_dir, f'model_{name}.pth')
-        self.logger.write(f"Save model to {filename}\n")
-        print(f"Save model to {filename}\n")
+        self.logger.write(f"Save model to correspondence/{filename}\n")
+        print(f"Save model to correspondence/{filename}\n")
         torch.save(state, filename, _use_new_zipfile_serialization=False)
 
     def _load_matcher(self, resume):
