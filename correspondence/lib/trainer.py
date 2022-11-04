@@ -161,21 +161,16 @@ class Trainer(object):
         # init stats meter
         stats_meter = None #  self.stats_meter()
         print('phase : ', phase)
-        print('len(self.loader[phase].dataset : ', len(self.loader[phase].dataset))
-        print('self.loader[phase].batch_size : ', self.loader[phase].batch_size)
         num_iter = int(len(self.loader[phase].dataset) // self.loader[phase].batch_size) # drop last incomplete batch
-        print('num_iter : ', num_iter)
         c_loader_iter = self.loader[phase].__iter__()
 
         self.optimizer.zero_grad()
         for c_iter in tqdm(range(num_iter)):  # loop through this epoch
-            print('c_iter : ', c_iter, '/', num_iter)
             if self.timers: self.timers.tic('one_iteration')
 
             ##################################
             if self.timers: self.timers.tic('load batch')
             inputs = c_loader_iter.next()
-            print('inputs.keys() : ', inputs.keys())
             
             # for gpu_div_i, _ in enumerate(inputs):
             for k, v in inputs.items():
