@@ -167,15 +167,10 @@ class NeCoLoss(nn.Module):
         bsize = len(s_pcd)
 
         s_pcd_deformed = s_pcd + s2t_flow
-        print('batched_rot :', batched_rot)
-        print('s_pcd_deformed.transpose(1, 2) :', s_pcd_deformed.transpose(1, 2))
         
         if batched_trn.ndim == 2:
             batched_trn = torch.unsqueeze(batched_trn, 0)
-        
-        print('batched_trn : ', batched_trn)
-        
-        print('torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) : ', torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)))
+
         s_pcd_wrapped = (torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) + batched_trn).transpose(1,2)  # .transpose(1, 2) added before but maybe not correct
 
         batch_vec6d = data['vec_6d']
@@ -185,15 +180,7 @@ class NeCoLoss(nn.Module):
         inlier_rate = []
         inlier_mask = []
 
-        print('s_pcd_wrapped.shape : ', s_pcd_wrapped.shape)
-        print('batch_index.shape : ', batch_index.shape)
-        print('batch_mask.shape : ', batch_mask.shape)
-        
         for i in range(bsize):
-            print('i : ', i)
-            print('batch_index[i][:,0] : ', batch_index[i][:,0])
-            print('batch_mask[i] : ', batch_mask[i])
-            # exiting in order to see how the original matrices look like
             s_pcd_match_warp_gt = s_pcd_wrapped[i][batch_index[i][:,0]] [batch_mask[i]]
             t_pcd_matched = batch_vec6d[i][:,3:] [batch_mask[i]]
             inlier = torch.sum( (s_pcd_match_warp_gt - t_pcd_matched)**2 , dim= 1) <  inlier_thr**2
@@ -203,10 +190,6 @@ class NeCoLoss(nn.Module):
 
 
         return  inlier_mask, inlier_rate
-
-
-
-
 
     @staticmethod
     def tensor2numpy(tensor):
@@ -254,9 +237,6 @@ class NeCoLoss(nn.Module):
                 mlab.quiver3d(s_cpts[:, 0], s_cpts[:, 1], s_cpts[:, 2], flow[:, 0], flow[:, 1], flow[:, 2],
                               scale_factor=1, mode='2ddash', line_width=1., color=color)
 
-
-
-
             match_draw(s_cpts_god, t_cpts_god, flow_good, c_green)
 
             if len( bad_c) > 0 :
@@ -266,9 +246,6 @@ class NeCoLoss(nn.Module):
                 match_draw(s_cpts_bd, t_cpts_bd, flow_bad, c_red)
 
             # mlab.show()
-
-
-
 
         import mayavi.mlab as mlab
 
