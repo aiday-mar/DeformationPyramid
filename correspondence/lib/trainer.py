@@ -79,6 +79,7 @@ class Trainer(object):
         else:
             filename = os.path.join(self.save_dir, f'model_{name}.pth')
         self.logger.write(f"Save model to {filename}\n")
+        print(f"Save model to {filename}\n")
         torch.save(state, filename, _use_new_zipfile_serialization=False)
 
     def _load_matcher(self, resume):
@@ -109,10 +110,6 @@ class Trainer(object):
 
     def _get_lr(self, group=0):
         return self.optimizer.param_groups[group]['lr']
-
-
-
-
 
     def inference_one_batch(self, inputs, phase):
         assert phase in ['train', 'val', 'test']
