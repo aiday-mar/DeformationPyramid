@@ -19,7 +19,7 @@ class _AstrivisCustom(Dataset):
         super(_AstrivisCustom, self).__init__()
 
         assert split in ['train','val','test']
-
+        print('split : ', split)
         self.split = split
         self.matches = {}
         self.number_matches = 0
