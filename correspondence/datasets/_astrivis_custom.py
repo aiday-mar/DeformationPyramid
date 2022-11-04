@@ -33,6 +33,8 @@ class _AstrivisCustom(Dataset):
             path = '/home/aiday.kyzy/dataset/TrainingDataDeformedFinal'
         elif self.split == 'val':
             path = '/home/aiday.kyzy/dataset/ValidationDataDeformedFinal'
+        elif self.split == 'test':
+            path = '/home/aiday.kyzy/dataset/ValidationDataDeformedFinal'
             
         for folder in os.listdir(path):
             self.matches[folder] = []
