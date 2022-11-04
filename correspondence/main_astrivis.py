@@ -57,9 +57,8 @@ if __name__ == '__main__':
         shutil.copy2('main.py', config.snapshot_dir)
 
     # model initialization
-    config.matcher = Lepard(matcher_config) # pretrained point cloud matcher model
+    config.matcher = Lepard(matcher_config)
     config.model = Outlier_Rejection(config.model)
-    # config.model = NonLocalNet( in_dim=6, num_layers=6, num_channels=128)  # Model from PointDSC Bai+ 2021
     matcher_params_cnt = sum(p.numel() for p in config.matcher.parameters())
     model_params_cnt = sum(p.numel() for p in config.model.parameters() if p.requires_grad)
     print("#param in matcher", matcher_params_cnt)
@@ -81,11 +80,10 @@ if __name__ == '__main__':
             weight_decay=config.weight_decay,
         )
     
-    #create learning rate scheduler
     if  'overfit' in config.exp_dir :
         config.scheduler = optim.lr_scheduler.MultiStepLR(
             config.optimizer,
-            milestones=[config.max_epoch-1], # fix lr during overfitting
+            milestones=[config.max_epoch-1],
             gamma=0.1,
             last_epoch=-1)
 
@@ -98,8 +96,6 @@ if __name__ == '__main__':
     config.timers = Timers()
     config.dataset = 'astrivis'
     train_set, val_set, test_set = get_datasets(config)
-    # Find out the train set how it looks like and what are the inputs needed here in order to train the network
-    print('train_set : ', train_set)
     config.train_loader, neighborhood_limits = get_dataloader(train_set,config, shuffle=False)
     config.val_loader, _ = get_dataloader(val_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)
     config.test_loader, _ = get_dataloader(test_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)
