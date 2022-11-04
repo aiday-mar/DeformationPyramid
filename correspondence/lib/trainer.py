@@ -78,7 +78,8 @@ class Trainer(object):
             filename = os.path.join(self.save_dir, f'model_{epoch}.pth')
         else:
             filename = os.path.join(self.save_dir, f'model_{name}.pth')
-        self.logger.write(f"Save model to {filename}\n")
+        self.logger.write(f"Save model to correspondence/{filename}\n")
+        print(f"Save model to correspondence/{filename}\n")
         torch.save(state, filename, _use_new_zipfile_serialization=False)
 
     def _load_matcher(self, resume):
@@ -109,10 +110,6 @@ class Trainer(object):
 
     def _get_lr(self, group=0):
         return self.optimizer.param_groups[group]['lr']
-
-
-
-
 
     def inference_one_batch(self, inputs, phase):
         assert phase in ['train', 'val', 'test']
@@ -161,21 +158,16 @@ class Trainer(object):
         # init stats meter
         stats_meter = None #  self.stats_meter()
         print('phase : ', phase)
-        print('len(self.loader[phase].dataset : ', len(self.loader[phase].dataset))
-        print('self.loader[phase].batch_size : ', self.loader[phase].batch_size)
         num_iter = int(len(self.loader[phase].dataset) // self.loader[phase].batch_size) # drop last incomplete batch
-        print('num_iter : ', num_iter)
         c_loader_iter = self.loader[phase].__iter__()
 
         self.optimizer.zero_grad()
         for c_iter in tqdm(range(num_iter)):  # loop through this epoch
-            print('c_iter : ', c_iter, '/', num_iter)
             if self.timers: self.timers.tic('one_iteration')
 
             ##################################
             if self.timers: self.timers.tic('load batch')
             inputs = c_loader_iter.next()
-            print('inputs.keys() : ', inputs.keys())
             
             # for gpu_div_i, _ in enumerate(inputs):
             for k, v in inputs.items():
@@ -251,7 +243,7 @@ class Trainer(object):
     def train(self):
         print('start training...')
         for epoch in range(self.start_epoch, self.max_epoch):
-            print('epoch : ', epoch, '/', self.max_epoch)
+            print('epoch : ', epoch, '/', self.max_epoch - 1)
             with torch.autograd.set_detect_anomaly(True):
                 if self.timers: self.timers.tic('run one epoch')
                 stats_meter = self.inference_one_epoch(epoch, 'train')
