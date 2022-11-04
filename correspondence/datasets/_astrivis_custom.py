@@ -94,7 +94,7 @@ class _AstrivisCustom(Dataset):
         tgt_trans_file=h5py.File('/home/aiday.kyzy/dataset/TrainingDataDeformedFinal/' + folder_string + '/transformed/' + tgt_pcd_trans, "r")
         tgt_pcd_transform = np.array(tgt_trans_file['transformation'])
         
-        final_transform = np.dot(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
+        final_transform = np.matmul(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
         rot = final_transform[:3, :3]
         trans = final_transform[:3, 3]
         trans = np.expand_dims(trans, axis=0)
