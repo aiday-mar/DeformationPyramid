@@ -56,16 +56,13 @@ if __name__ == '__main__':
         os.system(f'cp -r outlier_rejection {config.snapshot_dir}')
         shutil.copy2('main.py', config.snapshot_dir)
 
-    
     # model initialization
-    config.matcher = Lepard(matcher_config) # pretrained point cloud matcher model
+    config.matcher = Lepard(matcher_config)
     config.model = Outlier_Rejection(config.model)
-    # config.model = NonLocalNet( in_dim=6, num_layers=6, num_channels=128)  # Model from PointDSC Bai+ 2021
     matcher_params_cnt = sum(p.numel() for p in config.matcher.parameters())
     model_params_cnt = sum(p.numel() for p in config.model.parameters() if p.requires_grad)
     print("#param in matcher", matcher_params_cnt)
     print("#param in model", model_params_cnt)
-
 
     # create optimizer 
     if config.optimizer == 'SGD':
