@@ -43,8 +43,8 @@ class Deformation_Pyramid ():
         data = {}
 
         for i in range(min_level, max_level + 1):
-            x, nonrigidity = self.pyramid[i](x)
-            data[i] = (x, nonrigidity)
+            x, nonrigidity, R, t = self.pyramid[i](x)
+            data[i] = (x, nonrigidity, R, t)
         return x, data
 
     def gradient_setup(self, optimized_level):
@@ -137,7 +137,7 @@ class NDPLayer(nn.Module):
             nonrigidity = None
 
 
-        return x_.squeeze(), nonrigidity
+        return x_.squeeze(), nonrigidity, R, t
 
 
 

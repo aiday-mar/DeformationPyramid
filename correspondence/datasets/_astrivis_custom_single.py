@@ -1,0 +1,71 @@
+import os, sys, glob, torch
+sys.path.append("../")
+[sys.path.append(i) for i in ['.', '..']]
+import numpy as np
+import torch
+import random
+from scipy.spatial.transform import Rotation
+from torch.utils.data import Dataset
+import h5py
+import open3d as o3d
+
+HMN_intrin = np.array( [443, 256, 443, 250 ])
+cam_intrin = np.array( [443, 256, 443, 250 ])
+
+
+class _AstrivisCustomSingle(Dataset):
+
+    def __init__(self, config, source_file, target_file, matches, source_trans, target_trans):
+        # Only one phase the testing phase
+        super(_AstrivisCustomSingle, self).__init__()
+        self.matches = {}
+        self.number_matches = 0
+        self.n_files_per_folder = 0
+        self.config = config        
+        self.path = '/home/aiday.kyzy/dataset/SyntheticTestingDataDeformed/'
+        self.source_file = source_file
+        self.target_file = target_file
+        self.matches = matches
+        self.source_trans = source_trans
+        self.target_trans = target_trans
+                    
+    def __len__(self):
+        return 1
+
+
+    def __getitem__(self, index):
+        
+        src_pcd = o3d.io.read_point_cloud(self.path + self.source_file)
+        src_pcd = np.array(src_pcd.points)
+        tgt_pcd = o3d.io.read_point_cloud(self.path + self.target_file)
+        tgt_pcd = np.array(tgt_pcd.points)
+        
+        src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
+        tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
+        
+        matches = np.load(self.path + self.matches)
+        correspondences = np.array(matches['matches'])
+        indices_src = correspondences[:, 0]
+        indices_tgt = correspondences[:, 1]
+        src_flow = np.array([src_pcd[i] for i in indices_src])
+        tgt_flow = np.array([tgt_pcd[i] for i in indices_tgt])
+        
+        s2t_flow = tgt_flow - src_flow
+        
+        src_trans_file=h5py.File(self.path + self.source_trans, "r")
+        src_pcd_transform = np.array(src_trans_file['transformation'])
+
+        tgt_trans_file=h5py.File(self.path + self.target_trans, "r")
+        tgt_pcd_transform = np.array(tgt_trans_file['transformation'])
+        
+        final_transform = np.matmul(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
+        rot = final_transform[:3, :3]
+        trans = final_transform[:3, 3]
+        trans = np.expand_dims(trans, axis=0)
+        trans = trans.transpose()
+        
+        metric_index = None
+        depth_paths = None 
+        cam_intrin = None
+        
+        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin

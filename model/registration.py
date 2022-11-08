@@ -130,7 +130,7 @@ class Registration():
         break_threshold_ratio=config.break_threshold_ratio
 
 
-        NDP = Deformation_Pyramid ( depth=config.depth,
+        NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
                                     device=self.device,
                                     k0=config.k0,
@@ -259,7 +259,7 @@ class Registration():
         warped_pcd = warped_pcd + tgt_mean
 
 
-        return warped_pcd,  iter_cnt, timer
+        return warped_pcd, data, iter_cnt, timer
 
 
     def optimize_Nerfies(self, visualize=False):

@@ -63,39 +63,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', type=str, help= 'Path to the src mesh.')
     parser.add_argument('-t', type=str, help='Path to the tgt mesh.')
-    ## --- ADDED FROM EVALUATION FILE ---
-    parser.add_argument('--config', type=str, help= 'Path to the config file.')
-    parser.add_argument('--directory', type=str, help= 'Directory where to save files')
-    parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
-    ## --- END
     args = parser.parse_args()
-
-    ## --- ADDED FROM EVALUATION FILE
-
-    with open(args.config,'r') as f:
-        config_eval = yaml.load(f, Loader=yaml.Loader)
-
-    config_eval['snapshot_dir'] = 'snapshot/%s/%s' % (config_eval['folder'], config_eval['exp_dir'])
-    os.makedirs(config_eval['snapshot_dir'], exist_ok=True)
-    config_eval = edict(config_eval)
-
-    print('Before starting the copying')
-    os.system(f'cp -r config {config_eval.snapshot_dir}')
-    os.system(f'cp -r data {config_eval.snapshot_dir}')
-    os.system(f'cp -r model {config_eval.snapshot_dir}')
-    os.system(f'cp -r utils {config_eval.snapshot_dir}')
-    print('After having finished the copying')
-
-    if config_eval.gpu_mode:
-        config_eval.device = torch.cuda.current_device()
-    else:
-        config_eval.device = torch.device('cpu')
-    
-    ldmk_model =  Landmark_Model(config_file = config_eval.ldmk_config, device=config_eval.device)
-    config_eval['kpfcn_config'] = ldmk_model.kpfcn_config
-    model = Registration(config_eval)
-
-    ## --- END
 
     S=args.s
     T=args.t
@@ -234,16 +202,3 @@ if __name__ == "__main__":
     ls3.points = o3d.utility.Vector3dVector(total_points)
     ls3.lines = o3d.utility.Vector2iVector(filtered_lines)
     o3d.io.write_line_set(args.directory + "/line-set-after-trans-filtered.ply", ls3)
-    
-    ## --- ADDED FROM EVALUATION
-    '''
-    inputs = {}
-    ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config_eval.reject_outliers, inlier_thr=config_eval.inlier_thr)
-
-    if config_eval.deformation_model in ["NDP"]:
-        model.load_pcds(src_pcd, tgt_pcd, landmarks=(ldmk_s, ldmk_t))
-        warped_pcd, iter, timer = model.register()
-        flow = warped_pcd - model.src_pcd
-    else:
-        raise KeyError()
-    '''
