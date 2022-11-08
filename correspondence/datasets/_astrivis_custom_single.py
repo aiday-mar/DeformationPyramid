@@ -61,11 +61,14 @@ class _AstrivisCustomSingle(Dataset):
         src_trans_file=h5py.File(self.path + self.source_trans, "r")
         src_pcd_transform = np.array(src_trans_file['transformation'])
 
+        # transformations used differently
         tgt_trans_file=h5py.File(self.path + self.target_trans, "r")
         tgt_pcd_transform_inverse = np.linalg.inv(np.array(tgt_trans_file['transformation']))
         
         rot = np.matmul(tgt_pcd_transform_inverse[:3, :3], src_pcd_transform[:3, :3])
         trans = tgt_pcd_transform_inverse[:3, :3]@src_pcd_transform[:3, 3] + tgt_pcd_transform_inverse[:3, 3]
+        #
+        
         trans = np.expand_dims(trans, axis=0)
         trans = trans.transpose()
         
