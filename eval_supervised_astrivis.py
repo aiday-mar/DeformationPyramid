@@ -142,7 +142,7 @@ if __name__ == "__main__":
         
         # Saving the line set
         ls2 = o3d.geometry.LineSet()
-        total_points = np.concatenate((src_pcd, np.array(warped_pcd)))
+        total_points = np.concatenate((src_pcd, np.array(warped_pcd.cpu())))
         ls2.points = o3d.utility.Vector3dVector(total_points)
         n_points = src_pcd.shape[0]
         total_lines = [[i, i + n_points] for i in range(0, n_points)]
