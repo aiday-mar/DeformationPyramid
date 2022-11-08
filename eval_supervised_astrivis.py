@@ -124,7 +124,7 @@ if __name__ == "__main__":
         
         target_pcd_o3d = o3d.geometry.PointCloud()
         target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
-        o3d.io.write_point_cloud('target_pcd.ply', target_pcd_o3d)
+        o3d.io.write_point_cloud('tgt_pcd.ply', target_pcd_o3d)
         
         final_pcd = o3d.geometry.PointCloud()
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
