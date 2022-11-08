@@ -47,8 +47,14 @@ class _AstrivisCustomSingle(Dataset):
         correspondences = np.array(matches['matches'])
         indices_src = correspondences[:, 0]
         indices_tgt = correspondences[:, 1]
-        src_flow = np.array([src_pcd[i] for i in indices_src])
-        tgt_flow = np.array([tgt_pcd[i] for i in indices_tgt])
+        
+        # Added in order to get the s2t flow on the centered tgt and source
+        src_pcd_centered = src_pcd - np.mean(src_pcd, axis=0)
+        tgt_pcd_centered = tgt_pcd - np.mean(tgt_pcd, axis=0)
+        #
+        
+        src_flow = np.array([src_pcd_centered[i] for i in indices_src])
+        tgt_flow = np.array([tgt_pcd_centered[i] for i in indices_tgt])
         
         s2t_flow = tgt_flow - src_flow
         
