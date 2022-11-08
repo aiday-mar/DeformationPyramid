@@ -58,7 +58,7 @@ iter_size: 1
 dataset: 4dmatch
 folder: deploy
 batch_size: 1
-num_workers: 10 # used to be 16
+num_workers: 0 # used to be 16
 augment_noise: 0.002
 data_root: ../4DMatch
 split: {

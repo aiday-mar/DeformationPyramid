@@ -175,7 +175,7 @@ def spherical_Lloyd(radius, num_cells, dimension=3, fixed='center', approximatio
                 warning = True
                 centers.append(kernel_points[c])
 
-        # Update kernel points with low pass filter to smooth mote carlo
+        # Update kernel points with low pass filter to smooth monte carlo
         centers = np.vstack(centers)
         moves = (1 - momentum) * (centers - kernel_points)
         kernel_points += moves
@@ -392,7 +392,7 @@ def load_kernels(radius, num_kpoints, dimension, fixed, lloyd=False):
     if not exists(kernel_dir):
         makedirs(kernel_dir)
 
-    # To many points switch to Lloyds
+    # Too many points switch to Lloyds
     if num_kpoints > 30:
         lloyd = True
 

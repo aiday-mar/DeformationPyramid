@@ -91,7 +91,7 @@ class CorrespondenceAttentionLayer(nn.Module):
             a.masked_fill_( q_mask[:, :, None, None] * (~kv_mask[:, None, :, None]), float('-inf'))
 
 
-
+        # Below equation (3) in Lepard. 
         a =  a / qw.size(3) **0.5
         a = torch.softmax(a, dim=2)
         o = torch.einsum("nlsh,nshd->nlhd", a, vw).contiguous()  # [N, L, (H, D)]
