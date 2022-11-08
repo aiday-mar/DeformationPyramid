@@ -92,6 +92,15 @@ if __name__ == "__main__":
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
+        
+        src_pcd_o3d = o3d.geometry.PointCloud()
+        src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
+        o3d.io.write_point_cloud('src_pcd.ply', src_pcd_o3d)
+        
+        target_pcd_o3d = o3d.geometry.PointCloud()
+        target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
+        o3d.io.write_point_cloud('tgt_pcd.ply', target_pcd_o3d)
+        
         s2t_flow = inputs['sflow_list'][0]
         rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
         correspondence = inputs['correspondences_list'][0]
@@ -117,15 +126,7 @@ if __name__ == "__main__":
         
         print('data : ', data)
         
-        # warped_pcd is presumably the final pcd
-        src_pcd_o3d = o3d.geometry.PointCloud()
-        src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
-        o3d.io.write_point_cloud('src_pcd.ply', src_pcd_o3d)
-        
-        target_pcd_o3d = o3d.geometry.PointCloud()
-        target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
-        o3d.io.write_point_cloud('tgt_pcd.ply', target_pcd_o3d)
-        
+        # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
         o3d.io.write_point_cloud(args.output, final_pcd)
