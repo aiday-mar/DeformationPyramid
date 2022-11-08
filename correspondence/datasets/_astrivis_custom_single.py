@@ -51,10 +51,10 @@ class _AstrivisCustomSingle(Dataset):
         # Added in order to get the s2t flow on the centered tgt and source
         src_pcd_centered = src_pcd - np.mean(src_pcd, axis=0)
         tgt_pcd_centered = tgt_pcd - np.mean(tgt_pcd, axis=0)
-        #
         
         src_flow = np.array([src_pcd_centered[i] for i in indices_src])
         tgt_flow = np.array([tgt_pcd_centered[i] for i in indices_tgt])
+        #
         
         s2t_flow = tgt_flow - src_flow
         
@@ -62,11 +62,10 @@ class _AstrivisCustomSingle(Dataset):
         src_pcd_transform = np.array(src_trans_file['transformation'])
 
         tgt_trans_file=h5py.File(self.path + self.target_trans, "r")
-        tgt_pcd_transform = np.array(tgt_trans_file['transformation'])
+        tgt_pcd_transform_inverse = np.linalg.inv(np.array(tgt_trans_file['transformation']))
         
-        final_transform = np.matmul(src_pcd_transform, np.linalg.inv(tgt_pcd_transform))
-        rot = final_transform[:3, :3]
-        trans = final_transform[:3, 3]
+        rot = np.matmul(src_pcd_transform[:3, :3], tgt_pcd_transform_inverse[:3, :3])
+        trans = src_pcd_transform[:3, 3] + tgt_pcd_transform_inverse[:3, 3]
         trans = np.expand_dims(trans, axis=0)
         trans = trans.transpose()
         
