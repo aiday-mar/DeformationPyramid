@@ -97,7 +97,7 @@ if __name__ == "__main__":
         correspondence = inputs['correspondences_list'][0]
 
         """compute scene flow GT"""
-        # Remember s2t_flow here only works on te partial correspondences. 
+        # Remember s2t_flow here only works on the partial correspondences. 
         indices_src = correspondence[:, 0]
         src_pcd_deformed = src_pcd
         src_pcd_deformed[indices_src] = src_pcd[indices_src] + s2t_flow
@@ -118,6 +118,14 @@ if __name__ == "__main__":
         print('data : ', data)
         
         # warped_pcd is presumably the final pcd
+        src_pcd_o3d = o3d.geometry.PointCloud()
+        src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
+        o3d.io.write_point_cloud('src_pcd.ply', src_pcd_o3d)
+        
+        target_pcd_o3d = o3d.geometry.PointCloud()
+        target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
+        o3d.io.write_point_cloud('target_pcd.ply', target_pcd_o3d)
+        
         final_pcd = o3d.geometry.PointCloud()
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
         o3d.io.write_point_cloud(args.output, final_pcd)
