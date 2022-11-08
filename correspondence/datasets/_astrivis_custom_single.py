@@ -36,9 +36,9 @@ class _AstrivisCustomSingle(Dataset):
     def __getitem__(self, index):
         
         src_pcd = o3d.io.read_point_cloud(self.path + self.source_file)
-        src_pcd = np.array(src_pcd.points)
+        src_pcd = np.array(src_pcd.points).astype(np.float32)
         tgt_pcd = o3d.io.read_point_cloud(self.path + self.target_file)
-        tgt_pcd = np.array(tgt_pcd.points)
+        tgt_pcd = np.array(tgt_pcd.points).astype(np.float32)
         
         src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
@@ -68,4 +68,4 @@ class _AstrivisCustomSingle(Dataset):
         depth_paths = None 
         cam_intrin = None
         
-        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index, depth_paths, cam_intrin
+        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin
