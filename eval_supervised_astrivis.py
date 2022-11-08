@@ -25,18 +25,17 @@ yaml.add_constructor('!join', join)
 
 setup_seed(0)
 
-# If LineSet idea does not work, print all the necessary results from here
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', type=str, help= 'Path to the src mesh.')
-    parser.add_argument('-t', type=str, help='Path to the tgt mesh.')
-    parser.add_argument('-output', type=str, help= 'Path to the file where to save source pcd after transformation.')
-    parser.add_argument('-output_trans', type=str, help='Path to the final output transformation.')
+    parser.add_argument('--s', type=str, help= 'Path to the src mesh.')
+    parser.add_argument('--t', type=str, help='Path to the tgt mesh.')
+    parser.add_argument('--output', type=str, help= 'Path to the file where to save source pcd after transformation.')
+    parser.add_argument('--output_trans', type=str, help='Path to the final output transformation.')
 
-    parser.add_argument('-matches', type=str, help='Path to ground truth matches')  
-    parser.add_argument('-source_trans', type=str, help='Path to the source transformation')  
-    parser.add_argument('-target_trans', type=str, help='Path to the target transformation')    
+    parser.add_argument('--matches', type=str, help='Path to ground truth matches')  
+    parser.add_argument('--source_trans', type=str, help='Path to the source transformation')  
+    parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     args = parser.parse_args()
@@ -133,6 +132,9 @@ if __name__ == "__main__":
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, timer = timer)
+        # It seems that there are num_iterations transformations and we only want the last one of the iterations
+        # But also need to combine the transformations from the different layers in order to obtain the last transformation
+        # Rember first transformation is on the left and the last one is on the right
         print('data : ', data)
         
         # warped_pcd is presumably the final pcd        
@@ -161,5 +163,5 @@ if __name__ == "__main__":
 
         message = f'{c_iter}/{len(test_set)}: '
         for key, value in stats_meter.items():
-            message += f'{key}: {value.avg:.3f}\t'
-        print(message + '\n')
+            message += f'{key}: {value.avg:.3f} \n'
+        print(message)
