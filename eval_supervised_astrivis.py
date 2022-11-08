@@ -112,6 +112,10 @@ if __name__ == "__main__":
         src_pcd_deformed[indices_src] = src_pcd[indices_src] + s2t_flow
         s_pc_wrapped = ( rot @ src_pcd_deformed.T + trn ).T
         
+        src_pcd_wrapped_o3d = o3d.geometry.PointCloud()
+        src_pcd_wrapped_o3d.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped.cpu()))
+        o3d.io.write_point_cloud('src_pcd_wrapped.ply', src_pcd_wrapped_o3d)
+        
         s2t_flow = s_pc_wrapped - src_pcd
         flow_gt = s2t_flow.to(config.device)
 
