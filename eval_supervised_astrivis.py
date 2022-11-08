@@ -92,6 +92,8 @@ if __name__ == "__main__":
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
+        copy_src_pcd = src_pcd
+        copy_tgt_pcd = tgt_pcd
         
         src_pcd_o3d = o3d.geometry.PointCloud()
         src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
@@ -129,9 +131,8 @@ if __name__ == "__main__":
         overlap = overlap.bool()
         overlap =  overlap.to(config.device)
 
-        model.load_pcds(src_pcd, tgt_pcd, landmarks=(ldmk_s, ldmk_t))
+        model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, timer = timer)
-        
         print('data : ', data)
         
         # warped_pcd is presumably the final pcd        
