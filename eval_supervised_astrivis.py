@@ -91,15 +91,18 @@ if __name__ == "__main__":
         """predict landmarks"""
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
-        # Seems to be the input of the test_loader hence need to have as ground-truth data the flow and the correspondences
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         s2t_flow = inputs['sflow_list'][0]
         rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
         correspondence = inputs['correspondences_list'][0]
 
         """compute scene flow GT"""
-        src_pcd_deformed = src_pcd + s2t_flow
+        # Remember s2t_flow here only works on te partial correspondences. 
+        indices_src = correspondence[:, 0]
+        src_pcd_deformed = src_pcd
+        src_pcd_deformed[indices_src] = src_pcd[indices_src] + s2t_flow
         s_pc_wrapped = ( rot @ src_pcd_deformed.T + trn ).T
+        
         s2t_flow = s_pc_wrapped - src_pcd
         flow_gt = s2t_flow.to(config.device)
 
