@@ -140,6 +140,15 @@ if __name__ == "__main__":
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
         o3d.io.write_point_cloud(args.output, final_pcd)
         
+        # Saving the line set
+        ls2 = o3d.geometry.LineSet()
+        total_points = np.concatenate((src_pcd, np.array(warped_pcd)))
+        ls2.points = o3d.utility.Vector3dVector(total_points)
+        n_points = src_pcd.shape[0]
+        total_lines = [[i, i + n_points] for i in range(0, n_points)]
+        ls2.lines = o3d.utility.Vector2iVector(total_lines)
+        o3d.io.write_line_set(args.directory + "/line-set-after-trans.ply", ls2)
+        
         flow = warped_pcd - model.src_pcd
         metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
 
