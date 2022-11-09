@@ -143,6 +143,7 @@ if __name__ == "__main__":
             se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
             final_transformation = se4_matrix@final_transformation
         
+        print('final_transformation : ', final_transformation)
         print('final_rot : ', final_transformation[:3][:3])
         print('final_trans : ', final_transformation[:3][3])
         
