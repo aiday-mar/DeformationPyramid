@@ -8,7 +8,7 @@ model:
   feature_dim: 144
   n_head: &n_head 8
   pe_type: &pe_type "rotary" # options: [ 'rotary', 'sinusoidal', 'none']
-  voxel_size: &voxel_size 0.08 #default 0.04
+  voxel_size: &voxel_size 0.08 # default 0.04
   sigma_spat: &sigma_spat 0.1
   spatial_consistency_check: True
 
@@ -23,8 +23,8 @@ train_loss:
   match_weight: 1
   match_type: 'dual_softmax'
   positioning_type: 'procrustes'
-#  confidence_threshold : 0.2
-  confidence_threshold_metric: 0.1  #confidence_threshold for evaluation
+  # confidence_threshold : 0.2
+  confidence_threshold_metric: 0.1  # confidence_threshold for evaluation
   inlier_thr: 0.04 # 4 cm
   fmr_thr: 0.5
   registration_threshold: 0.2 # [3DMatch: 0.2m]
@@ -41,7 +41,7 @@ verbose: True
 verbose_freq: 1000
 do_valid: True
 do_test: True
-pretrain: ''
+pretrain: './pretrained/outlier_weights.pth'
 
 # optimiser:
 optimizer: SGD
