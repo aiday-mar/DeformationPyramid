@@ -132,10 +132,19 @@ if __name__ == "__main__":
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, timer = timer)
-        # It seems that there are num_iterations transformations and we only want the last one of the iterations
-        # But also need to combine the transformations from the different layers in order to obtain the last transformation
-        # Rember first transformation is on the left and the last one is on the right
-        print('data : ', data)
+        
+        final_transformation = np.identity(4)
+        for i in range(0, 10):
+            rot = data[i][2][-1]
+            trans = data[i][2][-1]
+            print('rot : ', rot)
+            print('trans : ', trans)
+            se4_matrix = np.concatenate((rot, trans), axis=1)
+            se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
+            final_transformation = se4_matrix@final_transformation
+        
+        print('final_rot : ', final_transformation[:3][:3])
+        print('final_trans : ', final_transformation[:3][3])
         
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
