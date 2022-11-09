@@ -141,11 +141,9 @@ if __name__ == "__main__":
             se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
             final_transformation = se4_matrix@final_transformation
         
-        if args.output_trans:
-            f = h5py.File(args.output_trans, 'w')
-            name_dataset='transformation'
-            f.create_dataset(name_dataset, data=np.array(final_transformation))
-            f.close()
+        f = h5py.File(args.output_trans, 'w')
+        f.create_dataset('transformation', data=np.array(final_transformation))
+        f.close()
         
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
