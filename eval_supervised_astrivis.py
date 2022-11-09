@@ -144,8 +144,8 @@ if __name__ == "__main__":
             final_transformation = se4_matrix@final_transformation
         
         print('final_transformation : ', final_transformation)
-        print('final_rot : ', final_transformation[:3][:3])
-        print('final_trans : ', final_transformation[:3][3])
+        print('final_rot : ', final_transformation[:3, :3])
+        print('final_trans : ', final_transformation[:3, 3])
         
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
