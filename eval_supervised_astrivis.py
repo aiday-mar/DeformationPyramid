@@ -26,6 +26,8 @@ yaml.add_constructor('!join', join)
 
 setup_seed(0)
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
@@ -142,14 +144,14 @@ if __name__ == "__main__":
             se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
             final_transformation = se4_matrix@final_transformation
         
-        f = h5py.File(args.output_trans, 'w')
+        f = h5py.File(path + args.output_trans, 'w')
         f.create_dataset('transformation', data=np.array(final_transformation))
         f.close()
         
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
-        o3d.io.write_point_cloud(args.output, final_pcd)
+        o3d.io.write_point_cloud(path + args.output, final_pcd)
         
         # Saving the line set
         ls2 = o3d.geometry.LineSet()
