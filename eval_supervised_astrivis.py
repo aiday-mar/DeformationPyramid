@@ -17,6 +17,7 @@ from utils.utils import AverageMeter
 from utils.tiktok import Timers
 from correspondence.landmark_estimator import Landmark_Model
 import h5py
+import copy
 
 def join(loader, node):
     seq = loader.construct_sequence(node)
@@ -91,8 +92,8 @@ if __name__ == "__main__":
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
-        copy_src_pcd = src_pcd
-        copy_tgt_pcd = tgt_pcd
+        copy_src_pcd = copy.deepcopy(src_pcd)
+        copy_tgt_pcd = copy.deepcopy(tgt_pcd)
         
         src_pcd_o3d = o3d.geometry.PointCloud()
         src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
