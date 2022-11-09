@@ -13,10 +13,10 @@ from easydict import EasyDict as edict
 from model.loss import compute_flow_metrics
 
 from utils.benchmark_utils import setup_seed
-from utils.utils import Logger, AverageMeter
+from utils.utils import AverageMeter
 from utils.tiktok import Timers
-
 from correspondence.landmark_estimator import Landmark_Model
+import h5py
 
 def join(loader, node):
     seq = loader.construct_sequence(node)
@@ -137,15 +137,15 @@ if __name__ == "__main__":
         for i in range(0, 10):
             rot = data[i][2][-1].cpu()
             trans = data[i][3][-1].cpu().unsqueeze(1)
-            print('rot : ', rot)
-            print('trans : ', trans)
             se4_matrix = np.concatenate((rot, trans), axis=1)
             se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
             final_transformation = se4_matrix@final_transformation
         
-        print('final_transformation : ', final_transformation)
-        print('final_rot : ', final_transformation[:3, :3])
-        print('final_trans : ', final_transformation[:3, 3])
+        if args.output_trans:
+            f = h5py.File(args.output_trans, 'w')
+            name_dataset='transformation'
+            f.create_dataset(name_dataset, data=np.array(final_transformation))
+            f.close()
         
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
