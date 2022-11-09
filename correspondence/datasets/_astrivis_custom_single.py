@@ -22,7 +22,7 @@ class _AstrivisCustomSingle(Dataset):
         self.number_matches = 0
         self.n_files_per_folder = 0
         self.config = config        
-        self.path = '/home/aiday.kyzy/dataset/SyntheticTestingDataDeformed/'
+        self.path = '/home/aiday.kyzy/dataset/FullSyntheticTestingDataDeformed/'
         self.source_file = source_file
         self.target_file = target_file
         self.matches = matches
@@ -31,7 +31,6 @@ class _AstrivisCustomSingle(Dataset):
                     
     def __len__(self):
         return 1
-
 
     def __getitem__(self, index):
         
@@ -48,26 +47,22 @@ class _AstrivisCustomSingle(Dataset):
         indices_src = correspondences[:, 0]
         indices_tgt = correspondences[:, 1]
         
-        # Added in order to get the s2t flow on the centered tgt and source
         src_pcd_centered = src_pcd - np.mean(src_pcd, axis=0)
         tgt_pcd_centered = tgt_pcd - np.mean(tgt_pcd, axis=0)
         
         src_flow = np.array([src_pcd_centered[i] for i in indices_src])
         tgt_flow = np.array([tgt_pcd_centered[i] for i in indices_tgt])
-        #
         
         s2t_flow = tgt_flow - src_flow
         
         src_trans_file=h5py.File(self.path + self.source_trans, "r")
         src_pcd_transform = np.array(src_trans_file['transformation'])
 
-        # transformations used differently
         tgt_trans_file=h5py.File(self.path + self.target_trans, "r")
         tgt_pcd_transform_inverse = np.linalg.inv(np.array(tgt_trans_file['transformation']))
         
         rot = np.matmul(tgt_pcd_transform_inverse[:3, :3], src_pcd_transform[:3, :3])
         trans = tgt_pcd_transform_inverse[:3, :3]@src_pcd_transform[:3, 3] + tgt_pcd_transform_inverse[:3, 3]
-        #
         
         trans = np.expand_dims(trans, axis=0)
         trans = trans.transpose()

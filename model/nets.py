@@ -126,6 +126,7 @@ class NDPLayer(nn.Module):
             x_ = s * (R @ x[..., None]).squeeze() + t
 
         else: # scene flow
+            R = None
             x_ = x + t
 
 
