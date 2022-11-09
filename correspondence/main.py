@@ -98,8 +98,6 @@ if __name__ == '__main__':
 
     # create dataset and dataloader
     train_set, val_set, test_set = get_datasets(config)
-    # Find out the train set how it looks like and what are the inputs needed here in order to train the network
-    print('train_set : ', train_set)
     config.train_loader, neighborhood_limits = get_dataloader(train_set,config, shuffle=False)
     config.val_loader, _ = get_dataloader(val_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)
     config.test_loader, _ = get_dataloader(test_set, config, shuffle=False, neighborhood_limits=neighborhood_limits)

@@ -241,9 +241,8 @@ class Trainer(object):
 
 
     def train(self):
-        print('start training...')
         for epoch in range(self.start_epoch, self.max_epoch):
-            print('epoch : ', epoch, '/', self.max_epoch - 1)
+            print('Epoch : ', epoch, '/', self.max_epoch - 1)
             with torch.autograd.set_detect_anomaly(True):
                 if self.timers: self.timers.tic('run one epoch')
                 stats_meter = self.inference_one_epoch(epoch, 'train')
@@ -252,23 +251,9 @@ class Trainer(object):
             self.scheduler.step()
             
             stats_meter = self.inference_one_epoch(epoch, 'val')
-            print('average loss : ', stats_meter['loss'].avg)
-            self._snapshot(epoch)
+            print('Average loss : ', stats_meter['loss'].avg)
+            
+            with open("validation_losses.txt", "a") as file:
+                file.write(stats_meter['loss'].avg)
                 
-            '''
-            if 'overfit' in self.config.exp_dir :
-                if stats_meter['loss'].avg < self.best_loss:
-                    self.best_loss = stats_meter['loss'].avg
-                    self._snapshot(epoch, 'best_loss')
-                if self.timers: self.timers.print()
-            else : # no validation step for overfitting
-                if self.config.do_valid:
-                    stats_meter = self.inference_one_epoch(epoch, 'val')
-                    if stats_meter['loss'].avg < self.best_loss:
-                        self.best_loss = stats_meter['loss'].avg
-                        self._snapshot(epoch, 'best_loss')
-                if self.timers: self.timers.print()
-            '''
-
-        # finish all epoch
-        print("Training finish!")
+            self._snapshot(epoch)
