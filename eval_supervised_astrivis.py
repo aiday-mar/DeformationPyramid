@@ -136,7 +136,7 @@ if __name__ == "__main__":
         final_transformation = np.identity(4)
         for i in range(0, 10):
             rot = data[i][2][-1].cpu()
-            trans = data[i][3][-1].cpu()
+            trans = data[i][3][-1].cpu().unsqueeze(1)
             print('rot : ', rot)
             print('trans : ', trans)
             se4_matrix = np.concatenate((rot, trans), axis=1)
