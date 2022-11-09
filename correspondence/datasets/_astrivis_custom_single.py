@@ -22,7 +22,7 @@ class _AstrivisCustomSingle(Dataset):
         self.number_matches = 0
         self.n_files_per_folder = 0
         self.config = config        
-        self.path = '/home/aiday.kyzy/dataset/'
+        self.path = '/home/aiday.kyzy/dataset/Synthetic'
         self.source_file = source_file
         self.target_file = target_file
         self.matches = matches
