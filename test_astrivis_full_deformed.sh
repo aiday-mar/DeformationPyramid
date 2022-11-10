@@ -15,6 +15,7 @@ for i in $(seq 0 $end); do
 		file_number1=${arr[$i]}
 		file_number2=${arr[$j]}
 
+		echo "model ${k} i ${i} j ${j}"
 		touch ${base}/model${k}/output/${file_number1}_${file_number2}_se4.h5
         python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s="FullDeformedData/TestingData/model${k}/transformed/${file_number1}.ply" --t="FullDeformedData/TestingData/model${k}/transformed/${file_number2}.ply" --source_trans="FullDeformedData/TestingData/model${k}/transformed/${file_number1}_se4.h5" --target_trans="FullDeformedData/TestingData/model${k}/transformed/${file_number2}_se4.h5" --matches="FullDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}.npz" --output="FullDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}.ply" --output_trans="FullDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}_se4.h5"
 		python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="${base}/model${k}/transformed/${file_number1}_se4.h5" --part2="${base}/model${k}/transformed/${file_number2}_se4.h5" --pred="${base}/model${k}/output/${file_number1}_${file_number2}_se4.h5"

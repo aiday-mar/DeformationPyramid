@@ -14,7 +14,8 @@ for i in $(seq 0 $end); do
 
 		file_number1=${arr[$i]}
 		file_number2=${arr[$j]}
-
+		echo "model ${k} i ${i} j ${j}"
+		
 		# 0 -> 1
 		touch ${base}/model${k}/output/${file_number1}_${file_number2}_0_1_se4.h5
 		python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_0.ply" --t="PartialDeformedData/TestingData/model${k}/transformed/${file_number2}_1.ply" --source_trans="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_0_se4.h5" --target_trans="PartialDeformedData/TestingData/model${k}/transformed/${file_number2}_1_se4.h5" --matches="PartialDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" --output="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}_0_1.ply" --output_trans="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}_0_1_se4.h5"
