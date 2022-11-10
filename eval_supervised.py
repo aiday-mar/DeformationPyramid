@@ -25,7 +25,6 @@ yaml.add_constructor('!join', join)
 
 setup_seed(0)
 
-# If LineSet idea does not work, print all the necessary results from here
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
