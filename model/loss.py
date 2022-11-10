@@ -345,7 +345,7 @@ def nerfies_regularization( jacobian, eps=1e-6):
     return loss
 
 
-def scene_flow_metrics(pred, labels, strict=0.025, relax = 0.05):
+def scene_flow_metrics(pred, labels, strict=0.025, relax = 0.05, outlier_thr = 0.3):
     l2_norm = torch.sqrt(torch.sum((pred - labels) ** 2, 1)).cpu()  # Absolute distance error.
     labels_norm = torch.sqrt(torch.sum(labels * labels, 1)).cpu()
     relative_err = l2_norm / (labels_norm + 1e-20)
@@ -363,7 +363,7 @@ def scene_flow_metrics(pred, labels, strict=0.025, relax = 0.05):
     AccR = torch.mean((error_lt_10 | relative_err_lt_10).float()).item()
 
     # NOTE: outliers
-    relative_err_lt_30 = torch.BoolTensor(relative_err > 0.3)
+    relative_err_lt_30 = torch.BoolTensor(relative_err > outlier_thr)
     outlier = torch.mean(relative_err_lt_30.float()).item()
 
     return EPE3D*100, AccS*100, AccR*100, outlier*100

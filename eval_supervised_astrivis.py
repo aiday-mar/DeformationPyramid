@@ -99,11 +99,9 @@ if __name__ == "__main__":
         
         src_pcd_o3d = o3d.geometry.PointCloud()
         src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
-        o3d.io.write_point_cloud('src_pcd.ply', src_pcd_o3d)
         
         target_pcd_o3d = o3d.geometry.PointCloud()
         target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
-        o3d.io.write_point_cloud('tgt_pcd.ply', target_pcd_o3d)
         
         s2t_flow = inputs['sflow_list'][0]
         rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
@@ -158,12 +156,8 @@ if __name__ == "__main__":
         n_points = src_pcd.shape[0]
         total_lines = [[i, i + n_points] for i in range(0, n_points)]
         ls2.lines = o3d.utility.Vector2iVector(total_lines)
-        o3d.io.write_line_set("line-set-after-trans.ply", ls2)
         
         flow = warped_pcd - model.src_pcd
-        print('warped_pcd.shape : ', warped_pcd.shape)
-        print('flow.shape : ', flow.shape)
-        print('flow_gt.shape : ', flow_gt.shape)
         metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
 
         if stats_meter is None:
