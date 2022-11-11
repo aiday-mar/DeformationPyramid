@@ -248,15 +248,9 @@ class Registration():
             else:
                 s_sample = s_sample_warped.detach()
             
-            if intermediate:
-                intermediate_sample = s_sample + tgt_mean
-                intermediate_pcd = o3d.geometry.PointCloud()
-                intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
-                o3d.io.write_point_cloud('output_test/result_' + str(level) + '.ply', intermediate_pcd)
-
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
-        warped_pcd, data = NDP.warp(src_pcd)
+        warped_pcd, data = NDP.warp(src_pcd, intermediate, tgt_mean)
         if visualize:
              visualize_pcds(tgt_pcd=tgt_pcd, warped_pcd=warped_pcd, rigidity=data[level][1])
 

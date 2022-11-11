@@ -4,8 +4,8 @@ from .rigid_body import _6d_to_SO3, euler_to_SO3, quaternion_to_SO3, exp_se3, ex
 # from .position_encoding import *
 import torch.nn.functional as F
 from torch.autograd.functional import jacobian
-
-
+import open3d as o3d
+import numpy as np
 
 class Deformation_Pyramid ():
 
@@ -33,7 +33,7 @@ class Deformation_Pyramid ():
         self.pyramid = pyramid
         self.n_hierarchy = m
 
-    def warp(self, x, max_level=None, min_level=0):
+    def warp(self, x, intermediate=False, tgt_mean = None, max_level=None, min_level=0):
 
         if max_level is None:
             max_level = self.n_hierarchy - 1
@@ -44,6 +44,13 @@ class Deformation_Pyramid ():
 
         for i in range(min_level, max_level + 1):
             x, nonrigidity, R, t = self.pyramid[i](x)
+            
+            if intermediate:
+                intermediate_sample = x + tgt_mean
+                intermediate_pcd = o3d.geometry.PointCloud()
+                intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
+                o3d.io.write_point_cloud('output_test/result_' + str(i) + '.ply', intermediate_pcd)
+                
             data[i] = (x, nonrigidity, R, t)
         return x, data
 
