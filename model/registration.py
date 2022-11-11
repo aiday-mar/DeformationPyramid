@@ -252,7 +252,7 @@ class Registration():
                 intermediate_sample = s_sample + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
-                o3d.io.write_point_cloud('output/result_' + str(level) + '.ply', intermediate_pcd)
+                o3d.io.write_point_cloud('output_test/result_' + str(level) + '.ply', intermediate_pcd)
 
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
