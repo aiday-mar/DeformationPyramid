@@ -2,7 +2,7 @@ import torch
 import  sys
 import numpy as np
 from skimage import io
-
+import open3d as o3d
 import pytorch3d
 import torch.optim as optim
 
