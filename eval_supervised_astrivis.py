@@ -35,11 +35,11 @@ if __name__ == "__main__":
     parser.add_argument('--t', type=str, help='Path to the tgt mesh.')
     parser.add_argument('--output', type=str, help= 'Path to the file where to save source pcd after transformation.')
     parser.add_argument('--output_trans', type=str, help='Path to the final output transformation.')
-
     parser.add_argument('--matches', type=str, help='Path to ground truth matches')  
     parser.add_argument('--source_trans', type=str, help='Path to the source transformation')  
     parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
+    parser.add_argument('--intermediate', action = 'store_true', help='Whether to output all the intermediate warped point-clouds')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     args = parser.parse_args()
     with open(args.config,'r') as f:
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         overlap =  overlap.to(config.device)
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, timer = timer)
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate=args.intermediate, timer = timer)
         
         final_transformation = np.identity(4)
         for i in range(0, 10):

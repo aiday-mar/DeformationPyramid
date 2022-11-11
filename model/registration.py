@@ -123,7 +123,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, timer = None):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate=False, timer = None):
 
         config = self.config
         max_break_count=config.max_break_count
@@ -247,8 +247,12 @@ class Registration():
 
             else:
                 s_sample = s_sample_warped.detach()
-
-
+            
+            if intermediate:
+                intermediate_sample = s_sample + tgt_mean
+                intermediate_pcd = o3d.geometry.PointCloud()
+                intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
+                o3d.io.write_point_cloud('output/result_' + str(level) + '.ply', intermediate_pcd)
 
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
