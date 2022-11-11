@@ -26,8 +26,7 @@ yaml.add_constructor('!join', join)
 
 setup_seed(0)
 
-# path = '/home/aiday.kyzy/dataset/Synthetic/'
-path = ''
+path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 if __name__ == "__main__":
 
