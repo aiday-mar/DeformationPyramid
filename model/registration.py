@@ -256,7 +256,6 @@ class Registration():
 
         warped_pcd = warped_pcd + tgt_mean
 
-
         return warped_pcd, data, iter_cnt, timer
 
 
