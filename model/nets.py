@@ -7,6 +7,8 @@ from torch.autograd.functional import jacobian
 import open3d as o3d
 import numpy as np
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
+
 class Deformation_Pyramid ():
 
     def __init__(self, depth, width, device, k0, m, rotation_format, nonrigidity_est=False, motion='SE3'):
@@ -33,7 +35,7 @@ class Deformation_Pyramid ():
         self.pyramid = pyramid
         self.n_hierarchy = m
 
-    def warp(self, x, intermediate=False, tgt_mean = None, max_level=None, min_level=0):
+    def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, max_level=None, min_level=0):
 
         if max_level is None:
             max_level = self.n_hierarchy - 1
@@ -45,11 +47,11 @@ class Deformation_Pyramid ():
         for i in range(min_level, max_level + 1):
             x, nonrigidity, R, t = self.pyramid[i](x)
             
-            if intermediate:
+            if intermediate_ouput_folder:
                 intermediate_sample = x + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
-                o3d.io.write_point_cloud('output_test_partial_deformed/result_' + str(i) + '.ply', intermediate_pcd)
+                o3d.io.write_point_cloud(path + intermediate_ouput_folder + 'inter_' + str(i) + '.ply', intermediate_pcd)
                 
             data[i] = (x, nonrigidity, R, t)
         return x, data
