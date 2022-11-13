@@ -379,9 +379,10 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
     depth_paths_list = {}
 
+    src_pcd_colors_list = []
 
     # for ind in range ( len(pairwise_data) ) :
-    for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin) in enumerate(pairwise_data):
+    for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
         #            src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
 
 
@@ -389,6 +390,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
 
         src_pcd_list.append(torch.from_numpy(src_pcd))
+        src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
         tgt_pcd_list.append(torch.from_numpy(tgt_pcd))
 
         batched_points_list.append(src_pcd)
@@ -598,7 +600,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         'sflow_list': sflow_list,
         'correspondences_list': correspondences_list,
         'depth_paths_list': depth_paths_list,
-        'cam_intrin' : cam_intrin
+        'cam_intrin' : cam_intrin,
+        'src_pcd_colors_list' : src_pcd_colors_list
     }
 
 
