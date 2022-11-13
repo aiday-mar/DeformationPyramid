@@ -46,14 +46,16 @@ class Landmark_Model ():
 
     def inference(self, inputs, reject_outliers=True, inlier_thr=0.5, timer=None):
 
+        print('Inside of Landmark_Model inference')
+        print('inputs : ', inputs)
         self.matcher.eval()
         self.outlier_model.eval()
         with torch.no_grad():
-
+            print('Calling the matcher on the inputs')
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
             if timer: timer.toc("matcher")
-
+            print('Calling the outlier rejection method on the data')
             if timer: timer.tic("outlier rejection")
             confidence = self.outlier_model(data)
             if timer: timer.toc("outlier rejection")
@@ -61,16 +63,21 @@ class Landmark_Model ():
             inlier_conf = confidence[0]
 
             coarse_flow = data['coarse_flow'][0]
+            print('coarse_flow : ', coarse_flow.shape)
             inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
+            print('inlier_mask.shape : ', inlier_mask.shape)
+            print('inlier_rate.shape : ', inlier_rate.shape)
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+            print('match_filtered.shape : ', match_filtered.shape)
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
-
+            print('inlier_rate_2.shape : ', inlier_rate_2.shape)
             vec_6d = data['vec_6d'][0]
 
             if reject_outliers:
                 vec_6d = vec_6d [inlier_conf > inlier_thr]
 
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
-
+            print('ldmk_s.shape : ', ldmk_s.shape)
+            print('ldmk_t.shape : ', ldmk_t.shape)
 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2

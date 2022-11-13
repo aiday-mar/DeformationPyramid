@@ -52,33 +52,40 @@ class Outlier_Rejection(nn.Module):
         if self.spatial_consistency_check:
             with torch.no_grad():
                 src_keypts, tgt_keypts = pos6d[...,:3], pos6d[...,3:]
+                print('src_keypts.shape : ', src_keypts.shape)
+                print('tgt_keypts.shape : ', tgt_keypts.shape)
                 src_dist = torch.norm((src_keypts[:, :, None, :] - src_keypts[:, None, :, :]), dim=-1)
+                print('src_dist.shape : ', src_dist.shape)
                 tgt_dist = torch.norm((tgt_keypts[:, :, None, :] - tgt_keypts[:, None, :, :]), dim=-1)
+                print('tgt_dist.shape : ', src_dist.shape)
                 corr_compatibility = src_dist - tgt_dist
                 corr_compatibility = torch.clamp(1.0 - corr_compatibility ** 2 / self.sigma_spat ** 2, min=0)
+                print('corr_compatibility.shape : ', corr_compatibility.shape)
         else:
             corr_compatibility = None
-
 
         if self.pe_type != 'none':
             pe_6d = self.positional_encoding(pos6d)
         else:
             pe_6d = None
 
-
+        print('pe_6d.shape : ', pe_6d.shape)
         feat = self.in_proj(corr_feat)
-
+        print('feat.shape : ', feat.shape)
 
         for layer in self._6D_geometry_layers:
             feat = layer( feat, feat, pe_6d, pe_6d, data['vec_6d_mask'],data['vec_6d_mask'], compatibility = corr_compatibility )
+            print('feat.shape after layer : ', feat.shape)
 
         confidence = self.classification(feat).squeeze(-1)
-
+        print('confidence.shape : ', confidence.shape)
+        
         return confidence
 
 
     def _3D_to_6D(self, data):
 
+        print('Inside of _3D_to_6D')
         b_size=len(data['s_pcd'])
         ind = data['coarse_match_pred']
         bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
@@ -106,7 +113,9 @@ class Outlier_Rejection(nn.Module):
             batch_mask[i][:batch_len[i]] = 1
             batch_index[i][:batch_len[i]] = batch_ind[i]
 
-
+        print('batch_vec6d.shape : ', batch_vec6d.shape)
+        print('batch_mask.shape : ', batch_mask.shape)
+        print('batch_index.shape : ', batch_index.shape)
         data['vec_6d'] = batch_vec6d
         data['vec_6d_mask'] = batch_mask
         data['vec_6d_ind'] = batch_index

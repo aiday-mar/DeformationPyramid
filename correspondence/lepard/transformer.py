@@ -147,6 +147,12 @@ class RepositioningTransformer(nn.Module):
 
     def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, T = None, timers = None):
 
+        print('src_feat.shape : ', src_feat.shape)
+        print('tgt_feat.shape : ', tgt_feat.shape)
+        print('s_pcd.shape : ', s_pcd.shape)
+        print('t_pcd.shape : ', t_pcd.shape)
+        print('src_mask.shape : ', src_mask.shape)
+        print('tgt_mask.shape : ', tgt_mask.shape)
         self.timers = timers
 
         assert self.d_model == src_feat.size(2), "the feature number of src and transformer must be equal"
@@ -160,8 +166,9 @@ class RepositioningTransformer(nn.Module):
             tgt_pcd_wrapped = t_pcd
 
         src_pe = self.positional_encoding( src_pcd_wrapped)
+        print('src_pe.shape : ', src_pe.shape)
         tgt_pe = self.positional_encoding( tgt_pcd_wrapped)
-
+        print('tgt_pe.shape : ', tgt_pe.shape)
 
         if not self.entangled:
 
@@ -227,6 +234,10 @@ class RepositioningTransformer(nn.Module):
                 else :
                     raise KeyError
 
+            print('src_feat.shape : ', src_feat.shape)
+            print('tgt_feat.shape : ', tgt_feat.shape)
+            print('src_pe.shape : ', src_pe.shape)
+            print('tgt_pe.shape : ', tgt_pe.shape)
             return src_feat, tgt_feat, src_pe, tgt_pe
 
         else : # pos. fea. entangeled

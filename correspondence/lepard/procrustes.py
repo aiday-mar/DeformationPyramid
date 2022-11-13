@@ -55,6 +55,13 @@ class SoftProcrustesLayer(nn.Module):
         @return:
         '''
 
+        print('Inside of the forward function of the SoftProcrustesLayer')
+        print('conf_matrix.shape : ', conf_matrix.shape)
+        print('src_pcd.shape : ', src_pcd.shape)
+        print('tgt_pcd.shape : ', tgt_pcd.shape)
+        print('src_mask.shape : ', src_mask.shape)
+        print('tgt_mask.shape : ', tgt_mask.shape)
+
         bsize, N, M = conf_matrix.shape
 
         # subsample correspondence
@@ -63,16 +70,21 @@ class SoftProcrustesLayer(nn.Module):
         entry_max, _ = torch.stack([src_len,tgt_len], dim=0).max(dim=0)
         entry_max = (entry_max * self.sample_rate).int()
         sample_n_points = entry_max.float().mean().int() #entry_max.max()
+        print('sample_n_points.shape : ', sample_n_points.shape)
         conf, idx = conf_matrix.view(bsize, -1).sort(descending=True,dim=1)
         w = conf [:, :sample_n_points]
         idx= idx[:, :sample_n_points]
+        print('idx.shape : ', idx.shape)
         idx_src = idx//M #torch.div(idx, M, rounding_mode='trunc')
         idx_tgt = idx%M
         b_index = torch.arange(bsize).view(-1, 1).repeat((1, sample_n_points)).view(-1)
         src_pcd_sampled = src_pcd[b_index, idx_src.view(-1)].view(bsize, sample_n_points, -1)
+        print('src_pcd_sampled.shape : ', src_pcd_sampled.shape)
         tgt_pcd_sampled = tgt_pcd[b_index, idx_tgt.view(-1)].view(bsize, sample_n_points, -1)
+        print('tgt_pcd_sampled.shape : ', tgt_pcd_sampled.shape)
         w_mask = torch.arange(sample_n_points).view(1,-1).repeat(bsize,1).to(w)
         w_mask = w_mask < entry_max[:,None]
+        print('w_mask.shape : ', w_mask.shape)
         w[~w_mask] = 0.
 
         # solve
@@ -87,7 +99,12 @@ class SoftProcrustesLayer(nn.Module):
         solution_mask = condition < self.max_condition_num
         R_forwd = R.clone()
         t_forwd = t.clone()
+        print('R.shape : ', R.shape)
+        print('t.shape : ', t.shape)
         R_forwd[~solution_mask] = torch.eye(3).type_as(R)
         t_forwd[~solution_mask] = torch.zeros(3, 1).type_as(R)
 
+        print('R_forwd.shape : ', R_forwd.shape)
+        print('t_forwd.shape : ', t_forwd.shape)
+        print('solution_mask.shape : ', solution_mask.shape)
         return R, t, R_forwd, t_forwd, condition, solution_mask

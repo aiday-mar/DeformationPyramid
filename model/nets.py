@@ -36,7 +36,7 @@ class Deformation_Pyramid ():
         self.n_hierarchy = m
 
     def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, max_level=None, min_level=0):
-
+        print('Inside of the warp function')
         if max_level is None:
             max_level = self.n_hierarchy - 1
 
@@ -45,7 +45,11 @@ class Deformation_Pyramid ():
         data = {}
 
         for i in range(min_level, max_level + 1):
+            print('i : ', i)
             x, nonrigidity, R, t = self.pyramid[i](x)
+            print('x.shape : ', x.shape)
+            print('R.shape : ', R.shape)
+            print('t.shape : ', t.shape)
             
             if intermediate_ouput_folder:
                 intermediate_sample = x + tgt_mean
@@ -118,16 +122,23 @@ class NDPLayer(nn.Module):
         self._reset_parameters()
 
     def forward (self, x):
-
+        print('Inside of the forward function of the NDPLayer')
+        print('x.shape : ', x.shape)
         fea = self.posenc( x )
+        print('fea.shape : ', fea.shape)
         fea = self.input(fea)
+        print('fea.shape after input layer : ', fea.shape)
         fea = self.mlp(fea)
+        print('fea.shape after mlp layr : ', fea.shape)
 
         t = self.mlp_scale * self.trn_branch ( fea )
+        print('t.shape : ', t.shape)
 
         if self.motion == "SE3":
             R = self.get_Rotation(fea)
+            print('R.shape : ', R.shape)
             x_ = (R @ x[..., None]).squeeze() + t
+            print('x_.shape : ', x_.shape)
 
         elif self.motion == "Sim3":
             R = self.get_Rotation(fea)
@@ -141,6 +152,7 @@ class NDPLayer(nn.Module):
 
         if self.nonrigidity_est:
             nonrigidity =self.sigmoid( self.mlp_scale * self.nr_branch(fea) )
+            print('nonrigidity.shape : ', nonrigidity.shape)
             x_ = x + nonrigidity * (x_ - x)
             nonrigidity = nonrigidity.squeeze()
         else:
@@ -174,6 +186,9 @@ class NDPLayer(nn.Module):
     def posenc(self, pos):
         pi = 3.14
         x_position, y_position, z_position = pos[..., 0:1], pos[..., 1:2], pos[..., 2:3]
+        print('x_position.shape : ', x_position.shape)
+        print('y_position.shape : ', y_position.shape)
+        print('z_position.shape : ', z_position.shape)
         # mul_term = ( 2 ** (torch.arange(self.m, device=pos.device).float() + self.k0) * pi ).reshape(1, -1)
         mul_term = (2 ** (self.m + self.k0)  )#.reshape(1, -1)
 
@@ -184,6 +199,7 @@ class NDPLayer(nn.Module):
         sinz = torch.sin(z_position * mul_term)
         cosz = torch.cos(z_position * mul_term)
         pe = torch.cat([sinx, cosx, siny, cosy, sinz, cosz], dim=-1)
+        print('pe.shape : ', pe.shape)
         return pe
 
 

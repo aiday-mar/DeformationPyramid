@@ -106,15 +106,6 @@ class Matching(nn.Module):
 
         return index, mconf, mask
 
-
-
-
-
-
-
-
-
-
     def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type="rotary"):
         '''
         @param src_feats: [B, S, C]
@@ -124,6 +115,10 @@ class Matching(nn.Module):
         @return:
         '''
 
+        print('Inside of forward function of Matching')
+
+        print('src_feats.shape : ', src_feats.shape)
+        print('tgt_feats.shape : ', tgt_feats.shape)
         src_feats = self.src_proj(src_feats)
         tgt_feats = self.src_proj(tgt_feats)
 
@@ -147,6 +142,7 @@ class Matching(nn.Module):
         if self.match_type == "dual_softmax":
             # dual softmax matching
             sim_matrix_1 = torch.einsum("bsc,btc->bst", src_feats, tgt_feats) / self.temperature
+            print('sim_matrix_1.shape : ', sim_matrix_1.shape)
 
             if src_mask is not None:
                 sim_matrix_2 = sim_matrix_1.clone()
@@ -170,5 +166,7 @@ class Matching(nn.Module):
             conf_matrix = assign_matrix[:, :-1, :-1].contiguous()
 
         coarse_match, _, _ = self.get_match(conf_matrix, self.confidence_threshold)
+        print('conf_matrix.shape : ', conf_matrix.shape)
+        print('coarse_match.shpae : ', coarse_match.shape)
         return conf_matrix, coarse_match
 

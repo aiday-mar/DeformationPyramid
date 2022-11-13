@@ -22,26 +22,32 @@ class Pipeline(nn.Module):
 
     def forward(self, data,  timers=None):
 
+        print('Inside the forward method of the Pipeline')
         self.timers = timers
 
         if self.timers: self.timers.tic('kpfcn backbone encode')
+        print('Before KPFCN backbone')
         coarse_feats = self.backbone(data, phase="coarse")
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
+        print('Before splitting the features')
         if self.timers: self.timers.tic('coarse_preprocess')
         src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats (coarse_feats, data)
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
+        print('Before the Respoitioning Transformer')
         if self.timers: self.timers.tic('coarse feature transformer')
         src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers)
         if self.timers: self.timers.toc('coarse feature transformer')
 
+        print('Before the matching')
         if self.timers: self.timers.tic('match feature coarse')
         conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type = self.pe_type)
         data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
 
+        print('Before the Soft Procrustes Layer')
         if self.timers: self.timers.tic('procrustes_layer')
         R, t, _, _, _, _ = self.soft_procrustes(conf_matrix_pred, s_pcd, t_pcd, src_mask, tgt_mask)
         data.update({"R_s2t_pred": R, "t_s2t_pred": t})
@@ -54,20 +60,29 @@ class Pipeline(nn.Module):
 
     def split_feats(self, geo_feats, data):
 
+        print('geo_feats.shape : ', geo_feats.shape)
         pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
 
         src_mask = data['src_mask']
+        print('src_mask.shape : ', src_mask.shape)
         tgt_mask = data['tgt_mask']
+        print('tgt_mask.shape : ', tgt_mask.shape)
         src_ind_coarse_split = data[ 'src_ind_coarse_split']
+        print('src_ind_coarse_split.shape : ', src_ind_coarse_split.shape)
         tgt_ind_coarse_split = data['tgt_ind_coarse_split']
+        print('tgt_ind_coarse_split.shape : ', tgt_ind_coarse_split.shape)
         src_ind_coarse = data['src_ind_coarse']
+        print('src_ind_coarse.shape : ', src_ind_coarse.shape)
         tgt_ind_coarse = data['tgt_ind_coarse']
+        print('tgt_ind_coarse.shape : ', tgt_ind_coarse.shape)
 
         b_size, src_pts_max = src_mask.shape
         tgt_pts_max = tgt_mask.shape[1]
 
         src_feats = torch.zeros([b_size * src_pts_max, geo_feats.shape[-1]]).type_as(geo_feats)
+        print('src_feats.shape : ', src_feats.shape)
         tgt_feats = torch.zeros([b_size * tgt_pts_max, geo_feats.shape[-1]]).type_as(geo_feats)
+        print('tgt_feats.shape : ', tgt_feats.shape)
         src_pcd = torch.zeros([b_size * src_pts_max, 3]).type_as(pcd)
         tgt_pcd = torch.zeros([b_size * tgt_pts_max, 3]).type_as(pcd)
 

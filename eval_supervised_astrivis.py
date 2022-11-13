@@ -91,7 +91,12 @@ if __name__ == "__main__":
 
 
         """predict landmarks"""
+        print('Before inference on the Landmark Model')
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+        print('ldmk_s.shape : ', ldmk_s.shape)
+        print('ldmk_t.shape : ', ldmk_t.shape)
+        print('inlier_rate.shape : ', inlier_rate.shape)
+        print('inlier_rate2.shape : ', inlier_rate_2.shape)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         copy_src_pcd = copy.deepcopy(src_pcd)
@@ -104,8 +109,10 @@ if __name__ == "__main__":
         target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
         
         s2t_flow = inputs['sflow_list'][0]
+        print('s2t_flow.shape : ', s2t_flow.shape)
         rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
         correspondence = inputs['correspondences_list'][0]
+        print('correspondence.shape : ', correspondence.shape)
 
         """compute scene flow GT"""
         # Remember s2t_flow here only works on the partial correspondences. 
@@ -128,9 +135,12 @@ if __name__ == "__main__":
         overlap[correspondence[:, 0]] = 1
         overlap = overlap.bool()
         overlap =  overlap.to(config.device)
+        print('overlap.shape : ', overlap.shape)
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
+        print('Before calling the register method on the model')
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate=args.intermediate_ouput_folder, timer = timer)
+        print('warped_pcd.shape : ', warped_pcd.shape)
         
         final_transformation = np.identity(4)
         for i in range(0, 10):
@@ -159,6 +169,7 @@ if __name__ == "__main__":
         ls2.lines = o3d.utility.Vector2iVector(total_lines)
         
         flow = warped_pcd - model.src_pcd
+        print('flow.shape : ', flow.shape)
         metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
 
         if stats_meter is None:
@@ -171,4 +182,4 @@ if __name__ == "__main__":
         message = f'{c_iter}/{len(test_set)}: '
         for key, value in stats_meter.items():
             message += f'{key}: {value.avg:.3f} \n'
-        print(message)
+        print('message :', message)

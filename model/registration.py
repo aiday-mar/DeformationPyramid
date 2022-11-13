@@ -104,7 +104,7 @@ class Registration():
 
 
     def register(self, **kwargs):
-
+        print('Inside of the register method')
         if self.deformation_model == "Sinkhorn":
             return self.run_optimal_transport( **kwargs)
 
@@ -124,7 +124,7 @@ class Registration():
 
 
     def optimize_deformation_pyramid(self, visualize=False, intermediate_ouput_folder=None, timer = None):
-
+        print('Inside of optimize_deformation_pyramid')
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
@@ -148,27 +148,32 @@ class Registration():
 
         # cancel global translation
         src_mean = self.src_pcd.mean(dim=0, keepdims=True)
+        print('src_mean.shape : ', src_mean.shape)
         tgt_mean = self.tgt_pcd.mean(dim=0, keepdims=True)
+        print('tgt_mean.shape : ', tgt_mean.shape)
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
 
 
         src = torch.randperm(src_pcd.shape[0])
+        print('src.shape : ', src.shape)
         tgt = torch.randperm(tgt_pcd.shape[0])
+        print('tgt.shape : ', tgt.shape)
         s_sample = src_pcd[src[: config.samples]]
         t_sample = tgt_pcd[tgt[: config.samples]]
-
+        print('s_sample.shape : ', s_sample.shape)
+        print('t_sample.shape : ', t_sample.shape)
 
         if self.landmarks is not None:
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
-
-
+            print('src_ldmk.shape : ', src_ldmk.shape)
+            print('tgt_ldmk.shape : ', tgt_ldmk.shape)
 
         iter_cnt={}
 
         for level in range ( NDP.n_hierarchy):
-
+            print('level : ', level)
             """freeze non-optimized level"""
             NDP.gradient_setup(optimized_level=level)
 
@@ -182,45 +187,43 @@ class Registration():
 
             """optimize current level"""
             for iter in range(self.config.iters):
-
+                print('iter : ', iter)
                 # use  ldmk
                 if self.landmarks is not None:
 
                     if config.w_cd > 0 :
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
+                        print('src_pts.shape : ', src_pts.shape)
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
+                        print('warped_pts.shape : ', warped_pts.shape)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
                         s_sample_warped = warped_pts [ len(src_ldmk):]
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
+                        print('loss_ldmk.shape : ', loss_ldmk.shape)
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
-
                         loss = loss_ldmk + config.w_cd * loss_CD
-
-
                     else :
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
-
+                        print('warped_ldmk.shape : ', warped_ldmk.shape)
                         loss = torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
 
                 else:
 
                     if timer: timer.tic("lvl_warp")
                     s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
+                    print('s_sample_warped.shape : ', s_sample_warped.shape)
                     if timer: timer.toc("lvl_warp")
 
                     if timer: timer.tic("Chamfer")
                     loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
                     if timer: timer.toc("Chamfer")
 
-
                 if level > 0 and config.w_reg>0:
                     nonrigidity = data [level][1]
+                    print('nonrigidity.shape : ', nonrigidity.shape)
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
                     loss = loss + config.w_reg* reg_loss
-
-
-
 
                 # early stop
                 if loss.item() < 1e-4:
@@ -236,7 +239,6 @@ class Registration():
                 loss.backward()
                 optimizer.step()
                 if timer: timer.toc("backprop")
-
 
             # use warped points for next level
             if self.landmarks is not None:
@@ -255,7 +257,7 @@ class Registration():
              visualize_pcds(tgt_pcd=tgt_pcd, warped_pcd=warped_pcd, rigidity=data[level][1])
 
         warped_pcd = warped_pcd + tgt_mean
-
+        print('warped_pcd.shape : ', warped_pcd.shape)
         return warped_pcd, data, iter_cnt, timer
 
 
@@ -264,16 +266,11 @@ class Registration():
         :param landmarks:
         :return:
         '''
-
-
-
         config = self.config
-
         net = Nerfies_Deformation( max_iter=config.iters).to(self.device)
 
         for param in net.parameters():
             param.requires_grad = True
-
 
         """optimizer setup"""
         optimizer = optim.Adam(net.parameters(), lr= config.lr )
