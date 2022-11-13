@@ -81,6 +81,7 @@ if __name__ == "__main__":
     for c_iter in tqdm(range(num_iter)):
 
         inputs = c_loader_iter.next()
+        print('inputs : ', inputs)
         for k, v in inputs.items():
             if type(v) == list:
                 inputs [k] = [item.to(config.device) for item in v]
