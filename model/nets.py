@@ -35,7 +35,7 @@ class Deformation_Pyramid ():
         self.pyramid = pyramid
         self.n_hierarchy = m
 
-    def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, print=False, max_level=None, min_level=0):
+    def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, print_size=False, max_level=None, min_level=0):
         if max_level is None:
             max_level = self.n_hierarchy - 1
 
@@ -45,8 +45,8 @@ class Deformation_Pyramid ():
 
         for i in range(min_level, max_level + 1):
 
-            x, nonrigidity, R, t = self.pyramid[i](x)
-            if print:
+            x, nonrigidity, R, t = self.pyramid[i](x, print_size)
+            if print_size:
                 print('i : ', i)
                 print('x.shape : ', x.shape)
                 print('R.shape : ', R.shape)
@@ -122,24 +122,31 @@ class NDPLayer(nn.Module):
 
         self._reset_parameters()
 
-    def forward (self, x):
-        print('Inside of the forward function of the NDPLayer')
-        print('x.shape : ', x.shape)
+    def forward (self, x, print_size = False):
+        if print_size:
+            print('Inside of the forward function of the NDPLayer')
+            print('x.shape : ', x.shape)
         fea = self.posenc( x )
-        print('fea.shape : ', fea.shape)
+        if print_size:
+            print('fea.shape : ', fea.shape)
         fea = self.input(fea)
-        print('fea.shape after input layer : ', fea.shape)
+        if print_size:
+            print('fea.shape after input layer : ', fea.shape)
         fea = self.mlp(fea)
-        print('fea.shape after mlp layr : ', fea.shape)
+        if print_size:
+            print('fea.shape after mlp layer : ', fea.shape)
 
         t = self.mlp_scale * self.trn_branch ( fea )
-        print('t.shape : ', t.shape)
+        if print_size:
+            print('t.shape : ', t.shape)
 
         if self.motion == "SE3":
             R = self.get_Rotation(fea)
-            print('R.shape : ', R.shape)
+            if print_size:
+                print('R.shape : ', R.shape)
             x_ = (R @ x[..., None]).squeeze() + t
-            print('x_.shape : ', x_.shape)
+            if print_size:
+                print('x_.shape : ', x_.shape)
 
         elif self.motion == "Sim3":
             R = self.get_Rotation(fea)
@@ -153,10 +160,13 @@ class NDPLayer(nn.Module):
 
         if self.nonrigidity_est:
             nonrigidity =self.sigmoid( self.mlp_scale * self.nr_branch(fea) )
-            print('nonrigidity.shape : ', nonrigidity.shape)
+            if print_size:
+                print('nonrigidity.shape : ', nonrigidity.shape)
             x_ = x + nonrigidity * (x_ - x)
             nonrigidity = nonrigidity.squeeze()
         else:
+            if print_size:
+                print('Nonrigidity set to None')
             nonrigidity = None
 
 
