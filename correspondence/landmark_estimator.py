@@ -47,7 +47,6 @@ class Landmark_Model ():
     def inference(self, inputs, reject_outliers=True, inlier_thr=0.5, timer=None):
 
         print('Inside of Landmark_Model inference')
-        print('inputs : ', inputs)
         self.matcher.eval()
         self.outlier_model.eval()
         with torch.no_grad():
