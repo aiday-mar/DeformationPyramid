@@ -390,7 +390,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
 
         src_pcd_list.append(torch.from_numpy(src_pcd))
-        src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
+        src_pcd_colors_list.append(src_pcd_colors)
         tgt_pcd_list.append(torch.from_numpy(tgt_pcd))
 
         batched_points_list.append(src_pcd)
