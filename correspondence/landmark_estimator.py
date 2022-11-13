@@ -65,8 +65,8 @@ class Landmark_Model ():
             coarse_flow = data['coarse_flow'][0]
             print('coarse_flow : ', coarse_flow.shape)
             inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
-            print('inlier_mask.shape : ', inlier_mask.shape)
-            print('inlier_rate.shape : ', inlier_rate.shape)
+            print('len(inlier_mask) : ', len(inlier_mask))
+            print('len(inlier_rate) : ', len(inlier_rate))
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
             print('match_filtered.shape : ', match_filtered.shape)
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
