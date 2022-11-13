@@ -95,8 +95,8 @@ if __name__ == "__main__":
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
         print('ldmk_s.shape : ', ldmk_s.shape)
         print('ldmk_t.shape : ', ldmk_t.shape)
-        print('inlier_rate.shape : ', inlier_rate.shape)
-        print('inlier_rate2.shape : ', inlier_rate_2.shape)
+        print('len(inlier_rate) : ', len(inlier_rate))
+        print('len(inlier_rate2) : ', len(inlier_rate_2))
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         copy_src_pcd = copy.deepcopy(src_pcd)
