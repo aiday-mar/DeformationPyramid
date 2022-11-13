@@ -126,7 +126,7 @@ class NDPLayer(nn.Module):
         if print_size:
             print('Inside of the forward function of the NDPLayer')
             print('x.shape : ', x.shape)
-        fea = self.posenc( x )
+        fea = self.posenc( x, print_size)
         if print_size:
             print('fea.shape : ', fea.shape)
         fea = self.input(fea)
@@ -194,12 +194,13 @@ class NDPLayer(nn.Module):
         return R
 
 
-    def posenc(self, pos):
+    def posenc(self, pos, print_size = False):
         pi = 3.14
         x_position, y_position, z_position = pos[..., 0:1], pos[..., 1:2], pos[..., 2:3]
-        print('x_position.shape : ', x_position.shape)
-        print('y_position.shape : ', y_position.shape)
-        print('z_position.shape : ', z_position.shape)
+        if print_size:
+            print('x_position.shape : ', x_position.shape)
+            print('y_position.shape : ', y_position.shape)
+            print('z_position.shape : ', z_position.shape)
         # mul_term = ( 2 ** (torch.arange(self.m, device=pos.device).float() + self.k0) * pi ).reshape(1, -1)
         mul_term = (2 ** (self.m + self.k0)  )#.reshape(1, -1)
 
@@ -210,7 +211,8 @@ class NDPLayer(nn.Module):
         sinz = torch.sin(z_position * mul_term)
         cosz = torch.cos(z_position * mul_term)
         pe = torch.cat([sinx, cosx, siny, cosy, sinz, cosz], dim=-1)
-        print('pe.shape : ', pe.shape)
+        if print_size:
+            print('pe.shape : ', pe.shape)
         return pe
 
 
