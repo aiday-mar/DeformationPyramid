@@ -187,31 +187,37 @@ class Registration():
 
             """optimize current level"""
             for iter in range(self.config.iters):
-                print('iter : ', iter)
+                if iter == 0 or iter == self.config.iters - 1:
+                    print('iter : ', iter)
                 # use  ldmk
                 if self.landmarks is not None:
 
                     if config.w_cd > 0 :
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
-                        print('src_pts.shape : ', src_pts.shape)
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('src_pts.shape : ', src_pts.shape)
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
-                        print('warped_pts.shape : ', warped_pts.shape)
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('warped_pts.shape : ', warped_pts.shape)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
                         s_sample_warped = warped_pts [ len(src_ldmk):]
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
-                        print('loss_ldmk.shape : ', loss_ldmk.shape)
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('loss_ldmk.shape : ', loss_ldmk.shape)
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
                         loss = loss_ldmk + config.w_cd * loss_CD
                     else :
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
-                        print('warped_ldmk.shape : ', warped_ldmk.shape)
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
                         loss = torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
 
                 else:
 
                     if timer: timer.tic("lvl_warp")
                     s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
-                    print('s_sample_warped.shape : ', s_sample_warped.shape)
+                    if iter == 0 or iter == self.config.iters - 1:
+                        print('s_sample_warped.shape : ', s_sample_warped.shape)
                     if timer: timer.toc("lvl_warp")
 
                     if timer: timer.tic("Chamfer")
@@ -220,7 +226,8 @@ class Registration():
 
                 if level > 0 and config.w_reg>0:
                     nonrigidity = data [level][1]
-                    print('nonrigidity.shape : ', nonrigidity.shape)
+                    if iter == 0 or iter == self.config.iters - 1:
+                        print('nonrigidity.shape : ', nonrigidity.shape)
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
                     loss = loss + config.w_reg* reg_loss
