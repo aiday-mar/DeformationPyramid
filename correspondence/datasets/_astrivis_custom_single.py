@@ -72,4 +72,4 @@ class _AstrivisCustomSingle(Dataset):
         depth_paths = None 
         cam_intrin = None
         
-        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin, src_pcd_colors
+        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin, np.array(src_pcd_colors)
