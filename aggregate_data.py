@@ -77,6 +77,26 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None)
     plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
     plt.title(title)
 
+def plot_across_types(type, number, partial1, partial2):
+    f = plt.figure(number)
+    full_deformed = data_file('test_astrivis_full_deformed.txt', deformed =True)
+    full_deformed = retrieve_type(full_deformed, type, partial1, partial2)
+    partial_deformed = data_file('test_astrivis_partial_deformed.txt', deformed =True)
+    partial_deformed = retrieve_type(partial_deformed, type, partial1, partial2)
+    full_non_deformed = data_file('test_astrivis_full_non_deformed.txt', deformed =False)
+    full_non_deformed = retrieve_type(full_non_deformed, type)
+    partial_non_deformed = data_file('test_astrivis_partial_non_deformed.txt', deformed =False)
+    partial_non_deformed = retrieve_type(partial_non_deformed, type)
+    plt.plot(full_deformed)
+    plt.plot(partial_deformed)
+    plt.plot(full_non_deformed)
+    plt.plot(partial_non_deformed)
+    plt.xlabel("Model from partial " + partial1 + " to partial " + partial2)
+    plt.ylabel(type)
+    plt.legend(['full_deformed', 'partial deformed', 'full non deformed', 'partial non deformed'])
+    plt.title(type)
+
+# When the type is fixed
 data_full_deformed = data_file('test_astrivis_full_deformed.txt', deformed =True)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, '0', '1')
 
@@ -88,5 +108,8 @@ plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, '0', '1')
 
 data_partial_non_deformed = data_file('test_astrivis_partial_non_deformed.txt', deformed = False)
 plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
+
+# When the measure is fixed
+plot_across_types('RMSE', 5, '0', '1')
 
 plt.show()
