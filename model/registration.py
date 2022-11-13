@@ -259,7 +259,7 @@ class Registration():
             
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
-        warped_pcd, data = NDP.warp(src_pcd, intermediate_ouput_folder, tgt_mean)
+        warped_pcd, data = NDP.warp(src_pcd, intermediate_ouput_folder, tgt_mean, print=True)
         if visualize:
              visualize_pcds(tgt_pcd=tgt_pcd, warped_pcd=warped_pcd, rigidity=data[level][1])
 

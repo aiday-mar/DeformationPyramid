@@ -35,8 +35,7 @@ class Deformation_Pyramid ():
         self.pyramid = pyramid
         self.n_hierarchy = m
 
-    def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, max_level=None, min_level=0):
-        print('Inside of the warp function')
+    def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, print=False, max_level=None, min_level=0):
         if max_level is None:
             max_level = self.n_hierarchy - 1
 
@@ -45,12 +44,14 @@ class Deformation_Pyramid ():
         data = {}
 
         for i in range(min_level, max_level + 1):
-            print('i : ', i)
+
             x, nonrigidity, R, t = self.pyramid[i](x)
-            print('x.shape : ', x.shape)
-            print('R.shape : ', R.shape)
-            print('t.shape : ', t.shape)
-            
+            if print:
+                print('i : ', i)
+                print('x.shape : ', x.shape)
+                print('R.shape : ', R.shape)
+                print('t.shape : ', t.shape)
+                
             if intermediate_ouput_folder:
                 intermediate_sample = x + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
