@@ -148,7 +148,7 @@ if __name__ == "__main__":
         # warped_pcd is presumably the final pcd        
         final_pcd = o3d.geometry.PointCloud()
         final_pcd.points = o3d.utility.Vector3dVector(np.array(warped_pcd.cpu()))
-        final_pcd.colors = o3d.utility.Vector3dVector(np.array(src_pcd_colors))
+        final_pcd.colors = o3d.utility.Vector3dVector(np.array(src_pcd_colors.cpu()))
         o3d.io.write_point_cloud(path + args.output, final_pcd)
         
         # Saving the line set
