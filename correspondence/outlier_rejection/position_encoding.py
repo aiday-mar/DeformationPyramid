@@ -43,12 +43,15 @@ class VolumetricPositionEncoding(nn.Module):
 
 
     def forward(self,  vec6d):
-
+        
+        print('\n')
+        print('Inside of forward method of VolPE')
         _, n, _ = vec6d.shape
 
         s_pe = self.pe( vec6d[..., :3] )
         t_pe = self.pe( vec6d[..., 3:] )
-
+        print('s_pe.shape : ', s_pe.shape)
+        print('t_pe.shape : ', t_pe.shape)
         return torch.cat([s_pe, t_pe], dim=2)
 
     def pe(self, XYZ):
