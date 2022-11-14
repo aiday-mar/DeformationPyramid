@@ -501,11 +501,19 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
             print('r : ', r)
             
             # Subsample indices
+            print('pool_p.shape : ', pool_p.shape)
+            print('batched_points.shape : ', batched_points.shape)
+            print('pool_b.shape : ', pool_b.shape)
+            print('batched_lengths.shape : ', batched_lengths.shape)
             pool_i = batch_neighbors_kpconv(pool_p, batched_points, pool_b, batched_lengths, r,
                                             neighborhood_limits[layer])
             print('pool_i.shape : ', pool_i.shape)
 
             # Upsample indices (with the radius of the next layer to keep wanted density)
+            print('batched_points.shape : ', batched_points.shape)
+            print('pool_p.shape : ', pool_p.shape)
+            print('batched_lengths.shape : ', batched_lengths.shape)
+            print('pool_b.shape : ', pool_b.shape)
             up_i = batch_neighbors_kpconv(batched_points, pool_p, batched_lengths, pool_b, 2 * r,
                                           neighborhood_limits[layer])
             print('up_i.shape : ', up_i.shape)
@@ -529,13 +537,14 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         # New points for next layer
         batched_points = pool_p
+        print('pool_p.shape : ', pool_p.shape)
         batched_lengths = pool_b
+        print('pool_b.shape : ', pool_b.shape)
 
         # Update radius and reset blocks
         r_normal *= 2
         layer += 1
         layer_blocks = []
-
 
     # coarse infomation
     coarse_level = config.coarse_level
@@ -543,6 +552,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
     print('pts_num_coarse.shape : ', pts_num_coarse.shape)
     b_size = pts_num_coarse.shape[0]
     src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
+    print('src_pts_max.shape : ', src_pts_max.shape)
+    print('tgt_pts_max.shape : ', tgt_pts_max.shape)
     coarse_pcd = input_points[coarse_level] # .numpy()
     print('coarse_pcd.shape : ', coarse_pcd.shape)
     coarse_matches= []
@@ -559,18 +570,18 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
     for entry_id, cnt in enumerate( pts_num_coarse ): #input_batches_len[-1].numpy().reshape(-1,2)) :
 
         n_s_pts, n_t_pts = cnt
+        print('n_s_pts : ', n_s_pts)
+        print('n_t_pts : ', n_t_pts)
 
         '''split mask for bottlenect feats'''
         src_mask[entry_id][:n_s_pts] = 1
         tgt_mask[entry_id][:n_t_pts] = 1
-
 
         '''split indices of bottleneck feats'''
         src_ind_coarse_split.append( torch.arange( n_s_pts ) + entry_id * src_pts_max )
         tgt_ind_coarse_split.append( torch.arange( n_t_pts ) + entry_id * tgt_pts_max )
         src_ind_coarse.append( torch.arange( n_s_pts ) + accumu )
         tgt_ind_coarse.append( torch.arange( n_t_pts ) + accumu + n_s_pts )
-
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
@@ -650,10 +661,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         'src_pcd_colors_list' : src_pcd_colors_list
     }
 
-
     return dict_inputs
-
-
 
 def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_threshold=2000):
 
