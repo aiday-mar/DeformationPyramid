@@ -36,8 +36,6 @@ class Deformation_Pyramid ():
         self.n_hierarchy = m
 
     def warp(self, x, intermediate_ouput_folder=None, tgt_mean = None, print_size=False, max_level=None, min_level=0):
-        print('\n')
-        print('Inside warp function of NDP')
         if max_level is None:
             max_level = self.n_hierarchy - 1
 
