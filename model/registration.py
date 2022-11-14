@@ -239,6 +239,7 @@ class Registration():
 
                 # early stop
                 if loss.item() < 1e-4:
+                    print('Before break at iter : ', iter)
                     if self.landmarks is not None:
                         if config.w_cd > 0 :
                             print('src_pts.shape : ', src_pts.shape)
@@ -254,6 +255,7 @@ class Registration():
                 if abs(loss_prev - loss.item()) < loss_prev * break_threshold_ratio:
                     break_counter += 1
                 if break_counter >= max_break_count:
+                    print('Before break at iter : ', iter)
                     if self.landmarks is not None:
                         if config.w_cd > 0 :
                             print('src_pts.shape : ', src_pts.shape)
