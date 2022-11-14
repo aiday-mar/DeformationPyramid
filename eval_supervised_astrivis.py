@@ -39,7 +39,7 @@ if __name__ == "__main__":
     parser.add_argument('--source_trans', type=str, help='Path to the source transformation')  
     parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
-    parser.add_argument('--intermediate_ouput_folder', type=str, help='Where to place all the intermediate outputs')
+    parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     args = parser.parse_args()
     with open(args.config,'r') as f:
