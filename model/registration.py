@@ -201,7 +201,11 @@ class Registration():
                         if iter == 0 or iter == self.config.iters - 1:
                             print('warped_pts.shape : ', warped_pts.shape)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
                         s_sample_warped = warped_pts [ len(src_ldmk):]
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('s_sample_warped.shape : ', s_sample_warped.shape)
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
                         if iter == 0 or iter == self.config.iters - 1:
                             print('loss_ldmk.shape : ', loss_ldmk.shape)
@@ -227,17 +231,40 @@ class Registration():
 
                 if level > 0 and config.w_reg>0:
                     nonrigidity = data [level][1]
-                    print('nonrigidity.shape : ', nonrigidity.shape)
+                    if iter == 0 or iter == self.config.iters - 1:
+                        print('nonrigidity.shape : ', nonrigidity.shape)
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
                     loss = loss + config.w_reg* reg_loss
 
                 # early stop
                 if loss.item() < 1e-4:
+                    if self.landmarks is not None:
+                        if config.w_cd > 0 :
+                            print('src_pts.shape : ', src_pts.shape)
+                            print('warped_pts.shape : ', warped_pts.shape)
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
+                            print('s_sample_warped.shape : ', s_sample_warped.shape)
+                            print('loss_ldmk.shape : ', loss_ldmk.shape)
+                        else:
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
+                    else:
+                        print('s_sample_warped.shape : ', s_sample_warped.shape)
                     break
                 if abs(loss_prev - loss.item()) < loss_prev * break_threshold_ratio:
                     break_counter += 1
                 if break_counter >= max_break_count:
+                    if self.landmarks is not None:
+                        if config.w_cd > 0 :
+                            print('src_pts.shape : ', src_pts.shape)
+                            print('warped_pts.shape : ', warped_pts.shape)
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
+                            print('s_sample_warped.shape : ', s_sample_warped.shape)
+                            print('loss_ldmk.shape : ', loss_ldmk.shape)
+                        else:
+                            print('warped_ldmk.shape : ', warped_ldmk.shape)
+                    else:
+                        print('s_sample_warped.shape : ', s_sample_warped.shape)
                     break
                 loss_prev = loss.item()
 
@@ -256,6 +283,8 @@ class Registration():
 
             else:
                 s_sample = s_sample_warped.detach()
+            
+            print('s_sample.shape : ', s_sample.shape)
             
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
