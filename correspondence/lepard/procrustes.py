@@ -75,7 +75,7 @@ class SoftProcrustesLayer(nn.Module):
         w = conf [:, :sample_n_points]
         idx= idx[:, :sample_n_points]
         print('idx.shape : ', idx.shape)
-        idx_src = idx//M #torch.div(idx, M, rounding_mode='trunc')
+        idx_src = torch.div(idx, M, rounding_mode='trunc') # idx//M #torch.div(idx, M, rounding_mode='trunc')
         idx_tgt = idx%M
         b_index = torch.arange(bsize).view(-1, 1).repeat((1, sample_n_points)).view(-1)
         src_pcd_sampled = src_pcd[b_index, idx_src.view(-1)].view(bsize, sample_n_points, -1)
