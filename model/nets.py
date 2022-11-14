@@ -11,10 +11,12 @@ path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Deformation_Pyramid ():
 
-    def __init__(self, depth, width, device, k0, m, rotation_format, nonrigidity_est=False, motion='SE3'):
+    def __init__(self, depth, width, device, k0, m, rotation_format, nonrigidity_est=False, base = None, motion='SE3'):
 
+        if base:
+            path = base
+            
         pyramid = []
-
 
         assert motion in [ "Sim3", "SE3", "sflow"]
 

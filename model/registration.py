@@ -123,7 +123,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_ouput_folder=None, timer = None):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate_ouput_folder=None, base = None, timer = None):
 
         config = self.config
         max_break_count=config.max_break_count
@@ -137,7 +137,8 @@ class Registration():
                                     m=config.m,
                                     nonrigidity_est=config.w_reg > 0,
                                     rotation_format=config.rotation_format,
-                                    motion=config.motion_type)
+                                    motion=config.motion_type,
+                                    base = base)
 
 
         self.src_pcd = self.src_pcd.to(self.device)
