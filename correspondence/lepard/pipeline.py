@@ -37,6 +37,7 @@ class Pipeline(nn.Module):
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
+        print('\n')
         print('Before the Repositioning Transformer')
         if self.timers: self.timers.tic('coarse feature transformer')
         src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers)
@@ -61,6 +62,21 @@ class Pipeline(nn.Module):
 
     def split_feats(self, geo_feats, data):
         print('Inside of split_feats')
+        '''
+        geo_feats.shape :  torch.Size([260, 528])
+        src_mask.shape :  torch.Size([1, 132])
+        tgt_mask.shape :  torch.Size([1, 128])
+        src_ind_coarse_split.shape :  torch.Size([132])
+        tgt_ind_coarse_split.shape :  torch.Size([128])
+        src_ind_coarse.shape :  torch.Size([132])
+        tgt_ind_coarse.shape :  torch.Size([128])
+        src_feats.shape :  torch.Size([132, 528])
+        tgt_feats.shape :  torch.Size([128, 528])
+        src_feats.shape :  torch.Size([132, 528])
+        tgt_feats.shape :  torch.Size([128, 528])
+        src_pcd.shape :  torch.Size([132, 3])
+        tgt_pcd.shape :  torch.Size([128, 3])
+        '''
         print('geo_feats.shape : ', geo_feats.shape)
         pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
 

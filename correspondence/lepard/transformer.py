@@ -147,6 +147,16 @@ class RepositioningTransformer(nn.Module):
 
     def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, T = None, timers = None):
 
+        '''
+        src_feat.shape :  torch.Size([1, 132, 528])
+        tgt_feat.shape :  torch.Size([1, 128, 528])
+        s_pcd.shape :  torch.Size([1, 132, 3])
+        t_pcd.shape :  torch.Size([1, 128, 3])
+        src_mask.shape :  torch.Size([1, 132])
+        tgt_mask.shape :  torch.Size([1, 128])
+        src_pe.shape :  torch.Size([1, 132, 528, 2])
+        tgt_pe.shape :  torch.Size([1, 128, 528, 2])
+        '''
         print('src_feat.shape : ', src_feat.shape)
         print('tgt_feat.shape : ', tgt_feat.shape)
         print('s_pcd.shape : ', s_pcd.shape)
@@ -178,19 +188,21 @@ class RepositioningTransformer(nn.Module):
             for layer, name in zip(self.layers, self.layer_types) :
 
                 if name == 'self':
+                    print('self')
                     if self.timers: self.timers.tic('self atten')
                     src_feat = layer(src_feat, src_feat, src_pe, src_pe, src_mask, src_mask,)
                     tgt_feat = layer(tgt_feat, tgt_feat, tgt_pe, tgt_pe, tgt_mask, tgt_mask)
                     if self.timers: self.timers.toc('self atten')
 
                 elif name == 'cross':
+                    print('cross')
                     if self.timers: self.timers.tic('cross atten')
                     src_feat = layer(src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask)
                     tgt_feat = layer(tgt_feat, src_feat, tgt_pe, src_pe, tgt_mask, src_mask)
                     if self.timers: self.timers.toc('cross atten')
 
                 elif name =='positioning':
-
+                    print('positioning')
                     if self.positioning_type == 'procrustes':
 
                         conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type=self.pe_type)
