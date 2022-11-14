@@ -75,8 +75,8 @@ class Outlier_Rejection(nn.Module):
 
         for layer in self._6D_geometry_layers:
             feat = layer( feat, feat, pe_6d, pe_6d, data['vec_6d_mask'],data['vec_6d_mask'], compatibility = corr_compatibility )
-            print('feat.shape after layer : ', feat.shape)
-
+            
+        print('feat.shape after _6D_geometry_layers : ', feat.shape)
         confidence = self.classification(feat).squeeze(-1)
         print('confidence.shape : ', confidence.shape)
         
