@@ -1,9 +1,9 @@
 # type=w_reg
-type=w_cd
-# type=default
+# type=w_cd
+type=default
 
-number=0.5
-# number=0
+# number=0.5
+number=0
 
 mkdir TestData/FullNonDeformed/output_${type}_${number}
 mkdir TestData/FullDeformed/output_${type}_${number}
