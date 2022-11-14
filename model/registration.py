@@ -172,6 +172,7 @@ class Registration():
 
         iter_cnt={}
 
+        print('\n')
         for level in range ( NDP.n_hierarchy):
             print('level : ', level)
             """freeze non-optimized level"""
@@ -226,8 +227,7 @@ class Registration():
 
                 if level > 0 and config.w_reg>0:
                     nonrigidity = data [level][1]
-                    if iter == 0 or iter == self.config.iters - 1:
-                        print('nonrigidity.shape : ', nonrigidity.shape)
+                    print('nonrigidity.shape : ', nonrigidity.shape)
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
                     loss = loss + config.w_reg* reg_loss
