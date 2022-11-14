@@ -1,5 +1,5 @@
-type=w_reg
-# type=w_cd
+# type=w_reg
+type=w_cd
 # type=default
 
 number=0.5
