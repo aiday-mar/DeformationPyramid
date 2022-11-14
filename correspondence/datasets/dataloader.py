@@ -466,6 +466,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
                 r = r_normal * config.deform_radius / config.conv_radius
             else:
                 r = r_normal
+            print('batched_points.shape : ', batched_points.shape)
+            print('batched_lengths.shape : ', batched_lengths.shape)
+            print('neighborhood_limits[layer].shape : ', neighborhood_limits[layer].shape)
             conv_i = batch_neighbors_kpconv(batched_points, batched_points, batched_lengths, batched_lengths, r,
                                             neighborhood_limits[layer])
             print('r : ', r)
