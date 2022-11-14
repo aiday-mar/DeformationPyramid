@@ -21,7 +21,7 @@ class Pipeline(nn.Module):
 
 
     def forward(self, data,  timers=None):
-
+        
         print('Inside the forward method of the Pipeline')
         self.timers = timers
 
@@ -78,7 +78,8 @@ class Pipeline(nn.Module):
 
         b_size, src_pts_max = src_mask.shape
         tgt_pts_max = tgt_mask.shape[1]
-
+        # multiply batch size by the max number of points in the source point-cloud
+        # the second argument is the dimension of the geotransformer features
         src_feats = torch.zeros([b_size * src_pts_max, geo_feats.shape[-1]]).type_as(geo_feats)
         print('src_feats.shape : ', src_feats.shape)
         tgt_feats = torch.zeros([b_size * tgt_pts_max, geo_feats.shape[-1]]).type_as(geo_feats)

@@ -122,7 +122,8 @@ class KPFCN(nn.Module):
         # Get input features
 
         if phase == 'coarse' :
-
+            
+            print('Before encoder blocks')
             x = batch['features'].clone().detach()
             print('x.shape : ', x.shape)
             # 1. joint encoder part
@@ -134,6 +135,7 @@ class KPFCN(nn.Module):
                 x = block_op(x, batch)  # [N,C]
                 print('x.shape : ', x.shape)
 
+            print('Before decoder blocks')
             for block_i, block_op in enumerate(self.decoder_blocks):
                 if block_i in self.decoder_concats:
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
