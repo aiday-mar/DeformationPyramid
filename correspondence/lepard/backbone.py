@@ -129,13 +129,16 @@ class KPFCN(nn.Module):
             self.skip_x = []
             for block_i, block_op in enumerate(self.encoder_blocks):
                 if block_i in self.encoder_skips:
+                    print('Adding skip')
                     self.skip_x.append(x)
                 x = block_op(x, batch)  # [N,C]
+                print('x.shape : ', x.shape)
 
             for block_i, block_op in enumerate(self.decoder_blocks):
                 if block_i in self.decoder_concats:
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
                 x = block_op(x, batch)
+                print('x.shape : ', x.shape)
                 if block_i == 1 :
                     coarse_feats = x.transpose(0,1).unsqueeze(0)  #[B, C, N]
                     coarse_feats = self.coarse_out(coarse_feats)  #[B, C, N]
