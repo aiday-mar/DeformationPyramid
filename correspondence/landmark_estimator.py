@@ -50,10 +50,12 @@ class Landmark_Model ():
         self.matcher.eval()
         self.outlier_model.eval()
         with torch.no_grad():
+            print('\n')
             print('Calling the matcher on the inputs')
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
             if timer: timer.toc("matcher")
+            print('\n')
             print('Calling the outlier rejection method on the data')
             if timer: timer.tic("outlier rejection")
             confidence = self.outlier_model(data)
@@ -62,6 +64,7 @@ class Landmark_Model ():
             inlier_conf = confidence[0]
 
             coarse_flow = data['coarse_flow'][0]
+            print('\n')
             print('coarse_flow : ', coarse_flow.shape)
             inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
             print('len(inlier_mask) : ', len(inlier_mask))

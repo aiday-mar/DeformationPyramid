@@ -167,6 +167,6 @@ class Matching(nn.Module):
 
         coarse_match, _, _ = self.get_match(conf_matrix, self.confidence_threshold)
         print('conf_matrix.shape : ', conf_matrix.shape)
-        print('coarse_match.shpae : ', coarse_match.shape)
+        print('coarse_match.shape : ', coarse_match.shape)
         return conf_matrix, coarse_match
 

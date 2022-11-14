@@ -50,6 +50,7 @@ class Pipeline(nn.Module):
         data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
 
+        print('\n')
         print('Before the Soft Procrustes Layer')
         if self.timers: self.timers.tic('procrustes_layer')
         R, t, _, _, _, _ = self.soft_procrustes(conf_matrix_pred, s_pcd, t_pcd, src_mask, tgt_mask)
