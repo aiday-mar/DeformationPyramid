@@ -15,14 +15,16 @@ cam_intrin = np.array( [443, 256, 443, 250 ])
 
 class _AstrivisCustomSingle(Dataset):
 
-    def __init__(self, config, source_file, target_file, matches, source_trans, target_trans):
+    def __init__(self, config, source_file, target_file, matches, source_trans, target_trans, base = None):
         # Only one phase the testing phase
         super(_AstrivisCustomSingle, self).__init__()
-        self.matches = {}
         self.number_matches = 0
         self.n_files_per_folder = 0
-        self.config = config        
-        self.path = '/home/aiday.kyzy/dataset/Synthetic/'
+        self.config = config
+        if base:
+            self.path = base
+        else:        
+            self.path = '/home/aiday.kyzy/dataset/Synthetic/'
         self.source_file = source_file
         self.target_file = target_file
         self.matches = matches
