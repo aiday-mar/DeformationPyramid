@@ -140,7 +140,7 @@ class KPFCN(nn.Module):
                     coarse_feats = x.transpose(0,1).unsqueeze(0)  #[B, C, N]
                     coarse_feats = self.coarse_out(coarse_feats)  #[B, C, N]
                     coarse_feats = coarse_feats.transpose(1,2).squeeze(0)
-                    print('coarse_feats.size : ', coarse_feats.size)
+                    print('coarse_feats.shape : ', coarse_feats.shape)
                     return coarse_feats #[N,C2]
 
         #
