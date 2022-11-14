@@ -138,6 +138,8 @@ if __name__ == "__main__":
         print('\n')
         print('Before calling the register method on the model')
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_ouput_folder, timer = timer)
+        print('\n')
+        print('After call to register')
         print('warped_pcd.shape : ', warped_pcd.shape)
         
         final_transformation = np.identity(4)
