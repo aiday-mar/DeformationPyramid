@@ -154,6 +154,11 @@ class KPFCN(nn.Module):
 
             print('\n')
             print('Before decoder blocks')
+            '''
+            x.shape :  torch.Size([260, 2048])
+            x.shape :  torch.Size([260, 1024])
+            coarse_feats.shape :  torch.Size([260, 528])
+            '''
             for block_i, block_op in enumerate(self.decoder_blocks):
                 if block_i in self.decoder_concats:
                     x = torch.cat([x, self.skip_x.pop()], dim=1)

@@ -30,9 +30,10 @@ class Pipeline(nn.Module):
         coarse_feats = self.backbone(data, phase="coarse")
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
+        print('\n')
         print('Before splitting the features')
         if self.timers: self.timers.tic('coarse_preprocess')
-        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats (coarse_feats, data)
+        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats(coarse_feats, data)
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
@@ -59,7 +60,7 @@ class Pipeline(nn.Module):
 
 
     def split_feats(self, geo_feats, data):
-
+        print('Inside of split_feats')
         print('geo_feats.shape : ', geo_feats.shape)
         pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
 
@@ -91,7 +92,12 @@ class Pipeline(nn.Module):
         tgt_feats[tgt_ind_coarse_split] = geo_feats[tgt_ind_coarse]
         src_pcd[src_ind_coarse_split] = pcd[src_ind_coarse]
         tgt_pcd[tgt_ind_coarse_split] = pcd[tgt_ind_coarse]
-
+        
+        print('src_feats.shape : ', src_feats.shape)
+        print('tgt_feats.shape : ', tgt_feats.shape)
+        print('src_pcd.shape : ', src_pcd.shape)
+        print('tgt_pcd.shape : ', tgt_pcd.shape)
+        
         return src_feats.view( b_size , src_pts_max , -1), \
                tgt_feats.view( b_size , tgt_pts_max , -1), \
                src_pcd.view( b_size , src_pts_max , -1), \
