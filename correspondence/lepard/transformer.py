@@ -188,20 +188,27 @@ class RepositioningTransformer(nn.Module):
             for layer, name in zip(self.layers, self.layer_types) :
 
                 if name == 'self':
+                    print('\n')
                     print('self')
                     if self.timers: self.timers.tic('self atten')
                     src_feat = layer(src_feat, src_feat, src_pe, src_pe, src_mask, src_mask,)
                     tgt_feat = layer(tgt_feat, tgt_feat, tgt_pe, tgt_pe, tgt_mask, tgt_mask)
                     if self.timers: self.timers.toc('self atten')
-
+                    print('src_feat.shape : ', src_feat.shape)
+                    print('tgt_feat.shape : ', tgt_feat.shape)
+                    
                 elif name == 'cross':
+                    print('\n')
                     print('cross')
                     if self.timers: self.timers.tic('cross atten')
                     src_feat = layer(src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask)
                     tgt_feat = layer(tgt_feat, src_feat, tgt_pe, src_pe, tgt_mask, src_mask)
                     if self.timers: self.timers.toc('cross atten')
-
+                    print('src_feat.shape : ', src_feat.shape)
+                    print('tgt_feat.shape : ', tgt_feat.shape)
+                    
                 elif name =='positioning':
+                    print('\n')
                     print('positioning')
                     if self.positioning_type == 'procrustes':
 
