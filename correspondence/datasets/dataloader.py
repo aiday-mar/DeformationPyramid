@@ -362,7 +362,7 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
 
-
+    print('Inside of collate_fn_4dmatch')
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
@@ -383,11 +383,16 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
     # for ind in range ( len(pairwise_data) ) :
     for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
-        #            src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
-
-
+        # src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
         # src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
+        print('src_pcd.shape : ', src_pcd.shape)
+        print('tgt_pcd.shape : ', tgt_pcd.shape)
+        print('src_feats.shape : ', src_feats.shape)
+        print('tgt_feats.shape : ', tgt_feats.shape)
+        print('rot.shape : ', rot.shape)
+        print('trn.shape : ', trn.shape)
+        print('s2t_flow.shape : ', s2t_flow.shape)
 
         src_pcd_list.append(torch.from_numpy(src_pcd))
         src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
@@ -463,10 +468,13 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
                 r = r_normal
             conv_i = batch_neighbors_kpconv(batched_points, batched_points, batched_lengths, batched_lengths, r,
                                             neighborhood_limits[layer])
+            print('r.shape : ', r.shape)
+            print('conv_i.shape : ', conv_i.shape)
 
         else:
             # This layer only perform pooling, no neighbors required
             conv_i = torch.zeros((0, 1), dtype=torch.int64)
+            print('conv_i.shape : ', conv_i.shape)
 
         # Pooling neighbors indices
         # *************************
@@ -479,27 +487,35 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
             # Subsampled points
             pool_p, pool_b = batch_grid_subsampling_kpconv(batched_points, batched_lengths, sampleDl=dl)
+            print('pool_p.shape : ', pool_p.shape)
+            print('pool_b.shape : ', pool_b.shape)
 
             # Radius of pooled neighbors
             if 'deformable' in block:
                 r = r_normal * config.deform_radius / config.conv_radius
             else:
                 r = r_normal
-
+            print('r.shape : ', r.shape)
+            
             # Subsample indices
             pool_i = batch_neighbors_kpconv(pool_p, batched_points, pool_b, batched_lengths, r,
                                             neighborhood_limits[layer])
+            print('pool_i.shape : ', pool_i.shape)
 
             # Upsample indices (with the radius of the next layer to keep wanted density)
             up_i = batch_neighbors_kpconv(batched_points, pool_p, batched_lengths, pool_b, 2 * r,
                                           neighborhood_limits[layer])
-
+            print('up_i.shape : ', up_i.shape)
         else:
             # No pooling in the end of this layer, no pooling indices required
             pool_i = torch.zeros((0, 1), dtype=torch.int64)
+            print('pool_i.shape : ', pool_i.shape)
             pool_p = torch.zeros((0, 3), dtype=torch.float32)
+            print('pool_p.shape : ', pool_p.shape)
             pool_b = torch.zeros((0,), dtype=torch.int64)
+            print('pool_b.shape : ', pool_b.shape)
             up_i = torch.zeros((0, 1), dtype=torch.int64)
+            print('up_i.shape : ', up_i.shape)
 
         # Updating input lists
         input_points += [batched_points.float()]
@@ -521,9 +537,11 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
     # coarse infomation
     coarse_level = config.coarse_level
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
+    print('pts_num_coarse.shape : ', pts_num_coarse.shape)
     b_size = pts_num_coarse.shape[0]
     src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
     coarse_pcd = input_points[coarse_level] # .numpy()
+    print('coarse_pcd.shape : ', coarse_pcd.shape)
     coarse_matches= []
     coarse_flow = []
     src_ind_coarse_split= [] # src_feats shape :[b_size * src_pts_max]
@@ -553,31 +571,56 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
+        print('c_src_pcd_np.shape : ', c_src_pcd_np.shape)
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
+        print('c_tgt_pcd_np.shape : ', c_tgt_pcd_np.shape)
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
+        print('f_src_pcd.shape : ', f_src_pcd.shape)
         c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
+        print('c_flow.shape : ', c_flow.shape)
         c_src_pcd_deformed = c_src_pcd_np + c_flow
+        print('c_src_pcd_deformed.shape : ', c_src_pcd_deformed.shape)
         s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
+        print('s_pc_wrapped.shape : ', s_pc_wrapped.shape)
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
+        print('coarse_match_gt.shape : ', coarse_match_gt.shape)
         coarse_matches.append(coarse_match_gt)
         coarse_flow.append(torch.from_numpy(c_flow))
 
-
         accumu = accumu + n_s_pts + n_t_pts
-
-
+        print('accumu : ', accumu)
+        
         vis=False # for debug
         if vis :
             viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
-
 
     src_ind_coarse_split = torch.cat(src_ind_coarse_split)
     tgt_ind_coarse_split = torch.cat(tgt_ind_coarse_split)
     src_ind_coarse = torch.cat(src_ind_coarse)
     tgt_ind_coarse = torch.cat(tgt_ind_coarse)
 
-
+    print('len(src_pcd_list) : ', len(src_pcd_list))
+    print('len(tgt_pcd_list) : ', len(tgt_pcd_list))
+    print('len(input_points) : ', len(input_points))
+    print('len(input_neighbors) : ', len(input_neighbors))
+    print('len(input_pools) : ', len(input_pools))
+    print('len(input_upsamples) : ', len(input_upsamples))
+    print('batched_features.shape : ', batched_features.shape)
+    print('len(input_batches_len) : ', len(input_batches_len))
+    print('len(coarse_matches) : ', len(coarse_matches))
+    print('len(coarse_flow) : ', len(coarse_flow))
+    print('src_mask.shape : ', src_mask.shape)
+    print('tgt_mask.shape : ', tgt_mask.shape)
+    print('src_ind_coarse_split.shape : ', src_ind_coarse_split.shape)
+    print('tgt_ind_coarse_split.shape : ', tgt_ind_coarse_split.shape)
+    print('src_ind_coarse.shape : ', src_ind_coarse.shape)
+    print('tgt_ind_coarse.shape : ', tgt_ind_coarse.shape)
+    print('batched_rot.shape : ', batched_rot.shape)
+    print('batched_trn.shape : ', batched_trn.shape)
+    print('len(sflow_list) : ', len(sflow_list))
+    print('len(correspondences_list) : ', len(correspondences_list))
+    
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
         'tgt_pcd_list': tgt_pcd_list,

@@ -49,31 +49,46 @@ def blend_scene_flow (query_loc, reference_loc, reference_flow , knn=3) :
     @return:
         blended_flow:[m,3]
     '''
+    print('query_loc.shape : ', query_loc.shape)
+    print('reference_loc.shape : ', reference_loc.shape)
+    print('reference_flow.shape : ', reference_flow.shape)
     dists, idx = knn_point_np (knn, reference_loc, query_loc)
+    print('dists.shape : ', dists.shape)
+    print('idx.shape : ', idx.shape)
     dists[dists < 1e-10] = 1e-10
     weight = 1.0 / dists
     weight = weight / np.sum(weight, -1, keepdims=True)  # [B,N,3]
     blended_flow = np.sum (reference_flow [idx] * weight.reshape ([-1, knn, 1]), axis=1, keepdims=False)
-
+    print('blended_flow.shape : ', blended_flow.shape)
     return blended_flow
 
 
 def multual_nn_correspondence(src_pcd_deformed, tgt_pcd, search_radius=0.3, knn=1):
 
+    print('\n')
+    print('Inside of mutual_nn_correspondence')
+    print('src_pcd_deformed.shape : ', src_pcd_deformed.shape)
+    print('tgt_pcd.shape : ', tgt_pcd.shape)
     src_idx = np.arange(src_pcd_deformed.shape[0])
 
     s2t_dists, ref_tgt_idx = knn_point_np (knn, tgt_pcd, src_pcd_deformed)
+    print('s2t_dists.shape : ', s2t_dists.shape)
+    print('ref_tgt_idx.shape : ', ref_tgt_idx.shape)
     s2t_dists, ref_tgt_idx = s2t_dists[:,0], ref_tgt_idx [:, 0]
+    print('s2t_dists.shape : ', s2t_dists.shape)
+    print('ref_tgt_idx.shape : ', ref_tgt_idx.shape)
     valid_distance = s2t_dists < search_radius
 
     _, ref_src_idx = knn_point_np (knn, src_pcd_deformed, tgt_pcd)
     _, ref_src_idx = _, ref_src_idx [:, 0]
 
     cycle_src_idx = ref_src_idx [ ref_tgt_idx ]
+    print('cycle_src_idx.shape : ', cycle_src_idx.shape)
 
     is_mutual_nn = cycle_src_idx == src_idx
 
     mutual_nn = np.logical_and( is_mutual_nn, valid_distance)
+    print('mutual_nn.shape : ', mutual_nn.shape)
     correspondences = np.stack([src_idx [ mutual_nn ], ref_tgt_idx[mutual_nn] ] , axis=0)
-
+    print('correspondences.shape : ', correspondences.shape)
     return correspondences
