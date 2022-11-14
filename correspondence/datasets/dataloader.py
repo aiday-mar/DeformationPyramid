@@ -492,7 +492,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
             pool_p, pool_b = batch_grid_subsampling_kpconv(batched_points, batched_lengths, sampleDl=dl)
             print('pool_p.shape : ', pool_p.shape)
             print('pool_b.shape : ', pool_b.shape)
-
+            print('batched_points.shape : ', batched_points.shape)
+            print('batched_lengths.shape : ', batched_lengths.shape)
             # Radius of pooled neighbors
             if 'deformable' in block:
                 r = r_normal * config.deform_radius / config.conv_radius
@@ -501,19 +502,12 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
             print('r : ', r)
             
             # Subsample indices
-            print('pool_p.shape : ', pool_p.shape)
-            print('batched_points.shape : ', batched_points.shape)
-            print('pool_b.shape : ', pool_b.shape)
-            print('batched_lengths.shape : ', batched_lengths.shape)
+            
             pool_i = batch_neighbors_kpconv(pool_p, batched_points, pool_b, batched_lengths, r,
                                             neighborhood_limits[layer])
             print('pool_i.shape : ', pool_i.shape)
 
             # Upsample indices (with the radius of the next layer to keep wanted density)
-            print('batched_points.shape : ', batched_points.shape)
-            print('pool_p.shape : ', pool_p.shape)
-            print('batched_lengths.shape : ', batched_lengths.shape)
-            print('pool_b.shape : ', pool_b.shape)
             up_i = batch_neighbors_kpconv(batched_points, pool_p, batched_lengths, pool_b, 2 * r,
                                           neighborhood_limits[layer])
             print('up_i.shape : ', up_i.shape)

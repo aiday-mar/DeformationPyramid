@@ -91,6 +91,7 @@ if __name__ == "__main__":
 
 
         """predict landmarks"""
+        print('\n')
         print('Before inference on the Landmark Model')
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
