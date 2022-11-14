@@ -43,6 +43,7 @@ class Pipeline(nn.Module):
         src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers)
         if self.timers: self.timers.toc('coarse feature transformer')
 
+        print('\n')
         print('Before the matching')
         if self.timers: self.timers.tic('match feature coarse')
         conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type = self.pe_type)

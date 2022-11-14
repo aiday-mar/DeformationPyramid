@@ -253,6 +253,8 @@ class RepositioningTransformer(nn.Module):
                 else :
                     raise KeyError
 
+            print('\n')
+            print('End of forward of RepositioningTransformer')
             print('src_feat.shape : ', src_feat.shape)
             print('tgt_feat.shape : ', tgt_feat.shape)
             print('src_pe.shape : ', src_pe.shape)
