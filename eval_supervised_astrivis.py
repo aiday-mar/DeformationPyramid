@@ -93,9 +93,6 @@ if __name__ == "__main__":
         """predict landmarks"""
         print('Before inference on the Landmark Model')
         ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
-        print('ldmk_s.shape : ', ldmk_s.shape)
-        print('ldmk_t.shape : ', ldmk_t.shape)
-        print('len(inlier_rate) : ', len(inlier_rate))
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         copy_src_pcd = copy.deepcopy(src_pcd)
@@ -108,6 +105,7 @@ if __name__ == "__main__":
         target_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
         
         s2t_flow = inputs['sflow_list'][0]
+        print('\n')
         print('s2t_flow.shape : ', s2t_flow.shape)
         rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
         correspondence = inputs['correspondences_list'][0]
