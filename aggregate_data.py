@@ -111,5 +111,13 @@ plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
 
 # When the measure is fixed
 plot_across_types('RMSE', 5, '0', '1')
-
+plot_across_types('IR', 6, '0', '1')
+plot_across_types('full-epe', 7, '0', '1')
+plot_across_types('full-AccR', 8, '0', '1')
+plot_across_types('full-AccS', 9, '0', '1')
+plot_across_types('full-outlier', 10, '0', '1')
+plot_across_types('vis-epe', 11, '0', '1')
+plot_across_types('vis-AccR', 12, '0', '1')
+plot_across_types('vis-AccS', 13, '0', '1')
+plot_across_types('vis-outlier', 14, '0', '1')
 plt.show()
