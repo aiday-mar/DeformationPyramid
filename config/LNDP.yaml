@@ -13,8 +13,8 @@ augment_noise: False
 use_depth: False
 
 w_ldmk: 1
-w_cd: &w_cd 0.0 # default
-w_reg: &w_reg 0.5 
+w_cd: &w_cd 0.0
+w_reg: &w_reg 0.0
 
 trunc_cd : 0.25
 
