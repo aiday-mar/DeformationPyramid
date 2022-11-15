@@ -120,7 +120,6 @@ class KPFCN(nn.Module):
     def forward(self, batch, phase = 'encode'):
         # Get input features
         print('batch.keys() :', batch.keys())
-        print('len(batch["src_pcd_list"]) :', len(batch['src_pcd_list']))
         if phase == 'coarse' :
 
             x = batch['features'].clone().detach()
