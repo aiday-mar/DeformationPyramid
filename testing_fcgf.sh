@@ -9,7 +9,7 @@ number=0
 file=eval_supervised_astrivis_fcgf
 
 # config=LNDP
-config=LDNP_fcgf
+config=LNDP_fcgf
 
 mkdir TestData/FullNonDeformed/output_fcgf_${type}_${number}
 mkdir TestData/FullDeformed/output_fcgf_${type}_${number}
