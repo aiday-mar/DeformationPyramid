@@ -5,7 +5,8 @@ from easydict import EasyDict as edict
 
 import sys
 sys.path.append("")
-from correspondence.lepard.pipeline import Pipeline as Matcher
+# from correspondence.lepard.pipeline import Pipeline as Matcher
+from correspondence.lepard.pipeline_fcgf import Pipeline as Matcher
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
