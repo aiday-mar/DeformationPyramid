@@ -119,9 +119,7 @@ class KPFCN(nn.Module):
 
     def forward(self, batch, phase = 'encode'):
         # Get input features
-        print('batch.keys() :', batch.keys())
         if phase == 'coarse' :
-
             x = batch['features'].clone().detach()
             # 1. joint encoder part
             self.skip_x = []

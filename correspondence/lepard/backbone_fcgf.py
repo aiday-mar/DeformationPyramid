@@ -12,7 +12,6 @@ class FCGF(nn.Module):
         super(FCGF, self).__init__()
 
     def forward(self, batch, phase = 'encode'):
-        print('Inside of FCGF forward')
         source_pcd = batch['src_pcd_list'][0]
         target_pcd = batch['tgt_pcd_list'][0]
         src_pcd = o3d.geometry.PointCloud()
@@ -44,7 +43,6 @@ class FCGF(nn.Module):
         features_src = np.load('020.npz')
         features_tgt = np.load('104.npz')
         
-        print('list(features_src.keys()) : ', list(features_src.keys()))
         features_src = features_src['arr_0']
         features_tgt = features_tgt['arr_0']
 

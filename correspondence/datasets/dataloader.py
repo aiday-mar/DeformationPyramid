@@ -688,7 +688,6 @@ def get_multiview_dataloader(dataset, config,  shuffle=True, neighborhood_limits
 
     if neighborhood_limits is None:
         neighborhood_limits = calibrate_neighbors(dataset, config['kpfcn_config'], collate_fn=collate_fn)
-    print("neighborhood:", neighborhood_limits)
 
     dataloader = torch.utils.data.DataLoader(
         dataset,

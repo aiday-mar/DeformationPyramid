@@ -56,19 +56,15 @@ class VolumetricPositionEncoding(nn.Module):
         @param XYZ: [B,N,3]
         @return:
         '''
-        print('Inside of positional encoding of VolPE')
         bsize, npoint, _ = XYZ.shape
-        print('XYZ.shape : ', XYZ.shape)
         vox = self.voxelize( XYZ)
         x_position, y_position, z_position = vox[..., 0:1], vox[...,1:2], vox[...,2:3]
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
-        print('div_term.shape : ', div_term.shape)
 
         if mod:
             div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
             div_term_mod = div_term_mod.view( 1,1, -1)
-            print('div_term_mod.shape : ', div_term_mod.shape)
             sinx = torch.sin(x_position * div_term_mod)
             cosx = torch.cos(x_position * div_term_mod)
         else:
@@ -79,10 +75,6 @@ class VolumetricPositionEncoding(nn.Module):
         cosy = torch.cos(y_position * div_term)
         sinz = torch.sin(z_position * div_term)
         cosz = torch.cos(z_position * div_term)
-        print('siny.shape : ', siny.shape)
-        print('cosy.shape : ', cosy.shape)
-        print('sinz.shape : ', sinz.shape)
-        print('cosz.shape : ', cosz.shape)
 
         if self.pe_type == 'sinusoidal' :
             position_code = torch.cat( [ sinx, cosx, siny, cosy, sinz, cosz] , dim=-1 )

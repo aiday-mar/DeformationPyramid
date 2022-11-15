@@ -31,10 +31,6 @@ class VolumetricPositionEncoding(nn.Module):
         @return:
         '''
         x2 = torch.stack([-x[..., 1::2], x[..., ::2]], dim=-1).reshape_as(x).contiguous()
-        print('x.shape : ', x.shape)
-        print('x2.shape : ', x2.shape)
-        print('cos.shape : ', cos.shape)
-        print('sin.shape : ', sin.shape)
         x = x * cos + x2 * sin
         return x
 
@@ -56,20 +52,16 @@ class VolumetricPositionEncoding(nn.Module):
         @return:
         '''
         bsize, npoint, _ = XYZ.shape
-        print('XYZ.shape : ', XYZ.shape)
         vox = self.voxelize( XYZ)
         x_position, y_position, z_position = vox[..., 0:1], vox[...,1:2], vox[...,2:3]
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
-        print('div_term.shape : ', div_term.shape)
-        print('x_position.shape : ', x_position.shape)
         
         if mod:
             div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
             div_term_mod = div_term_mod.view( 1,1, -1)
             sinx = torch.sin(x_position * div_term_mod)
             cosx = torch.cos(x_position * div_term_mod)
-            print('div_term_mod.shape : ', div_term_mod.shape)
         else:
             sinx = torch.sin(x_position * div_term) # [B, N, d//6]
             cosx = torch.cos(x_position * div_term)

@@ -68,12 +68,10 @@ if __name__ == "__main__":
         
         # Modify test_Set so that it returns our data
         test_set = _4DMatch(config, 'test', data_augmentation=False)
-        print('test_set : ', test_set)
         test_loader, _ = get_dataloader(test_set, config, shuffle=False)
 
         logger = Logger(os.path.join(config.snapshot_dir, config.split["test"] + ".log"))
         num_iter =  len(test_set)
-        print('num_iter : ', num_iter)
         c_loader_iter = test_loader.__iter__()
         
         for c_iter in tqdm(range(num_iter)):
@@ -89,7 +87,6 @@ if __name__ == "__main__":
 
 
             """predict landmarks"""
-            print('inputs : ', inputs)
             ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
             # Seems to be the input of the test_loader hence need to have as ground-truth data the flow and the correspondences
@@ -97,7 +94,6 @@ if __name__ == "__main__":
             s2t_flow = inputs['sflow_list'][0]
             rot, trn = inputs['batched_rot'][0],  inputs['batched_trn'][0]
             correspondence = inputs['correspondences_list'][0]
-            print('correspondence : ', correspondence)
 
             """compute scene flow GT"""
             src_pcd_deformed = src_pcd + s2t_flow

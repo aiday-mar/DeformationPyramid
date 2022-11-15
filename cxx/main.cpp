@@ -6,14 +6,9 @@
 
 // Definitions of all methods in the module.
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
-
-
+    
     m.def("printArray", &image_proc::printArray, "");
     m.def("depth_to_mesh", &image_proc::depthToMesh, "");
-
-
-
-
 
     m.def("erode_mesh", &graph_proc::erode_mesh, "Erode mesh");
     m.def("sample_nodes", &graph_proc::sample_nodes, "sample graph nodes");
