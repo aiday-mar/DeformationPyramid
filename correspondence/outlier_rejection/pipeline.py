@@ -78,7 +78,7 @@ class Outlier_Rejection(nn.Module):
 
 
     def _3D_to_6D(self, data):
-
+        print('data["s_pcd"] : ', data['s_pcd'])
         b_size=len(data['s_pcd'])
         print('b_size : ', b_size)
         ind = data['coarse_match_pred']
