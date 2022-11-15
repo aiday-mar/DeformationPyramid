@@ -33,6 +33,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--s', type=str, help= 'Path to the src mesh.')
     parser.add_argument('--t', type=str, help='Path to the tgt mesh.')
+    parser.add_argument('--s_feats', type=str, help='Path to the source features.')
+    parser.add_argument('--t_feats', type=str, help='Path to the target features.')
     parser.add_argument('--output', type=str, help= 'Path to the file where to save source pcd after transformation.')
     parser.add_argument('--output_trans', type=str, help='Path to the final output transformation.')
     parser.add_argument('--matches', type=str, help='Path to ground truth matches')  
@@ -96,7 +98,7 @@ if __name__ == "__main__":
 
 
         """predict landmarks"""
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, s_feats = s_feats, t_feats = t_feats, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]

@@ -18,14 +18,12 @@ class Pipeline(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-
-
-    def forward(self, data,  timers=None):
+    def forward(self, data, s_feats = None, t_feats = None, timers=None):
         
         self.timers = timers
 
         if self.timers: self.timers.tic('kpfcn backbone encode')
-        coarse_feats = self.backbone(data, phase="coarse")
+        coarse_feats = self.backbone(data, s_feats, t_feats, phase="coarse")
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
         if self.timers: self.timers.tic('coarse_preprocess')
@@ -49,25 +47,7 @@ class Pipeline(nn.Module):
 
         return data
 
-
-
-
     def split_feats(self, geo_feats, data):
-        '''
-        geo_feats.shape :  torch.Size([260, 528])
-        src_mask.shape :  torch.Size([1, 132])
-        tgt_mask.shape :  torch.Size([1, 128])
-        src_ind_coarse_split.shape :  torch.Size([132])
-        tgt_ind_coarse_split.shape :  torch.Size([128])
-        src_ind_coarse.shape :  torch.Size([132])
-        tgt_ind_coarse.shape :  torch.Size([128])
-        src_feats.shape :  torch.Size([132, 528])
-        tgt_feats.shape :  torch.Size([128, 528])
-        src_feats.shape :  torch.Size([132, 528])
-        tgt_feats.shape :  torch.Size([128, 528])
-        src_pcd.shape :  torch.Size([132, 3])
-        tgt_pcd.shape :  torch.Size([128, 3])
-        '''
         pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
 
         src_mask = data['src_mask']

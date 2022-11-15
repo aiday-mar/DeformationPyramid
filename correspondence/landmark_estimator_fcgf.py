@@ -42,14 +42,14 @@ class Landmark_Model ():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, reject_outliers=True, inlier_thr=0.5, timer=None):
+    def inference(self, inputs, s_feats = None, t_feats = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
         self.matcher.eval()
         self.outlier_model.eval()
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, timers=None)
+            data = self.matcher(inputs, s_feats, t_feats, timers=None)
             if timer: timer.toc("matcher")
 
             if timer: timer.tic("outlier rejection")

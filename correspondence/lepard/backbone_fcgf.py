@@ -11,40 +11,18 @@ class FCGF(nn.Module):
     def __init__(self, config):
         super(FCGF, self).__init__()
 
-    def forward(self, batch, phase = 'encode'):
-        source_pcd = batch['src_pcd_list'][0]
-        target_pcd = batch['tgt_pcd_list'][0]
-        src_pcd = o3d.geometry.PointCloud()
-        src_pcd.points = o3d.utility.Vector3dVector(np.array(source_pcd.cpu()))
-        o3d.io.write_point_cloud('src_pcd.ply', src_pcd)
-        tgt_pcd = o3d.geometry.PointCloud()
-        tgt_pcd.points = o3d.utility.Vector3dVector(np.array(target_pcd.cpu()))
-        o3d.io.write_point_cloud('tgt_pcd.ply', tgt_pcd)
+    def forward(self, batch, s_feats = None, t_feats = None, phase = 'encode'):
         
-        # TODO: not possible to easily change conda environments
-        '''
-        command = 'conda init bash'
-        os.system(command)
+        features_src = None
+        features_tgt = None
         
-        command = 'conda activate py3-fcgf-3'
-        os.system(command)
-        '''
-        # subprocess.run('conda init bash & conda activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && conda deactivate', shell=True)
-        # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
-        # os.system(command)
-        # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="tgt_pcd.ply" --input="tgt_pcd.npz"'
-        # os.system(command)
-        '''
-        command = 'conda deactivate'
-        os.system(command)
-        '''
+        # TODO: Use pregenerated features
+        if s_feats and t_feats:
+            features_src = np.load(s_feats)
+            features_tgt = np.load(t_feats)
         
-        # TODO: Use for testing purposes pregenerated features
-        features_src = np.load('020.npz')
-        features_tgt = np.load('104.npz')
-        
-        features_src = features_src['arr_0']
-        features_tgt = features_tgt['arr_0']
+            features_src = features_src['arr_0']
+            features_tgt = features_tgt['arr_0']
 
         coarse_features = np.concatenate((features_src, features_tgt), axis=0)
         return torch.tensor(coarse_features).to('cuda:0')
