@@ -141,6 +141,7 @@ class KPFCN(nn.Module):
             x.shape :  torch.Size([71, 2048])
             x.shape :  torch.Size([71, 2048])
             '''
+            print('batch.keys() :', batch.keys())
             x = batch['features'].clone().detach()
             print('x.shape : ', x.shape)
             # 1. joint encoder part
