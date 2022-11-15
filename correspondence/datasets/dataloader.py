@@ -543,6 +543,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
     # coarse infomation
     coarse_level = config.coarse_level
+    print('coarse_level : ', coarse_level)
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
     print('pts_num_coarse.shape : ', pts_num_coarse.shape)
     b_size = pts_num_coarse.shape[0]
@@ -550,6 +551,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
     print('src_pts_max.shape : ', src_pts_max.shape)
     print('tgt_pts_max.shape : ', tgt_pts_max.shape)
     coarse_pcd = input_points[coarse_level] # .numpy()
+    print('len(input_points) : ', len(input_points))
+    # The following contains the two coarse keypoints
     print('coarse_pcd.shape : ', coarse_pcd.shape)
     coarse_matches= []
     coarse_flow = []
@@ -580,8 +583,12 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
+        print('accumu : ', accumu)
+        print('accumu + n_s_pts : ', accumu + n_s_pts)
         print('c_src_pcd_np.shape : ', c_src_pcd_np.shape)
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
+        print('accumu + n_s_pts : ', accumu + n_s_pts)
+        print('accumu + n_s_pts + n_t_pts : ', accumu + n_s_pts + n_t_pts)
         print('c_tgt_pcd_np.shape : ', c_tgt_pcd_np.shape)
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
