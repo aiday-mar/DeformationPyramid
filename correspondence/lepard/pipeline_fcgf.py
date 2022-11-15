@@ -40,7 +40,7 @@ class Pipeline(nn.Module):
         print('\n')
         print('Before the Repositioning Transformer')
         if self.timers: self.timers.tic('coarse feature transformer')
-        src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers)
+        src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers, mod = True)
         if self.timers: self.timers.toc('coarse feature transformer')
 
         print('\n')
