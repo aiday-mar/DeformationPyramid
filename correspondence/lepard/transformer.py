@@ -212,7 +212,7 @@ class RepositioningTransformer(nn.Module):
                     print('positioning')
                     if self.positioning_type == 'procrustes':
 
-                        conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type=self.pe_type)
+                        conf_matrix, match_pred, src_ind, tgt_ind = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type=self.pe_type)
 
                         position_layer += 1
                         data["position_layers"][position_layer] = {"conf_matrix": conf_matrix, "match_pred": match_pred}
