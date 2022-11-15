@@ -39,9 +39,14 @@ if __name__ == "__main__":
     parser.add_argument('--source_trans', type=str, help='Path to the source transformation')  
     parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
+    parser.add_argument('--base', type=str, help= 'Base folder.')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     args = parser.parse_args()
+    
+    if args.base:
+        path = args.base
+        
     with open(args.config,'r') as f:
         config = yaml.load(f, Loader=yaml.Loader)
 
@@ -72,7 +77,7 @@ if __name__ == "__main__":
 
     stats_meter = None
     
-    test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans)
+    test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
     test_loader, _ = get_dataloader(test_set, config, shuffle=False)
 
     num_iter =  len(test_set)
@@ -139,7 +144,7 @@ if __name__ == "__main__":
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         print('\n')
         print('Before calling the register method on the model')
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_output_folder, timer = timer)
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_output_folder, timer = timer, base = path)
         print('\n')
         print('After call to register')
         print('warped_pcd.shape : ', warped_pcd.shape)
