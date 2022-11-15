@@ -39,7 +39,7 @@ if __name__ == "__main__":
     parser.add_argument('--source_trans', type=str, help='Path to the source transformation')  
     parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
-    parser.add_argument('--intermediate_ouput_folder', type=str, help='Where to place all the intermediate outputs')
+    parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     args = parser.parse_args()
     with open(args.config,'r') as f:
@@ -139,7 +139,7 @@ if __name__ == "__main__":
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         print('\n')
         print('Before calling the register method on the model')
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_ouput_folder, timer = timer)
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_output_folder, timer = timer)
         print('\n')
         print('After call to register')
         print('warped_pcd.shape : ', warped_pcd.shape)

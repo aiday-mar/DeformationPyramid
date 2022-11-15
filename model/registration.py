@@ -123,7 +123,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_ouput_folder=None, timer = None):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, timer = None):
         print('Inside of optimize_deformation_pyramid')
         config = self.config
         max_break_count=config.max_break_count
@@ -290,7 +290,7 @@ class Registration():
             
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
-        warped_pcd, data = NDP.warp(src_pcd, intermediate_ouput_folder, tgt_mean, print_size=True)
+        warped_pcd, data = NDP.warp(src_pcd, intermediate_output_folder, tgt_mean, print_size=True)
         if visualize:
              visualize_pcds(tgt_pcd=tgt_pcd, warped_pcd=warped_pcd, rigidity=data[level][1])
 
