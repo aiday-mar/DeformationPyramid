@@ -128,7 +128,8 @@ class NDPLayer(nn.Module):
         self._reset_parameters()
 
     def forward (self, x, print_size = False):
-        print('\n')
+        if print_size:
+            print('\n')
         if print_size:
             print('Inside of the forward function of the NDPLayer')
             print('x.shape : ', x.shape)
