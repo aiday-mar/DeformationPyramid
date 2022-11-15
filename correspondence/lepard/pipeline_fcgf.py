@@ -57,6 +57,8 @@ class Pipeline(nn.Module):
         data.update({"R_s2t_pred": R, "t_s2t_pred": t})
         if self.timers: self.timers.toc('procrustes_layer')
 
+        print('\n')
+        print('End of forward method of Pipeline')
         return data
 
 
