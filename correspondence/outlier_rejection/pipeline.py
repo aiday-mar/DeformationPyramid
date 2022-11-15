@@ -80,6 +80,7 @@ class Outlier_Rejection(nn.Module):
     def _3D_to_6D(self, data):
 
         b_size=len(data['s_pcd'])
+        print('b_size : ', b_size)
         ind = data['coarse_match_pred']
         bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
         vec6d_list = []
@@ -91,9 +92,12 @@ class Outlier_Rejection(nn.Module):
             bmask = bi == i
             batch_ind.append( torch.stack( [si[bmask], ti[bmask]], dim=-1 ))
             s_pos = data['s_pcd'][i][si[bmask]]
+            print('s_pos.shape : ', s_pos.shape)
             t_pos = data['t_pcd'][i][ti[bmask]]
+            print('t_pos.shape : ', t_pos.shape)
             batch_len.append(len(s_pos))
             vec_6d = torch.cat([s_pos, t_pos], dim=1)
+            print('vec_6d.shape : ', vec_6d.shape)
             vec6d_list.append(vec_6d)
 
         lenth = max( batch_len )
