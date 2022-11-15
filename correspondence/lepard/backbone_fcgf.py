@@ -14,10 +14,10 @@ class FCGF(nn.Module):
         source_pcd = batch['src_pcd_list'][0]
         target_pcd = batch['tgt_pcd_list'][0]
         src_pcd = o3d.geometry.PointCloud()
-        src_pcd.points = source_pcd
+        src_pcd.points = o3d.geometry.Vector3dVector(source_pcd)
         o3d.io.write_point_cloud('src_pcd.ply', src_pcd)
         tgt_pcd = o3d.geometry.PointCloud()
-        tgt_pcd.points = target_pcd
+        tgt_pcd.points = o3d.geometry.Vector3dVector(target_pcd)
         o3d.io.write_point_cloud('tgt_pcd.ply', tgt_pcd)
         
         command = 'python3 ../../../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
