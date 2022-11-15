@@ -3,6 +3,7 @@ import numpy as np
 import os
 import torch.nn as nn
 import open3d as o3d
+import subprocess
 
 class FCGF(nn.Module):
 
@@ -30,11 +31,13 @@ class FCGF(nn.Module):
         os.system(command)
         '''
         
-        command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
-        os.system(command)
+        subprocess.run('source activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && source deactivate', shell=True)
+
+        # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
+        # os.system(command)
         
-        command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="tgt_pcd.ply" --input="tgt_pcd.npz"'
-        os.system(command)
+        # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="tgt_pcd.ply" --input="tgt_pcd.npz"'
+        # os.system(command)
         
         '''
         command = 'conda deactivate'
