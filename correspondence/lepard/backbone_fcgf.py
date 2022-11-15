@@ -53,7 +53,7 @@ class FCGF(nn.Module):
         features_src = features_src['arr_0']
         features_tgt = features_tgt['arr_0']
         
-        features_src = features_src[:133]
-        features_tgt = features_tgt[:128]
+        # features_src = features_src[:133]
+        # features_tgt = features_tgt[:128]
         coarse_features = np.concatenate((features_src, features_tgt), axis=0)
         return torch.tensor(coarse_features)
