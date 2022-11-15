@@ -72,6 +72,8 @@ class Matching(nn.Module):
     @torch.no_grad()
     def get_match( conf_matrix, thr, mutual=True):
 
+        print('conf_matrix : ', conf_matrix)
+        print('thr : ', thr)
         mask = conf_matrix > thr
 
         #mutual nearest
