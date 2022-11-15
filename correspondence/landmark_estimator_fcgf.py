@@ -5,7 +5,7 @@ from easydict import EasyDict as edict
 
 import sys
 sys.path.append("")
-from correspondence.lepard.pipeline import Pipeline as Matcher
+from correspondence.lepard.pipeline_fcgf import Pipeline as Matcher
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
@@ -31,8 +31,6 @@ class Landmark_Model ():
 
         # matcher initialization
         self.matcher = Matcher(matcher_config).to(device)  # pretrained point cloud matcher model
-        state = torch.load(config.matcher_weights)
-        self.matcher.load_state_dict(state['state_dict'])
 
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
