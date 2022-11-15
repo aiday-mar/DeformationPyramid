@@ -4,6 +4,7 @@ import os
 import torch.nn as nn
 import open3d as o3d
 import subprocess
+import torch
 
 class FCGF(nn.Module):
 
@@ -49,11 +50,10 @@ class FCGF(nn.Module):
         features_tgt = np.load('104.npz')
         
         print('list(features_src.keys()) : ', list(features_src.keys()))
-        print('features_src["arr_0"] : ', features_src['arr_0'])
         features_src = features_src['arr_0']
         features_tgt = features_tgt['arr_0']
         
         features_src = features_src[:132]
         features_tgt = features_tgt[:128]
         coarse_features = np.concatenate((features_src, features_tgt), axis=0)
-        return coarse_features
+        return torch.tensor(coarse_features)
