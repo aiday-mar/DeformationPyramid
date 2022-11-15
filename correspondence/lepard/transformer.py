@@ -200,15 +200,15 @@ class RepositioningTransformer(nn.Module):
 
                         src_pcd_wrapped = (torch.matmul(R_forwd, s_pcd.transpose(1, 2)) + t_forwd).transpose(1, 2)
                         tgt_pcd_wrapped = t_pcd
-                        src_pe = self.positional_encoding(src_pcd_wrapped)
-                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped)
+                        src_pe = self.positional_encoding(src_pcd_wrapped, mod)
+                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped, mod)
 
 
                     elif self.positioning_type == 'randSO3':
                         src_pcd_wrapped = self.rand_rot_pcd( s_pcd, src_mask)
                         tgt_pcd_wrapped = t_pcd
-                        src_pe = self.positional_encoding(src_pcd_wrapped)
-                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped)
+                        src_pe = self.positional_encoding(src_pcd_wrapped, mod)
+                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped, mod)
 
 
                     elif self.positioning_type == 'oracle':
@@ -217,8 +217,8 @@ class RepositioningTransformer(nn.Module):
                         trn_gt = data['batched_trn']
                         src_pcd_wrapped = (torch.matmul(rot_gt, s_pcd.transpose(1, 2)) + trn_gt).transpose(1, 2)
                         tgt_pcd_wrapped = t_pcd
-                        src_pe = self.positional_encoding(src_pcd_wrapped)
-                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped)
+                        src_pe = self.positional_encoding(src_pcd_wrapped, mod)
+                        tgt_pe = self.positional_encoding(tgt_pcd_wrapped, mod)
 
 
                     else:
