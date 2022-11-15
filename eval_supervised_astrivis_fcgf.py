@@ -15,7 +15,7 @@ from model.loss import compute_flow_metrics
 from utils.benchmark_utils import setup_seed
 from utils.utils import AverageMeter
 from utils.tiktok import Timers
-from correspondence.landmark_estimator import Landmark_Model
+from correspondence.landmark_estimator_fcgf import Landmark_Model
 import h5py
 import copy
 
