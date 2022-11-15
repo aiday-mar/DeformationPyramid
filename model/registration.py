@@ -291,6 +291,7 @@ class Registration():
             
             print('s_sample.shape : ', s_sample.shape)
         
+        print('\n')
         print('AFTER TRAINING')
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)

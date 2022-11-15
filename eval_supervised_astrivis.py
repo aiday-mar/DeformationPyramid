@@ -175,6 +175,7 @@ if __name__ == "__main__":
         ls2.lines = o3d.utility.Vector2iVector(total_lines)
         
         flow = warped_pcd - model.src_pcd
+        print('\n')
         print('flow.shape : ', flow.shape)
         metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
 

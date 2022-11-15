@@ -133,7 +133,7 @@ class NDPLayer(nn.Module):
         if print_size:
             print('Inside of the forward function of the NDPLayer')
             print('x.shape : ', x.shape)
-        fea = self.posenc( x, print_size)
+        fea = self.posenc(x, print_size)
         if print_size:
             print('fea.shape : ', fea.shape)
         fea = self.input(fea)
