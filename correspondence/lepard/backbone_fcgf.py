@@ -1,6 +1,7 @@
 import torch.nn.functional as F
 import numpy as np
 import os
+import torch.nn as nn
 import open3d as o3d
 
 class FCGF(nn.Module):
