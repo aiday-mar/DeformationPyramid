@@ -394,7 +394,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         print('rot.shape : ', rot.shape)
         print('trn.shape : ', trn.shape)
         print('s2t_flow.shape : ', s2t_flow.shape)
-        print('depth_paths.shape : ', depth_paths.shape)
 
         src_pcd_list.append(torch.from_numpy(src_pcd))
         src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
