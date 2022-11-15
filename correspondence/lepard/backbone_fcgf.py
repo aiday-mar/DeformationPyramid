@@ -22,8 +22,8 @@ class FCGF(nn.Module):
         tgt_pcd.points = o3d.utility.Vector3dVector(np.array(target_pcd.cpu()))
         o3d.io.write_point_cloud('tgt_pcd.ply', tgt_pcd)
         
-        command = 'python3 ../../../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
+        command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
         os.system(command)
         
-        command = 'python3 ../../../sfm/python/vision/features/feature_fcgf_cli.py --input="tgt_pcd.ply" --input="tgt_pcd.npz"'
+        command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="tgt_pcd.ply" --input="tgt_pcd.npz"'
         os.system(command)
