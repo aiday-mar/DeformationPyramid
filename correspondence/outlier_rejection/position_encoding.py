@@ -43,7 +43,7 @@ class VolumetricPositionEncoding(nn.Module):
 
 
     def forward(self,  vec6d, mod = False):
-
+        print('vec6d.shape : ', vec6d.shape)
         _, n, _ = vec6d.shape
 
         s_pe = self.pe( vec6d[..., :3], mod)
@@ -52,21 +52,23 @@ class VolumetricPositionEncoding(nn.Module):
         return torch.cat([s_pe, t_pe], dim=2)
 
     def pe(self, XYZ, mod = False):
-        print('Inside of positional encoding of VolPE')
         '''
         @param XYZ: [B,N,3]
         @return:
         '''
+        print('Inside of positional encoding of VolPE')
         bsize, npoint, _ = XYZ.shape
         print('XYZ.shape : ', XYZ.shape)
         vox = self.voxelize( XYZ)
         x_position, y_position, z_position = vox[..., 0:1], vox[...,1:2], vox[...,2:3]
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
+        print('div_term.shape : ', div_term.shape)
 
         if mod:
             div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
             div_term_mod = div_term_mod.view( 1,1, -1)
+            print('div_term_mod.shape : ', div_term_mod.shape)
             sinx = torch.sin(x_position * div_term_mod)
             cosx = torch.cos(x_position * div_term_mod)
         else:

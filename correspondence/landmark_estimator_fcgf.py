@@ -49,10 +49,12 @@ class Landmark_Model ():
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
+            print('Before matcher')
             data = self.matcher(inputs, timers=None)
             if timer: timer.toc("matcher")
 
             if timer: timer.tic("outlier rejection")
+            print('Before outlier rejection')
             confidence = self.outlier_model(data)
             if timer: timer.toc("outlier rejection")
 
