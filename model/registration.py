@@ -175,6 +175,7 @@ class Registration():
         iter_cnt={}
 
         print('\n')
+        print('BEFORE TRAINING')
         for level in range ( NDP.n_hierarchy):
             print('level : ', level)
             """freeze non-optimized level"""
@@ -289,7 +290,8 @@ class Registration():
                 s_sample = s_sample_warped.detach()
             
             print('s_sample.shape : ', s_sample.shape)
-            
+        
+        print('AFTER TRAINING')
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
         warped_pcd, data = NDP.warp(src_pcd, intermediate_output_folder, tgt_mean, print_size=True)

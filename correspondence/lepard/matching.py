@@ -85,7 +85,7 @@ class Matching(nn.Module):
         b_ind, src_ind, tgt_ind = index[:,0], index[:,1], index[:,2]
         mconf = conf_matrix[b_ind, src_ind, tgt_ind]
 
-        return index, mconf, mask
+        return index, mconf, mask, src_ind, tgt_ind
 
     @staticmethod
     @torch.no_grad()
@@ -167,8 +167,8 @@ class Matching(nn.Module):
             assign_matrix = log_assign_matrix.exp()
             conf_matrix = assign_matrix[:, :-1, :-1].contiguous()
 
-        coarse_match, _, _ = self.get_match(conf_matrix, self.confidence_threshold)
+        coarse_match, _, _, src_ind, tgt_ind = self.get_match(conf_matrix, self.confidence_threshold)
         print('conf_matrix.shape : ', conf_matrix.shape)
         print('coarse_match.shape : ', coarse_match.shape)
-        return conf_matrix, coarse_match
+        return conf_matrix, coarse_match, src_ind, tgt_ind
 

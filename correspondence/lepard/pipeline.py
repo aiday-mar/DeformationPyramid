@@ -46,7 +46,7 @@ class Pipeline(nn.Module):
         print('\n')
         print('Before the matching')
         if self.timers: self.timers.tic('match feature coarse')
-        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type = self.pe_type)
+        conf_matrix_pred, coarse_match_pred, src_ind, tgt_ind = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type = self.pe_type)
         data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
 
