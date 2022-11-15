@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
 
         """predict landmarks"""
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, s_feats = s_feats, t_feats = t_feats, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, s_feats = args.s_feats, t_feats = args.t_feats, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
