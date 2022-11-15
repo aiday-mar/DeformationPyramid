@@ -22,6 +22,9 @@ class FCGF(nn.Module):
         tgt_pcd.points = o3d.utility.Vector3dVector(np.array(target_pcd.cpu()))
         o3d.io.write_point_cloud('tgt_pcd.ply', tgt_pcd)
         
+        command = 'conda init bash'
+        os.system(command)
+        
         command = 'conda activate py3-fcgf-3'
         os.system(command)
         
