@@ -69,6 +69,7 @@ class VolumetricPositionEncoding(nn.Module):
             div_term_mod = div_term_mod.view( 1,1, -1)
             sinx = torch.sin(x_position * div_term_mod)
             cosx = torch.cos(x_position * div_term_mod)
+            print('div_term_mod.shape : ', div_term_mod.shape)
         else:
             sinx = torch.sin(x_position * div_term) # [B, N, d//6]
             cosx = torch.cos(x_position * div_term)
