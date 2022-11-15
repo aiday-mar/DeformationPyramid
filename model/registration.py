@@ -124,7 +124,6 @@ class Registration():
 
 
     def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None):
-        print('base : ', base)
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
