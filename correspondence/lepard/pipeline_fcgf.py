@@ -18,12 +18,12 @@ class Pipeline(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-    def forward(self, data, s_feats = None, t_feats = None, timers=None):
+    def forward(self, data, s_feats = None, t_feats = None, base = None, timers=None):
         
         self.timers = timers
 
         if self.timers: self.timers.tic('kpfcn backbone encode')
-        coarse_feats = self.backbone(data, s_feats, t_feats, phase="coarse")
+        coarse_feats = self.backbone(data, s_feats, t_feats, base, phase="coarse")
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
         if self.timers: self.timers.tic('coarse_preprocess')
