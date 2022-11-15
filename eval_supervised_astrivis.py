@@ -94,7 +94,6 @@ if __name__ == "__main__":
             else:
                 inputs [k] = v.to(config.device)
 
-
         """predict landmarks"""
         print('\n')
         print('Before inference on the Landmark Model')
