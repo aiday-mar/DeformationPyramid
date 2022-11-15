@@ -390,9 +390,11 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         print('tgt_pcd.shape : ', tgt_pcd.shape)
         print('src_feats.shape : ', src_feats.shape)
         print('tgt_feats.shape : ', tgt_feats.shape)
+        print('correspondences.shape : ', correspondences.shape)
         print('rot.shape : ', rot.shape)
         print('trn.shape : ', trn.shape)
         print('s2t_flow.shape : ', s2t_flow.shape)
+        print('depth_paths.shape : ', depth_paths.shape)
 
         src_pcd_list.append(torch.from_numpy(src_pcd))
         src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
@@ -608,6 +610,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
     src_ind_coarse = torch.cat(src_ind_coarse)
     tgt_ind_coarse = torch.cat(tgt_ind_coarse)
 
+    print('\n')
+    print('Returned from collate_fn_4dmatch')
     print('len(src_pcd_list) : ', len(src_pcd_list))
     print('src_pcd_list[0].shape : ', src_pcd_list[0].shape)
     print('len(tgt_pcd_list) : ', len(tgt_pcd_list))
