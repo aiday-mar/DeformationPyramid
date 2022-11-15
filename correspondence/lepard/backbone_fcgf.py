@@ -47,6 +47,7 @@ class FCGF(nn.Module):
         # TODO: Use for testing purposes pregenerated features
         features_src = np.load('020.npz')
         features_tgt = np.load('104.npz')
+        print('features_src : ', features_src)
         features_src = features_src[:132]
         features_tgt = features_tgt[:128]
         coarse_features = np.concatenate((features_src, features_tgt), axis=0)
