@@ -13,6 +13,8 @@ class FCGF(nn.Module):
         print('Inside of FCGF forward')
         source_pcd = batch['src_pcd_list'][0]
         target_pcd = batch['tgt_pcd_list'][0]
+        print(source_pcd)
+        print(target_pcd)
         src_pcd = o3d.geometry.PointCloud()
         src_pcd.points = o3d.utility.Vector3dVector(source_pcd)
         o3d.io.write_point_cloud('src_pcd.ply', src_pcd)
