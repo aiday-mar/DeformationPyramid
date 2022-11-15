@@ -15,6 +15,7 @@ def batch_grid_subsampling_kpconv(points, batches_len, features=None, labels=Non
     """
     CPP wrapper for a grid subsampling (method = barycenter for points and features)
     """
+    
     if (features is None) and (labels is None):
         s_points, s_len = cpp_subsampling.subsample_batch(points,
                                                           batches_len,
@@ -447,13 +448,16 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
     # construt kpfcn inds
     for block_i, block in enumerate(config.architecture):
-
+        print('\n')
+        print('block_i : ', block_i)
         # Stop when meeting a global pooling or upsampling
         if 'global' in block or 'upsample' in block:
+            print('global or upsample in block')
             break
 
         # Get all blocks of the layer
         if not ('pool' in block or 'strided' in block):
+            print('pool or strided in block')
             layer_blocks += [block]
             if block_i < len(config.architecture) - 1 and not ('upsample' in config.architecture[block_i + 1]):
                 continue
@@ -463,6 +467,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         if layer_blocks:
             # Convolutions are done in this layer, compute the neighbors with the good radius
+            print('layer_blocks exists')
             if np.any(['deformable' in blck for blck in layer_blocks[:-1]]):
                 r = r_normal * config.deform_radius / config.conv_radius
             else:
@@ -477,6 +482,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         else:
             # This layer only perform pooling, no neighbors required
+            print('layer_blocks does not exist')
             conv_i = torch.zeros((0, 1), dtype=torch.int64)
             print('conv_i.shape : ', conv_i.shape)
 
@@ -485,7 +491,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
 
         # If end of layer is a pooling operation
         if 'pool' in block or 'strided' in block:
-
+            print('pool or strided in the block')
             # New subsampling length
             dl = 2 * r_normal / config.conv_radius
 
@@ -513,6 +519,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
                                           neighborhood_limits[layer])
             print('up_i.shape : ', up_i.shape)
         else:
+            print('pool or strided not in the block')
             # No pooling in the end of this layer, no pooling indices required
             pool_i = torch.zeros((0, 1), dtype=torch.int64)
             print('pool_i.shape : ', pool_i.shape)
@@ -524,6 +531,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
             print('up_i.shape : ', up_i.shape)
 
         # Updating input lists
+        # conv_i used to find neighbors
+        # pool_p used to find the upsampled points
+        # pool_b used to find the lengths of points
         input_points += [batched_points.float()]
         input_neighbors += [conv_i.long()]
         input_pools += [pool_i.long()]
@@ -542,6 +552,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         layer_blocks = []
 
     # coarse infomation
+    # Can modulate the number of key points by choosing a different level as the coarse level
     coarse_level = config.coarse_level
     print('coarse_level : ', coarse_level)
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)

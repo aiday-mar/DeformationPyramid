@@ -115,13 +115,13 @@ class Matching(nn.Module):
         @return:
         '''
 
+        print('\n')
         print('Inside of forward function of Matching')
 
         print('src_feats.shape : ', src_feats.shape)
         print('tgt_feats.shape : ', tgt_feats.shape)
         src_feats = self.src_proj(src_feats)
         tgt_feats = self.src_proj(tgt_feats)
-
 
         data["src_feats_nopos"] = src_feats
         data["tgt_feats_nopos"] = tgt_feats
@@ -140,6 +140,7 @@ class Matching(nn.Module):
                                    [src_feats, tgt_feats])
 
         if self.match_type == "dual_softmax":
+            print('Using dual softmax for matching')
             # dual softmax matching
             sim_matrix_1 = torch.einsum("bsc,btc->bst", src_feats, tgt_feats) / self.temperature
             print('sim_matrix_1.shape : ', sim_matrix_1.shape)
@@ -153,6 +154,7 @@ class Matching(nn.Module):
                 conf_matrix = F.softmax(sim_matrix_1, 1) * F.softmax(sim_matrix_1, 2)
 
         elif self.match_type == "sinkhorn" :
+            print('Using sinkhorn for matching')
             #optimal transport sinkhoron
             sim_matrix = torch.einsum("bsc,btc->bst", src_feats, tgt_feats)
 
