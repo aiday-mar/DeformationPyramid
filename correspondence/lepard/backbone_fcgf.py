@@ -22,7 +22,7 @@ class FCGF(nn.Module):
         tgt_pcd = o3d.geometry.PointCloud()
         tgt_pcd.points = o3d.utility.Vector3dVector(np.array(target_pcd.cpu()))
         o3d.io.write_point_cloud('tgt_pcd.ply', tgt_pcd)
-        
+        # TODO: not possible to easily change conda environments
         '''
         command = 'conda init bash'
         os.system(command)
@@ -31,7 +31,7 @@ class FCGF(nn.Module):
         os.system(command)
         '''
         
-        subprocess.run('conda init bash & conda activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && conda deactivate', shell=True)
+        # subprocess.run('conda init bash & conda activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && conda deactivate', shell=True)
 
         # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
         # os.system(command)
@@ -43,3 +43,11 @@ class FCGF(nn.Module):
         command = 'conda deactivate'
         os.system(command)
         '''
+        
+        # TODO: Use for testing purposes pregenerated features
+        features_src = np.load('correpondence/lepard/020.npz')
+        features_tgt = np.load('correpondence/lepard/104.npz')
+        features_src = features_src[:132]
+        features_tgt = features_tgt[:128]
+        coarse_features = np.concatenate((features_src, features_tgt), axis=0)
+        return coarse_features
