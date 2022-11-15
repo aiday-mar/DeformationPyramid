@@ -31,7 +31,7 @@ class FCGF(nn.Module):
         os.system(command)
         '''
         
-        subprocess.run('source activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && source deactivate', shell=True)
+        subprocess.run('conda activate py3-fcgf-3 && python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz" && conda deactivate', shell=True)
 
         # command = 'python3 ../sfm/python/vision/features/feature_fcgf_cli.py --input="src_pcd.ply" --input="src_pcd.npz"'
         # os.system(command)
