@@ -144,7 +144,7 @@ if __name__ == "__main__":
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         print('\n')
         print('Before calling the register method on the model')
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_ouput_folder=args.intermediate_output_folder, timer = timer, base = path)
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path)
         print('\n')
         print('After call to register')
         print('warped_pcd.shape : ', warped_pcd.shape)
