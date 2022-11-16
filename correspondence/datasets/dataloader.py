@@ -581,7 +581,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 points=o3d.utility.Vector3dVector(coarse_pcd.numpy()),
                 lines=o3d.utility.Vector2iVector(correspondences),
             )
-            o3d.io.write_line_set(base + output_folder + 'dataloader_ldmk/' + 'coarse_match_gt.ply', line_set)
+            o3d.io.write_line_set(base + output_folder + 'dataloader_ldmk/' + 'dataloader_line_set.ply', line_set)
     
         vis=False # for debug
         if vis :
