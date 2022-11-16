@@ -82,7 +82,7 @@ class Landmark_Model():
                     t_pos_pcd.points = o3d.utility.Vector3dVector(np.array(t_pos.cpu()))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder +  'lepard_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
                     
-                    total_points = np.concatenate((s_pos, t_pos), axis = 0)
+                    total_points = np.concatenate((np.array(s_pos.cpu()), np.array(t_pos.cpu())), axis = 0)
                     number_points_src = s_pos.shape[0]
                     correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
                     line_set = o3d.geometry.LineSet(
@@ -122,7 +122,7 @@ class Landmark_Model():
                 ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 't_outlier_rejected_pcd.ply', ldmk_t_pcd)
                 
-                total_points = np.concatenate((ldmk_s, ldmk_t), axis = 0)
+                total_points = np.concatenate((np.array(ldmk_s.cpu()), np.array(ldmk_t.cpu())), axis = 0)
                 number_points_src = ldmk_s.shape[0]
                 correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
                 line_set = o3d.geometry.LineSet(
