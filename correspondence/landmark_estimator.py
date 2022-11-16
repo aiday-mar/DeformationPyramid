@@ -73,6 +73,7 @@ class Landmark_Model():
             
                 for i in range(b_size):
                     bmask = bi == i
+                    print('data.keys() : ', data.keys())
                     s_pos = data['s_pcd'][i][si[bmask]]
                     t_pos = data['t_pcd'][i][ti[bmask]]
                     
