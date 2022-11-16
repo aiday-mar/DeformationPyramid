@@ -53,7 +53,8 @@ class Deformation_Pyramid ():
             x, nonrigidity, R, t = self.pyramid[i](x)
             
             if intermediate_ouput_folder:
-                os.mkdir(self.path + intermediate_ouput_folder + 'final/')
+                if not os.path.exists(self.path + intermediate_ouput_folder + 'final'):
+                    os.mkdir(self.path + intermediate_ouput_folder + 'final')
                 intermediate_sample = x + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))

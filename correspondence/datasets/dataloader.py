@@ -548,7 +548,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
                 
         if output_folder:
-            os.mkdir(base + output_folder + 'dataloader')
+            if not os.path.exists(base + output_folder + 'dataloader'):
+                os.mkdir(base + output_folder + 'dataloader')
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
             o3d.io.write_point_cloud(base + output_folder  + 'dataloader/' + 'c_src_pcd.ply', c_src_pcd)

@@ -155,11 +155,12 @@ class Registration():
         t_sample = tgt_pcd[tgt[: config.samples]]
 
         if self.landmarks is not None:
-            os.mkdir(self.path + intermediate_output_folder + 'training')
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
             
             if intermediate_output_folder:
+                if not os.path.exists(self.path + intermediate_output_folder + 'training'):
+                    os.mkdir(self.path + intermediate_output_folder + 'training')
                 # without removing the translation, so we can see better the result
                 src_ldmk_pcd_points = self.landmarks[0]
                 tgt_ldmk_pcd_points = self.landmarks[1]

@@ -62,7 +62,8 @@ class Landmark_Model():
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
             if intermediate_output_folder:
-                os.mkdir(self.path + intermediate_output_folder + 'lepard/')
+                if not os.path.exists(self.path + intermediate_output_folder + 'lepard'):
+                    os.mkdir(self.path + intermediate_output_folder + 'lepard')
                 
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
@@ -101,7 +102,8 @@ class Landmark_Model():
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
 
             if intermediate_output_folder:
-                os.mkdir(self.path + intermediate_output_folder + 'outlier/')
+                if not os.path.exists(self.path + intermediate_output_folder + 'outlier'):
+                    os.mkdir(self.path + intermediate_output_folder + 'outlier')
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
