@@ -85,7 +85,7 @@ class Landmark_Model():
                     src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
 
-                    tgt_pcd_points = data['src_pcd_list'][0]
+                    tgt_pcd_points = data['tgt_pcd_list'][0]
                     tgt_pcd = o3d.geometry.PointCloud()
                     tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
                     tgt_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
@@ -138,13 +138,13 @@ class Landmark_Model():
                 src_pcd = o3d.geometry.PointCloud()
                 src_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
                 src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 'src_pcd.ply', src_pcd)
 
-                tgt_pcd_points = data['src_pcd_list'][0]
+                tgt_pcd_points = data['tgt_pcd_list'][0]
                 tgt_pcd = o3d.geometry.PointCloud()
                 tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
                 tgt_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
             
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
