@@ -88,7 +88,6 @@ class Landmark_Model():
                     tgt_pcd_points = data['tgt_pcd_list'][0]
                     tgt_pcd = o3d.geometry.PointCloud()
                     tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
-                    tgt_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
 
                     s_pos_pcd = o3d.geometry.PointCloud()
