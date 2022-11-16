@@ -558,6 +558,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
         c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
+        c_src_pcd_np_rotated = ( batched_rot[entry_id].numpy() @ c_src_pcd_np.T).T
         c_src_pcd_deformed = c_src_pcd_np + c_flow
         s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
         
@@ -577,8 +578,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
             number_points_src = c_src_pcd_np.shape[0]
             correspondences = np.transpose(coarse_match_gt)
             correspondences[:, 1] += number_points_src
+            total_points = np.concatenate((c_src_pcd_np_rotated, c_tgt_pcd_np), axis = 0)
             line_set = o3d.geometry.LineSet(
-                points=o3d.utility.Vector3dVector(coarse_pcd.numpy()),
+                points=o3d.utility.Vector3dVector(total_points),
                 lines=o3d.utility.Vector2iVector(correspondences),
             )
             o3d.io.write_line_set(base + output_folder + 'dataloader_ldmk/' + 'dataloader_line_set.ply', line_set)
