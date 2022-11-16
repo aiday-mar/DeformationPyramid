@@ -249,7 +249,7 @@ class Registration():
                 # without removing the translation, so we can see better the result
                 print('data.keys() : ', data.keys())
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
-                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk.cpu()))
+                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk.detach().cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
                 
         """freeze all level for inference"""
