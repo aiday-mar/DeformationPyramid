@@ -543,13 +543,14 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
+        c_src_pcd_np_rotated = ( batched_rot[entry_id].numpy() @ c_src_pcd_np.T).T
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
                 
         if output_folder:
             if not os.path.exists(base + output_folder + 'dataloader_ldmk'):
                 os.mkdir(base + output_folder + 'dataloader_ldmk')
             c_src_pcd = o3d.geometry.PointCloud()
-            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
+            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np_rotated))
             o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 'c_src_pcd.ply', c_src_pcd)
             c_tgt_pcd = o3d.geometry.PointCloud()
             c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
@@ -558,7 +559,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
         c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
-        c_src_pcd_np_rotated = ( batched_rot[entry_id].numpy() @ c_src_pcd_np.T).T
         c_src_pcd_deformed = c_src_pcd_np + c_flow
         s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
         
