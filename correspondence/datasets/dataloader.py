@@ -363,7 +363,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
 
     print('collate_fn_4dmatch output_folder : ', output_folder)
-    output_folder = 'TestData/FullNonDeformed/output_default_0/'
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
@@ -555,9 +554,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
-        
-        print(output_folder + 'c_src_pcd.ply')
-        
+                
         if output_folder:
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
@@ -644,7 +641,7 @@ def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_thr
 
     # Get histogram of neighborhood sizes i in 1 epoch max.
     for i in range(len(dataset)):
-        batched_input = collate_fn([dataset[i]], config, neighborhood_limits=[hist_n] * 5)
+        batched_input = collate_fn([dataset[i]], config, neighborhood_limits=[hist_n] * 5, output_folder=None)
 
         # update histogram
         counts = [torch.sum(neighb_mat < neighb_mat.shape[0], dim=1).numpy() for neighb_mat in batched_input['neighbors']]
