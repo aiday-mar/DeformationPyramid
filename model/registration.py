@@ -164,11 +164,11 @@ class Registration():
 
                 src_ldmk_pcd = o3d.geometry.PointCloud()
                 src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_ldmk_pcd.ply', src_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_warped_ldmk_initial_pcd.ply', src_ldmk_pcd)
 
                 tgt_ldmk_pcd = o3d.geometry.PointCloud()
                 tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_ldmk_pcd.ply', tgt_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_warped_ldmk_initial_pcd.ply', tgt_ldmk_pcd)
 
         iter_cnt={}
 
@@ -249,7 +249,7 @@ class Registration():
                 warped_ldmk_pcd_points = src_ldmk
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
                 warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
                 
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)

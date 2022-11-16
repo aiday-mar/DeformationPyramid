@@ -36,7 +36,7 @@ class Outlier_Rejection(nn.Module):
             nn.Sigmoid()
         )
         
-    def forward(self, data, intermediate_output_folder = None):
+    def forward(self, data):
 
         self._3D_to_6D( data )
 
