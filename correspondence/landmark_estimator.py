@@ -81,13 +81,14 @@ class Landmark_Model():
                     s_pos_pcd.points = o3d.utility.Vector3dVector(np.array(s_pos.cpu()))
                     rot = data['batched_rot'][0]
                     s_pos_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    rotated_s_pos = np.array(s_pos_pcd.points)
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
                     
                     t_pos_pcd = o3d.geometry.PointCloud()
                     t_pos_pcd.points = o3d.utility.Vector3dVector(np.array(t_pos.cpu()))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder +  'lepard_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
                     
-                    total_points = np.concatenate((np.array(s_pos.cpu()), np.array(t_pos.cpu())), axis = 0)
+                    total_points = np.concatenate((rotated_s_pos, np.array(t_pos.cpu())), axis = 0)
                     number_points_src = s_pos.shape[0]
                     correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
                     line_set = o3d.geometry.LineSet(
