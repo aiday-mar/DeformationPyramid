@@ -359,7 +359,7 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder):
 
 
     print('collate_fn_4dmatch output_folder : ', output_folder)
