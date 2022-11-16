@@ -49,6 +49,7 @@ def blend_scene_flow (query_loc, reference_loc, reference_flow , knn=3) :
     @return:
         blended_flow:[m,3]
     '''
+    print('Inside of blend_scene_flow')
     print('query_loc.shape : ', query_loc.shape)
     print('reference_loc.shape : ', reference_loc.shape)
     print('reference_flow.shape : ', reference_flow.shape)
