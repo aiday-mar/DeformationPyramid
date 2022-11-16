@@ -62,7 +62,7 @@ class Landmark_Model():
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
             print('data.keys() : ', data.keys())
-            rot = data['batched_rot'][0]
+            
             print('rot: ', rot)
             if timer: timer.toc("matcher")
             
@@ -81,6 +81,8 @@ class Landmark_Model():
                     
                     s_pos_pcd = o3d.geometry.PointCloud()
                     s_pos_pcd.points = o3d.utility.Vector3dVector(np.array(s_pos.cpu()))
+                    rot = data['batched_rot'][0]
+                    s_pos_pcd.rotate(rot, center=(0, 0, 0))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
                     
                     t_pos_pcd = o3d.geometry.PointCloud()
@@ -119,6 +121,8 @@ class Landmark_Model():
                     os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
+                rot = data['batched_rot'][0]
+                ldmk_s_pcd.rotate(rot, center=(0, 0, 0))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
                 
                 ldmk_t_pcd = o3d.geometry.PointCloud()
