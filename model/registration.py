@@ -20,6 +20,7 @@ from utils.vis import visualize_pcds
 
 BCE = nn.BCELoss()
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Registration():
 
@@ -126,6 +127,12 @@ class Registration():
     def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None):
         print('Inside of optimize_deformation_pyramid')
         print('base : ', base)
+        
+        if base:
+            self.path = base
+        else:
+            self.path = path
+            
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
@@ -171,7 +178,20 @@ class Registration():
             tgt_ldmk = self.landmarks[1] - tgt_mean
             print('src_ldmk.shape : ', src_ldmk.shape)
             print('tgt_ldmk.shape : ', tgt_ldmk.shape)
-
+            
+            if intermediate_output_folder:
+                # without removing the translation, so we can see better the result
+                src_ldmk_pcd_points = self.landmarks[0]
+                tgt_ldmk_pcd_points = self.landmarks[1]
+                
+                src_ldmk_pcd = o3d.geometry.PointCloud()
+                src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_ldmk_pcd.ply', src_ldmk_pcd)
+                
+                tgt_ldmk_pcd = o3d.geometry.PointCloud()
+                tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_ldmk_pcd.ply', tgt_ldmk_pcd)
+                
         iter_cnt={}
 
         print('\n')
@@ -220,7 +240,7 @@ class Registration():
                         loss = loss_ldmk + config.w_cd * loss_CD
                     else :
                         if iter == 0 or iter == self.config.iters - 1:
-                            print('Entered into the case config.w_cd <= 0')
+                            print('Entered into the case config.w_cd = 0')
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
                         if iter == 0 or iter == self.config.iters - 1:
                             print('warped_ldmk.shape : ', warped_ldmk.shape)
@@ -298,7 +318,14 @@ class Registration():
                 s_sample = s_sample_warped.detach()
             
             print('s_sample.shape : ', s_sample.shape)
-        
+            
+            if self.landmarks is not None and intermediate_output_folder:
+                # without removing the translation, so we can see better the result
+                warped_ldmk_pcd_points = src_ldmk
+                warped_ldmk_pcd = o3d.geometry.PointCloud()
+                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + level + '_pcd.ply', warped_ldmk_pcd)
+                                        
         print('\n')
         print('AFTER TRAINING')
         """freeze all level for inference"""
