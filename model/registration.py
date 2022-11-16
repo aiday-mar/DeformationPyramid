@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False):
         
         if base:
             self.path = base
@@ -158,7 +158,7 @@ class Registration():
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
             
-            if intermediate_output_folder:
+            if intermediate_output_folder and print_keypoints:
                 if not os.path.exists(self.path + intermediate_output_folder + 'training'):
                     os.mkdir(self.path + intermediate_output_folder + 'training')
                 # without removing the translation, so we can see better the result
@@ -247,7 +247,7 @@ class Registration():
             else:
                 s_sample = s_sample_warped.detach()
             
-            if self.landmarks is not None and intermediate_output_folder:
+            if self.landmarks is not None and intermediate_output_folder and print_keypoints:
                 # without removing the translation, so we can see better the result
                 warped_ldmk_pcd_points = src_ldmk
                 warped_ldmk_pcd = o3d.geometry.PointCloud()

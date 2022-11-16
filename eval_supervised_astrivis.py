@@ -42,6 +42,7 @@ if __name__ == "__main__":
     parser.add_argument('--base', type=str, help= 'Base folder.')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
+    parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
     args = parser.parse_args()
     
     if args.base:
@@ -78,8 +79,12 @@ if __name__ == "__main__":
     stats_meter = None
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
-    test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)
-
+    
+    if args.print_keypoints:
+        test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)
+    else:
+        test_loader, _ = get_dataloader(test_set, config, shuffle=False)
+        
     num_iter =  len(test_set)
     c_loader_iter = test_loader.__iter__()
     
@@ -95,8 +100,11 @@ if __name__ == "__main__":
                 inputs [k] = v.to(config.device)
 
         """predict landmarks"""
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = args.intermediate_output_folder, base = args.base)
-
+        if args.print_keypoints:
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = args.intermediate_output_folder, base = args.base)
+        else:
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+        
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
         copy_src_pcd = copy.deepcopy(src_pcd)
@@ -135,8 +143,12 @@ if __name__ == "__main__":
         overlap =  overlap.to(config.device)
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path)
         
+        if args.print_keypoints:
+            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoint = True)
+        else:
+            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path)
+            
         final_transformation = np.identity(4)
         for i in range(0, 10):
             rot = data[i][2][-1].cpu()
