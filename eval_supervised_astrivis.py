@@ -145,7 +145,7 @@ if __name__ == "__main__":
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         
         if args.print_keypoints:
-            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoint = True)
+            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = True)
         else:
             warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path)
             
