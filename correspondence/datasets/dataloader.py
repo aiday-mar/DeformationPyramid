@@ -557,10 +557,10 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         
         if output_folder:
             c_src_pcd = o3d.geometry.PointCloud()
-            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd))
+            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
             o3d.io.write_point_cloud(output_folder + 'c_src_pcd.ply', c_src_pcd)
             c_tgt_pcd = o3d.geometry.PointCloud()
-            c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd))
+            c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
             o3d.io.write_point_cloud(output_folder + 'c_tgt_pcd.ply', c_tgt_pcd)
         
         #interpolate flow
@@ -569,13 +569,22 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         c_src_pcd_deformed = c_src_pcd_np + c_flow
         s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
+        
         coarse_matches.append(coarse_match_gt)
         coarse_flow.append(torch.from_numpy(c_flow))
 
-
         accumu = accumu + n_s_pts + n_t_pts
 
-
+        if output_folder:
+            number_points_src = c_src_pcd_np.shape[0]
+            correspondences = np.transpose(coarse_match_gt)
+            correspondences[:, 1] += number_points_src
+            line_set = o3d.geometry.LineSet(
+                points=o3d.utility.Vector3dVector(coarse_pcd.numpy()),
+                lines=o3d.utility.Vector2iVector(correspondences),
+            )
+            o3d.io.write_line_set(output_folder + 'line_set.ply', line_set)
+    
         vis=False # for debug
         if vis :
             viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
