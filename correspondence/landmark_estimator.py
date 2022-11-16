@@ -129,6 +129,6 @@ class Landmark_Model():
                     points=o3d.utility.Vector3dVector(total_points),
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
-                o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'outlier_line_set.ply', line_set)
+                o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
