@@ -61,6 +61,9 @@ class Landmark_Model():
 
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
+            print('data.keys() : ', data.keys())
+            if timer: timer.toc("matcher")
+            
             if intermediate_output_folder:
                 if not os.path.exists(self.path + intermediate_output_folder + 'lepard_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'lepard_ldmk')
@@ -91,8 +94,6 @@ class Landmark_Model():
                     )
                     o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'lepard_line_set.ply', line_set)
                     
-            if timer: timer.toc("matcher")
-
             if timer: timer.tic("outlier rejection")
             confidence = self.outlier_model(data)
             if timer: timer.toc("outlier rejection")
