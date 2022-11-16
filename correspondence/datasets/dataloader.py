@@ -11,6 +11,8 @@ from correspondence.datasets.utils import blend_scene_flow, multual_nn_correspon
 from correspondence.lib.visualization import *
 from torch.utils.data import DataLoader
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
+
 def batch_grid_subsampling_kpconv(points, batches_len, features=None, labels=None, sampleDl=0.1, max_p=0, verbose=0, random_grid_orient=True):
     """
     CPP wrapper for a grid subsampling (method = barycenter for points and features)
@@ -323,7 +325,7 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
     return dict_inputs
 
 
-def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_limits, output_folder = None):
+def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_limits):
 
     assert len(multiview_data) == 1
 
@@ -353,13 +355,13 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
         pair_data = [(src_pcd, tgt_pcd, src_feats, tgt_feats, np.zeros([1]), rot, trn, s2t_flow, None, None, None)]
 
-        pair_batched = collate_fn_4dmatch( pair_data, config, neighborhood_limits, output_folder)
+        pair_batched = collate_fn_4dmatch( pair_data, config, neighborhood_limits)
 
         pairwise_data_list.append(pair_batched)
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None):
 
 
     print('collate_fn_4dmatch output_folder : ', output_folder)
@@ -558,10 +560,10 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         if output_folder:
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
-            o3d.io.write_point_cloud(output_folder + 'c_src_pcd.ply', c_src_pcd)
+            o3d.io.write_point_cloud(base + output_folder + 'c_src_pcd.ply', c_src_pcd)
             c_tgt_pcd = o3d.geometry.PointCloud()
             c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
-            o3d.io.write_point_cloud(output_folder + 'c_tgt_pcd.ply', c_tgt_pcd)
+            o3d.io.write_point_cloud(base + output_folder + 'c_tgt_pcd.ply', c_tgt_pcd)
         
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
@@ -572,7 +574,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         if output_folder:
             s_pc_wrapped_pcd = o3d.geometry.PointCloud()
             s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
-            o3d.io.write_point_cloud(output_folder + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
+            o3d.io.write_point_cloud(base + output_folder + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
         
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
         
@@ -589,7 +591,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 points=o3d.utility.Vector3dVector(coarse_pcd.numpy()),
                 lines=o3d.utility.Vector2iVector(correspondences),
             )
-            o3d.io.write_line_set(output_folder + 'line_set.ply', line_set)
+            o3d.io.write_line_set(base + output_folder + 'line_set.ply', line_set)
     
         vis=False # for debug
         if vis :
@@ -686,7 +688,7 @@ def get_datasets(config):
 
 
 
-def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None):
+def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None):
 
     print('get_dataloader output_folder : ', output_folder)
     collate_fn = collate_fn_4dmatch
@@ -699,7 +701,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
         batch_size=config['batch_size'],
         shuffle=shuffle,
         num_workers=config['num_workers'],
-        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder),
+        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base),
         drop_last=False
     )
 

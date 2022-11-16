@@ -78,7 +78,7 @@ if __name__ == "__main__":
     stats_meter = None
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
-    test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder)
+    test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)
 
     num_iter =  len(test_set)
     c_loader_iter = test_loader.__iter__()
