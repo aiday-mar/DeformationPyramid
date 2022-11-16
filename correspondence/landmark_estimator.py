@@ -54,6 +54,7 @@ class Landmark_Model ():
             print('Calling the matcher on the inputs')
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
+            print('data.keys() : ', data.keys())
             if timer: timer.toc("matcher")
             print('\n')
             print('Calling the outlier rejection method on the data')
