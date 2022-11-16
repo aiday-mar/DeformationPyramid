@@ -363,7 +363,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
 
     print('collate_fn_4dmatch output_folder : ', output_folder)
-    output_folder = 'FullNonDeformed/output_default_0/'
+    output_folder = 'TestData/FullNonDeformed/output_default_0/'
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
