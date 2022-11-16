@@ -364,8 +364,6 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
 def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None):
 
-
-    print('collate_fn_4dmatch output_folder : ', output_folder)
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []

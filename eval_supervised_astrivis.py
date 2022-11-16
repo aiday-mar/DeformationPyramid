@@ -95,9 +95,7 @@ if __name__ == "__main__":
                 inputs [k] = v.to(config.device)
 
         """predict landmarks"""
-        print('\n')
-        print('Before inference on the Landmark Model')
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference (inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = args.intermediate_output_folder, base = args.base)
 
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
