@@ -86,7 +86,7 @@ class Landmark_Model():
                     number_points_src = s_pos.shape[0]
                     correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
                     line_set = o3d.geometry.LineSet(
-                        points=o3d.utility.Vector3dVector(total_points.numpy()),
+                        points=o3d.utility.Vector3dVector(total_points),
                         lines=o3d.utility.Vector2iVector(correspondences),
                     )
                     o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'lepard_line_set.ply', line_set)
@@ -126,7 +126,7 @@ class Landmark_Model():
                 number_points_src = ldmk_s.shape[0]
                 correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
                 line_set = o3d.geometry.LineSet(
-                    points=o3d.utility.Vector3dVector(total_points.numpy()),
+                    points=o3d.utility.Vector3dVector(total_points),
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'outlier_line_set.ply', line_set)
