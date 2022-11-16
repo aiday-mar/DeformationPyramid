@@ -62,8 +62,6 @@ class Landmark_Model():
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
             print('data.keys() : ', data.keys())
-            
-            print('rot: ', rot)
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:
