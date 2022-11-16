@@ -248,6 +248,12 @@ class Registration():
             if self.landmarks is not None and intermediate_output_folder and print_keypoints:
                 # without removing the translation, so we can see better the result
                 print('data.keys() : ', data.keys())
+                src_mask = data['src_mask']
+                tgt_mask = data['tgt_mask']
+                print(warped_ldmk.shape)
+                print(src_mask.shape)
+                print(tgt_mask.shape)
+
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
                 warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk.detach().cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
