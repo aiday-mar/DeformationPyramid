@@ -35,14 +35,10 @@ class Outlier_Rejection(nn.Module):
             nn.Linear(32, 1, bias=True),
             nn.Sigmoid()
         )
-
-
-
-    def forward(self, data):
-
+        
+    def forward(self, data, intermediate_output_folder = None):
 
         self._3D_to_6D( data )
-
 
         corr_feat = data['vec_6d']
         pos6d = data['vec_6d']
@@ -51,7 +47,7 @@ class Outlier_Rejection(nn.Module):
 
         if self.spatial_consistency_check:
             with torch.no_grad():
-                src_keypts, tgt_keypts = pos6d[...,:3], pos6d[...,3:]
+                src_keypts, tgt_keypts = pos6d[...,:3], pos6d[...,3:]                                    
                 src_dist = torch.norm((src_keypts[:, :, None, :] - src_keypts[:, None, :, :]), dim=-1)
                 tgt_dist = torch.norm((tgt_keypts[:, :, None, :] - tgt_keypts[:, None, :, :]), dim=-1)
                 corr_compatibility = src_dist - tgt_dist

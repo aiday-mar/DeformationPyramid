@@ -2,16 +2,18 @@ import torch
 import yaml
 from easydict import EasyDict as edict
 
-
 import sys
+import open3d as o3d
+import numpy as np
+
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
 
-
-class Landmark_Model ():
+class Landmark_Model():
 
     def __init__(self, config_file, device ):
 
@@ -44,14 +46,39 @@ class Landmark_Model ():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, reject_outliers=True, inlier_thr=0.5, timer=None):
+    def inference(self, inputs, intermediate_output_folder = None, base = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
+        if base:
+            self.path = base
+        else:
+            self.path = path 
+            
         self.matcher.eval()
         self.outlier_model.eval()
+        
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, timers=None)
+            data = self.matcher(inputs, intermediate_output_folder, timers=None)
+        
+            if intermediate_output_folder:
+                b_size=len(data['s_pcd'])
+                ind = data['coarse_match_pred']
+                bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
+            
+                for i in range(b_size):
+                    bmask = bi == i
+                    s_pos = data['s_pcd'][i][si[bmask]]
+                    t_pos = data['t_pcd'][i][ti[bmask]]
+                    
+                    s_pos_pcd = o3d.geometry.PointCloud()
+                    s_pos_pcd.points = o3d.utility.Vector3dVector(np.array(s_pos.cpu()))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 's_lepard_pcd.ply', s_pos_pcd)
+                    
+                    t_pos_pcd = o3d.geometry.PointCloud()
+                    t_pos_pcd.points = o3d.utility.Vector3dVector(np.array(t_pos.cpu()))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 't_lepard_pcd.ply', t_pos_pcd)
+                
             if timer: timer.toc("matcher")
 
             if timer: timer.tic("outlier rejection")

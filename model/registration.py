@@ -26,7 +26,6 @@ class Registration():
 
     def __init__(self, config):
 
-
         self.tgt_pcd = None
         self.src_pcd = None
         self.device = config.device
