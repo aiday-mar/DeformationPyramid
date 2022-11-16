@@ -549,9 +549,20 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         if output_folder:
             if not os.path.exists(base + output_folder + 'dataloader_ldmk'):
                 os.mkdir(base + output_folder + 'dataloader_ldmk')
+
+            src_pcd_o3d = o3d.geometry.PointCloud()
+            src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
+            src_pcd_o3d.rotate(batched_rot[entry_id].numpy(), center=(0, 0, 0))
+            o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
+
+            tgt_pcd_o3d = o3d.geometry.PointCloud()
+            tgt_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
+            o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'tgt_pcd.ply', tgt_pcd_o3d)
+            
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np_rotated))
             o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 'c_src_pcd.ply', c_src_pcd)
+
             c_tgt_pcd = o3d.geometry.PointCloud()
             c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
             o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 'c_tgt_pcd.ply', c_tgt_pcd)
