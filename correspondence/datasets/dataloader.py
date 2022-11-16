@@ -555,10 +555,11 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
         
+        print(output_folder + 'c_src_pcd.ply')
+        
         if output_folder:
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
-            print(output_folder + 'c_src_pcd.ply')
             o3d.io.write_point_cloud(output_folder + 'c_src_pcd.ply', c_src_pcd)
             c_tgt_pcd = o3d.geometry.PointCloud()
             c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
