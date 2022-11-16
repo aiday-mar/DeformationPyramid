@@ -73,13 +73,26 @@ class Landmark_Model():
             
                 for i in range(b_size):
                     bmask = bi == i
+                    rot = data['batched_rot'][0]
+
                     print('data.keys() : ', data.keys())
                     s_pos = data['s_pcd'][i][si[bmask]]
                     t_pos = data['t_pcd'][i][ti[bmask]]
                     
+                    src_pcd_points = data['src_pcd_list'][0]
+                    src_pcd = o3d.geometry.PointCloud()
+                    src_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
+                    src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
+
+                    tgt_pcd_points = data['src_pcd_list'][0]
+                    tgt_pcd = o3d.geometry.PointCloud()
+                    tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
+                    tgt_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
+
                     s_pos_pcd = o3d.geometry.PointCloud()
                     s_pos_pcd.points = o3d.utility.Vector3dVector(np.array(s_pos.cpu()))
-                    rot = data['batched_rot'][0]
                     s_pos_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     rotated_s_pos = np.array(s_pos_pcd.points)
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
@@ -118,9 +131,23 @@ class Landmark_Model():
             if intermediate_output_folder:
                 if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
+
+                rot = data['batched_rot'][0]
+
+                src_pcd_points = data['src_pcd_list'][0]
+                src_pcd = o3d.geometry.PointCloud()
+                src_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
+                src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
+
+                tgt_pcd_points = data['src_pcd_list'][0]
+                tgt_pcd = o3d.geometry.PointCloud()
+                tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
+                tgt_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
+            
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
-                rot = data['batched_rot'][0]
                 ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                 rotated_ldmk_s = np.array(ldmk_s_pcd.points)
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
