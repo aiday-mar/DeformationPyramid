@@ -6,6 +6,7 @@ import torch.nn.functional as F
 from torch.autograd.functional import jacobian
 import open3d as o3d
 import numpy as np
+import os
 
 path = '/home/aiday.kyzy/dataset/Synthetic/'
 
@@ -52,10 +53,11 @@ class Deformation_Pyramid ():
             x, nonrigidity, R, t = self.pyramid[i](x)
             
             if intermediate_ouput_folder:
+                os.mkdir(self.path + intermediate_ouput_folder + 'final/')
                 intermediate_sample = x + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_ouput_folder + 'final_inter_' + str(i) + '.ply', intermediate_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_ouput_folder + 'final/' + 'final_inter_' + str(i) + '.ply', intermediate_pcd)
                 
             data[i] = (x, nonrigidity, R, t)
         return x, data

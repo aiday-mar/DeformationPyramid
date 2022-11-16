@@ -5,6 +5,7 @@ from easydict import EasyDict as edict
 import sys
 import open3d as o3d
 import numpy as np
+import os
 
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
@@ -60,8 +61,9 @@ class Landmark_Model():
 
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, timers=None)
-        
             if intermediate_output_folder:
+                os.mkdir(self.path + intermediate_output_folder + 'lepard/')
+                
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
                 bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
@@ -73,12 +75,11 @@ class Landmark_Model():
                     
                     s_pos_pcd = o3d.geometry.PointCloud()
                     s_pos_pcd.points = o3d.utility.Vector3dVector(np.array(s_pos.cpu()))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 's_lepard_pcd.ply', s_pos_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard/' + 's_lepard_pcd.ply', s_pos_pcd)
                     
                     t_pos_pcd = o3d.geometry.PointCloud()
                     t_pos_pcd.points = o3d.utility.Vector3dVector(np.array(t_pos.cpu()))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 't_lepard_pcd.ply', t_pos_pcd)
-                
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder +  'lepard/' + 't_lepard_pcd.ply', t_pos_pcd)
             if timer: timer.toc("matcher")
 
             if timer: timer.tic("outlier rejection")
@@ -100,12 +101,13 @@ class Landmark_Model():
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
 
             if intermediate_output_folder:
+                os.mkdir(self.path + intermediate_output_folder + 'outlier/')
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
                 
                 ldmk_t_pcd = o3d.geometry.PointCloud()
                 ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 's_outlier_rejected_pcd.ply', ldmk_t_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier/' + 't_outlier_rejected_pcd.ply', ldmk_t_pcd)
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2

@@ -4,6 +4,7 @@ import numpy as np
 from skimage import io
 import open3d as o3d
 import pytorch3d
+import os
 import torch.optim as optim
 
 Runbaselines=False
@@ -154,6 +155,7 @@ class Registration():
         t_sample = tgt_pcd[tgt[: config.samples]]
 
         if self.landmarks is not None:
+            os.mkdir(self.path + intermediate_output_folder + 'training')
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
             
@@ -164,11 +166,11 @@ class Registration():
 
                 src_ldmk_pcd = o3d.geometry.PointCloud()
                 src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_warped_ldmk_initial_pcd.ply', src_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training/' + 'src_warped_ldmk_initial_pcd.ply', src_ldmk_pcd)
 
                 tgt_ldmk_pcd = o3d.geometry.PointCloud()
                 tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_warped_ldmk_initial_pcd.ply', tgt_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training/' + 'tgt_warped_ldmk_initial_pcd.ply', tgt_ldmk_pcd)
 
         iter_cnt={}
 
@@ -249,7 +251,7 @@ class Registration():
                 warped_ldmk_pcd_points = src_ldmk
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
                 warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training/' + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
                 
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
@@ -416,7 +418,6 @@ class Registration():
             optimizer.step()
             scheduler.step()
 
-
         "warp the full point cloud"
         anchor_trn = t [self.point_anchors]
         anchor_rot = R [self.point_anchors]
@@ -433,16 +434,13 @@ class Registration():
 
         return warped_pcd, valid_id
 
-
     def optimize_neural_SFlow(self, visualize=False):
 
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
 
-
         model = Neural_Prior ( ).to(self.device)
-
 
         self.src_pcd = self.src_pcd.to(self.device)
 
@@ -452,16 +450,13 @@ class Registration():
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
 
-
         if visualize:
             visualize_pcds(src_pcd = src_pcd, tgt_pcd= tgt_pcd)
-
 
         src = torch.randperm(src_pcd.shape[0])
         tgt = torch.randperm(tgt_pcd.shape[0])
         s_sample = src_pcd[src[: config.samples]]
         t_sample = tgt_pcd[tgt[: config.samples]]
-
 
         for param in model.parameters():
             param.requires_grad = True
@@ -470,7 +465,6 @@ class Registration():
 
         break_counter = 0
         loss_prev = 1e+6
-
 
         for i in range(self.config.iters):
 
@@ -492,7 +486,6 @@ class Registration():
             loss.backward()
             optimizer.step()
 
-
         if visualize:
             # warped_pcd, data = NDP.warp(src_pcd, max_level=level)
             flow_pred = model(src_pcd)
@@ -505,7 +498,6 @@ class Registration():
         warped_pcd = warped_pcd + tgt_mean
 
         return warped_pcd, None
-
 
     def run_optimal_transport(self, visualize=False):
         '''

@@ -2,6 +2,7 @@ import numpy as np
 import open3d as o3d
 from functools import partial
 import torch
+import os
 import cpp_wrappers.cpp_subsampling.grid_subsampling as cpp_subsampling
 import cpp_wrappers.cpp_neighbors.radius_neighbors as cpp_neighbors
 from correspondence.datasets._3dmatch import _3DMatch
@@ -386,8 +387,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     # for ind in range ( len(pairwise_data) ) :
     for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
         #            src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
-
-
         # src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
 
@@ -402,22 +401,14 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         batched_lengths_list.append(len(src_pcd))
         batched_lengths_list.append(len(tgt_pcd))
 
-
-
         batched_rot.append( torch.from_numpy(rot).float())
         batched_trn.append( torch.from_numpy(trn).float())
-
-
 
         sflow_list.append( torch.from_numpy(s2t_flow).float() )
 
         correspondences_list.append( torch.from_numpy(correspondences) )
 
         depth_paths_list.update( { ind : depth_paths} )
-
-
-
-
 
     batched_features = torch.from_numpy(np.concatenate(batched_features_list, axis=0))
     batched_points = torch.from_numpy(np.concatenate(batched_points_list, axis=0))
@@ -439,7 +430,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     input_pools = []
     input_upsamples = []
     input_batches_len = []
-
 
     # construt kpfcn inds
     for block_i, block in enumerate(config.architecture):
@@ -558,12 +548,13 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
                 
         if output_folder:
+            os.mkdir(base + output_folder + 'dataloader')
             c_src_pcd = o3d.geometry.PointCloud()
             c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np))
-            o3d.io.write_point_cloud(base + output_folder + 'c_src_pcd.ply', c_src_pcd)
+            o3d.io.write_point_cloud(base + output_folder  + 'dataloader/' + 'c_src_pcd.ply', c_src_pcd)
             c_tgt_pcd = o3d.geometry.PointCloud()
             c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
-            o3d.io.write_point_cloud(base + output_folder + 'c_tgt_pcd.ply', c_tgt_pcd)
+            o3d.io.write_point_cloud(base + output_folder  + 'dataloader/' + 'c_tgt_pcd.ply', c_tgt_pcd)
         
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
@@ -574,7 +565,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         if output_folder:
             s_pc_wrapped_pcd = o3d.geometry.PointCloud()
             s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
-            o3d.io.write_point_cloud(base + output_folder + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
+            o3d.io.write_point_cloud(base + output_folder  + 'dataloader/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
         
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
         
@@ -591,7 +582,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 points=o3d.utility.Vector3dVector(coarse_pcd.numpy()),
                 lines=o3d.utility.Vector2iVector(correspondences),
             )
-            o3d.io.write_line_set(base + output_folder + 'line_set.ply', line_set)
+            o3d.io.write_line_set(base + output_folder + 'dataloader/' + 'coarse_match_gt.ply', line_set)
     
         vis=False # for debug
         if vis :
@@ -690,7 +681,6 @@ def get_datasets(config):
 
 def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None):
 
-    print('get_dataloader output_folder : ', output_folder)
     collate_fn = collate_fn_4dmatch
 
     if neighborhood_limits is None:
