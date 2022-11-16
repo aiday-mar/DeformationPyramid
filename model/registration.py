@@ -324,7 +324,7 @@ class Registration():
                 warped_ldmk_pcd_points = src_ldmk
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
                 warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + level + '_pcd.ply', warped_ldmk_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
                                         
         print('\n')
         print('AFTER TRAINING')
