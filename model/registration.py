@@ -249,6 +249,7 @@ class Registration():
                 # without removing the translation, so we can see better the result
                 print('level : ', level)
                 print('data.keys() : ', data.keys())
+                print(data[level].shape)
                 # src_mask = data['src_mask']
                 # tgt_mask = data['tgt_mask']
                 print(warped_ldmk.shape)
