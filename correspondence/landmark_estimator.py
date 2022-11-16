@@ -59,7 +59,7 @@ class Landmark_Model():
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, intermediate_output_folder, timers=None)
+            data = self.matcher(inputs, timers=None)
         
             if intermediate_output_folder:
                 b_size=len(data['s_pcd'])
