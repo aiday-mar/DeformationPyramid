@@ -20,6 +20,7 @@ from utils.vis import visualize_pcds
 
 BCE = nn.BCELoss()
 
+path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Registration():
 
@@ -124,10 +125,15 @@ class Registration():
 
 
     def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None):
+        
+        if base:
+            self.path = base
+        else:
+            self.path = path
+            
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
-
 
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
@@ -145,25 +151,33 @@ class Registration():
         if visualize:
             visualize_pcds(src_pcd = self.src_pcd, tgt_pcd= self.tgt_pcd)
 
-
         # cancel global translation
         src_mean = self.src_pcd.mean(dim=0, keepdims=True)
         tgt_mean = self.tgt_pcd.mean(dim=0, keepdims=True)
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
 
-
         src = torch.randperm(src_pcd.shape[0])
         tgt = torch.randperm(tgt_pcd.shape[0])
         s_sample = src_pcd[src[: config.samples]]
         t_sample = tgt_pcd[tgt[: config.samples]]
 
-
         if self.landmarks is not None:
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
+            
+            if intermediate_output_folder:
+                # without removing the translation, so we can see better the result
+                src_ldmk_pcd_points = self.landmarks[0]
+                tgt_ldmk_pcd_points = self.landmarks[1]
 
+                src_ldmk_pcd = o3d.geometry.PointCloud()
+                src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_ldmk_pcd.ply', src_ldmk_pcd)
 
+                tgt_ldmk_pcd = o3d.geometry.PointCloud()
+                tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_ldmk_pcd.ply', tgt_ldmk_pcd)
 
         iter_cnt={}
 
@@ -172,13 +186,10 @@ class Registration():
             """freeze non-optimized level"""
             NDP.gradient_setup(optimized_level=level)
 
-
             optimizer = optim.Adam(NDP.pyramid[level].parameters(), lr= self.config.lr )
-
 
             break_counter = 0
             loss_prev = 1e+6
-
 
             """optimize current level"""
             for iter in range(self.config.iters):
@@ -196,7 +207,6 @@ class Registration():
 
                         loss = loss_ldmk + config.w_cd * loss_CD
 
-
                     else :
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
 
@@ -212,15 +222,11 @@ class Registration():
                     loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
                     if timer: timer.toc("Chamfer")
 
-
                 if level > 0 and config.w_reg>0:
                     nonrigidity = data [level][1]
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
                     loss = loss + config.w_reg* reg_loss
-
-
-
 
                 # early stop
                 if loss.item() < 1e-4:
@@ -237,7 +243,6 @@ class Registration():
                 optimizer.step()
                 if timer: timer.toc("backprop")
 
-
             # use warped points for next level
             if self.landmarks is not None:
                 src_ldmk = warped_ldmk.detach()
@@ -248,6 +253,13 @@ class Registration():
             else:
                 s_sample = s_sample_warped.detach()
             
+            if self.landmarks is not None and intermediate_output_folder:
+                # without removing the translation, so we can see better the result
+                warped_ldmk_pcd_points = src_ldmk
+                warped_ldmk_pcd = o3d.geometry.PointCloud()
+                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + level + '_pcd.ply', warped_ldmk_pcd)
+                
         """freeze all level for inference"""
         NDP.gradient_setup(optimized_level=-1)
         warped_pcd, data = NDP.warp(src_pcd, intermediate_output_folder, tgt_mean)
