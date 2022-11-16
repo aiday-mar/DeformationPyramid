@@ -1,4 +1,5 @@
 import numpy as np
+import open3d as o3d
 from functools import partial
 import torch
 import cpp_wrappers.cpp_subsampling.grid_subsampling as cpp_subsampling
@@ -8,7 +9,6 @@ from correspondence.datasets._4dmatch import _4DMatch
 from correspondence.datasets._4dmatch_multiview import _4DMatch_Multiview
 from correspondence.datasets.utils import blend_scene_flow, multual_nn_correspondence
 from correspondence.lib.visualization import *
-
 from torch.utils.data import DataLoader
 
 def batch_grid_subsampling_kpconv(points, batches_len, features=None, labels=None, sampleDl=0.1, max_p=0, verbose=0, random_grid_orient=True):
@@ -323,7 +323,7 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
     return dict_inputs
 
 
-def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_limits ):
+def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_limits, output_folder = None):
 
     assert len(multiview_data) == 1
 
@@ -353,13 +353,13 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
         pair_data = [(src_pcd, tgt_pcd, src_feats, tgt_feats, np.zeros([1]), rot, trn, s2t_flow, None, None, None)]
 
-        pair_batched = collate_fn_4dmatch( pair_data, config, neighborhood_limits)
+        pair_batched = collate_fn_4dmatch( pair_data, config, neighborhood_limits, output_folder)
 
         pairwise_data_list.append(pair_batched)
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None):
 
 
 
@@ -554,6 +554,15 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits ):
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
         c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
+        
+        if output_folder:
+            c_src_pcd = o3d.geometry.PointCloud()
+            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd))
+            o3d.io.write_point_cloud(output_folder + 'c_src_pcd.ply', c_src_pcd)
+            c_tgt_pcd = o3d.geometry.PointCloud()
+            c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd))
+            o3d.io.write_point_cloud(output_folder + 'c_tgt_pcd.ply', c_tgt_pcd)
+        
         #interpolate flow
         f_src_pcd = batched_points_list[entry_id * 2]
         c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
@@ -662,7 +671,7 @@ def get_datasets(config):
 
 
 
-def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None):
+def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None):
 
     collate_fn = collate_fn_4dmatch
 
@@ -674,7 +683,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None):
         batch_size=config['batch_size'],
         shuffle=shuffle,
         num_workers=config['num_workers'],
-        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits ),
+        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder),
         drop_last=False
     )
 
