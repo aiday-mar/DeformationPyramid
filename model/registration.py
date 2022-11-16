@@ -195,10 +195,12 @@ class Registration():
                     print('iter : ', iter)
                 # use  ldmk
                 if self.landmarks is not None:
-                    print('Landmarks is not None')
+                    if iter == 0 or iter == self.config.iters - 1:
+                        print('Landmarks is not None')
                     
                     if config.w_cd > 0 :
-                        print('Entered into the case config.w_cd > 0')
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('Entered into the case config.w_cd > 0')
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         if iter == 0 or iter == self.config.iters - 1:
                             print('src_pts.shape : ', src_pts.shape)
@@ -217,14 +219,16 @@ class Registration():
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
                         loss = loss_ldmk + config.w_cd * loss_CD
                     else :
-                        print('Entered into the case config.w_cd <= 0')
+                        if iter == 0 or iter == self.config.iters - 1:
+                            print('Entered into the case config.w_cd <= 0')
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
                         if iter == 0 or iter == self.config.iters - 1:
                             print('warped_ldmk.shape : ', warped_ldmk.shape)
                         loss = torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
 
                 else:
-                    print('Landmarks is None')
+                    if iter == 0 or iter == self.config.iters - 1:
+                        print('Landmarks is None')
                     
                     if timer: timer.tic("lvl_warp")
                     s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
