@@ -88,6 +88,7 @@ class Outlier_Rejection(nn.Module):
         print('Inside of _3D_to_6D')
         b_size=len(data['s_pcd'])
         ind = data['coarse_match_pred']
+        print('ind.shape : ', ind.shape)
         bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
         vec6d_list = []
         batch_len = []

@@ -54,6 +54,7 @@ class SoftProcrustesLayer(nn.Module):
         @param tgt_mask:
         @return:
         '''
+        print('\n')
         print('Inside of the forward function of the SoftProcrustesLayer')
         print('conf_matrix.shape : ', conf_matrix.shape)
         print('src_pcd.shape : ', src_pcd.shape)

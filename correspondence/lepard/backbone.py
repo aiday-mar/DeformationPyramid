@@ -146,6 +146,7 @@ class KPFCN(nn.Module):
             # 1. joint encoder part
             self.skip_x = []
             for block_i, block_op in enumerate(self.encoder_blocks):
+                print('block_i : ', block_i)
                 if block_i in self.encoder_skips:
                     print('Adding skip')
                     self.skip_x.append(x)
@@ -160,7 +161,9 @@ class KPFCN(nn.Module):
             coarse_feats.shape :  torch.Size([260, 528])
             '''
             for block_i, block_op in enumerate(self.decoder_blocks):
+                print('block_i : ', block_i)
                 if block_i in self.decoder_concats:
+                    print('block_i in decoder_concats')
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
                 x = block_op(x, batch)
                 print('x.shape : ', x.shape)
