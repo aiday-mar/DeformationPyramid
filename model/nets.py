@@ -55,7 +55,7 @@ class Deformation_Pyramid ():
                 intermediate_sample = x + tgt_mean
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_ouput_folder + 'inter_' + str(i) + '.ply', intermediate_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_ouput_folder + 'final_inter_' + str(i) + '.ply', intermediate_pcd)
                 
             data[i] = (x, nonrigidity, R, t)
         return x, data
