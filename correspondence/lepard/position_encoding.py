@@ -51,20 +51,26 @@ class VolumetricPositionEncoding(nn.Module):
             raise KeyError()
 
 
-    def forward(self,  XYZ):
+    def forward(self,  XYZ, mod = False):
         '''
         @param XYZ: [B,N,3]
         @return:
         '''
         bsize, npoint, _ = XYZ.shape
-
         vox = self.voxelize( XYZ)
         x_position, y_position, z_position = vox[..., 0:1], vox[...,1:2], vox[...,2:3]
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
-
-        sinx = torch.sin(x_position * div_term) # [B, N, d//6]
-        cosx = torch.cos(x_position * div_term)
+        
+        if mod:
+            div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
+            div_term_mod = div_term_mod.view( 1,1, -1)
+            sinx = torch.sin(x_position * div_term_mod)
+            cosx = torch.cos(x_position * div_term_mod)
+        else:
+            sinx = torch.sin(x_position * div_term) # [B, N, d//6]
+            cosx = torch.cos(x_position * div_term)
+            
         siny = torch.sin(y_position * div_term)
         cosy = torch.cos(y_position * div_term)
         sinz = torch.sin(z_position * div_term)

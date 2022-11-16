@@ -120,7 +120,6 @@ class KPFCN(nn.Module):
     def forward(self, batch, phase = 'encode'):
         print('Inside of KPFCN forward')
         # Get input features
-
         if phase == 'coarse' :
             print('\n ')
             print('Before encoder blocks')

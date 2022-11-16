@@ -120,8 +120,6 @@ class Outlier_Rejection(nn.Module):
         data['vec_6d_mask'] = batch_mask
         data['vec_6d_ind'] = batch_index
 
-
-
     def _reset_parameters(self):
         for p in self.parameters():
             if p.dim() > 1:

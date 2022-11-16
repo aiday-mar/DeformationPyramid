@@ -42,33 +42,39 @@ class VolumetricPositionEncoding(nn.Module):
             raise KeyError()
 
 
-    def forward(self,  vec6d):
+    def forward(self,  vec6d, mod = False):
         
         print('\n')
         print('Inside of forward method of VolPE')
+        print('vec6d.shape : ', vec6d.shape)
         _, n, _ = vec6d.shape
 
-        s_pe = self.pe( vec6d[..., :3] )
-        t_pe = self.pe( vec6d[..., 3:] )
+        s_pe = self.pe( vec6d[..., :3], mod)
+        t_pe = self.pe( vec6d[..., 3:], mod )
         print('s_pe.shape : ', s_pe.shape)
         print('t_pe.shape : ', t_pe.shape)
         return torch.cat([s_pe, t_pe], dim=2)
 
-    def pe(self, XYZ):
-
+    def pe(self, XYZ, mod = False):
         '''
         @param XYZ: [B,N,3]
         @return:
         '''
         bsize, npoint, _ = XYZ.shape
-
         vox = self.voxelize( XYZ)
         x_position, y_position, z_position = vox[..., 0:1], vox[...,1:2], vox[...,2:3]
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
 
-        sinx = torch.sin(x_position * div_term) # [B, N, d//6]
-        cosx = torch.cos(x_position * div_term)
+        if mod:
+            div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
+            div_term_mod = div_term_mod.view( 1,1, -1)
+            sinx = torch.sin(x_position * div_term_mod)
+            cosx = torch.cos(x_position * div_term_mod)
+        else:
+            sinx = torch.sin(x_position * div_term) # [B, N, d//6]
+            cosx = torch.cos(x_position * div_term)
+            
         siny = torch.sin(y_position * div_term)
         cosy = torch.cos(y_position * div_term)
         sinz = torch.sin(z_position * div_term)
@@ -79,8 +85,7 @@ class VolumetricPositionEncoding(nn.Module):
 
         elif self.pe_type == "rotary" :
             # sin/cos [θ0,θ1,θ2......θd/6-1] -> sin/cos [θ0,θ0,θ1,θ1,θ2,θ2......θd/6-1,θd/6-1]
-            sinx, cosx, siny, cosy, sinz, cosz = map( lambda  feat:torch.stack([feat, feat], dim=-1).view(bsize, npoint, -1),
-                 [ sinx, cosx, siny, cosy, sinz, cosz] )
+            sinx, cosx, siny, cosy, sinz, cosz = map( lambda feat:torch.stack([feat, feat], dim=-1).view(bsize, npoint, -1), [ sinx, cosx, siny, cosy, sinz, cosz] )
             sin_pos = torch.cat([sinx,siny,sinz], dim=-1)
             cos_pos = torch.cat([cosx,cosy,cosz], dim=-1)
 

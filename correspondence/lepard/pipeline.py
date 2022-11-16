@@ -19,7 +19,6 @@ class Pipeline(nn.Module):
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
 
-
     def forward(self, data,  timers=None):
         
         print('Inside the forward method of the Pipeline')
