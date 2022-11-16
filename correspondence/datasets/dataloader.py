@@ -551,12 +551,12 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 os.mkdir(base + output_folder + 'dataloader_ldmk')
 
             src_pcd_o3d = o3d.geometry.PointCloud()
-            src_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(src_pcd.cpu()))
+            src_pcd_o3d.points = o3d.utility.Vector3dVector(src_pcd)
             src_pcd_o3d.rotate(batched_rot[entry_id].numpy(), center=(0, 0, 0))
             o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
 
             tgt_pcd_o3d = o3d.geometry.PointCloud()
-            tgt_pcd_o3d.points = o3d.utility.Vector3dVector(np.array(tgt_pcd.cpu()))
+            tgt_pcd_o3d.points = o3d.utility.Vector3dVector(tgt_pcd)
             o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'tgt_pcd.ply', tgt_pcd_o3d)
             
             c_src_pcd = o3d.geometry.PointCloud()
