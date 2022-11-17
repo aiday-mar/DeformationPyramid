@@ -190,7 +190,6 @@ class Registration():
                 if self.landmarks is not None:
 
                     if (w_cd > 0 if w_cd else config.w_cd > 0) :
-                        print('w_cd : ', w_cd)
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
@@ -216,7 +215,6 @@ class Registration():
                     if timer: timer.toc("Chamfer")
 
                 if level > 0 and (w_reg > 0 if w_reg else config.w_reg > 0):
-                    print('w_reg : ', w_reg)
                     nonrigidity = data [level][1]
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
@@ -242,7 +240,6 @@ class Registration():
                 src_ldmk = warped_ldmk.detach()
 
                 if (w_cd > 0 if w_cd else config.w_cd > 0):
-                    print('w_cd : ', w_cd)
                     s_sample = s_sample_warped.detach()
 
             else:
