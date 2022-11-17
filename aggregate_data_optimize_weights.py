@@ -8,15 +8,17 @@ base = 'TestData/'
 types=['FullDeformed/', 'FullNonDeformed/', 'PartialDeformed/', 'PartialNonDeformed/']
 metric_list=['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier']
 metric = 'RMSE'
-matrix = np.empty([len(w_reg_list), len(w_cd_list)])
+
 
 for type in types:
+    matrix = np.empty([len(w_reg_list), len(w_cd_list)])
     path = base + type
     for w_reg_idx in range(0, len(w_reg_list)):
         for w_cd_idx in range(0, len(w_cd_list)):
             w_reg = w_reg_list[w_reg_idx]
             w_cd = w_cd_list[w_cd_idx]
             result_path = path + 'output_' + str(w_reg) + '_' + str(w_cd) + '/result.txt'
+            print('result_path : ', result_path)
             f = open(result_path, "r")
             for line in f:
                 if metric in line:
@@ -25,7 +27,8 @@ for type in types:
                     matrix[w_reg_idx][w_cd_idx] = res
                     break
 
-plt.imshow(matrix, cmap='hot', interpolation='nearest')
-plt.show()
+    print('matrix : ', matrix)
+    plt.imshow(matrix, cmap='hot', interpolation='nearest')
+    plt.show()
                    
     

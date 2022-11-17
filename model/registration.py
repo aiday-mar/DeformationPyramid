@@ -190,6 +190,7 @@ class Registration():
                 if self.landmarks is not None:
 
                     if (w_cd > 0 if w_cd else config.w_cd > 0) :
+                        w_cd = w_cd if w_cd else config.w_cd
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
@@ -197,7 +198,7 @@ class Registration():
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
 
-                        loss = loss_ldmk + config.w_cd * loss_CD
+                        loss = loss_ldmk + w_cd * loss_CD
 
                     else :
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
@@ -215,10 +216,11 @@ class Registration():
                     if timer: timer.toc("Chamfer")
 
                 if level > 0 and (w_reg > 0 if w_reg else config.w_reg > 0):
+                    w_reg = w_reg if w_reg else config.w_reg
                     nonrigidity = data [level][1]
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
-                    loss = loss + config.w_reg* reg_loss
+                    loss = loss + w_reg* reg_loss
 
                 # early stop
                 if loss.item() < 1e-4:
