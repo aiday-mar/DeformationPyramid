@@ -21,8 +21,8 @@ class VolumetricPositionEncoding(nn.Module):
         print('xyz.shape : ', xyz.shape)
         print('type(self.vol_origin) : ', type(self.vol_origin))
         if type ( self.vol_origin ) == list :
-            print('self.vol_origin[0].shape : ', self.vol_origin[0].shape)
-            self.vol_origin = torch.FloatTensor(self.vol_origin).view(1, 1, -1).to( xyz.device )
+            self.vol_origin = torch.FloatTensor(self.vol_origin).view(1, 1, -1).to( xyz.device)
+        print('self.vol_origin.shape : ', self.vol_origin.shape)
         return (xyz - self.vol_origin) / self.voxel_size
 
     @staticmethod
