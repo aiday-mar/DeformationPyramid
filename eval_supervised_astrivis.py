@@ -146,10 +146,11 @@ if __name__ == "__main__":
 
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         
-        if args.print_keypoints:
-            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = True, w_cd = float(args.w_cd), w_reg = float(args.w_reg))
-        else:
-            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, w_cd = float(args.w_cd), w_reg = float(args.w_reg))
+        w_cd = float(args.w_cd) if args.w_cd else None
+        w_reg = float(args.w_reg) if args.w_reg else None
+        print_keypoints = True if args.print_keypoints else False
+        
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
             
         final_transformation = np.identity(4)
         for i in range(0, 10):
