@@ -4,6 +4,7 @@ import numpy as np
 from skimage import io
 import open3d as o3d
 import pytorch3d
+import os
 import torch.optim as optim
 
 Runbaselines=False
@@ -24,18 +25,13 @@ path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Registration():
 
-
     def __init__(self, config):
-
 
         self.tgt_pcd = None
         self.src_pcd = None
         self.device = config.device
         self.config = config
         self.deformation_model = config.deformation_model
-
-
-
 
     def load_raw_pcds_from_depth(self, source_depth_path, tgt_depth_path, K, landmarks=None):
         ''' creat deformation graph for N-ICP based registration
@@ -54,7 +50,6 @@ class Registration():
         self.graph_edges_weights = data['graph_edges_weights'].to(self.device)
         # self.graph_clusters = data['graph_clusters']
 
-
         """initialize point clouds"""
         valid_pixels = torch.sum(data['pixel_anchors'], dim=-1) > -4
         self.src_pcd_raw = data["point_image"][valid_pixels].to(self.device)
@@ -63,14 +58,11 @@ class Registration():
         self.anchor_loc = data["graph_nodes"][self.point_anchors].to(self.device)
         self.frame_point_len = [len(self.src_pcd_raw)]
 
-
         """pixel to pcd map"""
         self.src_pix_2_pcd_map = [map_pixel_to_pcd(valid_pixels)]
 
-
         """define pcd renderer"""
         # self.renderer = PCDRender(K, img_size=image_size)
-
 
         """load target frame"""
         tgt_depth = io.imread( tgt_depth_path )/1000.
@@ -137,13 +129,12 @@ class Registration():
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
 
-
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
                                     device=self.device,
                                     k0=config.k0,
                                     m=config.m,
-                                    nonrigidity_est=config.w_reg > 0,
+                                    nonrigidity_est = w_reg > 0 if w_reg else config.w_reg > 0,
                                     rotation_format=config.rotation_format,
                                     motion=config.motion_type,
                                     base = base)
@@ -154,7 +145,6 @@ class Registration():
         if visualize:
             visualize_pcds(src_pcd = self.src_pcd, tgt_pcd= self.tgt_pcd)
 
-
         # cancel global translation
         src_mean = self.src_pcd.mean(dim=0, keepdims=True)
         print('src_mean.shape : ', src_mean.shape)
@@ -162,7 +152,6 @@ class Registration():
         print('tgt_mean.shape : ', tgt_mean.shape)
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
-
 
         src = torch.randperm(src_pcd.shape[0])
         print('src.shape : ', src.shape)
@@ -179,19 +168,19 @@ class Registration():
             print('src_ldmk.shape : ', src_ldmk.shape)
             print('tgt_ldmk.shape : ', tgt_ldmk.shape)
             
-            if intermediate_output_folder:
+            if intermediate_output_folder and print_keypoints:
+                if not os.path.exists(self.path + intermediate_output_folder + 'training_ldmk'):
+                    os.mkdir(self.path + intermediate_output_folder + 'training_ldmk')
                 # without removing the translation, so we can see better the result
-                src_ldmk_pcd_points = self.landmarks[0]
-                tgt_ldmk_pcd_points = self.landmarks[1]
-                
+
                 src_ldmk_pcd = o3d.geometry.PointCloud()
-                src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'src_ldmk_pcd.ply', src_ldmk_pcd)
-                
+                src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_initial_pcd.ply', src_ldmk_pcd)
+
                 tgt_ldmk_pcd = o3d.geometry.PointCloud()
-                tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'tgt_ldmk_pcd.ply', tgt_ldmk_pcd)
-                
+                tgt_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_ldmk.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'tgt_warped_ldmk_initial_pcd.ply', tgt_ldmk_pcd)
+
         iter_cnt={}
 
         print('\n')
@@ -201,13 +190,10 @@ class Registration():
             """freeze non-optimized level"""
             NDP.gradient_setup(optimized_level=level)
 
-
             optimizer = optim.Adam(NDP.pyramid[level].parameters(), lr= self.config.lr )
-
 
             break_counter = 0
             loss_prev = 1e+6
-
 
             """optimize current level"""
             for iter in range(self.config.iters):
@@ -218,9 +204,10 @@ class Registration():
                     if iter == 0 or iter == self.config.iters - 1:
                         print('Landmarks is not None')
                     
-                    if config.w_cd > 0 :
+                    if (w_cd > 0 if w_cd else config.w_cd > 0) :
                         if iter == 0 or iter == self.config.iters - 1:
                             print('Entered into the case config.w_cd > 0')
+                        w_cd = w_cd if w_cd else config.w_cd
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         if iter == 0 or iter == self.config.iters - 1:
                             print('src_pts.shape : ', src_pts.shape)
@@ -237,7 +224,9 @@ class Registration():
                         if iter == 0 or iter == self.config.iters - 1:
                             print('loss_ldmk.shape : ', loss_ldmk.shape)
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
-                        loss = loss_ldmk + config.w_cd * loss_CD
+
+                        loss = loss_ldmk + w_cd * loss_CD
+
                     else :
                         if iter == 0 or iter == self.config.iters - 1:
                             print('Entered into the case config.w_cd = 0')
@@ -260,13 +249,14 @@ class Registration():
                     loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
                     if timer: timer.toc("Chamfer")
 
-                if level > 0 and config.w_reg>0:
+                if level > 0 and (w_reg > 0 if w_reg else config.w_reg > 0):
+                    w_reg = w_reg if w_reg else config.w_reg
                     nonrigidity = data [level][1]
                     if iter == 0 or iter == self.config.iters - 1:
                         print('nonrigidity.shape : ', nonrigidity.shape)
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
-                    loss = loss + config.w_reg* reg_loss
+                    loss = loss + w_reg* reg_loss
 
                 # early stop
                 if loss.item() < 1e-4:
@@ -311,21 +301,18 @@ class Registration():
             if self.landmarks is not None:
                 src_ldmk = warped_ldmk.detach()
 
-                if config.w_cd > 0 :
+                if (w_cd > 0 if w_cd else config.w_cd > 0):
                     s_sample = s_sample_warped.detach()
 
             else:
                 s_sample = s_sample_warped.detach()
             
             print('s_sample.shape : ', s_sample.shape)
-            
-            if self.landmarks is not None and intermediate_output_folder:
-                # without removing the translation, so we can see better the result
-                warped_ldmk_pcd_points = src_ldmk
+            if self.landmarks is not None and intermediate_output_folder and print_keypoints:
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
-                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
-                                        
+                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk.detach().cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
+        
         print('\n')
         print('AFTER TRAINING')
         """freeze all level for inference"""
@@ -344,7 +331,9 @@ class Registration():
         :param landmarks:
         :return:
         '''
+
         config = self.config
+
         net = Nerfies_Deformation( max_iter=config.iters).to(self.device)
 
         for param in net.parameters():
@@ -360,14 +349,11 @@ class Registration():
         tgt_pcd = self.tgt_pcd - tgt_mean
 
         if visualize: visualize_pcds(src_pcd = src_pcd, tgt_pcd= tgt_pcd)
-
-
+        
         src = torch.randperm(src_pcd.shape[0])
         tgt = torch.randperm(tgt_pcd.shape[0])
         s_sample = src_pcd[src[: config.samples]]
         t_sample = tgt_pcd[tgt[: config.samples]]
-
-
 
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
@@ -377,8 +363,6 @@ class Registration():
         for i in range(self.config.iters):
 
             warped_src, Jacobian = net(s_sample, iter =i)
-
-
             reg = nerfies_regularization(Jacobian)
             # ldmk_loss = torch.mean(  torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1 ))
 
@@ -396,30 +380,22 @@ class Registration():
                 break
             loss_prev = loss.item()
 
-
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
-
         warped_pcd, _ = net(src_pcd, iter = i)
-
 
         if visualize: visualize_pcds(warped_pcd = warped_pcd, tgt_pcd= tgt_pcd)
 
-
         return warped_pcd + tgt_mean, None
-
 
     def optimize_Embeded_deformation(self, visualize=False):
 
-
         config = self.config
-
-
+        
         if visualize:
             visualize_pcds(src_pcd = self.src_pcd_raw, tgt_pcd= self.tgt_pcd_raw)
-
 
         """translations"""
         node_translations = torch.zeros_like(self.graph_nodes)
@@ -431,11 +407,9 @@ class Registration():
         phi = torch.nn.Parameter (phi)
         phi.requires_grad = True
 
-
         """optimizer setup"""
         optimizer = optim.Adam([phi, t], lr= self.config.lr )
         scheduler = optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.999)
-
 
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
@@ -446,9 +420,7 @@ class Registration():
 
         for i in range(self.config.iters):
 
-
             R = pytorch3d.transforms.axis_angle_to_matrix(phi)
-
 
             #sample points for NICP
             src = torch.randperm(self.src_pcd_raw.shape[0])
@@ -482,16 +454,9 @@ class Registration():
                 anchor_trn = torch.cat( [ldmk_anchor_trn, anchor_trn])
                 anchor_weight = torch.cat([ldmk_anchor_weight, anchor_weight ])
 
-
-
             warped_pcd = ED_warp(s_sample, anchor_loc, anchor_rot, anchor_trn, anchor_weight)
-
-
             cd = compute_truncated_chamfer_distance(warped_pcd[None], t_sample[None], trunc=1e+10)
-
-
             reg = arap_cost(R, t, self.graph_nodes, self.graph_edges, self.graph_edges_weights)
-
 
             if self.landmarks:
                 warped_ldmk = warped_pcd[ : len(s_ldmk_ind) ]
@@ -499,13 +464,10 @@ class Registration():
             else :
                 ldmk_loss = 0
 
-
             loss = \
                 cd * config.w_cd + \
                 reg * config.w_arap + \
                 ldmk_loss * config.w_ldmk
-
-
 
             if loss.item() < 1e-5:
                 break
@@ -519,16 +481,13 @@ class Registration():
             optimizer.step()
             scheduler.step()
 
-
         "warp the full point cloud"
         anchor_trn = t [self.point_anchors]
         anchor_rot = R [self.point_anchors]
 
         warped_pcd = ED_warp(self.src_pcd_raw, self.anchor_loc, anchor_rot, anchor_trn, self.anchor_weight)
 
-
         if visualize: visualize_pcds(src_pcd = self.src_pcd_raw, tgt_pcd= self.tgt_pcd_raw, warped_pcd=warped_pcd)
-
 
         # propagate motion to sampled points
         s_uv = pc_2_uv(self.src_pcd, self.intrinsics)
@@ -538,16 +497,13 @@ class Registration():
 
         return warped_pcd, valid_id
 
-
     def optimize_neural_SFlow(self, visualize=False):
 
         config = self.config
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
 
-
         model = Neural_Prior ( ).to(self.device)
-
 
         self.src_pcd = self.src_pcd.to(self.device)
 
@@ -557,16 +513,13 @@ class Registration():
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
 
-
         if visualize:
             visualize_pcds(src_pcd = src_pcd, tgt_pcd= tgt_pcd)
-
 
         src = torch.randperm(src_pcd.shape[0])
         tgt = torch.randperm(tgt_pcd.shape[0])
         s_sample = src_pcd[src[: config.samples]]
         t_sample = tgt_pcd[tgt[: config.samples]]
-
 
         for param in model.parameters():
             param.requires_grad = True
@@ -575,7 +528,6 @@ class Registration():
 
         break_counter = 0
         loss_prev = 1e+6
-
 
         for i in range(self.config.iters):
 
@@ -597,7 +549,6 @@ class Registration():
             loss.backward()
             optimizer.step()
 
-
         if visualize:
             # warped_pcd, data = NDP.warp(src_pcd, max_level=level)
             flow_pred = model(src_pcd)
@@ -610,7 +561,6 @@ class Registration():
         warped_pcd = warped_pcd + tgt_mean
 
         return warped_pcd, None
-
 
     def run_optimal_transport(self, visualize=False):
         '''

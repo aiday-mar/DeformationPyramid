@@ -46,7 +46,6 @@ class VolumetricPositionEncoding(nn.Module):
         
         print('\n')
         print('Inside of forward method of VolPE')
-        print('vec6d.shape : ', vec6d.shape)
         _, n, _ = vec6d.shape
 
         s_pe = self.pe( vec6d[..., :3], mod)
