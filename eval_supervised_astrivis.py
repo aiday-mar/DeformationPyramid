@@ -81,7 +81,7 @@ if __name__ == "__main__":
     stats_meter = None
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
-    
+    print('Before getting the dataloader')
     if args.print_keypoints:
         test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)
     else:
