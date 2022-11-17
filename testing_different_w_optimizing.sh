@@ -3,16 +3,16 @@ w_cd_list=(0 0.2 0.4 0.6 0.8 1)
 
 for w_reg in ${w_reg_list[@]}; do
     for w_cd in ${w_cd_list[@]}; do
-        rm -d TestData/FullNonDeformed/output_${w_reg}_${w_cd}
+        rm -rf TestData/FullNonDeformed/output_${w_reg}_${w_cd}
         mkdir TestData/FullNonDeformed/output_${w_reg}_${w_cd}
         touch TestData/FullNonDeformed/output_${w_reg}_${w_cd}/result.txt
-        rm -d TestData/FullDeformed/output_${w_reg}_${w_cd}
+        rm -rf TestData/FullDeformed/output_${w_reg}_${w_cd}
         mkdir TestData/FullDeformed/output_${w_reg}_${w_cd}
         touch TestData/FullDeformed/output_${w_reg}_${w_cd}/result.txt
-        rm -d TestData/PartialNonDeformed/output_${w_reg}_${w_cd}
+        rm -rf TestData/PartialNonDeformed/output_${w_reg}_${w_cd}
         mkdir TestData/PartialNonDeformed/output_${w_reg}_${w_cd}
         touch TestData/PartialNonDeformed/output_${w_reg}_${w_cd}/result.txt
-        rm -d TestData/PartialDeformed/output_${w_reg}_${w_cd}
+        rm -rf TestData/PartialDeformed/output_${w_reg}_${w_cd}
         mkdir TestData/PartialDeformed/output_${w_reg}_${w_cd}
         touch TestData/PartialDeformed/output_${w_reg}_${w_cd}/result.txt
 
