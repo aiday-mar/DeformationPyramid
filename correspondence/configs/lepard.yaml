@@ -25,7 +25,7 @@ kpfcn_config:
   coarse_feature_dim: &coarse_feature_dim 528 #[default 528, 1056]
   fine_feature_dim:  264
   coarse_match_radius: 0.024 # 0.05 for L: -3, 0.06 for L: -2, 0.1 for L: -1
-  coarse_level: -2
+  coarse_level: -3
 #  fine_match_radius: 0.0375
 
 
