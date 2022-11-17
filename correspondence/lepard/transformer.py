@@ -165,6 +165,9 @@ class RepositioningTransformer(nn.Module):
         print('tgt_mask.shape : ', tgt_mask.shape)
         self.timers = timers
 
+        print('self.d_model :', self.d_model)
+        print('src_feat.size(2) : ', src_feat.size(2))
+
         assert self.d_model == src_feat.size(2), "the feature number of src and transformer must be equal"
 
         if T is not None:
