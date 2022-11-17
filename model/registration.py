@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None,  print_keypoints = False, w_cd = None, w_reg = None):
         print('Inside of optimize_deformation_pyramid')
         print('base : ', base)
         
