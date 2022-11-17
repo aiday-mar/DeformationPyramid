@@ -249,8 +249,11 @@ class Registration():
             
             if self.landmarks is not None and intermediate_output_folder and print_keypoints:
                 warped_ldmk_pcd = o3d.geometry.PointCloud()
-                print('np.array(warped_ldmk.detach().cpu()).shape :', np.array(warped_ldmk.detach().cpu()).shape)
-                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(warped_ldmk.detach().cpu()))
+                warped_ldmk_pcd_points = np.array(warped_ldmk.detach().cpu())
+                if warped_ldmk_pcd_points.shape == (3,):
+                    warped_ldmk_pcd_points = np.expand_dims(warped_ldmk_pcd_points, axis=0)
+                print('warped_ldmk_pcd_points.shape :', warped_ldmk_pcd_points.shape)
+                warped_ldmk_pcd.points = o3d.utility.Vector3dVector(warped_ldmk_pcd_points)
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_' + str(level) + '_pcd.ply', warped_ldmk_pcd)
                 
         """freeze all level for inference"""
