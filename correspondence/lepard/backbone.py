@@ -167,7 +167,7 @@ class KPFCN(nn.Module):
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
                 x = block_op(x, batch)
                 print('x.shape : ', x.shape)
-                if block_i == 1 :
+                if block_i == 2 : # used to be 1
                     coarse_feats = x.transpose(0,1).unsqueeze(0)  #[B, C, N]
                     coarse_feats = self.coarse_out(coarse_feats)  #[B, C, N]
                     coarse_feats = coarse_feats.transpose(1,2).squeeze(0)
