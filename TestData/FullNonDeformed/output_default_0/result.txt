@@ -1,0 +1,16 @@
+
+
+data.keys() :  dict_keys(['src_pcd_list', 'tgt_pcd_list', 'points', 'neighbors', 'pools', 'upsamples', 'features', 'stack_lengths', 'coarse_matches', 'coarse_flow', 'src_mask', 'tgt_mask', 'src_ind_coarse_split', 'tgt_ind_coarse_split', 'src_ind_coarse', 'tgt_ind_coarse', 'batched_rot', 'batched_trn', 'sflow_list', 'correspondences_list', 'depth_paths_list', 'cam_intrin', 'src_pcd_colors_list', 's_pcd', 't_pcd', 'position_layers', 'src_feats_nopos', 'tgt_feats_nopos', 'src_feats', 'tgt_feats', 'conf_matrix_pred', 'coarse_match_pred', 'R_s2t_pred', 't_s2t_pred'])
+0/1: full-epe: 36.245 
+full-AccS: 0.161 
+full-AccR: 0.736 
+full-outlier: 98.517 
+vis-epe: 36.245 
+vis-AccS: 0.161 
+vis-AccR: 0.736 
+vis-outlier: 98.517 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
