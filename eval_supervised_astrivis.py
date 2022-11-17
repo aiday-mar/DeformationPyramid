@@ -40,6 +40,8 @@ if __name__ == "__main__":
     parser.add_argument('--target_trans', type=str, help='Path to the target transformation')    
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
     parser.add_argument('--base', type=str, help= 'Base folder.')
+    parser.add_argument('--w_cd', type=str, help= 'w_cd')
+    parser.add_argument('--w_reg', type=str, help= 'w_reg')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
@@ -145,9 +147,9 @@ if __name__ == "__main__":
         model.load_pcds(copy_src_pcd, copy_tgt_pcd, landmarks=(ldmk_s, ldmk_t))
         
         if args.print_keypoints:
-            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = True)
+            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = True, w_cd = args.w_cd, w_reg = args.w_reg)
         else:
-            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path)
+            warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, w_cd = args.w_cd, w_reg = args.w_reg)
             
         final_transformation = np.identity(4)
         for i in range(0, 10):

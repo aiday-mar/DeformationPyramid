@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False):
+    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
         
         if base:
             self.path = base
@@ -132,7 +132,7 @@ class Registration():
                                     device=self.device,
                                     k0=config.k0,
                                     m=config.m,
-                                    nonrigidity_est=config.w_reg > 0,
+                                    nonrigidity_est = w_reg > 0 if w_reg else config.w_reg > 0,
                                     rotation_format=config.rotation_format,
                                     motion=config.motion_type,
                                     base = base)
@@ -189,7 +189,8 @@ class Registration():
                 # use  ldmk
                 if self.landmarks is not None:
 
-                    if config.w_cd > 0 :
+                    if (w_cd > 0 if w_cd else config.w_cd > 0) :
+                        print('w_cd : ', w_cd)
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
@@ -214,7 +215,8 @@ class Registration():
                     loss = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=1e+9)
                     if timer: timer.toc("Chamfer")
 
-                if level > 0 and config.w_reg>0:
+                if level > 0 and (w_reg > 0 if w_reg else config.w_reg > 0):
+                    print('w_reg : ', w_reg)
                     nonrigidity = data [level][1]
                     target = torch.zeros_like(nonrigidity)
                     reg_loss = BCE( nonrigidity, target )
@@ -239,7 +241,8 @@ class Registration():
             if self.landmarks is not None:
                 src_ldmk = warped_ldmk.detach()
 
-                if config.w_cd > 0 :
+                if (w_cd > 0 if w_cd else config.w_cd > 0):
+                    print('w_cd : ', w_cd)
                     s_sample = s_sample_warped.detach()
 
             else:

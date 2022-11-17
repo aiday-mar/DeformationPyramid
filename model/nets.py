@@ -14,6 +14,7 @@ class Deformation_Pyramid ():
 
     def __init__(self, depth, width, device, k0, m, rotation_format, nonrigidity_est=False, base = None, motion='SE3'):
 
+        print('nonrigidity_est : ', nonrigidity_est)
         if base:
             self.path = base
         else:
