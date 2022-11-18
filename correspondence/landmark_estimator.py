@@ -168,6 +168,7 @@ class Landmark_Model():
             print_size = True
             if custom_filtering:
                 ldmk_s_np = np.array(ldmk_s.cpu())
+                print('ldmk_s_np.shape : ', ldmk_s_np.shape)
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 # Suppose we choose to generate 100 transformations
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=100)
