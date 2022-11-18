@@ -227,8 +227,17 @@ class Landmark_Model():
                         Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
                         Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
 
+                        if print_size:
+                            print('X.shape : ', X.shape)
+                            print('Y.shape : ', Y.shape)
+                            
                         mean_X = np.mean(X, axis = 0)
                         mean_Y = np.mean(Y, axis = 0)
+
+                        if print_size:
+                            print('mean_X.shape : ', mean_X.shape)
+                            print('mean_Y.shape : ', mean_Y.shape)
+                    
                         Sxy = torch.matmul( (Y - mean_Y).transpose(1,2), (X - mean_X) )
                         Sxy = Sxy.cpu().double()
 
