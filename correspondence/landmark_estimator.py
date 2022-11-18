@@ -277,7 +277,7 @@ class Landmark_Model():
                         # find points which should be inliers against these given transformations
                         thr = 0.01                        
                         points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
-                        norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center)
+                        norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
                         if print_size:
                             print('norm_error : ', norm_error)
                             print('np.where(norm_error > thr) : ', np.where(norm_error > thr))
