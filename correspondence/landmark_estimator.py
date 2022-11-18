@@ -210,6 +210,11 @@ class Landmark_Model():
                     indices_2 = np.random.choice(indices_second_minimum_distance.shape[0], number_transformations, replace=False)
                     indices_3 = np.random.choice(indices_third_minimum_distance.shape[0], number_transformations, replace=False)
 
+                    if print_size:
+                        print('indices_1 : ', indices_1)
+                        print('indices_2 : ', indices_2)
+                        print('indices_3 : ', indices_3)
+
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_1[n_transform]]
                         target_point_1 = ldmk_t_np[indices_1[n_transform]]
