@@ -216,12 +216,12 @@ class Landmark_Model():
                         print('indices_3 : ', indices_3)
 
                     for n_transform in range(number_transformations):
-                        source_point_1 = ldmk_s_np[indices_1[n_transform]]
-                        target_point_1 = ldmk_t_np[indices_1[n_transform]]
-                        source_point_2 = ldmk_s_np[indices_2[n_transform]]
-                        target_point_2 = ldmk_t_np[indices_2[n_transform]]
-                        source_point_3 = ldmk_s_np[indices_3[n_transform]]
-                        target_point_3 = ldmk_t_np[indices_3[n_transform]]
+                        source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
+                        target_point_1 = ldmk_t_np[indices_minimum_distance[indices_1[n_transform]]]
+                        source_point_2 = ldmk_s_np[indices_second_minimum_distance[indices_2[n_transform]]]
+                        target_point_2 = ldmk_t_np[indices_second_minimum_distance[indices_2[n_transform]]]
+                        source_point_3 = ldmk_s_np[indices_third_minimum_distance[indices_3[n_transform]]]
+                        target_point_3 = ldmk_t_np[indices_third_minimum_distance[indices_3[n_transform]]]
 
                         X = np.empty((0,3), int)
                         X = np.append(X, np.array(np.expand_dims(source_point_1, axis=0)), axis=0)
