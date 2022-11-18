@@ -224,7 +224,7 @@ class Landmark_Model():
                     outliers = defaultdict(int)
                     tau = 0.1
                     if print_size:
-                        print('np.where(distances_to_center < tau).shape : ', np.where(distances_to_center < tau).shape)
+                        print('np.where(distances_to_center < tau)[0].shape : ', np.where(distances_to_center < tau)[0].shape)
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
@@ -281,7 +281,7 @@ class Landmark_Model():
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
                         if print_size:
                             print('norm_error.shape : ', norm_error.shape)
-                            print('np.where(norm_error > thr).shape : ', np.where(norm_error > thr).shape)
+                            print('np.where(norm_error > thr)[0].shape : ', np.where(norm_error > thr)[0].shape)
                         outlier_indices = np.where(norm_error > thr)[0]
                         for outlier_idx in outlier_indices:
                             out_idx = point_indices_close_to_center[outlier_idx]
