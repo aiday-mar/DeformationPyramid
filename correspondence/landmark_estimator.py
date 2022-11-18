@@ -170,11 +170,13 @@ class Landmark_Model():
             print_size = True
             if custom_filtering:
                 ldmk_s_np = np.array(ldmk_s.cpu())
+                ldmk_t_np = np.array(ldmk_t.cpu())
                 if print_size:
                     print('ldmk_s_np.shape : ', ldmk_s_np.shape)
-                ldmk_t_np = np.array(ldmk_t.cpu())
-                # Suppose we choose to generate 100 transformations
+
+                # Suppose we choose to generate 20 transformations
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=20).astype(int)
+                total_outliers = set()
 
                 for neighborhood_center_index in neighborhood_center_indices_list:
                     if print_size:
@@ -290,7 +292,31 @@ class Landmark_Model():
                     if print_size:
                         print('len(outliers.keys()) : ', len(outliers.keys()))
                         print('outliers : ', outliers)
-
+                    
+                    keys = set(outliers.keys())
+                    if print_size:
+                        print('keys : ', keys)
+                    
+                    total_outliers.update(keys)
                     print_size = False
+
+                final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
+                ldmk_s = ldmk_s_np[final_indices]
+                ldmk_t = ldmk_t_np[final_indices]
+                print('ldmk_s.shape : ', ldmk_s.shape)
+
+                coarse_flow = data['coarse_flow'][0]
+                coarse_flow = coarse_flow[final_indices]
+
+                data['vec_6d'] = data['vec_6d'][final_indices]
+                data['vec_6d_mask'] = data['vec_6d_mask'][final_indices]
+                data['vec_6d_ind'] = data['vec_6d_ind'][final_indices]
+                data['s_pcd'] = data['s_pcd'][final_indices]
+                data['t_pcd'] = data['t_pcd'][final_indices]
+
+                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
+                inlier_conf = inlier_conf[final_indices, final_indices]
+                match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+                inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
