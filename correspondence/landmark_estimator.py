@@ -251,7 +251,7 @@ class Landmark_Model():
                         UV_det = np.linalg.det(U) * np.linalg.det(V)
                         S[2, 2] = UV_det
                         sv = np.matmul( S, V )
-                        R = np.matmul( U, sv).float()
+                        R = np.matmul( U, sv)
                         t = mean_Y.T - np.matmul( R, mean_X.T )
                         
                         if print_size:
