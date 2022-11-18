@@ -170,7 +170,8 @@ class Landmark_Model():
             print_size = True
             if custom_filtering:
                 ldmk_s_np = np.array(ldmk_s.cpu())
-                print('ldmk_s_np.shape : ', ldmk_s_np.shape)
+                if print_size:
+                    print('ldmk_s_np.shape : ', ldmk_s_np.shape)
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 # Suppose we choose to generate 100 transformations
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=20).astype(int)
@@ -222,11 +223,13 @@ class Landmark_Model():
 
                     outliers = defaultdict(int)
                     tau = 0.01
-                    print('np.where(distances_to_center < tau) : ', np.where(distances_to_center < tau))
+                    if print_size:
+                        print('np.where(distances_to_center < tau) : ', np.where(distances_to_center < tau))
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
-                    print('source_points_close_to_center : ', source_points_close_to_center)
+                    if print_size:
+                        print('source_points_close_to_center : ', source_points_close_to_center)
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
