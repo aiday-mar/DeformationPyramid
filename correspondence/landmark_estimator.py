@@ -176,6 +176,8 @@ class Landmark_Model():
                     if print_size:
                         print('neighborhood_center_index : ', neighborhood_center_index)
                     neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
+                    if print_size:
+                        print('neighborhood_center_source : ', neighborhood_center_source)
                     neighborhood_center_target = ldmk_t_np[neighborhood_center_index]
 
                     # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
