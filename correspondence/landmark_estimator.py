@@ -12,6 +12,7 @@ from correspondence.lepard.pipeline import Pipeline as Matcher
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
+from collections import defaultdict
 path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Landmark_Model():
@@ -172,6 +173,7 @@ class Landmark_Model():
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 # Suppose we choose to generate 100 transformations
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=20).astype(int)
+
                 for neighborhood_center_index in neighborhood_center_indices_list:
                     if print_size:
                         print('neighborhood_center_index : ', neighborhood_center_index)
@@ -215,6 +217,12 @@ class Landmark_Model():
                         print('indices_2 : ', indices_2)
                         print('indices_3 : ', indices_3)
 
+                    outliers = defaultdict(int)
+                    tau = 0.01
+                    point_indices_close_to_center = np.where(distance_to_neighborhood_center < tau)[0]
+                    source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
+                    target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
+
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
                         target_point_1 = ldmk_t_np[indices_minimum_distance[indices_1[n_transform]]]
@@ -257,6 +265,16 @@ class Landmark_Model():
                         if print_size:
                             print('R : ', R)
                             print('t : ', t)
+                        
+                        # find points which should be inliers against these given transformations                        
+                        points_after_transformation = R @ source_points_close_to_center + t
+                        norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center)
+                        outlier_indices = np.where(norm_error > tau)[0]
+                        for outlier_idx in outlier_indices:
+                            outliers[outlier_idx] = outliers[outlier_idx] + 1
+
+                    if print_size:
+                        print('outliers : ', outliers)
 
                     print_size = False
                 
