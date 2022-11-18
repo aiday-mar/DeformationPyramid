@@ -222,6 +222,7 @@ class Landmark_Model():
                     point_indices_close_to_center = np.where(distance_to_neighborhood_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
+                    print('source_points_close_to_center.shape[0] : ', source_points_close_to_center.shape[0])
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
