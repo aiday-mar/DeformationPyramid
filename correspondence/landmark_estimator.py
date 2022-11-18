@@ -246,14 +246,13 @@ class Landmark_Model():
                             print('(X - mean_X) : ', (X - mean_X))
                     
                         Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
-                        Sxy = Sxy.double()
-                        U, D, V = Sxy.svd()
-                        S = torch.eye(3)[None].double()
-                        UV_det = U.det() * V.det()
-                        S[:, 2:3, 2:3] = UV_det.view(-1, 1,1)
-                        svT = torch.matmul( S, V.T )
-                        R = torch.matmul( U, svT).float()
-                        t = mean_Y.T - torch.matmul( R, mean_X.T )
+                        U, _, V = np.linalg.svd(Sxy, full_matrices=True)
+                        S = np.eye(3)
+                        UV_det = np.linalg.det(U) * np.linalg.det(V)
+                        S[:, 2:3, 2:3] = UV_det.view(-1, 1, 1)
+                        svT = np.matmul( S, V.T )
+                        R = np.matmul( U, svT).float()
+                        t = mean_Y.T - np.matmul( R, mean_X.T )
                         
                         if print_size:
                             print('R : ', R)
