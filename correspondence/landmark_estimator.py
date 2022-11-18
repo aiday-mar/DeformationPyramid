@@ -245,7 +245,7 @@ class Landmark_Model():
                             print('(Y - mean_Y) : ', (Y - mean_Y))
                             print('(X - mean_X) : ', (X - mean_X))
                     
-                        Sxy = torch.matmul( (Y - mean_Y).T, (X - mean_X) )
+                        Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
                         Sxy = Sxy.cpu().double()
 
                         U, D, V = Sxy.svd()
