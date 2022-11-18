@@ -289,6 +289,7 @@ class Landmark_Model():
 
                     if print_size:
                         print('len(outliers.keys()) : ', len(outliers.keys()))
+                        print('outliers : ', outliers)
 
                     print_size = False
                 
