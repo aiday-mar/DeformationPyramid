@@ -272,7 +272,7 @@ class Landmark_Model():
                             print('t : ', t)
                         
                         # find points which should be inliers against these given transformations                        
-                        points_after_transformation = (R @ source_points_close_to_center.T + t).T
+                        points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center)
                         outlier_indices = np.where(norm_error > tau)[0]
                         for outlier_idx in outlier_indices:
