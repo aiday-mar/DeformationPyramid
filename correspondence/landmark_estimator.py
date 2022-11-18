@@ -182,7 +182,7 @@ class Landmark_Model():
 
                     # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
                     # Set single=True in the matching algorithm
-                    distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 0)
+                    distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
                     if print_size:
                         print('distance_to_neighborhood_center.shape : ', distance_to_neighborhood_center.shape)
 
