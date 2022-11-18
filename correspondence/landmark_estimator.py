@@ -219,6 +219,7 @@ class Landmark_Model():
 
                     outliers = defaultdict(int)
                     tau = 0.01
+                    print('np.where(distance_to_neighborhood_center < tau) : ', np.where(distance_to_neighborhood_center < tau))
                     point_indices_close_to_center = np.where(distance_to_neighborhood_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
