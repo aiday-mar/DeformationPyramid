@@ -6,6 +6,7 @@ import sys
 import open3d as o3d
 import numpy as np
 import os
+import copy 
 
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
@@ -185,6 +186,8 @@ class Landmark_Model():
                     # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
                     # Set single=True in the matching algorithm
                     distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
+                    distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
+
                     if print_size:
                         print('distance_to_neighborhood_center.shape : ', distance_to_neighborhood_center.shape)
 
@@ -219,8 +222,8 @@ class Landmark_Model():
 
                     outliers = defaultdict(int)
                     tau = 0.01
-                    print('np.where(distance_to_neighborhood_center < tau) : ', np.where(distance_to_neighborhood_center < tau))
-                    point_indices_close_to_center = np.where(distance_to_neighborhood_center < tau)[0]
+                    print('np.where(distances_to_center < tau) : ', np.where(distances_to_center < tau))
+                    point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
                     print('source_points_close_to_center.shape[0] : ', source_points_close_to_center.shape[0])
