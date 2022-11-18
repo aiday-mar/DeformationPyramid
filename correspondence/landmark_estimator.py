@@ -196,7 +196,13 @@ class Landmark_Model():
                     if print_size:
                         print('indices_second_minimum_distance : ', indices_second_minimum_distance)
                         print('indices_second_minimum_distance.shape : ', indices_second_minimum_distance.shape)
-                    
+
+                    distance_to_neighborhood_center[indices_second_minimum_distance] = float('inf')
+                    indices_third_minimum_distance = np.where(distance_to_neighborhood_center == distance_to_neighborhood_center.min())[0]
+                    if print_size:
+                        print('indices_third_minimum_distance : ', indices_third_minimum_distance)
+                        print('indices_third_minimum_distance.shape : ', indices_third_minimum_distance.shape)                       
+
                     print_size = False
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
