@@ -224,12 +224,13 @@ class Landmark_Model():
                     outliers = defaultdict(int)
                     tau = 0.1
                     if print_size:
-                        print('np.where(distances_to_center < tau) : ', np.where(distances_to_center < tau))
+                        print('np.where(distances_to_center < tau).shape : ', np.where(distances_to_center < tau).shape)
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
                     if print_size:
-                        print('point_indices_close_to_center : ', point_indices_close_to_center)
+                        print('point_indices_close_to_center.shape : ', point_indices_close_to_center.shape)
+                        print('source_points_close_to_center.shape : ', source_points_close_to_center.shape)
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
@@ -279,8 +280,8 @@ class Landmark_Model():
                         points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
                         if print_size:
-                            print('norm_error : ', norm_error)
-                            print('np.where(norm_error > thr) : ', np.where(norm_error > thr))
+                            print('norm_error.shape : ', norm_error.shape)
+                            print('np.where(norm_error > thr).shape : ', np.where(norm_error > thr).shape)
                         outlier_indices = np.where(norm_error > thr)[0]
                         for outlier_idx in outlier_indices:
                             out_idx = point_indices_close_to_center[outlier_idx]
@@ -288,7 +289,6 @@ class Landmark_Model():
 
                     if print_size:
                         print('len(outliers.keys()) : ', len(outliers.keys()))
-                        print('outliers : ', outliers)
 
                     print_size = False
                 
