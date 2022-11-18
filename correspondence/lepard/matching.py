@@ -70,7 +70,7 @@ class Matching(nn.Module):
 
     @staticmethod
     @torch.no_grad()
-    def get_match( conf_matrix, thr, mutual=False): # Used to be mutual=True
+    def get_match( conf_matrix, thr, single=False, mutual=False): # Used to be mutual=True
 
         mask = conf_matrix > thr
 
@@ -79,7 +79,12 @@ class Matching(nn.Module):
             mask = mask \
                    * (conf_matrix == conf_matrix.max(dim=2, keepdim=True)[0]) \
                    * (conf_matrix == conf_matrix.max(dim=1, keepdim=True)[0])
-
+        
+        # Instead of finding where confidence matrix entry is maximum along both its row and column
+        # Find where it is maximum along only the rows 
+        if single:
+            mask = mask * (conf_matrix == conf_matrix.max(dim=1, keepdim=True)[0])
+            
         #find all valid coarse matches
         index = (mask==True).nonzero()
         b_ind, src_ind, tgt_ind = index[:,0], index[:,1], index[:,2]

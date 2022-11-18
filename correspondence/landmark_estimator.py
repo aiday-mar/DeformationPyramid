@@ -162,5 +162,17 @@ class Landmark_Model():
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
+            
+            # After the outlier rejection network, add code in order to do some sort of custom filtering
+            custom_filtering = True
+            if custom_filtering:
+                ldmk_s_np = np.array(ldmk_s.cpu())
+                ldmk_t_np = np.array(ldmk_t.cpu())
+                # Suppose we choose to generate 100 transformations
+                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=100)
+                for neighborhood_center_index in neighborhood_center_indices_list:
+                    neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
+                    neighborhood_center_target = ldmk_t_np[neighborhood_center_index]
+
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
