@@ -226,7 +226,7 @@ class Landmark_Model():
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
-                    print('source_points_close_to_center.shape[0] : ', source_points_close_to_center.shape[0])
+                    print('source_points_close_to_center : ', source_points_close_to_center)
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
@@ -272,7 +272,7 @@ class Landmark_Model():
                             print('t : ', t)
                         
                         # find points which should be inliers against these given transformations                        
-                        points_after_transformation = R @ source_points_close_to_center + t
+                        points_after_transformation = (R @ source_points_close_to_center.T + t).T
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center)
                         outlier_indices = np.where(norm_error > tau)[0]
                         for outlier_idx in outlier_indices:
