@@ -222,14 +222,14 @@ class Landmark_Model():
                         print('indices_3 : ', indices_3)
 
                     outliers = defaultdict(int)
-                    tau = 0.01
+                    tau = 0.1
                     if print_size:
                         print('np.where(distances_to_center < tau) : ', np.where(distances_to_center < tau))
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
                     if print_size:
-                        print('source_points_close_to_center : ', source_points_close_to_center)
+                        print('point_indices_close_to_center : ', point_indices_close_to_center)
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
