@@ -203,6 +203,48 @@ class Landmark_Model():
                         print('indices_third_minimum_distance : ', indices_third_minimum_distance)
                         print('indices_third_minimum_distance.shape : ', indices_third_minimum_distance.shape)                       
 
+                    max_number_transformations = min(indices_minimum_distance.shape[0], indices_second_minimum_distance.shape[0], indices_third_minimum_distance.shape[0])
+                    number_transformations = min(3, max_number_transformations)
+
+                    indices_1 = np.random.choice(indices_minimum_distance.shape[0], number_transformations, replace=False)
+                    indices_2 = np.random.choice(indices_second_minimum_distance.shape[0], number_transformations, replace=False)
+                    indices_3 = np.random.choice(indices_third_minimum_distance.shape[0], number_transformations, replace=False)
+
+                    for n_transform in range(number_transformations):
+                        source_point_1 = ldmk_s_np[indices_1[n_transform]]
+                        target_point_1 = ldmk_t_np[indices_1[n_transform]]
+                        source_point_2 = ldmk_s_np[indices_2[n_transform]]
+                        target_point_2 = ldmk_t_np[indices_2[n_transform]]
+                        source_point_3 = ldmk_s_np[indices_3[n_transform]]
+                        target_point_3 = ldmk_t_np[indices_3[n_transform]]
+
+                        X = np.empty((0,3), int)
+                        X = np.append(X, np.array(np.expand_dims(source_point_1, axis=0)), axis=0)
+                        X = np.append(X, np.array(np.expand_dims(source_point_2, axis=0)), axis=0)
+                        X = np.append(X, np.array(np.expand_dims(source_point_3, axis=0)), axis=0)
+                        Y = np.empty((0,3), int)
+                        Y = np.append(Y, np.array(np.expand_dims(target_point_1, axis=0)), axis=0)
+                        Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
+                        Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
+
+                        mean_X = np.mean(X, axis = 0)
+                        mean_Y = np.mean(Y, axis = 0)
+                        Sxy = torch.matmul( (Y - mean_Y).transpose(1,2), (X - mean_X) )
+                        Sxy = Sxy.cpu().double()
+
+                        U, D, V = Sxy.svd()
+                        condition = D.max(dim=1)[0] / D.min(dim=1)[0]
+                        S = torch.eye(3)[None].double()
+                        UV_det = U.det() * V.det()
+                        S[:, 2:3, 2:3] = UV_det.view(-1, 1,1)
+                        svT = torch.matmul( S, V.transpose(1,2) )
+                        R = torch.matmul( U, svT).float()
+                        t = mean_Y.transpose(1,2) - torch.matmul( R, mean_X.transpose(1,2) )
+                        
+                        if print_size:
+                            print('R : ', R)
+                            print('t : ', t)
+
                     print_size = False
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
