@@ -165,14 +165,33 @@ class Landmark_Model():
             
             # After the outlier rejection network, add code in order to do some sort of custom filtering
             custom_filtering = True
+            print_size = True
             if custom_filtering:
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 # Suppose we choose to generate 100 transformations
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=100)
                 for neighborhood_center_index in neighborhood_center_indices_list:
+                    if print_size:
+                        print('neighborhood_center_index : ', neighborhood_center_index)
                     neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
                     neighborhood_center_target = ldmk_t_np[neighborhood_center_index]
 
+                    # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
+                    # Set single=True in the matching algorithm
+                    distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source)
+                    if print_size:
+                        print('distance_to_neighborhood_center.shape : ', distance_to_neighborhood_center.shape)
+
+                    indices_minimum_distance = np.argmin(distance_to_neighborhood_center, axis=1)
+                    if print_size:
+                        print('indices_minimum_distance.shape : ', indices_minimum_distance.shape)
+                    
+                    distance_to_neighborhood_center[indices_minimum_distance] = 0
+                    indices_second_minimum_distance = np.argmin(distance_to_neighborhood_center, axis=1)
+                    if print_size:
+                        print('indices_second_minimum_distance.shape : ', indices_second_minimum_distance.shape)
+
+                    print_size = False
                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
