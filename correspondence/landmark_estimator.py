@@ -246,10 +246,8 @@ class Landmark_Model():
                             print('(X - mean_X) : ', (X - mean_X))
                     
                         Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
-                        Sxy = Sxy.cpu().double()
-
+                        Sxy = Sxy.double()
                         U, D, V = Sxy.svd()
-                        condition = D.max(dim=1)[0] / D.min(dim=1)[0]
                         S = torch.eye(3)[None].double()
                         UV_det = U.det() * V.det()
                         S[:, 2:3, 2:3] = UV_det.view(-1, 1,1)
