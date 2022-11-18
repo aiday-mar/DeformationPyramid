@@ -194,6 +194,7 @@ class Landmark_Model():
                     distance_to_neighborhood_center[indices_minimum_distance] = float('inf')
                     indices_second_minimum_distance = np.argmin(distance_to_neighborhood_center, axis=0)
                     if print_size:
+                        print('indices_second_minimum_distance : ', indices_second_minimum_distance)
                         print('indices_second_minimum_distance.shape : ', indices_second_minimum_distance.shape)
 
                     print_size = False
