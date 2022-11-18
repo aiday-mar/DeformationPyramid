@@ -279,6 +279,7 @@ class Landmark_Model():
                         points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center)
                         if print_size:
+                            print('norm_error : ', norm_error)
                             print('np.where(norm_error > thr) : ', np.where(norm_error > thr))
                         outlier_indices = np.where(norm_error > thr)[0]
                         for outlier_idx in outlier_indices:
