@@ -228,17 +228,19 @@ class Landmark_Model():
                         Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
 
                         if print_size:
-                            print('X.shape : ', X.shape)
-                            print('Y.shape : ', Y.shape)
+                            print('X : ', X)
+                            print('Y : ', Y)
                             
                         mean_X = np.mean(X, axis = 0)
                         mean_Y = np.mean(Y, axis = 0)
 
                         if print_size:
-                            print('mean_X.shape : ', mean_X.shape)
-                            print('mean_Y.shape : ', mean_Y.shape)
+                            print('mean_X : ', mean_X)
+                            print('mean_Y : ', mean_Y)
+                            print('(Y - mean_Y) : ', (Y - mean_Y))
+                            print('(X - mean_X) : ', (X - mean_X))
                     
-                        Sxy = torch.matmul( (Y - mean_Y).transpose(1,2), (X - mean_X) )
+                        Sxy = torch.matmul( (Y - mean_Y).T, (X - mean_X) )
                         Sxy = Sxy.cpu().double()
 
                         U, D, V = Sxy.svd()
@@ -246,9 +248,9 @@ class Landmark_Model():
                         S = torch.eye(3)[None].double()
                         UV_det = U.det() * V.det()
                         S[:, 2:3, 2:3] = UV_det.view(-1, 1,1)
-                        svT = torch.matmul( S, V.transpose(1,2) )
+                        svT = torch.matmul( S, V.T )
                         R = torch.matmul( U, svT).float()
-                        t = mean_Y.transpose(1,2) - torch.matmul( R, mean_X.transpose(1,2) )
+                        t = mean_Y.T - torch.matmul( R, mean_X.T )
                         
                         if print_size:
                             print('R : ', R)
