@@ -249,9 +249,9 @@ class Landmark_Model():
                         U, _, V = np.linalg.svd(Sxy, full_matrices=True)
                         S = np.eye(3)
                         UV_det = np.linalg.det(U) * np.linalg.det(V)
-                        S[2:3, 2:3] = UV_det.view(-1, 1, 1)
-                        svT = np.matmul( S, V.T )
-                        R = np.matmul( U, svT).float()
+                        S[2, 2] = UV_det
+                        sv = np.matmul( S, V )
+                        R = np.matmul( U, sv).float()
                         t = mean_Y.T - np.matmul( R, mean_X.T )
                         
                         if print_size:
