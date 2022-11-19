@@ -301,11 +301,13 @@ class Landmark_Model():
                     print_size = False
 
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
+                print('final_indices.shape : ', final_indices.shape)
                 ldmk_s = ldmk_s_np[final_indices]
                 ldmk_t = ldmk_t_np[final_indices]
                 print('ldmk_s.shape : ', ldmk_s.shape)
 
                 coarse_flow = data['coarse_flow'][0]
+                print('coarse_flow.shape : ', coarse_flow.shape)
                 coarse_flow = coarse_flow[final_indices]
 
                 data['vec_6d'] = data['vec_6d'][final_indices]
