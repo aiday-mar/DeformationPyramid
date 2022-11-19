@@ -316,16 +316,16 @@ class Landmark_Model():
                 print('coarse_flow.shape : ', coarse_flow.shape)
                 # coarse_flow = coarse_flow[final_indices]
 
-                print('data[vec_6d].shape : ', data['vec_6d'].shape)
-                data['vec_6d'] = data['vec_6d'][final_indices]
-                print('data[vec_6d_mask].shape : ', data['vec_6d_mask'].shape)
-                data['vec_6d_mask'] = data['vec_6d_mask'][final_indices]
-                print('data[vec_6d_ind].shape : ', data['vec_6d_ind'].shape)
-                data['vec_6d_ind'] = data['vec_6d_ind'][final_indices]
-                print('data[s_pcd].shape : ', data['s_pcd'].shape)
-                data['s_pcd'] = data['s_pcd'][final_indices]
-                print('data[t_pcd].shape : ', data['t_pcd'].shape)
-                data['t_pcd'] = data['t_pcd'][final_indices]
+                print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
+                data['vec_6d'][0] = data['vec_6d'][0][final_indices]
+                print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
+                data['vec_6d_mask'][0] = data['vec_6d_mask'][0][final_indices]
+                print('data[vec_6d_ind][0].shape : ', data['vec_6d_ind'][0].shape)
+                data['vec_6d_ind'][0] = data['vec_6d_ind'][0][final_indices]
+                print('data[s_pcd][0].shape : ', data['s_pcd'][0].shape)
+                data['s_pcd'][0] = data['s_pcd'][0][final_indices]
+                print('data[t_pcd][0].shape : ', data['t_pcd'][0].shape)
+                data['t_pcd'][0] = data['t_pcd'][0][final_indices]
 
                 inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
                 inlier_conf = inlier_conf[final_indices, final_indices]
