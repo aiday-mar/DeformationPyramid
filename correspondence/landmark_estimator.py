@@ -118,11 +118,13 @@ class Landmark_Model():
             inlier_conf = confidence[0]
 
             coarse_flow = data['coarse_flow'][0]
+            print('coarse_flow.shape : ', coarse_flow.shape)
             inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
 
             vec_6d = data['vec_6d'][0]
+            print('vec_6d.shape : ', vec_6d.shape)
 
             if reject_outliers:
                 vec_6d = vec_6d [inlier_conf > inlier_thr]
@@ -130,6 +132,7 @@ class Landmark_Model():
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
 
             if intermediate_output_folder:
+                print('Entered into the case when intermediate_output_folder specified')
                 if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
 
@@ -169,6 +172,7 @@ class Landmark_Model():
             custom_filtering = True
             print_size = True
             if custom_filtering:
+                print('When we do custom filtering')
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 if print_size:
