@@ -306,6 +306,8 @@ class Landmark_Model():
                 ldmk_t = ldmk_t_np[final_indices]
                 print('ldmk_s.shape : ', ldmk_s.shape)
 
+                # converint the final indices into a torch tensor before using for indexing
+                final_indices = torch.tensor(final_indices)
                 coarse_flow = data['coarse_flow'][0]
                 print('coarse_flow.shape : ', coarse_flow.shape)
                 coarse_flow = coarse_flow[final_indices]
