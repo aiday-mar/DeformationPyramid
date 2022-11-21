@@ -299,7 +299,7 @@ class Landmark_Model():
                             
                     print_size = False
 
-                outliers = dict((k, v) for k, v in outliers.items() if v >= 250)
+                outliers = dict((k, v) for k, v in outliers.items() if v >= 100)
                 print('outliers : ', outliers)
                 total_outliers = set(outliers.keys())                                  
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
