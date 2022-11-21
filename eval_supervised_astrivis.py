@@ -46,6 +46,7 @@ if __name__ == "__main__":
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
+    parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     args = parser.parse_args()
     
     if args.base:
