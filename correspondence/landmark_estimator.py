@@ -367,11 +367,8 @@ class Landmark_Model():
                 if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
                     
-                print('When we do custom filtering')            
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 ldmk_t_np = np.array(ldmk_t.cpu())
-                if print_size:
-                    print('ldmk_s_np.shape : ', ldmk_s_np.shape)
 
                 # Find map from initial points to all corresponding indices for correpondences that reference that point
                 map_ldmk_s_correspondences = defaultdict(list)
@@ -379,63 +376,34 @@ class Landmark_Model():
                     map_ldmk_s_correspondences[tuple(ldmk_s_point)].append(idx)
                 
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=1000).astype(int)
-                print('neighborhood_center_indices_list.shape : ', neighborhood_center_indices_list.shape)
                 outliers = defaultdict(int)
 
                 for neighborhood_center_index in neighborhood_center_indices_list:
-                    if print_size:
-                        print('neighborhood_center_index : ', neighborhood_center_index)
                     neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
-                    if print_size:
-                        print('neighborhood_center_source : ', neighborhood_center_source)
                     neighborhood_center_target = ldmk_t_np[neighborhood_center_index]
 
                     # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
                     distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
                     distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
 
-                    if print_size:
-                        print('distance_to_neighborhood_center.shape : ', distance_to_neighborhood_center.shape)
-
                     indices_minimum_distance = np.where(distance_to_neighborhood_center == distance_to_neighborhood_center.min())[0]
-                    if print_size:
-                        print('indices_minimum_distance : ', indices_minimum_distance)
-                        print('indices_minimum_distance.shape : ', indices_minimum_distance.shape)
-                    
                     distance_to_neighborhood_center[indices_minimum_distance] = float('inf')
                     indices_second_minimum_distance = np.where(distance_to_neighborhood_center == distance_to_neighborhood_center.min())[0]
-                    if print_size:
-                        print('indices_second_minimum_distance : ', indices_second_minimum_distance)
-                        print('indices_second_minimum_distance.shape : ', indices_second_minimum_distance.shape)
 
                     distance_to_neighborhood_center[indices_second_minimum_distance] = float('inf')
                     indices_third_minimum_distance = np.where(distance_to_neighborhood_center == distance_to_neighborhood_center.min())[0]
-                    if print_size:
-                        print('indices_third_minimum_distance : ', indices_third_minimum_distance)
-                        print('indices_third_minimum_distance.shape : ', indices_third_minimum_distance.shape)                       
 
                     max_number_transformations = min(indices_minimum_distance.shape[0], indices_second_minimum_distance.shape[0], indices_third_minimum_distance.shape[0])
                     number_transformations = min(6, max_number_transformations)
-                    print('number_transformations : ', number_transformations)
 
                     indices_1 = np.random.choice(indices_minimum_distance.shape[0], number_transformations, replace=False)
                     indices_2 = np.random.choice(indices_second_minimum_distance.shape[0], number_transformations, replace=False)
                     indices_3 = np.random.choice(indices_third_minimum_distance.shape[0], number_transformations, replace=False)
-
-                    if print_size:
-                        print('indices_1 : ', indices_1)
-                        print('indices_2 : ', indices_2)
-                        print('indices_3 : ', indices_3)
-
+                    
                     tau = 0.1
-                    if print_size:
-                        print('np.where(distances_to_center < tau)[0].shape : ', np.where(distances_to_center < tau)[0].shape)
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
                     source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
                     target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
-                    if print_size:
-                        print('point_indices_close_to_center.shape : ', point_indices_close_to_center.shape)
-                        print('source_points_close_to_center.shape : ', source_points_close_to_center.shape)
 
                     for n_transform in range(number_transformations):
                         source_point_1 = ldmk_s_np[indices_minimum_distance[indices_1[n_transform]]]
@@ -454,18 +422,8 @@ class Landmark_Model():
                         Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
                         Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
 
-                        if print_size:
-                            print('X : ', X)
-                            print('Y : ', Y)
-                            
                         mean_X = np.mean(X, axis = 0)
                         mean_Y = np.mean(Y, axis = 0)
-
-                        if print_size:
-                            print('mean_X : ', mean_X)
-                            print('mean_Y : ', mean_Y)
-                            print('(Y - mean_Y) : ', (Y - mean_Y))
-                            print('(X - mean_X) : ', (X - mean_X))
                     
                         Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
                         U, _, V = np.linalg.svd(Sxy, full_matrices=True)
@@ -475,44 +433,26 @@ class Landmark_Model():
                         sv = np.matmul( S, V )
                         R = np.matmul( U, sv)
                         t = mean_Y.T - np.matmul( R, mean_X.T )
-                        
-                        if print_size:
-                            print('R : ', R)
-                            print('t : ', t)
-                        
-                        # find points which should be inliers against these given transformations
+
                         thr = 0.05                        
                         points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
                         norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
-                        if print_size:
-                            print('norm_error.shape : ', norm_error.shape)
-                            print('np.where(norm_error > thr)[0].shape : ', np.where(norm_error > thr)[0].shape)
                         outlier_indices = np.where(norm_error > thr)[0]
                         for outlier_idx in outlier_indices:
                             out_idx = point_indices_close_to_center[outlier_idx]
                             outliers[out_idx] = outliers[out_idx] + 1
                             
-                    print_size = False
-
-                print('map_ldmk_s_correspondences : ', map_ldmk_s_correspondences)
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:
-                    print('ldmk_s_point : ', ldmk_s_point)
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
-                    print('correspondence_indices : ', correspondence_indices)
                     correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
-                    print('correspondence_indices_to_outliers : ', correspondence_indices_to_outliers)
                     if correspondence_indices_to_outliers:
                         correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
-                        print('correspondence_min : ', correspondence_min)
                         final_indices = np.append(final_indices, correspondence_min)
                 
-                print('final_indices : ', final_indices)
                 final_indices = np.sort(final_indices).astype(int) 
-                print('final_indices : ', final_indices)
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
-                print('ldmk_s.shape : ', ldmk_s.shape)
                 
                 rot = data['batched_rot'][0]
                 ldmk_s_custom_filtering = o3d.geometry.PointCloud()
@@ -536,17 +476,13 @@ class Landmark_Model():
                 
                 data_mod = {}
                 final_indices = list(final_indices)
-                print('len(final_indices) : ', len(final_indices))
 
-                print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
                 vec_6d = data['vec_6d'][0][final_indices]
                 data_mod['vec_6d'] = vec_6d[None, :]
                 
-                print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
                 vec_6d_mask = data['vec_6d_mask'][0][final_indices]
                 data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
                 
-                print('data[vec_6d_ind][0].shape : ', data['vec_6d_ind'][0].shape)
                 vec_6d_ind = data['vec_6d_ind'][0][final_indices]
                 data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
                 
@@ -555,9 +491,7 @@ class Landmark_Model():
                 data_mod['batched_rot'] = data['batched_rot']
                 data_mod['batched_trn'] = data['batched_trn']
         
-                print('coarse_flow.shape : ', coarse_flow.shape)
                 inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
-                print('inlier_conf.shape : ', inlier_conf.shape)
                 inlier_conf = inlier_conf[final_indices]
                 match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
