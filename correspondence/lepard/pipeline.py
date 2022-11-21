@@ -19,7 +19,7 @@ class Pipeline(nn.Module):
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
 
-    def forward(self, data,  timers=None):
+    def forward(self, data, coarse_level = None, timers=None):
 
         self.timers = timers
 
@@ -28,7 +28,7 @@ class Pipeline(nn.Module):
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
         if self.timers: self.timers.tic('coarse_preprocess')
-        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats (coarse_feats, data)
+        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats (coarse_feats, data, coarse_level)
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
@@ -51,9 +51,9 @@ class Pipeline(nn.Module):
 
 
 
-    def split_feats(self, geo_feats, data):
-
-        pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
+    def split_feats(self, geo_feats, data, coarse_level):
+        coarse_level = coarse_level if coarse_level else self.config['kpfcn_config']['coarse_level']
+        pcd = data['points'][coarse_level]
 
         src_mask = data['src_mask']
         tgt_mask = data['tgt_mask']

@@ -42,6 +42,7 @@ if __name__ == "__main__":
     parser.add_argument('--base', type=str, help= 'Base folder.')
     parser.add_argument('--w_cd', type=str, help= 'w_cd')
     parser.add_argument('--w_reg', type=str, help= 'w_reg')
+    parser.add_argument('--coarse_level', type=str, help= 'coarse level')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualize the registration results')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
@@ -103,9 +104,9 @@ if __name__ == "__main__":
 
         """predict landmarks"""
         if args.print_keypoints:
-            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = args.intermediate_output_folder, base = args.base)
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = args.intermediate_output_folder, base = args.base)
         else:
-            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, inlier_thr=config.inlier_thr, timer=timer)
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, reject_outliers=config.reject_outliers, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer)
         
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]

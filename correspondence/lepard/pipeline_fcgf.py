@@ -47,8 +47,9 @@ class Pipeline(nn.Module):
 
         return data
 
-    def split_feats(self, geo_feats, data):
-        pcd = data['points'][self.config['kpfcn_config']['coarse_level']]
+    def split_feats(self, geo_feats, data, coarse_level):
+        coarse_level = coarse_level if coarse_level else self.config['kpfcn_config']['coarse_level']
+        pcd = data['points'][coarse_level]
 
         src_mask = data['src_mask']
         tgt_mask = data['tgt_mask']

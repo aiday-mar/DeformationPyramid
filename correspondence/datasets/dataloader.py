@@ -362,7 +362,7 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None):
 
     batched_points_list = []
     batched_features_list = []
@@ -509,7 +509,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
 
     # coarse infomation
-    coarse_level = config.coarse_level
+    coarse_level = coarse_level if coarse_level else config.coarse_level
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
     b_size = pts_num_coarse.shape[0]
     src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
@@ -691,7 +691,7 @@ def get_datasets(config):
 
 
 
-def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None):
+def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None):
 
     collate_fn = collate_fn_4dmatch
 
@@ -703,7 +703,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
         batch_size=config['batch_size'],
         shuffle=shuffle,
         num_workers=config['num_workers'],
-        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base),
+        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base, coarse_level = coarse_level),
         drop_last=False
     )
 
