@@ -499,8 +499,9 @@ class Landmark_Model():
                 for ldmk_s_point in map_ldmk_s_correspondences:
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
                     correspondence_indices_to_outliers = {key: map_ldmk_s_correspondences[key] for key in correspondence_indices if key in map_ldmk_s_correspondences}
-                    correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
-                    final_indices = np.append(final_indices, correspondence_min)
+                    if correspondence_indices_to_outliers:
+                        correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
+                        final_indices = np.append(final_indices, correspondence_min)
                 
                 final_indices = final_indices.sort()    
                 print('final_indices : ', final_indices)
