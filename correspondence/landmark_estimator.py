@@ -307,8 +307,8 @@ class Landmark_Model():
                     print_size = False
 
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
-                ldmk_s = ldmk_s_np[final_indices]
-                ldmk_t = ldmk_t_np[final_indices]
+                ldmk_s = torch.tensor(ldmk_s_np[final_indices])
+                ldmk_t = torch.tensor(ldmk_t_np[final_indices])
                 print('ldmk_s.shape : ', ldmk_s.shape)
                 data_mod = {}
                 
