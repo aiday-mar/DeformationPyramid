@@ -106,7 +106,7 @@ class Matching(nn.Module):
 
         return index, mconf, mask
 
-    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = 'mutual', confidence_treshold = None, pe_type="rotary"):
+    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = 'mutual', confidence_threshold = None, pe_type="rotary"):
         '''
         @param src_feats: [B, S, C]
         @param tgt_feats: [B, T, C]
@@ -157,7 +157,7 @@ class Matching(nn.Module):
         else:
             raise Exception('Specify a valid match type')
 
-        confidence_treshold = confidence_treshold if confidence_treshold else self.confidence_threshold
-        coarse_match, _, _ = self.get_match(conf_matrix, confidence_treshold, preprocessing)
+        confidence_threshold = confidence_threshold if confidence_threshold else self.confidence_threshold
+        coarse_match, _, _ = self.get_match(conf_matrix, confidence_threshold, preprocessing)
         return conf_matrix, coarse_match
 
