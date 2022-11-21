@@ -315,20 +315,17 @@ class Landmark_Model():
                 final_indices = list(final_indices)
                 print('len(final_indices) : ', len(final_indices))
 
-                data_mod['vec_6d'] = []
                 print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
                 vec_6d = data['vec_6d'][0][final_indices]
-                data_mod['vec_6d'].append(vec_6d)
+                data_mod['vec_6d'] = vec_6d[None, :]
                 
                 print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
-                data_mod['vec_6d_mask'] = []
                 vec_6d_mask = data['vec_6d_mask'][0][final_indices]
-                data_mod['vec_6d_mask'].append(vec_6d_mask)
+                data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
                 
                 print('data[vec_6d_ind][0].shape : ', data['vec_6d_ind'][0].shape)
-                data_mod['vec_6d_ind'] = []
                 vec_6d_ind = data['vec_6d_ind'][0][final_indices]
-                data_mod['vec_6d_ind'].append(vec_6d_ind)
+                data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
                 
                 data_mod['s_pcd'] = data['s_pcd']
                 data_mod['t_pcd'] = data['t_pcd']

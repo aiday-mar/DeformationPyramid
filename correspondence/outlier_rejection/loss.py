@@ -175,8 +175,11 @@ class NeCoLoss(nn.Module):
 
 
         batch_vec6d = data['vec_6d']
+        print('batch_vec6d.shape : ', batch_vec6d.shape)
         batch_mask = data['vec_6d_mask']
+        print('batch_mask.shape : ', batch_mask.shape)
         batch_index = data['vec_6d_ind']
+        print('batch_index.shape : ', batch_index.shape)
 
         inlier_rate = []
         inlier_mask = []
