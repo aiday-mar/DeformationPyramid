@@ -197,7 +197,6 @@ class Landmark_Model():
                     neighborhood_center_target = ldmk_t_np[neighborhood_center_index]
 
                     # Find all the points closest and second closest to the centers (note that they are potentially stacked on top of each other)
-                    # Set single=True in the matching algorithm
                     distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
                     distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
 

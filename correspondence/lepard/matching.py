@@ -70,7 +70,7 @@ class Matching(nn.Module):
 
     @staticmethod
     @torch.no_grad()
-    def get_match( conf_matrix, thr, single=False, mutual=False): # Used to be mutual=True
+    def get_match( conf_matrix, thr, single=True, mutual=False): # Used to be mutual=True
 
         mask = conf_matrix > thr
 
