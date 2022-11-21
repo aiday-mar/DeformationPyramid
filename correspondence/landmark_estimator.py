@@ -62,7 +62,7 @@ class Landmark_Model():
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, coarse_level = coarse_level, preprocessing = preprocessing, confidence_threshold = confidence_threshold, timers=None)
+            data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, timers=None)
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:
