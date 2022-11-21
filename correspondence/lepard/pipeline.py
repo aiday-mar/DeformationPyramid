@@ -18,7 +18,6 @@ class Pipeline(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-
     def forward(self, data, coarse_level = None, timers=None):
 
         self.timers = timers
@@ -48,11 +47,9 @@ class Pipeline(nn.Module):
 
         return data
 
-
-
-
     def split_feats(self, geo_feats, data, coarse_level):
         coarse_level = coarse_level if coarse_level else self.config['kpfcn_config']['coarse_level']
+        coarse_level = int(coarse_level)
         print('coarse_level : ', coarse_level)
         pcd = data['points'][coarse_level]
 
