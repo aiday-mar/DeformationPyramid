@@ -173,7 +173,10 @@ class Landmark_Model():
             custom_filtering = True
             print_size = True
             
-            if custom_filtering:
+            if custom_filtering and intermediate_output_folder:
+                if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
+                    os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
+                    
                 print('When we do custom filtering')
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 ldmk_t_np = np.array(ldmk_t.cpu())
@@ -310,8 +313,28 @@ class Landmark_Model():
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
                 print('ldmk_s.shape : ', ldmk_s.shape)
-                data_mod = {}
                 
+                rot = data['batched_rot'][0]
+                ldmk_s_custom_filtering = o3d.geometry.PointCloud()
+                ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
+                ldmk_s_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                rotated_ldmk_s = np.array(ldmk_s_custom_filtering.points)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_custom_filtering)
+                
+                ldmk_t_custom_filtering = o3d.geometry.PointCloud()
+                ldmk_t_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 't_outlier_rejected_pcd.ply', ldmk_t_custom_filtering)
+                
+                total_points = np.concatenate((rotated_ldmk_s, np.array(ldmk_t.cpu())), axis = 0)
+                number_points_src = ldmk_s.shape[0]
+                correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
+                line_set = o3d.geometry.LineSet(
+                    points=o3d.utility.Vector3dVector(total_points),
+                    lines=o3d.utility.Vector2iVector(correspondences),
+                )
+                o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'outlier_line_set.ply', line_set)
+                
+                data_mod = {}
                 final_indices = list(final_indices)
                 print('len(final_indices) : ', len(final_indices))
 
