@@ -184,7 +184,8 @@ class Landmark_Model():
                     print('ldmk_s_np.shape : ', ldmk_s_np.shape)
 
                 # Suppose we choose to generate 20 transformations
-                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=20).astype(int)
+                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=50).astype(int)
+                print('neighborhood_center_indices_list.shape : ', neighborhood_center_indices_list.shape)
                 outliers = defaultdict(int)
 
                 for neighborhood_center_index in neighborhood_center_indices_list:
@@ -221,7 +222,8 @@ class Landmark_Model():
                         print('indices_third_minimum_distance.shape : ', indices_third_minimum_distance.shape)                       
 
                     max_number_transformations = min(indices_minimum_distance.shape[0], indices_second_minimum_distance.shape[0], indices_third_minimum_distance.shape[0])
-                    number_transformations = min(3, max_number_transformations)
+                    number_transformations = min(6, max_number_transformations)
+                    print('number_transformations : ', number_transformations)
 
                     indices_1 = np.random.choice(indices_minimum_distance.shape[0], number_transformations, replace=False)
                     indices_2 = np.random.choice(indices_second_minimum_distance.shape[0], number_transformations, replace=False)
@@ -299,7 +301,7 @@ class Landmark_Model():
                             
                     print_size = False
 
-                outliers = dict((k, v) for k, v in outliers.items() if v >= 3)
+                outliers = dict((k, v) for k, v in outliers.items() if v >= 5)
                 total_outliers = set(outliers.keys())                                  
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
