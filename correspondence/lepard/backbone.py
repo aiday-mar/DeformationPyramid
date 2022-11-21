@@ -112,11 +112,9 @@ class KPFCN(nn.Module):
         fine_feature_dim =  config.fine_feature_dim
         self.fine_out = nn.Conv1d(out_dim, fine_feature_dim, kernel_size=1, bias=True)
 
-    def forward(self, batch, phase = 'encode'):
-        # Get input features
+    def forward(self, batch, index_at_which_to_return_coarse_feats = 1, phase = 'encode'):
         if phase == 'coarse' :
             x = batch['features'].clone().detach()
-            # 1. joint encoder part
             self.skip_x = []
             for block_i, block_op in enumerate(self.encoder_blocks):
                 if block_i in self.encoder_skips:
@@ -127,7 +125,7 @@ class KPFCN(nn.Module):
                 if block_i in self.decoder_concats:
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
                 x = block_op(x, batch)
-                if block_i == 1 :
+                if block_i == index_at_which_to_return_coarse_feats:
                     coarse_feats = x.transpose(0,1).unsqueeze(0)  #[B, C, N]
                     coarse_feats = self.coarse_out(coarse_feats)  #[B, C, N]
                     coarse_feats = coarse_feats.transpose(1,2).squeeze(0)

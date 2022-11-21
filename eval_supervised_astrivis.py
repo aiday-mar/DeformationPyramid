@@ -48,6 +48,7 @@ if __name__ == "__main__":
     parser.add_argument('--preprocessing', type=str, help='Type of the preprocessing, can be single or mutual. By default mutual.')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
+    parser.add_argument('--index_coarse_feats', type=str, help='index at which to return coarse features in the lepard decoder')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     args = parser.parse_args()
     
@@ -107,8 +108,9 @@ if __name__ == "__main__":
 
         """predict landmarks"""
         custom_filtering = True if args.custom_filtering else False
+        index_coarse_feats = int(args.index_coarse_feats) if args.index_coarse_feats else 1
         intermediate_output_folder = args.intermediate_output_folder if args.intermediate_output_folder and args.print_keypoints else None
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = args.preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base)
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = args.preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
