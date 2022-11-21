@@ -169,7 +169,9 @@ class Landmark_Model():
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
             
-            # After the outlier rejection network, add code in order to do some sort of custom filtering
+            # '''
+            # 1. Custom filtering done with the first method
+            
             custom_filtering = True
             print_size = True
             
@@ -355,5 +357,8 @@ class Landmark_Model():
                 inlier_conf = inlier_conf[final_indices]
                 match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
-                
+            
+            # '''
+            # 2. Custom filtering done with the second method
+            
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
