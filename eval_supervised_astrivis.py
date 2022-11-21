@@ -44,6 +44,7 @@ if __name__ == "__main__":
     parser.add_argument('--w_reg', type=str, help= 'w_reg')
     parser.add_argument('--coarse_level', type=str, help= 'coarse level')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
+    parser.add_argument('--confidence_threshold', type=str, help= 'specifying the confidence threshold')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
@@ -106,7 +107,7 @@ if __name__ == "__main__":
         """predict landmarks"""
         custom_filtering = True if args.custom_filtering else False
         intermediate_output_folder = args.intermediate_output_folder if args.intermediate_output_folder and args.print_keypoints else None
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base)
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]

@@ -111,7 +111,7 @@ class Matching(nn.Module):
 
         return index, mconf, mask
 
-    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type="rotary"):
+    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, confidence_treshold = None, pe_type="rotary"):
         '''
         @param src_feats: [B, S, C]
         @param tgt_feats: [B, T, C]
@@ -147,7 +147,6 @@ class Matching(nn.Module):
                 conf_matrix = F.softmax(sim_matrix_1, 1) * F.softmax(sim_matrix_2, 2)
             else :
                 conf_matrix = F.softmax(sim_matrix_1, 1) * F.softmax(sim_matrix_1, 2)
-
         elif self.match_type == "sinkhorn" :
             #optimal transport sinkhoron
             sim_matrix = torch.einsum("bsc,btc->bst", src_feats, tgt_feats)
@@ -160,7 +159,10 @@ class Matching(nn.Module):
 
             assign_matrix = log_assign_matrix.exp()
             conf_matrix = assign_matrix[:, :-1, :-1].contiguous()
+        else:
+            raise Exception('Specify a valid match type')
 
-        coarse_match, _, _ = self.get_match(conf_matrix, self.confidence_threshold)
+        confidence_treshold = confidence_treshold if confidence_treshold else self.confidence_threshold
+        coarse_match, _, _ = self.get_match(conf_matrix, confidence_treshold)
         return conf_matrix, coarse_match
 

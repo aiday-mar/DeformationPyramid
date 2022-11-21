@@ -49,7 +49,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, custom_filtering = False, intermediate_output_folder = None, base = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
+    def inference(self, inputs, custom_filtering = False, intermediate_output_folder = None, base = None, confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
         if base:
             self.path = base
@@ -62,7 +62,7 @@ class Landmark_Model():
         with torch.no_grad():
 
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, coarse_level, timers=None)
+            data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, timers=None)
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:

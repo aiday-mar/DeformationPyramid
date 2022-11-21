@@ -128,8 +128,6 @@ class MatchMotionLoss(nn.Module):
             l1_loss = torch.mean(e1)
             loss = loss + self.mot_w * l1_loss
 
-
-        #
         # if eval_metric :
         #
         #     match_pred, _, _ = CM.get_match(data['conf_matrix_pred'], thr=self.confidence_threshold_metric, mutual=self.mutual_nearest)
@@ -150,8 +148,6 @@ class MatchMotionLoss(nn.Module):
         #         rot, trn = rot_.to(data['s_pcd']) , trn_.to(data['s_pcd'])
         #         rr = self.compute_registration_recall(rot, trn, data, self.registration_threshold)
         #         loss_info.update({'Registration_Recall': rr})
-
-
 
         if self.positioning_type == "procrustes":
 
