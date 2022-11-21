@@ -319,7 +319,8 @@ class Landmark_Model():
                 # coarse_flow = coarse_flow[final_indices]
 
                 print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
-                data['vec_6d'][0] = data['vec_6d'][0][final_indices]
+                var = data['vec_6d'][0][final_indices]
+                data['vec_6d'][0] = var
                 print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
                 data['vec_6d_mask'][0] = data['vec_6d_mask'][0][final_indices]
                 print('data[vec_6d_ind][0].shape : ', data['vec_6d_ind'][0].shape)
