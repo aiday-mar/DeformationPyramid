@@ -155,6 +155,8 @@ class Registration():
         t_sample = tgt_pcd[tgt[: config.samples]]
 
         if self.landmarks is not None:
+            print('self.landmarks[0].shape : ', self.landmarks[0].shape)
+            print('src_mean.shape : ', src_mean.shape)
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
             
