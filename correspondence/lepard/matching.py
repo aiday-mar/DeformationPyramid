@@ -68,11 +68,10 @@ class Matching(nn.Module):
 
     @staticmethod
     @torch.no_grad()
-    def get_match( conf_matrix, thr, preprocessing = 'mutual'): # Used to be mutual=True
+    def get_match( conf_matrix, thr, preprocessing = 'mutual'):
 
         mask = conf_matrix > thr
 
-        #mutual nearest
         if preprocessing == 'mutual':
             mask = mask \
                    * (conf_matrix == conf_matrix.max(dim=2, keepdim=True)[0]) \
