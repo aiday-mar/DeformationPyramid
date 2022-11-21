@@ -35,7 +35,7 @@ class Landmark_Model():
         config['kpfcn_config'] = matcher_config['kpfcn_config']
 
         # matcher initialization
-        self.matcher = Matcher(matcher_config).to(device)  # pretrained point cloud matcher model
+        self.matcher = Matcher(matcher_config).to(device)
         state = torch.load(config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
 
@@ -49,7 +49,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, custom_filtering = False, intermediate_output_folder = None, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
+    def inference(self, inputs, custom_filtering = None, intermediate_output_folder = None, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
         if base:
             self.path = base
