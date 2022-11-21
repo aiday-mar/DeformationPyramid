@@ -507,6 +507,7 @@ class Landmark_Model():
                         print('correspondence_min : ', correspondence_min)
                         final_indices = np.append(final_indices, correspondence_min)
                 
+                print('final_indices : ', final_indices)
                 final_indices = final_indices.sort()    
                 print('final_indices : ', final_indices)
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
