@@ -330,16 +330,8 @@ class Landmark_Model():
                 vec_6d_ind = data['vec_6d_ind'][0][final_indices]
                 data_mod['vec_6d_ind'].append(vec_6d_ind)
                 
-                print('data[s_pcd][0].shape : ', data['s_pcd'][0].shape)
-                data_mod['s_pcd'] = []
-                s_pcd = data['s_pcd'][0][final_indices]
-                data_mod['s_pcd'].append(s_pcd)
-                
-                print('data[t_pcd][0].shape : ', data['t_pcd'][0].shape)
-                data_mod['t_pcd'] = []
-                t_pcd = data['t_pcd'][0][final_indices]
-                data_mod['t_pcd'].append(t_pcd)
-
+                data_mod['s_pcd'] = data['s_pcd']
+                data_mod['t_pcd'] = data['t_pcd']
                 data_mod['batched_rot'] = data['batched_rot']
                 data_mod['batched_trn'] = data['batched_trn']
         
