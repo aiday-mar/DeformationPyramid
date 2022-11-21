@@ -162,8 +162,12 @@ class NeCoLoss(nn.Module):
     def compute_inlier_mask( data, inlier_thr, s2t_flow=None):
 
         s_pcd, t_pcd = data['s_pcd'], data['t_pcd'] #B,N,3
+        print('s_pcd.shape : ', s_pcd.shape)
+        print('t_pcd.shape : ', t_pcd.shape)
         batched_rot = data['batched_rot'] #B,3,3
+        print('batched_rot.shape : ', batched_rot.shape)
         batched_trn = data['batched_trn']
+        print('batched_trn.shape : ', batched_trn.shape)
         bsize = len(s_pcd)
 
         s_pcd_deformed = s_pcd + s2t_flow
@@ -171,8 +175,11 @@ class NeCoLoss(nn.Module):
 
 
         batch_vec6d = data['vec_6d']
+        print('batch_vec6d.shape : ', batch_vec6d.shape)
         batch_mask = data['vec_6d_mask']
+        print('batch_mask.shape : ', batch_mask.shape)
         batch_index = data['vec_6d_ind']
+        print('batch_index.shape : ', batch_index.shape)
 
         inlier_rate = []
         inlier_mask = []

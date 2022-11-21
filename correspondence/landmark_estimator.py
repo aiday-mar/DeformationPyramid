@@ -119,6 +119,7 @@ class Landmark_Model():
 
             coarse_flow = data['coarse_flow'][0]
             print('coarse_flow.shape : ', coarse_flow.shape)
+            print('Before first compute_inlier_mask')
             inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
@@ -171,6 +172,7 @@ class Landmark_Model():
             # After the outlier rejection network, add code in order to do some sort of custom filtering
             custom_filtering = True
             print_size = True
+            
             if custom_filtering:
                 print('When we do custom filtering')
                 ldmk_s_np = np.array(ldmk_s.cpu())
