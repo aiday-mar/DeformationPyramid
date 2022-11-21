@@ -320,6 +320,7 @@ class Landmark_Model():
 
                 print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
                 var = data['vec_6d'][0][final_indices]
+                data['vec_6d'][0] = None
                 data['vec_6d'][0] = var
                 print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
                 data['vec_6d_mask'][0] = data['vec_6d_mask'][0][final_indices]
