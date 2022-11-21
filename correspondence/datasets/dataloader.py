@@ -76,9 +76,7 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
 
     assert len(multiview_data) == 1
 
-
     pcds, pcd_pairs, pairwise_flows, pairwise_overlap, _ , axis_node, poses = multiview_data [0]
-
 
     batched_points_list = []
     batched_features_list = []
@@ -93,7 +91,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
     sflow_list = []
     metric_index_list = [] #for feature matching recall computation
 
-
     for ind in range ( len(pcd_pairs) ) :
         # for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index) in enumerate(multiview_data):
 
@@ -104,7 +101,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
         Transform = np.matmul(np.linalg.inv(t_pose), s_pose) # relative transform from s2t
         rot = Transform[:3, :3]
         trn = Transform[:3, 3:]
-
 
         src_pcd, tgt_pcd = pcds[s_id], pcds[t_id]
         src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
@@ -120,11 +116,8 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
         batched_lengths_list.append(len(src_pcd))
         batched_lengths_list.append(len(tgt_pcd))
 
-
-
         batched_rot.append( torch.from_numpy(rot).float())
         batched_trn.append( torch.from_numpy(trn).float())
-
 
         # gt_cov_list.append(gt_cov)
         sflow_list.append( torch.from_numpy(s2t_flow).float() )
@@ -135,10 +128,7 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
         #     metric_index_list.append ( torch.from_numpy(metric_index))
         #
 
-
-
     # if timers: cnter['collate_load_batch'] = time.time() - st
-
     batched_features = torch.from_numpy(np.concatenate(batched_features_list, axis=0))
     batched_points = torch.from_numpy(np.concatenate(batched_points_list, axis=0))
     batched_lengths = torch.from_numpy(np.array(batched_lengths_list)).int()
@@ -160,7 +150,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
     input_upsamples = []
     input_batches_len = []
 
-
     # construt kpfcn inds
     for block_i, block in enumerate(config.architecture):
 
@@ -175,8 +164,7 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
                 continue
 
         # Convolution neighbors indices
-        # *****************************
-
+        # ****************************
         if layer_blocks:
             # Convolutions are done in this layer, compute the neighbors with the good radius
             if np.any(['deformable' in blck for blck in layer_blocks[:-1]]):
@@ -192,7 +180,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
 
         # Pooling neighbors indices
         # *************************
-
         # If end of layer is a pooling operation
         if 'pool' in block or 'strided' in block:
 
@@ -239,7 +226,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
         layer += 1
         layer_blocks = []
 
-
     # coarse infomation
     coarse_level = config.coarse_level
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
@@ -256,22 +242,18 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
     src_mask = torch.zeros([b_size, src_pts_max], dtype=torch.bool)
     tgt_mask = torch.zeros([b_size, tgt_pts_max], dtype=torch.bool)
 
-
     for entry_id, cnt in enumerate( pts_num_coarse ): #input_batches_len[-1].numpy().reshape(-1,2)) :
-
         n_s_pts, n_t_pts = cnt
 
         '''split mask for bottlenect feats'''
         src_mask[entry_id][:n_s_pts] = 1
         tgt_mask[entry_id][:n_t_pts] = 1
 
-
         '''split indices of bottleneck feats'''
         src_ind_coarse_split.append( torch.arange( n_s_pts ) + entry_id * src_pts_max )
         tgt_ind_coarse_split.append( torch.arange( n_t_pts ) + entry_id * tgt_pts_max )
         src_ind_coarse.append( torch.arange( n_s_pts ) + accumu )
         tgt_ind_coarse.append( torch.arange( n_t_pts ) + accumu + n_s_pts )
-
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
@@ -285,19 +267,15 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
         coarse_matches.append(coarse_match_gt)
         coarse_flow.append(torch.from_numpy(c_flow))
 
-
         accumu = accumu + n_s_pts + n_t_pts
-
         vis=False # for debug
         if vis :
             viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
-
 
     src_ind_coarse_split = torch.cat(src_ind_coarse_split)
     tgt_ind_coarse_split = torch.cat(tgt_ind_coarse_split)
     src_ind_coarse = torch.cat(src_ind_coarse)
     tgt_ind_coarse = torch.cat(tgt_ind_coarse)
-
 
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
@@ -330,13 +308,8 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
     assert len(multiview_data) == 1
 
-
     pcds, pcd_pairs, pairwise_flows, pairwise_overlap, _ , axis_node, poses = multiview_data [0]
-
-
     pairwise_data_list = []
-
-
 
     for ind in range ( len(pcd_pairs) ) :
 
@@ -348,16 +321,12 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
         rot = Transform[:3, :3]
         trn = Transform[:3, 3:]
 
-
         src_pcd, tgt_pcd = pcds[s_id], pcds[t_id]
         src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
 
-
         pair_data = [(src_pcd, tgt_pcd, src_feats, tgt_feats, np.zeros([1]), rot, trn, s2t_flow, None, None, None)]
-
         pair_batched = collate_fn_4dmatch( pair_data, config, neighborhood_limits)
-
         pairwise_data_list.append(pair_batched)
 
     return pcd_pairs, pairwise_data_list
@@ -375,16 +344,13 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     batched_trn = []
 
     sflow_list = []
-
     correspondences_list = []
-
     depth_paths_list = {}
-
     src_pcd_colors_list = []
 
     # for ind in range ( len(pairwise_data) ) :
     for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
-        #            src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
+        # src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
         # src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
         # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
 
@@ -444,7 +410,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
         # Convolution neighbors indices
         # *****************************
-
         if layer_blocks:
             # Convolutions are done in this layer, compute the neighbors with the good radius
             if np.any(['deformable' in blck for blck in layer_blocks[:-1]]):
@@ -460,16 +425,13 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
         # Pooling neighbors indices
         # *************************
-
         # If end of layer is a pooling operation
         if 'pool' in block or 'strided' in block:
 
             # New subsampling length
             dl = 2 * r_normal / config.conv_radius
-
             # Subsampled points
             pool_p, pool_b = batch_grid_subsampling_kpconv(batched_points, batched_lengths, sampleDl=dl)
-
             # Radius of pooled neighbors
             if 'deformable' in block:
                 r = r_normal * config.deform_radius / config.conv_radius
@@ -507,7 +469,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         layer += 1
         layer_blocks = []
 
-
     # coarse infomation
     coarse_level = coarse_level if coarse_level else config.coarse_level
     pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
@@ -533,13 +494,11 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         src_mask[entry_id][:n_s_pts] = 1
         tgt_mask[entry_id][:n_t_pts] = 1
 
-
         '''split indices of bottleneck feats'''
         src_ind_coarse_split.append( torch.arange( n_s_pts ) + entry_id * src_pts_max )
         tgt_ind_coarse_split.append( torch.arange( n_t_pts ) + entry_id * tgt_pts_max )
         src_ind_coarse.append( torch.arange( n_s_pts ) + accumu )
         tgt_ind_coarse.append( torch.arange( n_t_pts ) + accumu + n_s_pts )
-
 
         '''get match at coarse level'''
         c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
@@ -579,10 +538,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
             o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
         
         coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
-        
         coarse_matches.append(coarse_match_gt)
         coarse_flow.append(torch.from_numpy(c_flow))
-
         accumu = accumu + n_s_pts + n_t_pts
 
         if output_folder:
@@ -600,12 +557,10 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         if vis :
             viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
 
-
     src_ind_coarse_split = torch.cat(src_ind_coarse_split)
     tgt_ind_coarse_split = torch.cat(tgt_ind_coarse_split)
     src_ind_coarse = torch.cat(src_ind_coarse)
     tgt_ind_coarse = torch.cat(tgt_ind_coarse)
-
 
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
@@ -633,10 +588,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         'src_pcd_colors_list' : src_pcd_colors_list
     }
 
-
     return dict_inputs
-
-
 
 def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_threshold=2000):
 
@@ -662,14 +614,10 @@ def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_thr
 
     cumsum = np.cumsum(neighb_hists.T, axis=0)
     percentiles = np.sum(cumsum < (keep_ratio * cumsum[hist_n - 1, :]), axis=0)
-
     neighborhood_limits = percentiles
     print('\n')
 
     return neighborhood_limits
-
-
-
 
 def get_datasets(config):
     if (config.dataset == '3dmatch'):
@@ -689,8 +637,6 @@ def get_datasets(config):
 
     return train_set, val_set, test_set
 
-
-
 def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None):
 
     collate_fn = collate_fn_4dmatch
@@ -709,15 +655,11 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
 
     return dataloader, neighborhood_limits
 
-
-
 def get_multiview_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None):
 
     collate_fn = collate_fn_4dmatch_multiview
-
     if neighborhood_limits is None:
         neighborhood_limits = calibrate_neighbors(dataset, config['kpfcn_config'], collate_fn=collate_fn)
-
     dataloader = torch.utils.data.DataLoader(
         dataset,
         batch_size=config['batch_size'],
@@ -729,10 +671,5 @@ def get_multiview_dataloader(dataset, config,  shuffle=True, neighborhood_limits
 
     return dataloader, neighborhood_limits
 
-
-
-
 if __name__ == '__main__':
-
-
     pass
