@@ -183,8 +183,7 @@ class Landmark_Model():
                 if print_size:
                     print('ldmk_s_np.shape : ', ldmk_s_np.shape)
 
-                # Suppose we choose to generate 20 transformations
-                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=50).astype(int)
+                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=1000).astype(int)
                 print('neighborhood_center_indices_list.shape : ', neighborhood_center_indices_list.shape)
                 outliers = defaultdict(int)
 
@@ -300,7 +299,7 @@ class Landmark_Model():
                             
                     print_size = False
 
-                outliers = dict((k, v) for k, v in outliers.items() if v >= 30)
+                outliers = dict((k, v) for k, v in outliers.items() if v >= 20)
                 print('outliers : ', outliers)
                 total_outliers = set(outliers.keys())                                  
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
