@@ -155,15 +155,12 @@ class Registration():
         t_sample = tgt_pcd[tgt[: config.samples]]
 
         if self.landmarks is not None:
-            print('self.landmarks[0].shape : ', self.landmarks[0].shape)
-            print('src_mean.shape : ', src_mean.shape)
             src_ldmk = self.landmarks[0] - src_mean
             tgt_ldmk = self.landmarks[1] - tgt_mean
             
             if intermediate_output_folder and print_keypoints:
                 if not os.path.exists(self.path + intermediate_output_folder + 'training_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'training_ldmk')
-                # without removing the translation, so we can see better the result
 
                 src_ldmk_pcd = o3d.geometry.PointCloud()
                 src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk.cpu()))

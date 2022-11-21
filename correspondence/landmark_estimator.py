@@ -49,7 +49,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, intermediate_output_folder = None, base = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
+    def inference(self, inputs, custom_filtering = False, intermediate_output_folder = None, base = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
         if base:
             self.path = base
@@ -354,8 +354,6 @@ class Landmark_Model():
             
             '''
             # 2. Custom filtering done with the second method
-            custom_filtering = True
-            print_size = True
                         
             if custom_filtering and intermediate_output_folder:
                 if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
