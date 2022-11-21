@@ -500,7 +500,7 @@ class Landmark_Model():
                     print('ldmk_s_point : ', ldmk_s_point)
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
                     print('correspondence_indices : ', correspondence_indices)
-                    correspondence_indices_to_outliers = {key: map_ldmk_s_correspondences[key] for key in correspondence_indices if key in map_ldmk_s_correspondences}
+                    correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
                     print('correspondence_indices_to_outliers : ', correspondence_indices_to_outliers)
                     if correspondence_indices_to_outliers:
                         correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
