@@ -18,7 +18,7 @@ class Pipeline(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-    def forward(self, data, confidence_threshold = None, coarse_level = None, timers=None):
+    def forward(self, data, confidence_threshold = None, preprocessing = 'mutual', coarse_level = None, timers=None):
 
         self.timers = timers
 
@@ -36,7 +36,7 @@ class Pipeline(nn.Module):
         if self.timers: self.timers.toc('coarse feature transformer')
 
         if self.timers: self.timers.tic('match feature coarse')
-        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, confidence_threshold, pe_type = self.pe_type)
+        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
         data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
 

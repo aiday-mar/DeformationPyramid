@@ -37,7 +37,6 @@ def log_optimal_transport(scores, alpha, iters, src_mask, tgt_mask ):
 
     return Z
 
-
 class Matching(nn.Module):
 
     def __init__(self, config):
@@ -67,22 +66,18 @@ class Matching(nn.Module):
         else:
             raise NotImplementedError()
 
-
     @staticmethod
     @torch.no_grad()
-    def get_match( conf_matrix, thr, single=False, mutual=False): # Used to be mutual=True
+    def get_match( conf_matrix, thr, preprocessing = 'mutual'): # Used to be mutual=True
 
         mask = conf_matrix > thr
 
         #mutual nearest
-        if mutual:
+        if preprocessing == 'mutual':
             mask = mask \
                    * (conf_matrix == conf_matrix.max(dim=2, keepdim=True)[0]) \
                    * (conf_matrix == conf_matrix.max(dim=1, keepdim=True)[0])
-        
-        # Instead of finding where confidence matrix entry is maximum along both its row and column
-        # Find where it is maximum along only the rows
-        if single:
+        elif preprocessing == 'single':
             mask = mask * (conf_matrix == conf_matrix.max(dim=1, keepdim=True)[0])
             
         #find all valid coarse matches
@@ -111,7 +106,7 @@ class Matching(nn.Module):
 
         return index, mconf, mask
 
-    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, confidence_treshold = None, pe_type="rotary"):
+    def forward(self, src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = 'mutual', confidence_treshold = None, pe_type="rotary"):
         '''
         @param src_feats: [B, S, C]
         @param tgt_feats: [B, T, C]
@@ -163,6 +158,6 @@ class Matching(nn.Module):
             raise Exception('Specify a valid match type')
 
         confidence_treshold = confidence_treshold if confidence_treshold else self.confidence_threshold
-        coarse_match, _, _ = self.get_match(conf_matrix, confidence_treshold)
+        coarse_match, _, _ = self.get_match(conf_matrix, confidence_treshold, preprocessing)
         return conf_matrix, coarse_match
 
