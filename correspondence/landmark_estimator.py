@@ -338,6 +338,9 @@ class Landmark_Model():
                 t_pcd = data['t_pcd'][0][final_indices]
                 data_mod['t_pcd'].append(t_pcd)
 
+                data_mod['batched_rot'] = data['batched_rot']
+                data_mod['batched_trn'] = data['batched_trn']
+        
                 print('coarse_flow.shape : ', coarse_flow.shape)
                 inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
                 inlier_conf = inlier_conf[final_indices, final_indices]
