@@ -61,7 +61,6 @@ class KPFCN(nn.Module):
 
         #####################
         # bottleneck output & input layer
-
         self.coarse_out = nn.Conv1d(in_dim//2, config.coarse_feature_dim,  kernel_size=1, bias=True)
         coarse_in_dim = config.coarse_feature_dim
         self.coarse_in = nn.Conv1d(coarse_in_dim, in_dim//2,  kernel_size=1, bias=True)
@@ -107,15 +106,11 @@ class KPFCN(nn.Module):
                 r *= 0.5
                 out_dim = out_dim // 2
 
-
         #####################
         # fine output layer
         #####################
         fine_feature_dim =  config.fine_feature_dim
         self.fine_out = nn.Conv1d(out_dim, fine_feature_dim, kernel_size=1, bias=True)
-
-
-
 
     def forward(self, batch, phase = 'encode'):
         # Get input features
@@ -139,15 +134,12 @@ class KPFCN(nn.Module):
 
                     return coarse_feats #[N,C2]
 
-        #
         # elif phase == "fine":
         #
         #     coarse_feats = batch['coarse_feats']
         #     coarse_feats = coarse_feats.transpose(0,1).unsqueeze(0)
         #     coarse_feats = self.coarse_in(coarse_feats)
         #     x = coarse_feats.transpose(1,2).squeeze(0)
-        #
-        #
         #     for block_i, block_op in enumerate(self.decoder_blocks):
         #         if block_i > 1  :
         #             if block_i in self.decoder_concats:
@@ -157,5 +149,4 @@ class KPFCN(nn.Module):
         #     fine_feats = x.transpose(0, 1).unsqueeze(0)  # [1, C, N]
         #     fine_feats = self.fine_out(fine_feats)  # [1, C, N]
         #     fine_feats = fine_feats.transpose(1, 2).squeeze(0)
-        #
         #     return fine_feats
