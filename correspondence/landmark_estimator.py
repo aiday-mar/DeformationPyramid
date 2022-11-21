@@ -308,30 +308,38 @@ class Landmark_Model():
                 ldmk_s = ldmk_s_np[final_indices]
                 ldmk_t = ldmk_t_np[final_indices]
                 print('ldmk_s.shape : ', ldmk_s.shape)
-
-                # converint the final indices into a torch tensor before using for indexing
-                # final_indices = torch.tensor(final_indices)
-                # print('final_indices.shape : ', final_indices.shape)
-                # coarse_flow = data['coarse_flow'][0]
+                data_mod = {}
+                
                 final_indices = list(final_indices)
                 print('len(final_indices) : ', len(final_indices))
-                print('coarse_flow.shape : ', coarse_flow.shape)
-                # coarse_flow = coarse_flow[final_indices]
 
+                data_mod['vec_6d'] = []
                 print('data[vec_6d][0].shape : ', data['vec_6d'][0].shape)
-                var = data['vec_6d'][0][final_indices]
-                data['vec_6d'][0] = None
-                data['vec_6d'][0] = var
+                vec_6d = data['vec_6d'][0][final_indices]
+                data_mod['vec_6d'].append(vec_6d)
+                
                 print('data[vec_6d_mask][0].shape : ', data['vec_6d_mask'][0].shape)
-                data['vec_6d_mask'][0] = data['vec_6d_mask'][0][final_indices]
+                data_mod['vec_6d_mask'] = []
+                vec_6d_mask = data['vec_6d_mask'][0][final_indices]
+                data_mod['vec_6d_mask'].append(vec_6d_mask)
+                
                 print('data[vec_6d_ind][0].shape : ', data['vec_6d_ind'][0].shape)
-                data['vec_6d_ind'][0] = data['vec_6d_ind'][0][final_indices]
+                data_mod['vec_6d_ind'] = []
+                vec_6d_ind = data['vec_6d_ind'][0][final_indices]
+                data_mod['vec_6d_ind'].append(vec_6d_ind)
+                
                 print('data[s_pcd][0].shape : ', data['s_pcd'][0].shape)
-                data['s_pcd'][0] = data['s_pcd'][0][final_indices]
+                data_mod['s_pcd'] = []
+                s_pcd = data['s_pcd'][0][final_indices]
+                data_mod['s_pcd'].append(s_pcd)
+                
                 print('data[t_pcd][0].shape : ', data['t_pcd'][0].shape)
-                data['t_pcd'][0] = data['t_pcd'][0][final_indices]
+                data_mod['t_pcd'] = []
+                t_pcd = data['t_pcd'][0][final_indices]
+                data_mod['t_pcd'].append(t_pcd)
 
-                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
+                print('coarse_flow.shape : ', coarse_flow.shape)
+                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
                 inlier_conf = inlier_conf[final_indices, final_indices]
                 match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
