@@ -142,71 +142,46 @@ class NeCoLoss(nn.Module):
         @param match_pred:
         @return:
         '''
-
         pred_matrix = torch.zeros_like(conf_matrix_gt)
-
         b_ind, src_ind, tgt_ind = match_pred[:, 0], match_pred[:, 1], match_pred[:, 2]
         pred_matrix[b_ind, src_ind, tgt_ind] = 1.
-
         true_positive = (pred_matrix == conf_matrix_gt) * conf_matrix_gt
-
         recall = true_positive.sum() / conf_matrix_gt.sum()
-
         precision = true_positive.sum() / max(len(match_pred), 1)
-
         return recall, precision
-
-
 
     @staticmethod
     def compute_inlier_mask( data, inlier_thr, s2t_flow=None):
 
         s_pcd, t_pcd = data['s_pcd'], data['t_pcd'] #B,N,3
-        print('s_pcd.shape : ', s_pcd.shape)
-        print('t_pcd.shape : ', t_pcd.shape)
         batched_rot = data['batched_rot'] #B,3,3
-        print('batched_rot.shape : ', batched_rot.shape)
         batched_trn = data['batched_trn']
-        print('batched_trn.shape : ', batched_trn.shape)
         bsize = len(s_pcd)
 
         s_pcd_deformed = s_pcd + s2t_flow
         s_pcd_wrapped = (torch.matmul(batched_rot, s_pcd_deformed.transpose(1, 2)) + batched_trn).transpose(1,2)
 
-
         batch_vec6d = data['vec_6d']
-        print('batch_vec6d.shape : ', batch_vec6d.shape)
         batch_mask = data['vec_6d_mask']
-        print('batch_mask.shape : ', batch_mask.shape)
         batch_index = data['vec_6d_ind']
-        print('batch_index.shape : ', batch_index.shape)
 
         inlier_rate = []
         inlier_mask = []
 
         for i in range(bsize):
-
             s_pcd_match_warp_gt = s_pcd_wrapped[i][batch_index[i][:,0]] [batch_mask[i]]
             t_pcd_matched = batch_vec6d[i][:,3:] [batch_mask[i]]
             inlier = torch.sum( (s_pcd_match_warp_gt - t_pcd_matched)**2 , dim= 1) <  inlier_thr**2
-
             inlier_rate.append(inlier.sum().float() / t_pcd_matched.shape[0])
             inlier_mask.append(inlier)
 
-
         return  inlier_mask, inlier_rate
-
-
-
-
 
     @staticmethod
     def tensor2numpy(tensor):
         if tensor.requires_grad:
             tensor=tensor.detach()
         return tensor.cpu().numpy()
-
-
 
     def multiview_corr_vis(self, data, inlier_mask):
 
@@ -237,17 +212,12 @@ class NeCoLoss(nn.Module):
             t_cpts_god = t_pc[good_c[:,1]]
             flow_good = t_cpts_god - s_cpts_god
 
-
-
             def match_draw(s_cpts, t_cpts, flow, color):
 
                 mlab.points3d(s_cpts[:, 0], s_cpts[:, 1], s_cpts[:, 2], scale_factor=scale_factor * 0.5, color=c_blue)
                 mlab.points3d(t_cpts[:, 0], t_cpts[:, 1], t_cpts[:, 2], scale_factor=scale_factor * 0.5, color=c_pink)
                 mlab.quiver3d(s_cpts[:, 0], s_cpts[:, 1], s_cpts[:, 2], flow[:, 0], flow[:, 1], flow[:, 2],
                               scale_factor=1, mode='2ddash', line_width=1., color=color)
-
-
-
 
             match_draw(s_cpts_god, t_cpts_god, flow_good, c_green)
 
@@ -258,9 +228,6 @@ class NeCoLoss(nn.Module):
                 match_draw(s_cpts_bd, t_cpts_bd, flow_bad, c_red)
 
             # mlab.show()
-
-
-
 
         import mayavi.mlab as mlab
 
@@ -296,11 +263,9 @@ class NeCoLoss(nn.Module):
             s_pcd[i] = s_pcd[i] + offsets[e[0]:e[0]+1]
             t_pcd[i] = t_pcd[i] + offsets[e[1]:e[1]+1]
 
-
         batch_mask = data['vec_6d_mask'].cpu().numpy()
         batch_index = data['vec_6d_ind'].cpu().numpy()
         inlier_mask = inlier_mask
-
 
         max = 25
 
@@ -321,6 +286,5 @@ class NeCoLoss(nn.Module):
             bad_c = corrs[~ir_m]
 
             viz_coarse_nn_correspondence_mayavi (s_pcd[i], t_pcd[i], good_c, bad_c, f_src_pcd=src_pcd_list[i], f_tgt_pcd=tgt_pcd_list[i], scale_factor=0.05 )
-
 
         mlab.show()
