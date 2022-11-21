@@ -303,6 +303,7 @@ class Landmark_Model():
                 print('outliers : ', outliers)
                 total_outliers = set(outliers.keys())                                  
                 final_indices = np.array([i for i in range(0, len(ldmk_s_np)) if i not in total_outliers])
+                print('final_indices : ', final_indices)
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
                 print('ldmk_s.shape : ', ldmk_s.shape)
