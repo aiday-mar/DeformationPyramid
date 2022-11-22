@@ -10,12 +10,12 @@ preprocessing=none
 # preprocessing=single
 # preprocessing=mutual
 
-# confidence=0.1
-confidence=0.05
+confidence=0.1
+# confidence=0.05
 # confidence=0.01
 
-coarse_level=-2
-# coarse_level=-3
+# coarse_level=-2
+coarse_level=-3
 
 index_coarse_feats=1
 # index_coarse_feats=2
