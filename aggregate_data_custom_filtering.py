@@ -33,14 +33,11 @@ for file in files:
     Lines = file_txt.readlines()
     current_data_type = None
     for line in Lines:
-        print('line : ', line)
         for data_type in data_types:
             if data_type in line:
                 current_data_type = line
                 final_data[file][current_data_type] = {}
-            
-        print('final_data : ', final_data)
-        
+                    
         if 'RMSE' in line:
             final_data[file][current_data_type]['RMSE'] = re.findall("\d+\.\d+", line)
 
