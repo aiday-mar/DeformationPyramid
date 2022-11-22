@@ -510,16 +510,14 @@ class Landmark_Model():
                 for j in range(number_points):
                     for k in range(j + 1, number_points):
                         distances[j][k] = np.linalg.norm(ldmk_s_np[j] - ldmk_s_np[k])
-                    print('j : ', j)
                     row = distances[j]
                     non_zero_values = row[np.nonzero(row)]
-                    print('non_zero_values.shape : ', non_zero_values.shape)
                     if non_zero_values.size != 0:
                         average_distance += min(non_zero_values)/number_points
                 
                 print('average_distance : ', average_distance)
                 # tau = 0.1
-                tau = 3*average_distance
+                tau = 2*average_distance
                 number_transformations = 6
                 number_centers = 100
                     
@@ -541,7 +539,7 @@ class Landmark_Model():
                     
                     transformation_indices = []
                     for i in range(number_transformations):
-                        random_indices = random.sample(indices_neighborhood_points, 3)
+                        random_indices = random.sample(list(indices_neighborhood_points), 3)
                         transformation_indices.append(random_indices)                       
 
                     point_indices_close_to_center = np.where(distances_to_center < tau)[0]
