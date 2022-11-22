@@ -6,9 +6,9 @@ else
     type=default
 fi
 
-# preprocessing=none
+preprocessing=none
 # preprocessing=single
-preprocessing=mutual
+# preprocessing=mutual
 
 confidence=0.1
 # confidence=0.5
