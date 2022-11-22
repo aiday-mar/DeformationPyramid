@@ -39,6 +39,6 @@ for file in files:
                 final_data[file][current_data_type] = {}
                     
         if 'RMSE' in line:
-            final_data[file][current_data_type]['RMSE'] = re.findall("\d+\.\d+", line)
+            final_data[file][current_data_type]['RMSE'] = float(re.findall("\d+\.\d+", line)[0])
 
 print('final_data : ', final_data)
