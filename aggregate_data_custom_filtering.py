@@ -2,7 +2,7 @@ import re
 import matplotlib.pyplot as plt
 
 class File:
-    def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse):
+    def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse, number_iterations):
         self.type = type
         self.preprocessing = preprocessing
         self.confidence = confidence
@@ -10,11 +10,12 @@ class File:
         self.average_distance_multiplier = average_distance_multiplier
         self.coarse_level = coarse_level
         self.index_coarse = index_coarse
+        self.number_iterations = number_iterations
     
     def __str__(self):
-        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Number Centers : " + str(self.number_centers) + " - Average Distance Multiplier : " + str(self.average_distance_multiplier) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse)
+        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Number Centers : " + str(self.number_centers) + " - Average Distance Multiplier : " + str(self.average_distance_multiplier) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse) + ' - Number Iterations : ' + self.number_iterations
 
-# Version 1 files
+# Version 1 files -OLD
 '''        
 files=[
     "version_1_type_custom_preprocessing_mutual_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt", 
@@ -36,18 +37,14 @@ file_types=[
 '''
 
 # Version 2 files
-files=[
-    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
-]
-
-file_types=[
-    File('custom', 'none', 0.1, 1000, -1, -2, 1),
-]
+files=[]
+file_types=[]
+number_iterations=1
 
 for i in [100, 200, 300, 400]:
     for j in [1, 2, 3, 4]:
-        files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1.txt')
-        file_types.append(File('custom', 'none', 0.1, i, j, -2, 1))
+        files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) +'.txt')
+        file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations))
 
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
