@@ -517,7 +517,7 @@ class Landmark_Model():
                 
                 print('average_distance : ', average_distance)
                 # tau = 0.1
-                tau = 2.5*average_distance
+                tau = 2*average_distance
                 number_transformations = 6
                 number_centers = 100
                     
@@ -535,7 +535,10 @@ class Landmark_Model():
                     distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
                     
                     indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
-                    print('indices_neighborhood_points :', indices_neighborhood_points)                    
+                    print('indices_neighborhood_points :', indices_neighborhood_points)
+                    
+                    if indices_neighborhood_points.size < 3:
+                        continue                 
                     
                     transformation_indices = []
                     for i in range(number_transformations):
