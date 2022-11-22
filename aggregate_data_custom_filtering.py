@@ -2,10 +2,12 @@ import re
 import matplotlib.pyplot as plt
 
 class File:
-    def __init__(self, type, preprocessing, confidence, coarse_level, index_coarse):
+    def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse):
         self.type = type
         self.preprocessing = preprocessing
         self.confidence = confidence
+        self.number_centers = number_centers
+        self.average_distance_multiplier = average_distance_multiplier
         self.coarse_level = coarse_level
         self.index_coarse = index_coarse
     
@@ -22,16 +24,6 @@ files=[
     "version_1_type_custom_preprocessing_none_confidence_0.05_number_centers_1000_coarse_level_-2_index_coarse_1.txt",
     "version_1_type_default_preprocessing_mutual_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
 ]
-'''
-
-# Version 2 files
-files=[
-    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
-]
-
-for i in [100, 200, 300, 400]:
-    for j in [1, 2, 3, 4]:
-        files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1.txt')
 
 file_types=[
     File('custom', 'mutual', 0.1, -2, 1),
@@ -41,6 +33,22 @@ file_types=[
     File('custom', 'none', 0.05, -2, 1),
     File('default', 'mutual', 0.1, -2, 1)
 ]
+'''
+
+# Version 2 files
+files=[
+    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
+]
+
+file_types=[
+    File('custom', 'mutual', 0.1, 1000, -1, -2, 1),
+]
+
+for i in [100, 200, 300, 400]:
+    for j in [1, 2, 3, 4]:
+        files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1.txt')
+        file_types.append(File('custom', 'mutual', 0.1, i, j, -2, 1))
+
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
 final_data = {}
