@@ -1,13 +1,14 @@
-custom_filtering=true
+# custom_filtering=true
+custom_filtering=false
 if [ "$custom_filtering" = true ] ; then
     type=custom
 else
     type=default
 fi
 
-preprocessing=none
+# preprocessing=none
 # preprocessing=single
-# preprocessing=mutual
+preprocessing=mutual
 
 confidence=0.1
 # confidence=0.5
