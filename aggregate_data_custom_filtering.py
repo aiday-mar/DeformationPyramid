@@ -33,10 +33,9 @@ for file in files:
     Lines = file_txt.readlines()
     current_data_type = None
     for line in Lines:
-        for data_type in data_types:
-            if data_type in line:
-                current_data_type = line
-                final_data[file][current_data_type] = {}
+        if line[:-1] in data_types:
+            current_data_type = line
+            final_data[file][current_data_type] = {}
                     
         if 'RMSE' in line:
             final_data[file][current_data_type]['RMSE'] = float(re.findall("\d+\.\d+", line)[0])
