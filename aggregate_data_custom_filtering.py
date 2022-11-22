@@ -34,10 +34,11 @@ for file in files:
     current_data_type = None
     for line in Lines:
         print('line : ', line)
-        if line in data_types:
-            current_data_type = line
-            final_data[file][current_data_type] = {}
-        
+        for data_type in data_types:
+            if data_type in line:
+                current_data_type = line
+                final_data[file][current_data_type] = {}
+            
         print('final_data : ', final_data)
         
         if 'RMSE' in line:
