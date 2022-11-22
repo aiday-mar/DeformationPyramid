@@ -11,15 +11,28 @@ class File:
     
     def __str__(self):
         return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse)
-         
+
+# Version 1 files
+'''        
 files=[
-    "type_custom_preprocessing_mutual_confidence_0.1_coarse_level_-2_index_coarse_1.txt", 
-    "type_custom_preprocessing_none_confidence_0.1_coarse_level_-2_index_coarse_1.txt", 
-    "type_custom_preprocessing_none_confidence_0.1_coarse_level_-3_index_coarse_1.txt", 
-    "type_custom_preprocessing_none_confidence_0.1_coarse_level_-3_index_coarse_2.txt",
-    "type_custom_preprocessing_none_confidence_0.05_coarse_level_-2_index_coarse_1.txt",
-    "type_default_preprocessing_mutual_confidence_0.1_coarse_level_-2_index_coarse_1.txt"
+    "version_1_type_custom_preprocessing_mutual_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt", 
+    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt", 
+    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-3_index_coarse_1.txt", 
+    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-3_index_coarse_2.txt",
+    "version_1_type_custom_preprocessing_none_confidence_0.05_number_centers_1000_coarse_level_-2_index_coarse_1.txt",
+    "version_1_type_default_preprocessing_mutual_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
 ]
+'''
+
+# Version 2 files
+files=[
+    "version_1_type_custom_preprocessing_none_confidence_0.1_number_centers_1000_coarse_level_-2_index_coarse_1.txt"
+]
+
+for i in [100, 200, 300, 400]:
+    for j in [1, 2, 3, 4]:
+        files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1.txt')
+
 file_types=[
     File('custom', 'mutual', 0.1, -2, 1),
     File('custom', 'none', 0.1, -2, 1),
