@@ -514,7 +514,7 @@ class Landmark_Model():
                     row = distances[j]
                     non_zero_values = row[np.nonzero(row)]
                     print('non_zero_values.shape : ', non_zero_values.shape)
-                    if non_zero_values.sie != 0:
+                    if non_zero_values.size != 0:
                         average_distance += min(non_zero_values)/number_points
                 
                 print('average_distance : ', average_distance)
