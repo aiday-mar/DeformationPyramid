@@ -42,6 +42,17 @@ for file in files:
 
 print('final_data : ', final_data)
 RMSE_full_deformed = []
+RMSE_full_non_deformed = []
+RMSE_partial_deformed = []
+RMSE_partial_non_deformed = []
+
 for file in files:
-    RMSE_full_deformed.append(final_data[file]['Full Deformed'])
+    RMSE_full_deformed.append(final_data[file]['Full Deformed']['RMSE'])
+    RMSE_full_non_deformed.append(final_data[file]['Full Non Deformed']['RMSE'])
+    RMSE_partial_deformed.append(final_data[file]['Partial Deformed']['RMSE'])
+    RMSE_partial_non_deformed.append(final_data[file]['Partial Non Deformed']['RMSE'])
+    
 print('RMSE_full_deformed : ', RMSE_full_deformed)
+print('RMSE_full_non_deformed : ', RMSE_full_non_deformed)
+print('RMSE_partial_deformed : ', RMSE_partial_deformed)
+print('RMSE_partial_non_deformed : ', RMSE_partial_non_deformed)
