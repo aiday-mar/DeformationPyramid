@@ -41,3 +41,7 @@ for file in files:
             final_data[file][current_data_type]['RMSE'] = float(re.findall("\d+\.\d+", line)[0])
 
 print('final_data : ', final_data)
+RMSE_full_deformed = []
+for file in files:
+    RMSE_full_deformed.append(final_data[file]['Full Deformed'])
+print('RMSE_full_deformed : ', RMSE_full_deformed)
