@@ -517,7 +517,7 @@ class Landmark_Model():
                 
                 print('average_distance : ', average_distance)
                 # tau = 0.1
-                tau = 2*average_distance
+                tau = 3*average_distance
                 number_transformations = 6
                 number_centers = 100
                     
