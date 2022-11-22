@@ -356,6 +356,7 @@ class Landmark_Model():
             
             '''
             # 2. Custom filtering done with the second method
+            # VERSION 1
             '''        
             if custom_filtering and intermediate_output_folder:
                 print('custom filtering is used')
@@ -492,6 +493,7 @@ class Landmark_Model():
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             '''
             # Custom filtering done with the 3rd method
+            # VERSION 2
             
             if custom_filtering and intermediate_output_folder:
                 print('Custom filtering is used')
