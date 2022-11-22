@@ -17,8 +17,8 @@ confidence=0.1
 # coarse_level=-2
 coarse_level=-3
 
-index_coarse_feats=1
-# index_coarse_feats=2
+# index_coarse_feats=1
+index_coarse_feats=2
 
 rm -rf TestData/FullNonDeformed/output_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}
 mkdir TestData/FullNonDeformed/output_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}
