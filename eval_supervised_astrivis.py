@@ -87,6 +87,7 @@ if __name__ == "__main__":
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
     
+    print('Before get dataloader')
     if args.print_keypoints:
         test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)
     else:
@@ -111,7 +112,8 @@ if __name__ == "__main__":
         index_coarse_feats = int(args.index_coarse_feats) if args.index_coarse_feats else 1
         print('index_coarse_feats : ', index_coarse_feats)
         intermediate_output_folder = args.intermediate_output_folder if args.intermediate_output_folder and args.print_keypoints else None
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = args.preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
+        preprocessing = args.preprocessing if args.preprocessing else 'mutual'
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
