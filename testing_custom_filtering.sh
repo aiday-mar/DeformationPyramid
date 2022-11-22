@@ -39,6 +39,9 @@ for number_center in "${number_centers[@]}"
 do
     for average_distance_multiplier in "${average_distance_multipliers[@]}"
     do
+        echo "number of centers ${number_center}"
+        echo "average distance multiplier ${average_distance_multiplier}"
+        
         folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}
         file_name=TestData/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}.txt
 
