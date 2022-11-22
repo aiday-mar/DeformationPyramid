@@ -12,7 +12,7 @@ class File:
         self.index_coarse = index_coarse
     
     def __str__(self):
-        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse)
+        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Number Centers : " + str(self.number_centers) + " - Average Distance Multiplier : " + str(self.average_distance_multiplier) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse)
 
 # Version 1 files
 '''        
