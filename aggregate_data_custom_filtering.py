@@ -1,4 +1,5 @@
 import re
+import matplotlib.pyplot as plt
 
 class File:
     def __init__(self, type, preprocessing, confidence, coarse_level, index_coarse):
@@ -51,8 +52,27 @@ for file in files:
     RMSE_full_non_deformed.append(final_data[file]['Full Non Deformed']['RMSE'])
     RMSE_partial_deformed.append(final_data[file]['Partial Deformed']['RMSE'])
     RMSE_partial_non_deformed.append(final_data[file]['Partial Non Deformed']['RMSE'])
-    
-print('RMSE_full_deformed : ', RMSE_full_deformed)
-print('RMSE_full_non_deformed : ', RMSE_full_non_deformed)
-print('RMSE_partial_deformed : ', RMSE_partial_deformed)
-print('RMSE_partial_non_deformed : ', RMSE_partial_non_deformed)
+
+fig = plt.figure(figsize = (10, 5))
+plt.bar(files, RMSE_full_deformed, width = 0.4)
+plt.ylabel("RMSE")
+plt.title("RMSE - Full Deformed")
+plt.savefig('RMSE_Full_Deformed_Custom_Filtering.png')
+
+fig = plt.figure(figsize = (10, 5))
+plt.bar(files, RMSE_full_non_deformed, width = 0.4)
+plt.ylabel("RMSE")
+plt.title("RMSE - Full Non Deformed")
+plt.savefig('RMSE_Full_Non_Deformed_Custom_Filtering.png')
+
+fig = plt.figure(figsize = (10, 5))
+plt.bar(files, RMSE_partial_deformed, width = 0.4)
+plt.ylabel("RMSE")
+plt.title("RMSE - Partial Deformed")
+plt.savefig('RMSE_Partial_Deformed_Custom_Filtering.png')
+
+fig = plt.figure(figsize = (10, 5))
+plt.bar(files, RMSE_partial_non_deformed, width = 0.4)
+plt.ylabel("RMSE")
+plt.title("RMSE - Partial Non Deformed")
+plt.savefig('RMSE_Partial_Non_Deformed_Custom_Filtering.png')
