@@ -33,6 +33,7 @@ for file in files:
     Lines = file_txt.readlines()
     current_data_type = None
     for line in Lines:
+        print('line : ', line)
         if line in data_types:
             current_data_type = line
             final_data[file][current_data_type] = {}
