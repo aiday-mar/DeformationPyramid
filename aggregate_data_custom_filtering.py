@@ -38,6 +38,8 @@ for file in files:
             current_data_type = line
             final_data[file][current_data_type] = {}
         
+        print('final_data : ', final_data)
+        
         if 'RMSE' in line:
             final_data[file][current_data_type]['RMSE'] = re.findall("\d+\.\d+", line)
 
