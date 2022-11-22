@@ -510,9 +510,10 @@ class Landmark_Model():
                 for j in range(number_points):
                     for k in range(j + 1, number_points):
                         distances[j][k] = np.linalg.norm(ldmk_s_np[j] - ldmk_s_np[k])
+                    print('j : ', j)
                     row = distances[j]
                     non_zero_values = row[np.nonzero(row)]
-                    print('non_zero_values : ', non_zero_values)
+                    print('non_zero_values.shape : ', non_zero_values.shape)
                     if non_zero_values:
                         average_distance += min(non_zero_values)/number_points
                 
