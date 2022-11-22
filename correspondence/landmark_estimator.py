@@ -356,6 +356,7 @@ class Landmark_Model():
             # 2. Custom filtering done with the second method
                         
             if custom_filtering and intermediate_output_folder:
+                print('custom filtering is used')
                 if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
                     
