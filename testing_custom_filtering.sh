@@ -1,3 +1,6 @@
+# version=1
+version=2
+
 custom_filtering=true
 # custom_filtering=false
 if [ "$custom_filtering" = true ] ; then
@@ -20,11 +23,13 @@ coarse_level=-2
 index_coarse_feats=1
 # index_coarse_feats=2
 
-# version=1
-version=2
+number_centers=100
+# number_centers=200
+# number_centers=300
+# number_centers=400
 
-folder_name=output_version_${version}_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}
-file_name=TestData/version_${version}_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}.txt
+folder_name=output_version_${version}_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_number_centers_${number_centers}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}
+file_name=TestData/version_${version}_type_${type}_preprocessing_${preprocessing}_confidence_${confidence}_number_centers_${number_centers}_coarse_level_${coarse_level}_index_coarse_${index_coarse_feats}.txt
 
 rm -rf TestData/FullNonDeformed/${folder_name}
 mkdir TestData/FullNonDeformed/${folder_name}
@@ -40,7 +45,7 @@ touch ${file_name}
 
 if [ "$custom_filtering" = true ] ; then
     echo 'Full Non Deformed' >> ${file_name} 
-    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='FullNonDeformed/mesh_transformed_0.ply' --t='FullNonDeformed/mesh_transformed_1.ply' --source_trans='FullNonDeformed/mesh_transformed_0_se4.h5' --target_trans='FullNonDeformed/mesh_transformed_1_se4.h5' --matches='FullNonDeformed/0_1.npz' --output="FullNonDeformed/${folder_name}/result.ply" --output_trans="FullNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="FullNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --print_keypoints --custom_filtering >> ${file_name}
+    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='FullNonDeformed/mesh_transformed_0.ply' --t='FullNonDeformed/mesh_transformed_1.ply' --source_trans='FullNonDeformed/mesh_transformed_0_se4.h5' --target_trans='FullNonDeformed/mesh_transformed_1_se4.h5' --matches='FullNonDeformed/0_1.npz' --output="FullNonDeformed/${folder_name}/result.ply" --output_trans="FullNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="FullNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=100 --print_keypoints --custom_filtering >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/FullNonDeformed/mesh_transformed_0_se4.h5" --part2="TestData/FullNonDeformed/mesh_transformed_1_se4.h5" --pred="TestData/FullNonDeformed/${folder_name}/result_se4.h5" >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="TestData/FullNonDeformed/${folder_name}/result.ply" --input2='TestData/FullNonDeformed/mesh_transformed_1.ply' --save_final_path="TestData/FullNonDeformed/${folder_name}/final.ply" --save_destination_path="TestData/FullNonDeformed/${folder_name}/destination.ply" >> ${file_name}
 
@@ -55,13 +60,13 @@ if [ "$custom_filtering" = true ] ; then
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="TestData/FullDeformed/${folder_name}/result.ply" --input2='TestData/FullDeformed/104.ply' --matches='TestData/FullDeformed/020_104.npz' --save_final_path="TestData/FullDeformed/${folder_name}/final.ply" --save_destination_path="TestData/FullDeformed/${folder_name}/destination.ply" >> ${file_name}
 
     echo 'Partial Non Deformed' >> ${file_name} 
-    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='PartialNonDeformed/mesh_transformed_0.ply' --t='PartialNonDeformed/mesh_transformed_1.ply' --source_trans='PartialNonDeformed/mesh_transformed_0_se4.h5' --target_trans='PartialNonDeformed/mesh_transformed_1_se4.h5' --matches='PartialNonDeformed/0_1.npz' --output="PartialNonDeformed/${folder_name}/result.ply" --output_trans="PartialNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --print_keypoints --custom_filtering >> ${file_name}
+    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='PartialNonDeformed/mesh_transformed_0.ply' --t='PartialNonDeformed/mesh_transformed_1.ply' --source_trans='PartialNonDeformed/mesh_transformed_0_se4.h5' --target_trans='PartialNonDeformed/mesh_transformed_1_se4.h5' --matches='PartialNonDeformed/0_1.npz' --output="PartialNonDeformed/${folder_name}/result.ply" --output_trans="PartialNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=100 --print_keypoints --custom_filtering >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1='TestData/PartialNonDeformed/mesh_transformed_0_se4.h5' --part2='TestData/PartialNonDeformed/mesh_transformed_1_se4.h5' --pred="TestData/PartialNonDeformed/${folder_name}/result_se4.h5" >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialNonDeformed/${folder_name}/result.ply" --initial='TestData/PartialNonDeformed/mesh_transformed_0.ply' --part1='TestData/PartialNonDeformed/mesh_transformed_0_se4.h5' --part2='TestData/PartialNonDeformed/mesh_transformed_1_se4.h5' --save_final_path="TestData/PartialNonDeformed/${folder_name}/final.ply" --save_destination_path="TestData/PartialNonDeformed/${folder_name}/destination.ply" >> ${file_name}
 
 else
     echo 'Full Non Deformed' >> ${file_name} 
-    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='FullNonDeformed/mesh_transformed_0.ply' --t='FullNonDeformed/mesh_transformed_1.ply' --source_trans='FullNonDeformed/mesh_transformed_0_se4.h5' --target_trans='FullNonDeformed/mesh_transformed_1_se4.h5' --matches='FullNonDeformed/0_1.npz' --output="FullNonDeformed/${folder_name}/result.ply" --output_trans="FullNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="FullNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --print_keypoints >> ${file_name}
+    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='FullNonDeformed/mesh_transformed_0.ply' --t='FullNonDeformed/mesh_transformed_1.ply' --source_trans='FullNonDeformed/mesh_transformed_0_se4.h5' --target_trans='FullNonDeformed/mesh_transformed_1_se4.h5' --matches='FullNonDeformed/0_1.npz' --output="FullNonDeformed/${folder_name}/result.ply" --output_trans="FullNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="FullNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=100 --print_keypoints >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/FullNonDeformed/mesh_transformed_0_se4.h5" --part2="TestData/FullNonDeformed/mesh_transformed_1_se4.h5" --pred="TestData/FullNonDeformed/${folder_name}/result_se4.h5" >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="TestData/FullNonDeformed/${folder_name}/result.ply" --input2='TestData/FullNonDeformed/mesh_transformed_1.ply' --save_final_path="TestData/FullNonDeformed/${folder_name}/final.ply" --save_destination_path="TestData/FullNonDeformed/${folder_name}/destination.ply" >> ${file_name}
 
@@ -76,7 +81,7 @@ else
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="TestData/FullDeformed/${folder_name}/result.ply" --input2='TestData/FullDeformed/104.ply' --matches='TestData/FullDeformed/020_104.npz' --save_final_path="TestData/FullDeformed/${folder_name}/final.ply" --save_destination_path="TestData/FullDeformed/${folder_name}/destination.ply" >> ${file_name}
 
     echo 'Partial Non Deformed' >> ${file_name} 
-    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='PartialNonDeformed/mesh_transformed_0.ply' --t='PartialNonDeformed/mesh_transformed_1.ply' --source_trans='PartialNonDeformed/mesh_transformed_0_se4.h5' --target_trans='PartialNonDeformed/mesh_transformed_1_se4.h5' --matches='PartialNonDeformed/0_1.npz' --output="PartialNonDeformed/${folder_name}/result.ply" --output_trans="PartialNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --print_keypoints >> ${file_name}
+    python3 eval_supervised_astrivis.py --config=config/LNDP.yaml --s='PartialNonDeformed/mesh_transformed_0.ply' --t='PartialNonDeformed/mesh_transformed_1.ply' --source_trans='PartialNonDeformed/mesh_transformed_0_se4.h5' --target_trans='PartialNonDeformed/mesh_transformed_1_se4.h5' --matches='PartialNonDeformed/0_1.npz' --output="PartialNonDeformed/${folder_name}/result.ply" --output_trans="PartialNonDeformed/${folder_name}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=100 --print_keypoints >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1='TestData/PartialNonDeformed/mesh_transformed_0_se4.h5' --part2='TestData/PartialNonDeformed/mesh_transformed_1_se4.h5' --pred="TestData/PartialNonDeformed/${folder_name}/result_se4.h5" >> ${file_name}
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialNonDeformed/${folder_name}/result.ply" --initial='TestData/PartialNonDeformed/mesh_transformed_0.ply' --part1='TestData/PartialNonDeformed/mesh_transformed_0_se4.h5' --part2='TestData/PartialNonDeformed/mesh_transformed_1_se4.h5' --save_final_path="TestData/PartialNonDeformed/${folder_name}/final.ply" --save_destination_path="TestData/PartialNonDeformed/${folder_name}/destination.ply" >> ${file_name}
 
