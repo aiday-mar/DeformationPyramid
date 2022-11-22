@@ -34,7 +34,7 @@ for file in files:
     current_data_type = None
     for line in Lines:
         if line[:-1] in data_types:
-            current_data_type = line
+            current_data_type = line[:-1]
             final_data[file][current_data_type] = {}
                     
         if 'RMSE' in line:
