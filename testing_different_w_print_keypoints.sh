@@ -1,5 +1,5 @@
-custom_filtering=true
-# custom_filtering=false
+# custom_filtering=true
+custom_filtering=false
 if [ "$custom_filtering" = true ] ; then
     type=custom
 else
