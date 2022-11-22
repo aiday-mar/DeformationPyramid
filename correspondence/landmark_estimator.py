@@ -524,6 +524,7 @@ class Landmark_Model():
                 for idx, ldmk_s_point in enumerate(ldmk_s_np):
                     map_ldmk_s_correspondences[tuple(ldmk_s_point)].append(idx)
                 
+                print('number centers : ', number_centers)
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
                 outliers = defaultdict(int)
 

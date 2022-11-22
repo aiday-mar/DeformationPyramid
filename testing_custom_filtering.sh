@@ -23,8 +23,8 @@ coarse_level=-2
 index_coarse_feats=1
 # index_coarse_feats=2
 
-number_centers=100
-# number_centers=200
+# number_centers=100
+number_centers=200
 # number_centers=300
 # number_centers=400
 
