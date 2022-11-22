@@ -50,7 +50,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, custom_filtering = None, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
+    def inference(self, inputs, custom_filtering = None, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
 
         if base:
             self.path = base
@@ -516,8 +516,7 @@ class Landmark_Model():
                         average_distance += min(non_zero_values)/number_points
                 
                 print('average_distance : ', average_distance)
-                # tau = 0.1
-                tau = 2*average_distance
+                tau = average_distance_multiplier*average_distance
                 number_transformations = 6
                     
                 map_ldmk_s_correspondences = defaultdict(list)
