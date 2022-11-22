@@ -8,6 +8,9 @@ class File:
         self.confidence = confidence
         self.coarse_level = coarse_level
         self.index_coarse = index_coarse
+    
+    def __str__(self):
+        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse)
          
 files=[
     "type_custom_preprocessing_mutual_confidence_0.1_coarse_level_-2_index_coarse_1.txt", 
