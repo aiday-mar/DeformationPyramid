@@ -1,3 +1,5 @@
+# Previous data seems to be incorrect because I chose too many center indices, I should probably redo the calculation but vary the number of times everything is done
+
 # version=1
 version=2
 
@@ -27,7 +29,7 @@ index_coarse_feats=1
 # number_center=200
 # number_center=300
 # number_center=400
-number_centers=(100 200 300 400)
+number_centers=(100 200 300)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
@@ -41,7 +43,7 @@ do
     do
         echo "number of centers ${number_center}"
         echo "average distance multiplier ${average_distance_multiplier}"
-        
+
         folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}
         file_name=TestData/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}.txt
 

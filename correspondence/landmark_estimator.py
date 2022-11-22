@@ -50,7 +50,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, custom_filtering = None, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
+    def inference(self, inputs, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
 
         if base:
             self.path = base
@@ -502,7 +502,7 @@ class Landmark_Model():
                 
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 number_points = ldmk_s_np.shape[0]
-                print('number_points : ', number_points)
+                print('number points : ', number_points)
                 ldmk_t_np = np.array(ldmk_t.cpu())
 
                 distances = np.zeros((number_points,number_points))
@@ -515,7 +515,8 @@ class Landmark_Model():
                     if non_zero_values.size != 0:
                         average_distance += min(non_zero_values)/number_points
                 
-                print('average_distance : ', average_distance)
+                print('average distance : ', average_distance)
+                print('average distance multiplier : ', average_distance_multiplier)
                 tau = average_distance_multiplier*average_distance
                 number_transformations = 6
                     
@@ -527,63 +528,65 @@ class Landmark_Model():
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
                 outliers = defaultdict(int)
 
-                for neighborhood_center_index in neighborhood_center_indices_list:
-                    neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
+                print('number iterations custom filtering : ', number_iterations_custom_filtering)
+                for _ in range(number_iterations_custom_filtering):
+                    for neighborhood_center_index in neighborhood_center_indices_list:
+                        neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
 
-                    distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
-                    distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
-                    
-                    indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
-                    
-                    if indices_neighborhood_points.size < 3:
-                        continue                 
-                    
-                    transformation_indices = []
-                    for i in range(number_transformations):
-                        random_indices = random.sample(list(indices_neighborhood_points), 3)
-                        transformation_indices.append(random_indices)                       
+                        distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
+                        distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
+                        
+                        indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
+                        
+                        if indices_neighborhood_points.size < 3:
+                            continue                 
+                        
+                        transformation_indices = []
+                        for i in range(number_transformations):
+                            random_indices = random.sample(list(indices_neighborhood_points), 3)
+                            transformation_indices.append(random_indices)                       
 
-                    point_indices_close_to_center = np.where(distances_to_center < tau)[0]
-                    source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
-                    target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
+                        point_indices_close_to_center = np.where(distances_to_center < tau)[0]
+                        source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
+                        target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
 
-                    for n_transform in range(number_transformations):
-                        source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
-                        target_point_1 = ldmk_t_np[transformation_indices[n_transform][0]]
-                        source_point_2 = ldmk_s_np[transformation_indices[n_transform][1]]
-                        target_point_2 = ldmk_t_np[transformation_indices[n_transform][1]]
-                        source_point_3 = ldmk_s_np[transformation_indices[n_transform][2]]
-                        target_point_3 = ldmk_t_np[transformation_indices[n_transform][2]]
+                        for n_transform in range(number_transformations):
+                            source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
+                            target_point_1 = ldmk_t_np[transformation_indices[n_transform][0]]
+                            source_point_2 = ldmk_s_np[transformation_indices[n_transform][1]]
+                            target_point_2 = ldmk_t_np[transformation_indices[n_transform][1]]
+                            source_point_3 = ldmk_s_np[transformation_indices[n_transform][2]]
+                            target_point_3 = ldmk_t_np[transformation_indices[n_transform][2]]
 
-                        X = np.empty((0,3), int)
-                        X = np.append(X, np.array(np.expand_dims(source_point_1, axis=0)), axis=0)
-                        X = np.append(X, np.array(np.expand_dims(source_point_2, axis=0)), axis=0)
-                        X = np.append(X, np.array(np.expand_dims(source_point_3, axis=0)), axis=0)
-                        Y = np.empty((0,3), int)
-                        Y = np.append(Y, np.array(np.expand_dims(target_point_1, axis=0)), axis=0)
-                        Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
-                        Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
+                            X = np.empty((0,3), int)
+                            X = np.append(X, np.array(np.expand_dims(source_point_1, axis=0)), axis=0)
+                            X = np.append(X, np.array(np.expand_dims(source_point_2, axis=0)), axis=0)
+                            X = np.append(X, np.array(np.expand_dims(source_point_3, axis=0)), axis=0)
+                            Y = np.empty((0,3), int)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_1, axis=0)), axis=0)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
 
-                        mean_X = np.mean(X, axis = 0)
-                        mean_Y = np.mean(Y, axis = 0)
-                    
-                        Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
-                        U, _, V = np.linalg.svd(Sxy, full_matrices=True)
-                        S = np.eye(3)
-                        UV_det = np.linalg.det(U) * np.linalg.det(V)
-                        S[2, 2] = UV_det
-                        sv = np.matmul( S, V )
-                        R = np.matmul( U, sv)
-                        t = mean_Y.T - np.matmul( R, mean_X.T )
+                            mean_X = np.mean(X, axis = 0)
+                            mean_Y = np.mean(Y, axis = 0)
+                        
+                            Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
+                            U, _, V = np.linalg.svd(Sxy, full_matrices=True)
+                            S = np.eye(3)
+                            UV_det = np.linalg.det(U) * np.linalg.det(V)
+                            S[2, 2] = UV_det
+                            sv = np.matmul( S, V )
+                            R = np.matmul( U, sv)
+                            t = mean_Y.T - np.matmul( R, mean_X.T )
 
-                        thr = 0.05                        
-                        points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
-                        norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
-                        outlier_indices = np.where(norm_error > thr)[0]
-                        for outlier_idx in outlier_indices:
-                            weight = norm_error[outlier_idx]/tau
-                            out_idx = point_indices_close_to_center[outlier_idx]
-                            outliers[out_idx] = outliers[out_idx] + weight
+                            thr = 0.05                        
+                            points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
+                            norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
+                            outlier_indices = np.where(norm_error > thr)[0]
+                            for outlier_idx in outlier_indices:
+                                weight = norm_error[outlier_idx]/tau
+                                out_idx = point_indices_close_to_center[outlier_idx]
+                                outliers[out_idx] = outliers[out_idx] + weight
                             
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:

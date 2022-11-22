@@ -51,6 +51,7 @@ if __name__ == "__main__":
     parser.add_argument('--index_coarse_feats', type=str, help='index at which to return coarse features in the lepard decoder')
     parser.add_argument('--number_centers', type=str, help='number of centers to use in the custom filtering')
     parser.add_argument('--average_distance_multiplier', type=str, help='multiplier in front of the average distance')
+    parser.add_argument('--number_iterations_custom_filtering', type=str, help='number of iterations of the custom filtering')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     args = parser.parse_args()
     
@@ -115,7 +116,8 @@ if __name__ == "__main__":
         preprocessing = args.preprocessing if args.preprocessing else 'mutual'
         number_centers = int(args.number_centers) if args.number_centers else 1000
         average_distance_multiplier = float(args.average_distance_multiplier) if args.average_distance_multiplier else 2
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
+        number_iterations_custom_filtering = int(args.number_iterations_custom_filtering) if args.number_iterations_custom_filtering else 1
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]

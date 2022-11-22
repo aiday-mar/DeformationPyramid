@@ -41,13 +41,13 @@ files=[
 ]
 
 file_types=[
-    File('custom', 'mutual', 0.1, 1000, -1, -2, 1),
+    File('custom', 'none', 0.1, 1000, -1, -2, 1),
 ]
 
 for i in [100, 200, 300, 400]:
     for j in [1, 2, 3, 4]:
         files.append('v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1.txt')
-        file_types.append(File('custom', 'mutual', 0.1, i, j, -2, 1))
+        file_types.append(File('custom', 'none', 0.1, i, j, -2, 1))
 
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
