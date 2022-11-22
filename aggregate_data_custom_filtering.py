@@ -79,7 +79,6 @@ plt.ylabel("RMSE")
 plt.title("RMSE - Partial Non Deformed")
 plt.savefig('RMSE_Partial_Non_Deformed_Custom_Filtering.png')
 
-print('files : ', files)
 print('RMSE_full_deformed : ', RMSE_full_deformed)
 RMSE_full_deformed_index = RMSE_full_deformed.index(min(RMSE_full_deformed))
 print('Minimum attained for : ', file_types[RMSE_full_deformed_index])
