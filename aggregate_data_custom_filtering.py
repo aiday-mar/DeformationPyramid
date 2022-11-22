@@ -41,7 +41,6 @@ for file in files:
         if 'RMSE' in line:
             final_data[file][current_data_type]['RMSE'] = float(re.findall("\d+\.\d+", line)[0])
 
-print('final_data : ', final_data)
 RMSE_full_deformed = []
 RMSE_full_non_deformed = []
 RMSE_partial_deformed = []
