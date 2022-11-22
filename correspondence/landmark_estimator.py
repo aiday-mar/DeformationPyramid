@@ -535,7 +535,6 @@ class Landmark_Model():
                     distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
                     
                     indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
-                    print('indices_neighborhood_points :', indices_neighborhood_points)
                     
                     if indices_neighborhood_points.size < 3:
                         continue                 
