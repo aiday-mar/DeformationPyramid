@@ -753,7 +753,7 @@ class Landmark_Model():
                             continue
                         
                         inliers_pcd_points = ldmk_s_np[point_indices_close_to_center[final_inliers]]
-                        inliers_pcd_points.append(neighborhood_center_source)
+                        inliers_pcd_points = np.concatenate((inliers_pcd_points, neighborhood_center_source[None, :]))
                         inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
                         for inlier_idx in range(inliers_pcd_points.shape[0]):
                             if inlier_idx < inliers_pcd_points.shape[0] - 1:
