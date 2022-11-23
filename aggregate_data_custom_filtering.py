@@ -62,7 +62,7 @@ for i in nc :
             if not heatmap and 'RMSE' in line:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
                 final_data[file][current_data_type]['RMSE'] = rmse
-                final_matrices[current_data_type][count] = rmse
+                final_matrices[current_data_type][0][count] = rmse
         
         count += 1
 
