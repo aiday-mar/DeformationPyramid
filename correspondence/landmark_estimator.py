@@ -715,6 +715,10 @@ class Landmark_Model():
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
 
+                rot = data['batched_rot'][0]
+                ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
+
                 ldmk_t_pcd = o3d.geometry.PointCloud()
                 ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
@@ -816,7 +820,7 @@ class Landmark_Model():
                             n_center += 1
                             continue
                         
-                        inliers_pcd_points = ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                        inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
                         inliers_pcd_points = np.concatenate((inliers_pcd_points, neighborhood_center_source[None, :]))
                         inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
                         for inlier_idx in range(inliers_pcd_points.shape[0]):
@@ -829,7 +833,7 @@ class Landmark_Model():
                         inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
                         o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
                     
-                        inliers_pcd_points_s = ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                        inliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
                         inliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_inliers]]
                         total_inliers = np.concatenate((inliers_pcd_points_s, inliers_pcd_points_t), axis = 0)
                         number_inliers_src = inliers_pcd_points_s.shape[0]
@@ -839,7 +843,7 @@ class Landmark_Model():
                         inliers_line_set.lines =o3d.utility.Vector2iVector(inliers_correspondences)
                         o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
                         
-                        outliers_pcd_points_s = ldmk_s_np[point_indices_close_to_center[final_outliers]]
+                        outliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_outliers]]
                         outliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_outliers]]
                         total_outliers = np.concatenate((outliers_pcd_points_s, outliers_pcd_points_t), axis = 0)
                         number_outliers_src = outliers_pcd_points_s.shape[0]
