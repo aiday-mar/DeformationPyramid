@@ -657,6 +657,14 @@ class Landmark_Model():
                 print('number points : ', number_points)
                 ldmk_t_np = np.array(ldmk_t.cpu())
 
+                ldmk_s_pcd = o3d.geometry.PointCloud()
+                ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
+
+                ldmk_t_pcd = o3d.geometry.PointCloud()
+                ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
+                
                 distances = np.zeros((number_points,number_points))
                 average_distance = 0
                 for j in range(number_points):
