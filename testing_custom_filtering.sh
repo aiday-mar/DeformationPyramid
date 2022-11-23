@@ -35,7 +35,7 @@ number_centers=(20)
 # average_distance_multiplier=3
 # average_distance_multiplier=4
 # average_distance_multipliers=(1 2 3 4)
-average_distance_multipliers=(3)
+average_distance_multipliers=(1.0 1.4 1.8 2.2 2.6 3.0)
 
 number_iterations_custom_filtering=1
 # number_iterations_custom_filtering=2
