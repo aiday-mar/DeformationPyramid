@@ -28,7 +28,7 @@ final_data = {}
 
 # For heatmap
 # shape=(3,4)
-shape=(1,6)
+shape=(6,)
 final_matrices={'Full Non Deformed': np.zeros(shape), 'Full Deformed': np.zeros(shape), 'Partial Deformed': np.zeros(shape),  'Partial Non Deformed': np.zeros(shape)}
 
 for i in [20]: # [100, 200, 300]:
