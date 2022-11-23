@@ -24,7 +24,7 @@ number_iterations=1
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
 final_data = {}
-final_matrices={'Full Non Deformed': np.zeros((3, 4)), 'Full Non Deformed': np.zeros((3, 4)), 'Partial Deformed': np.zeros((3, 4)),  'Partial Non Deformed': np.zeros((3, 4))}
+final_matrices={'Full Non Deformed': np.zeros((3, 4)), 'Full Deformed': np.zeros((3, 4)), 'Partial Deformed': np.zeros((3, 4)),  'Partial Non Deformed': np.zeros((3, 4))}
 
 for i in [100, 200, 300]:
     for j in [1, 2, 3, 4]:
