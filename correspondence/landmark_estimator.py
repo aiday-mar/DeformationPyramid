@@ -779,7 +779,7 @@ class Landmark_Model():
                         total_points = np.concatenate((ldmk_s_np, ldmk_t_np), axis = 0)
                         number_points_src = ldmk_s_np.shape[0]
                         correspondences = np.array([[i, i + number_points_src] for i in range(0, number_points_src)])
-                        colors = np.zeros((correspondences.shape[0], correspondences.shape[1]))
+                        colors = np.zeros((correspondences.shape[0], 3))
                         colors[point_indices_close_to_center[final_inliers]] = np.array([0.7, 0.7, 0.7])
                         line_set = o3d.geometry.LineSet()
                         line_set.points=o3d.utility.Vector3dVector(total_points)
