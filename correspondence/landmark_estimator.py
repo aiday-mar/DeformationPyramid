@@ -813,7 +813,6 @@ class Landmark_Model():
                                 final_norm_error = norm_error
                         
                         if final_outliers.size == 0 or final_norm_error.size == 0 or final_inliers.size == 0:
-                            print('Entered into the continue statement for n_center : ', n_center)
                             n_center += 1
                             continue
                         
@@ -829,19 +828,27 @@ class Landmark_Model():
                         inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
                         inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
                         o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
+                    
+                        inliers_pcd_points_s = ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                        inliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_inliers]]
+                        total_inliers = np.concatenate((inliers_pcd_points_s, inliers_pcd_points_t), axis = 0)
+                        number_inliers_src = inliers_pcd_points_s.shape[0]
+                        inliers_correspondences = np.array([[i, i + number_inliers_src] for i in range(0, number_inliers_src)])
+                        inliers_line_set = o3d.geometry.LineSet()
+                        inliers_line_set.points=o3d.utility.Vector3dVector(total_inliers)
+                        inliers_line_set.lines =o3d.utility.Vector2iVector(inliers_correspondences)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
                         
-                        total_points = np.concatenate((ldmk_s_np, ldmk_t_np), axis = 0)
-                        number_points_src = ldmk_s_np.shape[0]
-                        correspondences = np.array([[i, i + number_points_src] for i in range(0, number_points_src)])
-                        colors = np.repeat([[0, 1, 0]], [correspondences.shape[0]], axis=0)
-                        colors[point_indices_close_to_center[final_inliers]] = np.array([1, 0, 0])
-                        colors.astype(np.float64)
-                        line_set = o3d.geometry.LineSet()
-                        line_set.points=o3d.utility.Vector3dVector(total_points)
-                        line_set.lines =o3d.utility.Vector2iVector(correspondences)
-                        line_set.colors = o3d.utility.Vector3dVector(colors)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', line_set)
-                        
+                        outliers_pcd_points_s = ldmk_s_np[point_indices_close_to_center[final_outliers]]
+                        outliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_outliers]]
+                        total_outliers = np.concatenate((outliers_pcd_points_s, outliers_pcd_points_t), axis = 0)
+                        number_outliers_src = outliers_pcd_points_s.shape[0]
+                        outliers_correspondences = np.array([[i, i + number_outliers_src] for i in range(0, number_outliers_src)])
+                        outliers_line_set = o3d.geometry.LineSet()
+                        outliers_line_set.points=o3d.utility.Vector3dVector(total_outliers)
+                        outliers_line_set.lines =o3d.utility.Vector2iVector(outliers_correspondences)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/outliers_line_set_' + str(n_center) + '.ply', outliers_line_set)
+
                         for outlier_idx in final_outliers:
                             weight = final_norm_error[outlier_idx]/tau
                             out_idx = point_indices_close_to_center[outlier_idx]
