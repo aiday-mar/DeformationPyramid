@@ -678,6 +678,7 @@ class Landmark_Model():
                 
                 print('number centers : ', number_centers)
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
+                print('neighborhood_center_indices_list : ', neighborhood_center_indices_list)
                 outliers = defaultdict(int)
 
                 print('number iterations custom filtering : ', number_iterations_custom_filtering)
