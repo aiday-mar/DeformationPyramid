@@ -781,10 +781,11 @@ class Landmark_Model():
                         correspondences = np.array([[i, i + number_points_src] for i in range(0, number_points_src)])
                         colors = np.repeat([[0, 1, 0]], [correspondences.shape[0]], axis=0)
                         colors[point_indices_close_to_center[final_inliers]] = np.array([1, 0, 0])
+                        colors.astype(np.float64)
                         line_set = o3d.geometry.LineSet()
                         line_set.points=o3d.utility.Vector3dVector(total_points)
                         line_set.lines =o3d.utility.Vector2iVector(correspondences)
-                        line_set.colors = o3d.utility.Vector3dVector(list(colors))
+                        line_set.colors = o3d.utility.Vector3dVector(colors)
                         o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', line_set)
                         
                         for outlier_idx in final_outliers:
