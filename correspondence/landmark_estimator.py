@@ -154,7 +154,7 @@ class Landmark_Model():
                         
                         inverse_mask = ~mask
                         gt_outlier_matches_s = s_pos_pcd_points_rotated[inverse_mask]
-                        gt_outlier_matches_t = s_pos_pcd_points[inverse_mask]
+                        gt_outlier_matches_t = t_pos_pcd_points[inverse_mask]
                         total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
                         number_gt_outliers = gt_outlier_matches_s.shape[0]
                         outlier_correspondences = np.array([[i, i + number_gt_outliers] for i in range(0, number_gt_outliers)])
