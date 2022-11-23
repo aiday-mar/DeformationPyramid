@@ -62,6 +62,7 @@ for i in [20]: # [100, 200, 300]:
         
         count += 1
 
+print('final_data : ', final_data)
 print('final_matrices : ', final_matrices)
 
 # Heatmap
