@@ -83,8 +83,8 @@ class Landmark_Model():
                     
                     src_pcd_points = data['src_pcd_list'][0]
                     src_pcd_points = np.array(src_pcd_points.cpu())
-                    src_pcd = o3d.geometry.PointCloud(src_pcd_points)
-                    src_pcd.points = o3d.utility.Vector3dVector()
+                    src_pcd = o3d.geometry.PointCloud()
+                    src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
                     src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
 
