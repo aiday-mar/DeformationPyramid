@@ -125,7 +125,7 @@ class Landmark_Model():
                         ind_tgt = correspondences[:, 1]
                         matches_source = src_pcd_points[ind_src]
                         matches_target = tgt_pcd_points[ind_tgt]
-                        thr = 0.01
+                        thr = 0.03
                         for i in range(s_pos_pcd_points.shape[0]):
                             s_ldmk = s_pos_pcd_points[i]
                             t_ldmk = t_pos_pcd_points[i]
