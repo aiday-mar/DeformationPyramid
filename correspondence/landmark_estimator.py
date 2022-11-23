@@ -760,6 +760,7 @@ class Landmark_Model():
                         
                         if final_outliers.size == 0 or final_norm_error.size == 0 or final_inliers.size == 0:
                             print('Entered into the continue statement for n_center : ', n_center)
+                            n_center += 1
                             continue
                         
                         inliers_pcd_points = ldmk_s_np[point_indices_close_to_center[final_inliers]]
