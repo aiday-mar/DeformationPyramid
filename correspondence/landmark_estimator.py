@@ -133,14 +133,13 @@ class Landmark_Model():
                             distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
                             indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
                             indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
-                            print('indices_neigh_s_ldmk : ', indices_neigh_s_ldmk)
-                            print('indices_neigh_t_ldmk : ', indices_neigh_t_ldmk)
                             if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
                                 mask = np.append(mask, True)
                             else:
                                 mask = np.append(mask, False)
                         
-                        print('Number of inlier landmarks correspondences : ', mask.sum(), ' out of ', mask.shape[0])
+                        print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
+                        print('mask : ', mask)
                         gt_inlier_matches_s = s_pos_pcd_points[mask]
                         gt_inlier_matches_t = s_pos_pcd_points[mask]
                         total_gt_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
