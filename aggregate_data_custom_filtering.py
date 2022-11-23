@@ -43,7 +43,7 @@ for i in [100, 200, 300]:
             if 'RMSE' in line:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
                 final_data[file][current_data_type]['RMSE'] = rmse
-                final_matrices[current_data_type][i][j] = rmse
+                final_matrices[current_data_type][int(i/100)-1][j-1] = rmse
 
 print('final_matrices : ', final_matrices)
 
