@@ -119,7 +119,7 @@ class Landmark_Model():
                     
                     if matches_path:
                         mask = np.array([])
-                        matches = np.load(matches_path)
+                        matches = np.load(self.path + matches_path)
                         correspondences = np.array(matches['matches'])
                         ind_src = correspondences[:, 0]
                         ind_tgt = correspondences[:, 1]
