@@ -140,7 +140,7 @@ class Landmark_Model():
                         
                         mask = mask.astype(bool)
                         print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
-                        gt_inlier_matches_s = s_pos_pcd_points[mask]
+                        gt_inlier_matches_s = s_pos_pcd_points_rotated[mask]
                         gt_inlier_matches_t = t_pos_pcd_points[mask]
                         total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
                         number_gt_inliers = gt_inlier_matches_s.shape[0]
@@ -153,7 +153,7 @@ class Landmark_Model():
                         o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/inliers.ply', inliers_lepard_line_set)
                         
                         inverse_mask = ~mask
-                        gt_outlier_matches_s = s_pos_pcd_points[inverse_mask]
+                        gt_outlier_matches_s = s_pos_pcd_points_rotated[inverse_mask]
                         gt_outlier_matches_t = s_pos_pcd_points[inverse_mask]
                         total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
                         number_gt_outliers = gt_outlier_matches_s.shape[0]
