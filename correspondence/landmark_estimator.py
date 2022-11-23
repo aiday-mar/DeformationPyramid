@@ -142,20 +142,29 @@ class Landmark_Model():
                         print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
                         gt_inlier_matches_s = s_pos_pcd_points[mask]
                         gt_inlier_matches_t = t_pos_pcd_points[mask]
-                        total_gt_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
+                        total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
                         number_gt_inliers = gt_inlier_matches_s.shape[0]
-                        gt_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
-                        colors = np.repeat([[0, 1, 0]], [gt_correspondences.shape[0]], axis=0).astype(np.float64)
+                        inlier_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
+                        colors = np.repeat([[0, 1, 0]], [inlier_correspondences.shape[0]], axis=0).astype(np.float64)
                         inliers_lepard_line_set = o3d.geometry.LineSet()
-                        inliers_lepard_line_set.points=o3d.utility.Vector3dVector(total_gt_points)
-                        inliers_lepard_line_set.lines =o3d.utility.Vector2iVector(gt_correspondences)
+                        inliers_lepard_line_set.points=o3d.utility.Vector3dVector(total_inlier_points)
+                        inliers_lepard_line_set.lines =o3d.utility.Vector2iVector(inlier_correspondences)
                         inliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
                         o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/inliers.ply', inliers_lepard_line_set)
                         
                         inverse_mask = ~mask
                         gt_outlier_matches_s = s_pos_pcd_points[inverse_mask]
                         gt_outlier_matches_t = s_pos_pcd_points[inverse_mask]
-                          
+                        total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
+                        number_gt_outliers = gt_outlier_matches_s.shape[0]
+                        outlier_correspondences = np.array([[i, i + number_gt_outliers] for i in range(0, number_gt_outliers)])
+                        colors = np.repeat([[0, 1, 0]], [outlier_correspondences.shape[0]], axis=0).astype(np.float64)
+                        outliers_lepard_line_set = o3d.geometry.LineSet()
+                        outliers_lepard_line_set.points=o3d.utility.Vector3dVector(total_outlier_points)
+                        outliers_lepard_line_set.lines =o3d.utility.Vector2iVector(outlier_correspondences)
+                        outliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/outliers.ply', outliers_lepard_line_set)
+                        
             if timer: timer.tic("outlier rejection")
             confidence = self.outlier_model(data)
             if timer: timer.toc("outlier rejection")
