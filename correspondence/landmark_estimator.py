@@ -770,7 +770,7 @@ class Landmark_Model():
                             if inlier_idx < inliers_pcd_points.shape[0] - 1:
                                 inliers_colors[inlier_idx][0] = 1
                             else:
-                                inliers_colors[inlier_idx] = np.array([0.5, 0.5, 0.5])
+                                inliers_colors[inlier_idx] = np.array([0, 1, 0])
                         inliers_pcd = o3d.geometry.PointCloud()
                         inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
                         inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
@@ -779,8 +779,8 @@ class Landmark_Model():
                         total_points = np.concatenate((ldmk_s_np, ldmk_t_np), axis = 0)
                         number_points_src = ldmk_s_np.shape[0]
                         correspondences = np.array([[i, i + number_points_src] for i in range(0, number_points_src)])
-                        colors = np.zeros((correspondences.shape[0], 3))
-                        colors[point_indices_close_to_center[final_inliers]] = np.array([0.7, 0.7, 0.7])
+                        colors = np.repeat([[0, 1, 0]], [correspondences.shape[0]], axis=0)
+                        colors[point_indices_close_to_center[final_inliers]] = np.array([1, 0, 0])
                         line_set = o3d.geometry.LineSet()
                         line_set.points=o3d.utility.Vector3dVector(total_points)
                         line_set.lines =o3d.utility.Vector2iVector(correspondences)
