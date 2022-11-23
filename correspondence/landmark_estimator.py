@@ -763,7 +763,7 @@ class Landmark_Model():
                         inliers_pcd = o3d.geometry.PointCloud()
                         inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
                         inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
-                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + n_center + '.ply', inliers_pcd)
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
                         
                         for outlier_idx in final_outliers:
                             weight = final_norm_error[outlier_idx]/tau
