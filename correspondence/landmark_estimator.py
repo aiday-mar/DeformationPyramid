@@ -138,6 +138,7 @@ class Landmark_Model():
                             else:
                                 mask = np.append(mask, False)
                         
+                        mask = mask.astype(bool)
                         print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
                         print('mask : ', mask)
                         gt_inlier_matches_s = s_pos_pcd_points[mask]
