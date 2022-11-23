@@ -27,13 +27,15 @@ index_coarse_feats=1
 # number_center=200
 # number_center=300
 # number_center=400
-number_centers=(100 200 300)
+# number_centers=(100 200 300)
+number_centers=(10)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
 # average_distance_multiplier=3
 # average_distance_multiplier=4
-average_distance_multipliers=(1 2 3 4)
+# average_distance_multipliers=(1 2 3 4)
+average_distance_multipliers=(2)
 
 number_iterations_custom_filtering=1
 # number_iterations_custom_filtering=2
