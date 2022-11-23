@@ -46,6 +46,7 @@ for i in [100, 200, 300]:
                 final_data[file][current_data_type]['RMSE'] = rmse
                 final_matrices[current_data_type][int(i/100)-1][j-1] = rmse
 
+print('final_matrices : ', final_matrices)
 for data_type in data_types:
     ax = sns.heatmap(final_matrices[data_type], linewidth=0.5)
     figure = ax.get_figure()    
