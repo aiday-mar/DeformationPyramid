@@ -704,9 +704,9 @@ class Landmark_Model():
                         target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
                         
                         n_outlier_indices = float('inf')
-                        final_outliers = None
-                        final_inliers = None
-                        final_norm_error = None
+                        final_outliers = np.array([])
+                        final_inliers = np.array([])
+                        final_norm_error = np.array([])
                         
                         for n_transform in range(number_transformations):
                             source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
@@ -749,7 +749,7 @@ class Landmark_Model():
                                 final_inliers = inlier_indices
                                 final_norm_error = norm_error
                         
-                        if not final_outliers or not final_norm_error or not final_inliers:
+                        if final_outliers.size == 0 or final_norm_error.size == 0 or final_inliers.size == 0:
                             continue
                         
                         inliers_pcd_points = ldmk_s_np[point_indices_close_to_center[final_inliers]]
