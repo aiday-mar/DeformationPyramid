@@ -125,7 +125,7 @@ class Landmark_Model():
                         ind_tgt = correspondences[:, 1]
                         matches_source = src_pcd_points[ind_src]
                         matches_target = tgt_pcd_points[ind_tgt]
-                        thr = 0.001
+                        thr = 0.01
                         for i in range(s_pos_pcd_points.shape[0]):
                             s_ldmk = s_pos_pcd_points[i]
                             t_ldmk = t_pos_pcd_points[i]
@@ -133,6 +133,8 @@ class Landmark_Model():
                             distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
                             indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
                             indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                            print('indices_neigh_s_ldmk : ', indices_neigh_s_ldmk)
+                            print('indices_neigh_t_ldmk : ', indices_neigh_t_ldmk)
                             if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
                                 mask = np.append(mask, True)
                             else:
