@@ -78,7 +78,7 @@ if heatmap:
 
 if not heatmap:
     for data_type in data_types:
-        plt.plot(final_matrices[data_type])
+        plt.plot(adm, final_matrices[data_type])
         plt.savefig('plots/custom_filtering_v2/' + data_type.replace(' ', '_') + '_varying_radius_' + '.png')
 
 RMSE_full_deformed = []
