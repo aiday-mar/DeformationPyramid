@@ -140,9 +140,10 @@ class Landmark_Model():
                         
                         mask = mask.astype(bool)
                         print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
-                        print('mask : ', mask)
                         gt_inlier_matches_s = s_pos_pcd_points[mask]
+                        print('gt_inlier_matches_s.shape : ', gt_inlier_matches_s.shape)
                         gt_inlier_matches_t = s_pos_pcd_points[mask]
+                        print('gt_inlier_matches_t.shape : ', gt_inlier_matches_t.shape)
                         total_gt_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
                         number_gt_inliers = gt_inlier_matches_s.shape[0]
                         gt_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
