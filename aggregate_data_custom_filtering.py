@@ -66,8 +66,8 @@ for i in nc :
         
         count += 1
 
-print('final_data : ', final_data)
-print('final_matrices : ', final_matrices)
+# print('final_data : ', final_data)
+# print('final_matrices : ', final_matrices)
 
 # Heatmap
 if heatmap:
