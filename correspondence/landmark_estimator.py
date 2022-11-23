@@ -494,7 +494,7 @@ class Landmark_Model():
             '''
             # Custom filtering done with the 3rd method
             # VERSION 2
-            
+            '''
             if custom_filtering and intermediate_output_folder:
                 print('Custom filtering is used')
                 if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
@@ -587,6 +587,180 @@ class Landmark_Model():
                                 weight = norm_error[outlier_idx]/tau
                                 out_idx = point_indices_close_to_center[outlier_idx]
                                 outliers[out_idx] = outliers[out_idx] + weight
+                            
+                final_indices = np.array([])
+                for ldmk_s_point in map_ldmk_s_correspondences:
+                    correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
+                    correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
+                    if correspondence_indices_to_outliers:
+                        correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
+                        final_indices = np.append(final_indices, correspondence_min)
+                
+                final_indices = np.sort(final_indices).astype(int) 
+                ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
+                ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
+                
+                rot = data['batched_rot'][0]
+                ldmk_s_custom_filtering = o3d.geometry.PointCloud()
+                ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
+                ldmk_s_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                rotated_ldmk_s = np.array(ldmk_s_custom_filtering.points)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering.ply', ldmk_s_custom_filtering)
+                
+                ldmk_t_custom_filtering = o3d.geometry.PointCloud()
+                ldmk_t_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 't_custom_filtering_pcd.ply', ldmk_t_custom_filtering)
+                
+                total_points = np.concatenate((rotated_ldmk_s, np.array(ldmk_t.cpu())), axis = 0)
+                number_points_src = ldmk_s.shape[0]
+                correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
+                colors = np.tile(np.array([50, 50, 50]), (2*number_points_src, 1))
+                line_set = o3d.geometry.LineSet()
+                line_set.points=o3d.utility.Vector3dVector(total_points)
+                line_set.lines =o3d.utility.Vector2iVector(correspondences)
+                line_set.colors = o3d.utility.Vector3dVector(colors)
+                    
+                o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'custom_filtering_line_set.ply', line_set)
+                
+                data_mod = {}
+                final_indices = list(final_indices)
+
+                vec_6d = data['vec_6d'][0][final_indices]
+                data_mod['vec_6d'] = vec_6d[None, :]
+                
+                vec_6d_mask = data['vec_6d_mask'][0][final_indices]
+                data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
+                
+                vec_6d_ind = data['vec_6d_ind'][0][final_indices]
+                data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
+                
+                data_mod['s_pcd'] = data['s_pcd']
+                data_mod['t_pcd'] = data['t_pcd']
+                data_mod['batched_rot'] = data['batched_rot']
+                data_mod['batched_trn'] = data['batched_trn']
+        
+                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
+                inlier_conf = inlier_conf[final_indices]
+                match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+                inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
+            '''
+            
+            # Custom filtering with the 4th method
+            # VERSION 4
+            if custom_filtering and intermediate_output_folder:
+                print('Custom filtering is used')
+                if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
+                    os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
+                
+                ldmk_s_np = np.array(ldmk_s.cpu())
+                number_points = ldmk_s_np.shape[0]
+                print('number points : ', number_points)
+                ldmk_t_np = np.array(ldmk_t.cpu())
+
+                distances = np.zeros((number_points,number_points))
+                average_distance = 0
+                for j in range(number_points):
+                    for k in range(j + 1, number_points):
+                        distances[j][k] = np.linalg.norm(ldmk_s_np[j] - ldmk_s_np[k])
+                    row = distances[j]
+                    non_zero_values = row[np.nonzero(row)]
+                    if non_zero_values.size != 0:
+                        average_distance += min(non_zero_values)/number_points
+                
+                print('average distance : ', average_distance)
+                print('average distance multiplier : ', average_distance_multiplier)
+                tau = average_distance_multiplier*average_distance
+                number_transformations = 6
+                    
+                map_ldmk_s_correspondences = defaultdict(list)
+                for idx, ldmk_s_point in enumerate(ldmk_s_np):
+                    map_ldmk_s_correspondences[tuple(ldmk_s_point)].append(idx)
+                
+                print('number centers : ', number_centers)
+                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
+                outliers = defaultdict(int)
+
+                print('number iterations custom filtering : ', number_iterations_custom_filtering)
+                for _ in range(number_iterations_custom_filtering):
+                    n_center = 0
+                    for neighborhood_center_index in neighborhood_center_indices_list:
+                        neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
+
+                        distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
+                        distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
+                        
+                        indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
+                        
+                        if indices_neighborhood_points.size < 3:
+                            continue                 
+                        
+                        transformation_indices = []
+                        for i in range(number_transformations):
+                            random_indices = random.sample(list(indices_neighborhood_points), 3)
+                            transformation_indices.append(random_indices)                       
+
+                        point_indices_close_to_center = np.where(distances_to_center < tau)[0]
+                        source_points_close_to_center = ldmk_s_np[point_indices_close_to_center]
+                        target_points_close_to_center = ldmk_t_np[point_indices_close_to_center]
+                        
+                        n_outlier_indices = float('inf')
+                        final_outliers = None
+                        final_inliers = None
+                        final_norm_error = None
+                        
+                        for n_transform in range(number_transformations):
+                            source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
+                            target_point_1 = ldmk_t_np[transformation_indices[n_transform][0]]
+                            source_point_2 = ldmk_s_np[transformation_indices[n_transform][1]]
+                            target_point_2 = ldmk_t_np[transformation_indices[n_transform][1]]
+                            source_point_3 = ldmk_s_np[transformation_indices[n_transform][2]]
+                            target_point_3 = ldmk_t_np[transformation_indices[n_transform][2]]
+
+                            X = np.empty((0,3), int)
+                            X = np.append(X, np.array(np.expand_dims(source_point_1, axis=0)), axis=0)
+                            X = np.append(X, np.array(np.expand_dims(source_point_2, axis=0)), axis=0)
+                            X = np.append(X, np.array(np.expand_dims(source_point_3, axis=0)), axis=0)
+                            Y = np.empty((0,3), int)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_1, axis=0)), axis=0)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_2, axis=0)), axis=0)
+                            Y = np.append(Y, np.array(np.expand_dims(target_point_3, axis=0)), axis=0)
+
+                            mean_X = np.mean(X, axis = 0)
+                            mean_Y = np.mean(Y, axis = 0)
+                        
+                            Sxy = np.matmul( (Y - mean_Y).T, (X - mean_X) )
+                            U, _, V = np.linalg.svd(Sxy, full_matrices=True)
+                            S = np.eye(3)
+                            UV_det = np.linalg.det(U) * np.linalg.det(V)
+                            S[2, 2] = UV_det
+                            sv = np.matmul( S, V )
+                            R = np.matmul( U, sv)
+                            t = mean_Y.T - np.matmul( R, mean_X.T )
+
+                            thr = 0.05                        
+                            points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
+                            norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
+                            outlier_indices = np.where(norm_error > thr)[0]
+                            inlier_indices = np.where(norm_error <= thr)[0]
+                            
+                            if outlier_indices.shape[0] < n_outlier_indices:
+                                n_outlier_indices = outlier_indices.shape[0]
+                                final_outliers = outlier_indices
+                                final_inliers = inlier_indices
+                                final_norm_error = norm_error
+                        
+                        if not final_outliers or not final_norm_error or not final_inliers:
+                            continue
+                        
+                        inliers_pcd_points = ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                        inliers_pcd = o3d.geometry.PointCloud()
+                        inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + n_center + '.ply', inliers_pcd)
+                        
+                        for outlier_idx in final_outliers:
+                            weight = final_norm_error[outlier_idx]/tau
+                            out_idx = point_indices_close_to_center[outlier_idx]
+                            outliers[out_idx] = outliers[out_idx] + weight
                             
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:

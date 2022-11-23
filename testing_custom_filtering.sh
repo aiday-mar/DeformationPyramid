@@ -1,5 +1,3 @@
-# Previous data seems to be incorrect because I chose too many center indices, I should probably redo the calculation but vary the number of times everything is done
-
 # version=1
 version=2
 
