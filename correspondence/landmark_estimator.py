@@ -769,6 +769,8 @@ class Landmark_Model():
                             weight = final_norm_error[outlier_idx]/tau
                             out_idx = point_indices_close_to_center[outlier_idx]
                             outliers[out_idx] = outliers[out_idx] + weight
+                        
+                        n_center += 1
                             
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:
