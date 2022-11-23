@@ -782,6 +782,7 @@ class Landmark_Model():
                         colors = np.repeat([[0, 1, 0]], [correspondences.shape[0]], axis=0)
                         colors[point_indices_close_to_center[final_inliers]] = np.array([1, 0, 0])
                         colors.astype(np.float64)
+                        print('colors : ', colors)
                         line_set = o3d.geometry.LineSet()
                         line_set.points=o3d.utility.Vector3dVector(total_points)
                         line_set.lines =o3d.utility.Vector2iVector(correspondences)
