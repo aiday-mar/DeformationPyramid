@@ -187,7 +187,45 @@ class Landmark_Model():
             if not custom_filtering and reject_outliers:
                 print('using the outlier rejection network')
                 vec_6d = vec_6d [inlier_conf > inlier_thr]
-
+            elif custom_filtering and matches_path:
+                outlier_rejected_vec_6d = vec_6d[inlier_conf > inlier_thr]
+                ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
+                mask = np.array([])
+                matches = np.load(self.path + matches_path)
+                correspondences = np.array(matches['matches'])
+                ind_src = correspondences[:, 0]
+                ind_tgt = correspondences[:, 1]
+                
+                src_pcd_points = data['src_pcd_list'][0]
+                src_pcd_points = np.array(src_pcd_points.cpu())
+                tgt_pcd_points = data['tgt_pcd_list'][0]
+                tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                
+                matches_source = src_pcd_points[ind_src]
+                matches_target = tgt_pcd_points[ind_tgt]
+                thr = 0.01
+                
+                for i in range(ldmk_s_outlier_rejected.shape[0]):
+                    s_ldmk = np.array(ldmk_s_outlier_rejected[i])
+                    t_ldmk = np.array(ldmk_t_outlier_rejected[i])
+                    distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                    distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                    indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
+                    indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                    if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                        mask = np.append(mask, True)
+                    else:
+                        mask = np.append(mask, False)
+                
+                outlier_rejected_true_correspondences_mask = mask.astype(bool)
+                n_true_outlier_rejected_correspondences = int(outlier_rejected_true_correspondences_mask.sum())
+                n_total_outlier_rejected_correspondences = outlier_rejected_true_correspondences_mask.shape[0]
+                print('number of true landmark correspondences returned from outlier rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
+                if n_total_outlier_rejected_correspondences != 0:
+                    print('fraction of true landmark correspondences returned from outlier rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences )
+                else:
+                    print('fraction of true landmark correspondences returned from outlier rejection : ', 0 )
+                            
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             if not custom_filtering and intermediate_output_folder:
                 if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
