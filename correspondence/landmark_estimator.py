@@ -710,6 +710,28 @@ class Landmark_Model():
                 if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
                 
+                if matches_path:
+                    matches = np.load(self.path + matches_path)
+                    correspondences = np.array(matches['matches'])                    
+                    src_pcd_points = data['src_pcd_list'][0]
+                    src_pcd_points = np.array(src_pcd_points.cpu())
+                    tgt_pcd_points = data['tgt_pcd_list'][0]
+                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                    
+                    src_pcd = o3d.geometr.PointCloud()
+                    src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
+                    rot = data['batched_rot'][0]
+                    src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    src_pcd_points_rotated = np.array(src_pcd.points)
+                    n_points_source = src_pcd_points_rotated.shape[0]
+                    correspondences[:, 1] = correspondences[:, 1] + n_points_source
+                    
+                    total_points = np.concatenate((src_pcd_points_rotated, tgt_pcd_points), axis = 0)
+                    line_set = o3d.geometry.LineSet()
+                    line_set.points=o3d.utility.Vector3dVector(total_points)
+                    line_set.lines =o3d.utility.Vector2iVector(correspondences)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'gt_line_set.ply', line_set)
+                    
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 number_points = ldmk_s_np.shape[0]
                 print('number of landmarks : ', number_points)
