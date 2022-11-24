@@ -30,7 +30,10 @@ nc = [20]
 adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
 
 shape=(len(nc), len(adm))
-final_matrices={'Full Non Deformed': np.zeros(shape), 'Full Deformed': np.zeros(shape), 'Partial Deformed': np.zeros(shape),  'Partial Non Deformed': np.zeros(shape)}
+final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
+                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
+                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
+                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
 
 for i in nc : 
     count = 0
@@ -45,13 +48,35 @@ for i in nc :
             if line[:-1] in data_types:
                 current_data_type = line[:-1]
 
-            if 'RMSE' in line:
-                rmse = float(re.findall("\d+\.\d+", line)[0])
-                final_matrices[current_data_type][0][count] = rmse
+            if 'number of true landmarks correspondences returned from Lepard' in line:
+                search = re.findall("\d+\.\d+", line)
+                true = int(search[0])
+                total = int(search[0])
+                final_matrices[current_data_type]['lepard']['true'] = true
+                final_matrices[current_data_type]['lepard']['total'] = total - true
+            
+            if 'number of true landmark correspondences returned from custom filtering' in line:
+                search = re.findall("\d+\.\d+", line)
+                true = int(search[0])
+                total = int(search[0])
+                final_matrices[current_data_type]['custom']['true'] = true
+                final_matrices[current_data_type]['custom']['total'] = total - true
         
         count += 1
 
+print('final_matrices : ', final_matrices)
+
 for data_type in data_types:
-    plt.plot(adm, np.squeeze(final_matrices[data_type].T))
-    plt.legend(data_types)
-    plt.savefig('plots/custom_filtering_v4/true_correspondence_ratio_for_varying_radius.png')
+    plt.clf()
+    true_data = []
+    total_data = []
+    for i in range(len(adm)):
+        true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
+        total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
+        true_data.append(final_matrices[data_type]['custom']['true'][0][i])
+        total_data.append(final_matrices[data_type]['cutom']['total'][0][i])
+    
+    modified_adm = [prefix + str(adm_r) for adm_r in adm for prefix in ('lepard - ', 'custom - ')]
+    plt.bar(modified_adm, true_data, color='r')
+    plt.bar(modified_adm, total_data, bottom=true_data, color='b')
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + 'true_correspondence_ratio_for_varying_radius.png')
