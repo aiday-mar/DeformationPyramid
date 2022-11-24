@@ -718,7 +718,7 @@ class Landmark_Model():
                     tgt_pcd_points = data['tgt_pcd_list'][0]
                     tgt_pcd_points = np.array(tgt_pcd_points.cpu())
                     
-                    src_pcd = o3d.geometr.PointCloud()
+                    src_pcd = o3d.geometry.PointCloud()
                     src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
                     rot = data['batched_rot'][0]
                     src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
