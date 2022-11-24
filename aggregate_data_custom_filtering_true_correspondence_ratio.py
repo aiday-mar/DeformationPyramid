@@ -74,12 +74,12 @@ for data_type in data_types:
     for i in range(len(adm)):
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
-        fraction.append([final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i]])
+        fraction.append(final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i])
         
         if i==len(adm) -1:
             true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
             total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
-            fraction.append([final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i]])
+            fraction.append(final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i])
     
     modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
     modified_adm.append('lepard')
