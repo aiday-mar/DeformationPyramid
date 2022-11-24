@@ -888,6 +888,7 @@ class Landmark_Model():
                     print('ldmk_s_point : ', ldmk_s_point)
                     # All correspondences corresponding to this source landmark
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
+                    print('correspondence_indices : ', correspondence_indices)
                     correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
                     correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
                     print('correspondence_indices_to_outliers : ', correspondence_indices_to_outliers)
