@@ -77,6 +77,9 @@ for data_type in data_types:
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
     
     modified_adm = [prefix + str(adm_r) for adm_r in adm for prefix in ('lepard - ', 'custom - ')]
+    print('modified_adm : ', modified_adm)
+    print('true_data : ', true_data)
+    print('total_data : ', total_data)
     plt.bar(modified_adm, true_data, color='r')
     plt.bar(modified_adm, total_data, bottom=true_data, color='b')
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + 'true_correspondence_ratio_for_varying_radii.png')
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png')
