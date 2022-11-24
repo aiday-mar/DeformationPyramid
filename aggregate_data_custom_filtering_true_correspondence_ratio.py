@@ -81,7 +81,7 @@ for data_type in data_types:
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
         
         if final_matrices[data_type]['custom']['total'][0][i] != 0:
-            fraction.append(final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i])
+            fraction.append(final_matrices[data_type]['custom']['true'][0][i]/(final_matrices[data_type]['custom']['total'][0][i]+final_matrices[data_type]['custom']['true'][0][i]))
         else:
             fraction.append(0)
             
@@ -93,12 +93,12 @@ for data_type in data_types:
             total_data.append(final_matrices[data_type]['outlier']['total'][0][i])
             
             if final_matrices[data_type]['lepard']['total'][0][i] != 0:
-                fraction.append(final_matrices[data_type]['lepard']['true'][0][i]/final_matrices[data_type]['lepard']['total'][0][i])
+                fraction.append(final_matrices[data_type]['lepard']['true'][0][i]/(final_matrices[data_type]['lepard']['total'][0][i]+final_matrices[data_type]['lepard']['true'][0][i]))
             else:
                 fraction.append(0)
 
             if final_matrices[data_type]['outlier']['total'][0][i] != 0:
-                fraction.append(final_matrices[data_type]['outlier']['true'][0][i]/final_matrices[data_type]['outlier']['total'][0][i])
+                fraction.append(final_matrices[data_type]['outlier']['true'][0][i]/(final_matrices[data_type]['outlier']['total'][0][i]+final_matrices[data_type]['outlier']['true'][0][i]))
             else:
                 fraction.append(0)
     
