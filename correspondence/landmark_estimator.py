@@ -950,9 +950,9 @@ class Landmark_Model():
                     if correspondence_indices_to_inliers:
                         correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
                         final_indices = np.append(final_indices, correspondence_min)
-                    elif correspondence_indices_to_outliers:
-                        correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
-                        final_indices = np.append(final_indices, correspondence_min)
+                    # elif correspondence_indices_to_outliers:
+                    #    correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
+                    #    final_indices = np.append(final_indices, correspondence_min)
                     
                     # If min correspondences not selected by any of the code above then that means that none of the correspondence are covered by the neighborhoods
                 
