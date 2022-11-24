@@ -81,9 +81,7 @@ class Landmark_Model():
                     rot = data['batched_rot'][0]
 
                     s_pos = data['s_pcd'][i][si[bmask]]
-                    print('s_pos.shape : ', s_pos.shape)
                     t_pos = data['t_pcd'][i][ti[bmask]]
-                    print('t_pos.shape : ', t_pos.shape)
                     
                     src_pcd_points = data['src_pcd_list'][0]
                     src_pcd_points = np.array(src_pcd_points.cpu())
@@ -184,7 +182,6 @@ class Landmark_Model():
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             vec_6d = data['vec_6d'][0]
-            print('vec_6d.shape : ', vec_6d.shape)
 
             # Rejecting points in vec_6d only if we do not do custom filtering
             if not custom_filtering and reject_outliers:
@@ -944,9 +941,9 @@ class Landmark_Model():
                     final_custom_filtering_true_correspondences_mask[final_indices] = custom_filtering_true_correspondences_mask
                     custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
                     if n_true_custom_filtering_correspondences != 0:
-                        print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                        print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
                     else:
-                        print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', 0)
+                        print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', 0)
                         
                 rot = data['batched_rot'][0]
                 ldmk_s_custom_filtering = o3d.geometry.PointCloud()
