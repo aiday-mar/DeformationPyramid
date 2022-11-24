@@ -70,22 +70,26 @@ for data_type in data_types:
     plt.clf()
     true_data = []
     total_data = []
+    fraction = []
     for i in range(len(adm)):
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
+        fraction.append([final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i]])
         
         if i==len(adm) -1:
             true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
             total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
+            fraction.append([final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i]])
     
     modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
     modified_adm.append('lepard')
-    print('modified_adm : ', modified_adm)
-    print('true_data : ', true_data)
-    print('total_data : ', total_data)
     x_pos = range(len(modified_adm))
 
     plt.bar(x_pos, true_data, color='r')
     plt.bar(x_pos, total_data, bottom=true_data, color='b')
     plt.xticks(x_pos, modified_adm, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_bar_chart_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
+    
+    plt.bar(x_pos, fraction, color='r')
+    plt.xticks(x_pos, modified_adm, rotation=90)
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_graph_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
