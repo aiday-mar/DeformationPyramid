@@ -50,7 +50,7 @@ for i in nc :
 
             if 'number of true landmarks correspondences returned from Lepard' in line:
                 print('line : ', line)
-                search = re.findall("\d+\.\d+", line)
+                search = list(map(int, re.findall(r'\d+', line)))
                 print('search : ', search)
                 true = int(search[0])
                 total = int(search[0])
@@ -59,7 +59,7 @@ for i in nc :
             
             if 'number of true landmark correspondences returned from custom filtering' in line:
                 print('line : ', line)
-                search = re.findall("\d+\.\d+", line)
+                search = list(map(int, re.findall(r'\d+', line)))
                 print('search : ', search)
                 true = int(search[0])
                 total = int(search[0])
