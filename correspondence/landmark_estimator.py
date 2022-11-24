@@ -749,9 +749,11 @@ class Landmark_Model():
                 for idx, ldmk_s_point in enumerate(ldmk_s_np):
                     map_ldmk_s_correspondences[tuple(ldmk_s_point)].append(idx)
                 
+                print('number of unique source landmarks : ', len(map_ldmk_s_correspondences))
                 print('number of centers : ', number_centers)
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
-                outliers = defaultdict(int)
+                outliers = defaultdict(float)
+                inliers = defaultdict(float)
 
                 print('number of iterations of custom filtering : ', number_iterations_custom_filtering)
                 for _ in range(number_iterations_custom_filtering):
@@ -873,12 +875,24 @@ class Landmark_Model():
                             out_idx = point_indices_close_to_center[outlier_idx]
                             outliers[out_idx] = outliers[out_idx] + weight
                         
+                        for inlier_idx in final_inliers:
+                            weight = final_norm_error[inlier_idx]/tau
+                            in_idx = point_indices_close_to_center[inlier_idx]
+                            inliers[in_idx] = inliers[in_idx] + weight
+                            
                         n_center += 1
                             
                 final_indices = np.array([])
+                print('map_ldmk_s_correspondences : ', map_ldmk_s_correspondences)
                 for ldmk_s_point in map_ldmk_s_correspondences:
+                    print('ldmk_s_point : ', ldmk_s_point)
+                    # All correspondences corresponding to this source landmark
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
                     correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
+                    correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
+                    print('correspondence_indices_to_outliers : ', correspondence_indices_to_outliers)
+                    print('correspondence_indices_to_inliers : ', correspondence_indices_to_inliers)
+                    
                     if correspondence_indices_to_outliers:
                         correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
                         final_indices = np.append(final_indices, correspondence_min)
