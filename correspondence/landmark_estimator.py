@@ -206,8 +206,8 @@ class Landmark_Model():
                 thr = 0.01
                 
                 for i in range(ldmk_s_outlier_rejected.shape[0]):
-                    s_ldmk = np.array(ldmk_s_outlier_rejected[i])
-                    t_ldmk = np.array(ldmk_t_outlier_rejected[i])
+                    s_ldmk = np.array(ldmk_s_outlier_rejected[i].cpu())
+                    t_ldmk = np.array(ldmk_t_outlier_rejected[i].cpu())
                     distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
                     distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
                     indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
