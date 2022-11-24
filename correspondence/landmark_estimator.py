@@ -59,10 +59,8 @@ class Landmark_Model():
             
         self.matcher.eval()
         self.outlier_model.eval()
-        n_true_lepard_correspondences = None
-        n_total_lepard_correspondences = None
-        n_true_custom_filtering_correspondences = None
-        n_total_custom_filtering_correspondences = None
+        lepard_true_correspondences_mask = None
+        custom_filtering_true_correspondences_mask = None
         
         with torch.no_grad():
 
@@ -144,10 +142,11 @@ class Landmark_Model():
                             else:
                                 mask = np.append(mask, False)
                         
-                        mask = mask.astype(bool)
-                        n_true_lepard_correspondences = int(mask.sum())
-                        n_total_lepard_correspondences = mask.shape[0]
+                        lepard_true_correspondences_mask = mask.astype(bool)
+                        n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
+                        n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
                         print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences)
                         
                         gt_inlier_matches_s = s_pos_pcd_points_rotated[mask]
                         gt_inlier_matches_t = t_pos_pcd_points[mask]
@@ -908,10 +907,14 @@ class Landmark_Model():
                         else:
                             mask = np.append(mask, False)
                     
-                    mask = mask.astype(bool)
-                    n_true_custom_filtering_correspondences = int(mask.sum())
-                    n_total_custom_filtering_correspondences = mask.shape[0]
-                    print('number of true landmarks correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
+                    custom_filtering_true_correspondences_mask = mask.astype(bool)
+                    n_true_custom_filtering_correspondences = int(custom_filtering_true_correspondences_mask.sum())
+                    n_total_custom_filtering_correspondences = custom_filtering_true_correspondences_mask.shape[0]
+                    print('number of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
+                    print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences)
+                    
+                    custom_and_lepard_true_correspondences_mask = custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
+                    print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
                     
                 rot = data['batched_rot'][0]
                 ldmk_s_custom_filtering = o3d.geometry.PointCloud()
