@@ -107,12 +107,14 @@ for data_type in data_types:
     modified_adm.append('outlier rejection')
     x_pos = range(len(modified_adm))
 
+    plt.title(data_type + ' - varying radii')
     plt.bar(x_pos, true_data, color='r')
     plt.bar(x_pos, total_data, bottom=true_data, color='b')
     plt.xticks(x_pos, modified_adm, rotation=90)
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_bar_chart_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
     
     plt.clf()
+    plt.title(data_type ' - varying radii')
     plt.plot(x_pos, fraction, color='r')
     plt.xticks(x_pos, modified_adm, rotation=90)
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_graph_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
