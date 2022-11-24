@@ -85,4 +85,4 @@ for data_type in data_types:
     plt.bar(x_pos, true_data, color='r')
     plt.bar(x_pos, total_data, bottom=true_data, color='b')
     plt.xticks(x_pos, modified_adm, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png')
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
