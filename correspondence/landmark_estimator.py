@@ -59,6 +59,10 @@ class Landmark_Model():
             
         self.matcher.eval()
         self.outlier_model.eval()
+        n_true_lepard_correspondences = None
+        n_total_lepard_correspondences = None
+        n_true_custom_filtering_correspondences = None
+        n_total_custom_filtering_correspondences = None
         
         with torch.no_grad():
 
@@ -79,7 +83,9 @@ class Landmark_Model():
                     rot = data['batched_rot'][0]
 
                     s_pos = data['s_pcd'][i][si[bmask]]
+                    print('s_pos.shape : ', s_pos.shape)
                     t_pos = data['t_pcd'][i][ti[bmask]]
+                    print('t_pos.shape : ', t_pos.shape)
                     
                     src_pcd_points = data['src_pcd_list'][0]
                     src_pcd_points = np.array(src_pcd_points.cpu())
@@ -125,7 +131,7 @@ class Landmark_Model():
                         ind_tgt = correspondences[:, 1]
                         matches_source = src_pcd_points[ind_src]
                         matches_target = tgt_pcd_points[ind_tgt]
-                        thr = 0.03
+                        thr = 0.01
                         for i in range(s_pos_pcd_points.shape[0]):
                             s_ldmk = s_pos_pcd_points[i]
                             t_ldmk = t_pos_pcd_points[i]
@@ -139,7 +145,10 @@ class Landmark_Model():
                                 mask = np.append(mask, False)
                         
                         mask = mask.astype(bool)
-                        print('Number of inlier landmarks correspondences : ', int(mask.sum()), ' out of ', mask.shape[0])
+                        n_true_lepard_correspondences = int(mask.sum())
+                        n_total_lepard_correspondences = mask.shape[0]
+                        print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        
                         gt_inlier_matches_s = s_pos_pcd_points_rotated[mask]
                         gt_inlier_matches_t = t_pos_pcd_points[mask]
                         total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
@@ -176,20 +185,19 @@ class Landmark_Model():
             match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             vec_6d = data['vec_6d'][0]
+            print('vec_6d.shape : ', vec_6d.shape)
 
             # Rejecting points in vec_6d only if we do not do custom filtering
             if not custom_filtering and reject_outliers:
-                print('Using the outlier rejection network')
+                print('using the outlier rejection network')
                 vec_6d = vec_6d [inlier_conf > inlier_thr]
 
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
-
             if not custom_filtering and intermediate_output_folder:
                 if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
 
                 rot = data['batched_rot'][0]
-
                 src_pcd_points = data['src_pcd_list'][0]
                 src_pcd = o3d.geometry.PointCloud()
                 src_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
@@ -708,7 +716,7 @@ class Landmark_Model():
                 
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 number_points = ldmk_s_np.shape[0]
-                print('number points : ', number_points)
+                print('number of landmarks : ', number_points)
                 ldmk_t_np = np.array(ldmk_t.cpu())
 
                 ldmk_s_pcd = o3d.geometry.PointCloud()
@@ -742,12 +750,11 @@ class Landmark_Model():
                 for idx, ldmk_s_point in enumerate(ldmk_s_np):
                     map_ldmk_s_correspondences[tuple(ldmk_s_point)].append(idx)
                 
-                print('number centers : ', number_centers)
+                print('number of centers : ', number_centers)
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
-                print('neighborhood_center_indices_list : ', neighborhood_center_indices_list)
                 outliers = defaultdict(int)
 
-                print('number iterations custom filtering : ', number_iterations_custom_filtering)
+                print('number of iterations of custom filtering : ', number_iterations_custom_filtering)
                 for _ in range(number_iterations_custom_filtering):
                     n_center = 0
                     for neighborhood_center_index in neighborhood_center_indices_list:
@@ -868,10 +875,44 @@ class Landmark_Model():
                         correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
                         final_indices = np.append(final_indices, correspondence_min)
                 
-                final_indices = np.sort(final_indices).astype(int) 
+                final_indices = np.sort(final_indices).astype(int)
+                print('number of landmarks after custom filtering : ', final_indices.shape[0])
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
                 
+                if matches_path:
+                    mask = np.array([])
+                    matches = np.load(self.path + matches_path)
+                    correspondences = np.array(matches['matches'])
+                    ind_src = correspondences[:, 0]
+                    ind_tgt = correspondences[:, 1]
+                    
+                    src_pcd_points = data['src_pcd_list'][0]
+                    src_pcd_points = np.array(src_pcd_points.cpu())
+                    tgt_pcd_points = data['tgt_pcd_list'][0]
+                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                    
+                    matches_source = src_pcd_points[ind_src]
+                    matches_target = tgt_pcd_points[ind_tgt]
+                    thr = 0.01
+                    
+                    for i in range(ldmk_s.shape[0]):
+                        s_ldmk = np.array(ldmk_s[i])
+                        t_ldmk = np.array(ldmk_s[i])
+                        distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                        distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
+                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                        if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                            mask = np.append(mask, True)
+                        else:
+                            mask = np.append(mask, False)
+                    
+                    mask = mask.astype(bool)
+                    n_true_custom_filtering_correspondences = int(mask.sum())
+                    n_total_custom_filtering_correspondences = mask.shape[0]
+                    print('number of true landmarks correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
+                    
                 rot = data['batched_rot'][0]
                 ldmk_s_custom_filtering = o3d.geometry.PointCloud()
                 ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
