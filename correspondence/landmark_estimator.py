@@ -896,9 +896,9 @@ class Landmark_Model():
                     matches_target = tgt_pcd_points[ind_tgt]
                     thr = 0.01
                     
-                    for i in range(ldmk_s.shape[0]):
-                        s_ldmk = np.array(ldmk_s[i])
-                        t_ldmk = np.array(ldmk_s[i])
+                    for i in range(ldmk_s_np[final_indices].shape[0]):
+                        s_ldmk = np.array(ldmk_s_np[final_indices][i])
+                        t_ldmk = np.array(ldmk_t_np[final_indices][i])
                         distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
                         distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
                         indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
