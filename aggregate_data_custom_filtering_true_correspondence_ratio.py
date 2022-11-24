@@ -82,4 +82,5 @@ for data_type in data_types:
     print('total_data : ', total_data)
     plt.bar(modified_adm, true_data, color='r')
     plt.bar(modified_adm, total_data, bottom=true_data, color='b')
+    plt.xticks(rotation='vertical')
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png')
