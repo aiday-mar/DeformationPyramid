@@ -17,23 +17,17 @@ class File:
     def __str__(self):
         return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Number Centers : " + str(self.number_centers) + " - Average Distance Multiplier : " + str(self.average_distance_multiplier) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse) + ' - Number Iterations : ' + str(self.number_iterations)
 
-# Version 2 files
 files=[]
 file_types=[]
 number_iterations=1
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
 
-# For heatmap
 # nc = [100, 200, 300]:
 nc = [20]
 
-# radius adm
 # adm = [1, 2, 3, 4]
 adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
-
-# heatmap = True
-heatmap = False
 
 shape=(len(nc), len(adm))
 final_matrices={'Full Non Deformed': np.zeros(shape), 'Full Deformed': np.zeros(shape), 'Partial Deformed': np.zeros(shape),  'Partial Non Deformed': np.zeros(shape)}
@@ -54,33 +48,17 @@ for i in nc :
                 current_data_type = line[:-1]
                 final_data[file][current_data_type] = {}
 
-            if heatmap and 'RMSE' in line:
-                rmse = float(re.findall("\d+\.\d+", line)[0])
-                final_data[file][current_data_type]['RMSE'] = rmse
-                final_matrices[current_data_type][int(i/100)-1][j-1] = rmse
-
-            if not heatmap and 'RMSE' in line:
+            if 'RMSE' in line:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
                 final_data[file][current_data_type]['RMSE'] = rmse
                 final_matrices[current_data_type][0][count] = rmse
         
         count += 1
 
-# print('final_data : ', final_data)
-# print('final_matrices : ', final_matrices)
-
-# Heatmap
-if heatmap:
-    for data_type in data_types:
-        ax = sns.heatmap(final_matrices[data_type], linewidth=0.5)
-        figure = ax.get_figure()    
-        figure.savefig('plots/custom_filtering_v2/' + data_type.replace(' ', '_') + '.png', dpi=400)
-
-if not heatmap:
-    for data_type in data_types:
-        plt.plot(adm, np.squeeze(final_matrices[data_type].T))
+for data_type in data_types:
+    plt.plot(adm, np.squeeze(final_matrices[data_type].T))
     plt.legend(data_types)
-    plt.savefig('plots/custom_filtering_v2/varying_radius.png')
+    plt.savefig('plots/custom_filtering_v4/true_correspondence_ratio_for_varying_radius.png')
 
 RMSE_full_deformed = []
 RMSE_full_non_deformed = []
