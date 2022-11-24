@@ -30,10 +30,10 @@ nc = [20]
 adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
 
 shape=(len(nc), len(adm))
-final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
-                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
+                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
+                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
+                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
 
 for i in nc : 
     count = 0
@@ -61,6 +61,13 @@ for i in nc :
                 total = int(search[1])
                 final_matrices[current_data_type]['custom']['true'][0][count] = true
                 final_matrices[current_data_type]['custom']['total'][0][count] = total - true
+            
+            if 'number of true landmark correspondences returned from outlier rejection' in line:
+                search = list(map(int, re.findall(r'\d+', line)))
+                true = int(search[0])
+                total = int(search[1])
+                final_matrices[current_data_type]['outlier']['true'][0][count] = true
+                final_matrices[current_data_type]['outlier']['total'][0][count] = total - true 
         
         count += 1
 
@@ -72,6 +79,7 @@ for data_type in data_types:
     for i in range(len(adm)):
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
+        
         if final_matrices[data_type]['custom']['total'][0][i] != 0:
             fraction.append(final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i])
         else:
@@ -80,13 +88,23 @@ for data_type in data_types:
         if i==len(adm) -1:
             true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
             total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
-            if final_matrices[data_type]['custom']['total'][0][i] != 0:
-                fraction.append(final_matrices[data_type]['custom']['true'][0][i]/final_matrices[data_type]['custom']['total'][0][i])
+            
+            true_data.append(final_matrices[data_type]['outlier']['true'][0][i])
+            total_data.append(final_matrices[data_type]['outlier']['total'][0][i])
+            
+            if final_matrices[data_type]['lepard']['total'][0][i] != 0:
+                fraction.append(final_matrices[data_type]['lepard']['true'][0][i]/final_matrices[data_type]['lepard']['total'][0][i])
+            else:
+                fraction.append(0)
+
+            if final_matrices[data_type]['outlier']['total'][0][i] != 0:
+                fraction.append(final_matrices[data_type]['outlier']['true'][0][i]/final_matrices[data_type]['outlier']['total'][0][i])
             else:
                 fraction.append(0)
     
     modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
     modified_adm.append('lepard')
+    modified_adm.append('outlier rejection')
     x_pos = range(len(modified_adm))
 
     plt.bar(x_pos, true_data, color='r')
