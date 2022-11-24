@@ -743,6 +743,7 @@ class Landmark_Model():
 
                 rot = data['batched_rot'][0]
                 ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_rotated_pcd.ply', ldmk_s_pcd)
                 rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
 
                 ldmk_t_pcd = o3d.geometry.PointCloud()
