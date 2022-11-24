@@ -49,22 +49,18 @@ for i in nc :
                 current_data_type = line[:-1]
 
             if 'number of true landmarks correspondences returned from Lepard' in line:
-                print('line : ', line)
                 search = list(map(int, re.findall(r'\d+', line)))
-                print('search : ', search)
                 true = int(search[0])
-                total = int(search[0])
-                final_matrices[current_data_type]['lepard']['true'] = true
-                final_matrices[current_data_type]['lepard']['total'] = total - true
+                total = int(search[1])
+                final_matrices[current_data_type]['lepard']['true'][0][count] = true
+                final_matrices[current_data_type]['lepard']['total'][0][count] = total - true
             
             if 'number of true landmark correspondences returned from custom filtering' in line:
-                print('line : ', line)
                 search = list(map(int, re.findall(r'\d+', line)))
-                print('search : ', search)
                 true = int(search[0])
-                total = int(search[0])
-                final_matrices[current_data_type]['custom']['true'] = true
-                final_matrices[current_data_type]['custom']['total'] = total - true
+                total = int(search[1])
+                final_matrices[current_data_type]['custom']['true'][0][count] = true
+                final_matrices[current_data_type]['custom']['total'][0][count] = total - true
         
         count += 1
 
