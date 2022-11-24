@@ -780,6 +780,8 @@ class Landmark_Model():
                         final_outliers = np.array([])
                         final_inliers = np.array([])
                         final_norm_error = np.array([])
+                        final_R = np.array([])
+                        final_t = np.array([])
                         
                         for n_transform in range(number_transformations):
                             source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
@@ -821,10 +823,17 @@ class Landmark_Model():
                                 final_outliers = outlier_indices
                                 final_inliers = inlier_indices
                                 final_norm_error = norm_error
+                                final_R = R
+                                final_t = t
                         
-                        if final_outliers.size == 0 or final_norm_error.size == 0 or final_inliers.size == 0:
+                        if final_outliers.size == 0 or final_norm_error.size == 0 or final_inliers.size == 0 or final_R.size == 0 or final_t.size == 0:
                             n_center += 1
                             continue
+                        
+                        landmarks_transformed_s = (final_R @ ldmk_s_np.T + np.expand_dims(final_t, axis=1)).T
+                        landmarks_transformed_s_pcd = o3d.geometry.PointCloud()
+                        landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
                         inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
                         inliers_pcd_points = np.concatenate((inliers_pcd_points, neighborhood_center_source[None, :]))
