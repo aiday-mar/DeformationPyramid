@@ -148,8 +148,8 @@ class Landmark_Model():
                         print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
                         print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences)
                         
-                        gt_inlier_matches_s = s_pos_pcd_points_rotated[mask]
-                        gt_inlier_matches_t = t_pos_pcd_points[mask]
+                        gt_inlier_matches_s = s_pos_pcd_points_rotated[lepard_true_correspondences_mask]
+                        gt_inlier_matches_t = t_pos_pcd_points[lepard_true_correspondences_mask]
                         total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
                         number_gt_inliers = gt_inlier_matches_s.shape[0]
                         inlier_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
