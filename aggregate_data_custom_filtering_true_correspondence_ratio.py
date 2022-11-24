@@ -79,4 +79,4 @@ for data_type in data_types:
     modified_adm = [prefix + str(adm_r) for adm_r in adm for prefix in ('lepard - ', 'custom - ')]
     plt.bar(modified_adm, true_data, color='r')
     plt.bar(modified_adm, total_data, bottom=true_data, color='b')
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + 'true_correspondence_ratio_for_varying_radius.png')
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + 'true_correspondence_ratio_for_varying_radii.png')
