@@ -71,12 +71,15 @@ for data_type in data_types:
     true_data = []
     total_data = []
     for i in range(len(adm)):
-        true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
-        total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
+        
+        if i==len(adm) -1:
+            true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
+            total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
     
-    modified_adm = [prefix + str(adm_r) for adm_r in adm for prefix in ('lepard - ', 'custom - ')]
+    modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
+    modified_adm.append('lepard')
     print('modified_adm : ', modified_adm)
     print('true_data : ', true_data)
     print('total_data : ', total_data)
