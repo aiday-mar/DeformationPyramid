@@ -922,7 +922,9 @@ class Landmark_Model():
                     print('number of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
                     print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences)
                     
-                    custom_and_lepard_true_correspondences_mask = custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
+                    final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
+                    final_custom_filtering_true_correspondences_mask[final_indices] = custom_filtering_true_correspondences_mask
+                    custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
                     print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
                     
                 rot = data['batched_rot'][0]
