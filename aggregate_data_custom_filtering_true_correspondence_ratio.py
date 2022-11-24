@@ -30,10 +30,10 @@ nc = [20]
 adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
 
 shape=(len(nc), len(adm))
-final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
-                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
+                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
+                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}},  
+                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}}
 
 for i in nc : 
     count = 0
@@ -67,18 +67,25 @@ for i in nc :
                 true = int(search[0])
                 total = int(search[1])
                 final_matrices[current_data_type]['outlier']['true'][0][count] = true
-                final_matrices[current_data_type]['outlier']['total'][0][count] = total - true 
+                final_matrices[current_data_type]['outlier']['total'][0][count] = total - true
+            
+            if 'RMSE' in line:
+                rmse = float(re.findall("\d+\.\d+", line)[0])
+                final_matrices[current_data_type]['custom']['rmse'][0][count] = rmse
         
         count += 1
 
 for data_type in data_types:
     plt.clf()
     true_data = []
+    rmse = []
     total_data = []
     fraction = []
+    
     for i in range(len(adm)):
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
         total_data.append(final_matrices[data_type]['custom']['total'][0][i])
+        rmse.append(final_matrices[data_type]['custom']['rmse'][0][i])
         
         if final_matrices[data_type]['custom']['total'][0][i] != 0:
             fraction.append(final_matrices[data_type]['custom']['true'][0][i]/(final_matrices[data_type]['custom']['total'][0][i]+final_matrices[data_type]['custom']['true'][0][i]))
@@ -103,19 +110,27 @@ for data_type in data_types:
                 fraction.append(0)
     
     modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
-    modified_adm.append('lepard')
-    modified_adm.append('outlier rejection')
-    x_pos = range(len(modified_adm))
-
-    plt.title(data_type + ' - varying radii')
-    plt.bar(x_pos, true_data, color='r')
-    plt.bar(x_pos, total_data, bottom=true_data, color='b')
-    plt.xticks(x_pos, modified_adm, rotation=90)
+    modified_adm_pos = range(len(modified_adm))
+    
+    plt.title(data_type + ' - RMSE varying radii')
+    plt.plot(modified_adm_pos, rmse, color='r')
+    plt.xticks(modified_adm_pos, modified_adm, rotation=90)
+    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_graph_rmse_for_varying_radii.png', bbox_inches='tight')
+    
+    modified_adm_lepard_outlier = ['custom - ' + str(adm_r) for adm_r in adm]
+    modified_adm_lepard_outlier.append('lepard')
+    modified_adm_lepard_outlier.append('outlier rejection')
+    modified_adm_lepard_outlier_pos = range(len(modified_adm_lepard_outlier))
+    
+    plt.title(data_type + ' - GT ratio varying radii')
+    plt.bar(modified_adm_lepard_outlier_pos, true_data, color='r')
+    plt.bar(modified_adm_lepard_outlier_pos, total_data, bottom=true_data, color='b')
+    plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_bar_chart_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title(data_type + ' - varying radii')
-    plt.plot(x_pos, fraction, color='r')
-    plt.xticks(x_pos, modified_adm, rotation=90)
+    plt.title(data_type + ' - GT ratio varying radii')
+    plt.plot(modified_adm_lepard_outlier_pos, fraction, color='r')
+    plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_graph_true_correspondence_ratio_for_varying_radii.png', bbox_inches='tight')
