@@ -953,8 +953,9 @@ class Landmark_Model():
                     # elif correspondence_indices_to_outliers:
                     #    correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
                     #    final_indices = np.append(final_indices, correspondence_min)
-                                    
-                final_indices = np.sort(final_indices).astype(int)
+                
+                final_indices = set(final_indices)                 
+                final_indices = np.sort(list(final_indices)).astype(int)
                 print('number of landmarks after custom filtering : ', final_indices.shape[0])
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[final_indices]).to('cuda:0')
