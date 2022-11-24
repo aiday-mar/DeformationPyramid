@@ -80,7 +80,9 @@ for data_type in data_types:
     print('modified_adm : ', modified_adm)
     print('true_data : ', true_data)
     print('total_data : ', total_data)
-    plt.bar(modified_adm, true_data, color='r')
-    plt.bar(modified_adm, total_data, bottom=true_data, color='b')
-    plt.xticks(rotation='vertical')
+    x_pos = range(len(modified_adm))
+
+    plt.bar(x_pos, true_data, color='r')
+    plt.bar(x_pos, total_data, bottom=true_data, color='b')
+    plt.xticks(x_pos, modified_adm, rotation=90)
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_true_correspondence_ratio_for_varying_radii.png')
