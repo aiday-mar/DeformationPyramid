@@ -920,13 +920,19 @@ class Landmark_Model():
                     n_true_custom_filtering_correspondences = int(custom_filtering_true_correspondences_mask.sum())
                     n_total_custom_filtering_correspondences = custom_filtering_true_correspondences_mask.shape[0]
                     print('number of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
-                    print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences if n_total_custom_filtering_correspondences else 0)
+                    if n_total_custom_filtering_correspondences != 0:
+                        print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                    else:
+                        print('fraction of true landmark correspondences returned from custom filtering : ', 0 )
                     
                     final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
                     final_custom_filtering_true_correspondences_mask[final_indices] = custom_filtering_true_correspondences_mask
                     custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
-                    print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences if n_total_custom_filtering_correspondences else 0)
-                    
+                    if n_true_custom_filtering_correspondences != 0:
+                        print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                    else:
+                        print('fraction of true landmark correspondences returned from custom filtering also returne from Lepard : ', 0)
+                        
                 rot = data['batched_rot'][0]
                 ldmk_s_custom_filtering = o3d.geometry.PointCloud()
                 ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
