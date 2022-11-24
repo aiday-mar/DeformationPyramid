@@ -74,7 +74,7 @@ for data_type in data_types:
         true_data.append(final_matrices[data_type]['lepard']['true'][0][i])
         total_data.append(final_matrices[data_type]['lepard']['total'][0][i])
         true_data.append(final_matrices[data_type]['custom']['true'][0][i])
-        total_data.append(final_matrices[data_type]['cutom']['total'][0][i])
+        total_data.append(final_matrices[data_type]['custom']['total'][0][i])
     
     modified_adm = [prefix + str(adm_r) for adm_r in adm for prefix in ('lepard - ', 'custom - ')]
     plt.bar(modified_adm, true_data, color='r')
