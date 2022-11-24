@@ -160,7 +160,7 @@ class Landmark_Model():
                         inliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
                         o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/inliers.ply', inliers_lepard_line_set)
                         
-                        inverse_mask = ~mask
+                        inverse_mask = ~lepard_true_correspondences_mask
                         gt_outlier_matches_s = s_pos_pcd_points_rotated[inverse_mask]
                         gt_outlier_matches_t = t_pos_pcd_points[inverse_mask]
                         total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
