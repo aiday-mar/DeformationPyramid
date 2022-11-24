@@ -883,20 +883,20 @@ class Landmark_Model():
                         n_center += 1
                             
                 final_indices = np.array([])
-                print('map_ldmk_s_correspondences : ', map_ldmk_s_correspondences)
                 for ldmk_s_point in map_ldmk_s_correspondences:
-                    print('ldmk_s_point : ', ldmk_s_point)
                     # All correspondences corresponding to this source landmark
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
-                    print('correspondence_indices : ', correspondence_indices)
                     correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
                     correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
-                    print('correspondence_indices_to_outliers : ', correspondence_indices_to_outliers)
-                    print('correspondence_indices_to_inliers : ', correspondence_indices_to_inliers)
                     
-                    if correspondence_indices_to_outliers:
+                    if correspondence_indices_to_inliers:
+                        correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
+                        final_indices = np.append(final_indices, correspondence_min)
+                    elif correspondence_indices_to_outliers:
                         correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
                         final_indices = np.append(final_indices, correspondence_min)
+                    
+                    # If min correspondences not selected by any of the code above then that means that none of the correspondence are covered by the neighborhoods
                 
                 final_indices = np.sort(final_indices).astype(int)
                 print('number of landmarks after custom filtering : ', final_indices.shape[0])
