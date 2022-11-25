@@ -900,7 +900,7 @@ class Landmark_Model():
                         o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
                         inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
-                        inliers_pcd_points = np.concatenate((inliers_pcd_points, neighborhood_center_source[None, :]))
+                        inliers_pcd_points = np.concatenate((inliers_pcd_points, rotated_ldmk_s_np[neighborhood_center_index][None, :]))
                         inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
                         color = np.squeeze(np.random.rand(1,3), axis=0)
                         for inlier_idx in range(inliers_pcd_points.shape[0]):
