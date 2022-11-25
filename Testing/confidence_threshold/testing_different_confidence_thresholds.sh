@@ -1,4 +1,4 @@
-confidence_threshold_list = (0.04 0.06 0.08 0.1 0.2 0.3 0.4 0.5)
+confidence_threshold_list=(0.04 0.06 0.08 0.1 0.2 0.3 0.4 0.5)
 file=testing_confidence_threshold.txt
 rm ${file} 
 touch ${file}

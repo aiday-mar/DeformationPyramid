@@ -1,4 +1,4 @@
-posenc_functions_list = (none, power4, log, linear, square)
+posenc_functions_list=(none, power4, log, linear, square)
 file=testing_posenc_functions.txt
 rm ${file} 
 touch ${file}

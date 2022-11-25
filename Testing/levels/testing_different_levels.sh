@@ -1,4 +1,4 @@
-levels_list = (2, 4, 6, 8, 10, 12)
+levels_list=(2, 4, 6, 8, 10, 12)
 file=testing_levels.txt
 rm ${file} 
 touch ${file}

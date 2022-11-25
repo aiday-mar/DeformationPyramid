@@ -1,4 +1,4 @@
-k0_list = (-11 -10 -9 -8 -7 -6 -5)
+k0_list=(-11 -10 -9 -8 -7 -6 -5)
 file=testing_k0.txt
 rm ${file} 
 touch ${file}
