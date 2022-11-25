@@ -29,7 +29,7 @@ index_coarse_feats=1
 # number_center=300
 # number_center=400
 # number_centers=(100 200 300)
-number_centers=(20)
+number_centers=(50)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
