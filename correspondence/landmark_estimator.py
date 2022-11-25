@@ -823,6 +823,7 @@ class Landmark_Model():
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
                 neighborhood_centers = np.array(centers_pcd.points)
+                print('number of neighborhood centers : ', neighborhood_centers.shape[0])
                 outliers = defaultdict(float)
                 inliers = defaultdict(float)
 
