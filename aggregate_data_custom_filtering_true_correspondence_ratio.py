@@ -22,8 +22,7 @@ class File:
 files=[]
 file_types=[]
 number_iterations=1
-# data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
-data_types=['Full Non Deformed', 'Full Deformed']
+data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'TestData/'
 
 # nc = [100, 200, 300]:
@@ -36,8 +35,8 @@ adm = [3.0]
 # iot=[0.005, 0.01, 0.02, 0.03, 0.04, 0.05]
 iot = [0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009, 0.01, 0.02, 0.03, 0.04, 0.05]
 
-sampling = 'poisson'
-# sampling='linspace'
+# sampling = 'poisson'
+sampling='linspace'
 
 version=4
 
