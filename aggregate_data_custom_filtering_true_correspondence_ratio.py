@@ -162,7 +162,7 @@ for data_type in data_types:
     plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_bar_chart_true_correspondence_ratio_for_varying_inlier_outlier_thresholds.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title(data_type + ' - GT ratio varying radii')
+    plt.title(data_type + ' - GT ratio varying inlier/outlier thresholds')
     plt.plot(modified_iot_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_iot_lepard_outlier_pos, modified_iot_lepard_outlier_pos, rotation=90)
     plt.ylim(0, 1)
