@@ -822,16 +822,16 @@ class Landmark_Model():
                 
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
+                neighborhood_centers = np.array(centers_pcd.points)
                 outliers = defaultdict(float)
                 inliers = defaultdict(float)
 
                 print('number of iterations of custom filtering : ', number_iterations_custom_filtering)
                 for _ in range(number_iterations_custom_filtering):
                     n_center = 0
-                    for neighborhood_center_index in neighborhood_center_indices_list:
-                        neighborhood_center_source = ldmk_s_np[neighborhood_center_index]
+                    for neighborhood_center in neighborhood_centers:
 
-                        distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center_source, axis = 1)
+                        distance_to_neighborhood_center = np.linalg.norm(ldmk_s_np - neighborhood_center, axis = 1)
                         distances_to_center = copy.deepcopy(distance_to_neighborhood_center)
                         
                         indices_neighborhood_points = np.where(distance_to_neighborhood_center < tau)[0]
@@ -907,8 +907,12 @@ class Landmark_Model():
                         landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
                         o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
+                        neighborhood_center_pcd = o3d.geometry.PointCloud()
+                        neighborhood_center_pcd.points = neighborhood_center[None, :]
+                        neighborhood_center_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                        
                         inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
-                        inliers_pcd_points = np.concatenate((inliers_pcd_points, rotated_ldmk_s_np[neighborhood_center_index][None, :]))
+                        inliers_pcd_points = np.concatenate((inliers_pcd_points, np.array(neighborhood_center_pcd.points)))
                         inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
                         color = np.squeeze(np.random.rand(1,3), axis=0)
                         for inlier_idx in range(inliers_pcd_points.shape[0]):
