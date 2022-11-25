@@ -810,6 +810,11 @@ class Landmark_Model():
                 print('number of unique source landmarks : ', len(map_ldmk_s_correspondences))
                 print('number of centers : ', number_centers)
                 neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
+                centers_points = ldmk_s_np[neighborhood_center_indices_list]
+                centers_pcd = o3d.geometry.PointCloud()
+                centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
+                
                 outliers = defaultdict(float)
                 inliers = defaultdict(float)
 
@@ -898,9 +903,10 @@ class Landmark_Model():
                         inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
                         inliers_pcd_points = np.concatenate((inliers_pcd_points, neighborhood_center_source[None, :]))
                         inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
+                        color = np.squeeze(np.random.rand(1,3), axis=0)
                         for inlier_idx in range(inliers_pcd_points.shape[0]):
                             if inlier_idx < inliers_pcd_points.shape[0] - 1:
-                                inliers_colors[inlier_idx][0] = 1
+                                inliers_colors[inlier_idx] = color
                             else:
                                 inliers_colors[inlier_idx] = np.array([0, 1, 0])
                         inliers_pcd = o3d.geometry.PointCloud()
