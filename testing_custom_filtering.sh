@@ -1,5 +1,6 @@
 # version=1
-version=2
+# version=2
+version=4
 
 custom_filtering=true
 # custom_filtering=false

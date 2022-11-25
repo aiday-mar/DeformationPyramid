@@ -33,6 +33,8 @@ adm = [3.0]
 
 iot=[0.005, 0.01, 0.02, 0.03, 0.04, 0.05]
 
+version=4
+
 shape=(len(nc), len(adm), len(iot))
 final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
                 'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
@@ -43,7 +45,7 @@ for i in nc :
     for j in adm:
         count = 0
         for k in iot:
-            file = 'v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '.txt'
+            file = 'v_' + str(version) + '_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '.txt'
             files.append(file)
             file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations, k))
             file_txt = open(base + file, 'r')
