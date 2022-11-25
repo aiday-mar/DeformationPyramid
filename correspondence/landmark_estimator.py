@@ -818,14 +818,16 @@ class Landmark_Model():
                     centers_points = ldmk_s_np[neighborhood_center_indices_list]
                     centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
                 elif sampling == 'poisson' and mesh_path and source_trans:
-                    source_mesh = o3d.io.read_triangle_mesh(self.path + mesh_path)
+                    source_mesh_pcd = o3d.io.read_point_cloud(self.path + mesh_path)
                     src_trans_file=h5py.File(self.path + source_trans, "r")
                     src_pcd_transform = np.array(src_trans_file['transformation'])
                     src_pcd_transform_inverse = np.linalg.inv(src_pcd_transform)
                     rot_inv = src_pcd_transform_inverse[:3, :3]
                     trn_inv = src_pcd_transform_inverse[:3, 3]
-                    source_mesh.rotate(rot_inv, center=(0, 0, 0))
-                    source_mesh.translate(trn_inv)
+                    source_mesh_pcd.rotate(rot_inv, center=(0, 0, 0))
+                    source_mesh_pcd.translate(trn_inv)
+                    radii = [0.005, 0.01, 0.02, 0.04]
+                    source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(source_mesh_pcd, o3d.utility.DoubleVector(radii))
                     o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
                     centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
                 
