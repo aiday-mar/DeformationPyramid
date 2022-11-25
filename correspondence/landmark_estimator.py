@@ -50,7 +50,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
+    def inference(self, inputs, sampling = 'linspace', inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
 
         if base:
             self.path = base
@@ -809,10 +809,16 @@ class Landmark_Model():
                 
                 print('number of unique source landmarks : ', len(map_ldmk_s_correspondences))
                 print('number of centers : ', number_centers)
-                neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
-                centers_points = ldmk_s_np[neighborhood_center_indices_list]
+                print('sampling : ', sampling)
                 centers_pcd = o3d.geometry.PointCloud()
-                centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
+                if sampling == 'linspace':
+                    neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
+                    centers_points = ldmk_s_np[neighborhood_center_indices_list]
+                    centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
+                elif sampling == 'poisson':
+                    ldmk_s_mesh = o3d.io.read_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply')
+                    centers_pcd = o3d.geometry.sample_points_poisson_disk(ldmk_s_mesh, number_centers)
+                
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
                 outliers = defaultdict(float)
@@ -879,6 +885,7 @@ class Landmark_Model():
                         
                             points_after_transformation = (R @ source_points_close_to_center.T + np.expand_dims(t, axis=1)).T
                             norm_error = np.linalg.norm(points_after_transformation - target_points_close_to_center, axis = 1)
+                            print('inlier outlier threshold : ', inlier_outlier_thr)
                             outlier_indices = np.where(norm_error > inlier_outlier_thr)[0]
                             inlier_indices = np.where(norm_error <= inlier_outlier_thr)[0]
                             
