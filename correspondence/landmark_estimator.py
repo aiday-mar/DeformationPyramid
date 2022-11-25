@@ -50,7 +50,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, sampling = 'linspace', inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
 
         if base:
             self.path = base
@@ -815,16 +815,13 @@ class Landmark_Model():
                     neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
                     centers_points = ldmk_s_np[neighborhood_center_indices_list]
                     centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
-                elif sampling == 'poisson':
-                    src_pcd_points_for_mesh = data['src_pcd_list'][0]
-                    src_pcd_points_for_mesh = np.array(src_pcd_points_for_mesh.cpu())
-                    src_pcd_for_mesh = o3d.geometry.PointCloud()
-                    src_pcd_for_mesh.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
-                    src_pcd_for_mesh.estimate_normals()
-                    radii = [0.005, 0.01, 0.02, 0.04]
-                    source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(src_pcd_for_mesh, o3d.utility.DoubleVector(radii))
-                    o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
-                    centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers) # pcl = ldmk_s_pcd
+                elif sampling == 'poisson' and mesh_path:
+                    source_mesh = o3d.io.read_triangle_mesh(self.path + mesh_path)
+                    rot = data['batched_rot'][0]
+                    source_mesh.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    trn = data['batched_trn'][0]
+                    source_mesh.translate(trn)
+                    centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
                 
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
