@@ -107,7 +107,7 @@ for data_type in data_types:
                 else:
                     fraction.append(0)
                     
-                if i==len(iot) -1:
+                if k==len(iot) -1:
                     true_data.append(final_matrices[data_type]['lepard']['true'][i][j][k])
                     total_data.append(final_matrices[data_type]['lepard']['total'][i][j][k])
                     
