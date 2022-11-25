@@ -826,7 +826,7 @@ class Landmark_Model():
                     trn_inv = src_pcd_transform_inverse[:3, 3]
                     source_mesh_pcd.rotate(rot_inv, center=(0, 0, 0))
                     source_mesh_pcd.translate(trn_inv)
-                    radii = [0.005, 0.01, 0.02, 0.04]
+                    radii = [0.005]
                     source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(source_mesh_pcd, o3d.utility.DoubleVector(radii))
                     o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
                     centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
