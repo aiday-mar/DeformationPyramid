@@ -4,7 +4,7 @@ import numpy as np
 
 w_reg_list = [0, 0.2, 0.4, 0.6, 0.8, 1]
 w_cd_list = [0, 0.2, 0.4, 0.6, 0.8, 1]
-base = 'TestData/'
+base = '../../TestData/'
 types=['FullDeformed/', 'FullNonDeformed/', 'PartialDeformed/', 'PartialNonDeformed/']
 names=['Full Deformed', 'Full Non Deformed', 'Partial Deformed', 'Partial Non Deformed']
 metric_list=['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier']

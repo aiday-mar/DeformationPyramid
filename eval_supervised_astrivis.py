@@ -41,6 +41,7 @@ if __name__ == "__main__":
     parser.add_argument('--config', type=str, help= 'Path to the config file.')
     parser.add_argument('--base', type=str, help= 'Base folder.')
     parser.add_argument('--w_cd', type=str, help= 'w_cd')
+    parser.add_argument('--k0', type=str, help= 'k0 used in the positional encoding of the NDP layers')
     parser.add_argument('--w_reg', type=str, help= 'w_reg')
     parser.add_argument('--coarse_level', type=str, help= 'coarse level')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
@@ -171,7 +172,8 @@ if __name__ == "__main__":
         w_reg = float(args.w_reg) if args.w_reg else None
         print_keypoints = True if args.print_keypoints else False
         
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
+        k0 = args.k0 if args.k0 else -8
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, k0 = k0, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
             
         final_transformation = np.identity(4)
         for i in range(0, 10):

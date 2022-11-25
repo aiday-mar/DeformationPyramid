@@ -23,7 +23,7 @@ files=[]
 file_types=[]
 number_iterations=1
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
-base = 'TestData/'
+base = '../../TestData/'
 
 # nc = [100, 200, 300]:
 nc = [50]

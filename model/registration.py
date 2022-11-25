@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
+    def optimize_deformation_pyramid(self, visualize=False, k0 = -8, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
         
         if base:
             self.path = base
@@ -127,10 +127,11 @@ class Registration():
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
 
+        print('k0 : ', k0)
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
                                     device=self.device,
-                                    k0=config.k0,
+                                    k0=k0,
                                     m=config.m,
                                     nonrigidity_est = w_reg > 0 if w_reg else config.w_reg > 0,
                                     rotation_format=config.rotation_format,
@@ -193,7 +194,7 @@ class Registration():
                         src_pts = torch.cat( [ src_ldmk, s_sample ])
                         warped_pts, data = NDP.warp(src_pts, max_level=level, min_level=level)
                         warped_ldmk = warped_pts [: len(src_ldmk) ]
-                        s_sample_warped = warped_pts [ len(src_ldmk):]
+                        s_sample_warped = warped_pts [ len(src_ldmk): ]
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
 
