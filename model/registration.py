@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, visualize=False, k0 = -8, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
+    def optimize_deformation_pyramid(self, samples = None, visualize=False, k0 = None, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
         
         if base:
             self.path = base
@@ -127,6 +127,7 @@ class Registration():
         max_break_count=config.max_break_count
         break_threshold_ratio=config.break_threshold_ratio
 
+        k0 = k0 if k0 else config.k0
         print('k0 : ', k0)
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
@@ -150,10 +151,12 @@ class Registration():
         src_pcd = self.src_pcd - src_mean
         tgt_pcd = self.tgt_pcd - tgt_mean
 
+        samples = samples if samples else config.samples
+        print('samples : ', samples)
         src = torch.randperm(src_pcd.shape[0])
         tgt = torch.randperm(tgt_pcd.shape[0])
-        s_sample = src_pcd[src[: config.samples]]
-        t_sample = tgt_pcd[tgt[: config.samples]]
+        s_sample = src_pcd[src[: samples]]
+        t_sample = tgt_pcd[tgt[: samples]]
 
         if self.landmarks is not None:
             src_ldmk = self.landmarks[0] - src_mean
@@ -177,9 +180,7 @@ class Registration():
 
             """freeze non-optimized level"""
             NDP.gradient_setup(optimized_level=level)
-
             optimizer = optim.Adam(NDP.pyramid[level].parameters(), lr= self.config.lr )
-
             break_counter = 0
             loss_prev = 1e+6
 
@@ -197,16 +198,11 @@ class Registration():
                         s_sample_warped = warped_pts [ len(src_ldmk): ]
                         loss_ldmk =  torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
                         loss_CD = compute_truncated_chamfer_distance(s_sample_warped[None], t_sample[None], trunc=config.trunc_cd)
-
                         loss = loss_ldmk + w_cd * loss_CD
-
                     else :
                         warped_ldmk, data = NDP.warp(src_ldmk, max_level=level, min_level=level)
-
                         loss = torch.mean( torch.sum( (warped_ldmk - tgt_ldmk)**2, dim=-1))
-
                 else:
-
                     if timer: timer.tic("lvl_warp")
                     s_sample_warped, data = NDP.warp(s_sample, max_level=level, min_level=level)
                     if timer: timer.toc("lvl_warp")
@@ -240,10 +236,8 @@ class Registration():
             # use warped points for next level
             if self.landmarks is not None:
                 src_ldmk = warped_ldmk.detach()
-
                 if (w_cd > 0 if w_cd else config.w_cd > 0):
                     s_sample = s_sample_warped.detach()
-
             else:
                 s_sample = s_sample_warped.detach()
             
@@ -260,11 +254,9 @@ class Registration():
         warped_pcd, data = NDP.warp(src_pcd, intermediate_output_folder, tgt_mean)
         if visualize:
              visualize_pcds(tgt_pcd=tgt_pcd, warped_pcd=warped_pcd, rigidity=data[level][1])
-
         warped_pcd = warped_pcd + tgt_mean
 
         return warped_pcd, data, iter_cnt, timer
-
 
     def optimize_Nerfies(self, visualize=False):
         '''
