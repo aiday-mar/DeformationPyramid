@@ -116,7 +116,7 @@ class Registration():
         raise KeyError()
 
 
-    def optimize_deformation_pyramid(self, samples = None, visualize=False, k0 = None, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
+    def optimize_deformation_pyramid(self, levels = None, samples = None, visualize=False, k0 = None, intermediate_output_folder=None, base = None, timer = None, print_keypoints = False, w_cd = None, w_reg = None):
         
         if base:
             self.path = base
@@ -129,11 +129,15 @@ class Registration():
 
         k0 = k0 if k0 else config.k0
         print('k0 : ', k0)
+
+        levels = levels if levels else config.m
+        print('levels : ', levels)
+
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
                                     device=self.device,
                                     k0=k0,
-                                    m=config.m,
+                                    m=levels,
                                     nonrigidity_est = w_reg > 0 if w_reg else config.w_reg > 0,
                                     rotation_format=config.rotation_format,
                                     motion=config.motion_type,
