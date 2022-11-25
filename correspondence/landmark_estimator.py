@@ -817,7 +817,8 @@ class Landmark_Model():
                     centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
                 elif sampling == 'poisson':
                     ldmk_s_pcd.estimate_normals()
-                    ldmk_s_mesh, _ = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(ldmk_s_pcd, depth=9)
+                    ldmk_s_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(ldmk_s_pcd)
+                    # ldmk_s_mesh, _ = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(ldmk_s_pcd, depth=9)
                     o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_mesh.ply', ldmk_s_mesh)
                     centers_pcd = ldmk_s_mesh.sample_points_poisson_disk(number_of_points=number_centers) # pcl=ldmk_s_pcd)
                 
