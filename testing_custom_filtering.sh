@@ -53,6 +53,7 @@ do
             
             echo "number of centers ${number_center}"
             echo "average distance multiplier ${average_distance_multiplier}"
+            echo "inlier outlier thresholds ${inlier_outlier_thr}"
 
             folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}
             file_name=TestData/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}.txt
