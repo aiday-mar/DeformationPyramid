@@ -818,9 +818,17 @@ class Landmark_Model():
                 elif sampling == 'poisson' and mesh_path:
                     source_mesh = o3d.io.read_triangle_mesh(self.path + mesh_path)
                     rot = data['batched_rot'][0]
-                    source_mesh.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    rot = np.array(rot.cpu())
                     trn = data['batched_trn'][0]
-                    source_mesh.translate(trn)
+                    trn = np.array(trn.cpu())
+                    se4_matrix = np.concatenate((rot, trn), axis=1)
+                    se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
+                    se4_matrix_inverse = np.linalg.inv(se4_matrix)
+                    rot_inv = se4_matrix_inverse[:3, :3]
+                    trn_inv = se4_matrix_inverse[:3, 3]
+                    source_mesh.rotate(rot_inv, center=(0, 0, 0))
+                    source_mesh.translate(trn_inv)
+                    o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
                     centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
                 
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
