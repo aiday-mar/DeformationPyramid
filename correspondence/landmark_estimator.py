@@ -922,6 +922,7 @@ class Landmark_Model():
                         
                         neighborhood_center_pcd = o3d.geometry.PointCloud()
                         neighborhood_center_pcd.points = o3d.utility.Vector3dVector(neighborhood_center[None, :])
+                        rot = data['batched_rot'][0]
                         neighborhood_center_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                         
                         inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
