@@ -50,6 +50,7 @@ if __name__ == "__main__":
     parser.add_argument('--number_centers', type=str, help='number of centers to use in the custom filtering')
     parser.add_argument('--average_distance_multiplier', type=str, help='multiplier in front of the average distance')
     parser.add_argument('--number_iterations_custom_filtering', type=str, help='number of iterations of the custom filtering')
+    parser.add_argument('--inlier_outlier_thr', type=str, help='threshold which is used to determine the inliers and outliers')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--show_lepard_inliers', action = 'store_true', help= 'decide to output the lepard inliers or not')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
@@ -119,7 +120,8 @@ if __name__ == "__main__":
         average_distance_multiplier = float(args.average_distance_multiplier) if args.average_distance_multiplier else 2
         number_iterations_custom_filtering = int(args.number_iterations_custom_filtering) if args.number_iterations_custom_filtering else 1
         matches_path = args.matches if args.show_lepard_inliers else None
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
+        inlier_outlier_thr = float(args.inlier_outlier_thr) if args.inlier_outlier_thr else 0.05
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
