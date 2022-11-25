@@ -816,13 +816,15 @@ class Landmark_Model():
                     centers_points = ldmk_s_np[neighborhood_center_indices_list]
                     centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
                 elif sampling == 'poisson':
-                    ldmk_s_pcd = o3d.geometry.PointCloud()
-                    ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
-                    ldmk_s_pcd.estimate_normals()
+                    src_pcd_points_for_mesh = data['src_pcd_list'][0]
+                    src_pcd_points_for_mesh = np.array(src_pcd_points_for_mesh.cpu())
+                    src_pcd_for_mesh = o3d.geometry.PointCloud()
+                    src_pcd_for_mesh.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+                    src_pcd_for_mesh.estimate_normals()
                     radii = [0.005, 0.01, 0.02, 0.04]
-                    ldmk_s_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(ldmk_s_pcd, o3d.utility.DoubleVector(radii))
-                    o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_mesh.ply', ldmk_s_mesh)
-                    centers_pcd = ldmk_s_mesh.sample_points_poisson_disk(number_of_points=number_centers) # pcl=ldmk_s_pcd
+                    source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(src_pcd_for_mesh, o3d.utility.DoubleVector(radii))
+                    o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
+                    centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers) # pcl = ldmk_s_pcd
                 
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
@@ -832,6 +834,8 @@ class Landmark_Model():
                 inliers = defaultdict(float)
 
                 print('number of iterations of custom filtering : ', number_iterations_custom_filtering)
+                print('inlier outlier threshold : ', inlier_outlier_thr)
+                
                 for _ in range(number_iterations_custom_filtering):
                     n_center = 0
                     for neighborhood_center in neighborhood_centers:
@@ -860,7 +864,6 @@ class Landmark_Model():
                         final_R = np.array([])
                         final_t = np.array([])
                         
-                        print('inlier outlier threshold : ', inlier_outlier_thr)
                         for n_transform in range(number_transformations):
                             source_point_1 = ldmk_s_np[transformation_indices[n_transform][0]]
                             target_point_1 = ldmk_t_np[transformation_indices[n_transform][0]]
