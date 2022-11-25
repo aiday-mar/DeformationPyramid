@@ -8,6 +8,7 @@ import numpy as np
 import os
 import copy 
 import random
+import h5py
 
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
@@ -50,7 +51,7 @@ class Landmark_Model():
         self.kpfcn_config = config['kpfcn_config']
 
 
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
 
         if base:
             self.path = base
@@ -810,22 +811,19 @@ class Landmark_Model():
                 print('number of unique source landmarks : ', len(map_ldmk_s_correspondences))
                 print('number of centers : ', number_centers)
                 print('sampling : ', sampling)
+                
                 centers_pcd = o3d.geometry.PointCloud()
                 if sampling == 'linspace':
                     neighborhood_center_indices_list = np.linspace(0, ldmk_s_np.shape[0] - 1, num=number_centers).astype(int)
                     centers_points = ldmk_s_np[neighborhood_center_indices_list]
                     centers_pcd.points = o3d.utility.Vector3dVector(centers_points)
-                elif sampling == 'poisson' and mesh_path:
+                elif sampling == 'poisson' and mesh_path and source_trans:
                     source_mesh = o3d.io.read_triangle_mesh(self.path + mesh_path)
-                    rot = data['batched_rot'][0]
-                    rot = np.array(rot.cpu())
-                    trn = data['batched_trn'][0]
-                    trn = np.array(trn.cpu())
-                    se4_matrix = np.concatenate((rot, trn), axis=1)
-                    se4_matrix = np.concatenate((se4_matrix, np.array([[0,0,0,1]])), axis=0)
-                    se4_matrix_inverse = np.linalg.inv(se4_matrix)
-                    rot_inv = se4_matrix_inverse[:3, :3]
-                    trn_inv = se4_matrix_inverse[:3, 3]
+                    src_trans_file=h5py.File(self.path + source_trans, "r")
+                    src_pcd_transform = np.array(src_trans_file['transformation'])
+                    src_pcd_transform_inverse = np.linalg.inv(src_pcd_transform)
+                    rot_inv = src_pcd_transform_inverse[:3, :3]
+                    trn_inv = src_pcd_transform_inverse[:3, 3]
                     source_mesh.rotate(rot_inv, center=(0, 0, 0))
                     source_mesh.translate(trn_inv)
                     o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
