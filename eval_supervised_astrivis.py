@@ -56,6 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--sampling', type=str, help='sampling strategy used')
     parser.add_argument('--samples', type=str, help='number of samples to use')
     parser.add_argument('--levels', type=str, help='number of levels in NDP')
+    parser.add_argument('--posenc_function', type=str, help='function type in the positional encoding')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--show_lepard_inliers', action = 'store_true', help= 'decide to output the lepard inliers or not')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
@@ -176,7 +177,8 @@ if __name__ == "__main__":
         k0 = int(args.k0) if args.k0 else -8
         samples = int(args.samples) if args.samples else None
         levels = int(args.levels) if args.levels else None
-        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, levels = levels, samples = samples, k0 = k0, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
+        posenc_function = args.posenc_function if args.posenc_function else None
+        warped_pcd, data, iter, timer = model.register(visualize=args.visualize, posenc_function = posenc_function, levels = levels, samples = samples, k0 = k0, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
             
         final_transformation = np.identity(4)
         for i in range(0, 10):

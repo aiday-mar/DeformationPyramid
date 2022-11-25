@@ -7,12 +7,13 @@ from torch.autograd.functional import jacobian
 import open3d as o3d
 import numpy as np
 import os
+import math
 
 path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Deformation_Pyramid ():
 
-    def __init__(self, depth, width, device, k0, m, rotation_format, nonrigidity_est=False, base = None, motion='SE3'):
+    def __init__(self, depth, width, device, k0, m, rotation_format, posenc_function = None, nonrigidity_est=False, base = None, motion='SE3'):
 
         if base:
             self.path = base
@@ -20,9 +21,7 @@ class Deformation_Pyramid ():
             self.path = path
             
         pyramid = []
-
         assert motion in [ "Sim3", "SE3", "sflow"]
-
 
         for i in range (m):
             pyramid.append(
@@ -30,12 +29,12 @@ class Deformation_Pyramid ():
                          width,
                          k0,
                          i+1,
-                         rotation_format,
+                         posenc_function = posenc_function,
+                         rotation_format = rotation_format,
                          nonrigidity_est=nonrigidity_est & (i!=0),
                          motion=motion
                          ).to(device)
             )
-
 
         self.pyramid = pyramid
         self.n_hierarchy = m
@@ -44,7 +43,6 @@ class Deformation_Pyramid ():
 
         if max_level is None:
             max_level = self.n_hierarchy - 1
-
         assert max_level < self.n_hierarchy, "more level than defined"
 
         data = {}
@@ -59,14 +57,12 @@ class Deformation_Pyramid ():
                 intermediate_pcd = o3d.geometry.PointCloud()
                 intermediate_pcd.points = o3d.utility.Vector3dVector(np.array(intermediate_sample.cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_ouput_folder + 'final/' + 'final_inter_' + str(i) + '.ply', intermediate_pcd)
-                
             data[i] = (x, nonrigidity, R, t)
         return x, data
 
     def gradient_setup(self, optimized_level):
 
         assert optimized_level < self.n_hierarchy, "more level than defined"
-
         # optimize current level, freeze the other levels
         for i in range( self.n_hierarchy):
             net = self.pyramid[i]
@@ -77,26 +73,22 @@ class Deformation_Pyramid ():
                 for param in net.parameters():
                     param.requires_grad = False
 
-
-
 class NDPLayer(nn.Module):
-    def __init__(self, depth, width, k0, m, rotation_format="euler", nonrigidity_est=False, motion='SE3'):
+    def __init__(self, depth, width, k0, m, posenc_function = None, rotation_format="euler", nonrigidity_est=False, motion='SE3'):
         super().__init__()
 
         self.k0 = k0
         self.m = m
+        self.posenc_function = posenc_function
         dim_x =  6
         self.nonrigidity_est = nonrigidity_est
         self.motion = motion
         self.input= nn.Sequential( nn.Linear(dim_x,width), nn.ReLU())
         self.mlp = MLP(depth=depth,width=width)
-
         self.rotation_format = rotation_format
-
 
         """rotation branch"""
         if self.motion in [ "Sim3", "SE3"] :
-
             if self.rotation_format in [ "axis_angle", "euler" ]:
                 self.rot_brach = nn.Linear(width, 3)
             elif self.rotation_format == "quaternion":
@@ -104,20 +96,16 @@ class NDPLayer(nn.Module):
             elif self.rotation_format == "6D":
                 self.rot_brach = nn.Linear(width, 6)
 
-
             if self.motion == "Sim3":
                 self.s_branch = nn.Linear(width, 1) # scale branch
 
-
         """translation branch"""
         self.trn_branch = nn.Linear(width, 3)
-
 
         """rigidity branch"""
         if self.nonrigidity_est:
             self.nr_branch = nn.Linear(width, 1)
             self.sigmoid = nn.Sigmoid()
-
 
         # Apply small scaling on the MLP output, s.t. the optimization can start from near identity pose
         self.mlp_scale = 0.001
@@ -126,7 +114,7 @@ class NDPLayer(nn.Module):
 
     def forward (self, x):
 
-        fea = self.posenc( x )
+        fea = self.posenc(x, self.posenc_function)
         fea = self.input(fea)
         fea = self.mlp(fea)
 
@@ -145,7 +133,6 @@ class NDPLayer(nn.Module):
             R = None
             x_ = x + t
 
-
         if self.nonrigidity_est:
             nonrigidity =self.sigmoid( self.mlp_scale * self.nr_branch(fea) )
             x_ = x + nonrigidity * (x_ - x)
@@ -153,15 +140,11 @@ class NDPLayer(nn.Module):
         else:
             nonrigidity = None
 
-
         return x_.squeeze(), nonrigidity, R, t
-
-
 
     def get_Rotation (self, fea):
 
         R = self.mlp_scale * self.rot_brach( fea )
-
         if self.rotation_format == "euler":
             R = euler_to_SO3(R)
         elif self.rotation_format == "axis_angle":
@@ -177,29 +160,36 @@ class NDPLayer(nn.Module):
 
         return R
 
-
-    def posenc(self, pos):
-        pi = 3.14
+    def posenc(self, pos, posenc_function = None):
         x_position, y_position, z_position = pos[..., 0:1], pos[..., 1:2], pos[..., 2:3]
-        # mul_term = ( 2 ** (torch.arange(self.m, device=pos.device).float() + self.k0) * pi ).reshape(1, -1)
-        mul_term = (2 ** (self.m + self.k0)  )#.reshape(1, -1)
+        mul_term = None
+        print('positional encoding function : ', posenc_function)
 
-        sinx = torch.sin(x_position * mul_term)
-        cosx = torch.cos(x_position * mul_term)
-        siny = torch.sin(y_position * mul_term)
-        cosy = torch.cos(y_position * mul_term)
-        sinz = torch.sin(z_position * mul_term)
-        cosz = torch.cos(z_position * mul_term)
-        pe = torch.cat([sinx, cosx, siny, cosy, sinz, cosz], dim=-1)
-        return pe
+        if not posenc_function or posenc_function == 'none':
+            mul_term = (2 ** (self.m + self.k0))
+        if not posenc_function or posenc_function == 'power4':
+            mul_term = (4 ** (self.m + self.k0))
+        elif posenc_function == 'log':
+            mul_term = math.log(self.m + self.k0, 2)
+        elif posenc_function == 'linear':
+            mul_term = (self.m + self.k0)
+        elif posenc_function == 'square':
+            mul_term = (self.m + self.k0)**2
 
+        if mul_term:
+            sinx = torch.sin(x_position * mul_term)
+            cosx = torch.cos(x_position * mul_term)
+            siny = torch.sin(y_position * mul_term)
+            cosy = torch.cos(y_position * mul_term)
+            sinz = torch.sin(z_position * mul_term)
+            cosz = torch.cos(z_position * mul_term)
+            pe = torch.cat([sinx, cosx, siny, cosy, sinz, cosz], dim=-1)
+            return pe
 
     def _reset_parameters(self):
         for p in self.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
-
-
 
 class Nerfies_Deformation(nn.Module):
     '''
@@ -219,23 +209,18 @@ class Nerfies_Deformation(nn.Module):
         self.max_iter = max_iter
         self.N = 0.6 * max_iter
 
-
-
     def forward(self, x, iter ):
         warpped_x = self.warp(x, iter)
         J = self.batched_jacobian(self.warp, x, iter)
         return warpped_x, J
-
-
+    
     def batched_jacobian(self, f, x, iter):
         f_sum = lambda x: torch.sum(f(x, iter), axis=0)
         return jacobian(f_sum, x).transpose(0,1)
 
-
     def posenc(self, pos, iter):
 
         pi = 3.14
-
         # sliding window
         a = self.m * iter / self.N
         w_a = ( 1 - torch.cos( torch.clamp(a-torch.arange(self.m, device=pos.device).float(), min=0, max=1) * pi ) ) / 2
@@ -268,7 +253,6 @@ class Nerfies_Deformation(nn.Module):
         R, t = exp_se3(w, v, theta)
         _x = ( R @ x[..., None] + t ).squeeze()
         return _x.squeeze()
-
 
 class Neural_Prior(torch.nn.Module):
     '''
@@ -307,7 +291,6 @@ class Neural_Prior(torch.nn.Module):
         x = self.layer9(x)
 
         return x
-
 
 class MLP(torch.nn.Module):
     def __init__(self, depth, width):
