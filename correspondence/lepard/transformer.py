@@ -145,7 +145,7 @@ class RepositioningTransformer(nn.Module):
 
 
 
-    def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = 'mutual', T = None, timers = None, mod = False):
+    def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = 'mutual', confidence_threshold = None, T = None, timers = None, mod = False):
 
         self.timers = timers
 
@@ -186,7 +186,7 @@ class RepositioningTransformer(nn.Module):
 
                     if self.positioning_type == 'procrustes':
 
-                        conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, pe_type=self.pe_type)
+                        conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type=self.pe_type)
 
                         position_layer += 1
                         data["position_layers"][position_layer] = {"conf_matrix": conf_matrix, "match_pred": match_pred}
