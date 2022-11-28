@@ -163,16 +163,15 @@ class NDPLayer(nn.Module):
     def posenc(self, pos, posenc_function = None):
         x_position, y_position, z_position = pos[..., 0:1], pos[..., 1:2], pos[..., 2:3]
         mul_term = None
-        print('positional encoding function : ', posenc_function)
         if not posenc_function or posenc_function == 'none':
             mul_term = (2 ** (self.m + self.k0))
-        if posenc_function == 'power4':
+        elif 'power4' in posenc_function:
             mul_term = (4 ** (self.m + self.k0))
-        elif posenc_function == 'log':
+        elif 'log' in posenc_function:
             mul_term = math.log(self.m + self.k0 + 10, 2) # adding 10 here because value in log should be positive
-        elif posenc_function == 'linear':
+        elif 'linear' in posenc_function:
             mul_term = (self.m + self.k0)
-        elif posenc_function == 'square':
+        elif 'square' in posenc_function:
             mul_term = (self.m + self.k0)**2
 
         if mul_term:
