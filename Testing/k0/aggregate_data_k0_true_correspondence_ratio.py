@@ -45,7 +45,6 @@ for line in Lines:
         current_data_type = line[:-1]
     if 'Test - k0' in line:
         k0_val = int(re.findall('-?\d+', line)[1])
-        print(k0_val)
     if 'number of true landmarks correspondences returned from Lepard' in line:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
@@ -54,6 +53,7 @@ for line in Lines:
         final_matrices[current_data_type]['lepard']['true'][i] = true
         final_matrices[current_data_type]['lepard']['total'][i] = total - true
         
+print('final_matrices : ', final_matrices)
 
 for data_type in data_types:
     plt.clf()
