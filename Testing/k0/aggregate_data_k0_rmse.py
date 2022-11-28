@@ -57,6 +57,6 @@ for data_type in data_types:
     k0_pos = range(len(k0))
     plt.clf()
     plt.title(title)
-    plt.plot(k0_pos, final_matrices[data_type]['RMSE'], color='r')
+    plt.plot(k0_pos, final_matrices[data_type]['rmse'], color='r')
     plt.xticks(k0_pos, k0, rotation=90)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')
