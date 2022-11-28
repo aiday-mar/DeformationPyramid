@@ -43,7 +43,7 @@ current_data_type = ''
 for line in Lines:
     if line[:-1] in data_types:
         current_data_type = line[:-1]
-    if 'Test - levels' in line:
+    if 'Test - positional encoding' in line:
         interm_list = line.split()
         print(interm_list)
         posenc_function_val = interm_list[-1][:-1]
