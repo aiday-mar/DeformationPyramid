@@ -1,4 +1,4 @@
-samples_list=(500, 1000, 2000, 4000, 6000)
+samples_list=(500 1000 2000 4000 6000)
 file="Testing/samples/testing_samples.txt"
 rm ${file} 
 touch ${file}
