@@ -33,7 +33,7 @@ final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'tr
                 'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
 
-file='testing_confidence_thresholds.txt'
+file='confidence_threshold/testing_confidence_thresholds.txt'
 
 for i in range(len(confidence_thresholds)):
     confidence_threshold = confidence_thresholds[i]
