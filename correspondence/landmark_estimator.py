@@ -44,7 +44,7 @@ class Landmark_Model():
         
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
-        state = torch.load(indent + config.outlier_rejection_weights if indent else config.matcher_weights)
+        state = torch.load(indent + config.outlier_rejection_weights if indent else config.outlier_rejection_weights)
         self.outlier_model.load_state_dict(state['state_dict'])
 
         self.device = device
