@@ -23,7 +23,7 @@ files=[]
 file_types=[]
 number_iterations=1
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
-base = 'TestData/'
+base = 'Testing/'
 
 confidence_thresholds = [0.04, 0.06, 0.08, 0.1, 0.2, 0.3, 0.4, 0.5]
 shape = (len(confidence_thresholds),)
