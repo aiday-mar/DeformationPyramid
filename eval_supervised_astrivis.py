@@ -54,6 +54,7 @@ if __name__ == "__main__":
     parser.add_argument('--inlier_outlier_thr', type=str, help='threshold which is used to determine the inliers and outliers')
     parser.add_argument('--mesh_path', type=str, help='path to initial source mesh which can be used in order to do poisson center sampling')
     parser.add_argument('--sampling', type=str, help='sampling strategy used')
+    parser.add_argument('--indent', type=str, help='indent level used in order to access different files')
     parser.add_argument('--samples', type=str, help='number of samples to use')
     parser.add_argument('--levels', type=str, help='number of levels in NDP')
     parser.add_argument('--posenc_function', type=str, help='function type in the positional encoding')
@@ -85,7 +86,10 @@ if __name__ == "__main__":
     else:
         config.device = torch.device('cpu')
 
-    ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
+    if args.indent:
+        ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device)
+    else:
+        ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
     config['kpfcn_config'] = ldmk_model.kpfcn_config
 
     model = Registration(config)
