@@ -45,6 +45,7 @@ for line in Lines:
         current_data_type = line[:-1]
     if 'Test - levels' in line:
         interm_list = line.split()
+        print(interm_list)
         posenc_function_val = interm_list[-1][:-1]
     if 'RMSE' in line:
         rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
