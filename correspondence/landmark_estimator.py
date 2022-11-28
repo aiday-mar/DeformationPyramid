@@ -121,33 +121,57 @@ class Landmark_Model():
                     )
                     o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'lepard_line_set.ply', line_set)
                     
-                    if matches_path:
-                        mask = np.array([])
-                        matches = np.load(self.path + matches_path)
-                        correspondences = np.array(matches['matches'])
-                        ind_src = correspondences[:, 0]
-                        ind_tgt = correspondences[:, 1]
-                        matches_source = src_pcd_points[ind_src]
-                        matches_target = tgt_pcd_points[ind_tgt]
-                        thr = 0.01
-                        for i in range(s_pos_pcd_points.shape[0]):
-                            s_ldmk = s_pos_pcd_points[i]
-                            t_ldmk = t_pos_pcd_points[i]
-                            distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
-                            distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
-                            indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
-                            indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
-                            if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
-                                mask = np.append(mask, True)
-                            else:
-                                mask = np.append(mask, False)
-                        
-                        lepard_true_correspondences_mask = mask.astype(bool)
-                        n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
-                        n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
-                        print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
-                        print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences)
-                        
+            print('matches path : ', matches_path)
+            if matches_path:
+                b_size=len(data['s_pcd'])
+                ind = data['coarse_match_pred']
+                bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
+            
+                for i in range(b_size):
+                    bmask = bi == i
+                    rot = data['batched_rot'][0]
+
+                    s_pos = data['s_pcd'][i][si[bmask]]
+                    t_pos = data['t_pcd'][i][ti[bmask]]
+                    
+                    mask = np.array([])
+                    matches = np.load(self.path + matches_path)
+                    correspondences = np.array(matches['matches'])
+                    ind_src = correspondences[:, 0]
+                    ind_tgt = correspondences[:, 1]
+                    src_pcd_points = data['src_pcd_list'][0]
+                    src_pcd_points = np.array(src_pcd_points.cpu())
+                    matches_source = src_pcd_points[ind_src]
+                    tgt_pcd_points = data['tgt_pcd_list'][0]
+                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                    matches_target = tgt_pcd_points[ind_tgt]
+                    s_pos_pcd_points = np.array(s_pos.cpu())
+                    t_pos_pcd_points = np.array(t_pos.cpu())
+                    thr = 0.01
+                    
+                    for i in range(s_pos_pcd_points.shape[0]):
+                        s_ldmk = s_pos_pcd_points[i]
+                        t_ldmk = t_pos_pcd_points[i]
+                        distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                        distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
+                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                        if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                            mask = np.append(mask, True)
+                        else:
+                            mask = np.append(mask, False)
+                    
+                    lepard_true_correspondences_mask = mask.astype(bool)
+                    n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
+                    n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
+                    print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                    print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
+                    
+                    if intermediate_output_folder:
+                        s_pos_pcd = o3d.geometry.PointCloud()
+                        s_pos_pcd.points = o3d.utility.Vector3dVector(s_pos_pcd_points)
+                        s_pos_pcd_rotated = s_pos_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                        s_pos_pcd_points_rotated = np.array(s_pos_pcd_rotated.points)
                         gt_inlier_matches_s = s_pos_pcd_points_rotated[lepard_true_correspondences_mask]
                         gt_inlier_matches_t = t_pos_pcd_points[lepard_true_correspondences_mask]
                         total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
@@ -185,51 +209,13 @@ class Landmark_Model():
             inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             vec_6d = data['vec_6d'][0]
 
-            # Rejecting points in vec_6d only if we do not do custom filtering
             if not custom_filtering and reject_outliers:
                 print('using the outlier rejection network')
-                vec_6d = vec_6d [inlier_conf > inlier_thr]
-            elif custom_filtering and matches_path:
-                outlier_rejected_vec_6d = vec_6d[inlier_conf > inlier_thr]
-                ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
-                mask = np.array([])
-                matches = np.load(self.path + matches_path)
-                correspondences = np.array(matches['matches'])
-                ind_src = correspondences[:, 0]
-                ind_tgt = correspondences[:, 1]
-                
-                src_pcd_points = data['src_pcd_list'][0]
-                src_pcd_points = np.array(src_pcd_points.cpu())
-                tgt_pcd_points = data['tgt_pcd_list'][0]
-                tgt_pcd_points = np.array(tgt_pcd_points.cpu())
-                
-                matches_source = src_pcd_points[ind_src]
-                matches_target = tgt_pcd_points[ind_tgt]
-                thr = 0.01
-                
-                for i in range(ldmk_s_outlier_rejected.shape[0]):
-                    s_ldmk = np.array(ldmk_s_outlier_rejected[i].cpu())
-                    t_ldmk = np.array(ldmk_t_outlier_rejected[i].cpu())
-                    distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
-                    distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
-                    indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
-                    indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
-                    if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
-                        mask = np.append(mask, True)
-                    else:
-                        mask = np.append(mask, False)
-                
-                outlier_rejected_true_correspondences_mask = mask.astype(bool)
-                n_true_outlier_rejected_correspondences = int(outlier_rejected_true_correspondences_mask.sum())
-                n_total_outlier_rejected_correspondences = outlier_rejected_true_correspondences_mask.shape[0]
-                print('number of true landmark correspondences returned from outlier rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
-                if n_total_outlier_rejected_correspondences != 0:
-                    print('fraction of true landmark correspondences returned from outlier rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences )
-                else:
-                    print('fraction of true landmark correspondences returned from outlier rejection : ', 0 )
-                            
+                vec_6d = vec_6d[inlier_conf > inlier_thr] 
+                           
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
-            if not custom_filtering and intermediate_output_folder:
+            
+            if intermediate_output_folder and not custom_filtering:
                 if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
 
@@ -263,7 +249,76 @@ class Landmark_Model():
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
-            
+                
+            if matches_path:
+                outlier_rejected_vec_6d = vec_6d[inlier_conf > inlier_thr]
+                ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
+                mask = np.array([])
+                matches = np.load(self.path + matches_path)
+                correspondences = np.array(matches['matches'])
+                ind_src = correspondences[:, 0]
+                ind_tgt = correspondences[:, 1]
+                
+                src_pcd_points = data['src_pcd_list'][0]
+                src_pcd_points = np.array(src_pcd_points.cpu())
+                tgt_pcd_points = data['tgt_pcd_list'][0]
+                tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                
+                matches_source = src_pcd_points[ind_src]
+                matches_target = tgt_pcd_points[ind_tgt]
+                thr = 0.01
+                
+                for i in range(ldmk_s_outlier_rejected.shape[0]):
+                    s_ldmk = np.array(ldmk_s_outlier_rejected[i].cpu())
+                    t_ldmk = np.array(ldmk_t_outlier_rejected[i].cpu())
+                    distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                    distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                    indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
+                    indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                    if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                        mask = np.append(mask, True)
+                    else:
+                        mask = np.append(mask, False)
+                
+                outlier_rejected_true_correspondences_mask = mask.astype(bool)
+                n_true_outlier_rejected_correspondences = int(outlier_rejected_true_correspondences_mask.sum())
+                n_total_outlier_rejected_correspondences = outlier_rejected_true_correspondences_mask.shape[0]
+                print('number of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
+                print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
+                
+                if intermediate_output_folder:
+                    rot = data['batched_rot'][0]
+                    ldmk_s_outlier_rejected_pcd = o3d.geometry.PointCloud()
+                    ldmk_s_outlier_rejected = np.array(ldmk_s_outlier_rejected.cpu())
+                    ldmk_s_outlier_rejected_pcd.points = o3d.utility.Vector3dVector(ldmk_s_outlier_rejected)                    
+                    ldmk_s_outlier_rejected_rotated_pcd = ldmk_s_outlier_rejected_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    ldmk_s_outlier_rejected_rotated = np.array(ldmk_s_outlier_rejected_rotated_pcd.points)
+                    
+                    gt_inlier_matches_s = ldmk_s_outlier_rejected_rotated[outlier_rejected_true_correspondences_mask]
+                    gt_inlier_matches_t = ldmk_t_outlier_rejected[outlier_rejected_true_correspondences_mask]
+                    total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
+                    number_gt_inliers = gt_inlier_matches_s.shape[0]
+                    inlier_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
+                    colors = np.repeat([[0, 1, 0]], [inlier_correspondences.shape[0]], axis=0).astype(np.float64)
+                    inliers_outlier_rejected_line_set = o3d.geometry.LineSet()
+                    inliers_outlier_rejected_line_set.points=o3d.utility.Vector3dVector(total_inlier_points)
+                    inliers_outlier_rejected_line_set.lines =o3d.utility.Vector2iVector(inlier_correspondences)
+                    inliers_outlier_rejected_line_set.colors = o3d.utility.Vector3dVector(colors)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/inliers.ply', inliers_outlier_rejected_line_set)
+                    
+                    inverse_mask = ~outlier_rejected_true_correspondences_mask
+                    gt_outlier_matches_s = ldmk_s_outlier_rejected_rotated[inverse_mask]
+                    gt_outlier_matches_t = ldmk_t_outlier_rejected[inverse_mask]
+                    total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
+                    number_gt_outliers = gt_outlier_matches_s.shape[0]
+                    outlier_correspondences = np.array([[i, i + number_gt_outliers] for i in range(0, number_gt_outliers)])
+                    colors = np.repeat([[0, 1, 0]], [outlier_correspondences.shape[0]], axis=0).astype(np.float64)
+                    outliers_outlier_rejected_line_set = o3d.geometry.LineSet()
+                    outliers_outlier_rejected_line_set.points=o3d.utility.Vector3dVector(total_outlier_points)
+                    outliers_outlier_rejected_line_set.lines =o3d.utility.Vector2iVector(outlier_correspondences)
+                    outliers_outlier_rejected_line_set.colors = o3d.utility.Vector3dVector(colors)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/outliers.ply', outliers_outlier_rejected_line_set)
+        
             # 1. Custom filtering done with the first method
             '''            
             custom_filtering = True
@@ -745,51 +800,62 @@ class Landmark_Model():
             
             # Custom filtering with the 4th method
             # VERSION 4
-            if custom_filtering and intermediate_output_folder:
+            if custom_filtering:
                 print('Custom filtering is used')
-                if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
-                    os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
                 
-                if matches_path:
-                    matches = np.load(self.path + matches_path)
-                    correspondences = np.array(matches['matches'])                    
-                    src_pcd_points = data['src_pcd_list'][0]
-                    src_pcd_points = np.array(src_pcd_points.cpu())
-                    tgt_pcd_points = data['tgt_pcd_list'][0]
-                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                if intermediate_output_folder:
+                    if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
+                        os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
                     
-                    src_pcd = o3d.geometry.PointCloud()
-                    src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
+                    if matches_path:
+                        matches = np.load(self.path + matches_path)
+                        correspondences = np.array(matches['matches'])                    
+                        src_pcd_points = data['src_pcd_list'][0]
+                        src_pcd_points = np.array(src_pcd_points.cpu())
+                        tgt_pcd_points = data['tgt_pcd_list'][0]
+                        tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                        
+                        src_pcd = o3d.geometry.PointCloud()
+                        src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
+                        rot = data['batched_rot'][0]
+                        src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                        src_pcd_points_rotated = np.array(src_pcd.points)
+                        n_points_source = src_pcd_points_rotated.shape[0]
+                        correspondences[:, 1] = correspondences[:, 1] + n_points_source
+                        
+                        total_points = np.concatenate((src_pcd_points_rotated, tgt_pcd_points), axis = 0)
+                        line_set = o3d.geometry.LineSet()
+                        line_set.points=o3d.utility.Vector3dVector(total_points)
+                        line_set.lines =o3d.utility.Vector2iVector(correspondences)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'gt_line_set.ply', line_set)
+                        
+                    ldmk_s_np = np.array(ldmk_s.cpu())
+                    number_points = ldmk_s_np.shape[0]
+                    print('number of landmarks : ', number_points)
+                    ldmk_t_np = np.array(ldmk_t.cpu())
+
+                    ldmk_s_pcd = o3d.geometry.PointCloud()
+                    ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
+
                     rot = data['batched_rot'][0]
-                    src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                    src_pcd_points_rotated = np.array(src_pcd.points)
-                    n_points_source = src_pcd_points_rotated.shape[0]
-                    correspondences[:, 1] = correspondences[:, 1] + n_points_source
-                    
-                    total_points = np.concatenate((src_pcd_points_rotated, tgt_pcd_points), axis = 0)
-                    line_set = o3d.geometry.LineSet()
-                    line_set.points=o3d.utility.Vector3dVector(total_points)
-                    line_set.lines =o3d.utility.Vector2iVector(correspondences)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'gt_line_set.ply', line_set)
-                    
-                ldmk_s_np = np.array(ldmk_s.cpu())
-                number_points = ldmk_s_np.shape[0]
-                print('number of landmarks : ', number_points)
-                ldmk_t_np = np.array(ldmk_t.cpu())
+                    ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_rotated_pcd.ply', ldmk_s_pcd)
+                    rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
 
-                ldmk_s_pcd = o3d.geometry.PointCloud()
-                ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
-
-                rot = data['batched_rot'][0]
-                ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_rotated_pcd.ply', ldmk_s_pcd)
-                rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
-
-                ldmk_t_pcd = o3d.geometry.PointCloud()
-                ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
+                    ldmk_t_pcd = o3d.geometry.PointCloud()
+                    ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
+                else:
+                    ldmk_s_np = np.array(ldmk_s.cpu())
+                    ldmk_s_pcd = o3d.geometry.PointCloud()
+                    ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+                    rot = data['batched_rot'][0]
+                    ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
+                    ldmk_t_np = np.array(ldmk_t.cpu())
                 
+                number_points = ldmk_s_np.shape[0]
                 distances = np.zeros((number_points,number_points))
                 average_distance = 0
                 for j in range(number_points):
@@ -829,10 +895,12 @@ class Landmark_Model():
                     source_mesh_pcd.translate(trn_inv)
                     radii = [0.005]
                     source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(source_mesh_pcd, o3d.utility.DoubleVector(radii))
-                    o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
+                    if intermediate_output_folder:
+                        o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
                     centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
                 
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
+                if intermediate_output_folder:
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
                 neighborhood_centers = np.array(centers_pcd.points)
                 print('number of neighborhood centers : ', neighborhood_centers.shape[0])
@@ -916,49 +984,50 @@ class Landmark_Model():
                             n_center += 1
                             continue
                         
-                        landmarks_transformed_s = (final_R @ ldmk_s_np.T + np.expand_dims(final_t, axis=1)).T
-                        landmarks_transformed_s_pcd = o3d.geometry.PointCloud()
-                        landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
-                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
+                        if intermediate_output_folder:
+                            landmarks_transformed_s = (final_R @ ldmk_s_np.T + np.expand_dims(final_t, axis=1)).T
+                            landmarks_transformed_s_pcd = o3d.geometry.PointCloud()
+                            landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
+                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
-                        neighborhood_center_pcd = o3d.geometry.PointCloud()
-                        neighborhood_center_pcd.points = o3d.utility.Vector3dVector(neighborhood_center[None, :])
-                        rot = data['batched_rot'][0]
-                        neighborhood_center_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                            neighborhood_center_pcd = o3d.geometry.PointCloud()
+                            neighborhood_center_pcd.points = o3d.utility.Vector3dVector(neighborhood_center[None, :])
+                            rot = data['batched_rot'][0]
+                            neighborhood_center_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                            
+                            inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                            inliers_pcd_points = np.concatenate((inliers_pcd_points, np.array(neighborhood_center_pcd.points)))
+                            inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
+                            color = np.squeeze(np.random.rand(1,3), axis=0)
+                            for inlier_idx in range(inliers_pcd_points.shape[0]):
+                                if inlier_idx < inliers_pcd_points.shape[0] - 1:
+                                    inliers_colors[inlier_idx] = color
+                                else:
+                                    inliers_colors[inlier_idx] = np.array([0, 1, 0])
+                            inliers_pcd = o3d.geometry.PointCloud()
+                            inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
+                            inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
+                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
                         
-                        inliers_pcd_points = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
-                        inliers_pcd_points = np.concatenate((inliers_pcd_points, np.array(neighborhood_center_pcd.points)))
-                        inliers_colors = np.zeros((inliers_pcd_points.shape[0], inliers_pcd_points.shape[1]))
-                        color = np.squeeze(np.random.rand(1,3), axis=0)
-                        for inlier_idx in range(inliers_pcd_points.shape[0]):
-                            if inlier_idx < inliers_pcd_points.shape[0] - 1:
-                                inliers_colors[inlier_idx] = color
-                            else:
-                                inliers_colors[inlier_idx] = np.array([0, 1, 0])
-                        inliers_pcd = o3d.geometry.PointCloud()
-                        inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
-                        inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
-                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
-                    
-                        inliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
-                        inliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_inliers]]
-                        total_inliers = np.concatenate((inliers_pcd_points_s, inliers_pcd_points_t), axis = 0)
-                        number_inliers_src = inliers_pcd_points_s.shape[0]
-                        inliers_correspondences = np.array([[i, i + number_inliers_src] for i in range(0, number_inliers_src)])
-                        inliers_line_set = o3d.geometry.LineSet()
-                        inliers_line_set.points=o3d.utility.Vector3dVector(total_inliers)
-                        inliers_line_set.lines =o3d.utility.Vector2iVector(inliers_correspondences)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
-                        
-                        outliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_outliers]]
-                        outliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_outliers]]
-                        total_outliers = np.concatenate((outliers_pcd_points_s, outliers_pcd_points_t), axis = 0)
-                        number_outliers_src = outliers_pcd_points_s.shape[0]
-                        outliers_correspondences = np.array([[i, i + number_outliers_src] for i in range(0, number_outliers_src)])
-                        outliers_line_set = o3d.geometry.LineSet()
-                        outliers_line_set.points=o3d.utility.Vector3dVector(total_outliers)
-                        outliers_line_set.lines =o3d.utility.Vector2iVector(outliers_correspondences)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/outliers_line_set_' + str(n_center) + '.ply', outliers_line_set)
+                            inliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
+                            inliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_inliers]]
+                            total_inliers = np.concatenate((inliers_pcd_points_s, inliers_pcd_points_t), axis = 0)
+                            number_inliers_src = inliers_pcd_points_s.shape[0]
+                            inliers_correspondences = np.array([[i, i + number_inliers_src] for i in range(0, number_inliers_src)])
+                            inliers_line_set = o3d.geometry.LineSet()
+                            inliers_line_set.points=o3d.utility.Vector3dVector(total_inliers)
+                            inliers_line_set.lines =o3d.utility.Vector2iVector(inliers_correspondences)
+                            o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
+                            
+                            outliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_outliers]]
+                            outliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_outliers]]
+                            total_outliers = np.concatenate((outliers_pcd_points_s, outliers_pcd_points_t), axis = 0)
+                            number_outliers_src = outliers_pcd_points_s.shape[0]
+                            outliers_correspondences = np.array([[i, i + number_outliers_src] for i in range(0, number_outliers_src)])
+                            outliers_line_set = o3d.geometry.LineSet()
+                            outliers_line_set.points=o3d.utility.Vector3dVector(total_outliers)
+                            outliers_line_set.lines =o3d.utility.Vector2iVector(outliers_correspondences)
+                            o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/outliers_line_set_' + str(n_center) + '.ply', outliers_line_set)
 
                         for outlier_idx in final_outliers:
                             weight = final_norm_error[outlier_idx]/tau
@@ -974,17 +1043,16 @@ class Landmark_Model():
                             
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:
-                    # All correspondences corresponding to this source landmark
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
-                    correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
                     correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
                     
                     if correspondence_indices_to_inliers:
                         correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
                         final_indices = np.append(final_indices, correspondence_min)
+                    # correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
                     # elif correspondence_indices_to_outliers:
-                    #    correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
-                    #    final_indices = np.append(final_indices, correspondence_min)
+                    # correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
+                    # final_indices = np.append(final_indices, correspondence_min)
                 
                 final_indices = set(final_indices)                 
                 final_indices = np.sort(list(final_indices)).astype(int)
@@ -1037,7 +1105,7 @@ class Landmark_Model():
                     else:
                         print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', 0)
                 
-                if final_indices.shape[0] != 0:
+                if final_indices.shape[0] != 0 and intermediate_output_folder:
                     rot = data['batched_rot'][0]
                     ldmk_s_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
@@ -1064,10 +1132,8 @@ class Landmark_Model():
 
                 vec_6d = data['vec_6d'][0][final_indices]
                 data_mod['vec_6d'] = vec_6d[None, :]
-                
                 vec_6d_mask = data['vec_6d_mask'][0][final_indices]
                 data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
-                
                 vec_6d_ind = data['vec_6d_ind'][0][final_indices]
                 data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
                 
