@@ -45,8 +45,9 @@ for line in Lines:
         current_data_type = line[:-1]
     if 'Test - positional encoding' in line:
         interm_list = line.split()
-        print(interm_list)
-        posenc_function_val = interm_list[-1][:-1]
+        posenc_function_val = interm_list[-1]
+        if ',' in posenc_function_val:
+            posenc_function_val = posenc_function_val[:-1]
     if 'RMSE' in line:
         rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
         i = posenc_functions.index(posenc_function_val)
