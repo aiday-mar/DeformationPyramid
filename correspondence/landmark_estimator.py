@@ -251,7 +251,7 @@ class Landmark_Model():
                 o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
                 
             if matches_path:
-                outlier_rejected_vec_6d = vec_6d[inlier_conf > inlier_thr]
+                outlier_rejected_vec_6d = data['vec_6d'][0][inlier_conf > inlier_thr]
                 ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
                 mask = np.array([])
                 matches = np.load(self.path + matches_path)
