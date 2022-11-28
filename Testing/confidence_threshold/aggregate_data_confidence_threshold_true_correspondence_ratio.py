@@ -34,23 +34,23 @@ final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'tr
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
 
 file='confidence_threshold/testing_confidence_thresholds.txt'
-
-for i in range(len(confidence_thresholds)):
-    confidence_threshold = confidence_thresholds[i]
-    files.append(file)
-    file_txt = open(base + file, 'r')
-    Lines = file_txt.readlines()
-    current_data_type = ''
-    for line in Lines:
-        if line[:-1] in data_types:
-            current_data_type = line[:-1]
-
-        if 'number of true landmarks correspondences returned from Lepard' in line:
-            search = list(map(int, re.findall(r'\d+', line)))
-            true = int(search[0])
-            total = int(search[1])
-            final_matrices[current_data_type]['lepard']['true'][i] = true
-            final_matrices[current_data_type]['lepard']['total'][i] = total - true
+file_txt = open(base + file, 'r')
+Lines = file_txt.readlines()
+confidence_threshold = -1
+current_data_type = ''
+for line in Lines:
+    if line[:-1] in data_types:
+        current_data_type = line[:-1]
+    if 'Test - confidence threshold' in line:
+        confidence_threshold = float(re.findall("\d+\.\d+", line)[0])
+    if 'number of true landmarks correspondences returned from Lepard' in line:
+        search = list(map(int, re.findall(r'\d+', line)))
+        true = int(search[0])
+        total = int(search[1])
+        i = confidence_thresholds.index(confidence_threshold)
+        final_matrices[current_data_type]['lepard']['true'][i] = true
+        final_matrices[current_data_type]['lepard']['total'][i] = total - true
+        
 
 for data_type in data_types:
     plt.clf()
