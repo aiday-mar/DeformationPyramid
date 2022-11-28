@@ -20,17 +20,17 @@ path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Landmark_Model():
 
-    def __init__(self, config_file, device ):
+    def __init__(self, config_file, device, indent=None ):
 
         with open(config_file, 'r') as f:
             config = yaml.load(f, Loader=yaml.Loader)
             config = edict(config)
 
-        with open(config['matcher_config'], 'r') as f_:
+        with open(indent+config['matcher_config'], 'r') as f_:
             matcher_config = yaml.load(f_, Loader=yaml.Loader)
             matcher_config = edict(matcher_config)
 
-        with open(config['outlier_rejection_config'], 'r') as f_:
+        with open(indent+config['outlier_rejection_config'], 'r') as f_:
             outlier_rejection_config = yaml.load(f_, Loader=yaml.Loader)
             outlier_rejection_config = edict(outlier_rejection_config)
             
@@ -40,7 +40,8 @@ class Landmark_Model():
         self.matcher = Matcher(matcher_config).to(device)
         state = torch.load(config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
-
+        self.indent = indent
+        
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
         state = torch.load(config.outlier_rejection_weights)

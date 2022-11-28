@@ -87,7 +87,7 @@ if __name__ == "__main__":
         config.device = torch.device('cpu')
 
     if args.indent:
-        ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device)
+        ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent)
     else:
         ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
     config['kpfcn_config'] = ldmk_model.kpfcn_config
