@@ -129,7 +129,7 @@ if __name__ == "__main__":
         number_centers = int(args.number_centers) if args.number_centers else 1000
         average_distance_multiplier = float(args.average_distance_multiplier) if args.average_distance_multiplier else 2
         number_iterations_custom_filtering = int(args.number_iterations_custom_filtering) if args.number_iterations_custom_filtering else 1
-        matches_path = args.matches if args.show_lepard_inliers else None
+        matches_path = args.matches if args.matches else None
         inlier_outlier_thr = float(args.inlier_outlier_thr) if args.inlier_outlier_thr else 0.05
         sampling = args.sampling if args.sampling else 'linspace'
         mesh_path = args.mesh_path if args.mesh_path else None
