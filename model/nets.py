@@ -176,7 +176,6 @@ class NDPLayer(nn.Module):
             mul_term = (self.m + self.k0)**2
 
         if mul_term:
-            print('we have multiplication term')
             sinx = torch.sin(x_position * mul_term)
             cosx = torch.cos(x_position * mul_term)
             siny = torch.sin(y_position * mul_term)
@@ -185,6 +184,8 @@ class NDPLayer(nn.Module):
             cosz = torch.cos(z_position * mul_term)
             pe = torch.cat([sinx, cosx, siny, cosy, sinz, cosz], dim=-1)
             return pe
+        else:
+            print('no multiplication term')
 
     def _reset_parameters(self):
         for p in self.parameters():
