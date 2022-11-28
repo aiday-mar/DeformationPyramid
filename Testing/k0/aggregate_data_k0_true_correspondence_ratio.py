@@ -44,7 +44,7 @@ for line in Lines:
     if line[:-1] in data_types:
         current_data_type = line[:-1]
     if 'Test - k0' in line:
-        k0_val = int(re.findall(r'\d+', line)[1])
+        k0_val = int(re.findall('-?\d+', line)[1])
         print(k0_val)
     if 'number of true landmarks correspondences returned from Lepard' in line:
         search = list(map(int, re.findall(r'\d+', line)))
