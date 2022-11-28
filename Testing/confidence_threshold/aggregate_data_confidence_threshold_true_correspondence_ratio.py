@@ -73,11 +73,11 @@ for data_type in data_types:
     plt.bar(confidence_thresholds_pos, true_data, color='r')
     plt.bar(confidence_thresholds_pos, total_data, bottom=true_data, color='b')
     plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_'), bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
     
     plt.clf()
     plt.title('Varying the confidence threshold')
     plt.plot(confidence_thresholds_pos, fraction, color='r')
     plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
     plt.ylim(0, 1)
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_'), bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')
