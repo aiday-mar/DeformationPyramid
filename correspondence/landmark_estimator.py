@@ -26,11 +26,11 @@ class Landmark_Model():
             config = yaml.load(f, Loader=yaml.Loader)
             config = edict(config)
 
-        with open(indent+config['matcher_config'], 'r') as f_:
+        with open(indent+config['matcher_config'] if indent else config['matcher_config'], 'r') as f_:
             matcher_config = yaml.load(f_, Loader=yaml.Loader)
             matcher_config = edict(matcher_config)
 
-        with open(indent+config['outlier_rejection_config'], 'r') as f_:
+        with open(indent+config['outlier_rejection_config'] if indent else config['outlier_rejection_config'], 'r') as f_:
             outlier_rejection_config = yaml.load(f_, Loader=yaml.Loader)
             outlier_rejection_config = edict(outlier_rejection_config)
             
