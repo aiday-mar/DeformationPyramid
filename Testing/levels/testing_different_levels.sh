@@ -5,6 +5,7 @@ touch ${file}
 
 for levels in ${levels_list[@]}; do
 
+        echo "Test - levels : ${levels}" >> ${file}
         folder=levels_${levels}
         rm -rf TestData/FullNonDeformed/${folder}
         mkdir TestData/FullNonDeformed/${folder}

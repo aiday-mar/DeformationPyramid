@@ -5,6 +5,7 @@ touch ${file}
 
 for posenc_function in ${posenc_functions_list[@]}; do
 
+        echo "Test - positional encoding : ${posenc_function}" >> ${file}
         folder=posenc_function_${posenc_function}
         rm -rf TestData/FullNonDeformed/${folder}
         mkdir TestData/FullNonDeformed/${folder}

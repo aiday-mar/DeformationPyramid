@@ -5,6 +5,7 @@ touch ${file}
 
 for confidence_threshold in ${confidence_threshold_list[@]}; do
 
+        echo "Test - confidence threshold : ${confidence_threshold}" >> ${file}
         folder=confidence_threshold_${confidence_threshold}
         rm -rf TestData/FullNonDeformed/${folder}
         mkdir TestData/FullNonDeformed/${folder}

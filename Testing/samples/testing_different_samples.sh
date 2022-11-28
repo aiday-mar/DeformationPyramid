@@ -5,6 +5,7 @@ touch ${file}
 
 for samples in ${samples_list[@]}; do
 
+        echo "Test - samples : ${samples}" >> ${file}
         folder=samples_${samples}
         rm -rf TestData/FullNonDeformed/${folder}
         mkdir TestData/FullNonDeformed/${folder}

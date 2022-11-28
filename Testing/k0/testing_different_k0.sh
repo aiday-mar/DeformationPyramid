@@ -5,6 +5,7 @@ touch ${file}
 
 for k0 in ${k0_list[@]}; do
 
+        echo "Test - k0 : ${k0}" >> ${file}
         folder=output_k0_${k0}
         rm -rf TestData/FullNonDeformed/${folder}
         mkdir TestData/FullNonDeformed/${folder}
