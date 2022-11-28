@@ -175,7 +175,7 @@ class NDPLayer(nn.Module):
         elif 'square' in posenc_function:
             mul_term = (self.m + self.k0)**2
 
-        if mul_term:
+        if mul_term is not None:
             sinx = torch.sin(x_position * mul_term)
             cosx = torch.cos(x_position * mul_term)
             siny = torch.sin(y_position * mul_term)
