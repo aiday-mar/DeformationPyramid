@@ -38,13 +38,13 @@ class Landmark_Model():
 
         # matcher initialization
         self.matcher = Matcher(matcher_config).to(device)
-        state = torch.load(config.matcher_weights)
+        state = torch.load(indent + config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
         self.indent = indent
         
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
-        state = torch.load(config.outlier_rejection_weights)
+        state = torch.load(indent + config.outlier_rejection_weights)
         self.outlier_model.load_state_dict(state['state_dict'])
 
         self.device = device
