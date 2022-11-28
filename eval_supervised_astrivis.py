@@ -185,7 +185,7 @@ if __name__ == "__main__":
         warped_pcd, data, iter, timer = model.register(visualize=args.visualize, posenc_function = posenc_function, levels = levels, samples = samples, k0 = k0, intermediate_output_folder=args.intermediate_output_folder, timer = timer, base = path, print_keypoints = print_keypoints, w_cd = w_cd, w_reg = w_reg)
             
         final_transformation = np.identity(4)
-        for i in range(0, levels):
+        for i in range(0, levels if levels else 10):
             rot = data[i][2][-1].cpu()
             trans = data[i][3][-1].cpu().unsqueeze(1)
             se4_matrix = np.concatenate((rot, trans), axis=1)
