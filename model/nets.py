@@ -163,7 +163,6 @@ class NDPLayer(nn.Module):
     def posenc(self, pos, posenc_function = None):
         x_position, y_position, z_position = pos[..., 0:1], pos[..., 1:2], pos[..., 2:3]
         mul_term = None
-        print(posenc_function)
         if not posenc_function or posenc_function == 'none':
             mul_term = (2 ** (self.m + self.k0))
         elif 'power4' in posenc_function:
