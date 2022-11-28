@@ -169,7 +169,7 @@ class NDPLayer(nn.Module):
         if posenc_function == 'power4':
             mul_term = (4 ** (self.m + self.k0))
         elif posenc_function == 'log':
-            mul_term = math.log(self.m + self.k0, 2)
+            mul_term = math.log(self.m + self.k0 + 10, 2) # adding 10 here because value in log should be positive
         elif posenc_function == 'linear':
             mul_term = (self.m + self.k0)
         elif posenc_function == 'square':
