@@ -121,7 +121,6 @@ class Landmark_Model():
                     )
                     o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'lepard_line_set.ply', line_set)
                     
-            print('matches path : ', matches_path)
             if matches_path:
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
