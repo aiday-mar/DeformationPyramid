@@ -1,5 +1,5 @@
 matcher_config: 'correspondence/configs/lepard.yaml'
-matcher_weights: 'correspondence/pretrained/lepard_4d_match_from_repo.pth' # lepard_3d_match_from_repo.pth, lepard_weights.pth'
+matcher_weights: 'correspondence/pretrained/lepard_weights.pth' # lepard_4d_match_from_repo.pth' # lepard_3d_match_from_repo.pth, 
 
 outlier_rejection_config: 'correspondence/configs/outlier_rejection.yaml'
 outlier_rejection_weights: 'correspondence/pretrained/outlier_weights.pth'
