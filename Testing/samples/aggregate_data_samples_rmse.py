@@ -28,7 +28,7 @@ folder = 'samples/'
 file='testing_samples.txt'
 title = 'RMSE - Varying samples'
 
-samples = [500, 1000, 2000, 4000, 6000]
+samples = [20, 50, 100, 500, 1000, 2000]
 shape = (len(samples),)
 
 final_matrices={'Full Non Deformed': {'rmse' : np.zeros(shape)}, 
