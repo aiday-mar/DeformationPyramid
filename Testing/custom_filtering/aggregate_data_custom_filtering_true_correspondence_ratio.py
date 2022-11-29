@@ -198,6 +198,8 @@ for data_type in data_types:
     modified_nc_lepard_outlier_pos = range(len(modified_nc_lepard_outlier))
     
     plt.title(data_type + ' - GT ratio - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
+    print(modified_nc_lepard_outlier_pos)
+    print(true_data)
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier_pos, rotation=90)
