@@ -294,7 +294,7 @@ class Landmark_Model():
                     ldmk_s_outlier_rejected_rotated = np.array(ldmk_s_outlier_rejected_rotated_pcd.points)
                     
                     gt_inlier_matches_s = ldmk_s_outlier_rejected_rotated[outlier_rejected_true_correspondences_mask]
-                    gt_inlier_matches_t = ldmk_t_outlier_rejected[outlier_rejected_true_correspondences_mask]
+                    gt_inlier_matches_t = ldmk_t_outlier_rejected[outlier_rejected_true_correspondences_mask].cpu()
                     total_inlier_points = np.concatenate((gt_inlier_matches_s, gt_inlier_matches_t), axis = 0)
                     number_gt_inliers = gt_inlier_matches_s.shape[0]
                     inlier_correspondences = np.array([[i, i + number_gt_inliers] for i in range(0, number_gt_inliers)])
