@@ -202,7 +202,7 @@ for data_type in data_types:
     print(true_data)
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
-    plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier_pos, rotation=90)
+    plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_nc.png', bbox_inches='tight')
     
     plt.clf()
