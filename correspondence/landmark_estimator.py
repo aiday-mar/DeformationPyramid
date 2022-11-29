@@ -286,6 +286,8 @@ class Landmark_Model():
                 print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
                 
                 if intermediate_output_folder:
+                    if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
+                        os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
                     rot = data['batched_rot'][0]
                     ldmk_s_outlier_rejected_pcd = o3d.geometry.PointCloud()
                     ldmk_s_outlier_rejected = np.array(ldmk_s_outlier_rejected.cpu())
