@@ -307,7 +307,7 @@ class Landmark_Model():
                     
                     inverse_mask = ~outlier_rejected_true_correspondences_mask
                     gt_outlier_matches_s = ldmk_s_outlier_rejected_rotated[inverse_mask]
-                    gt_outlier_matches_t = ldmk_t_outlier_rejected[inverse_mask]
+                    gt_outlier_matches_t = ldmk_t_outlier_rejected[inverse_mask].cpu()
                     total_outlier_points = np.concatenate((gt_outlier_matches_s, gt_outlier_matches_t), axis = 0)
                     number_gt_outliers = gt_outlier_matches_s.shape[0]
                     outlier_correspondences = np.array([[i, i + number_gt_outliers] for i in range(0, number_gt_outliers)])
