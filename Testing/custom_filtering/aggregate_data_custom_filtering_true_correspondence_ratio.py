@@ -48,8 +48,8 @@ final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'tr
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}}
 
 for i in nc :
+    count = 0
     for j in adm:
-        count = 0
         for k in iot:
             file = 'v_' + str(version) + '_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '_s_' + sampling + '.txt'
             files.append(file)
@@ -65,28 +65,28 @@ for i in nc :
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['lepard']['true'][0][0][count] = true
-                    final_matrices[current_data_type]['lepard']['total'][0][0][count] = total - true
+                    final_matrices[current_data_type]['lepard']['true'][count][0][0] = true
+                    final_matrices[current_data_type]['lepard']['total'][count][0][0] = total - true
                 
                 if 'number of true landmark correspondences returned from custom filtering' in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['custom']['true'][0][0][count] = true
-                    final_matrices[current_data_type]['custom']['total'][0][0][count] = total - true
+                    final_matrices[current_data_type]['custom']['true'][count][0][0] = true
+                    final_matrices[current_data_type]['custom']['total'][count][0][0] = total - true
                 
                 if 'number of true landmark correspondences returned from Outlier Rejection' in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['outlier']['true'][0][0][count] = true
-                    final_matrices[current_data_type]['outlier']['total'][0][0][count] = total - true
+                    final_matrices[current_data_type]['outlier']['true'][count][0][0] = true
+                    final_matrices[current_data_type]['outlier']['total'][count][0][0] = total - true
                 
                 if 'RMSE' in line:
                     rmse = float(re.findall("\d+\.\d+", line)[0])
-                    final_matrices[current_data_type]['custom']['rmse'][0][0][count] = rmse
+                    final_matrices[current_data_type]['custom']['rmse'][count][0][0] = rmse
             
-            count += 1
+    count += 1
 
 print('final_matrices : ', final_matrices)
 for data_type in data_types:
