@@ -43,7 +43,7 @@ current_data_type = ''
 for line in Lines:
     if line[:-1] in data_types:
         current_data_type = line[:-1]
-    if 'Test - levels' in line:
+    if 'Test - samples' in line:
         samples_val = int(re.findall('-?\d+', line)[0])
     if 'RMSE' in line:
         rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
