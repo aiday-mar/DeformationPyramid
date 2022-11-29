@@ -88,6 +88,7 @@ for i in nc :
             
             count += 1
 
+print('final_matrices : ', final_matrices)
 for data_type in data_types:
     plt.clf()
     true_data = []
