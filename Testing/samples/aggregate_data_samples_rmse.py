@@ -57,6 +57,6 @@ for data_type in data_types:
     samples_pos = range(len(samples))
     plt.clf()
     plt.title(title)
-    plt.plot(samples_val, final_matrices[data_type]['rmse'], color='r')
-    plt.xticks(samples_val, samples, rotation=90)
+    plt.plot(samples_pos, final_matrices[data_type]['rmse'], color='r')
+    plt.xticks(samples_pos, samples, rotation=90)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')
