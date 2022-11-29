@@ -88,7 +88,6 @@ for i in nc :
             
     count += 1
 
-print('final_matrices : ', final_matrices)
 for data_type in data_types:
     plt.clf()
     true_data = []
@@ -109,7 +108,7 @@ for data_type in data_types:
                 else:
                     fraction.append(0)
                     
-                if k==len(iot) -1:
+                if i==len(nc) -1:
                     true_data.append(final_matrices[data_type]['lepard']['true'][i][j][k])
                     total_data.append(final_matrices[data_type]['lepard']['total'][i][j][k])
                     
