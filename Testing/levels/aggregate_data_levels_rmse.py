@@ -54,9 +54,9 @@ print('final_matrices : ', final_matrices)
 
 for data_type in data_types:
     plt.clf()
-    levels_po = range(len(levels))
+    levels_pos = range(len(levels))
     plt.clf()
     plt.title(title)
-    plt.plot(levels_po, final_matrices[data_type]['rmse'], color='r')
-    plt.xticks(levels_po, levels, rotation=90)
+    plt.plot(levels_pos, final_matrices[data_type]['rmse'], color='r')
+    plt.xticks(levels_pos, levels, rotation=90)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')

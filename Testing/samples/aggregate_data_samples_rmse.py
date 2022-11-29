@@ -28,8 +28,8 @@ folder = 'samples/'
 file='testing_samples.txt'
 title = 'RMSE - Varying samples'
 
-levels = [500, 1000, 2000, 4000, 6000]
-shape = (len(levels),)
+samples = [500, 1000, 2000, 4000, 6000]
+shape = (len(samples),)
 
 final_matrices={'Full Non Deformed': {'rmse' : np.zeros(shape)}, 
                 'Full Deformed': {'rmse' : np.zeros(shape)}, 
@@ -38,25 +38,25 @@ final_matrices={'Full Non Deformed': {'rmse' : np.zeros(shape)},
 
 file_txt = open(base + folder + file, 'r')
 Lines = file_txt.readlines()
-levels_val = -1
+samples_val = -1
 current_data_type = ''
 for line in Lines:
     if line[:-1] in data_types:
         current_data_type = line[:-1]
     if 'Test - levels' in line:
-        levels_val = int(re.findall('-?\d+', line)[0])
+        samples_val = int(re.findall('-?\d+', line)[0])
     if 'RMSE' in line:
         rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
-        i = levels.index(levels_val)
+        i = samples.index(samples_val)
         final_matrices[current_data_type]['rmse'][i] = rmse
         
 print('final_matrices : ', final_matrices)
 
 for data_type in data_types:
     plt.clf()
-    levels_po = range(len(levels))
+    samples_pos = range(len(samples))
     plt.clf()
     plt.title(title)
-    plt.plot(levels_po, final_matrices[data_type]['rmse'], color='r')
-    plt.xticks(levels_po, levels, rotation=90)
+    plt.plot(samples_val, final_matrices[data_type]['rmse'], color='r')
+    plt.xticks(samples_val, samples, rotation=90)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')
