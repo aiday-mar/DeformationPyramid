@@ -29,7 +29,7 @@ index_coarse_feats=1
 # number_center=300
 # number_center=400
 # number_centers=(100 200 300)
-number_centers=(50)
+number_centers=(1, 5, 10, 50, 100, 200)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
@@ -44,10 +44,11 @@ number_iterations_custom_filtering=1
 # number_iterations_custom_filtering=3
 
 # inlier_outlier_thrs=(0.005 0.01 0.02 0.03 0.04 0.05)
-inlier_outlier_thrs=(0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 0.009 0.01 0.02 0.03 0.04 0.05)
+# inlier_outlier_thrs=(0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 0.009 0.01 0.02 0.03 0.04 0.05)
+inlier_outlier_thrs = (0.01)
 
-# sampling=linspace
-sampling=poisson
+sampling=linspace
+# sampling=poisson
 
 for number_center in "${number_centers[@]}"
 do
@@ -61,7 +62,7 @@ do
             echo "inlier outlier thresholds ${inlier_outlier_thr}"
 
             folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}
-            file_name=TestData/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
+            file_name=Testing/custom_filtering/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
 
             rm -rf TestData/FullNonDeformed/${folder_name}
             mkdir TestData/FullNonDeformed/${folder_name}
