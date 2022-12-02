@@ -1,0 +1,212 @@
+Full Non Deformed
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence_threshold :  0.1
+preprocessing :  none
+Before coarse_matching
+confidence_threshold :  0.1
+preprocessing :  none
+number of true landmarks correspondences returned from Lepard :  152  out of  289
+fraction of true landmark correspondences returned from Lepard :  0.5259515570934256
+number of true landmark correspondences returned from outlier rejection :  141  out of  255
+fraction of true landmark correspondences returned from outlier rejection :  0.5529411764705883
+Custom filtering is used
+number of landmarks :  289
+average distance :  0.03815550883993454
+average distance multiplier :  3.0
+number of unique source landmarks :  237
+number of centers :  50
+sampling :  poisson
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.03
+number of landmarks after custom filtering :  230
+number of true landmark correspondences returned from custom filtering :  133  out of  230
+fraction of true landmark correspondences returned from custom filtering :  0.5782608695652174
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+0/1: full-epe: 36.230 
+full-AccS: 0.138 
+full-AccR: 0.724 
+full-outlier: 98.609 
+vis-epe: 36.230 
+vis-AccS: 0.138 
+vis-AccR: 0.724 
+vis-outlier: 98.609 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.33411791 -0.18966676 -0.92325064]
+ [-0.70255685  0.70310443  0.10980906]
+ [ 0.62831449  0.68532524 -0.36817146]]
+Actual translation :  [0.46931396 0.231394   0.14129684]
+Predicted rotation :  [[-0.32402096 -0.18855717 -0.9270686 ]
+ [-0.68993184  0.71758835  0.09518835]
+ [ 0.64730522  0.67045739 -0.3626052 ]]
+Predicted translation :  [-4.81282648e-03 -2.45655196e-03  8.84038960e-05]
+Relative Rotation Error :  0.025635523076732423
+Relative Translation Error :  0.5471947727437114
+RMSE :  0.004819638827077978
+IR :  1.0
+Partial Deformed
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence_threshold :  0.1
+preprocessing :  none
+Before coarse_matching
+confidence_threshold :  0.1
+preprocessing :  none
+number of true landmarks correspondences returned from Lepard :  18  out of  114
+fraction of true landmark correspondences returned from Lepard :  0.15789473684210525
+number of true landmark correspondences returned from outlier rejection :  16  out of  76
+fraction of true landmark correspondences returned from outlier rejection :  0.21052631578947367
+Custom filtering is used
+number of landmarks :  114
+average distance :  0.045177461706069205
+average distance multiplier :  3.0
+number of unique source landmarks :  93
+number of centers :  50
+sampling :  poisson
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.03
+number of landmarks after custom filtering :  73
+number of true landmark correspondences returned from custom filtering :  15  out of  73
+fraction of true landmark correspondences returned from custom filtering :  0.2054794520547945
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+0/1: full-epe: 27.419 
+full-AccS: 1.804 
+full-AccR: 5.320 
+full-outlier: 89.268 
+vis-epe: 37.302 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 15.098 
+occ-AccS: 4.053 
+occ-AccR: 11.952 
+occ-outlier: 75.889 
+
+Actual rotation :  [[-0.66463731 -0.1767362  -0.72596251]
+ [ 0.74103078 -0.03166406 -0.67072406]
+ [ 0.09555431 -0.9837488   0.15201208]]
+Actual translation :  [0.93446963 1.12143121 1.16434007]
+Predicted rotation :  [[-0.12252068 -0.53141833 -0.8382024 ]
+ [ 0.65508236 -0.67775419  0.3339407 ]
+ [-0.74555737 -0.5081771   0.43116165]]
+Predicted translation :  [ 0.06951612 -0.00196072 -0.03664054]
+Relative Rotation Error :  1.2864865772568623
+Relative Translation Error :  1.858092688273537
+RMSE :  0.149268192781658
+IR :  0.2791084292839111
+Full Deformed
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence_threshold :  0.1
+preprocessing :  none
+Before coarse_matching
+confidence_threshold :  0.1
+preprocessing :  none
+number of true landmarks correspondences returned from Lepard :  111  out of  255
+fraction of true landmark correspondences returned from Lepard :  0.43529411764705883
+number of true landmark correspondences returned from outlier rejection :  108  out of  236
+fraction of true landmark correspondences returned from outlier rejection :  0.4576271186440678
+Custom filtering is used
+number of landmarks :  255
+average distance :  0.03752861664466125
+average distance multiplier :  3.0
+number of unique source landmarks :  214
+number of centers :  50
+sampling :  poisson
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.03
+number of landmarks after custom filtering :  209
+number of true landmark correspondences returned from custom filtering :  98  out of  209
+fraction of true landmark correspondences returned from custom filtering :  0.4688995215311005
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+0/1: full-epe: 27.258 
+full-AccS: 6.244 
+full-AccR: 11.442 
+full-outlier: 67.962 
+vis-epe: 31.990 
+vis-AccS: 0.254 
+vis-AccR: 1.440 
+vis-outlier: 80.649 
+occ-epe: 6.451 
+occ-AccS: 32.588 
+occ-AccR: 55.431 
+occ-outlier: 12.166 
+
+Actual rotation :  [[ 0.23214755  0.92203674 -0.30976728]
+ [-0.25417071 -0.24989859 -0.93431683]
+ [-0.93888485  0.29563314  0.17634139]]
+Actual translation :  [0.13992929 1.89218991 0.79789806]
+Predicted rotation :  [[ 0.32146349  0.92248183 -0.21374893]
+ [-0.19113051 -0.15787346 -0.96878533]
+ [-0.92743214  0.35228296  0.12556383]]
+Predicted translation :  [ 0.00073221  0.00580473 -0.00304966]
+Relative Rotation Error :  0.13565210626137583
+Relative Translation Error :  2.0541037250085514
+RMSE :  0.017620227125725498
+IR :  0.9834393020848736
+Partial Non Deformed
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence_threshold :  0.1
+preprocessing :  none
+Before coarse_matching
+confidence_threshold :  0.1
+preprocessing :  none
+number of true landmarks correspondences returned from Lepard :  15  out of  153
+fraction of true landmark correspondences returned from Lepard :  0.09803921568627451
+number of true landmark correspondences returned from outlier rejection :  14  out of  127
+fraction of true landmark correspondences returned from outlier rejection :  0.11023622047244094
+Custom filtering is used
+number of landmarks :  153
+average distance :  0.04208676013608578
+average distance multiplier :  3.0
+number of unique source landmarks :  123
+number of centers :  50
+sampling :  poisson
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.03
+number of landmarks after custom filtering :  104
+number of true landmark correspondences returned from custom filtering :  14  out of  104
+fraction of true landmark correspondences returned from custom filtering :  0.1346153846153846
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+0/1: full-epe: 27.419 
+full-AccS: 2.962 
+full-AccR: 8.892 
+full-outlier: 51.564 
+vis-epe: 37.011 
+vis-AccS: 0.362 
+vis-AccR: 1.682 
+vis-outlier: 80.087 
+occ-epe: 14.201 
+occ-AccS: 6.545 
+occ-AccR: 18.829 
+occ-outlier: 12.254 
+
+Actual rotation :  [[ 0.95570595 -0.26868336 -0.12014739]
+ [-0.29002601 -0.92921348 -0.22901358]
+ [-0.05011043  0.25371551 -0.96598001]]
+Actual translation :  [0.45149993 1.2835208  0.95508696]
+Predicted rotation :  [[-0.46731691 -0.10366334  0.87799126]
+ [ 0.30626891  0.91262535  0.27076634]
+ [-0.82934564  0.39543512 -0.39473639]]
+Predicted translation :  [-0.15799354  0.09474894 -0.00707715]
+Relative Rotation Error :  3.1325283620524647
+Relative Translation Error :  1.6463355083025388
+RMSE :  0.16404767885024021
+IR :  0.22641160135760569
