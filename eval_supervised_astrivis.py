@@ -58,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument('--indent', type=str, help='indent level used in order to access different files')
     parser.add_argument('--samples', type=str, help='number of samples to use')
     parser.add_argument('--levels', type=str, help='number of levels in NDP')
-    parser.add_argument('--gt_thr', type=str, help='ground-truth threshold used to find the ground truth correspondences')
+    parser.add_argument('--gt_thr', type=str, help='ground-truth threshold used to find the ground-truth correspondences')
     parser.add_argument('--posenc_function', type=str, help='function type in the positional encoding')
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--show_lepard_inliers', action = 'store_true', help= 'decide to output the lepard inliers or not')
