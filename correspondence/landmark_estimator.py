@@ -51,9 +51,7 @@ class Landmark_Model():
 
         self.kpfcn_config = config['kpfcn_config']
 
-
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None):
-
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01):
         if base:
             self.path = base
         else:
@@ -65,7 +63,6 @@ class Landmark_Model():
         custom_filtering_true_correspondences_mask = None
         
         with torch.no_grad():
-
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
             if timer: timer.toc("matcher")
@@ -1078,15 +1075,14 @@ class Landmark_Model():
                     
                     matches_source = src_pcd_points[ind_src]
                     matches_target = tgt_pcd_points[ind_tgt]
-                    thr = 0.01
                     
                     for i in range(ldmk_s_np[final_indices].shape[0]):
                         s_ldmk = np.array(ldmk_s_np[final_indices][i])
                         t_ldmk = np.array(ldmk_t_np[final_indices][i])
                         distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
                         distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
-                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < thr)[0])
-                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < thr)[0])
+                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < gt_thr)[0])
+                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < gt_thr)[0])
                         if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
                             mask = np.append(mask, True)
                         else:
