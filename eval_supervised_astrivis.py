@@ -44,6 +44,7 @@ if __name__ == "__main__":
     parser.add_argument('--k0', type=str, help= 'k0 used in the positional encoding of the NDP layers')
     parser.add_argument('--w_reg', type=str, help= 'w_reg')
     parser.add_argument('--coarse_level', type=str, help= 'coarse level')
+    parser.add_argument('--reject_outliers', type=str, help= 'whether to use or not the outlier rejection network')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
     parser.add_argument('--confidence_threshold', type=str, help= 'specifying the confidence threshold')
     parser.add_argument('--preprocessing', type=str, help='Type of the preprocessing, can be single or mutual. By default mutual.')
@@ -134,7 +135,16 @@ if __name__ == "__main__":
         sampling = args.sampling if args.sampling else 'linspace'
         mesh_path = args.mesh_path if args.mesh_path else None
         source_trans = args.source_trans if args.source_trans else None
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=config.reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
+        if args.reject_outliers:
+            if args.reject_outliers == 'true':
+                reject_outliers = True
+            elif args.reject_outliers == 'false':
+                reject_outliers = False
+            else:
+                raise Exception('specify valid value for reject_outliers')
+        else:
+            reject_outliers = config.reject_outliers
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
