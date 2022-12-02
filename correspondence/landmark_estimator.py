@@ -1041,7 +1041,9 @@ class Landmark_Model():
                             inliers[in_idx] = inliers[in_idx] + weight
                             
                         n_center += 1
-                            
+                
+                number_points = ldmk_s_np.shape[0]
+                final_outlier_indices = np.arange(number_points)
                 final_indices = np.array([])
                 for ldmk_s_point in map_ldmk_s_correspondences:
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
@@ -1055,7 +1057,8 @@ class Landmark_Model():
                     # correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
                     # final_indices = np.append(final_indices, correspondence_min)
                 
-                final_indices = set(final_indices)                 
+                final_indices = set(final_indices)
+                final_outlier_indices = [outlier_idx for outlier_idx in final_outlier_indices if outlier_idx not in final_indices]                 
                 final_indices = np.sort(list(final_indices)).astype(int)
                 print('number of landmarks after custom filtering : ', final_indices.shape[0])
                 ldmk_s = torch.tensor(ldmk_s_np[final_indices]).to('cuda:0')
@@ -1107,12 +1110,14 @@ class Landmark_Model():
                         print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', 0)
                 
                 if final_indices.shape[0] != 0 and intermediate_output_folder:
+
+                    # inliers
                     rot = data['batched_rot'][0]
                     ldmk_s_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
                     ldmk_s_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     rotated_ldmk_s = np.array(ldmk_s_custom_filtering.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering.ply', ldmk_s_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering_pcd.ply', ldmk_s_custom_filtering)
                     
                     ldmk_t_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_t_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
@@ -1127,6 +1132,29 @@ class Landmark_Model():
                     line_set.lines =o3d.utility.Vector2iVector(correspondences)
                     line_set.colors = o3d.utility.Vector3dVector(colors)
                     o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'custom_filtering_line_set.ply', line_set)
+                
+                    # outliers 
+                    ldmk_s_np_outliers = ldmk_s_np[final_outlier_indices]
+                    ldmk_t_np_outliers = ldmk_t_np[final_outlier_indices]
+                    ldmk_s_outliers_custom_filtering = o3d.geometry.PointCloud()
+                    ldmk_s_outliers_custom_filtering.points = o3d.utility.Vector3dVector(ldmk_s_np_outliers)
+                    ldmk_s_outliers_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    rotated_ldmk_s_np_outliers = np.array(ldmk_s_outliers_custom_filtering.points)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering_pcd_outliers.ply', ldmk_s_outliers_custom_filtering)
+                    
+                    ldmk_t_outliers_custom_filtering = o3d.geometry.PointCloud()
+                    ldmk_t_outliers_custom_filtering.points = o3d.utility.Vector3dVector(ldmk_t_np_outliers)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 't_custom_filtering_pcd_outliers.ply', ldmk_t_outliers_custom_filtering)
+                    
+                    total_points = np.concatenate((rotated_ldmk_s_np_outliers, ldmk_t_np_outliers), axis = 0)
+                    number_points_src = rotated_ldmk_s_np_outliers.shape[0]
+                    correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
+                    colors = np.tile(np.array([0.5, 0.5, 0.5]), (2*number_points_src, 1))
+                    line_set_outliers = o3d.geometry.LineSet()
+                    line_set_outliers.points=o3d.utility.Vector3dVector(total_points)
+                    line_set_outliers.lines =o3d.utility.Vector2iVector(correspondences)
+                    line_set_outliers.colors = o3d.utility.Vector3dVector(colors)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'custom_filtering_line_set_outliers.ply', line_set_outliers)
                 
                 data_mod = {}
                 final_indices = list(final_indices)
