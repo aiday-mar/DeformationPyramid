@@ -303,7 +303,6 @@ def collate_fn_4dmatch_multiview(multiview_data, config, neighborhood_limits ):
 
     return dict_inputs
 
-
 def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_limits):
 
     assert len(multiview_data) == 1
