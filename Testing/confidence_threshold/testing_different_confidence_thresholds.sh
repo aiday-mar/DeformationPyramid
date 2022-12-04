@@ -8,7 +8,8 @@ for k in ${model_numbers[@]}
 do
 for confidence_threshold in ${confidence_threshold_list[@]}; do
 
-        echo "Model ${k}. Test - confidence threshold : ${confidence_threshold}" >> ${file}
+        echo "model ${k}" >> ${file}
+        echo "Test - confidence threshold : ${confidence_threshold}" >> ${file}
         folder=confidence_threshold_${confidence_threshold}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}
         mkdir TestData/FullNonDeformed/model${k}/${folder}
