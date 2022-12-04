@@ -48,7 +48,6 @@ class Landmark_Model():
         self.outlier_model.load_state_dict(state['state_dict'])
 
         self.device = device
-
         self.kpfcn_config = config['kpfcn_config']
 
     def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01):
