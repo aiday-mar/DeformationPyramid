@@ -11,6 +11,7 @@ for k in ${model_numbers[@]}
 do
 for levels in ${levels_list[@]}; do
 
+        echo "model ${k}" >> ${file}
         echo "Test - levels : ${levels}" >> ${file}
         folder=levels_${levels}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}

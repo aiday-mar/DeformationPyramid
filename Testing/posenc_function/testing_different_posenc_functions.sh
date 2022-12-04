@@ -11,6 +11,7 @@ for k in ${model_numbers[@]}
 do
 for posenc_function in ${posenc_functions_list[@]}; do
 
+        echo "model ${k}" >> ${file}
         echo "Test - positional encoding : ${posenc_function}" >> ${file}
         folder=posenc_function_${posenc_function}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}

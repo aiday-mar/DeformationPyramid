@@ -11,6 +11,7 @@ for k in ${model_numbers[@]}
 do
 for samples in ${samples_list[@]}; do
 
+        echo "model ${k}" >> ${file}
         echo "Test - samples : ${samples}" >> ${file}
         folder=samples_${samples}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}
