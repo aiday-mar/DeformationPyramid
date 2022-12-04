@@ -12,6 +12,7 @@ import h5py
 
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
+from correspondence.lepard.pipeline_fcgf import Pipeline as MatcherFCGF
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
@@ -20,7 +21,7 @@ path = '/home/aiday.kyzy/dataset/Synthetic/'
 
 class Landmark_Model():
 
-    def __init__(self, config_file, device, indent=None ):
+    def __init__(self, config_file, device, indent=None, feature_extractor='kpfcn'):
 
         with open(config_file, 'r') as f:
             config = yaml.load(f, Loader=yaml.Loader)
@@ -37,7 +38,12 @@ class Landmark_Model():
         config['kpfcn_config'] = matcher_config['kpfcn_config']
 
         # matcher initialization
-        self.matcher = Matcher(matcher_config).to(device)
+        self.feature_extractor = feature_extractor
+        if self.feature_extractor == 'kpfcn':
+            self.matcher = Matcher(matcher_config).to(device)
+        else:
+            self.matcher = MatcherFCGF(matcher_config).to(device)
+
         state = torch.load(indent + config.matcher_weights if indent else config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
         self.indent = indent
