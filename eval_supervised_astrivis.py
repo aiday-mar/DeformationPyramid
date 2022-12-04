@@ -15,6 +15,7 @@ from model.loss import compute_flow_metrics
 from utils.benchmark_utils import setup_seed
 from utils.utils import AverageMeter
 from utils.tiktok import Timers
+from correspondence.landmark_estimator_fcgf import Landmark_Model_FCGF
 from correspondence.landmark_estimator import Landmark_Model
 import h5py
 import copy
@@ -88,10 +89,19 @@ if __name__ == "__main__":
     else:
         config.device = torch.device('cpu')
 
-    if args.indent:
-        ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent)
+    if config.feature_extractor == 'kpfcn':
+        if args.indent:
+            ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent)
+        else:
+            ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
+    elif config.feature_extractor == 'fcgf':
+        if args.indent:
+            ldmk_model =  Landmark_Model_FCGF(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent)
+        else:
+            ldmk_model =  Landmark_Model_FCGF(config_file = config.ldmk_config, device=config.device)
     else:
-        ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
+        raise Exception('Specify a valid feature extractor')
+
     config['kpfcn_config'] = ldmk_model.kpfcn_config
 
     model = Registration(config)

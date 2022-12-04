@@ -11,36 +11,37 @@ from correspondence.outlier_rejection.loss import   NeCoLoss
 
 
 
-class Landmark_Model ():
+class Landmark_Model_FCGF():
 
-    def __init__(self, config_file, device ):
+    def __init__(self, config_file, device, indent=None ):
 
         with open(config_file, 'r') as f:
             config = yaml.load(f, Loader=yaml.Loader)
             config = edict(config)
 
-        with open(config['matcher_config'], 'r') as f_:
+        with open(indent+config['matcher_config'] if indent else config['matcher_config'], 'r') as f_:
             matcher_config = yaml.load(f_, Loader=yaml.Loader)
             matcher_config = edict(matcher_config)
 
-        with open(config['outlier_rejection_config'], 'r') as f_:
+        with open(indent+config['outlier_rejection_config'] if indent else config['outlier_rejection_config'], 'r') as f_:
             outlier_rejection_config = yaml.load(f_, Loader=yaml.Loader)
             outlier_rejection_config = edict(outlier_rejection_config)
             
         config['kpfcn_config'] = matcher_config['kpfcn_config']
 
         # matcher initialization
-        self.matcher = Matcher(matcher_config).to(device)  # pretrained point cloud matcher model
-
+        self.matcher = Matcher(matcher_config).to(device)
+        state = torch.load(indent + config.matcher_weights if indent else config.matcher_weights)
+        self.matcher.load_state_dict(state['state_dict'])
+        self.indent = indent
+        
         # outlier model initialization
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
-        state = torch.load(config.outlier_rejection_weights)
+        state = torch.load(indent + config.outlier_rejection_weights if indent else config.outlier_rejection_weights)
         self.outlier_model.load_state_dict(state['state_dict'])
 
         self.device = device
-
         self.kpfcn_config = config['kpfcn_config']
-
 
     def inference(self, inputs, s_feats = None, t_feats = None, base = None, reject_outliers=True, inlier_thr=0.5, timer=None):
 
