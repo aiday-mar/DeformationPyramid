@@ -57,6 +57,7 @@ class _AstrivisCustomSingle(Dataset):
         
         matches = np.load(self.path + self.matches)
         correspondences = np.array(matches['matches'])
+        print('correspondences : ', correspondences)
         indices_src = correspondences[:, 0]
         indices_tgt = correspondences[:, 1]
 
