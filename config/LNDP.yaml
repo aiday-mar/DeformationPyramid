@@ -1,6 +1,6 @@
 gpu_mode: True
 deformation_model: NDP
-feature_extractor: kpfcn
+feature_extractor: "kpfcn"
 
 use_ldmk: True
 ldmk_config: "./correspondence/configs/correspondence.yaml"
