@@ -96,7 +96,9 @@ class VolumetricPositionEncoding(nn.Module):
             cosy = torch.cos(y_position * div_term)
             sinz = torch.sin(z_position * div_term)
             cosz = torch.cos(z_position * div_term)
-
+        else:
+            raise Exception('Specify a valid feature extractor')
+        
         print('sinx.shape : ', sinx.shape)
         print('cosx.shape : ', cosx.shape)
         print('siny.shape : ', siny.shape)
