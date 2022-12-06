@@ -593,13 +593,16 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
             src_coarse_rotated = (rot @ src_coarse.T).T
             tgt_coarse = tgt_pcd[tgt_feats_indices]
             total_points = np.concatenate((src_coarse, tgt_coarse))
-            input_points[coarse_level] = torch.tensor(total_points)
+            input_points[coarse_level] = torch.tensor(total_points)                    
             input_batches_len[coarse_level] = torch.tensor([src_feats_indices.shape[0], tgt_feats_indices.shape[0]], dtype=torch.int32)
             inter = total_points.reshape(total_points.shape[0], 1, total_points.shape[1])
             dists = np.sqrt(np.einsum('ijk, ijk->ij', total_points-inter, total_points-inter))
             k  = 50
             input_neighbors[coarse_level] = torch.tensor(np.argpartition(dists, k, axis =- 1)[:, :k])
-            
+            for i in range(4):
+                if i != 4 - coarse_level:
+                    input_neighbors[i] = torch.zeros(input_neighbors[coarse_level].shape[0], input_neighbors[coarse_level].shape[1])
+                    
             c_flow = blend_scene_flow( src_coarse, src_pcd, s2t_flow, knn=3)
             c_src_pcd_deformed = src_coarse + c_flow
             s_pc_wrapped = (np.matmul(rot, c_src_pcd_deformed.T ) + trn).T
