@@ -88,7 +88,7 @@ if __name__ == "__main__":
     else:
         config.device = torch.device('cpu')
 
-    if config.feature_extractor == 'kpfcn' or config.feature_extractor == 'fcgf'
+    if config.feature_extractor == 'kpfcn' or config.feature_extractor == 'fcgf':
         if args.indent:
             ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent, feature_extractor = config.feature_extractor)
         else:
