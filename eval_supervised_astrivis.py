@@ -33,8 +33,11 @@ path = '/home/aiday.kyzy/dataset/Synthetic/'
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--s', type=str, help= 'Path to the src mesh.')
+    parser.add_argument('--s', type=str, help='Path to the src mesh.')
     parser.add_argument('--t', type=str, help='Path to the tgt mesh.')
+    parser.add_argument('--s_feats', type=str, help='Path to the src feats.')
+    parser.add_argument('--t_feats', type=str, help='Path to the tgt feats.')
+    
     parser.add_argument('--output', type=str, help= 'Path to the file where to save source pcd after transformation.')
     parser.add_argument('--output_trans', type=str, help='Path to the final output transformation.')
     parser.add_argument('--matches', type=str, help='Path to ground truth matches')  
@@ -105,7 +108,7 @@ if __name__ == "__main__":
     timer = Timers()
     stats_meter = None
     
-    test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
+    test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base, source_feats = args.s_feats, target_feats = args.t_feats)
     
     if args.print_keypoints:
         test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base)

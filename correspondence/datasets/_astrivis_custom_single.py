@@ -14,7 +14,7 @@ cam_intrin = np.array( [443, 256, 443, 250 ])
 
 class _AstrivisCustomSingle(Dataset):
 
-    def __init__(self, config, source_file, target_file, matches, source_trans, target_trans, base = None):
+    def __init__(self, config, source_file, target_file, matches, source_trans, target_trans, base = None, source_feats = None, target_feats = None):
         super(_AstrivisCustomSingle, self).__init__()
         self.number_matches = 0
         self.n_files_per_folder = 0
@@ -28,6 +28,8 @@ class _AstrivisCustomSingle(Dataset):
         self.matches = matches
         self.source_trans = source_trans
         self.target_trans = target_trans
+        self.source_feats = source_feats
+        self.target_feats = target_feats
 
     def __len__(self):
         return 1
@@ -40,9 +42,17 @@ class _AstrivisCustomSingle(Dataset):
         tgt_pcd = o3d.io.read_point_cloud(self.path + self.target_file)
         tgt_pcd = np.array(tgt_pcd.points).astype(np.float32)
 
-        src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
-        tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
-
+        if self.source_feats and self.target_feats:
+            src_feats_data = np.load(self.path + self.source_feats)
+            tgt_feats_data = np.load(self.path + self.target_feats)
+            src_feats = src_feats_data['descriptors']
+            tgt_feats = tgt_feats_data['descriptors']
+            src_feats_indices = src_feats_data['indices']
+            tgt_feats_indices = tgt_feats_data['indices']
+        else:
+            src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
+            tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
+        
         matches = np.load(self.path + self.matches)
         correspondences = np.array(matches['matches'])
         indices_src = correspondences[:, 0]
