@@ -87,6 +87,7 @@ class Matching(nn.Module):
             idxs = np.column_stack(np.unravel_index(idxs, conf_matrix_val.shape))
             for idx in idxs:
                 mask[idx[0]][idx[1]] = True
+            mask = torch.tensor(mask).to('cuda:0')
             
         if preprocessing == 'mutual':
             mask = mask \
