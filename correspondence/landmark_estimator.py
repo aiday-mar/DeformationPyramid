@@ -77,7 +77,10 @@ class Landmark_Model():
             
         with torch.no_grad():
             if timer: timer.tic("matcher")
-            data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
+            if self.feature_extractor == 'kpfcn':
+                data = self.matcher(inputs)
+            elif self.feature_extractor == 'fcgf':
+                data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:
