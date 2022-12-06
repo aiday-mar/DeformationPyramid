@@ -581,7 +581,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
             tgt_mask = torch.zeros([b_size, n_tgt_feats], dtype=torch.bool)
             tgt_mask[0][:n_tgt_feats] = 1
             
-            for block_i, block in enumerate(config.architecture):
+            for i in range(4):
                 input_points += [torch.tensor([])]
                 input_batches_len += [torch.tensor([])]
                 input_neighbors += [torch.tensor([])]
