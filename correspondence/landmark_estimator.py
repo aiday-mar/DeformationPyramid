@@ -999,7 +999,7 @@ class Landmark_Model():
                             landmarks_transformed_s = (final_R @ ldmk_s_np.T + np.expand_dims(final_t, axis=1)).T
                             landmarks_transformed_s_pcd = o3d.geometry.PointCloud()
                             landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
-                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name '_custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
+                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
                             neighborhood_center_pcd = o3d.geometry.PointCloud()
                             neighborhood_center_pcd.points = o3d.utility.Vector3dVector(neighborhood_center[None, :])
