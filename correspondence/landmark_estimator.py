@@ -39,9 +39,10 @@ class Landmark_Model():
 
         # matcher initialization
         self.feature_extractor = feature_extractor
+        print('feature_extractor : ', feature_extractor)
         if self.feature_extractor == 'kpfcn':
             self.matcher = Matcher(matcher_config).to(device)
-        else:
+        if self.feature_extractor == 'fcgf':
             self.matcher = MatcherFCGF(matcher_config).to(device)
 
         state = torch.load(indent + config.matcher_weights if indent else config.matcher_weights)
