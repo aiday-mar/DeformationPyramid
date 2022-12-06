@@ -180,6 +180,9 @@ class Landmark_Model():
                     lepard_true_correspondences_mask = mask.astype(bool)
                     n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
                     n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
+                    if n_total_lepard_correspondences == 0:
+                        exit()
+                        
                     if self.feature_extractor == 'kpfcn':
                         print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
                         print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
