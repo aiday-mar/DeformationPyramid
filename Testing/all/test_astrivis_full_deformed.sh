@@ -34,9 +34,10 @@ for i in $(seq 0 $end); do
 		touch ${base}/model${k}/output/${file_number1}_${file_number2}_se4.h5
 		
 		python3 eval_supervised_astrivis.py --config=config/${config} --s="FullDeformedData/TestingData/model${k}/transformed/${file_number1}.ply" --t="FullDeformedData/TestingData/model${k}/sampled/${file_number2}.ply" --source_trans="FullDeformedData/TestingData/model${k}/transformed/${file_number1}_se4.h5" --target_trans="identity.h5" --matches="FullDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}.npz" --output="FullDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" --output_trans="FullDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" --intermediate_ouput_folder="FullDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/" >> ${filename}
+		if [ "$?" != "1" ]; then
 		python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="${base}/model${k}/transformed/${file_number1}_se4.h5" --part2="identity.h5" --pred="${base}/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" >> ${filename}
 		python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="${base}/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" --input2="${base}/model${k}/sampled/${file_number2}.ply" --matches="${base}/model${k}/matches/${file_number1}_${file_number2}.npz" >> ${filename}
-
+		fi
     done
 done
 

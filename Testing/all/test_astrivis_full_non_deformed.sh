@@ -17,6 +17,8 @@ do
     touch ${base}/model${k}/output/0_1_se4.h5
     echo "model ${k}" >> ${filname}
     python3 eval_supervised_astrivis.py --config=config/${config} --s="FullNonDeformedData/TestingData/model${k}/mesh_transformed_0.ply" --t="FullNonDeformedData/TestingData/model${k}/mesh_sampled.ply" --source_trans="FullNonDeformedData/TestingData/model${k}/mesh_transformed_0_se4.h5" --target_trans="identity.h5" --matches="FullNonDeformedData/TestingData/model${k}/0_1.npz" --output="FullNonDeformedData/TestingData/model${k}/output/0_1.ply" --output_trans="FullNonDeformedData/TestingData/model${k}/output/0_1_se4.h5" --intermediate_ouput_folder="FullNonDeformedData/TestingData/model${k}/output/" >> ${filname}
+    if [ "$?" != "1" ]; then
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="${base}/model${k}/mesh_transformed_0_se4.h5" --part2="identity.h5" --pred="${base}/model${k}/output/0_1_se4.h5" >> ${filname}
     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="${base}/model${k}/output/0_1.ply" --input2="${base}/model${k}/mesh_sampled.ply" --matches="${base}/model${k}/0_1.npz" >> ${filname}
+    fi
 done

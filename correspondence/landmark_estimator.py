@@ -181,6 +181,7 @@ class Landmark_Model():
                     n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
                     n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
                     if n_total_lepard_correspondences == 0:
+                        print('Early exit')
                         sys.exit(1)
 
                     if self.feature_extractor == 'kpfcn':
