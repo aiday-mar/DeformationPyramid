@@ -93,7 +93,7 @@ if __name__ == "__main__":
         if args.indent:
             ldmk_model =  Landmark_Model(config_file = args.indent + config.ldmk_config, device=config.device, indent=args.indent, feature_extractor = config.feature_extractor)
         else:
-            ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device)
+            ldmk_model =  Landmark_Model(config_file = config.ldmk_config, device=config.device, feature_extractor = config.feature_extractor)
     else:
         raise Exception('Specify a valid feature extractor')
 
