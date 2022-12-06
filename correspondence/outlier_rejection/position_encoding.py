@@ -77,6 +77,13 @@ class VolumetricPositionEncoding(nn.Module):
         sinz = torch.sin(z_position * div_term)
         cosz = torch.cos(z_position * div_term)
 
+        print('sinx.shape : ', sinx.shape)
+        print('cosx.shape : ', cosx.shape)
+        print('siny.shape : ', siny.shape)
+        print('cosy.shape : ', cosy.shape)
+        print('sinz.shape : ', sinz.shape)
+        print('cosz.shape : ', cosz.shape)
+        
         if self.pe_type == 'sinusoidal' :
             position_code = torch.cat( [ sinx, cosx, siny, cosy, sinz, cosz] , dim=-1 )
 
