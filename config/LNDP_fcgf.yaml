@@ -1,5 +1,6 @@
 gpu_mode: True
 deformation_model: NDP
+feature_extractor: fcgf
 
 use_ldmk: True
 ldmk_config: "./correspondence/configs/correspondence_fcgf.yaml"
@@ -7,7 +8,6 @@ ldmk_config: "./correspondence/configs/correspondence_fcgf.yaml"
 num_workers: 4
 batch_size: 1
 augment_noise: False
-
 
 use_depth: False
 
