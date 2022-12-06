@@ -1,6 +1,9 @@
 config=LNDP_fcgf.yaml
 # config=LNDP.yaml
 
+type=fcgf
+# type=kpfcn
+
 confidence_threshold_list=(0.04 0.06 0.08 0.1 0.2 0.3 0.4 0.5)
 file="Testing/confidence_threshold/testing_confidence_thresholds.txt"
 rm ${file}
@@ -13,7 +16,7 @@ for confidence_threshold in ${confidence_threshold_list[@]}; do
 
         echo "model ${k}" >> ${file}
         echo "Test - confidence threshold : ${confidence_threshold}" >> ${file}
-        folder=confidence_threshold_${confidence_threshold}
+        folder=confidence_threshold_${confidence_threshold}_${type}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}
         mkdir TestData/FullNonDeformed/model${k}/${folder}
         rm -rf TestData/FullDeformed/model${k}/${folder}
