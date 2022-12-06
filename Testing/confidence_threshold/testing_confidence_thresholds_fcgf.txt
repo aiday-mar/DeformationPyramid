@@ -1,0 +1,50 @@
+model 002
+Test - confidence threshold : 0.04
+Full Non Deformed
+config.feature_extractor :  fcgf
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+ind :  0
+
+
+Returned from collate_fn_4dmatch
+len(src_pcd_list) :  1
+src_pcd_list[0].shape :  torch.Size([5898, 3])
+len(tgt_pcd_list) :  1
+tgt_pcd_list[0].shape :  torch.Size([5898, 3])
+len(input_points) :  4
+input_points[coarse_level].shape :  torch.Size([11027, 3])
+len(input_neighbors) :  4
+input_neighbors[coarse_level].shape :  torch.Size([11027, 50])
+len(input_pools) :  4
+input_pools[coarse_level].shape :  torch.Size([0])
+len(input_upsamples) :  4
+input_upsamples[coarse_level].shape :  torch.Size([0])
+batched_features.shape :  torch.Size([11027, 32])
+len(input_batches_len) :  4
+input_batches_len[coarse_level].shape :  torch.Size([0])
+len(coarse_matches) :  1
+coarse_matches[0].shape :  torch.Size([2, 217])
+len(coarse_flow) :  1
+coarse_flow[0].shape :  torch.Size([5560, 3])
+src_mask.shape :  torch.Size([1, 5560])
+tgt_mask.shape :  torch.Size([1, 5467])
+src_ind_coarse_split.shape :  torch.Size([5560])
+tgt_ind_coarse_split.shape :  torch.Size([5467])
+src_ind_coarse.shape :  torch.Size([5560])
+tgt_ind_coarse.shape :  torch.Size([5467])
+batched_rot.shape :  torch.Size([1, 3, 3])
+batched_trn.shape :  torch.Size([1, 3, 1])
+len(sflow_list) :  2
+sflow_list[0].shape :  torch.Size([5898, 3])
+len(correspondences_list) :  1
+correspondences_list[0].shape :  torch.Size([5898, 2])
+
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+[1;33m[Open3D WARNING] Read PLY failed: unable to open file: TestData/FullNonDeformed/model002/confidence_threshold_0.04_fcgf/result.ply[0;m
+Partial Deformed
