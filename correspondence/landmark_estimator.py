@@ -62,7 +62,9 @@ class Landmark_Model():
             self.path = base
         else:
             self.path = path 
-            
+        
+        print('preprcoessing in inference : ', preprocessing)
+        print('confidence threshold in inference : ', confidence_threshold)
         self.matcher.eval()
         self.outlier_model.eval()
         lepard_true_correspondences_mask = None
@@ -78,7 +80,7 @@ class Landmark_Model():
         with torch.no_grad():
             if timer: timer.tic("matcher")
             if self.feature_extractor == 'fcgf':
-                data = self.matcher(inputs)
+                data = self.matcher(inputs, confidence_threshold = confidence_threshold, preprocessing = preprocessing)
             elif self.feature_extractor == 'kpfcn':
                 data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
             if timer: timer.toc("matcher")
