@@ -75,6 +75,8 @@ class Matching(nn.Module):
         print('preprocessing : ', preprocessing)
         
         mask = conf_matrix > thr
+        print('mask.shape : ', mask.shape)
+
         if preprocessing == 'mutual':
             mask = mask \
                    * (conf_matrix == conf_matrix.max(dim=2, keepdim=True)[0]) \
@@ -84,6 +86,7 @@ class Matching(nn.Module):
             
         #find all valid coarse matches
         index = (mask==True).nonzero()
+        print('index.shape : ', index.shape)
         b_ind, src_ind, tgt_ind = index[:,0], index[:,1], index[:,2]
         mconf = conf_matrix[b_ind, src_ind, tgt_ind]
 
