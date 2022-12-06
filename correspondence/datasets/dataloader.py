@@ -330,8 +330,9 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None, feature_extractor = None):
 
+    print('feature extractor inside of collate_fn_4dmatch : ', feature_extractor)
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
@@ -639,6 +640,7 @@ def get_datasets(config):
 
 def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
 
+    print('feature extractor inside of get_dataloader : ', feature_extractor)
     collate_fn = collate_fn_4dmatch
 
     if neighborhood_limits is None:
