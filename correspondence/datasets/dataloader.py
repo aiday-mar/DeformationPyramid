@@ -348,12 +348,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     depth_paths_list = {}
     src_pcd_colors_list = []
 
-    # for ind in range ( len(pairwise_data) ) :
     for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
-        # src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trans, s2t_flow, metric_index
-        # src_feats = np.ones_like(src_pcd[:, :1]).astype(np.float32)
-        # tgt_feats = np.ones_like(tgt_pcd[:, :1]).astype(np.float32)
-
         src_pcd_list.append(torch.from_numpy(src_pcd))
         src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
         tgt_pcd_list.append(torch.from_numpy(tgt_pcd))
@@ -394,6 +389,13 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     input_pools = []
     input_upsamples = []
     input_batches_len = []
+    coarse_matches= []
+    coarse_flow = []
+    src_ind_coarse_split= []
+    src_ind_coarse = []
+    tgt_ind_coarse_split= []
+    tgt_ind_coarse = []
+    accumu = 0
 
     # construt kpfcn inds
     if feature_extractor == 'kpfcn':
@@ -470,99 +472,165 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
             layer += 1
             layer_blocks = []
 
-    # coarse infomation
-    coarse_level = coarse_level if coarse_level else config.coarse_level
-    pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
-    b_size = pts_num_coarse.shape[0]
-    src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
-    coarse_pcd = input_points[coarse_level] # .numpy()
-    coarse_matches= []
-    coarse_flow = []
-    src_ind_coarse_split= [] # src_feats shape :[b_size * src_pts_max]
-    src_ind_coarse = []
-    tgt_ind_coarse_split= []
-    tgt_ind_coarse = []
-    accumu = 0
-    src_mask = torch.zeros([b_size, src_pts_max], dtype=torch.bool)
-    tgt_mask = torch.zeros([b_size, tgt_pts_max], dtype=torch.bool)
+        # coarse infomation
+        coarse_level = coarse_level if coarse_level else config.coarse_level
+        pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
+        b_size = pts_num_coarse.shape[0]
+        src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
+        coarse_pcd = input_points[coarse_level] # .numpy()
+        coarse_matches= []
+        coarse_flow = []
+        src_ind_coarse_split= [] # src_feats shape :[b_size * src_pts_max]
+        src_ind_coarse = []
+        tgt_ind_coarse_split= []
+        tgt_ind_coarse = []
+        accumu = 0
+        src_mask = torch.zeros([b_size, src_pts_max], dtype=torch.bool)
+        tgt_mask = torch.zeros([b_size, tgt_pts_max], dtype=torch.bool)
 
 
-    for entry_id, cnt in enumerate( pts_num_coarse ): #input_batches_len[-1].numpy().reshape(-1,2)) :
+        for entry_id, cnt in enumerate( pts_num_coarse ): #input_batches_len[-1].numpy().reshape(-1,2)) :
 
-        n_s_pts, n_t_pts = cnt
+            n_s_pts, n_t_pts = cnt
 
-        '''split mask for bottlenect feats'''
-        src_mask[entry_id][:n_s_pts] = 1
-        tgt_mask[entry_id][:n_t_pts] = 1
+            '''split mask for bottlenect feats'''
+            src_mask[entry_id][:n_s_pts] = 1
+            tgt_mask[entry_id][:n_t_pts] = 1
 
-        '''split indices of bottleneck feats'''
-        src_ind_coarse_split.append( torch.arange( n_s_pts ) + entry_id * src_pts_max )
-        tgt_ind_coarse_split.append( torch.arange( n_t_pts ) + entry_id * tgt_pts_max )
-        src_ind_coarse.append( torch.arange( n_s_pts ) + accumu )
-        tgt_ind_coarse.append( torch.arange( n_t_pts ) + accumu + n_s_pts )
+            '''split indices of bottleneck feats'''
+            src_ind_coarse_split.append( torch.arange( n_s_pts ) + entry_id * src_pts_max )
+            tgt_ind_coarse_split.append( torch.arange( n_t_pts ) + entry_id * tgt_pts_max )
+            src_ind_coarse.append( torch.arange( n_s_pts ) + accumu )
+            tgt_ind_coarse.append( torch.arange( n_t_pts ) + accumu + n_s_pts )
 
-        '''get match at coarse level'''
-        c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
-        c_src_pcd_np_rotated = ( batched_rot[entry_id].numpy() @ c_src_pcd_np.T).T
-        c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
+            '''get match at coarse level'''
+            c_src_pcd_np = coarse_pcd[accumu : accumu + n_s_pts].numpy()
+            c_src_pcd_np_rotated = ( batched_rot[entry_id].numpy() @ c_src_pcd_np.T).T
+            c_tgt_pcd_np = coarse_pcd[accumu + n_s_pts: accumu + n_s_pts + n_t_pts].numpy()
+                    
+            if output_folder:
+                if not os.path.exists(base + output_folder + feature_extractor + '_dataloader_ldmk'):
+                    os.mkdir(base + output_folder + feature_extractor + '_dataloader_ldmk')
+
+                src_pcd_o3d = o3d.geometry.PointCloud()
+                src_pcd_o3d.points = o3d.utility.Vector3dVector(src_pcd)
+                src_pcd_o3d.rotate(batched_rot[entry_id].numpy(), center=(0, 0, 0))
+                o3d.io.write_point_cloud(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
+
+                tgt_pcd_o3d = o3d.geometry.PointCloud()
+                tgt_pcd_o3d.points = o3d.utility.Vector3dVector(tgt_pcd)
+                o3d.io.write_point_cloud(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'tgt_pcd.ply', tgt_pcd_o3d)
                 
-        if output_folder:
-            if not os.path.exists(base + output_folder + 'dataloader_ldmk'):
-                os.mkdir(base + output_folder + 'dataloader_ldmk')
+                c_src_pcd = o3d.geometry.PointCloud()
+                c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np_rotated))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 'c_src_pcd.ply', c_src_pcd)
 
-            src_pcd_o3d = o3d.geometry.PointCloud()
-            src_pcd_o3d.points = o3d.utility.Vector3dVector(src_pcd)
-            src_pcd_o3d.rotate(batched_rot[entry_id].numpy(), center=(0, 0, 0))
-            o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
-
-            tgt_pcd_o3d = o3d.geometry.PointCloud()
-            tgt_pcd_o3d.points = o3d.utility.Vector3dVector(tgt_pcd)
-            o3d.io.write_point_cloud(base + output_folder + 'dataloader_ldmk/' + 'tgt_pcd.ply', tgt_pcd_o3d)
+                c_tgt_pcd = o3d.geometry.PointCloud()
+                c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 'c_tgt_pcd.ply', c_tgt_pcd)
             
-            c_src_pcd = o3d.geometry.PointCloud()
-            c_src_pcd.points = o3d.utility.Vector3dVector(np.array(c_src_pcd_np_rotated))
-            o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 'c_src_pcd.ply', c_src_pcd)
+            #interpolate flow
+            f_src_pcd = batched_points_list[entry_id * 2]
+            c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
+            c_src_pcd_deformed = c_src_pcd_np + c_flow
+            s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
+            
+            if output_folder:
+                s_pc_wrapped_pcd = o3d.geometry.PointCloud()
+                s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
+            
+            coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
+            coarse_matches.append(coarse_match_gt)
+            coarse_flow.append(torch.from_numpy(c_flow))
+            accumu = accumu + n_s_pts + n_t_pts
 
-            c_tgt_pcd = o3d.geometry.PointCloud()
-            c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(c_tgt_pcd_np))
-            o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 'c_tgt_pcd.ply', c_tgt_pcd)
+            if output_folder:
+                number_points_src = c_src_pcd_np.shape[0]
+                correspondences = np.transpose(coarse_match_gt)
+                correspondences[:, 1] += number_points_src
+                total_points = np.concatenate((c_src_pcd_np_rotated, c_tgt_pcd_np), axis = 0)
+                line_set = o3d.geometry.LineSet(
+                    points=o3d.utility.Vector3dVector(total_points),
+                    lines=o3d.utility.Vector2iVector(correspondences),
+                )
+                o3d.io.write_line_set(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'dataloader_line_set.ply', line_set)
         
-        #interpolate flow
-        f_src_pcd = batched_points_list[entry_id * 2]
-        c_flow = blend_scene_flow( c_src_pcd_np, f_src_pcd, sflow_list[entry_id].numpy(), knn=3)
-        c_src_pcd_deformed = c_src_pcd_np + c_flow
-        s_pc_wrapped = ( batched_rot[entry_id].numpy() @ c_src_pcd_deformed.T  + batched_trn [entry_id].numpy() ).T
-        
-        if output_folder:
-            s_pc_wrapped_pcd = o3d.geometry.PointCloud()
-            s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
-            o3d.io.write_point_cloud(base + output_folder  + 'dataloader_ldmk/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
-        
-        coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , c_tgt_pcd_np , search_radius=config['coarse_match_radius'])  )# 0.1m scaled
-        coarse_matches.append(coarse_match_gt)
-        coarse_flow.append(torch.from_numpy(c_flow))
-        accumu = accumu + n_s_pts + n_t_pts
+            vis=False # for debug
+            if vis :
+                viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
 
-        if output_folder:
-            number_points_src = c_src_pcd_np.shape[0]
-            correspondences = np.transpose(coarse_match_gt)
-            correspondences[:, 1] += number_points_src
-            total_points = np.concatenate((c_src_pcd_np_rotated, c_tgt_pcd_np), axis = 0)
-            line_set = o3d.geometry.LineSet(
-                points=o3d.utility.Vector3dVector(total_points),
-                lines=o3d.utility.Vector2iVector(correspondences),
-            )
-            o3d.io.write_line_set(base + output_folder + 'dataloader_ldmk/' + 'dataloader_line_set.ply', line_set)
-    
-        vis=False # for debug
-        if vis :
-            viz_coarse_nn_correspondence_mayavi(c_src_pcd_np, c_tgt_pcd_np, coarse_match_gt, scale_factor=0.02)
+        src_ind_coarse_split = torch.cat(src_ind_coarse_split)
+        tgt_ind_coarse_split = torch.cat(tgt_ind_coarse_split)
+        src_ind_coarse = torch.cat(src_ind_coarse)
+        tgt_ind_coarse = torch.cat(tgt_ind_coarse)
 
-    src_ind_coarse_split = torch.cat(src_ind_coarse_split)
-    tgt_ind_coarse_split = torch.cat(tgt_ind_coarse_split)
-    src_ind_coarse = torch.cat(src_ind_coarse)
-    tgt_ind_coarse = torch.cat(tgt_ind_coarse)
+    elif feature_extractor == 'fcgf':
+        for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, src_feats_indices, tgt_feats_indices) in enumerate(pairwise_data):
+            b_size = 1
+            coarse_level = config.coarse_level
+            n_src_feats = src_feats.shape[0]
+            n_tgt_feats = tgt_feats.shape[0]
+            src_ind_coarse_split = torch.arange(n_src_feats)
+            tgt_ind_coarse_split = torch.arange(n_tgt_feats)                         
+            src_ind_coarse = torch.arange(n_src_feats)
+            tgt_ind_coarse = torch.arange(n_src_feats, n_tgt_feats + n_src_feats)
+            src_mask = torch.zeros([b_size, n_src_feats], dtype=torch.bool)
+            src_mask[0][:n_src_feats] = 1
+            tgt_mask = torch.zeros([b_size, n_tgt_feats], dtype=torch.bool)
+            tgt_mask[0][:n_tgt_feats] = 1
+            
+            for block_i, block in enumerate(config.architecture):
+                input_points += [torch.tensor([])]
+                input_batches_len += [torch.tensor([])]
+                input_neighbors += [torch.tensor([])]
+                input_pools += [torch.tensor([])]
+                input_upsamples += [torch.tensor([])]
+            
+            src_coarse = src_pcd[src_feats_indices]
+            src_coarse_rotated = (rot.numpy() @ src_coarse.T).T
+            tgt_coarse = tgt_pcd[tgt_feats_indices]
+            total_points = np.concatenate((src_coarse, tgt_coarse))
+            input_points[coarse_level] = torch.tensor(total_points)
+            input_batches_len[coarse_level] = torch.tensor([src_feats_indices.shape[0], tgt_feats_indices.shape[0]], dtype=torch.int32)
+            inter = total_points.reshape(total_points.shape[0], 1, total_points.shape[1])
+            dists = np.sqrt(np.einsum('ijk, ijk->ij', total_points-inter, total_points-inter))
+            k  = 50
+            input_neighbors[coarse_level] = torch.tensor(np.argpartition(dists, k, axis =- 1)[:, :k])
+            
+            c_flow = blend_scene_flow( src_coarse, src_pcd, s2t_flow, knn=3)
+            c_src_pcd_deformed = src_coarse + c_flow
+            s_pc_wrapped = (np.matmul(rot, c_src_pcd_deformed.T ) + trn).T
+            coarse_match_gt = torch.from_numpy( multual_nn_correspondence(s_pc_wrapped , tgt_coarse , search_radius=config['coarse_match_radius']))
+            coarse_matches.append(coarse_match_gt)
+            coarse_flow.append(torch.from_numpy(c_flow))
+            sflow_list.append( torch.from_numpy(s2t_flow).float())
+            
+            if output_folder:
+                if not os.path.exists(base + output_folder + feature_extractor + '_dataloader_ldmk'):
+                    os.mkdir(base + output_folder + feature_extractor + '_dataloader_ldmk')
 
+                src_pcd_o3d = o3d.geometry.PointCloud()
+                src_pcd_o3d.points = o3d.utility.Vector3dVector(src_pcd)
+                src_pcd_o3d.rotate(rot.numpy(), center=(0, 0, 0))
+                o3d.io.write_point_cloud(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
+
+                tgt_pcd_o3d = o3d.geometry.PointCloud()
+                tgt_pcd_o3d.points = o3d.utility.Vector3dVector(tgt_pcd)
+                o3d.io.write_point_cloud(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'tgt_pcd.ply', tgt_pcd_o3d)
+                
+                c_src_pcd = o3d.geometry.PointCloud()
+                c_src_pcd.points = o3d.utility.Vector3dVector(np.array(src_coarse_rotated))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 'c_src_pcd.ply', c_src_pcd)
+
+                c_tgt_pcd = o3d.geometry.PointCloud()
+                c_tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_coarse))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 'c_tgt_pcd.ply', c_tgt_pcd)
+                        
+                s_pc_wrapped_pcd = o3d.geometry.PointCloud()
+                s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
+                o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
+            
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
         'tgt_pcd_list': tgt_pcd_list,
