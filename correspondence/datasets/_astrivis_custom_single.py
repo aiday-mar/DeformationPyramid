@@ -64,10 +64,7 @@ class _AstrivisCustomSingle(Dataset):
                 final_correspondences = np.append(final_correspondences, np.array(np.expand_dims(correspondence, axis=0)), axis=0)
             set_src_indices.add(correspondence[0])
         correspondence = final_correspondences
-        for correspondence in correspondences:
-            if correspondence[0] != correspondence[1]:
-                print('1st element not equal to second')
-                
+        
         indices_src = correspondences[:, 0]
         indices_tgt = correspondences[:, 1]
 

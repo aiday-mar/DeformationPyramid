@@ -133,6 +133,7 @@ class Registration():
         levels = levels if levels else config.m
         print('levels : ', levels)
 
+        print('posenc function : ', posenc_function)
         NDP = Deformation_Pyramid( depth=config.depth,
                                     width=config.width,
                                     device=self.device,
