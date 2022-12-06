@@ -567,7 +567,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
     elif feature_extractor == 'fcgf':
         for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors, src_feats_indices, tgt_feats_indices)  in enumerate(pairwise_data):
-            print('ind : ', ind)
             b_size = 1
             coarse_level = config.coarse_level
             n_src_feats = src_feats.shape[0]
@@ -635,47 +634,6 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 s_pc_wrapped_pcd.points = o3d.utility.Vector3dVector(np.array(s_pc_wrapped))
                 o3d.io.write_point_cloud(base + output_folder  + feature_extractor + '_dataloader_ldmk/' + 's_pc_wrapped_pcd.ply', s_pc_wrapped_pcd)
     
-    coarse_level = config.coarse_level
-    print('\n')
-    print('Returned from collate_fn_4dmatch')
-    print('len(src_pcd_list) : ', len(src_pcd_list))
-    print('src_pcd_list[0].shape : ', src_pcd_list[0].shape)
-    print('len(tgt_pcd_list) : ', len(tgt_pcd_list))
-    print('tgt_pcd_list[0].shape : ', tgt_pcd_list[0].shape)
-
-    print('len(input_points) : ', len(input_points))
-    print('input_points[coarse_level].shape : ', input_points[coarse_level].shape)
-    print('len(input_neighbors) : ', len(input_neighbors))
-    print('input_neighbors[coarse_level].shape : ', input_neighbors[coarse_level].shape)
-
-    print('len(input_pools) : ', len(input_pools))
-    print('input_pools[coarse_level].shape : ', input_pools[coarse_level].shape)
-    print('len(input_upsamples) : ', len(input_upsamples))
-    print('input_upsamples[coarse_level].shape : ', input_upsamples[0].shape)
-    print('batched_features.shape : ', batched_features.shape)
-    print('len(input_batches_len) : ', len(input_batches_len))
-    print('input_batches_len[coarse_level].shape : ', input_batches_len[0].shape)
-    print('len(coarse_matches) : ', len(coarse_matches))
-    print('coarse_matches[0].shape : ', coarse_matches[0].shape)
-    print('len(coarse_flow) : ', len(coarse_flow))
-    print('coarse_flow[0].shape : ', coarse_flow[0].shape)
-
-    print('src_mask.shape : ', src_mask.shape)
-    print('tgt_mask.shape : ', tgt_mask.shape)
-    print('src_ind_coarse_split.shape : ', src_ind_coarse_split.shape)
-    print('tgt_ind_coarse_split.shape : ', tgt_ind_coarse_split.shape)
-    print('src_ind_coarse.shape : ', src_ind_coarse.shape)
-    print('tgt_ind_coarse.shape : ', tgt_ind_coarse.shape)
-    print('batched_rot.shape : ', batched_rot.shape)
-    print('batched_trn.shape : ', batched_trn.shape)
-
-    print('len(sflow_list) : ', len(sflow_list))
-    print('sflow_list[0].shape : ', sflow_list[0].shape)
-
-    print('len(correspondences_list) : ', len(correspondences_list))
-    print('correspondences_list[0].shape : ', correspondences_list[0].shape)
-    print('correspondences_list[0] : ', correspondences_list[0])
-           
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
         'tgt_pcd_list': tgt_pcd_list,
