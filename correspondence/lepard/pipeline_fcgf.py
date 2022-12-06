@@ -1,8 +1,8 @@
-from models.blocks import *
-from models.backbone_fcgf import FCGF
-from models.transformer import RepositioningTransformer
-from models.matching import Matching
-from models.procrustes import SoftProcrustesLayer
+from .blocks import *
+from .backbone_fcgf import FCGF
+from .transformer import RepositioningTransformer
+from .matching import Matching
+from .procrustes import SoftProcrustesLayer
 
 class PipelineFCGF(nn.Module):
 
