@@ -71,10 +71,10 @@ class Matching(nn.Module):
     def get_match( conf_matrix, thr, preprocessing = 'mutual'):
         
         print('conf_matrix.shape : ', conf_matrix.shape)
+        print('conf_matrix : ', conf_matrix)
         print('preprocessing : ', preprocessing)
         
         mask = conf_matrix > thr
-
         if preprocessing == 'mutual':
             mask = mask \
                    * (conf_matrix == conf_matrix.max(dim=2, keepdim=True)[0]) \
