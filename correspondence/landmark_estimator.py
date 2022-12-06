@@ -68,14 +68,21 @@ class Landmark_Model():
         lepard_true_correspondences_mask = None
         custom_filtering_true_correspondences_mask = None
         
+        if self.feature_extractor == 'kpfcn':
+            folder_name = 'lepard'
+        elif self.feature_extractor == 'fcgf':
+            folder_name = 'fcgf'
+        else:
+            raise Exception('Specify a valid feature extractor')
+            
         with torch.no_grad():
             if timer: timer.tic("matcher")
             data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:
-                if not os.path.exists(self.path + intermediate_output_folder + 'lepard_ldmk'):
-                    os.mkdir(self.path + intermediate_output_folder + 'lepard_ldmk')
+                if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_ldmk'):
+                    os.mkdir(self.path + intermediate_output_folder + folder_name + '_ldmk')
                 
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
@@ -93,27 +100,27 @@ class Landmark_Model():
                     src_pcd = o3d.geometry.PointCloud()
                     src_pcd.points = o3d.utility.Vector3dVector(src_pcd_points)
                     src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'src_pcd.ply', src_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'src_pcd.ply', src_pcd)
 
                     tgt_pcd_points = data['tgt_pcd_list'][0]
                     tgt_pcd_points = np.array(tgt_pcd_points.cpu())
                     tgt_pcd = o3d.geometry.PointCloud()
                     tgt_pcd.points = o3d.utility.Vector3dVector(tgt_pcd_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
 
                     s_pos_pcd = o3d.geometry.PointCloud()
                     s_pos_pcd_points = np.array(s_pos.cpu())
                     s_pos_pcd.points = o3d.utility.Vector3dVector(s_pos_pcd_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
                     
                     s_pos_pcd_rotated = s_pos_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     s_pos_pcd_points_rotated = np.array(s_pos_pcd_rotated.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'lepard_ldmk/' + 's_lepard_pcd_rotated.ply', s_pos_pcd_rotated)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd_rotated.ply', s_pos_pcd_rotated)
                     
                     t_pos_pcd = o3d.geometry.PointCloud()
                     t_pos_pcd_points = np.array(t_pos.cpu())
                     t_pos_pcd.points = o3d.utility.Vector3dVector(t_pos_pcd_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder +  'lepard_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
                     
                     total_points = np.concatenate((s_pos_pcd_points_rotated, t_pos_pcd_points), axis = 0)
                     number_points_src = s_pos.shape[0]
@@ -122,7 +129,7 @@ class Landmark_Model():
                         points=o3d.utility.Vector3dVector(total_points),
                         lines=o3d.utility.Vector2iVector(correspondences),
                     )
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/' + 'lepard_line_set.ply', line_set)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'lepard_line_set.ply', line_set)
                     
             if matches_path:
                 b_size=len(data['s_pcd'])
@@ -184,7 +191,7 @@ class Landmark_Model():
                         inliers_lepard_line_set.points=o3d.utility.Vector3dVector(total_inlier_points)
                         inliers_lepard_line_set.lines =o3d.utility.Vector2iVector(inlier_correspondences)
                         inliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/inliers.ply', inliers_lepard_line_set)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/inliers.ply', inliers_lepard_line_set)
                         
                         inverse_mask = ~lepard_true_correspondences_mask
                         gt_outlier_matches_s = s_pos_pcd_points_rotated[inverse_mask]
@@ -197,7 +204,7 @@ class Landmark_Model():
                         outliers_lepard_line_set.points=o3d.utility.Vector3dVector(total_outlier_points)
                         outliers_lepard_line_set.lines =o3d.utility.Vector2iVector(outlier_correspondences)
                         outliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'lepard_ldmk/outliers.ply', outliers_lepard_line_set)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/outliers.ply', outliers_lepard_line_set)
                         
             if timer: timer.tic("outlier rejection")
             confidence = self.outlier_model(data)
@@ -218,30 +225,30 @@ class Landmark_Model():
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
             if intermediate_output_folder and not custom_filtering:
-                if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
-                    os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
+                if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
+                    os.mkdir(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk')
 
                 rot = data['batched_rot'][0]
                 src_pcd_points = data['src_pcd_list'][0]
                 src_pcd = o3d.geometry.PointCloud()
                 src_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
                 src_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 'src_pcd.ply', src_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 'src_pcd.ply', src_pcd)
 
                 tgt_pcd_points = data['tgt_pcd_list'][0]
                 tgt_pcd = o3d.geometry.PointCloud()
                 tgt_pcd.points = o3d.utility.Vector3dVector(np.array(tgt_pcd_points.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 'tgt_pcd.ply', tgt_pcd)
             
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
                 ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                 rotated_ldmk_s = np.array(ldmk_s_pcd.points)
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
                 
                 ldmk_t_pcd = o3d.geometry.PointCloud()
                 ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'outlier_ldmk/' + 't_outlier_rejected_pcd.ply', ldmk_t_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 't_outlier_rejected_pcd.ply', ldmk_t_pcd)
                 
                 total_points = np.concatenate((rotated_ldmk_s, np.array(ldmk_t.cpu())), axis = 0)
                 number_points_src = ldmk_s.shape[0]
@@ -250,7 +257,7 @@ class Landmark_Model():
                     points=o3d.utility.Vector3dVector(total_points),
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
-                o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/' + 'outlier_line_set.ply', line_set)
+                o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 'outlier_line_set.ply', line_set)
                 
             if matches_path:
                 outlier_rejected_vec_6d = data['vec_6d'][0][inlier_conf > inlier_thr]
@@ -289,8 +296,8 @@ class Landmark_Model():
                 print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
                 
                 if intermediate_output_folder:
-                    if not os.path.exists(self.path + intermediate_output_folder + 'outlier_ldmk'):
-                        os.mkdir(self.path + intermediate_output_folder + 'outlier_ldmk')
+                    if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
+                        os.mkdir(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk')
                     rot = data['batched_rot'][0]
                     ldmk_s_outlier_rejected_pcd = o3d.geometry.PointCloud()
                     ldmk_s_outlier_rejected = np.array(ldmk_s_outlier_rejected.cpu())
@@ -308,7 +315,7 @@ class Landmark_Model():
                     inliers_outlier_rejected_line_set.points=o3d.utility.Vector3dVector(total_inlier_points)
                     inliers_outlier_rejected_line_set.lines =o3d.utility.Vector2iVector(inlier_correspondences)
                     inliers_outlier_rejected_line_set.colors = o3d.utility.Vector3dVector(colors)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/inliers.ply', inliers_outlier_rejected_line_set)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/inliers.ply', inliers_outlier_rejected_line_set)
                     
                     inverse_mask = ~outlier_rejected_true_correspondences_mask
                     gt_outlier_matches_s = ldmk_s_outlier_rejected_rotated[inverse_mask]
@@ -321,7 +328,7 @@ class Landmark_Model():
                     outliers_outlier_rejected_line_set.points=o3d.utility.Vector3dVector(total_outlier_points)
                     outliers_outlier_rejected_line_set.lines =o3d.utility.Vector2iVector(outlier_correspondences)
                     outliers_outlier_rejected_line_set.colors = o3d.utility.Vector3dVector(colors)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'outlier_ldmk/outliers.ply', outliers_outlier_rejected_line_set)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/outliers.ply', outliers_outlier_rejected_line_set)
         
             # 1. Custom filtering done with the first method
             '''            
@@ -808,8 +815,8 @@ class Landmark_Model():
                 print('Custom filtering is used')
                 
                 if intermediate_output_folder:
-                    if not os.path.exists(self.path + intermediate_output_folder + 'custom_filtering_ldmk'):
-                        os.mkdir(self.path + intermediate_output_folder + 'custom_filtering_ldmk')
+                    if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk'):
+                        os.mkdir(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk')
                     
                     if matches_path:
                         matches = np.load(self.path + matches_path)
@@ -831,7 +838,7 @@ class Landmark_Model():
                         line_set = o3d.geometry.LineSet()
                         line_set.points=o3d.utility.Vector3dVector(total_points)
                         line_set.lines =o3d.utility.Vector2iVector(correspondences)
-                        o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'gt_line_set.ply', line_set)
+                        o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 'gt_line_set.ply', line_set)
                         
                     ldmk_s_np = np.array(ldmk_s.cpu())
                     number_points = ldmk_s_np.shape[0]
@@ -840,16 +847,16 @@ class Landmark_Model():
 
                     ldmk_s_pcd = o3d.geometry.PointCloud()
                     ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/ldmk_s_pcd.ply', ldmk_s_pcd)
 
                     rot = data['batched_rot'][0]
                     ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_s_rotated_pcd.ply', ldmk_s_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/ldmk_s_rotated_pcd.ply', ldmk_s_pcd)
                     rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
 
                     ldmk_t_pcd = o3d.geometry.PointCloud()
                     ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
                 else:
                     ldmk_s_np = np.array(ldmk_s.cpu())
                     ldmk_s_pcd = o3d.geometry.PointCloud()
@@ -900,11 +907,11 @@ class Landmark_Model():
                     radii = [0.005]
                     source_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(source_mesh_pcd, o3d.utility.DoubleVector(radii))
                     if intermediate_output_folder:
-                        o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + 'custom_filtering_ldmk/source_mesh.ply', source_mesh)
+                        o3d.io.write_triangle_mesh(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/source_mesh.ply', source_mesh)
                     centers_pcd = source_mesh.sample_points_poisson_disk(number_of_points=number_centers)
                 
                 if intermediate_output_folder:
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/centers_pcd.ply', centers_pcd)
                 
                 neighborhood_centers = np.array(centers_pcd.points)
                 print('number of neighborhood centers : ', neighborhood_centers.shape[0])
@@ -992,7 +999,7 @@ class Landmark_Model():
                             landmarks_transformed_s = (final_R @ ldmk_s_np.T + np.expand_dims(final_t, axis=1)).T
                             landmarks_transformed_s_pcd = o3d.geometry.PointCloud()
                             landmarks_transformed_s_pcd.points = o3d.utility.Vector3dVector(landmarks_transformed_s)
-                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
+                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name '_custom_filtering_ldmk/landmarks_transformed_' + str(n_center) + '.ply', landmarks_transformed_s_pcd)
                         
                             neighborhood_center_pcd = o3d.geometry.PointCloud()
                             neighborhood_center_pcd.points = o3d.utility.Vector3dVector(neighborhood_center[None, :])
@@ -1011,7 +1018,7 @@ class Landmark_Model():
                             inliers_pcd = o3d.geometry.PointCloud()
                             inliers_pcd.points = o3d.utility.Vector3dVector(np.array(inliers_pcd_points))
                             inliers_pcd.colors = o3d.utility.Vector3dVector(np.array(inliers_colors))
-                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
+                            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/inliers_' + str(n_center) + '.ply', inliers_pcd)
                         
                             inliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_inliers]]
                             inliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_inliers]]
@@ -1021,7 +1028,7 @@ class Landmark_Model():
                             inliers_line_set = o3d.geometry.LineSet()
                             inliers_line_set.points=o3d.utility.Vector3dVector(total_inliers)
                             inliers_line_set.lines =o3d.utility.Vector2iVector(inliers_correspondences)
-                            o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
+                            o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/inliers_line_set_' + str(n_center) + '.ply', inliers_line_set)
                             
                             outliers_pcd_points_s = rotated_ldmk_s_np[point_indices_close_to_center[final_outliers]]
                             outliers_pcd_points_t = ldmk_t_np[point_indices_close_to_center[final_outliers]]
@@ -1031,7 +1038,7 @@ class Landmark_Model():
                             outliers_line_set = o3d.geometry.LineSet()
                             outliers_line_set.points=o3d.utility.Vector3dVector(total_outliers)
                             outliers_line_set.lines =o3d.utility.Vector2iVector(outliers_correspondences)
-                            o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/outliers_line_set_' + str(n_center) + '.ply', outliers_line_set)
+                            o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/outliers_line_set_' + str(n_center) + '.ply', outliers_line_set)
 
                         for outlier_idx in final_outliers:
                             weight = final_norm_error[outlier_idx]/tau
@@ -1119,11 +1126,11 @@ class Landmark_Model():
                     ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
                     ldmk_s_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     rotated_ldmk_s = np.array(ldmk_s_custom_filtering.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering_pcd.ply', ldmk_s_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 's_custom_filtering_pcd.ply', ldmk_s_custom_filtering)
                     
                     ldmk_t_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_t_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 't_custom_filtering_pcd.ply', ldmk_t_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 't_custom_filtering_pcd.ply', ldmk_t_custom_filtering)
                     
                     total_points = np.concatenate((rotated_ldmk_s, np.array(ldmk_t.cpu())), axis = 0)
                     number_points_src = ldmk_s.shape[0]
@@ -1133,7 +1140,7 @@ class Landmark_Model():
                     line_set.points=o3d.utility.Vector3dVector(total_points)
                     line_set.lines =o3d.utility.Vector2iVector(correspondences)
                     line_set.colors = o3d.utility.Vector3dVector(colors)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'custom_filtering_line_set.ply', line_set)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 'custom_filtering_line_set.ply', line_set)
                 
                     # outliers 
                     ldmk_s_np_outliers = ldmk_s_np[final_outlier_indices]
@@ -1142,11 +1149,11 @@ class Landmark_Model():
                     ldmk_s_outliers_custom_filtering.points = o3d.utility.Vector3dVector(ldmk_s_np_outliers)
                     ldmk_s_outliers_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     rotated_ldmk_s_np_outliers = np.array(ldmk_s_outliers_custom_filtering.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 's_custom_filtering_pcd_outliers.ply', ldmk_s_outliers_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 's_custom_filtering_pcd_outliers.ply', ldmk_s_outliers_custom_filtering)
                     
                     ldmk_t_outliers_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_t_outliers_custom_filtering.points = o3d.utility.Vector3dVector(ldmk_t_np_outliers)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'custom_filtering_ldmk/' + 't_custom_filtering_pcd_outliers.ply', ldmk_t_outliers_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 't_custom_filtering_pcd_outliers.ply', ldmk_t_outliers_custom_filtering)
                     
                     total_points = np.concatenate((rotated_ldmk_s_np_outliers, ldmk_t_np_outliers), axis = 0)
                     number_points_src = rotated_ldmk_s_np_outliers.shape[0]
@@ -1156,7 +1163,7 @@ class Landmark_Model():
                     line_set_outliers.points=o3d.utility.Vector3dVector(total_points)
                     line_set_outliers.lines =o3d.utility.Vector2iVector(correspondences)
                     line_set_outliers.colors = o3d.utility.Vector3dVector(colors)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder +  'custom_filtering_ldmk/' + 'custom_filtering_line_set_outliers.ply', line_set_outliers)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 'custom_filtering_line_set_outliers.ply', line_set_outliers)
                 
                 data_mod = {}
                 final_indices = list(final_indices)
