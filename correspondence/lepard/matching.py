@@ -88,6 +88,7 @@ class Matching(nn.Module):
             for idx in idxs:
                 mask[idx[0]][idx[1]] = True
             mask = torch.tensor(mask).to('cuda:0')
+            mask = tf.expand_dims(mask, axis=0)
             
         if preprocessing == 'mutual':
             mask = mask \
