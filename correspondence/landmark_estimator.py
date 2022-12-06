@@ -236,7 +236,11 @@ class Landmark_Model():
             if not custom_filtering and reject_outliers:
                 print('using the outlier rejection network')
                 vec_6d = vec_6d[inlier_conf > inlier_thr] 
-                           
+            
+            var = inlier_conf > inlier_thr
+            print('inlier_conf.shape : ', inlier_conf.shape)
+            print('var.shape : ', var.shape)
+            
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
             if intermediate_output_folder and not custom_filtering:
