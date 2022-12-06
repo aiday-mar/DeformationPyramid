@@ -160,7 +160,7 @@ class RepositioningTransformer(nn.Module):
                     if self.timers: self.timers.toc('cross atten')
                 elif name =='positioning':
                     if self.positioning_type == 'procrustes':
-                        conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type=self.pe_type, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type=self.pe_type)
+                        conf_matrix, match_pred = layer[0](src_feat, tgt_feat, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type=self.pe_type)
                         position_layer += 1
                         data["position_layers"][position_layer] = {"conf_matrix": conf_matrix, "match_pred": match_pred}
                         if self.timers: self.timers.tic('procrustes_layer')
