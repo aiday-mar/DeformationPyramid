@@ -3,9 +3,9 @@ import math
 import torch
 from torch import nn
 from torch.nn import Module, Dropout
-from models.position_encoding import VolumetricPositionEncoding as VolPE
-from models.matching import Matching
-from models.procrustes import SoftProcrustesLayer
+from .position_encoding import VolumetricPositionEncoding as VolPE
+from .matching import Matching
+from .procrustes import SoftProcrustesLayer
 import numpy as np
 import random
 from scipy.spatial.transform import Rotation
