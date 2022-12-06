@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
+import copy
 import torch.nn.functional as F
 from correspondence.lepard.position_encoding import VolumetricPositionEncoding as VolPE
 
@@ -80,7 +81,7 @@ class Matching(nn.Module):
         index = (mask==True).nonzero()
         if index.shape[0] > 10000:
             # recompute mask, take only highest 10000 values
-            conf_matrix_val = conf_matrix[0]
+            conf_matrix_val = copy.deepcopy(conf_matrix[0]).cpu().numpy()
             mask = np.zeros(conf_matrix_val.shape, dtype = bool)
             idxs = np.argpartition(-conf_matrix_val.ravel(),10000)[:10000]
             idxs = np.column_stack(np.unravel_index(idxs, conf_matrix_val.shape))
