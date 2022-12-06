@@ -173,6 +173,9 @@ if __name__ == "__main__":
         # Remember s2t_flow here only works on the partial correspondences. 
         indices_src = correspondence[:, 0]
         src_pcd_deformed = src_pcd
+        print('src_pcd_deformed.shape : ', src_pcd_deformed.shape)
+        print('indices_src.shape : ', indices_src.shape)
+        print('s2t_flow.shape : ', s2t_flow.shape)
         src_pcd_deformed[indices_src] = src_pcd[indices_src] + s2t_flow
         
         src_pcd_deformed_o3d = o3d.geometry.PointCloud()
