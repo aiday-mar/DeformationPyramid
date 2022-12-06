@@ -590,7 +590,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
                 input_upsamples += [torch.tensor([])]
             
             src_coarse = src_pcd[src_feats_indices]
-            src_coarse_rotated = (rot.numpy() @ src_coarse.T).T
+            src_coarse_rotated = (rot @ src_coarse.T).T
             tgt_coarse = tgt_pcd[tgt_feats_indices]
             total_points = np.concatenate((src_coarse, tgt_coarse))
             input_points[coarse_level] = torch.tensor(total_points)
