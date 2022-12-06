@@ -129,7 +129,7 @@ class RepositioningTransformer(nn.Module):
                 raise KeyError()
         self._reset_parameters()
 
-    def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, T = None, timers = None, feature_extractor = 'kpfcn', preprocessing = 'mutual', confidence_threshold = None, mod = False):
+    def forward(self, src_feat, tgt_feat, s_pcd, t_pcd, src_mask, tgt_mask, data, T = None, timers = None,  preprocessing = 'mutual', confidence_threshold = None, feature_extractor = 'kpfcn'):
 
         self.timers = timers
         assert self.d_model == src_feat.size(2), "the feature number of src and transformer must be equal"
