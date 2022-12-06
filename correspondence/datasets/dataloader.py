@@ -674,6 +674,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
     print('len(correspondences_list) : ', len(correspondences_list))
     print('correspondences_list[0].shape : ', correspondences_list[0].shape)
+    print('correspondences_list[0] : ', correspondences_list[0])
            
     dict_inputs = {
         'src_pcd_list': src_pcd_list,
