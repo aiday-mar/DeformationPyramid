@@ -16,6 +16,8 @@ from utils.benchmark_utils import setup_seed
 from utils.utils import AverageMeter
 from utils.tiktok import Timers
 from correspondence.landmark_estimator import Landmark_Model
+from correspondence.datasets._astrivis_custom_single import _AstrivisCustomSingle
+from correspondence.datasets.dataloader import get_dataloader
 import h5py
 import copy
 
@@ -101,10 +103,6 @@ if __name__ == "__main__":
 
     model = Registration(config)
     timer = Timers()
-
-    from correspondence.datasets._astrivis_custom_single import _AstrivisCustomSingle
-    from correspondence.datasets.dataloader import get_dataloader
-
     stats_meter = None
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base)
