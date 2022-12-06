@@ -61,16 +61,16 @@ class VolumetricPositionEncoding(nn.Module):
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
 
-        if feature_extraction == 'fcgf':
-            div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
-            div_term_mod = div_term_mod.view( 1,1, -1)
-            sinx = torch.sin(x_position * div_term_mod)
-            cosx = torch.cos(x_position * div_term_mod)
-        elif feature_extraction == 'kpfcn':
-            sinx = torch.sin(x_position * div_term) # [B, N, d//6]
-            cosx = torch.cos(x_position * div_term)
-        else:
-            raise Exception('Choose valid feature extraction')
+        # if feature_extraction == 'fcgf':
+        #     div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
+        #    div_term_mod = div_term_mod.view( 1,1, -1)
+        #    sinx = torch.sin(x_position * div_term_mod)
+        #    cosx = torch.cos(x_position * div_term_mod)
+        # elif feature_extraction == 'kpfcn':
+        sinx = torch.sin(x_position * div_term)
+        cosx = torch.cos(x_position * div_term)
+        # else:
+        #    raise Exception('Choose valid feature extraction')
         
         siny = torch.sin(y_position * div_term)
         cosy = torch.cos(y_position * div_term)
@@ -83,7 +83,7 @@ class VolumetricPositionEncoding(nn.Module):
         print('cosy.shape : ', cosy.shape)
         print('sinz.shape : ', sinz.shape)
         print('cosz.shape : ', cosz.shape)
-        
+
         if self.pe_type == 'sinusoidal' :
             position_code = torch.cat( [ sinx, cosx, siny, cosy, sinz, cosz] , dim=-1 )
 
