@@ -17,7 +17,7 @@ class PipelineFCGF(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-    def forward(self, data,  timers=None):
+    def forward(self, data, confidence_threshold = None, preprocessing = 'mutual', timers=None):
 
         self.timers = timers
         if self.timers: self.timers.tic('fcgf backbone encode')
@@ -30,11 +30,11 @@ class PipelineFCGF(nn.Module):
         if self.timers: self.timers.toc('coarse_preprocess')
 
         if self.timers: self.timers.tic('coarse feature transformer')
-        src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, timers=timers, feature_extractor = self.feature_extractor)
+        src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, feature_extractor = self.feature_extractor, timers=timers)
         if self.timers: self.timers.toc('coarse feature transformer')
 
         if self.timers: self.timers.tic('match feature coarse')
-        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, pe_type = self.pe_type)
+        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
         data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
 
