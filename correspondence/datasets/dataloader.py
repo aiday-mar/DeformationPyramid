@@ -330,7 +330,7 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 
     return pcd_pairs, pairwise_data_list
 
-def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None):
+def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
 
     batched_points_list = []
     batched_features_list = []
@@ -395,78 +395,79 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     input_batches_len = []
 
     # construt kpfcn inds
-    for block_i, block in enumerate(config.architecture):
+    if feature_extractor == 'kpfcn':
+        for block_i, block in enumerate(config.architecture):
 
-        # Stop when meeting a global pooling or upsampling
-        if 'global' in block or 'upsample' in block:
-            break
+            # Stop when meeting a global pooling or upsampling
+            if 'global' in block or 'upsample' in block:
+                break
 
-        # Get all blocks of the layer
-        if not ('pool' in block or 'strided' in block):
-            layer_blocks += [block]
-            if block_i < len(config.architecture) - 1 and not ('upsample' in config.architecture[block_i + 1]):
-                continue
+            # Get all blocks of the layer
+            if not ('pool' in block or 'strided' in block):
+                layer_blocks += [block]
+                if block_i < len(config.architecture) - 1 and not ('upsample' in config.architecture[block_i + 1]):
+                    continue
 
-        # Convolution neighbors indices
-        # *****************************
-        if layer_blocks:
-            # Convolutions are done in this layer, compute the neighbors with the good radius
-            if np.any(['deformable' in blck for blck in layer_blocks[:-1]]):
-                r = r_normal * config.deform_radius / config.conv_radius
+            # Convolution neighbors indices
+            # *****************************
+            if layer_blocks:
+                # Convolutions are done in this layer, compute the neighbors with the good radius
+                if np.any(['deformable' in blck for blck in layer_blocks[:-1]]):
+                    r = r_normal * config.deform_radius / config.conv_radius
+                else:
+                    r = r_normal
+                conv_i = batch_neighbors_kpconv(batched_points, batched_points, batched_lengths, batched_lengths, r,
+                                                neighborhood_limits[layer])
+
             else:
-                r = r_normal
-            conv_i = batch_neighbors_kpconv(batched_points, batched_points, batched_lengths, batched_lengths, r,
+                # This layer only perform pooling, no neighbors required
+                conv_i = torch.zeros((0, 1), dtype=torch.int64)
+
+            # Pooling neighbors indices
+            # *************************
+            # If end of layer is a pooling operation
+            if 'pool' in block or 'strided' in block:
+
+                # New subsampling length
+                dl = 2 * r_normal / config.conv_radius
+                # Subsampled points
+                pool_p, pool_b = batch_grid_subsampling_kpconv(batched_points, batched_lengths, sampleDl=dl)
+                # Radius of pooled neighbors
+                if 'deformable' in block:
+                    r = r_normal * config.deform_radius / config.conv_radius
+                else:
+                    r = r_normal
+
+                # Subsample indices
+                pool_i = batch_neighbors_kpconv(pool_p, batched_points, pool_b, batched_lengths, r,
+                                                neighborhood_limits[layer])
+
+                # Upsample indices (with the radius of the next layer to keep wanted density)
+                up_i = batch_neighbors_kpconv(batched_points, pool_p, batched_lengths, pool_b, 2 * r,
                                             neighborhood_limits[layer])
 
-        else:
-            # This layer only perform pooling, no neighbors required
-            conv_i = torch.zeros((0, 1), dtype=torch.int64)
-
-        # Pooling neighbors indices
-        # *************************
-        # If end of layer is a pooling operation
-        if 'pool' in block or 'strided' in block:
-
-            # New subsampling length
-            dl = 2 * r_normal / config.conv_radius
-            # Subsampled points
-            pool_p, pool_b = batch_grid_subsampling_kpconv(batched_points, batched_lengths, sampleDl=dl)
-            # Radius of pooled neighbors
-            if 'deformable' in block:
-                r = r_normal * config.deform_radius / config.conv_radius
             else:
-                r = r_normal
+                # No pooling in the end of this layer, no pooling indices required
+                pool_i = torch.zeros((0, 1), dtype=torch.int64)
+                pool_p = torch.zeros((0, 3), dtype=torch.float32)
+                pool_b = torch.zeros((0,), dtype=torch.int64)
+                up_i = torch.zeros((0, 1), dtype=torch.int64)
 
-            # Subsample indices
-            pool_i = batch_neighbors_kpconv(pool_p, batched_points, pool_b, batched_lengths, r,
-                                            neighborhood_limits[layer])
+            # Updating input lists
+            input_points += [batched_points.float()]
+            input_neighbors += [conv_i.long()]
+            input_pools += [pool_i.long()]
+            input_upsamples += [up_i.long()]
+            input_batches_len += [batched_lengths]
 
-            # Upsample indices (with the radius of the next layer to keep wanted density)
-            up_i = batch_neighbors_kpconv(batched_points, pool_p, batched_lengths, pool_b, 2 * r,
-                                          neighborhood_limits[layer])
+            # New points for next layer
+            batched_points = pool_p
+            batched_lengths = pool_b
 
-        else:
-            # No pooling in the end of this layer, no pooling indices required
-            pool_i = torch.zeros((0, 1), dtype=torch.int64)
-            pool_p = torch.zeros((0, 3), dtype=torch.float32)
-            pool_b = torch.zeros((0,), dtype=torch.int64)
-            up_i = torch.zeros((0, 1), dtype=torch.int64)
-
-        # Updating input lists
-        input_points += [batched_points.float()]
-        input_neighbors += [conv_i.long()]
-        input_pools += [pool_i.long()]
-        input_upsamples += [up_i.long()]
-        input_batches_len += [batched_lengths]
-
-        # New points for next layer
-        batched_points = pool_p
-        batched_lengths = pool_b
-
-        # Update radius and reset blocks
-        r_normal *= 2
-        layer += 1
-        layer_blocks = []
+            # Update radius and reset blocks
+            r_normal *= 2
+            layer += 1
+            layer_blocks = []
 
     # coarse infomation
     coarse_level = coarse_level if coarse_level else config.coarse_level
@@ -636,7 +637,7 @@ def get_datasets(config):
 
     return train_set, val_set, test_set
 
-def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None):
+def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
 
     collate_fn = collate_fn_4dmatch
 
@@ -648,7 +649,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
         batch_size=config['batch_size'],
         shuffle=shuffle,
         num_workers=config['num_workers'],
-        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base, coarse_level = coarse_level),
+        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base, coarse_level = coarse_level, feature_extractor = 'kpfcn'),
         drop_last=False
     )
 
