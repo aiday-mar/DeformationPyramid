@@ -1,6 +1,10 @@
 # config=LNDP_fcgf.yaml
 config=LNDP.yaml
-filename=Testing/all/test_astrivis_full_non_deformed.txt
+
+#type=fcgf
+type=kpfcn
+
+filename=Testing/all/test_astrivis_full_non_deformed_${type}.txt
 rm ${filename}
 touch ${filename}
 
