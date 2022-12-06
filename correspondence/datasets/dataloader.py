@@ -639,9 +639,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     print('\n')
     print('Returned from collate_fn_4dmatch')
     print('len(src_pcd_list) : ', len(src_pcd_list))
-    print('src_pcd_list[0].shape : ', src_pcd_list[coarse_level].shape)
+    print('src_pcd_list[0].shape : ', src_pcd_list[0].shape)
     print('len(tgt_pcd_list) : ', len(tgt_pcd_list))
-    print('tgt_pcd_list[0].shape : ', tgt_pcd_list[coarse_level].shape)
+    print('tgt_pcd_list[0].shape : ', tgt_pcd_list[0].shape)
 
     print('len(input_points) : ', len(input_points))
     print('input_points[0].shape : ', input_points[coarse_level].shape)
