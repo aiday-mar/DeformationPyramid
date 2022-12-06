@@ -42,15 +42,15 @@ class VolumetricPositionEncoding(nn.Module):
             raise KeyError()
 
 
-    def forward(self,  vec6d, mod = False):
+    def forward(self,  vec6d, feature_extraction = 'kpfcn'):
         _, n, _ = vec6d.shape
 
-        s_pe = self.pe( vec6d[..., :3], mod)
-        t_pe = self.pe( vec6d[..., 3:], mod)
+        s_pe = self.pe( vec6d[..., :3], feature_extraction)
+        t_pe = self.pe( vec6d[..., 3:], feature_extraction)
 
         return torch.cat([s_pe, t_pe], dim=2)
 
-    def pe(self, XYZ, mod = False):
+    def pe(self, XYZ, feature_extraction = 'kpfcn'):
         '''
         @param XYZ: [B,N,3]
         @return:
@@ -61,15 +61,17 @@ class VolumetricPositionEncoding(nn.Module):
         div_term = torch.exp( torch.arange(0, self.feature_dim // 3, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / (self.feature_dim // 3)))
         div_term = div_term.view( 1,1, -1) # [1, 1, d//6]
 
-        if mod:
+        if feature_extraction == 'fcgf':
             div_term_mod = torch.exp( torch.arange(0, 12, 2, dtype=torch.float, device=XYZ.device) *  (-math.log(10000.0) / 12))
             div_term_mod = div_term_mod.view( 1,1, -1)
             sinx = torch.sin(x_position * div_term_mod)
             cosx = torch.cos(x_position * div_term_mod)
-        else:
+        elif feature_extraction == 'kpfcn':
             sinx = torch.sin(x_position * div_term) # [B, N, d//6]
             cosx = torch.cos(x_position * div_term)
-            
+        else:
+            raise Exception('Choose valid feature extraction')
+        
         siny = torch.sin(y_position * div_term)
         cosy = torch.cos(y_position * div_term)
         sinz = torch.sin(z_position * div_term)
@@ -89,9 +91,7 @@ class VolumetricPositionEncoding(nn.Module):
         else:
             raise KeyError()
 
-
         if position_code.requires_grad:
             position_code = position_code.detach()
-
 
         return position_code

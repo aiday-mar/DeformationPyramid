@@ -4,10 +4,7 @@ import copy
 from .position_encoding import VolumetricPositionEncoding as VolPE
 from .geometry_attention import CorrespondenceAttentionLayer
 
-
-
 class Outlier_Rejection(nn.Module):
-
 
     def __init__(self, config):
         super(Outlier_Rejection, self).__init__()
@@ -15,7 +12,6 @@ class Outlier_Rejection(nn.Module):
         self.num_layers = config['num_layers']
         self.pe_type = config["pe_type"]
         self.in_proj = nn.Linear( config['in_dim'], config['feature_dim'], bias=True)
-
 
         """pair-wise attention layers"""
         sa_layer = CorrespondenceAttentionLayer(config)
@@ -26,7 +22,6 @@ class Outlier_Rejection(nn.Module):
         for i in range( self.num_layers):
             self._6D_geometry_layers.append(copy.deepcopy(sa_layer))
 
-
         self.classification = nn.Sequential(
             nn.Linear(config['feature_dim'], 64, bias=True),
             nn.ReLU(),
@@ -36,10 +31,9 @@ class Outlier_Rejection(nn.Module):
             nn.Sigmoid()
         )
         
-    def forward(self, data):
+    def forward(self, data, feature_extraction = 'kpfcn'):
 
         self._3D_to_6D( data )
-
         corr_feat = data['vec_6d']
         pos6d = data['vec_6d']
 
@@ -55,15 +49,12 @@ class Outlier_Rejection(nn.Module):
         else:
             corr_compatibility = None
 
-
         if self.pe_type != 'none':
-            pe_6d = self.positional_encoding(pos6d)
+            pe_6d = self.positional_encoding(pos6d, feature_extraction = feature_extraction)
         else:
             pe_6d = None
 
-
         feat = self.in_proj(corr_feat)
-
 
         for layer in self._6D_geometry_layers:
             feat = layer( feat, feat, pe_6d, pe_6d, data['vec_6d_mask'],data['vec_6d_mask'], compatibility = corr_compatibility )

@@ -83,6 +83,8 @@ class Landmark_Model():
                 data = self.matcher(inputs, confidence_threshold = confidence_threshold, preprocessing = preprocessing)
             elif self.feature_extractor == 'kpfcn':
                 data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
+            else:
+                raise Exception('Choose a valid feature extractor')
             if timer: timer.toc("matcher")
             
             if intermediate_output_folder:
@@ -216,7 +218,7 @@ class Landmark_Model():
                         o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/outliers.ply', outliers_lepard_line_set)
                         
             if timer: timer.tic("outlier rejection")
-            confidence = self.outlier_model(data)
+            confidence = self.outlier_model(data, self.feature_extractor)
             if timer: timer.toc("outlier rejection")
 
             inlier_conf = confidence[0]
