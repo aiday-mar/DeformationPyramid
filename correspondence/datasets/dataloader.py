@@ -649,7 +649,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
         batch_size=config['batch_size'],
         shuffle=shuffle,
         num_workers=config['num_workers'],
-        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base, coarse_level = coarse_level, feature_extractor = 'kpfcn'),
+        collate_fn=partial(collate_fn, config= config['kpfcn_config'], neighborhood_limits=neighborhood_limits, output_folder = output_folder, base = base, coarse_level = coarse_level, feature_extractor = feature_extractor),
         drop_last=False
     )
 
