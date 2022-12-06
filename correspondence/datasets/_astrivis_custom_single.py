@@ -41,7 +41,9 @@ class _AstrivisCustomSingle(Dataset):
         src_pcd = np.array(src_pcd.points).astype(np.float32)
         tgt_pcd = o3d.io.read_point_cloud(self.path + self.target_file)
         tgt_pcd = np.array(tgt_pcd.points).astype(np.float32)
-
+        src_feats_indices = None
+        tgt_feats_indices = None
+        
         if self.source_feats and self.target_feats:
             src_feats_data = np.load(self.path + self.source_feats)
             tgt_feats_data = np.load(self.path + self.target_feats)
@@ -82,4 +84,7 @@ class _AstrivisCustomSingle(Dataset):
         depth_paths = None 
         cam_intrin = None
 
-        return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin, np.array(src_pcd_colors)
+        if src_feats_indices and tgt_feats_indices:
+            return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin, np.array(src_pcd_colors), src_feats_indices, tgt_feats_indices
+        else:
+            return src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot.astype(np.float32), trans.astype(np.float32), s2t_flow.astype(np.float32), metric_index, depth_paths, cam_intrin, np.array(src_pcd_colors), None, None

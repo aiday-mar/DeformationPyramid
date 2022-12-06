@@ -348,7 +348,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
     depth_paths_list = {}
     src_pcd_colors_list = []
 
-    for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors) in enumerate(pairwise_data):
+    for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors, src_feats_indices, tgt_feats_indices) in enumerate(pairwise_data):
         src_pcd_list.append(torch.from_numpy(src_pcd))
         src_pcd_colors_list.append(torch.from_numpy(src_pcd_colors))
         tgt_pcd_list.append(torch.from_numpy(tgt_pcd))
@@ -566,7 +566,8 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         tgt_ind_coarse = torch.cat(tgt_ind_coarse)
 
     elif feature_extractor == 'fcgf':
-        for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, src_feats_indices, tgt_feats_indices) in enumerate(pairwise_data):
+        
+        for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors, src_feats_indices, tgt_feats_indices)  in enumerate(pairwise_data):
             b_size = 1
             coarse_level = config.coarse_level
             n_src_feats = src_feats.shape[0]
