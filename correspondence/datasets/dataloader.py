@@ -566,7 +566,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
         tgt_ind_coarse = torch.cat(tgt_ind_coarse)
 
     elif feature_extractor == 'fcgf':
-        
+        'Before the for loop'
         for ind, ( src_pcd, tgt_pcd, src_feats, tgt_feats, correspondences, rot, trn, s2t_flow, metric_index, depth_paths, cam_intrin, src_pcd_colors, src_feats_indices, tgt_feats_indices)  in enumerate(pairwise_data):
             print('ind : ', ind)
             b_size = 1
