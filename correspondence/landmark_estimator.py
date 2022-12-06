@@ -176,8 +176,12 @@ class Landmark_Model():
                     lepard_true_correspondences_mask = mask.astype(bool)
                     n_true_lepard_correspondences = int(lepard_true_correspondences_mask.sum())
                     n_total_lepard_correspondences = lepard_true_correspondences_mask.shape[0]
-                    print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
-                    print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
+                    if self.feature_extractor == 'kpfcn':
+                        print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
+                    elif self.feature_extractor == 'fcgf':
+                        print('number of true landmarks correspondences returned from FCGF based Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        print('fraction of true landmark correspondences returned from FCGF based Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
                     
                     if intermediate_output_folder:
                         s_pos_pcd = o3d.geometry.PointCloud()
@@ -295,9 +299,13 @@ class Landmark_Model():
                 outlier_rejected_true_correspondences_mask = mask.astype(bool)
                 n_true_outlier_rejected_correspondences = int(outlier_rejected_true_correspondences_mask.sum())
                 n_total_outlier_rejected_correspondences = outlier_rejected_true_correspondences_mask.shape[0]
-                print('number of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
-                print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
-                
+                if self.feature_extractor == 'kpfcn':
+                    print('number of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
+                    print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
+                elif self.feature_extractor == 'kpfcn':
+                    print('number of true landmark correspondences returned from FCGF based Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
+                    print('fraction of true landmark correspondences returned from FCGF based Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
+
                 if intermediate_output_folder:
                     if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk')
@@ -1108,19 +1116,33 @@ class Landmark_Model():
                     n_true_custom_filtering_correspondences = int(custom_filtering_true_correspondences_mask.sum())
                     n_total_custom_filtering_correspondences = custom_filtering_true_correspondences_mask.shape[0]
                     print('number of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
-                    if n_total_custom_filtering_correspondences != 0:
-                        print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
-                    else:
-                        print('fraction of true landmark correspondences returned from custom filtering : ', 0 )
                     
+                    if self.feature_extractor == 'kpfcn':
+                        if n_total_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                        else:
+                            print('fraction of true landmark correspondences returned from custom filtering : ', 0 )
+                    elif self.feature_extractor == 'fcgf':
+                        if n_total_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from FCGF based custom filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                        else:
+                            print('fraction of true landmark correspondences returned from FCGF based custom filtering : ', 0 )
+
                     final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
                     final_custom_filtering_true_correspondences_mask[final_indices] = custom_filtering_true_correspondences_mask
                     custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
-                    if n_true_custom_filtering_correspondences != 0:
-                        print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
-                    else:
-                        print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', 0)
-                
+
+                    if self.feature_extractor == 'kpfcn':
+                        if n_true_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                        else:
+                            print('fraction of true landmark correspondences returned from custom filtering also returned from Lepard : ', 0)
+                    elif self.feature_extractor == 'fcgf':
+                        if n_true_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                        else:
+                            print('fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard : ', 0)
+                    
                 if final_indices.shape[0] != 0 and intermediate_output_folder:
 
                     # inliers
