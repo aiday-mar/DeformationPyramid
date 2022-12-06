@@ -12,7 +12,7 @@ import h5py
 
 sys.path.append("")
 from correspondence.lepard.pipeline import Pipeline as Matcher
-from correspondence.lepard.pipeline_fcgf import Pipeline as MatcherFCGF
+from correspondence.lepard.pipeline_fcgf import PipelineFCGF as MatcherFCGF
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
