@@ -79,11 +79,12 @@ class Matching(nn.Module):
         mask = conf_matrix > thr
         print('mask.shape : ', mask.shape)
         index = (mask==True).nonzero()
-        if index.shape[0] > 10000:
+        n_values = 6000
+        if index.shape[0] > n_values:
             # recompute mask, take only highest 10000 values
             conf_matrix_val = copy.deepcopy(conf_matrix[0]).cpu().numpy()
             mask = np.zeros(conf_matrix_val.shape, dtype = bool)
-            idxs = np.argpartition(-conf_matrix_val.ravel(),10000)[:10000]
+            idxs = np.argpartition(-conf_matrix_val.ravel(), n_values)[:n_values]
             idxs = np.column_stack(np.unravel_index(idxs, conf_matrix_val.shape))
             for idx in idxs:
                 mask[idx[0]][idx[1]] = True
