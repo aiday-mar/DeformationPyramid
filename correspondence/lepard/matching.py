@@ -72,12 +72,7 @@ class Matching(nn.Module):
     @torch.no_grad()
     def get_match( conf_matrix, thr, preprocessing = 'mutual'):
         
-        print('conf_matrix.shape : ', conf_matrix.shape)
-        print('conf_matrix : ', conf_matrix)
-        print('preprocessing : ', preprocessing)
-        
         mask = conf_matrix > thr
-        print('mask.shape : ', mask.shape)
         index = (mask==True).nonzero()
         n_values = 6000
         if index.shape[0] > n_values:
@@ -177,7 +172,6 @@ class Matching(nn.Module):
             raise Exception('Specify a valid match type')
 
         confidence_threshold = float(confidence_threshold) if confidence_threshold else self.confidence_threshold
-        print('confidence_threshold : ', confidence_threshold)
         coarse_match, _, _ = self.get_match(conf_matrix, confidence_threshold, preprocessing)
         return conf_matrix, coarse_match
 

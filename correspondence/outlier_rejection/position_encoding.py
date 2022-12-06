@@ -26,11 +26,7 @@ class VolumetricPositionEncoding(nn.Module):
         @param sin: [B,N,d]  [θ0,θ0,θ1,θ1,θ2,θ2......θd/2-1,θd/2-1]
         @return:
         '''
-        print('x.shape : ', x.shape)
-        print('cos.shape : ', cos.shape)
-        print('sin.shape : ', sin.shape)
         x2 = torch.stack([-x[..., 1::2], x[..., ::2]], dim=-1).reshape_as(x).contiguous()
-        print('x2.shape : ', x2.shape)
         x = x * cos + x2 * sin
         return x
 
@@ -108,13 +104,6 @@ class VolumetricPositionEncoding(nn.Module):
         sinz = torch.sin(z_position * div_term)
         cosz = torch.cos(z_position * div_term)
     
-        print('sinx.shape : ', sinx.shape)
-        print('cosx.shape : ', cosx.shape)
-        print('siny.shape : ', siny.shape)
-        print('cosy.shape : ', cosy.shape)
-        print('sinz.shape : ', sinz.shape)
-        print('cosz.shape : ', cosz.shape)
-
         if self.pe_type == 'sinusoidal' :
             position_code = torch.cat( [ sinx, cosx, siny, cosy, sinz, cosz] , dim=-1 )
 

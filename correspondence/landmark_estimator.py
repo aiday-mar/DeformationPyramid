@@ -63,7 +63,6 @@ class Landmark_Model():
         else:
             self.path = path 
         
-        print('preprcoessing in inference : ', preprocessing)
         print('confidence threshold in inference : ', confidence_threshold)
         self.matcher.eval()
         self.outlier_model.eval()
@@ -240,7 +239,7 @@ class Landmark_Model():
             var = inlier_conf > inlier_thr
             print('inlier_conf.shape : ', inlier_conf.shape)
             print('var.shape : ', var.shape)
-            
+
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
             if intermediate_output_folder and not custom_filtering:
