@@ -705,7 +705,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
     return dict_inputs
 
-def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_threshold=2000, feature_extractor = 'kpfcn'):
+def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_threshold=2000, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
 
     # From config parameter, compute higher bound of neighbors number in a neighborhood
     hist_n = int(np.ceil(4 / 3 * np.pi * (config.deform_radius + 1) ** 3))
@@ -713,7 +713,7 @@ def calibrate_neighbors(dataset, config, collate_fn, keep_ratio=0.8, samples_thr
 
     # Get histogram of neighborhood sizes i in 1 epoch max.
     for i in range(len(dataset)):
-        batched_input = collate_fn([dataset[i]], config, neighborhood_limits=[hist_n] * 5, output_folder=None, feature_extractor = feature_extractor)
+        batched_input = collate_fn([dataset[i]], config, neighborhood_limits=[hist_n] * 5, output_folder = output_folder, base = base, coarse_level = coarse_level, feature_extractor = feature_extractor)
 
         # update histogram
         counts = [torch.sum(neighb_mat < neighb_mat.shape[0], dim=1).numpy() for neighb_mat in batched_input['neighbors']]
@@ -758,7 +758,7 @@ def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, out
     collate_fn = collate_fn_4dmatch
 
     if neighborhood_limits is None:
-        neighborhood_limits = calibrate_neighbors(dataset, config['kpfcn_config'], collate_fn=collate_fn, feature_extractor = feature_extractor)
+        neighborhood_limits = calibrate_neighbors(dataset, config['kpfcn_config'], collate_fn=collate_fn, output_folder = output_folder, base = base, coarse_level = coarse_level, feature_extractor = feature_extractor)
 
     dataloader = torch.utils.data.DataLoader(
         dataset,
