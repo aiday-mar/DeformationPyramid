@@ -70,6 +70,7 @@ class Matching(nn.Module):
     @torch.no_grad()
     def get_match( conf_matrix, thr, preprocessing = 'mutual'):
         
+        print('conf_matrix.shape : ', conf_matrix.shape)
         print('preprocessing : ', preprocessing)
         
         mask = conf_matrix > thr
