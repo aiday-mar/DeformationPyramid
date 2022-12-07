@@ -18,6 +18,7 @@ if feature_extractor == 'fcgf':
                 'Partial Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
     type = 'lepard_fcgf'
+    line_file = 'number of true landmarks correspondences returned from FCGF based Lepard'
 elif feature_extractor == 'kpfcn':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
     shape = (len(confidence_thresholds),)
@@ -26,6 +27,7 @@ elif feature_extractor == 'kpfcn':
                 'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
     type ='lepard'
+    line_file = 'number of true landmarks correspondences returned from Lepard'
 else:
     raise Exception('Specify a valid feature extracting method')
 
@@ -47,7 +49,7 @@ for line in Lines:
         current_data_type = line[:-1]
     if 'Test - confidence threshold' in line:
         confidence_threshold = float(re.findall("\d+\.\d+", line)[0])
-    if 'number of true landmarks correspondences returned from Lepard' in line:
+    if line_file in line:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
         total = int(search[1])
