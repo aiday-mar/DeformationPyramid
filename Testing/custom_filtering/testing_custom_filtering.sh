@@ -1171,24 +1171,105 @@ if [ $type == "fcgf" ]; then
                     --sampling=${sampling} \
                     --print_keypoints  \
                     --preprocessing=${preprocessing} >> ${file_name}
-                    
+
                     if [ "$?" != "1" ]; then
-                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" --pred="TestData/PartialDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
-                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialDeformed/model${k}/${folder_name}/result.ply" --initial_1="TestData/PartialDeformed/model${k}/020_0.ply" --initial_2="TestData/PartialDeformed/model${k}/104_1.ply" --matches="TestData/PartialDeformed/model${k}/020_104_0_1.npz" --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
+                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
+                    --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
+                    --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
+                    --pred="TestData/PartialDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
+
+                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
+                    --final="TestData/PartialDeformed/model${k}/${folder_name}/result.ply" \
+                    --initial_1="TestData/PartialDeformed/model${k}/020_0.ply" \
+                    --initial_2="TestData/PartialDeformed/model${k}/104_1.ply" \
+                    --matches="TestData/PartialDeformed/model${k}/020_104_0_1.npz" \
+                    --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
+                    --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
+                    --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
+                    --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
                     fi
 
                     echo 'Full Deformed' >> ${file_name} 
-                    CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py --config=config/${config} --s="FullDeformed/model${k}/020.ply" --t="FullDeformed/model${k}/104.ply" --s_feats="FullDeformed/model${k}/020_fcgf.npz" --t_feats="FullDeformed/model${k}/104_fcgf.npz"  --source_trans="FullDeformed/model${k}/020_se4.h5" --target_trans="FullDeformed/model${k}/104_se4.h5" --matches="FullDeformed/model${k}/020_104.npz" --mesh_path="FullDeformed/model${k}/mesh_020.ply" --output="FullDeformed/model${k}/${folder_name}/result.ply" --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=${number_center} --average_distance_multiplier=${average_distance_multiplier} --number_iterations_custom_filtering=1 --inlier_outlier_thr=${inlier_outlier_thr} --sampling=${sampling} --print_keypoints  --preprocessing=${preprocessing} >> ${file_name}
+                    CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
+                    --config=config/${config} \
+                    --s="FullDeformed/model${k}/020.ply" \
+                    --t="FullDeformed/model${k}/104.ply" \
+                    --s_feats="FullDeformed/model${k}/020_fcgf.npz" \
+                    --t_feats="FullDeformed/model${k}/104_fcgf.npz"  \
+                    --source_trans="FullDeformed/model${k}/020_se4.h5" \
+                    --target_trans="FullDeformed/model${k}/104_se4.h5" \
+                    --matches="FullDeformed/model${k}/020_104.npz" \
+                    --mesh_path="FullDeformed/model${k}/mesh_020.ply" \
+                    --output="FullDeformed/model${k}/${folder_name}/result.ply" \
+                    --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
+                    --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
+                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --confidence_threshold=${confidence} \
+                    --preprocessing=${preprocessing} \
+                    --index_coarse_feats=1 \
+                    --coarse_level=${coarse_level} \
+                    --number_centers=${number_center} \
+                    --average_distance_multiplier=${average_distance_multiplier} \
+                    --number_iterations_custom_filtering=1 \
+                    --inlier_outlier_thr=${inlier_outlier_thr} \
+                    --sampling=${sampling} \
+                    --print_keypoints  \
+                    --preprocessing=${preprocessing} >> ${file_name}
+
                     if [ "$?" != "1" ]; then
-                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/FullDeformed/model${k}/020_se4.h5" --part2="TestData/FullDeformed/model${k}/104_se4.h5" --pred="TestData/FullDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
-                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --input1="TestData/FullDeformed/model${k}/${folder_name}/result.ply" --input2="TestData/FullDeformed/model${k}/104.ply" --matches="TestData/FullDeformed/model${k}/020_104.npz" --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
+                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
+                    --part1="TestData/FullDeformed/model${k}/020_se4.h5" \
+                    --part2="TestData/FullDeformed/model${k}/104_se4.h5" \
+                    --pred="TestData/FullDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
+
+                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
+                    --input1="TestData/FullDeformed/model${k}/${folder_name}/result.ply" \
+                    --input2="TestData/FullDeformed/model${k}/104.ply" \
+                    --matches="TestData/FullDeformed/model${k}/020_104.npz" \
+                    --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
+                    --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
                     fi
 
                     echo 'Partial Non Deformed' >> ${file_name} 
-                    CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py --config=config/${config} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" --s_feats="PartialNonDeformed/model${k}/mesh_transformed_0_fcgf.npz" --t_feats="PartialNonDeformed/model${k}/mesh_transformed_1_fcgf.npz" --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --matches="PartialNonDeformed/model${k}/0_1.npz" --mesh_path="PartialNonDeformed/model${k}/mesh_0.ply" --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --confidence_threshold=${confidence} --preprocessing=${preprocessing} --index_coarse_feats=1 --coarse_level=${coarse_level} --number_centers=${number_center} --average_distance_multiplier=${average_distance_multiplier} --number_iterations_custom_filtering=1 --inlier_outlier_thr=${inlier_outlier_thr} --sampling=${sampling} --print_keypoints --preprocessing=${preprocessing} >> ${file_name}
+                    CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
+                    --config=config/${config} \
+                    --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
+                    --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
+                    --s_feats="PartialNonDeformed/model${k}/mesh_transformed_0_fcgf.npz" \
+                    --t_feats="PartialNonDeformed/model${k}/mesh_transformed_1_fcgf.npz" \
+                    --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
+                    --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+                    --matches="PartialNonDeformed/model${k}/0_1.npz" \
+                    --mesh_path="PartialNonDeformed/model${k}/mesh_0.ply" \
+                    --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
+                    --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
+                    --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
+                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --confidence_threshold=${confidence} \
+                    --preprocessing=${preprocessing} \
+                    --index_coarse_feats=1 \
+                    --coarse_level=${coarse_level} \
+                    --number_centers=${number_center} \
+                    --average_distance_multiplier=${average_distance_multiplier} \
+                    --number_iterations_custom_filtering=1 \
+                    --inlier_outlier_thr=${inlier_outlier_thr} \
+                    --sampling=${sampling} \
+                    --print_keypoints \
+                    --preprocessing=${preprocessing} >> ${file_name}
+
                     if [ "$?" != "1" ]; then
-                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --pred="TestData/PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
-                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialNonDeformed/model${k}/${folder_name}/result.ply" --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
+                    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
+                    --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
+                    --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+                    --pred="TestData/PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
+
+                    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
+                    --final="TestData/PartialNonDeformed/model${k}/${folder_name}/result.ply" \
+                    --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
+                    --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
+                    --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+                    --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
+                    --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
                     fi
                 fi
             done
