@@ -93,4 +93,4 @@ for data_type in data_types:
     # plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
     # plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
     
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + type + '.png', bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
