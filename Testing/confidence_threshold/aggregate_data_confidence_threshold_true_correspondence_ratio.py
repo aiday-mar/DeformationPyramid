@@ -82,8 +82,8 @@ for data_type in data_types:
         plt.plot(confidence_thresholds_pos, fraction, color='r')
         plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
         plt.ylim(0, 1)
-        plt.xlabel('Confidence threshold')
-        plt.ylabel('Fraction of ground truth correspondences to all correspondences')
+        plt.xlabel('confidence threshold')
+        plt.ylabel('fraction of GT to all correspondences')
         
     # plt.title('Varying the confidence threshold')
     # confidence_thresholds_pos = range(0, len(confidence_thresholds))
