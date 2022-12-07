@@ -1,3 +1,5 @@
+"#!/bin/sh" 
+
 config=LNDP_fcgf.yaml
 # config=LNDP.yaml
 
@@ -485,7 +487,6 @@ if [ $type == "kpfcn" ]; then
                     --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                     --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
-
                 else
                     echo 'Full Non Deformed' >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
@@ -632,7 +633,6 @@ if [ $type == "kpfcn" ]; then
                     --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                     --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
-
                 fi
             done
         done
