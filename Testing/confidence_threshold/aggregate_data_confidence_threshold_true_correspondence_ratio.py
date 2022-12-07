@@ -53,7 +53,8 @@ for line in Lines:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
         total = int(search[1])
-        i = confidence_thresholds.index(confidence_threshold)        
+        i = confidence_thresholds.index(confidence_threshold)
+        print(i)       
         final_matrices[current_model][current_data_type][type]['true'][i] = true
         final_matrices[current_model][current_data_type][type]['total'][i] = total - true
         
