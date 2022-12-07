@@ -615,7 +615,7 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
                 src_pcd_o3d = o3d.geometry.PointCloud()
                 src_pcd_o3d.points = o3d.utility.Vector3dVector(src_pcd)
-                src_pcd_o3d.rotate(rot.numpy(), center=(0, 0, 0))
+                src_pcd_o3d.rotate(rot, center=(0, 0, 0))
                 o3d.io.write_point_cloud(base + output_folder + feature_extractor + '_dataloader_ldmk/' + 'src_pcd.ply', src_pcd_o3d)
 
                 tgt_pcd_o3d = o3d.geometry.PointCloud()
