@@ -12,12 +12,14 @@ models = ['002', '008', '015', '022', '029', '035', '042', '049', '056', '066', 
 
 if feature_extractor == 'fcgf':
     confidence_thresholds = [0.04, 0.06, 0.08, 0.1, 0.2, 0.3, 0.4, 0.5]
+    shape = (len(confidence_thresholds),)
     sub_matrix={'Full Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Full Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Partial Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
 elif feature_extractor == 'kpfcn':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
+    shape = (len(confidence_thresholds),)
     sub_matrix={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
@@ -25,7 +27,6 @@ elif feature_extractor == 'kpfcn':
 else:
     raise Exception('Specify a valid feature extracting method')
 
-shape = (len(confidence_thresholds),)
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
