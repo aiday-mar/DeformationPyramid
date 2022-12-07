@@ -48,11 +48,13 @@ current_model = ''
 for line in Lines:
     if 'model ' in line:
         current_model = re.findall(r'\b\d+\b',line)[0]
+        if current_model not in models:
+            current_model = None
     if line[:-1] in data_types:
         current_data_type = line[:-1]
     if 'Test - confidence threshold' in line:
         confidence_threshold = float(re.findall('-?\ *[0-9]+\.?[0-9]*(?:[Ee]\ *-?\ *[0-9]+)?', line)[0])
-    if line_file in line:
+    if line_file in line and current_model is not None:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
         total = int(search[1])
@@ -81,6 +83,8 @@ for data_type in data_types:
     
     plt.clf()
     plt.title('Varying the confidence threshold - bar chart - ' + data_type + ' -  ' + title, y=1.0)
+    plt.xlabel('confidence threshold')
+    plt.ylabel('bar chart of GT to all correspondences')
     delta=[-0.6, -0.4, -0.2, 0, 0.2, 0.4]
     width = 0.2
     model_n = 0
@@ -97,7 +101,8 @@ for data_type in data_types:
         plt.bar(confidence_thresholds_pos + delta[model_n], total_data, width, bottom=true_data, color='b')
         plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
         model_n += 1
-    
+        
+    plt.legend(models)
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
     
     
