@@ -103,6 +103,6 @@ for data_type in data_types:
         model_n += 1
         
     plt.legend(models)
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart_'  + feature_extractor + '.png', bbox_inches='tight')
     
     
