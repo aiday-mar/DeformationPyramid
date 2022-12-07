@@ -96,7 +96,7 @@ for data_type in data_types:
             true_data.append(final_matrices[model][data_type][type]['true'][i])
             total_data.append(final_matrices[model][data_type][type]['total'][i])
                 
-        confidence_thresholds_pos = range(0, len(confidence_thresholds))
+        confidence_thresholds_pos = np.arange(0, len(confidence_thresholds))
         plt.bar(confidence_thresholds_pos + delta[model_n], true_data, width, color='r')
         plt.bar(confidence_thresholds_pos + delta[model_n], total_data, width, bottom=true_data, color='b')
         plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
