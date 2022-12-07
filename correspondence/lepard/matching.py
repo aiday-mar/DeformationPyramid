@@ -95,7 +95,6 @@ class Matching(nn.Module):
             
         #find all valid coarse matches
         index = (mask==True).nonzero()
-        print('index.shape : ', index.shape)
         b_ind, src_ind, tgt_ind = index[:,0], index[:,1], index[:,2]
         mconf = conf_matrix[b_ind, src_ind, tgt_ind]
 

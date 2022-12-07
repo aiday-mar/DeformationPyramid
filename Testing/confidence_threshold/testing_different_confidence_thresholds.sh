@@ -54,7 +54,6 @@ if [ $type == "kpfcn" ]; then
 fi
 
 if [ $type == "fcgf" ]; then
-        # 1.0e-07 2.5e-07
         confidence_threshold_list=(5.0e-07 7.5e-07 1.0e-06 2.5e-06)
         for k in ${model_numbers[@]}
         do
