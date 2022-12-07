@@ -1,5 +1,3 @@
-"#!/bin/sh" 
-
 config=LNDP_fcgf.yaml
 # config=LNDP.yaml
 
