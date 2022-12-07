@@ -71,6 +71,12 @@ then
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
 
     rm ${file_name}
     touch ${file_name}
@@ -199,10 +205,16 @@ then
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
 
     rm ${file_name}
     touch ${file_name}
-    
+
     echo "Outlier Rejection" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
@@ -661,6 +673,12 @@ if [ $type == "fcgf" ]; then
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
 
     rm ${file_name}
     touch ${file_name}
@@ -801,6 +819,12 @@ if [ $type == "fcgf" ]; then
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
 
     rm ${file_name}
     touch ${file_name}
