@@ -64,7 +64,7 @@ for data_type in data_types:
     # true_data = []
     # total_data = []
     
-    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.12)
+    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
     
     for model in models:
         fraction = []
