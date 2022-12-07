@@ -1,8 +1,8 @@
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-#type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 # version=1
 # version=2
