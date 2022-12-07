@@ -69,7 +69,7 @@ for data_type in data_types:
             # true_data.append(final_matrices[data_type]['lepard']['true'][i])
             # total_data.append(final_matrices[data_type]['lepard']['total'][i])
             
-            if final_matrices[model][data_type]['lepard']['total'][i] != 0:
+            if final_matrices[model][data_type][type]['total'][i] != 0:
                 fraction.append(final_matrices[model][data_type][type]['true'][i]/(final_matrices[model][data_type][type]['total'][i]+final_matrices[model][data_type][type]['true'][i]))
             else:
                 fraction.append(0)
