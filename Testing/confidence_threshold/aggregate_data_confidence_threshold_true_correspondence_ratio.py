@@ -65,9 +65,9 @@ for data_type in data_types:
     plt.clf()
     # true_data = []
     # total_data = []
-    fraction = []
-    
+        
     for model in models:
+        fraction = []
         for i in range(len(confidence_thresholds)):
                     
             # true_data.append(final_matrices[data_type]['lepard']['true'][i])
