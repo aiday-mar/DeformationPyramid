@@ -12,7 +12,7 @@ version=4
 
 custom_filtering=true
 # custom_filtering=false
-if [ "$custom_filtering" = true ] ; then
+if [ "$custom_filtering" == true ] ; then
     type=custom
 else
     type=default
@@ -336,7 +336,7 @@ if [ $type == "kpfcn" ]; then
                 rm ${file_name}
                 touch ${file_name}
 
-                if [ "$custom_filtering" = true ]
+                if [ "$custom_filtering" == true ]
                 then
                     echo 'Full Non Deformed' >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
@@ -937,7 +937,7 @@ if [ $type == "fcgf" ]; then
                 rm ${file_name}
                 touch ${file_name}
 
-                if [ "$custom_filtering" = true ] ; then
+                if [ "$custom_filtering" == true ] ; then
                     echo 'Full Non Deformed' >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
