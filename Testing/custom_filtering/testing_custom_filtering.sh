@@ -10,10 +10,11 @@ version=4
 
 custom_filtering=true
 # custom_filtering=false
-if [ "$custom_filtering" == true ] ; then
-    type=custom
+
+if [ "$custom_filtering" == "true" ] ; then
+    custom_filtering_type=custom
 else
-    type=default
+    custom_filtering_type=default
 fi
 
 preprocessing=none
@@ -187,8 +188,8 @@ if [ $type == "kpfcn" ]; then
     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
     # Using custom filtering
-    folder_name=output_outlier_rejection_default
-    file_name=Testing/custom_filtering/output_outlier_rejection_default.txt
+    folder_name=output_outlier_rejection_default_${type}
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
 
     echo 'Outlier Rejection' >> ${file_name}
     echo "model ${k}" >> ${file_name}
@@ -319,8 +320,8 @@ if [ $type == "kpfcn" ]; then
                 echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}
-                file_name=Testing/custom_filtering/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
+                folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
+                file_name=Testing/custom_filtering/v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -777,8 +778,8 @@ if [ $type == "fcgf" ]; then
     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
     # Using custom filtering
-    folder_name=output_outlier_rejection_default
-    file_name=Testing/custom_filtering/output_outlier_rejection_default.txt
+    folder_name=output_outlier_rejection_default_${type}
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
 
     echo 'Outlier Rejection' >> ${file_name}
     echo "model ${k}" >> ${file_name}
@@ -920,8 +921,8 @@ if [ $type == "fcgf" ]; then
                 echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}
-                file_name=Testing/custom_filtering/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
+                folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
+                file_name=Testing/custom_filtering/v_${custom_filtering_type}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
