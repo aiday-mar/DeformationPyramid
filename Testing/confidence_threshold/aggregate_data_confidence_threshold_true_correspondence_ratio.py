@@ -43,7 +43,7 @@ current_data_type = ''
 current_model = ''
 
 for line in Lines:
-    if 'model' in line:
+    if 'model ' in line:
         current_model = re.findall(r'\b\d+\b',line)[0]
     if line[:-1] in data_types:
         current_data_type = line[:-1]
