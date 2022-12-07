@@ -335,7 +335,7 @@ then
                 rm ${file_name}
                 touch ${file_name}
 
-                if [ "$custom_filtering" == true ]
+                if [ "$custom_filtering" == "true" ]
                 then
                     echo 'Full Non Deformed' >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
