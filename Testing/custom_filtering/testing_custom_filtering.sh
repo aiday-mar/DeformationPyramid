@@ -60,6 +60,7 @@ sampling=linspace
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
 
+: '
 if [ $type == "kpfcn" ] 
 then
     for k in ${model_numbers[@]}
@@ -69,10 +70,10 @@ then
     folder_name=output_lepard_default_${type}
     file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
 
-    echo 'Lepard' >> ${file_name}
+    echo "Lepard" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
-    echo 'Full Non Deformed' >> ${file_name} 
+    echo "Full Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -84,7 +85,7 @@ then
     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
 
@@ -99,7 +100,7 @@ then
     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Deformed' >> ${file_name} 
+    echo "Partial Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -111,7 +112,7 @@ then
     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false  >> ${file_name}
 
@@ -130,7 +131,7 @@ then
     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Full Deformed' >> ${file_name} 
+    echo "Full Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullDeformed/model${k}/020.ply" \
@@ -142,7 +143,7 @@ then
     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
     
@@ -158,7 +159,7 @@ then
     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Non Deformed' >> ${file_name} 
+    echo "Partial Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -170,7 +171,7 @@ then
     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
 
@@ -191,10 +192,10 @@ then
     folder_name=output_outlier_rejection_default_${type}
     file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
 
-    echo 'Outlier Rejection' >> ${file_name}
+    echo "Outlier Rejection" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
-    echo 'Full Non Deformed' >> ${file_name} 
+    echo "Full Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -206,7 +207,7 @@ then
     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -221,7 +222,7 @@ then
     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Deformed' >> ${file_name} 
+    echo "Partial Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -233,7 +234,7 @@ then
     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true  >> ${file_name}
 
@@ -252,7 +253,7 @@ then
     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Full Deformed' >> ${file_name} 
+    echo "Full Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullDeformed/model${k}/020.ply" \
@@ -264,7 +265,7 @@ then
     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -280,7 +281,7 @@ then
     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Non Deformed' >> ${file_name} 
+    echo "Partial Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -292,7 +293,7 @@ then
     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -337,7 +338,7 @@ then
 
                 if [ "$custom_filtering" == "true" ] 
                 then
-                    echo 'Full Non Deformed' >> ${file_name} 
+                    echo "Full Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
                     --t="FullNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -348,7 +349,7 @@ then
                     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -372,7 +373,7 @@ then
                     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Deformed' >> ${file_name} 
+                    echo "Partial Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -384,7 +385,7 @@ then
                     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -412,7 +413,7 @@ then
                     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Full Deformed' >> ${file_name} 
+                    echo "Full Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullDeformed/model${k}/020.ply" \
@@ -424,7 +425,7 @@ then
                     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -449,7 +450,7 @@ then
                     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Non Deformed' >> ${file_name} 
+                    echo "Partial Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -461,7 +462,7 @@ then
                     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -487,7 +488,7 @@ then
                     --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
                 else
-                    echo 'Full Non Deformed' >> ${file_name} 
+                    echo "Full Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -499,7 +500,7 @@ then
                     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -522,7 +523,7 @@ then
                     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Deformed' >> ${file_name} 
+                    echo "Partial Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -534,7 +535,7 @@ then
                     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -561,7 +562,7 @@ then
                     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Full Deformed' >> ${file_name} 
+                    echo "Full Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullDeformed/model${k}/020.ply" \
@@ -573,7 +574,7 @@ then
                     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -597,7 +598,7 @@ then
                     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Non Deformed' >> ${file_name} 
+                    echo "Partial Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
                     --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -608,7 +609,7 @@ then
                     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -637,8 +638,9 @@ then
         done
     done
 fi
+'
 
-if [ $type == "fcgf" ]; then
+# if [ $type == "fcgf" ]; then
 
     for k in ${model_numbers[@]}
     do
@@ -1276,4 +1278,4 @@ if [ $type == "fcgf" ]; then
             done
         done
     done
-fi
+# fi
