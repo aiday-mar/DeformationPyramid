@@ -1,8 +1,8 @@
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 preprocessing=none
 
@@ -52,7 +52,7 @@ if [ $type == "kpfcn" ]; then
                 fi
 
                 echo 'Partial Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py --config=config/${onfig} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --matches="PartialNonDeformed/model${k}/0_1.npz" --output="PartialNonDeformed/model${k}/${folder}/result.ply" --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --k0=${k0} --print_keypoints >> ${file}
+                python3 eval_supervised_astrivis.py --config=config/${config} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --matches="PartialNonDeformed/model${k}/0_1.npz" --output="PartialNonDeformed/model${k}/${folder}/result.ply" --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --k0=${k0} --print_keypoints >> ${file}
                 if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --save_final_path="TestData/PartialNonDeformed/model${k}/${folder}/final.ply" --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder}/destination.ply" >> ${file}
@@ -100,7 +100,7 @@ if [ $type == "fcgf" ]; then
                 fi
 
                 echo 'Partial Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py --config=config/${onfig} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" --s_feats="PartialNonDeformed/model${k}/mesh_transformed_0_fcgf.npz" --t_feats="PartialNonDeformed/model${k}/mesh_transformed_1_fcgf.npz" --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --matches="PartialNonDeformed/model${k}/0_1.npz" --output="PartialNonDeformed/model${k}/${folder}/result.ply" --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --k0=${k0} --preprocessing=${preprocessing} --print_keypoints >> ${file}
+                python3 eval_supervised_astrivis.py --config=config/${config} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" --s_feats="PartialNonDeformed/model${k}/mesh_transformed_0_fcgf.npz" --t_feats="PartialNonDeformed/model${k}/mesh_transformed_1_fcgf.npz" --source_trans="PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --target_trans="PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --matches="PartialNonDeformed/model${k}/0_1.npz" --output="PartialNonDeformed/model${k}/${folder}/result.ply" --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' --k0=${k0} --preprocessing=${preprocessing} --print_keypoints >> ${file}
                 if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" --save_final_path="TestData/PartialNonDeformed/model${k}/${folder}/final.ply" --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder}/destination.ply" >> ${file}
