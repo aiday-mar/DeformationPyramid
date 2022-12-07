@@ -69,6 +69,12 @@ then
     folder_name=output_lepard_default_${type}
     file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
 
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+
     echo "Lepard" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
@@ -191,6 +197,12 @@ then
     folder_name=output_outlier_rejection_default_${type}
     file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
 
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+    
     echo "Outlier Rejection" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
@@ -647,6 +659,12 @@ if [ $type == "fcgf" ]; then
     folder_name=output_lepard_default_${type}
     file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
 
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+    
     echo 'Lepard' >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
@@ -780,6 +798,12 @@ if [ $type == "fcgf" ]; then
     # Using custom filtering
     folder_name=output_outlier_rejection_default_${type}
     file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
+
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
 
     echo 'Outlier Rejection' >> ${file_name}
     echo "model ${k}" >> ${file_name}
