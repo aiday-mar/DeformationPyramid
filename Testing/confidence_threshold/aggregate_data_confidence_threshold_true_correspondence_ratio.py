@@ -19,6 +19,7 @@ if feature_extractor == 'fcgf':
                 'Partial Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
     type = 'lepard_fcgf'
     line_file = 'number of true landmarks correspondences returned from FCGF based Lepard'
+    title = 'FCGF based Lepard'
 elif feature_extractor == 'kpfcn':
     confidence_thresholds = [0.04, 0.06, 0.08, 0.1, 0.2, 0.3, 0.4, 0.5]
     shape = (len(confidence_thresholds),)
@@ -28,6 +29,7 @@ elif feature_extractor == 'kpfcn':
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
     type ='lepard'
     line_file = 'number of true landmarks correspondences returned from Lepard'
+    title = 'KPFCN based Lepard'
 else:
     raise Exception('Specify a valid feature extracting method')
 
@@ -66,7 +68,7 @@ for data_type in data_types:
     # true_data = []
     # total_data = []
     
-    plt.title('Varying the confidence threshold')
+    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title)
     
     for model in models:
         fraction = []
@@ -84,6 +86,8 @@ for data_type in data_types:
         plt.plot(confidence_thresholds_pos, fraction, color='r')
         plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
         plt.ylim(0, 1)
+        plt.xlabel('Confidence threshold')
+        plt.ylabel('Fraction of ground truth correspondences to all correspondences')
         
     # plt.title('Varying the confidence threshold')
     # confidence_thresholds_pos = range(0, len(confidence_thresholds))
@@ -93,4 +97,4 @@ for data_type in data_types:
     # plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
     # plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
     
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph.png', bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + type + '.png', bbox_inches='tight')
