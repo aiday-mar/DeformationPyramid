@@ -473,7 +473,8 @@ if [ $type == "kpfcn" ]; then
                     --custom_filtering  >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-                    --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+                    --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
+                    --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                     --pred="TestData/PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
