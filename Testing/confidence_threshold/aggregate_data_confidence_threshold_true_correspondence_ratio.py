@@ -61,8 +61,6 @@ for line in Lines:
         final_matrices[current_model][current_data_type][type]['true'][i] = true
         final_matrices[current_model][current_data_type][type]['total'][i] = total - true
         
-print(final_matrices)
-
 for data_type in data_types:
     plt.clf()
     # true_data = []
