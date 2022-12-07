@@ -8,7 +8,8 @@ feature_extractor = 'fcgf'
 # feature_extractor = 'kpfcn'
 
 # models = ['002', '008', '015', '022', '029', '035', '042', '049', '056', '066', '073', '079', '085', '093', '100', '106', '113', '120', '126', '133', '140', '147', '153', '160', '167', '174', '180', '187', '194', '201', '207', '214', '221']
-models = ['002', '022', '042', '066', '085', '106', '126', '147', '167', '187', '207']
+# models = ['002', '022', '042', '066', '085', '106', '126', '147', '167', '187', '207']
+models=['002', '042', '085', '126', '167', '207']
 
 if feature_extractor == 'fcgf':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
@@ -61,36 +62,42 @@ for line in Lines:
         
 for data_type in data_types:
     plt.clf()
-    # true_data = []
-    # total_data = []
-    
-    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
-    
+    plt.title('Varying the confidence threshold - graph - ' + data_type + ' -  ' + title, y=1.0)
+    confidence_thresholds_pos = range(0, len(confidence_thresholds))
+    plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
+    plt.ylim(0, 1)
+    plt.xlabel('confidence threshold')
+    plt.ylabel('fraction of GT to all correspondences')
+        
     for model in models:
         fraction = []
-        for i in range(len(confidence_thresholds)):
-                    
-            # true_data.append(final_matrices[data_type]['lepard']['true'][i])
-            # total_data.append(final_matrices[data_type]['lepard']['total'][i])
-            
+        for i in range(len(confidence_thresholds)):            
             if final_matrices[model][data_type][type]['total'][i] != 0:
                 fraction.append(final_matrices[model][data_type][type]['true'][i]/(final_matrices[model][data_type][type]['total'][i]+final_matrices[model][data_type][type]['true'][i]))
             else:
                 fraction.append(0)
-
-        confidence_thresholds_pos = range(0, len(confidence_thresholds))
         plt.plot(confidence_thresholds_pos, fraction, color='r')
-        plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
-        plt.ylim(0, 1)
-        plt.xlabel('confidence threshold')
-        plt.ylabel('fraction of GT to all correspondences')
-        
-    # plt.title('Varying the confidence threshold')
-    # confidence_thresholds_pos = range(0, len(confidence_thresholds))
-    # plt.bar(confidence_thresholds_pos, true_data, color='r')
-    
-    # plt.bar(confidence_thresholds_pos, total_data, bottom=true_data, color='b')
-    # plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
-    # plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
-    
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
+    
+    plt.clf()
+    plt.title('Varying the confidence threshold - bar chart - ' + data_type + ' -  ' + title, y=1.0)
+    delta=[-0.6, -0.4, -0.2, 0, 0.2, 0.4]
+    width = 0.2
+    model_n = 0
+    for model in models:
+        true_data = []
+        total_data = []
+        
+        for i in range(len(confidence_thresholds)):
+            true_data.append(final_matrices[model][data_type][type]['true'][i])
+            total_data.append(final_matrices[model][data_type][type]['total'][i])
+                
+        confidence_thresholds_pos = range(0, len(confidence_thresholds))
+        plt.bar(confidence_thresholds_pos + delta[model_n], true_data, width, color='r')
+        plt.bar(confidence_thresholds_pos + delta[model_n], total_data, width, bottom=true_data, color='b')
+        plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
+        model_n += 1
+    
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart.png', bbox_inches='tight')
+    
+    
