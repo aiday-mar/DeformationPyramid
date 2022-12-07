@@ -42,7 +42,8 @@ if [ $type == "kpfcn" ]; then
                 --output_trans="FullNonDeformed/model${k}/${folder}/result_se4.h5" \
                 --intermediate_output_folder="FullNonDeformed/model${k}/${folder}/" \
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
-                --posenc_function=${posenc_function} --print_keypoints >> ${file}
+                --posenc_function=${posenc_function} \
+                --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
