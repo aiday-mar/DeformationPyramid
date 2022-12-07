@@ -48,7 +48,7 @@ for line in Lines:
     if line[:-1] in data_types:
         current_data_type = line[:-1]
     if 'Test - confidence threshold' in line:
-        confidence_threshold = float(re.findall("\d+\.\d+", line)[0])
+        confidence_threshold = float(re.findall('-?\ *[0-9]+\.?[0-9]*(?:[Ee]\ *-?\ *[0-9]+)?', line)[0])
     if line_file in line:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
