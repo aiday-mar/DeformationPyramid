@@ -65,7 +65,9 @@ for data_type in data_types:
     plt.clf()
     # true_data = []
     # total_data = []
-        
+    
+    plt.title('Varying the confidence threshold')
+    
     for model in models:
         fraction = []
         for i in range(len(confidence_thresholds)):
@@ -78,8 +80,6 @@ for data_type in data_types:
             else:
                 fraction.append(0)
 
-        plt.clf()
-        plt.title('Varying the confidence threshold')
         confidence_thresholds_pos = range(0, len(confidence_thresholds))
         plt.plot(confidence_thresholds_pos, fraction, color='r')
         plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
