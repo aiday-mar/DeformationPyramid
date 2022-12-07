@@ -54,6 +54,7 @@ for line in Lines:
         true = int(search[0])
         total = int(search[1])
         i = confidence_thresholds.index(confidence_threshold)
+        print(current_model)
         print(i)       
         final_matrices[current_model][current_data_type][type]['true'][i] = true
         final_matrices[current_model][current_data_type][type]['total'][i] = total - true
