@@ -17,6 +17,7 @@ if feature_extractor == 'fcgf':
                 'Full Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Partial Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+    type = 'lepard_fcgf'
 elif feature_extractor == 'kpfcn':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
     shape = (len(confidence_thresholds),)
@@ -24,6 +25,7 @@ elif feature_extractor == 'kpfcn':
                 'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
                 'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+    type ='lepard'
 else:
     raise Exception('Specify a valid feature extracting method')
 
@@ -49,9 +51,9 @@ for line in Lines:
         search = list(map(int, re.findall(r'\d+', line)))
         true = int(search[0])
         total = int(search[1])
-        i = confidence_thresholds.index(confidence_threshold)
-        final_matrices[current_model][current_data_type]['lepard']['true'][i] = true
-        final_matrices[current_model][current_data_type]['lepard']['total'][i] = total - true
+        i = confidence_thresholds.index(confidence_threshold)        
+        final_matrices[current_model][current_data_type][type]['true'][i] = true
+        final_matrices[current_model][current_data_type][type]['total'][i] = total - true
         
 print(final_matrices)
 
@@ -68,7 +70,7 @@ for data_type in data_types:
             # total_data.append(final_matrices[data_type]['lepard']['total'][i])
             
             if final_matrices[model][data_type]['lepard']['total'][i] != 0:
-                fraction.append(final_matrices[model][data_type]['lepard']['true'][i]/(final_matrices[model][data_type]['lepard']['total'][i]+final_matrices[model][data_type]['lepard']['true'][i]))
+                fraction.append(final_matrices[model][data_type][type]['true'][i]/(final_matrices[model][data_type][type]['total'][i]+final_matrices[model][data_type][type]['true'][i]))
             else:
                 fraction.append(0)
 
