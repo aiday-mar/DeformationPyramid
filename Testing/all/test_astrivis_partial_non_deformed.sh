@@ -8,7 +8,7 @@ filename=Testing/all/test_astrivis_partial_non_deformed_${type}.txt
 rm ${filename}
 touch ${filename}
 
-base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
+base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData'
 
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
