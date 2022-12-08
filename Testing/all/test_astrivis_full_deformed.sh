@@ -44,6 +44,7 @@ do
 			--output="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
 			--output_trans="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
 			--intermediate_output_folder="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--base=${base} \
 			--print_keypoints  >> ${filename}
 			
 			if [ "$?" != "1" ]; then

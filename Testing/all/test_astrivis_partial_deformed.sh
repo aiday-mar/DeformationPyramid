@@ -42,6 +42,7 @@ do
 			--output="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
 			--output_trans="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1_se4.h5" \
 			--intermediate_output_folder="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--base=${base} \
 			--print_keypoints >> ${filename}
 
 			if [ "$?" != "1" ]; then
@@ -66,6 +67,7 @@ do
 			--output="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
 			--output_trans="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
 			--intermediate_output_folder="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--base=${base} \
 			--print_keypoints >> ${filename}
 			
 			if [ "$?" != "1" ]; then

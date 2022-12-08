@@ -29,6 +29,7 @@ do
     --output="FullNonDeformedData/TestingData/model${k}/${folder_name}/0_1.ply" \
     --output_trans="FullNonDeformedData/TestingData/model${k}/${folder_name}/0_1_se4.h5" \
     --intermediate_output_folder="FullNonDeformedData/TestingData/model${k}/${folder_name}/" \
+    --base=${base} \
     --print_keypoints >> ${filname}
     
     if [ "$?" != "1" ]; then
