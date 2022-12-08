@@ -43,7 +43,7 @@ for i in $(seq 0 $end); do
 		--matches="PartialDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
 		--output="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
 		--output_trans="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1_se4.h5" \
-		--intermediate_ouput_folder="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/" \
+		--intermediate_output_folder="PartialDeformedData/TestingData/model${k}/output/${file_number1}_${file_number2}/" \
 		--print_keypoints >> ${filename}
 
 		if [ "$?" != "1" ]; then

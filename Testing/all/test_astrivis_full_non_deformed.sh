@@ -27,7 +27,7 @@ do
     --matches="FullNonDeformedData/TestingData/model${k}/0_1.npz" \
     --output="FullNonDeformedData/TestingData/model${k}/output/0_1.ply" \
     --output_trans="FullNonDeformedData/TestingData/model${k}/output/0_1_se4.h5" \
-    --intermediate_ouput_folder="FullNonDeformedData/TestingData/model${k}/output/" \
+    --intermediate_output_folder="FullNonDeformedData/TestingData/model${k}/output/" \
     --print_keypoints >> ${filname}
     
     if [ "$?" != "1" ]; then
