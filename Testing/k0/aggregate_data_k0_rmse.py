@@ -56,9 +56,9 @@ for data_type in data_types:
         plt.xticks(k0_pos, k0_list, rotation=90)
     
     if feature_extractor == 'fcgf':
-        plt.title('Varying k0 - RMSE - FCGF')
+        plt.title('Varying k0 - ' + data_type + ' - RMSE - FCGF')
     elif feature_extractor == 'kpfcn':
-        plt.title('Varying k0 - RMSE - KPFCN')
+        plt.title('Varying k0 - ' + data_type + ' - RMSE - KPFCN')
         
     plt.ylabel('RMSE')
     plt.xlabel('k0')

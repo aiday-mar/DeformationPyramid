@@ -65,9 +65,9 @@ for data_type in data_types:
         plt.xticks(posenc_function_pos, posenc_functions_list, rotation=90)
     
     if feature_extractor == 'fcgf':
-        plt.title('Varying positional encoding - RMSE - FCGF')
+        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - FCGF')
     elif feature_extractor == 'kpfcn':
-        plt.title('Varying positional encoding - RMSE - KPFCN')
+        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - KPFCN')
         
     plt.ylabel('RMSE')
     plt.xlabel('positional encoding')

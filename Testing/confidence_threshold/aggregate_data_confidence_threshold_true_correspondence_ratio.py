@@ -68,7 +68,7 @@ print(final_matrices)
 
 for data_type in data_types:
     plt.clf()
-    plt.title('Varying the confidence threshold - graph - ' + data_type + ' -  ' + title, y=1.0)
+    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
     confidence_thresholds_pos = range(0, len(confidence_thresholds))
     plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
     plt.ylim(0, 1)
@@ -86,7 +86,7 @@ for data_type in data_types:
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title('Varying the confidence threshold - bar chart - ' + data_type + ' -  ' + title, y=1.0)
+    plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
     plt.xlabel('confidence threshold')
     plt.ylabel('bar chart of GT to all correspondences')
     delta=[-0.6, -0.4, -0.2, 0, 0.2, 0.4]

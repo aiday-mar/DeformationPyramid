@@ -56,9 +56,9 @@ for data_type in data_types:
         plt.xticks(levels_pos, levels_list, rotation=90)
     
     if feature_extractor == 'fcgf':
-        plt.title('Varying levels - RMSE - FCGF')
+        plt.title('Varying levels - ' + data_type + ' - RMSE - FCGF')
     elif feature_extractor == 'kpfcn':
-        plt.title('Varying levels - RMSE - KPFCN')
+        plt.title('Varying levels - ' + data_type + ' - RMSE - KPFCN')
         
     plt.ylabel('RMSE')
     plt.xlabel('levels')
