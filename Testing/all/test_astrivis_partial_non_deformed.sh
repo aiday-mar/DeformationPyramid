@@ -43,7 +43,7 @@ if [ $type == "kpfcn" ]; then
         --final="${base}/model${k}/${folder_name}/0_1.ply" \
         --initial="${base}/model${k}/mesh_transformed_0.ply" \
         --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
-        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" >> ${file}
+        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" >> ${filename}
         fi
     done
 fi
@@ -79,7 +79,7 @@ if [ $type == "fcgf" ]; then
         --final="${base}/model${k}/${folder_name}/0_1.ply" \
         --initial="${base}/model${k}/mesh_transformed_0.ply" \
         --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
-        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" >> ${file}
+        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" >> ${filename}
         fi
     done
 fi
