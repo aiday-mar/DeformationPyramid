@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-# FCGF TODO
+# FCGF DONE
 # KPFCN TODO
 
 feature_extractor = 'fcgf'
