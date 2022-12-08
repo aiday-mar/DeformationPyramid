@@ -57,9 +57,9 @@ print('final_matrices : ', final_matrices)
 for data_type in data_types:
     plt.clf()
     for model in models:
-        k0_pos = range(len(posenc_functions_list))
-        plt.plot(k0_pos, final_matrices[model][data_type]['rmse'])
-        plt.xticks(k0_pos, posenc_functions_list, rotation=90)
+        posenc_function_pos = range(len(posenc_functions_list))
+        plt.plot(posenc_function_pos, final_matrices[model][data_type]['rmse'])
+        plt.xticks(posenc_function_pos, posenc_functions_list, rotation=90)
     
     if feature_extractor == 'fcgf':
         plt.title('Varying positional encoding - RMSE - FCGF')

@@ -48,9 +48,9 @@ print('final_matrices : ', final_matrices)
 for data_type in data_types:
     plt.clf()
     for model in models:
-        k0_pos = range(len(levels_list))
-        plt.plot(k0_pos, final_matrices[model][data_type]['rmse'])
-        plt.xticks(k0_pos, levels_list, rotation=90)
+        levels_pos = range(len(levels_list))
+        plt.plot(levels_pos, final_matrices[model][data_type]['rmse'])
+        plt.xticks(levels_pos, levels_list, rotation=90)
     
     if feature_extractor == 'fcgf':
         plt.title('Varying levels - RMSE - FCGF')
