@@ -50,7 +50,9 @@ def data_file(file_path, deformed):
                 list_res = re.findall("\d+\.\d+", line)
                 res = list_res[0]
                 data[keyword] = res
-                
+    else:
+        final_data[key] = data
+
     return final_data
 
 def retrieve_type(obj, type, partial1 = None, partial2 = None):
