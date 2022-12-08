@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
 levels_list=(2 4 6 8 10)
 file="Testing/levels/testing_levels_${type}.txt"

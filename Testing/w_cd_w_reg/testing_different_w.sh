@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
 w_reg_list=(0 0.2 0.4 0.6 0.8 1)
 w_cd_list=(0 0.2 0.4 0.6 0.8 1)

@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
 file="Testing/confidence_threshold/testing_confidence_thresholds_${type}.txt"
 rm ${file}

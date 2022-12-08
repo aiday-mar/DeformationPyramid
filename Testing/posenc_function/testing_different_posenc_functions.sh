@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
 posenc_functions_list=(linear none power4 log square)
 file="Testing/posenc_function/testing_posenc_functions_${type}.txt"

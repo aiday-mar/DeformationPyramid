@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
 k0_list=(-11 -10 -9 -8)
 file="Testing/k0/testing_k0_${type}.txt"

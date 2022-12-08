@@ -4,7 +4,8 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual 
 
 samples_list=(50 100 500 1000 2000)
 file="Testing/samples/testing_samples_${type}.txt"
