@@ -8,7 +8,7 @@ type=fcgf
 preprocessing=mutual
 
 k0_list=(-11 -10 -9 -8)
-file="Testing/k0/testing_k0_${type}.txt"
+file="Testing/k0/testing_k0_pre_mutual_${type}.txt"
 rm ${file} 
 touch ${file}
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
@@ -21,7 +21,7 @@ if [ $type == "kpfcn" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - k0 : ${k0}" >> ${file}
-                folder=output_k0_${k0}_${type}
+                folder=output_k0_${k0}_pre_mutual_${type}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -157,7 +157,7 @@ if [ $type == "fcgf" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - k0 : ${k0}" >> ${file}
-                folder=output_k0_${k0}_${type}
+                folder=output_k0_${k0}_pre_mutual_${type}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
