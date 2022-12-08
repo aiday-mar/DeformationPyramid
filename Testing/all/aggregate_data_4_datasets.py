@@ -118,19 +118,15 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
-print('data_full_deformed : ', data_full_deformed)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
-print('data_full_non_deformed : ', data_full_non_deformed)
 plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2, save_path='Testing/all/full_non_deformed_all_metrics.png')
 
 data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
-print('data_partial_deformed : ', data_partial_deformed)
 plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics.png')
 
 data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
-print('data_partial_non_deformed : ', data_partial_non_deformed)
 plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4, save_path='Testing/all/partial_non_deformed_all_metrics.png')
 
 # When the measure is fixed
