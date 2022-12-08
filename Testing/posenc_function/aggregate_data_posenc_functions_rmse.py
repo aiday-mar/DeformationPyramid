@@ -11,7 +11,7 @@ base = 'Testing/'
 folder = 'posenc_function/'
 file='testing_posenc_functions_' + feature_extractor + '.txt'
 
-posenc_functions_list=['linear', 'none', 'power4', 'log', 'square']
+posenc_functions_list=['log', 'linear', 'square', 'power2', 'power4']
 models=['002', '042', '085', '126', '167', '207']
 shape = (len(posenc_functions_list),)
 
@@ -36,7 +36,7 @@ for line in Lines:
         if 'linear' in line:
             posenc_function_val = 'linear'
         elif 'none' in line:
-            posenc_function_val = 'none'
+            posenc_function_val = 'power2'
         elif 'power4' in line:
             posenc_function_val = 'power4'
         elif 'log' in line:
