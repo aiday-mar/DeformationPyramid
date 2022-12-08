@@ -1,8 +1,8 @@
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-#type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 # version=1
 # version=2
@@ -10,10 +10,11 @@ version=4
 
 custom_filtering=true
 # custom_filtering=false
-if [ "$custom_filtering" = true ] ; then
-    type=custom
+
+if [ "$custom_filtering" == "true" ] ; then
+    custom_filtering_type=custom
 else
-    type=default
+    custom_filtering_type=default
 fi
 
 preprocessing=none
@@ -59,8 +60,8 @@ sampling=linspace
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
 
-if [ $type == "kpfcn" ]; then
-
+if [ $type == "kpfcn" ] 
+then
     for k in ${model_numbers[@]}
     do
 
@@ -68,10 +69,22 @@ if [ $type == "kpfcn" ]; then
     folder_name=output_lepard_default_${type}
     file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
 
-    echo 'Lepard' >> ${file_name}
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+
+    echo "Lepard" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
-    echo 'Full Non Deformed' >> ${file_name} 
+    echo "Full Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -83,7 +96,7 @@ if [ $type == "kpfcn" ]; then
     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
 
@@ -98,7 +111,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Deformed' >> ${file_name} 
+    echo "Partial Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -110,7 +123,7 @@ if [ $type == "kpfcn" ]; then
     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false  >> ${file_name}
 
@@ -129,7 +142,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Full Deformed' >> ${file_name} 
+    echo "Full Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullDeformed/model${k}/020.ply" \
@@ -141,7 +154,7 @@ if [ $type == "kpfcn" ]; then
     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
     
@@ -157,7 +170,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Non Deformed' >> ${file_name} 
+    echo "Partial Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -169,7 +182,7 @@ if [ $type == "kpfcn" ]; then
     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=false >> ${file_name}
 
@@ -187,13 +200,25 @@ if [ $type == "kpfcn" ]; then
     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
     # Using custom filtering
-    folder_name=output_outlier_rejection_default
-    file_name=Testing/custom_filtering/output_outlier_rejection_default.txt
+    folder_name=output_outlier_rejection_default_${type}
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
 
-    echo 'Outlier Rejection' >> ${file_name}
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+
+    echo "Outlier Rejection" >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
-    echo 'Full Non Deformed' >> ${file_name} 
+    echo "Full Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -205,7 +230,7 @@ if [ $type == "kpfcn" ]; then
     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -220,7 +245,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Deformed' >> ${file_name} 
+    echo "Partial Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -232,7 +257,7 @@ if [ $type == "kpfcn" ]; then
     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true  >> ${file_name}
 
@@ -251,7 +276,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Full Deformed' >> ${file_name} 
+    echo "Full Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="FullDeformed/model${k}/020.ply" \
@@ -263,7 +288,7 @@ if [ $type == "kpfcn" ]; then
     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -279,7 +304,7 @@ if [ $type == "kpfcn" ]; then
     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-    echo 'Partial Non Deformed' >> ${file_name} 
+    echo "Partial Non Deformed" >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
     --config=config/${config} \
     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -291,7 +316,7 @@ if [ $type == "kpfcn" ]; then
     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
     --reject_outliers=true >> ${file_name}
 
@@ -319,8 +344,8 @@ if [ $type == "kpfcn" ]; then
                 echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}
-                file_name=Testing/custom_filtering/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
+                folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
+                file_name=Testing/custom_filtering/v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -334,8 +359,9 @@ if [ $type == "kpfcn" ]; then
                 rm ${file_name}
                 touch ${file_name}
 
-                if [ "$custom_filtering" = true ] ; then
-                    echo 'Full Non Deformed' >> ${file_name} 
+                if [ "$custom_filtering" == "true" ] 
+                then
+                    echo "Full Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
                     --t="FullNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -346,7 +372,7 @@ if [ $type == "kpfcn" ]; then
                     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -370,7 +396,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Deformed' >> ${file_name} 
+                    echo "Partial Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -382,7 +408,7 @@ if [ $type == "kpfcn" ]; then
                     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -410,7 +436,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Full Deformed' >> ${file_name} 
+                    echo "Full Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullDeformed/model${k}/020.ply" \
@@ -422,7 +448,7 @@ if [ $type == "kpfcn" ]; then
                     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -447,7 +473,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Non Deformed' >> ${file_name} 
+                    echo "Partial Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -459,7 +485,7 @@ if [ $type == "kpfcn" ]; then
                     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -484,9 +510,8 @@ if [ $type == "kpfcn" ]; then
                     --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                     --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
-
                 else
-                    echo 'Full Non Deformed' >> ${file_name} 
+                    echo "Full Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
@@ -498,7 +523,7 @@ if [ $type == "kpfcn" ]; then
                     --output="FullNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -521,7 +546,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/FullNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Deformed' >> ${file_name} 
+                    echo "Partial Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="PartialDeformed/model${k}/020_0.ply" \
@@ -533,7 +558,7 @@ if [ $type == "kpfcn" ]; then
                     --output="PartialDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -560,7 +585,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/PartialDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Full Deformed' >> ${file_name} 
+                    echo "Full Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
                     --s="FullDeformed/model${k}/020.ply" \
@@ -572,7 +597,7 @@ if [ $type == "kpfcn" ]; then
                     --output="FullDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="FullDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -596,7 +621,7 @@ if [ $type == "kpfcn" ]; then
                     --save_final_path="TestData/FullDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/FullDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
-                    echo 'Partial Non Deformed' >> ${file_name} 
+                    echo "Partial Non Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
                     --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -607,7 +632,7 @@ if [ $type == "kpfcn" ]; then
                     --output="PartialNonDeformed/model${k}/${folder_name}/result.ply" \
                     --output_trans="PartialNonDeformed/model${k}/${folder_name}/result_se4.h5" \
                     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
-                    --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+                    --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
                     --confidence_threshold=${confidence} \
                     --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
@@ -631,15 +656,14 @@ if [ $type == "kpfcn" ]; then
                     --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                     --save_final_path="TestData/PartialNonDeformed/model${k}/${folder_name}/final.ply" \
                     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
-
                 fi
             done
         done
     done
+    done
 fi
 
 if [ $type == "fcgf" ]; then
-
     for k in ${model_numbers[@]}
     do
 
@@ -647,6 +671,18 @@ if [ $type == "fcgf" ]; then
     folder_name=output_lepard_default_${type}
     file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
 
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
+    
     echo 'Lepard' >> ${file_name}
     echo "model ${k}" >> ${file_name}
 
@@ -778,8 +814,20 @@ if [ $type == "fcgf" ]; then
     --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
     # Using custom filtering
-    folder_name=output_outlier_rejection_default
-    file_name=Testing/custom_filtering/output_outlier_rejection_default.txt
+    folder_name=output_outlier_rejection_default_${type}
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
+
+    rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
+    mkdir TestData/FullNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/FullDeformed/model${k}/${folder_name}
+    mkdir TestData/FullDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialNonDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialNonDeformed/model${k}/${folder_name}
+    rm -rf TestData/PartialDeformed/model${k}/${folder_name}
+    mkdir TestData/PartialDeformed/model${k}/${folder_name}
+
+    rm ${file_name}
+    touch ${file_name}
 
     echo 'Outlier Rejection' >> ${file_name}
     echo "model ${k}" >> ${file_name}
@@ -921,8 +969,8 @@ if [ $type == "fcgf" ]; then
                 echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                folder_name=output_v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}
-                file_name=Testing/custom_filtering/v_${version}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}.txt
+                folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
+                file_name=Testing/custom_filtering/v_${custom_filtering_type}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -936,7 +984,7 @@ if [ $type == "fcgf" ]; then
                 rm ${file_name}
                 touch ${file_name}
 
-                if [ "$custom_filtering" = true ] ; then
+                if [ "$custom_filtering" == true ] ; then
                     echo 'Full Non Deformed' >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
@@ -1275,5 +1323,6 @@ if [ $type == "fcgf" ]; then
                 fi
             done
         done
+    done
     done
 fi
