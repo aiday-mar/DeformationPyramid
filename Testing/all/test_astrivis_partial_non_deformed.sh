@@ -29,7 +29,7 @@ do
     --target_trans="identity.h5" --matches="PartialNonDeformedData/TestingData/model${k}/matches/0_1.npz" \
     --output="PartialNonDeformedData/TestingData/model${k}/output/0_1.ply" \
     --output_trans="PartialNonDeformedData/TestingData/model${k}/output/0_1_se4.h5" \
-    --intermediate_ouput_folder="PartialNonDeformedData/TestingData/model${k}/output/" \
+    --intermediate_output_folder="PartialNonDeformedData/TestingData/model${k}/output/" \
     --print_keypoints >> ${filename}
     
     if [ "$?" != "1" ]; then
