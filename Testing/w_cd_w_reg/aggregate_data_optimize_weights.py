@@ -2,6 +2,9 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 
+# FCGF TODO
+# KPFCN TODO
+
 w_reg_list = [0, 0.2, 0.4, 0.6, 0.8, 1]
 w_cd_list = [0, 0.2, 0.4, 0.6, 0.8, 1]
 base = '../../TestData/'
