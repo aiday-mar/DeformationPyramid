@@ -11,7 +11,7 @@ base = 'Testing/'
 folder = 'posenc_function/'
 file='testing_posenc_functions_' + feature_extractor + '.txt'
 
-posenc_functions_list=['linear' 'none' 'power4' 'log' 'square']
+posenc_functions_list=['linear', 'none', 'power4', 'log', 'square']
 models=['002', '042', '085', '126', '167', '207']
 shape = (len(posenc_functions_list),)
 
