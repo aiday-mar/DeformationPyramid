@@ -41,9 +41,9 @@ if [ $type == "kpfcn" ]; then
 
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --final="${base}model${k}/${folder_name}/0_1.ply" \
-        --initial="${base}model${k}/mesh_transformed_0.ply" \
-        --part1="${base}model${k}/mesh_transformed_0_se4.h5" \
-        --part2="${base}model${k}/mesh_transformed_1_se4.h5" >> ${filename}
+        --initial="${base}model${k}/transformed/mesh_transformed_0.ply" \
+        --part1="${base}model${k}/transformed/mesh_transformed_0_se4.h5" \
+        --part2="${base}model${k}/transformed/mesh_transformed_1_se4.h5" >> ${filename}
         fi
     done
 fi
@@ -77,9 +77,9 @@ if [ $type == "fcgf" ]; then
 
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --final="${base}model${k}/${folder_name}/0_1.ply" \
-        --initial="${base}model${k}/mesh_transformed_0.ply" \
-        --part1="${base}model${k}/mesh_transformed_0_se4.h5" \
-        --part2="${base}model${k}/mesh_transformed_1_se4.h5" >> ${filename}
+        --initial="${base}model${k}/transformed/mesh_transformed_0.ply" \
+        --part1="${base}model${k}/transformed/mesh_transformed_0_se4.h5" \
+        --part2="${base}model${k}/transformed/mesh_transformed_1_se4.h5" >> ${filename}
         fi
     done
 fi
