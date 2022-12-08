@@ -1339,7 +1339,7 @@ class Landmark_Model():
                     edge_filtering_line_set = o3d.geometry.LineSet()
                     edge_filtering_line_set.points=o3d.utility.Vector3dVector(edge_filtered_total_points)
                     edge_filtering_line_set.lines =o3d.utility.Vector2iVector(edge_filtered_correspondences)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
                     
                 data_mod = {}
                 vec_6d = data['vec_6d'][0][mask]
