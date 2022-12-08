@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-# feature_extractor='KPFCN'
-feature_extractor='FCGF'
+# feature_extractor='kpfcn'
+feature_extractor='fcgf'
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'k0/'
-file='testing_k0.txt'
+file='testing_k0_' + feature_extractor + '.txt'
 title = 'Varying k0 - RMSE - ' + feature_extractor
 
 k0_list=[-11, -10, -9, -8]
