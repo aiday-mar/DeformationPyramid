@@ -102,6 +102,7 @@ then
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=false >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -129,6 +130,7 @@ then
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=false  >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -160,6 +162,7 @@ then
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=false >> ${file_name}
     
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -188,6 +191,7 @@ then
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=false >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -236,6 +240,7 @@ then
     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=true >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -263,6 +268,7 @@ then
     --intermediate_output_folder="PartialDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=true  >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -294,6 +300,7 @@ then
     --intermediate_output_folder="FullDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=true >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -322,6 +329,7 @@ then
     --intermediate_output_folder="PartialNonDeformed/model${k}/${folder_name}/" \
     --base="/home/aiday.kyzy/code/DeformationPyramid/TestData/" \
     --print_keypoints  \
+    --confidence_threshold=${confidence} \
     --reject_outliers=true >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -707,6 +715,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=false \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -737,6 +746,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=false \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -771,6 +781,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=false \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -802,6 +813,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints \
     --reject_outliers=false \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -853,6 +865,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=true \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -883,6 +896,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=true \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -916,6 +930,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=true \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -947,6 +962,7 @@ if [ $type == "fcgf" ]; then
     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
     --print_keypoints  \
     --reject_outliers=true \
+    --confidence_threshold=${confidence} \
     --preprocessing=${preprocessing} >> ${file_name}
 
     python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
