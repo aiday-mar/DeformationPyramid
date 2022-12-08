@@ -13,6 +13,8 @@ preprocessing='mutual'
 partial_scan_1 = '020'
 partial_scan_2 = '125'
 
+model_numbers = ['002', '042', '085', '126', '167', '207']
+
 def data_file(file_path, deformed):
 
     file = open(file_path, 'r')
@@ -61,9 +63,9 @@ def retrieve_type(obj, type, partial1 = None, partial2 = None):
     
     return res
 
-def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None):
-    f = plt.figure(number)
+def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None, save_path=None):
     plt.clf()
+    f = plt.figure(number)
     RMSE = retrieve_type(data, 'RMSE', partial1, partial2)
     IR = retrieve_type(data, 'IR', partial1, partial2)
     full_epe = retrieve_type(data, 'full-epe', partial1, partial2)
@@ -74,22 +76,25 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None)
     vis_AccR = retrieve_type(data, 'vis-AccR', partial1, partial2)
     vis_AccS = retrieve_type(data, 'vis-AccS', partial1, partial2)
     vis_outlier = retrieve_type(data, 'vis-outlier', partial1, partial2)
-    plt.plot(RMSE)
-    plt.plot(IR)
-    plt.plot(full_epe)
-    plt.plot(full_AccR)
-    plt.plot(full_AccS)
-    plt.plot(full_outlier)
-    plt.plot(vis_epe)
-    plt.plot(vis_AccR)
-    plt.plot(vis_AccS)
-    plt.plot(vis_outlier)
-    plt.xlabel("Model from partial 0 to partial 1")
+    plt.plot(model_numbers, RMSE)
+    plt.plot(model_numbers, IR)
+    plt.plot(model_numbers, full_epe)
+    plt.plot(model_numbers, full_AccR)
+    plt.plot(model_numbers, full_AccS)
+    plt.plot(model_numbers, full_outlier)
+    plt.plot(model_numbers, vis_epe)
+    plt.plot(model_numbers, vis_AccR)
+    plt.plot(model_numbers, vis_AccS)
+    plt.plot(model_numbers, vis_outlier)
+    plt.xlabel("Model number")
     plt.ylabel("Value")
     plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
     plt.title(title)
+    if save_path:
+        plt.savefig(save_path)
 
-def plot_across_types(type, number, partial1, partial2):
+def plot_across_types(type, number, partial1, partial2, save_path = None):
+    plt.clf()
     f = plt.figure(number)
     full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
     full_deformed = retrieve_type(full_deformed, type, partial1, partial2)
@@ -99,41 +104,43 @@ def plot_across_types(type, number, partial1, partial2):
     partial_deformed = retrieve_type(partial_deformed, type, partial1, partial2)
     partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =False)
     partial_non_deformed = retrieve_type(partial_non_deformed, type)
-    plt.plot(full_deformed)
-    plt.plot(partial_deformed)
-    plt.plot(full_non_deformed)
-    plt.plot(partial_non_deformed)
-    plt.xlabel("Model from partial " + partial1 + " to partial " + partial2)
+    plt.plot(model_numbers, full_deformed)
+    plt.plot(model_numbers, partial_deformed)
+    plt.plot(model_numbers, full_non_deformed)
+    plt.plot(model_numbers, partial_non_deformed)
+    plt.xlabel("Model number")
     plt.ylabel(type)
-    plt.legend(['full_deformed', 'partial deformed', 'full non deformed', 'partial non deformed'])
+    plt.legend(['Full Deformed', 'Partial Deformed', 'Full Non Deformed', 'Partial Non Deformed'])
     plt.title(type)
+    
+    if save_path:
+        plt.savefig(save_path)
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
 print('data_full_deformed : ', data_full_deformed)
-plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, partial_scan_1, partial_scan_2)
+plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 print('data_full_non_deformed : ', data_full_non_deformed)
-plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2)
+plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2, save_path='Testing/all/full_non_deformed_all_metrics.png')
 
 data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
 print('data_partial_deformed : ', data_partial_deformed)
-plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, partial_scan_1, partial_scan_2)
+plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics.png')
 
 data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 print('data_partial_non_deformed : ', data_partial_non_deformed)
-plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
+plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4, save_path='Testing/all/partial_non_deformed_all_metrics.png')
 
 # When the measure is fixed
-plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2)
-plot_across_types('IR', 6, partial_scan_1, partial_scan_2)
-plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2)
-plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2)
-plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2)
-plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2)
-plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2)
-plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2)
-plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2)
-plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2)
-plt.show()
+plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_rmse.png')
+plot_across_types('IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir.png')
+plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_epe.png')
+plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accr.png')
+plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accs.png')
+plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_outlier.png')
+plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_vis_epe.png')
+plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_vis_accr.png')
+plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_vis_accs.png')
+plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_vis_outlier.png')
