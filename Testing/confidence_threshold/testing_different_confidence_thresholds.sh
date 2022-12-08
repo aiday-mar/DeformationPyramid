@@ -34,7 +34,7 @@ if [ $type == "kpfcn" ]; then
 
 
                 echo 'Full Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
                 --t="FullNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -60,7 +60,7 @@ if [ $type == "kpfcn" ]; then
                 fi
 
                 echo 'Partial Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="PartialDeformed/model${k}/020_0.ply" \
                 --t="PartialDeformed/model${k}/104_1.ply" \
@@ -92,7 +92,7 @@ if [ $type == "kpfcn" ]; then
                 fi
 
                 echo 'Full Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="FullDeformed/model${k}/020.ply" \
                 --t="FullDeformed/model${k}/104.ply" \
@@ -121,7 +121,7 @@ if [ $type == "kpfcn" ]; then
                 fi
 
                 echo 'Partial Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
                 --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -172,7 +172,7 @@ if [ $type == "fcgf" ]; then
                 mkdir TestData/PartialDeformed/model${k}/${folder}
 
                 echo 'Full Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="FullNonDeformed/model${k}/mesh_transformed_0.ply" \
                 --t="FullNonDeformed/model${k}/mesh_transformed_1.ply" \
@@ -201,7 +201,7 @@ if [ $type == "fcgf" ]; then
                 fi
 
                 echo 'Partial Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="PartialDeformed/model${k}/020_0.ply" \
                 --t="PartialDeformed/model${k}/104_1.ply" \
@@ -236,7 +236,7 @@ if [ $type == "fcgf" ]; then
                 fi
 
                 echo 'Full Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="FullDeformed/model${k}/020.ply" \
                 --t="FullDeformed/model${k}/104.ply" \
@@ -268,7 +268,7 @@ if [ $type == "fcgf" ]; then
                 fi
 
                 echo 'Partial Non Deformed' >> ${file}
-                python3 eval_supervised_astrivis.py \
+                CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                 --config=config/${config} \
                 --s="PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
                 --t="PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
