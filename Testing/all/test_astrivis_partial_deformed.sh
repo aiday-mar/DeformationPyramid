@@ -34,14 +34,14 @@ do
 			# 0 -> 1
 			python3 eval_supervised_astrivis.py \
 			--config=config/${config} \
-			--s="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_0.ply" \
-			--t="PartialDeformedData/TestingData/model${k}/temp_${file_number2}/model_1/cloud/dense.ply" \
-			--source_trans="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_0_se4.h5" \
+			--s="/model${k}/transformed/${file_number1}_0.ply" \
+			--t="/model${k}/temp_${file_number2}/model_1/cloud/dense.ply" \
+			--source_trans="/model${k}/transformed/${file_number1}_0_se4.h5" \
 			--target_trans="identity.h5" \
-			--matches="PartialDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
-			--output="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
-			--output_trans="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1_se4.h5" \
-			--intermediate_output_folder="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--matches="/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
+			--output="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
+			--output_trans="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1_se4.h5" \
+			--intermediate_output_folder="/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 			--base=${base} \
 			--print_keypoints >> ${filename}
 
@@ -53,20 +53,20 @@ do
 
 			python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
 			--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
-			--input2="PartialDeformedData/TestingData/model${k}/temp_${file_number1}/model_0/cloud/dense.ply" >> ${filename}
+			--input2="${base}/model${k}/temp_${file_number1}/model_0/cloud/dense.ply" >> ${filename}
 			fi
 			
 			# 1 -> 0
 			python3 eval_supervised_astrivis.py \
 			--config=config/${config} \
-			--s="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_1.ply" \
-			--t="PartialDeformedData/TestingData/model${k}/temp_${file_number2}/model_0/cloud/dense.ply" \
-			--source_trans="PartialDeformedData/TestingData/model${k}/transformed/${file_number1}_1_se4.h5" \
+			--s="/model${k}/transformed/${file_number1}_1.ply" \
+			--t="/model${k}/temp_${file_number2}/model_0/cloud/dense.ply" \
+			--source_trans="/model${k}/transformed/${file_number1}_1_se4.h5" \
 			--target_trans="identity.h5" \
-			--matches="PartialDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-			--output="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-			--output_trans="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
-			--intermediate_output_folder="PartialDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--matches="/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
+			--output="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
+			--output_trans="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
+			--intermediate_output_folder="/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 			--base=${base} \
 			--print_keypoints >> ${filename}
 			
@@ -78,7 +78,7 @@ do
 
 			python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
 			--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-			--input2="PartialDeformedData/TestingData/model${k}/temp_${file_number1}/model_1/cloud/dense.ply" >> ${filename}
+			--input2="${base}/model${k}/temp_${file_number1}/model_1/cloud/dense.ply" >> ${filename}
 			fi
 		done
 	done

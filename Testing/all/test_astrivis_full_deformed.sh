@@ -36,14 +36,14 @@ do
 					
 			python3 eval_supervised_astrivis.py \
 			--config=config/${config} \
-			--s="FullDeformedData/TestingData/model${k}/transformed/${file_number1}.ply" \
-			--t="FullDeformedData/TestingData/model${k}/sampled/${file_number2}.ply" \
-			--source_trans="FullDeformedData/TestingData/model${k}/transformed/${file_number1}_se4.h5" \
+			--s="/model${k}/transformed/${file_number1}.ply" \
+			--t="/model${k}/sampled/${file_number2}.ply" \
+			--source_trans="/model${k}/transformed/${file_number1}_se4.h5" \
 			--target_trans="identity.h5" \
-			--matches="FullDeformedData/TestingData/model${k}/matches/${file_number1}_${file_number2}.npz" \
-			--output="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
-			--output_trans="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
-			--intermediate_output_folder="FullDeformedData/TestingData/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--matches="/model${k}/matches/${file_number1}_${file_number2}.npz" \
+			--output="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
+			--output_trans="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
+			--intermediate_output_folder="/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 			--base=${base} \
 			--print_keypoints  >> ${filename}
 			

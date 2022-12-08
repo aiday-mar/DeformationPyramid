@@ -21,14 +21,14 @@ do
     
     python3 eval_supervised_astrivis.py \
     --config=config/${config} \
-    --s="FullNonDeformedData/TestingData/model${k}/mesh_transformed_0.ply" \
-    --t="FullNonDeformedData/TestingData/model${k}/mesh_sampled.ply" \
-    --source_trans="FullNonDeformedData/TestingData/model${k}/mesh_transformed_0_se4.h5" \
+    --s="/model${k}/mesh_transformed_0.ply" \
+    --t="/model${k}/mesh_sampled.ply" \
+    --source_trans="/model${k}/mesh_transformed_0_se4.h5" \
     --target_trans="identity.h5" \
-    --matches="FullNonDeformedData/TestingData/model${k}/0_1.npz" \
-    --output="FullNonDeformedData/TestingData/model${k}/${folder_name}/0_1.ply" \
-    --output_trans="FullNonDeformedData/TestingData/model${k}/${folder_name}/0_1_se4.h5" \
-    --intermediate_output_folder="FullNonDeformedData/TestingData/model${k}/${folder_name}/" \
+    --matches="/model${k}/0_1.npz" \
+    --output="/model${k}/${folder_name}/0_1.ply" \
+    --output_trans="/model${k}/${folder_name}/0_1_se4.h5" \
+    --intermediate_output_folder="/model${k}/${folder_name}/" \
     --base=${base} \
     --print_keypoints >> ${filname}
     
