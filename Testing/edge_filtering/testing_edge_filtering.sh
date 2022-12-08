@@ -4,9 +4,10 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
+# preprocessing=none
+preprocessing=mutual
 
-file="Testing/edge_filtering/testing_edge_filtering_${type}.txt"
+file="Testing/edge_filtering/testing_edge_filtering_pre_${preprocessing}_${type}.txt"
 rm ${file}
 touch ${file}
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
@@ -18,7 +19,7 @@ if [ $type == "kpfcn" ]; then
         for k in ${model_numbers[@]}
         do
             echo "model ${k}" >> ${file}
-            folder=edge_filtering_${confidence_threshold}_${type}
+            folder=edge_filtering_${confidence_threshold}_pre_${preprocessing}_${type}
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -159,7 +160,7 @@ if [ $type == "fcgf" ]; then
         do
 
             echo "model ${k}" >> ${file}
-            folder=edge_filtering_${confidence_threshold}_${type}
+            folder=edge_filtering_${confidence_threshold}_pre_${preprocessing}_${type}
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             rm -rf TestData/FullDeformed/model${k}/${folder}

@@ -8,7 +8,7 @@ type=fcgf
 preprocessing=mutual
 
 posenc_functions_list=(linear none power4 log square)
-file="Testing/posenc_function/testing_posenc_functions_pre_mutual_${type}.txt"
+file="Testing/posenc_function/testing_posenc_functions_pre_${preprocessing}_${type}.txt"
 rm ${file} 
 touch ${file}
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
@@ -21,7 +21,7 @@ if [ $type == "kpfcn" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - positional encoding : ${posenc_function}" >> ${file}
-                folder=posenc_function_${posenc_function}_pre_mutual_${type}
+                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -158,7 +158,7 @@ if [ $type == "fcgf" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - positional encoding : ${posenc_function}" >> ${file}
-                folder=posenc_function_${posenc_function}_pre_mutual_${type}
+                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
