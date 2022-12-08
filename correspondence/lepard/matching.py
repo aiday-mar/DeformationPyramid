@@ -171,6 +171,7 @@ class Matching(nn.Module):
             raise Exception('Specify a valid match type')
 
         confidence_threshold = float(confidence_threshold) if confidence_threshold else self.confidence_threshold
+        print('confidence threshold used in the matching : ', confidence_threshold)
         coarse_match, _, _ = self.get_match(conf_matrix, confidence_threshold, preprocessing)
         return conf_matrix, coarse_match
 

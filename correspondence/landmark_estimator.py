@@ -63,7 +63,6 @@ class Landmark_Model():
         else:
             self.path = path 
         
-        print('confidence threshold in inference : ', confidence_threshold)
         self.matcher.eval()
         self.outlier_model.eval()
         lepard_true_correspondences_mask = None
