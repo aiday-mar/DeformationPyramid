@@ -33,7 +33,7 @@ for line in Lines:
             current_model = None
             
     if 'Test - levels' in line:
-        levels_val = int(re.findall('-?\d+', line)[1])
+        levels_val = int(re.findall('-?\d+', line)[0])
         
     if line[:-1] in data_types:
         current_data_type = line[:-1]
