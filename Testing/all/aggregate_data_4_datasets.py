@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 # FCGF TODO
 # KPFCN TODO
 
+feature_extractor='fcgf'
+# feature_extractor='kpfcn'
+
+# preprocessing='none'
+preprocessing='mutual'
+
 def data_file(file_path, deformed):
 
     file = open(file_path, 'r')
@@ -82,13 +88,13 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None)
 
 def plot_across_types(type, number, partial1, partial2):
     f = plt.figure(number)
-    full_deformed = data_file('test_astrivis_full_deformed.txt', deformed =True)
+    full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
     full_deformed = retrieve_type(full_deformed, type, partial1, partial2)
-    partial_deformed = data_file('test_astrivis_partial_deformed.txt', deformed =True)
+    partial_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
     partial_deformed = retrieve_type(partial_deformed, type, partial1, partial2)
-    full_non_deformed = data_file('test_astrivis_full_non_deformed.txt', deformed =False)
+    full_non_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =False)
     full_non_deformed = retrieve_type(full_non_deformed, type)
-    partial_non_deformed = data_file('test_astrivis_partial_non_deformed.txt', deformed =False)
+    partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =False)
     partial_non_deformed = retrieve_type(partial_non_deformed, type)
     plt.plot(full_deformed)
     plt.plot(partial_deformed)
@@ -100,16 +106,16 @@ def plot_across_types(type, number, partial1, partial2):
     plt.title(type)
 
 # When the type is fixed
-data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_fcgf_mutual_preprocessing.txt', deformed =True)
+data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, '0', '1')
 
-data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_fcgf_mutual_preprocessing.txt', deformed = False)
+data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2)
 
-data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_fcgf_mutual_preprocessing.txt', deformed =True)
+data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
 plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, '0', '1')
 
-data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_fcgf_mutual_preprocessing.txt', deformed = False)
+data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
 
 # When the measure is fixed

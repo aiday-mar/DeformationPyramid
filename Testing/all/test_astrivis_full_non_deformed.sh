@@ -4,14 +4,17 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-filename=Testing/all/test_astrivis_full_non_deformed_${type}.txt
+# preprocessing=none
+preprocessing=mutual
+
+filename=Testing/all/test_astrivis_full_non_deformed_pre_${preprocessing}_${type}.txt
 rm ${filename}
 touch ${filename}
 
 base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
-folder_name=output_full_non_deformed_${type}
+folder_name=output_full_non_deformed_pre_${preprocessing}_${type}
 
 if [ $type == "kpfcn" ]; then
     for k in ${model_numbers[@]}

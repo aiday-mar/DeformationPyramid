@@ -4,7 +4,10 @@ config=LNDP_fcgf.yaml
 type=fcgf
 # type=kpfcn
 
-filename=Testing/all/test_astrivis_partial_deformed_${type}.txt
+# preprocessing=none
+preprocessing=mutual
+
+filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}.txt
 rm ${filename}
 touch ${filename}
 
@@ -18,7 +21,7 @@ if [ $type == "kpfcn" ]; then
 	do
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		arr=('020' '062' '125' '188')
-		folder_name=output_partial_deformed_${type}
+		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
@@ -101,7 +104,7 @@ if [ $type == "fcgf" ]; then
 	do
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		arr=('020' '062' '125' '188')
-		folder_name=output_partial_deformed_${type}
+		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
