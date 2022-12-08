@@ -36,7 +36,7 @@ do
 			python3 eval_supervised_astrivis.py \
 			--config=config/${config} \
 			--s="model${k}/transformed/${file_number1}.ply" \
-			--t="model${k}/sampled/${file_number2}.ply" \
+			--t="model${k}/sampled/mesh_${file_number2}.ply" \
 			--source_trans="model${k}/transformed/${file_number1}_se4.h5" \
 			--target_trans="identity.h5" \
 			--matches="model${k}/matches/${file_number1}_${file_number2}.npz" \
