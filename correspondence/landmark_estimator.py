@@ -1220,10 +1220,59 @@ class Landmark_Model():
             if edge_detection:
                 # Find all initial source pcd edge points
                 src_pcd_points = data['src_pcd_list'][0]
+                n_src_points = src_pcd_points.shape[0]
+                dists = np.zeros((n_src_points, n_src_points))
+                for i in range(n_src_points):
+                    src_point = src_pcd_points[i]
+                    dists[i, :] = np.sqrt(np.sum((src_point - src_pcd_points) ** 2, axis=1))
+                
+                for i in range(n_src_points):
+                    dists[i][i] = float('inf')
+                
+                print('dists : ', dists)
+                min_distances = dists.min(axis = 1)
+                print('min_distances : ', min_distances)
+                average_distance = np.average(min_distances)
+                print('average distance : ', average_distance)            
+                neighbors = dists < 1.5 * average_distance
+                print('neighbors : ', neighbors)
+                n_neighbors = np.sum(neighbors, axis=1)
+                print('n_neighbors : ', n_neighbors)
+                initial_edge_point_indices = np.argwhere(n_neighbors < 4)
+                print('initial_edge_point_indices : ', initial_edge_point_indices)
+                initial_edge_points = src_pcd_points[initial_edge_point_indices]
+                print('initial_edge_points : ', initial_edge_points)
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
-                initial_ldmk_s = np.array(ldmk_s.cpu())
-                for i in range(initial_ldmk_s.shape[0]):
+                ldmk_s_np = np.array(ldmk_s.cpu())
+                ldmk_t_np = np.array(ldmk_t.cpu())
+                
+                for i in range(ldmk_s_np.shape[0]):
+                    ldmk_s_np_point = ldmk_s_np[i]
+                    dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
+                    min_dist = dists_to_edge.min()
+                    if min_dist < 0.1:
+                        mask[i] = True
 
+                ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
+                ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
+                
+                data_mod = {}
+                vec_6d = data['vec_6d'][0][mask]
+                data_mod['vec_6d'] = vec_6d[None, :]
+                vec_6d_mask = data['vec_6d_mask'][0][mask]
+                data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
+                vec_6d_ind = data['vec_6d_ind'][0][mask]
+                data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
+                
+                data_mod['s_pcd'] = data['s_pcd']
+                data_mod['t_pcd'] = data['t_pcd']
+                data_mod['batched_rot'] = data['batched_rot']
+                data_mod['batched_trn'] = data['batched_trn']
+        
+                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
+                inlier_conf = inlier_conf[mask]
+                match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+                inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
                  
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
