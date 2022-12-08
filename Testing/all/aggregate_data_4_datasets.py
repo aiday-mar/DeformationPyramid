@@ -10,6 +10,9 @@ feature_extractor='fcgf'
 # preprocessing='none'
 preprocessing='mutual'
 
+partial_scan_1 = '020'
+partial_scan_2 = '125'
+
 def data_file(file_path, deformed):
 
     file = open(file_path, 'r')
@@ -107,26 +110,26 @@ def plot_across_types(type, number, partial1, partial2):
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
-plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, '0', '1')
+plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, partial_scan_1, partial_scan_2)
 
 data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2)
 
 data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
-plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, '0', '1')
+plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, partial_scan_1, partial_scan_2)
 
 data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
 plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
 
 # When the measure is fixed
-plot_across_types('RMSE', 5, '0', '1')
-plot_across_types('IR', 6, '0', '1')
-plot_across_types('full-epe', 7, '0', '1')
-plot_across_types('full-AccR', 8, '0', '1')
-plot_across_types('full-AccS', 9, '0', '1')
-plot_across_types('full-outlier', 10, '0', '1')
-plot_across_types('vis-epe', 11, '0', '1')
-plot_across_types('vis-AccR', 12, '0', '1')
-plot_across_types('vis-AccS', 13, '0', '1')
-plot_across_types('vis-outlier', 14, '0', '1')
+plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2)
+plot_across_types('IR', 6, partial_scan_1, partial_scan_2)
+plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2)
+plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2)
+plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2)
+plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2)
+plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2)
+plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2)
+plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2)
+plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2)
 plt.show()
