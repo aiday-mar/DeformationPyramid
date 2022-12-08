@@ -13,34 +13,72 @@ base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
 model_numbers=('002' '042' '085' '126' '167' '207')
 folder_name=output_full_non_deformed_${type}
 
-for k in ${model_numbers[@]}
-do
-    echo "model ${k}" >> ${filname}
-    mkdir $base/model$k/${folder_name}
-    touch ${base}/model${k}/${folder_name}/0_1_se4.h5
-    
-    python3 eval_supervised_astrivis.py \
-    --config=config/${config} \
-    --s="model${k}/mesh_transformed_0.ply" \
-    --t="model${k}/mesh_sampled.ply" \
-    --source_trans="model${k}/mesh_transformed_0_se4.h5" \
-    --target_trans="identity.h5" \
-    --matches="model${k}/0_1.npz" \
-    --output="model${k}/${folder_name}/0_1.ply" \
-    --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
-    --intermediate_output_folder="model${k}/${folder_name}/" \
-    --base=${base} \
-    --print_keypoints >> ${filname}
-    
-    if [ "$?" != "1" ]; then
-    python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-    --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
-    --part2="identity.h5" 
-    --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filname}
-    
-    python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-    --input1="${base}/model${k}/${folder_name}/0_1.ply" \
-    --input2="${base}/model${k}/mesh_sampled.ply" \
-    --matches="${base}/model${k}/0_1.npz" >> ${filname}
-    fi
-done
+if [ $type == "kpfcn" ]; then
+    for k in ${model_numbers[@]}
+    do
+        echo "model ${k}" >> ${filname}
+        mkdir $base/model$k/${folder_name}
+        touch ${base}/model${k}/${folder_name}/0_1_se4.h5
+        
+        python3 eval_supervised_astrivis.py \
+        --config=config/${config} \
+        --s="model${k}/mesh_transformed_0.ply" \
+        --t="model${k}/mesh_transformed_1.ply" \
+        --source_trans="model${k}/mesh_transformed_0_se4.h5" \
+        --target_trans="model${k}/mesh_transformed_1_se4.h5" \
+        --matches="model${k}/0_1.npz" \
+        --output="model${k}/${folder_name}/0_1.ply" \
+        --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
+        --intermediate_output_folder="model${k}/${folder_name}/" \
+        --base=${base} \
+        --print_keypoints >> ${filname}
+        
+        if [ "$?" != "1" ]; then
+        python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
+        --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
+        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" \
+        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filname}
+        
+        python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
+        --input1="${base}/model${k}/${folder_name}/0_1.ply" \
+        --input2="${base}/model${k}/mesh_transformed_1.ply" \
+        --matches="${base}/model${k}/0_1.npz" >> ${filname}
+        fi
+    done
+fi
+
+if [ $type == "fcgf" ]; then
+    for k in ${model_numbers[@]}
+    do
+        echo "model ${k}" >> ${filname}
+        mkdir $base/model$k/${folder_name}
+        touch ${base}/model${k}/${folder_name}/0_1_se4.h5
+        
+        python3 eval_supervised_astrivis.py \
+        --config=config/${config} \
+        --s="model${k}/mesh_transformed_0.ply" \
+        --t="model${k}/mesh_transformed_1.ply" \
+        --s_feats="model${k}/mesh_transformed_0_fcgf.npz" \
+        --t_feats="model${k}/mesh_transformed_1_fcgf.npz" \
+        --source_trans="model${k}/mesh_transformed_0_se4.h5" \
+        --target_trans="model${k}/mesh_transformed_1_se4.h5" \
+        --matches="model${k}/0_1.npz" \
+        --output="model${k}/${folder_name}/0_1.ply" \
+        --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
+        --intermediate_output_folder="model${k}/${folder_name}/" \
+        --base=${base} \
+        --print_keypoints >> ${filname}
+        
+        if [ "$?" != "1" ]; then
+        python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
+        --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
+        --part2="${base}/model${k}/mesh_transformed_1_se4.h5" \
+        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filname}
+        
+        python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
+        --input1="${base}/model${k}/${folder_name}/0_1.ply" \
+        --input2="${base}/model${k}/mesh_transformed_1.ply" \
+        --matches="${base}/model${k}/0_1.npz" >> ${filname}
+        fi
+    done
+fi
