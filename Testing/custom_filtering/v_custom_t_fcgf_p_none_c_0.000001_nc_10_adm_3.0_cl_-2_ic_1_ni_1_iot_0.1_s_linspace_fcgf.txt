@@ -218,3 +218,141 @@ model 002
 number of centers 10
 average distance multiplier 3.0
 inlier outlier thresholds 0.5
+Actual rotation :  [[-0.87462848 -0.4705988  -0.11645507]
+ [ 0.24256895 -0.63279443  0.73534448]
+ [-0.41974435  0.61490485  0.66761269]]
+Actual translation :  [ 1.20593496  0.83257865 -0.4390415 ]
+Predicted rotation :  [[ 0.73970889  0.1146337   0.66309122]
+ [ 0.41387133  0.69947735 -0.58261663]
+ [-0.53060474  0.70540099  0.46996591]]
+Predicted translation :  [-0.05575556  0.05026262  0.05900154]
+Relative Rotation Error :  2.480436917555621
+Relative Translation Error :  1.5658634124871103
+RMSE :  0.13702401874706435
+IR :  0.1268800180934072
+Full Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  96  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.0192
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  92  out of  3645
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.0252400548696845
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.005595810226350971
+average distance multiplier :  3.0
+number of unique source landmarks :  1521
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  134
+number of true landmark correspondences returned from custom filtering :  1  out of  134
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.007462686567164179
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 14.342 
+full-AccS: 0.354 
+full-AccR: 2.514 
+full-outlier: 15.049 
+vis-epe: 16.345 
+vis-AccS: 0.400 
+vis-AccR: 3.312 
+vis-outlier: 23.468 
+occ-epe: 10.759 
+occ-AccS: 0.272 
+occ-AccR: 1.089 
+occ-outlier: 0.000 
+
+Actual rotation :  [[ 0.77604838  0.62888338 -0.04748266]
+ [ 0.31818631 -0.32541498  0.8904283 ]
+ [ 0.54452399 -0.70612378 -0.45263985]]
+Actual translation :  [-0.19578607  0.27815696  0.64648693]
+Predicted rotation :  [[ 0.8845477   0.44558078 -0.13796124]
+ [ 0.22147901 -0.1409075   0.96493126]
+ [ 0.41051496 -0.88408316 -0.22332613]]
+Predicted translation :  [-0.02548627 -0.06734779  0.08525776]
+Relative Rotation Error :  0.3213152802680658
+Relative Translation Error :  0.680700911491616
+RMSE :  0.09650237560036157
+IR :  0.12637595258255716
+Partial Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  4222  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.8444
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  3928  out of  4501
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.8726949566762942
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.005692445726739272
+average distance multiplier :  3.0
+number of unique source landmarks :  1592
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 19.382 
+full-AccS: 0.526 
+full-AccR: 2.432 
+full-outlier: 80.843 
+vis-epe: 19.982 
+vis-AccS: 0.626 
+vis-AccR: 3.146 
+vis-outlier: 79.723 
+occ-epe: 17.722 
+occ-AccS: 0.248 
+occ-AccR: 0.454 
+occ-outlier: 83.946 
+
+Actual rotation :  [[-0.11586111  0.98316587 -0.14128365]
+ [-0.23037909  0.11176292  0.96666154]
+ [ 0.96617891  0.14454728  0.21355188]]
+Actual translation :  [ 0.37739668  0.30691966 -0.00802446]
+Predicted rotation :  [[ 9.99999851e-01  1.06362098e-04  3.44980234e-04]
+ [-1.06209481e-04  1.00000004e+00 -2.79993323e-04]
+ [-3.44951984e-04  2.79998281e-04  9.99999902e-01]]
+Predicted translation :  [-4.73443823e-05 -3.69205053e-04 -9.89448558e-04]
+Relative Rotation Error :  1.9774245502245213
+Relative Translation Error :  0.4867647574567371
+RMSE :  0.14792599912426033
+IR :  0.06593647316538882
+model 042
+number of centers 10
+average distance multiplier 3.0
+inlier outlier thresholds 0.5

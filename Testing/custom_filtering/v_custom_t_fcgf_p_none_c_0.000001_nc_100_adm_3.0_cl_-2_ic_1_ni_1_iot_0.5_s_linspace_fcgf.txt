@@ -1,0 +1,264 @@
+Full Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2829  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5658
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2770  out of  3393
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.8163866784556439
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.0065068492552265355
+average distance multiplier :  3.0
+number of unique source landmarks :  1564
+number of centers :  100
+sampling :  linspace
+number of neighborhood centers :  100
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.5
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 34.991 
+full-AccS: 0.187 
+full-AccR: 0.797 
+full-outlier: 80.875 
+vis-epe: 34.991 
+vis-AccS: 0.187 
+vis-AccR: 0.797 
+vis-outlier: 80.875 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[ 9.99999856e-01  1.02636452e-04  3.24837111e-04]
+ [-1.02488148e-04  1.00000004e+00 -2.76651417e-04]
+ [-3.24806633e-04  2.76659718e-04  9.99999907e-01]]
+Predicted translation :  [-4.28550410e-05 -3.54530087e-04 -9.90909839e-04]
+Relative Rotation Error :  2.564203051370794
+Relative Translation Error :  1.5653722033272182
+RMSE :  0.1964642151633364
+IR :  0.029840623940318754
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  993  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.1986
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  947  out of  3083
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.30716834252351605
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.005991117802262292
+average distance multiplier :  3.0
+number of unique source landmarks :  1538
+number of centers :  100
+sampling :  linspace
+number of neighborhood centers :  100
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.5
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 17.855 
+full-AccS: 0.000 
+full-AccR: 0.546 
+full-outlier: 24.181 
+vis-epe: 20.884 
+vis-AccS: 0.000 
+vis-AccR: 1.176 
+vis-outlier: 43.736 
+occ-epe: 15.228 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 7.219 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[ 9.99999852e-01  4.01745357e-05  3.40912475e-04]
+ [-4.00202911e-05  1.00000004e+00 -2.82195555e-04]
+ [-3.40871305e-04  2.82219491e-04  9.99999901e-01]]
+Predicted translation :  [-8.76705302e-05 -3.21471310e-04 -9.03412257e-04]
+Relative Rotation Error :  2.183718548540412
+Relative Translation Error :  2.006734690238499
+RMSE :  0.1502345355602765
+IR :  0.0
+Full Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2143  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4286
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2091  out of  4479
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.46684527796383124
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.006261715962784349
+average distance multiplier :  3.0
+number of unique source landmarks :  1863
+number of centers :  100
+sampling :  linspace
+number of neighborhood centers :  100
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.5
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 32.717 
+full-AccS: 0.305 
+full-AccR: 0.982 
+full-outlier: 60.508 
+vis-epe: 33.155 
+vis-AccS: 0.302 
+vis-AccR: 0.978 
+vis-outlier: 63.011 
+occ-epe: 23.878 
+occ-AccS: 0.358 
+occ-AccR: 1.075 
+occ-outlier: 10.036 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[ 9.99999869e-01  7.17837191e-05  2.56453254e-04]
+ [-7.16527230e-05  1.00000004e+00 -2.84412449e-04]
+ [-2.56417064e-04  2.84431322e-04  9.99999920e-01]]
+Predicted translation :  [-9.33999083e-05 -3.26487574e-04 -9.23518768e-04]
+Relative Rotation Error :  3.109948906965365
+Relative Translation Error :  1.9005653968466873
+RMSE :  0.1777199736092445
+IR :  0.03844580777096115
+Partial Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  1904  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3808
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  1889  out of  3767
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.501460047783382
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.005981822310807224
+average distance multiplier :  3.0
+number of unique source landmarks :  1649
+number of centers :  100
+sampling :  linspace
+number of neighborhood centers :  100
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.5
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 19.114 
+full-AccS: 0.501 
+full-AccR: 3.838 
+full-outlier: 65.522 
+vis-epe: 22.285 
+vis-AccS: 0.284 
+vis-AccR: 1.276 
+vis-outlier: 77.334 
+occ-epe: 16.508 
+occ-AccS: 0.680 
+occ-AccR: 5.943 
+occ-outlier: 55.817 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[ 9.99999775e-01  4.40042165e-05  4.23986799e-04]
+ [-4.38387111e-05  1.00000004e+00 -2.75327211e-04]
+ [-4.23949998e-04  2.75344748e-04  9.99999879e-01]]
+Predicted translation :  [-0.00011676 -0.00039019 -0.00086326]
+Relative Rotation Error :  1.9082993380466626
+Relative Translation Error :  1.06441109058799
+RMSE :  0.16663906392800387
+IR :  0.07014925373134329
