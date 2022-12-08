@@ -1,5 +1,4 @@
-# output saved in the dataset folder, not TestData
-base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData'
+base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
 config=LNDP_fcgf.yaml
 # config=LNDP.yaml
@@ -36,14 +35,14 @@ do
 					
 			python3 eval_supervised_astrivis.py \
 			--config=config/${config} \
-			--s="/model${k}/transformed/${file_number1}.ply" \
-			--t="/model${k}/sampled/${file_number2}.ply" \
-			--source_trans="/model${k}/transformed/${file_number1}_se4.h5" \
+			--s="model${k}/transformed/${file_number1}.ply" \
+			--t="model${k}/sampled/${file_number2}.ply" \
+			--source_trans="model${k}/transformed/${file_number1}_se4.h5" \
 			--target_trans="identity.h5" \
-			--matches="/model${k}/matches/${file_number1}_${file_number2}.npz" \
-			--output="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
-			--output_trans="/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
-			--intermediate_output_folder="/model${k}/${folder_name}/${file_number1}_${file_number2}/" \
+			--matches="model${k}/matches/${file_number1}_${file_number2}.npz" \
+			--output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
+			--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
+			--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 			--base=${base} \
 			--print_keypoints  >> ${filename}
 			
