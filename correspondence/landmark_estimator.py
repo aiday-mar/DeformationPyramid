@@ -860,7 +860,7 @@ class Landmark_Model():
                         
                     ldmk_s_np = np.array(ldmk_s.cpu())
                     number_points = ldmk_s_np.shape[0]
-                    print('number of landmarks : ', number_points)
+                    print('number of landmarks before custom filtering : ', number_points)
                     ldmk_t_np = np.array(ldmk_t.cpu())
 
                     ldmk_s_pcd = o3d.geometry.PointCloud()
@@ -875,6 +875,7 @@ class Landmark_Model():
                     ldmk_t_pcd = o3d.geometry.PointCloud()
                     ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/ldmk_t_pcd.ply', ldmk_t_pcd)
+                    
                 else:
                     ldmk_s_np = np.array(ldmk_s.cpu())
                     ldmk_s_pcd = o3d.geometry.PointCloud()
@@ -1218,6 +1219,7 @@ class Landmark_Model():
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             
             if edge_detection:
+                
                 # Find all initial source pcd edge points
                 src_pcd_points = data['src_pcd_list'][0]
                 n_src_points = src_pcd_points.shape[0]
@@ -1253,10 +1255,93 @@ class Landmark_Model():
                     min_dist = dists_to_edge.min()
                     if min_dist < 0.1:
                         mask[i] = True
-
+                
                 ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
+                if matches_path:
+                    mask = np.array([])
+                    matches = np.load(self.path + matches_path)
+                    correspondences = np.array(matches['matches'])
+                    ind_src = correspondences[:, 0]
+                    ind_tgt = correspondences[:, 1]
+                    
+                    src_pcd_points = data['src_pcd_list'][0]
+                    src_pcd_points = np.array(src_pcd_points.cpu())
+                    tgt_pcd_points = data['tgt_pcd_list'][0]
+                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+                    
+                    matches_source = src_pcd_points[ind_src]
+                    matches_target = tgt_pcd_points[ind_tgt]
+                    
+                    for i in range(ldmk_s_np[mask].shape[0]):
+                        s_ldmk = np.array(ldmk_s_np[mask][i])
+                        t_ldmk = np.array(ldmk_t_np[mask][i])
+                        distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                        distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < gt_thr)[0])
+                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < gt_thr)[0])
+                        if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                            mask = np.append(mask, True)
+                        else:
+                            mask = np.append(mask, False)
+                    
+                    edge_filtering_true_correspondences_mask = mask.astype(bool)
+                    n_true_custom_filtering_correspondences = int(edge_filtering_true_correspondences_mask.sum())
+                    n_total_custom_filtering_correspondences = edge_filtering_true_correspondences_mask.shape[0]
+                    print('number of true landmark correspondences returned from edge filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
+                    
+                    if self.feature_extractor == 'kpfcn':
+                        if n_total_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                        else:
+                            print('fraction of true landmark correspondences returned from edge filtering : ', 0 )
+                    elif self.feature_extractor == 'fcgf':
+                        if n_total_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                        else:
+                            print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', 0 )
+
+                    final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
+                    final_custom_filtering_true_correspondences_mask[mask] = custom_filtering_true_correspondences_mask
+                    custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
+
+                    if self.feature_extractor == 'kpfcn':
+                        if n_true_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from edge filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                        else:
+                            print('fraction of true landmark correspondences returned from edge filtering also returned from Lepard : ', 0)
+                    elif self.feature_extractor == 'fcgf':
+                        if n_true_custom_filtering_correspondences != 0:
+                            print('fraction of true landmark correspondences returned from FCGF based edge filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
+                        else:
+                            print('fraction of true landmark correspondences returned from FCGF based edge filtering also returned from Lepard : ', 0)
+                    
+                if intermediate_output_folder:
+                    if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
+                        os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
+                    
+                    ldmk_s_pcd = o3d.geometry.PointCloud()
+                    ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
+
+                    rot = data['batched_rot'][0]
+                    ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
+                    rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
+
+                    ldmk_t_pcd = o3d.geometry.PointCloud()
+                    ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_t_pcd)
+
+                    edge_filtered_total_points = np.concatenate((rotated_ldmk_s_np, ldmk_t_np), axis = 0)
+                    number_ldmks_after_edge_filtering = rotated_ldmk_s_np.shape[0]
+                    edge_filtered_correspondences = np.array([[i, i + number_ldmks_after_edge_filtering] for i in range(0, number_ldmks_after_edge_filtering)])
+                    edge_filtering_line_set = o3d.geometry.LineSet()
+                    edge_filtering_line_set.points=o3d.utility.Vector3dVector(edge_filtered_total_points)
+                    edge_filtering_line_set.lines =o3d.utility.Vector2iVector(edge_filtered_correspondences)
+                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
+                    
                 data_mod = {}
                 vec_6d = data['vec_6d'][0][mask]
                 data_mod['vec_6d'] = vec_6d[None, :]
