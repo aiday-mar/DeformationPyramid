@@ -61,7 +61,9 @@ for line in Lines:
         i = confidence_thresholds.index(confidence_threshold)
         final_matrices[current_model][current_data_type][type]['true'][i] = true
         final_matrices[current_model][current_data_type][type]['total'][i] = total - true
-        
+    
+print(final_matrices)
+
 for data_type in data_types:
     plt.clf()
     plt.title('Varying the confidence threshold - graph - ' + data_type + ' -  ' + title, y=1.0)

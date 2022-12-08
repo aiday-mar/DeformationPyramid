@@ -48,6 +48,7 @@ if [ $type == "kpfcn" ]; then
                 --confidence_threshold=${confidence_threshold} \
                 --print_keypoints >> ${file}
                 
+                if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
                 --part1="TestData/FullNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
                 --part2="TestData/FullNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
@@ -56,6 +57,7 @@ if [ $type == "kpfcn" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                 --input1="TestData/FullNonDeformed/model${k}/${folder}/result.ply" \
                 --input2="TestData/FullNonDeformed/model${k}/mesh_transformed_1.ply" >> ${file}
+                fi
 
                 echo 'Partial Deformed' >> ${file}
                 python3 eval_supervised_astrivis.py \
@@ -72,6 +74,7 @@ if [ $type == "kpfcn" ]; then
                 --confidence_threshold=${confidence_threshold} \
                 --print_keypoints >> ${file}
                 
+                if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
                 --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
                 --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \ 
@@ -86,6 +89,7 @@ if [ $type == "kpfcn" ]; then
                 --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
                 --save_final_path="TestData/PartialDeformed/model${k}/${folder}/final.ply" \
                 --save_destination_path="TestData/PartialDeformed/model${k}/${folder}/destination.ply" >> ${file}
+                fi
 
                 echo 'Full Deformed' >> ${file}
                 python3 eval_supervised_astrivis.py \
@@ -102,6 +106,7 @@ if [ $type == "kpfcn" ]; then
                 --confidence_threshold=${confidence_threshold} \
                 --print_keypoints >> ${file}
                 
+                if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
                 --part1="TestData/FullDeformed/model${k}/020_se4.h5" \
                 --part2="TestData/FullDeformed/model${k}/104_se4.h5" \
@@ -113,6 +118,7 @@ if [ $type == "kpfcn" ]; then
                 --matches="TestData/FullDeformed/model${k}/020_104.npz" \
                 --save_final_path="TestData/FullDeformed/model${k}/${folder}/final.ply" \
                 --save_destination_path="TestData/FullDeformed/model${k}/${folder}/destination.ply" >> ${file}
+                fi
 
                 echo 'Partial Non Deformed' >> ${file}
                 python3 eval_supervised_astrivis.py \
@@ -129,6 +135,7 @@ if [ $type == "kpfcn" ]; then
                 --confidence_threshold=${confidence_threshold} \
                 --print_keypoints >> ${file}
 
+                if [ "$?" != "1" ]; then
                 python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
                 --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
                 --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
@@ -141,6 +148,7 @@ if [ $type == "kpfcn" ]; then
                 --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
                 --save_final_path="TestData/PartialNonDeformed/model${k}/${folder}/final.ply" \
                 --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder}/destination.ply" >> ${file}
+                fi
         done
         done
 fi
