@@ -1,0 +1,220 @@
+Full Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2829  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5658
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2770  out of  3393
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.8163866784556439
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.0065068492552265355
+average distance multiplier :  3.0
+number of unique source landmarks :  1564
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  123
+number of true landmark correspondences returned from custom filtering :  98  out of  123
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.7967479674796748
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 19.340 
+full-AccS: 0.305 
+full-AccR: 1.322 
+full-outlier: 35.080 
+vis-epe: 19.340 
+vis-AccS: 0.305 
+vis-AccR: 1.322 
+vis-outlier: 35.080 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[-0.32063005 -0.60018613  0.73278455]
+ [-0.90538655  0.42152627 -0.05090166]
+ [-0.27833736 -0.67977379 -0.67855432]]
+Predicted translation :  [ 0.01660299 -0.02959106  0.01581075]
+Relative Rotation Error :  0.34205397605314697
+Relative Translation Error :  1.551464929045535
+RMSE :  0.04119884045906578
+IR :  0.7521193624957613
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  993  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.1986
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  947  out of  3083
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.30716834252351605
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.005991117802262292
+average distance multiplier :  3.0
+number of unique source landmarks :  1538
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  122
+number of true landmark correspondences returned from custom filtering :  29  out of  122
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.23770491803278687
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 20.456 
+full-AccS: 0.000 
+full-AccR: 0.557 
+full-outlier: 46.082 
+vis-epe: 19.558 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 39.869 
+occ-epe: 21.234 
+occ-AccS: 0.000 
+occ-AccR: 1.040 
+occ-outlier: 51.471 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[ 0.71320419 -0.23863576 -0.65908481]
+ [ 0.66463105 -0.06853891  0.74402163]
+ [-0.222723   -0.9686876   0.10972243]]
+Predicted translation :  [-0.01438723  0.10966593  0.0322442 ]
+Relative Rotation Error :  1.4051184051979564
+Relative Translation Error :  2.0379726647610092
+RMSE :  0.20277047806425175
+IR :  0.05472689075630252
+Full Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2143  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4286
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2091  out of  4479
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.46684527796383124
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.006261715962784349
+average distance multiplier :  3.0
+number of unique source landmarks :  1863
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  51
+number of true landmark correspondences returned from custom filtering :  13  out of  51
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.2549019607843137
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 25.111 
+full-AccS: 0.034 
+full-AccR: 0.152 
+full-outlier: 39.492 
+vis-epe: 25.594 
+vis-AccS: 0.000 
+vis-AccR: 0.071 
+vis-outlier: 41.450 
+occ-epe: 15.378 
+occ-AccS: 0.717 
+occ-AccR: 1.792 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.15851221 -0.47678756 -0.86460848]
+ [ 0.38914803 -0.83496562  0.389097  ]
+ [-0.90743474 -0.27478408  0.31789297]]
+Predicted translation :  [ 0.19950217  0.07075557 -0.06952247]
+Relative Rotation Error :  1.0010727652587432
+Relative Translation Error :  1.745949930955796
+RMSE :  0.13494449038120201
+IR :  0.08957055214723926
+Partial Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  1904  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3808
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  1889  out of  3767
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.501460047783382
+Custom filtering is used
+number of landmarks :  5000
+average distance :  0.005981822310807224
+average distance multiplier :  3.0
+number of unique source landmarks :  1649
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  128
+number of true landmark correspondences returned from custom filtering :  40  out of  128
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.3125
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 14.553 
+full-AccS: 3.667 
+full-AccR: 13.092 
+full-outlier: 52.441 
+vis-epe: 16.994 
+vis-AccS: 0.000 
+vis-AccR: 0.024 
+vis-outlier: 76.625 
+occ-epe: 12.548 
+occ-AccS: 6.681 
+occ-AccR: 23.830 
+occ-outlier: 32.569 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[ 0.54321159  0.62459983 -0.56106692]
+ [ 0.54642491  0.24436051  0.80106656]
+ [ 0.63744861 -0.74172958 -0.20855754]]
+Predicted translation :  [-0.11794228 -0.04772849  0.15441799]
+Relative Rotation Error :  0.650835137862172
+Relative Translation Error :  1.2034921158575207
+RMSE :  0.16616767576143618
+IR :  0.23198294243070364
+model 002
+number of centers 10
+average distance multiplier 3.0
+inlier outlier thresholds 0.5

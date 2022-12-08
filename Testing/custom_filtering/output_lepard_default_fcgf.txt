@@ -1,0 +1,162 @@
+Lepard
+model 002
+Full Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2829  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5658
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2770  out of  3393
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.8163866784556439
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 21.355 
+full-AccS: 0.000 
+full-AccR: 0.424 
+full-outlier: 41.658 
+vis-epe: 21.355 
+vis-AccS: 0.000 
+vis-AccR: 0.424 
+vis-outlier: 41.658 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[-0.49353077 -0.53666887  0.68440762]
+ [-0.74114389  0.671298   -0.00805444]
+ [-0.45511883 -0.51121964 -0.72905518]]
+Predicted translation :  [-0.0327859   0.00974     0.02261871]
+Relative Rotation Error :  0.1173742450360709
+Relative Translation Error :  1.5636750012606777
+RMSE :  0.06025729138012168
+IR :  0.5627331298745337
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  993  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.1986
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  947  out of  3083
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.30716834252351605
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 13.928 
+full-AccS: 0.021 
+full-AccR: 2.605 
+full-outlier: 13.561 
+vis-epe: 17.385 
+vis-AccS: 0.045 
+vis-AccR: 2.081 
+vis-outlier: 29.195 
+occ-epe: 10.929 
+occ-AccS: 0.000 
+occ-AccR: 3.060 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[-0.4557239   0.21433342 -0.86393112]
+ [ 0.85436334  0.37765882 -0.35698321]
+ [ 0.24975778 -0.90079694 -0.35522677]]
+Predicted translation :  [-0.01740551 -0.05514018  0.01942039]
+Relative Rotation Error :  0.24495921386291328
+Relative Translation Error :  2.0142283843718007
+RMSE :  0.09866048002593124
+IR :  0.06901260504201681
+Full Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  2143  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4286
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2091  out of  4479
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.46684527796383124
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 18.977 
+full-AccS: 0.593 
+full-AccR: 3.353 
+full-outlier: 21.473 
+vis-epe: 19.615 
+vis-AccS: 0.373 
+vis-AccR: 2.275 
+vis-outlier: 22.538 
+occ-epe: 6.129 
+occ-AccS: 5.018 
+occ-AccR: 25.090 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.53601315 -0.16741199 -0.82744358]
+ [ 0.52703821 -0.83203143 -0.1730721 ]
+ [-0.65948483 -0.52886337  0.53421266]]
+Predicted translation :  [ 0.05551747  0.03808407 -0.01935842]
+Relative Rotation Error :  0.4444814656382539
+Relative Translation Error :  1.8473737750478183
+RMSE :  0.05219725515090106
+IR :  0.667280163599182
+Partial Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.000001
+number of true landmarks correspondences returned from FCGF based Lepard :  1904  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3808
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  1889  out of  3767
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.501460047783382
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 11.027 
+full-AccS: 0.448 
+full-AccR: 9.360 
+full-outlier: 28.049 
+vis-epe: 15.614 
+vis-AccS: 0.000 
+vis-AccR: 0.520 
+vis-outlier: 62.184 
+occ-epe: 7.258 
+occ-AccS: 0.816 
+occ-AccR: 16.625 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[ 0.1055958   0.72312695 -0.68259582]
+ [ 0.10036758  0.67517766  0.73079501]
+ [ 0.98933095 -0.14567932 -0.0012825 ]]
+Predicted translation :  [ 0.02233963  0.02860191 -0.04459702]
+Relative Rotation Error :  0.4227108473671212
+Relative Translation Error :  1.0447776875425276
+RMSE :  0.0653638687425378
+IR :  0.3718550106609808

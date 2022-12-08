@@ -1,0 +1,160 @@
+Full Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.1
+number of true landmarks correspondences returned from FCGF based Lepard :  3  out of  3
+fraction of true landmark correspondences returned from FCGF based Lepard :  1.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks :  3
+average distance :  0.018441197462379932
+average distance multiplier :  3.0
+number of unique source landmarks :  3
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 24.766 
+full-AccS: 0.349 
+full-AccR: 1.989 
+full-outlier: 88.172 
+vis-epe: 24.766 
+vis-AccS: 0.349 
+vis-AccR: 1.989 
+vis-outlier: 88.172 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.69578084  0.62399956  0.35568745]
+ [ 0.66485052  0.37215059  0.64767101]
+ [ 0.27177713  0.68711606 -0.67380168]]
+Actual translation :  [ 0.44784053 -0.19352481 -0.1776428 ]
+Predicted rotation :  [[ 9.99999864e-01  9.80876524e-05  2.88620678e-04]
+ [-9.79963362e-05  1.00000010e+00 -2.65849795e-04]
+ [-2.88607021e-04  2.65851733e-04  9.99999975e-01]]
+Predicted translation :  [-4.14371514e-05 -3.35167198e-04 -9.81550044e-04]
+Relative Rotation Error :  3.0906069925767823
+Relative Translation Error :  0.5187771128982623
+RMSE :  0.13520962355758204
+IR :  0.07745987438939288
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.1
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Full Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.1
+number of true landmarks correspondences returned from FCGF based Lepard :  2  out of  2
+fraction of true landmark correspondences returned from FCGF based Lepard :  1.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks :  2
+average distance :  0.03073722869157791
+average distance multiplier :  3.0
+number of unique source landmarks :  2
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  0
+number of true landmark correspondences returned from custom filtering :  0  out of  0
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 21.256 
+full-AccS: 0.661 
+full-AccR: 2.399 
+full-outlier: 16.516 
+vis-epe: 21.503 
+vis-AccS: 0.682 
+vis-AccR: 2.476 
+vis-outlier: 17.043 
+occ-epe: 13.523 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 0.000 
+
+Actual rotation :  [[ 0.73275637  0.1374364   0.66646781]
+ [ 0.60033779 -0.59170884 -0.53802899]
+ [ 0.32041012  0.79434998 -0.51608669]]
+Actual translation :  [0.26170502 1.10936721 0.50044207]
+Predicted rotation :  [[ 9.99999868e-01  6.21554669e-05  2.66499102e-04]
+ [-6.20214868e-05  1.00000004e+00 -2.82177332e-04]
+ [-2.66459196e-04  2.82198895e-04  9.99999918e-01]]
+Predicted translation :  [-8.79018294e-05 -3.25641006e-04 -9.24399831e-04]
+Relative Rotation Error :  2.3285615112488083
+Relative Translation Error :  1.2455208116092062
+RMSE :  0.12031256374596346
+IR :  0.08688172043010753
+Partial Non Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold in inference :  0.1
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+model 207
+number of centers 100
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
