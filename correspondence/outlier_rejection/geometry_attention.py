@@ -93,6 +93,7 @@ class CorrespondenceAttentionLayer(nn.Module):
 
 
         a =  a / qw.size(3) **0.5
+        print('a.shape : ', a.shape)
         a = torch.softmax(a, dim=2)
         o = torch.einsum("nlsh,nshd->nlhd", a, vw).contiguous()  # [N, L, (H, D)]
         message = self.merge(o.view(bs, -1, self.nhead*self.dim))  # [N, L, C]

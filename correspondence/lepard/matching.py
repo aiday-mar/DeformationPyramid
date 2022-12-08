@@ -74,7 +74,7 @@ class Matching(nn.Module):
         
         mask = conf_matrix > thr
         index = (mask==True).nonzero()
-        n_values = 6000
+        n_values = 5000
         if index.shape[0] > n_values:
             # recompute mask, take only highest 10000 values
             conf_matrix_val = copy.deepcopy(conf_matrix[0]).cpu().numpy()

@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
+# TODO: Why does the number of samples not affect the final RMSE?
+
 # feature_extractor='kpfcn'
 feature_extractor='fcgf'
 
