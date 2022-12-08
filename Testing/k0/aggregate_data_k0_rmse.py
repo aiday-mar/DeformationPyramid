@@ -48,7 +48,7 @@ for data_type in data_types:
     plt.clf()
     for model in models:
         k0_pos = range(len(k0_list))
-        plt.plot(k0_pos, final_matrices[model][data_type]['rmse'], color='r')
+        plt.plot(k0_pos, final_matrices[model][data_type]['rmse'])
         plt.xticks(k0_pos, k0_list, rotation=90)
     
     if feature_extractor == 'fcgf':
@@ -58,4 +58,5 @@ for data_type in data_types:
         
     plt.ylabel('RMSE')
     plt.xlabel('k0')
+    plt.legend(models)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
