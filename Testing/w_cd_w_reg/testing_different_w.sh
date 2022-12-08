@@ -1,14 +1,16 @@
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 preprocessing=none
 
 w_reg_list=(0 0.2 0.4 0.6 0.8 1)
 w_cd_list=(0 0.2 0.4 0.6 0.8 1)
-model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
+
+# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
+model_numbers=('002' '042' '085' '126' '167' '207')
 
 file="Testing/w_cd_w_reg/testing_w_${type}.txt"
 rm ${file} 
@@ -60,7 +62,6 @@ if [ $type == "kpfcn" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --input1="TestData/FullNonDeformed/model${k}/${folder}/result.ply" \
             --input2="TestData/FullNonDeformed/model${k}/mesh_transformed_1.ply" >> ${file}
-
             fi
 
             python3 eval_supervised_astrivis.py \
