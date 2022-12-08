@@ -91,7 +91,10 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.xlabel("Model number")
     plt.ylabel("Value")
     plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
-    plt.title(title)
+    if feature_extractor == 'fcgf':
+        plt.title(title + ' - ' + 'FCGF feature extractor')
+    elif feature_extractor == 'kpfcn':
+        plt.title(title + ' - ' + 'KPFCN feature extractor')
     if save_path:
         plt.savefig(save_path)
 
@@ -113,7 +116,10 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
     plt.xlabel("Model number")
     plt.ylabel(type)
     plt.legend(['Full Deformed', 'Partial Deformed', 'Full Non Deformed', 'Partial Non Deformed'])
-    plt.title(type)
+    if feature_extractor == 'fcgf':
+        plt.title(type + ' - ' + 'FCGF feature extractor')
+    elif feature_extractor == 'kpfcn':
+        plt.title(type + ' - ' + 'KPFCN feature extractor')
     
     if save_path:
         plt.savefig(save_path)
@@ -123,13 +129,13 @@ data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_pre_' + 
 plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
-plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2, save_path='Testing/all/full_non_deformed_all_metrics.png')
+plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed - all metrics', 2, save_path='Testing/all/full_non_deformed_all_metrics.png')
 
 data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed =True)
-plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics.png')
+plot_all_for_one_type(data_partial_deformed, 'Partial Deformed - all metrics', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics.png')
 
 data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_pre_' + preprocessing + '_' + feature_extractor + '.txt', deformed = False)
-plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4, save_path='Testing/all/partial_non_deformed_all_metrics.png')
+plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all metrics', 4, save_path='Testing/all/partial_non_deformed_all_metrics.png')
 
 # When the measure is fixed
 plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_rmse.png')
