@@ -100,16 +100,16 @@ def plot_across_types(type, number, partial1, partial2):
     plt.title(type)
 
 # When the type is fixed
-data_full_deformed = data_file('test_astrivis_full_deformed.txt', deformed =True)
+data_full_deformed = data_file('Testing/all/test_astrivis_full_deformed_fcgf_mutual_preprocessing.txt', deformed =True)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed', 1, '0', '1')
 
-data_full_non_deformed = data_file('test_astrivis_full_non_deformed.txt', deformed = False)
+data_full_non_deformed = data_file('Testing/all/test_astrivis_full_non_deformed_fcgf_mutual_preprocessing.txt', deformed = False)
 plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed', 2)
 
-data_partial_deformed = data_file('test_astrivis_partial_deformed.txt', deformed =True)
+data_partial_deformed = data_file('Testing/all/test_astrivis_partial_deformed_fcgf_mutual_preprocessing.txt', deformed =True)
 plot_all_for_one_type(data_partial_deformed, 'Partial Deformed', 3, '0', '1')
 
-data_partial_non_deformed = data_file('test_astrivis_partial_non_deformed.txt', deformed = False)
+data_partial_non_deformed = data_file('Testing/all/test_astrivis_partial_non_deformed_fcgf_mutual_preprocessing.txt', deformed = False)
 plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed', 4)
 
 # When the measure is fixed
