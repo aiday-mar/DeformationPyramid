@@ -309,7 +309,7 @@ class Landmark_Model():
                 if self.feature_extractor == 'kpfcn':
                     print('number of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
                     print('fraction of true landmark correspondences returned from Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
-                elif self.feature_extractor == 'kpfcn':
+                elif self.feature_extractor == 'fcgf':
                     print('number of true landmark correspondences returned from FCGF based Outlier Rejection : ', n_true_outlier_rejected_correspondences , ' out of ', n_total_outlier_rejected_correspondences)
                     print('fraction of true landmark correspondences returned from FCGF based Outlier Rejection : ', n_true_outlier_rejected_correspondences/n_total_outlier_rejected_correspondences if n_total_outlier_rejected_correspondences != 0 else 0)
 

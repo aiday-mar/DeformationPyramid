@@ -4,7 +4,8 @@ import numpy as np
 import copy
 
 # feature_extractor='kpfcn'
-feature_extractor='fcgf'
+feature_extractor='fcgf' # DONE
+
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'k0/'
