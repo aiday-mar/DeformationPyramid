@@ -58,5 +58,5 @@ for data_type in data_types:
         
     plt.ylabel('RMSE')
     plt.xlabel('k0')
-    plt.legend(models)
+    plt.legend(models, loc = "upper right")
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
