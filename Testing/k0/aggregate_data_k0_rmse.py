@@ -11,7 +11,7 @@ folder = 'k0/'
 file='testing_k0.txt'
 title = 'Varying k0 - RMSE - ' + feature_extractor
 
-k0_list=[-11 -10 -9 -8]
+k0_list=[-11, -10, -9, -8]
 models=['002', '042', '085', '126', '167', '207']
 shape = (len(k0_list),)
 
@@ -31,15 +31,20 @@ for line in Lines:
         current_model = re.findall(r'\b\d+\b',line)[0]
         if current_model not in models:
             current_model = None
+        else:
+            print(current_model)
             
     if 'Test - k0' in line:
         k0_val = int(re.findall('-?\d+', line)[1])
+        print(k0_val)
         
     if line[:-1] in data_types:
         current_data_type = line[:-1]
+        print(current_data_type)
         
     if 'RMSE' in line and current_model is not None:
         rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
+        print(rmse)
         i = k0_list.index(k0_val)
         final_matrices[current_model][current_data_type]['rmse'][i] = rmse
         
