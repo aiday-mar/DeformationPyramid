@@ -52,9 +52,10 @@ print('final_matrices : ', final_matrices)
 
 for data_type in data_types:
     plt.clf()
-    k0_pos = range(len(k0_list))
-    plt.clf()
-    plt.title(title)
-    plt.plot(k0_pos, final_matrices[data_type]['rmse'], color='r')
-    plt.xticks(k0_pos, k0_list, rotation=90)
+    for model in models:
+        k0_pos = range(len(k0_list))
+        plt.title(title)
+        plt.plot(k0_pos, final_matrices[model][data_type]['rmse'], color='r')
+        plt.xticks(k0_pos, k0_list, rotation=90)
+    
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
