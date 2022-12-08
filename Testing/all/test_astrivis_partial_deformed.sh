@@ -59,7 +59,7 @@ if [ $type == "kpfcn" ]; then
                 --initial_2="${base}/model${k}/transformed/${file_number2}_1.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
                 --part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
-                --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${file}
+                --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${filename}
 				fi
 				
 				# 1 -> 0
@@ -89,7 +89,7 @@ if [ $type == "kpfcn" ]; then
                 --initial_2="${base}/model${k}/transformed/${file_number2}_0.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
                 --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-                --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${file}
+                --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${filename}
 				fi
 			done
 		done
@@ -144,7 +144,7 @@ if [ $type == "fcgf" ]; then
                 --initial_2="${base}/model${k}/transformed/${file_number2}_1.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
                 --part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
-                --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${file}
+                --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${filename}
 				fi
 				
 				# 1 -> 0
@@ -176,7 +176,7 @@ if [ $type == "fcgf" ]; then
                 --initial_2="${base}/model${k}/transformed/${file_number2}_0.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
                 --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-                --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${file}
+                --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${filename}
 				fi
 			done
 		done
