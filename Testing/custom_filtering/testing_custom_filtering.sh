@@ -21,9 +21,13 @@ preprocessing=none
 # preprocessing=single
 # preprocessing=mutual
 
-confidence=0.1
-# confidence=0.05
-# confidence=0.01
+if [ "$type" == "fcgf" ] ; then
+    confidence=0.000001
+else
+    confidence=0.1
+    # confidence=0.05
+    # confidence=0.01
+fi
 
 coarse_level=-2
 # coarse_level=-3
