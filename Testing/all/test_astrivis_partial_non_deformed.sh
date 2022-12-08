@@ -58,7 +58,7 @@ if [ $type == "fcgf" ]; then
         --config=config/${config} \
         --s="model${k}/transformed/mesh_transformed_0.ply" \
         --t="model${k}/transformed/mesh_transformed_1.ply" \
-        --s_feats="model${k}/transformed/mesh_transformed_0_fgcf.npz" \
+        --s_feats="model${k}/transformed/mesh_transformed_0_fcgf.npz" \
         --t_feats="model${k}/transformed/mesh_transformed_1_fcgf.npz" \
         --source_trans="model${k}/transformed/mesh_transformed_0_se4.h5" \
         --target_trans="model${k}/transformed/mesh_transformed_1_se4.h5" \
