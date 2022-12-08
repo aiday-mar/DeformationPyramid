@@ -57,7 +57,7 @@ class Landmark_Model():
         self.device = device
         self.kpfcn_config = config['kpfcn_config']
 
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_detection = False):
         if base:
             self.path = base
         else:
@@ -1216,5 +1216,14 @@ class Landmark_Model():
                 inlier_conf = inlier_conf[final_indices]
                 match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
+            
+            if edge_detection:
+                # Find all initial source pcd edge points
+                src_pcd_points = data['src_pcd_list'][0]
                 
+                mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
+                initial_ldmk_s = np.array(ldmk_s.cpu())
+                for i in range(initial_ldmk_s.shape[0]):
+
+                 
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2

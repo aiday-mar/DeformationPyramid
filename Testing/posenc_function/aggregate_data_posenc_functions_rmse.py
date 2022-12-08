@@ -3,8 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
+# FCGF DONE
+# KPFCN TODO
+
 # feature_extractor='kpfcn'
-feature_extractor='fcgf' # DONE
+feature_extractor='fcgf'
 
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'

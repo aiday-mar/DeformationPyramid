@@ -16,7 +16,7 @@ folder_name=output_full_non_deformed_${type}
 if [ $type == "kpfcn" ]; then
     for k in ${model_numbers[@]}
     do
-        echo "model ${k}" >> ${filname}
+        echo "model ${k}" >> ${filename}
         mkdir $base/model$k/${folder_name}
         touch ${base}/model${k}/${folder_name}/0_1_se4.h5
         
@@ -31,18 +31,18 @@ if [ $type == "kpfcn" ]; then
         --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
         --intermediate_output_folder="model${k}/${folder_name}/" \
         --base=${base} \
-        --print_keypoints >> ${filname}
+        --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
         python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
         --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
         --part2="${base}/model${k}/mesh_transformed_1_se4.h5" \
-        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filname}
+        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filename}
         
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --input1="${base}/model${k}/${folder_name}/0_1.ply" \
         --input2="${base}/model${k}/mesh_transformed_1.ply" \
-        --matches="${base}/model${k}/0_1.npz" >> ${filname}
+        --matches="${base}/model${k}/0_1.npz" >> ${filename}
         fi
     done
 fi
@@ -50,7 +50,7 @@ fi
 if [ $type == "fcgf" ]; then
     for k in ${model_numbers[@]}
     do
-        echo "model ${k}" >> ${filname}
+        echo "model ${k}" >> ${filename}
         mkdir $base/model$k/${folder_name}
         touch ${base}/model${k}/${folder_name}/0_1_se4.h5
         
@@ -67,18 +67,18 @@ if [ $type == "fcgf" ]; then
         --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
         --intermediate_output_folder="model${k}/${folder_name}/" \
         --base=${base} \
-        --print_keypoints >> ${filname}
+        --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
         python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
         --part1="${base}/model${k}/mesh_transformed_0_se4.h5" \
         --part2="${base}/model${k}/mesh_transformed_1_se4.h5" \
-        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filname}
+        --pred="${base}/model${k}/${folder_name}/0_1_se4.h5" >> ${filename}
         
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --input1="${base}/model${k}/${folder_name}/0_1.ply" \
         --input2="${base}/model${k}/mesh_transformed_1.ply" \
-        --matches="${base}/model${k}/0_1.npz" >> ${filname}
+        --matches="${base}/model${k}/0_1.npz" >> ${filename}
         fi
     done
 fi

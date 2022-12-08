@@ -4,6 +4,8 @@ import numpy as np
 import copy
 
 # TODO: Why does the number of samples not affect the final RMSE?
+# FCGF DONE
+# KPFCN TODO
 
 # feature_extractor='kpfcn'
 feature_extractor='fcgf'

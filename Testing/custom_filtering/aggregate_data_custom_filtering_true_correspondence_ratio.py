@@ -1,7 +1,9 @@
 import re
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
+
+# FCGF TODO
+# KPFCN TODO
 
 class File:
     def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse, number_iterations, inlier_outlier_thr, sampling):

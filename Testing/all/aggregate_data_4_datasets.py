@@ -1,6 +1,9 @@
 import re
 import matplotlib.pyplot as plt
 
+# FCGF TODO
+# KPFCN TODO
+
 def data_file(file_path, deformed):
 
     file = open(file_path, 'r')
