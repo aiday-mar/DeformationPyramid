@@ -233,7 +233,8 @@ class Landmark_Model():
             vec_6d = data['vec_6d'][0]
 
             if not custom_filtering and reject_outliers:
-                vec_6d = vec_6d[inlier_conf > inlier_thr] 
+                vec_6d = vec_6d[inlier_conf > inlier_thr]
+                data['vec_6d'][0] = vec_6d
             
             var = inlier_conf > inlier_thr
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
@@ -1365,7 +1366,7 @@ class Landmark_Model():
         
                 inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
                 inlier_conf = inlier_conf[mask]
-                match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+                match_filtered = inlier_mask[0] [ inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
                  
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
