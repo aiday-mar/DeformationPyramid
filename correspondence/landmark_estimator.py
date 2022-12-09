@@ -1239,10 +1239,14 @@ class Landmark_Model():
                 min_distances = dists.min(axis = 1)
                 average_distance = np.average(min_distances)
                 neighbors = dists < 1.5 * average_distance
+                print('neighbors.shape : ', neighbors.shape)
                 n_neighbors = np.sum(neighbors, axis=1)
+                print('n_neighbors.shape : ', n_neighbors.shape)
                 initial_edge_point_indices = np.argwhere(n_neighbors < 4)
+                print('initial_edge_point_indices.shape : ', initial_edge_point_indices.shape)
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 initial_edge_points = np.array(initial_edge_points.cpu())
+                print('initial_edge_points.shape : ', initial_edge_points.shape)
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
                 ldmk_s_np = np.array(ldmk_s.cpu())
