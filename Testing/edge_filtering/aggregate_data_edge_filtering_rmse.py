@@ -19,6 +19,7 @@ file='testing_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '
 
 edge_filtering_list=['Edge filtering not used', 'Edge filtering used']
 models=['002', '042', '085', '126', '167', '207']
+
 shape = (len(edge_filtering_list),)
 
 sub_matrix={
@@ -69,6 +70,19 @@ for line in Lines:
         
 print('final_matrices : ', final_matrices)
 
+for data_type in data_types:
+    plt.clf()
+    rmse_no_edge_filtering = []
+    rmse_edge_filtering = []
+    
+    for model in models:
+        rmse_no_edge_filtering.append(final_matrices[model][data_type]['rmse'][0])
+        rmse_edge_filtering.append(final_matrices[model][data_type]['rmse'][1])
+    
+    plt.plot(models, rmse_no_edge_filtering)
+    plt.plot(models, rmse_edge_filtering)
+    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
+     
 '''
 for data_type in data_types:
     plt.clf()
