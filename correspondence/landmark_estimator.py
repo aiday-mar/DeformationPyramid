@@ -234,8 +234,8 @@ class Landmark_Model():
 
             if not custom_filtering and reject_outliers:
                 vec_6d = vec_6d[inlier_conf > inlier_thr]
-            
-            var = inlier_conf > inlier_thr
+                final_indices = inlier_conf > inlier_thr
+                
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
             if intermediate_output_folder and not custom_filtering:
@@ -1233,7 +1233,6 @@ class Landmark_Model():
                     print('difference.shape : ', difference.shape)
                     square_difference = difference ** 2
                     print('square_difference.shape : ', square_difference.shape)
-                    print('square_difference : ', square_difference)
                     square_difference = np.array(square_difference.cpu())
                     sum_by_row = np.sum(square_difference, axis=1)
                     print('sum_by_row.shape : ', sum_by_row.shape)
@@ -1344,22 +1343,15 @@ class Landmark_Model():
                     o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
                     
                 data_mod = {}
-                if not custom_filtering:
-                    print('mask.shape : ', mask.shape)
-                    print('data["vec_6d"][0].shape : ', data['vec_6d'][0])
-                    vec_6d_edge = data['vec_6d'][0][mask]
-                    data_mod['vec_6d'] = vec_6d_edge[None, :]
-                    vec_6d_mask_edge = data['vec_6d_mask'][0][mask]
-                    data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
-                    vec_6d_ind_edge = data['vec_6d_ind'][0][mask]
-                    data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]
-                else:
-                    vec_6d_edge = data['vec_6d'][0][final_indices][mask]
-                    data_mod['vec_6d'] = vec_6d_edge[None, :]
-                    vec_6d_mask_edge = data['vec_6d_mask'][0][final_indices][mask]
-                    data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
-                    vec_6d_ind_edge = data['vec_6d_ind'][0][final_indices][mask]
-                    data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]         
+                print('mask.shape : ', mask.shape)
+                print('data["vec_6d"][0].shape : ', data['vec_6d'][0].shape)
+
+                vec_6d_edge = data['vec_6d'][0][final_indices][mask]
+                data_mod['vec_6d'] = vec_6d_edge[None, :]
+                vec_6d_mask_edge = data['vec_6d_mask'][0][final_indices][mask]
+                data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
+                vec_6d_ind_edge = data['vec_6d_ind'][0][final_indices][mask]
+                data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]         
                 
                 data_mod['s_pcd'] = data['s_pcd']
                 data_mod['t_pcd'] = data['t_pcd']
