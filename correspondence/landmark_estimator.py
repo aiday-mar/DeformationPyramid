@@ -1316,21 +1316,6 @@ class Landmark_Model():
                         else:
                             print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', 0 )
 
-                    final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
-                    final_custom_filtering_true_correspondences_mask[gt_corr_mask] = custom_filtering_true_correspondences_mask
-                    custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
-
-                    if self.feature_extractor == 'kpfcn':
-                        if n_true_custom_filtering_correspondences != 0:
-                            print('fraction of true landmark correspondences returned from edge filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
-                        else:
-                            print('fraction of true landmark correspondences returned from edge filtering also returned from Lepard : ', 0)
-                    elif self.feature_extractor == 'fcgf':
-                        if n_true_custom_filtering_correspondences != 0:
-                            print('fraction of true landmark correspondences returned from FCGF based edge filtering also returned from Lepard : ', int(custom_and_lepard_true_correspondences_mask.sum())/n_true_custom_filtering_correspondences)
-                        else:
-                            print('fraction of true landmark correspondences returned from FCGF based edge filtering also returned from Lepard : ', 0)
-                    
                 if intermediate_output_folder:
                     if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
