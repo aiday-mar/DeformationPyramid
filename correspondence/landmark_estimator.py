@@ -1252,6 +1252,7 @@ class Landmark_Model():
                     ldmk_s_np_point = ldmk_s_np[i]
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
+                    print('min_dist : ', min_dist)
                     if min_dist < 0.01:
                         mask[i] = True
                                 
@@ -1305,18 +1306,22 @@ class Landmark_Model():
                     if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
                     
+                    initial_edge_points_pcd = o3d.geometry.PointCloud()
+                    initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_edge_points_pcd.ply', initial_edge_points_pcd)
+
                     ldmk_s_pcd = o3d.geometry.PointCloud()
                     ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
 
                     rot = data['batched_rot'][0]
                     ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd_rotated.ply', ldmk_s_pcd)
                     rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
 
                     ldmk_t_pcd = o3d.geometry.PointCloud()
                     ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_t_pcd)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_t_pcd.ply', ldmk_t_pcd)
 
                     edge_filtered_total_points = np.concatenate((rotated_ldmk_s_np, ldmk_t_np), axis = 0)
                     number_ldmks_after_edge_filtering = rotated_ldmk_s_np.shape[0]
