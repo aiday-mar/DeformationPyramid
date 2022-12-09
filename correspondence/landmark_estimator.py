@@ -1254,6 +1254,7 @@ class Landmark_Model():
                 print('initial_edge_point_indices : ', initial_edge_point_indices)
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 print('initial_edge_points : ', initial_edge_points)
+                initial_edge_points = np.array(initial_edge_points)
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
                 ldmk_s_np = np.array(ldmk_s.cpu())
