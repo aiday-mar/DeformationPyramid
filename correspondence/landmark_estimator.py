@@ -1264,7 +1264,7 @@ class Landmark_Model():
                     ldmk_s_np_point = ldmk_s_np[i]
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
-                    if min_dist < 0.1:
+                    if min_dist < 0.01:
                         mask[i] = True
                 
                 print('mask : ', mask)
@@ -1273,7 +1273,7 @@ class Landmark_Model():
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
                 if matches_path:
-                    gt_corr_mask = np.array([])
+                    gt_corr_mask = np.array([], dtype=bool)
                     matches = np.load(self.path + matches_path)
                     correspondences = np.array(matches['matches'])
                     ind_src = correspondences[:, 0]
