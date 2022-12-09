@@ -1306,6 +1306,7 @@ class Landmark_Model():
                     if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
                     
+                    print('initial_edge_points.shape : ', initial_edge_points.shape)
                     initial_edge_points_pcd = o3d.geometry.PointCloud()
                     initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_edge_points_pcd.ply', initial_edge_points_pcd)
