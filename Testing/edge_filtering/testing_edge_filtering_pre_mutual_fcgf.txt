@@ -56,5 +56,14 @@ fraction of true landmark correspondences returned from FCGF based Outlier Rejec
 n_src_points :  9520
 src_point.shape :  torch.Size([3])
 src_pcd_points.shape :  torch.Size([9520, 3])
+difference.shape :  torch.Size([9520, 3])
+square_difference.shape :  torch.Size([9520, 3])
+square_difference :  tensor([[0.0000e+00, 0.0000e+00, 0.0000e+00],
+        [6.9652e-06, 1.6143e-06, 4.0609e-06],
+        [2.3621e-05, 5.7179e-06, 1.4084e-05],
+        ...,
+        [3.9496e-02, 1.9074e-02, 2.2588e-03],
+        [3.8636e-02, 1.9738e-02, 2.1919e-03],
+        [1.3605e-02, 3.9022e-02, 1.4534e-03]], device='cuda:0')
 Partial Non Deformed
 Edge filtering not used
