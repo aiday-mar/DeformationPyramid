@@ -61,6 +61,7 @@ if [ $type == "kpfcn" ]; then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder}/destination.ply" >> ${file}
             fi
 
+            echo 'Partial Deformed' >> ${file}
             echo 'Edge filtering used' >> ${file}
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
             --config=config/${config} \
@@ -123,6 +124,7 @@ if [ $type == "kpfcn" ]; then
             --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder}/destination.ply" >> ${file}
             fi
 
+            echo 'Partial Non Deformed' >> ${file}
             echo 'Edge filtering used' >> ${file}
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
             --config=config/${config} \
@@ -205,6 +207,7 @@ if [ $type == "fcgf" ]; then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder}/destination.ply" >> ${file}
             fi
 
+            echo 'Partial Deformed' >> ${file}
             echo 'Edge filtering used' >> ${file}
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
             --config=config/${config} \
@@ -273,6 +276,7 @@ if [ $type == "fcgf" ]; then
             --save_destination_path="TestData/PartialNonDeformed/model${k}/${folder}/destination.ply" >> ${file}
             fi
 
+            echo 'Partial Non Deformed' >> ${file}
             echo 'Edge filtering used' >> ${file}
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
             --config=config/${config} \
