@@ -1271,7 +1271,6 @@ class Landmark_Model():
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
                 if matches_path:
-                    mask = np.array([])
                     matches = np.load(self.path + matches_path)
                     correspondences = np.array(matches['matches'])
                     ind_src = correspondences[:, 0]
