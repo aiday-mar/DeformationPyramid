@@ -1,11 +1,11 @@
 import re
 import matplotlib.pyplot as plt
 
-# FCGF TODO
+# FCGF DONE
 # KPFCN TODO
 
-feature_extractor='fcgf'
-# feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
 
 # preprocessing='none'
 preprocessing='mutual'
