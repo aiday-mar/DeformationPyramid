@@ -1342,12 +1342,12 @@ class Landmark_Model():
                     o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
                     
                 data_mod = {}
-                vec_6d = data['vec_6d'][0][mask]
-                data_mod['vec_6d'] = vec_6d[None, :]
-                vec_6d_mask = data['vec_6d_mask'][0][mask]
-                data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
-                vec_6d_ind = data['vec_6d_ind'][0][mask]
-                data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
+                vec_6d_edge = data['vec_6d'][0][mask]
+                data_mod['vec_6d'] = vec_6d_edge[None, :]
+                vec_6d_mask_edge = data['vec_6d_mask'][0][mask]
+                data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
+                vec_6d_ind_edge = data['vec_6d_ind'][0][mask]
+                data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]
                 
                 data_mod['s_pcd'] = data['s_pcd']
                 data_mod['t_pcd'] = data['t_pcd']
