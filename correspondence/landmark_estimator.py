@@ -1267,10 +1267,13 @@ class Landmark_Model():
                     if min_dist < 0.1:
                         mask[i] = True
                 
+                print('mask : ', mask)
+                
                 ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
                 if matches_path:
+                    gt_corr_mask = np.array([])
                     matches = np.load(self.path + matches_path)
                     correspondences = np.array(matches['matches'])
                     ind_src = correspondences[:, 0]
@@ -1292,11 +1295,12 @@ class Landmark_Model():
                         indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < gt_thr)[0])
                         indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < gt_thr)[0])
                         if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
-                            mask = np.append(mask, True)
+                            gt_corr_mask = np.append(gt_corr_mask, True)
                         else:
-                            mask = np.append(mask, False)
+                            gt_corr_mask = np.append(gt_corr_mask, False)
                     
-                    edge_filtering_true_correspondences_mask = mask.astype(bool)
+                    print('gt_corr_mask : ', gt_corr_mask)
+                    edge_filtering_true_correspondences_mask = gt_corr_mask.astype(bool)
                     n_true_custom_filtering_correspondences = int(edge_filtering_true_correspondences_mask.sum())
                     n_total_custom_filtering_correspondences = edge_filtering_true_correspondences_mask.shape[0]
                     print('number of true landmark correspondences returned from edge filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
@@ -1313,7 +1317,7 @@ class Landmark_Model():
                             print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', 0 )
 
                     final_custom_filtering_true_correspondences_mask = np.array([False for i in range(ldmk_s_np.shape[0])])
-                    final_custom_filtering_true_correspondences_mask[mask] = custom_filtering_true_correspondences_mask
+                    final_custom_filtering_true_correspondences_mask[gt_corr_mask] = custom_filtering_true_correspondences_mask
                     custom_and_lepard_true_correspondences_mask = final_custom_filtering_true_correspondences_mask & lepard_true_correspondences_mask
 
                     if self.feature_extractor == 'kpfcn':
