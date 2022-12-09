@@ -1232,7 +1232,10 @@ class Landmark_Model():
                     print('difference.shape : ', difference.shape)
                     square_difference = difference ** 2
                     print('square_difference.shape : ', square_difference.shape)
-                    dists[i, :] = np.sqrt(np.sum(square_difference, axis=1))
+                    print('square_difference : ', square_difference)
+                    sum_by_row = np.sum(square_difference, axis=1)
+                    print('sum_by_row.shape : ', sum_by_row.shape)
+                    dists[i, :] = np.sqrt(sum_by_row)
                 
                 for i in range(n_src_points):
                     dists[i][i] = float('inf')
