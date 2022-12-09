@@ -1,0 +1,38 @@
+model 002
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.1
+Before coarse_matching
+confidence threshold used in the matching :  0.1
+number of true landmarks correspondences returned from Lepard :  3  out of  55
+fraction of true landmark correspondences returned from Lepard :  0.05454545454545454
+number of true landmark correspondences returned from Outlier Rejection :  3  out of  45
+fraction of true landmark correspondences returned from Outlier Rejection :  0.06666666666666667
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+0/1: full-epe: 14.715 
+full-AccS: 0.273 
+full-AccR: 1.775 
+full-outlier: 12.290 
+vis-epe: 17.658 
+vis-AccS: 0.000 
+vis-AccR: 0.724 
+vis-outlier: 23.474 
+occ-epe: 12.162 
+occ-AccS: 0.510 
+occ-AccR: 2.687 
+occ-outlier: 2.589 
+
+RMSE :  0.11546246082477854
+IR :  0.1435924369747899
+Partial Deformed
+Edge filtering used
