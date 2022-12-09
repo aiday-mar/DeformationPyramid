@@ -48,7 +48,8 @@ if [ $type == "kpfcn" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
             --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \ 
-            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" \
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
             
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialDeformed/model${k}/${folder}/result.ply" \
@@ -81,7 +82,8 @@ if [ $type == "kpfcn" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
             --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \ 
-            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" \ 
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
             
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialDeformed/model${k}/${folder}/result.ply" \
@@ -113,7 +115,8 @@ if [ $type == "kpfcn" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
             --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
-            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" \ 
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
@@ -144,7 +147,8 @@ if [ $type == "kpfcn" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
             --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
-            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" \
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
@@ -194,7 +198,8 @@ if [ $type == "fcgf" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
             --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
-            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" \ 
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
             
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialDeformed/model${k}/${folder}/result.ply" \
@@ -230,7 +235,8 @@ if [ $type == "fcgf" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
             --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
-            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialDeformed/model${k}/${folder}/result_se4.h5" \
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
             
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialDeformed/model${k}/${folder}/result.ply" \
@@ -265,7 +271,8 @@ if [ $type == "fcgf" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
             --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
-            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" \
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
@@ -299,7 +306,8 @@ if [ $type == "fcgf" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
             --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
-            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" >> ${file}
+            --pred="TestData/PartialNonDeformed/model${k}/${folder}/result_se4.h5" \
+            --base="/home/aiday.kyzy/code/DeformationPyramid/" >> ${file}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
