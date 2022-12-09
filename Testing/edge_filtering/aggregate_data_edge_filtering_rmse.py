@@ -12,7 +12,7 @@ feature_extractor='fcgf'
 # preprocessing=none
 preprocessing='mutual'
 
-data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
+data_types=['Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'edge_filtering/'
 file='testing_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
