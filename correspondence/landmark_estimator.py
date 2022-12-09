@@ -70,7 +70,7 @@ class Landmark_Model():
         custom_filtering_true_correspondences_mask = None
         
         if self.feature_extractor == 'kpfcn':
-            folder_name = 'lepard'
+            folder_name = 'kpfcn'
         elif self.feature_extractor == 'fcgf':
             folder_name = 'fcgf'
         else:
