@@ -21,10 +21,10 @@ edge_filtering_list=['Edge filtering not used', 'Edge filtering used']
 models=['002', '042', '085', '126', '167', '207']
 shape = (len(edge_filtering_list),)
 
-sub_matrix={'Full Non Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}, 
-                'Full Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}, 
-                'Partial Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)},  
-                'Partial Non Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}}
+sub_matrix={
+    'Partial Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)},  
+    'Partial Non Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}
+}
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
 file_txt = open(base + folder + file, 'r')
