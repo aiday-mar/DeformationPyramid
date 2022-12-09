@@ -79,6 +79,8 @@ for data_type in data_types:
         rmse_no_edge_filtering.append(final_matrices[model][data_type]['rmse'][0])
         rmse_edge_filtering.append(final_matrices[model][data_type]['rmse'][1])
     
+    print(rmse_no_edge_filtering)
+    print(rmse_edge_filtering)
     plt.plot(models, rmse_no_edge_filtering)
     plt.plot(models, rmse_edge_filtering)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
