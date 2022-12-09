@@ -1222,42 +1222,27 @@ class Landmark_Model():
             
             if edge_filtering:
                 
-                # Find all initial source pcd edge points
                 src_pcd_points = data['src_pcd_list'][0]
                 n_src_points = src_pcd_points.shape[0]
                 dists = np.zeros((n_src_points, n_src_points))
-                print('n_src_points : ', n_src_points)
                 for i in range(n_src_points):
                     src_point = src_pcd_points[i]
-                    print('src_point.shape : ', src_point.shape)
-                    print('src_pcd_points.shape : ', src_pcd_points.shape)
                     difference = src_pcd_points - src_point
-                    print('difference.shape : ', difference.shape)
                     square_difference = difference ** 2
-                    print('square_difference.shape : ', square_difference.shape)
                     square_difference = np.array(square_difference.cpu())
                     sum_by_row = np.sum(square_difference, axis=1)
-                    print('sum_by_row.shape : ', sum_by_row.shape)
                     dists[i, :] = np.sqrt(sum_by_row)
                 
                 for i in range(n_src_points):
                     dists[i][i] = float('inf')
                 
-                print('dists : ', dists)
                 min_distances = dists.min(axis = 1)
-                print('min_distances : ', min_distances)
                 average_distance = np.average(min_distances)
-                print('average distance : ', average_distance)            
                 neighbors = dists < 1.5 * average_distance
-                print('neighbors : ', neighbors)
                 n_neighbors = np.sum(neighbors, axis=1)
-                print('n_neighbors : ', n_neighbors)
                 initial_edge_point_indices = np.argwhere(n_neighbors < 4)
-                print('initial_edge_point_indices : ', initial_edge_point_indices)
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
-                print('initial_edge_points : ', initial_edge_points)
                 initial_edge_points = np.array(initial_edge_points.cpu())
-                print('ldmk_s.shape[0] : ', ldmk_s.shape[0])
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
                 ldmk_s_np = np.array(ldmk_s.cpu())
@@ -1269,9 +1254,7 @@ class Landmark_Model():
                     min_dist = dists_to_edge.min()
                     if min_dist < 0.01:
                         mask[i] = True
-                
-                print('mask : ', mask)
-                
+                                
                 ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
@@ -1302,7 +1285,6 @@ class Landmark_Model():
                         else:
                             gt_corr_mask = np.append(gt_corr_mask, False)
                     
-                    print('gt_corr_mask : ', gt_corr_mask)
                     edge_filtering_true_correspondences_mask = gt_corr_mask.astype(bool)
                     n_true_custom_filtering_correspondences = int(edge_filtering_true_correspondences_mask.sum())
                     n_total_custom_filtering_correspondences = edge_filtering_true_correspondences_mask.shape[0]
@@ -1345,8 +1327,6 @@ class Landmark_Model():
                     o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
                     
                 data_mod = {}
-                print('mask.shape : ', mask.shape)
-                print('data["vec_6d"][0].shape : ', data['vec_6d'][0].shape)
 
                 vec_6d_edge = data['vec_6d'][0][final_indices][mask]
                 data_mod['vec_6d'] = vec_6d_edge[None, :]
