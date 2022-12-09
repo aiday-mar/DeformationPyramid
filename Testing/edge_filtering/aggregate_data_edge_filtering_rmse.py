@@ -15,7 +15,7 @@ preprocessing='mutual'
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'edge_filtering/'
-file='testing_edge_filtering_pre' + preprocessing + '_' + feature_extractor + '.txt'
+file='testing_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
 
 edge_filtering_list=['Edge filtering not used', 'Edge filtering used']
 models=['002', '042', '085', '126', '167', '207']
