@@ -235,10 +235,12 @@ class Landmark_Model():
             if not custom_filtering and reject_outliers:
                 vec_6d = vec_6d[inlier_conf > inlier_thr]
                 final_indices = inlier_conf > inlier_thr
-                
+            elif not custom_filtering and not reject_outliers:
+                final_indices = np.ones((vec_6d.shape[0],), dtype=bool)
+            
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
-            if intermediate_output_folder and not custom_filtering:
+            if not custom_filtering and intermediate_output_folder :
                 if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk')
 
