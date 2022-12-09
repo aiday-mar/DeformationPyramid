@@ -6,8 +6,8 @@ import copy
 # FCGF TODO
 # KPFCN TODO
 
-# feature_extractor='kpfcn'
-feature_extractor='fcgf'
+feature_extractor='kpfcn'
+# feature_extractor='fcgf'
 
 # preprocessing=none
 preprocessing='mutual'
@@ -84,22 +84,3 @@ for data_type in data_types:
     plt.plot(models, rmse_no_edge_filtering)
     plt.plot(models, rmse_edge_filtering)
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
-     
-'''
-for data_type in data_types:
-    plt.clf()
-    for model in models:
-        posenc_function_pos = range(len(edge_filtering_list))
-        plt.plot(posenc_function_pos, final_matrices[model][data_type]['rmse'])
-        plt.xticks(posenc_function_pos, edge_filtering_list, rotation=90)
-    
-    if feature_extractor == 'fcgf':
-        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - FCGF')
-    elif feature_extractor == 'kpfcn':
-        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - KPFCN')
-        
-    plt.ylabel('RMSE')
-    plt.xlabel('positional encoding')
-    plt.legend(models, loc = "upper right")
-    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
-'''
