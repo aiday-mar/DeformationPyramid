@@ -234,7 +234,6 @@ class Landmark_Model():
 
             if not custom_filtering and reject_outliers:
                 vec_6d = vec_6d[inlier_conf > inlier_thr]
-                data['vec_6d'][0] = vec_6d
             
             var = inlier_conf > inlier_thr
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
@@ -1202,12 +1201,12 @@ class Landmark_Model():
                 data_mod = {}
                 final_indices = list(final_indices)
 
-                vec_6d = data['vec_6d'][0][final_indices]
-                data_mod['vec_6d'] = vec_6d[None, :]
-                vec_6d_mask = data['vec_6d_mask'][0][final_indices]
-                data_mod['vec_6d_mask'] = vec_6d_mask[None, :]
-                vec_6d_ind = data['vec_6d_ind'][0][final_indices]
-                data_mod['vec_6d_ind'] = vec_6d_ind[None, :]
+                vec_6d_custom = data['vec_6d'][0][final_indices]
+                data_mod['vec_6d'] = vec_6d_custom[None, :]
+                vec_6d_mask_custom = data['vec_6d_mask'][0][final_indices]
+                data_mod['vec_6d_mask'] = vec_6d_mask_custom[None, :]
+                vec_6d_ind_custom = data['vec_6d_ind'][0][final_indices]
+                data_mod['vec_6d_ind'] = vec_6d_ind_custom[None, :]
                 
                 data_mod['s_pcd'] = data['s_pcd']
                 data_mod['t_pcd'] = data['t_pcd']
@@ -1257,6 +1256,7 @@ class Landmark_Model():
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 print('initial_edge_points : ', initial_edge_points)
                 initial_edge_points = np.array(initial_edge_points.cpu())
+                print('ldmk_s.shape[0] : ', ldmk_s.shape[0])
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
                 ldmk_s_np = np.array(ldmk_s.cpu())
@@ -1345,6 +1345,8 @@ class Landmark_Model():
                     
                 data_mod = {}
                 if not custom_filtering:
+                    print('mask.shape : ', mask.shape)
+                    print('data["vec_6d"][0].shape : ', data['vec_6d'][0])
                     vec_6d_edge = data['vec_6d'][0][mask]
                     data_mod['vec_6d'] = vec_6d_edge[None, :]
                     vec_6d_mask_edge = data['vec_6d_mask'][0][mask]
