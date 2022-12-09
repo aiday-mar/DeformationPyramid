@@ -1223,11 +1223,12 @@ class Landmark_Model():
                 src_pcd_points = data['src_pcd_list'][0]
                 n_src_points = src_pcd_points.shape[0]
                 dists = np.zeros((n_src_points, n_src_points))
+                print('n_src_points : ', n_src_points)
                 for i in range(n_src_points):
                     src_point = src_pcd_points[i]
                     print('src_point.shape : ', src_point.shape)
                     print('src_pcd_points.shape : ', src_pcd_points.shape)
-                    dists[i, :] = np.sqrt(np.sum((src_point - src_pcd_points) ** 2, axis=1))
+                    dists[i, :] = np.sqrt(np.sum((src_pcd_points - src_point) ** 2, axis=1))
                 
                 for i in range(n_src_points):
                     dists[i][i] = float('inf')
