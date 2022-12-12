@@ -6,8 +6,8 @@ import copy
 # FCGF TODO
 # KPFCN TODO
 
-feature_extractor='kpfcn'
-# feature_extractor='fcgf'
+# feature_extractor='kpfcn'
+feature_extractor='fcgf'
 
 # preprocessing=none
 preprocessing='mutual'
@@ -83,4 +83,8 @@ for data_type in data_types:
     print(rmse_edge_filtering)
     plt.plot(models, rmse_no_edge_filtering)
     plt.plot(models, rmse_edge_filtering)
+    plt.xlabel('model')
+    plt.ylabel('RMSE')
+    plt.legend(['No Edge Filtering', 'Edge Filtering'])
+    plt.title(data_type + ' - edge filtering comparison')
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
