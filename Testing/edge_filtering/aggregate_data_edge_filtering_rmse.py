@@ -86,5 +86,8 @@ for data_type in data_types:
     plt.xlabel('model')
     plt.ylabel('RMSE')
     plt.legend(['No Edge Filtering', 'Edge Filtering'])
-    plt.title(data_type + ' - edge filtering comparison')
+    if feature_extractor == 'fcgf':
+        plt.title(data_type + ' - edge filtering comparison - ' + 'FCGF feature extraction')
+    elif feature_extractor == 'kpfcn':
+        plt.title(data_type + ' - edge filtering comparison - ' + 'KPFCN feature extraction')
     plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
