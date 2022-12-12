@@ -1248,6 +1248,7 @@ class Landmark_Model():
                 ldmk_s_np = np.array(ldmk_s.cpu())
                 ldmk_t_np = np.array(ldmk_t.cpu())
                 
+                print('minimum distance threshold : ', min_dist_thr)
                 for i in range(ldmk_s_np.shape[0]):
                     ldmk_s_np_point = ldmk_s_np[i]
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
@@ -1256,7 +1257,7 @@ class Landmark_Model():
                     if min_dist < min_dist_thr:
                         mask[i] = True
 
-                print('Number correspondences kept : ', mask.sum(), ' out of : ', mask.shape[0])               
+                print('number correspondences kept in edge filtering : ', mask.sum(), ' out of : ', mask.shape[0])               
                 ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
