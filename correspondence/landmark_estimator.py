@@ -1238,9 +1238,9 @@ class Landmark_Model():
                 
                 min_distances = dists.min(axis = 1)
                 average_distance = np.average(min_distances)
-                neighbors = dists < 1.3 * average_distance
+                neighbors = dists < 1.5 * average_distance
                 n_neighbors = np.sum(neighbors, axis=1)
-                initial_edge_point_indices = np.argwhere(n_neighbors < 2)
+                initial_edge_point_indices = np.argwhere(n_neighbors < 3)
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 initial_edge_points = np.array(initial_edge_points.cpu())
                 
