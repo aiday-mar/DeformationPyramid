@@ -43,37 +43,80 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  3  out of  55
-fraction of true landmark correspondences returned from Lepard :  0.05454545454545454
-number of true landmark correspondences returned from Outlier Rejection :  3  out of  45
-fraction of true landmark correspondences returned from Outlier Rejection :  0.06666666666666667
-neighbors.shape :  (9520, 9520)
-n_neighbors.shape :  (9520,)
-number of true landmark correspondences returned from edge filtering :  3  out of  45
-fraction of true landmark correspondences returned from edge filtering :  0.06666666666666667
-initial_edge_points.shape :  (782, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  3  out of  64
+fraction of true landmark correspondences returned from Lepard :  0.046875
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  45
+fraction of true landmark correspondences returned from Outlier Rejection :  0.044444444444444446
+min_dist :  4.6789646e-05
+min_dist :  0.00017678738
+min_dist :  3.0696392e-05
+min_dist :  0.00020116568
+min_dist :  9.894371e-06
+min_dist :  4.1484833e-05
+min_dist :  3.0592084e-05
+min_dist :  7.4490905e-05
+min_dist :  8.571148e-05
+min_dist :  7.754564e-05
+min_dist :  9.047985e-05
+min_dist :  0.000105023384
+min_dist :  0.00033793598
+min_dist :  2.2053719e-05
+min_dist :  2.8371811e-05
+min_dist :  2.5093555e-05
+min_dist :  1.2993813e-05
+min_dist :  0.00032915175
+min_dist :  1.4007092e-06
+min_dist :  4.1872263e-06
+min_dist :  7.906556e-05
+min_dist :  4.4703484e-06
+min_dist :  0.00026613474
+min_dist :  3.4093857e-05
+min_dist :  7.669628e-05
+min_dist :  0.00015962124
+min_dist :  1.4275312e-05
+min_dist :  5.467236e-05
+min_dist :  4.184246e-05
+min_dist :  6.496906e-05
+min_dist :  6.7174435e-05
+min_dist :  7.4356794e-06
+min_dist :  0.0001463294
+min_dist :  6.6399574e-05
+min_dist :  5.9723854e-05
+min_dist :  4.711747e-05
+min_dist :  0.0001296699
+min_dist :  0.00024986267
+min_dist :  1.0251999e-05
+min_dist :  0.00011050701
+min_dist :  0.00020164251
+min_dist :  0.00031632185
+min_dist :  2.7298927e-05
+min_dist :  0.0
+min_dist :  0.00031912327
+Number correspondences kept :  6  out of :  45
+number of true landmark correspondences returned from edge filtering :  0  out of  6
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 14.715 
-full-AccS: 0.273 
-full-AccR: 1.775 
-full-outlier: 12.290 
-vis-epe: 17.658 
+0/1: full-epe: 22.015 
+full-AccS: 0.000 
+full-AccR: 0.483 
+full-outlier: 50.672 
+vis-epe: 21.959 
 vis-AccS: 0.000 
-vis-AccR: 0.724 
-vis-outlier: 23.474 
-occ-epe: 12.162 
-occ-AccS: 0.510 
-occ-AccR: 2.687 
-occ-outlier: 2.589 
+vis-AccR: 0.543 
+vis-outlier: 45.726 
+occ-epe: 22.063 
+occ-AccS: 0.000 
+occ-AccR: 0.432 
+occ-outlier: 54.963 
 
-RMSE :  0.11546246082477854
-IR :  0.1435924369747899
+RMSE :  0.19762156110002224
+IR :  0.05031512605042017
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -118,37 +161,77 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  1  out of  39
-fraction of true landmark correspondences returned from Lepard :  0.02564102564102564
-number of true landmark correspondences returned from Outlier Rejection :  1  out of  31
-fraction of true landmark correspondences returned from Outlier Rejection :  0.03225806451612903
-neighbors.shape :  (9380, 9380)
-n_neighbors.shape :  (9380,)
-number of true landmark correspondences returned from edge filtering :  1  out of  31
-fraction of true landmark correspondences returned from edge filtering :  0.03225806451612903
-initial_edge_points.shape :  (785, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  1  out of  49
+fraction of true landmark correspondences returned from Lepard :  0.02040816326530612
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  42
+fraction of true landmark correspondences returned from Outlier Rejection :  0.023809523809523808
+min_dist :  0.00015251338
+min_dist :  3.4689903e-05
+min_dist :  9.009242e-05
+min_dist :  0.0001603663
+min_dist :  6.902218e-05
+min_dist :  0.00012302399
+min_dist :  0.00024473667
+min_dist :  0.0002951622
+min_dist :  0.00017875433
+min_dist :  2.4616718e-05
+min_dist :  0.00044950843
+min_dist :  1.40070915e-05
+min_dist :  2.1085143e-05
+min_dist :  0.00012427568
+min_dist :  1.4126301e-05
+min_dist :  0.000414595
+min_dist :  7.748604e-05
+min_dist :  8.150935e-06
+min_dist :  5.9083104e-06
+min_dist :  0.00039488077
+min_dist :  2.3856759e-05
+min_dist :  3.7014484e-05
+min_dist :  4.1007996e-05
+min_dist :  3.6358833e-05
+min_dist :  5.686283e-05
+min_dist :  0.00019687414
+min_dist :  0.00013905764
+min_dist :  0.000118047
+min_dist :  3.2931566e-06
+min_dist :  0.00012373924
+min_dist :  3.8146973e-06
+min_dist :  4.0456653e-05
+min_dist :  1.7426908e-05
+min_dist :  1.8775463e-06
+min_dist :  3.284216e-05
+min_dist :  3.5315752e-05
+min_dist :  0.00028571486
+min_dist :  0.00017029047
+min_dist :  0.00023536384
+min_dist :  1.1242926e-05
+min_dist :  2.9549003e-05
+min_dist :  3.606081e-05
+Number correspondences kept :  5  out of :  42
+number of true landmark correspondences returned from edge filtering :  0  out of  5
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 18.766 
+0/1: full-epe: 18.464 
 full-AccS: 0.000 
-full-AccR: 1.994 
-full-outlier: 70.203 
-vis-epe: 21.161 
+full-AccR: 0.373 
+full-outlier: 59.030 
+vis-epe: 22.553 
 vis-AccS: 0.000 
-vis-AccR: 0.213 
-vis-outlier: 81.848 
-occ-epe: 16.799 
+vis-AccR: 0.827 
+vis-outlier: 82.203 
+occ-epe: 15.104 
 occ-AccS: 0.000 
-occ-AccR: 3.457 
-occ-outlier: 60.633 
+occ-AccR: 0.000 
+occ-outlier: 39.988 
 
-RMSE :  0.15101746072214944
-IR :  0.1009594882729211
+RMSE :  0.14393959069816079
+IR :  0.061727078891257996
 model 042
 Partial Deformed
 Edge filtering not used
@@ -194,37 +277,78 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  2  out of  42
-fraction of true landmark correspondences returned from Lepard :  0.047619047619047616
-number of true landmark correspondences returned from Outlier Rejection :  2  out of  34
-fraction of true landmark correspondences returned from Outlier Rejection :  0.058823529411764705
-neighbors.shape :  (8843, 8843)
-n_neighbors.shape :  (8843,)
-number of true landmark correspondences returned from edge filtering :  2  out of  34
-fraction of true landmark correspondences returned from edge filtering :  0.058823529411764705
-initial_edge_points.shape :  (900, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  2  out of  55
+fraction of true landmark correspondences returned from Lepard :  0.03636363636363636
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  43
+fraction of true landmark correspondences returned from Outlier Rejection :  0.046511627906976744
+min_dist :  7.015467e-05
+min_dist :  6.467104e-05
+min_dist :  3.9935112e-05
+min_dist :  0.00013804436
+min_dist :  0.000105559826
+min_dist :  3.874302e-07
+min_dist :  0.00017160177
+min_dist :  5.030632e-05
+min_dist :  2.861023e-05
+min_dist :  0.00011754036
+min_dist :  3.451109e-05
+min_dist :  0.00025075674
+min_dist :  9.75132e-05
+min_dist :  0.00020605326
+min_dist :  4.041195e-05
+min_dist :  0.00010588765
+min_dist :  0.00013047457
+min_dist :  5.596876e-05
+min_dist :  8.147955e-05
+min_dist :  0.00033435225
+min_dist :  0.00017306209
+min_dist :  1.8954277e-05
+min_dist :  1.1920929e-07
+min_dist :  6.8455935e-05
+min_dist :  8.442998e-05
+min_dist :  1.2099743e-05
+min_dist :  8.3982944e-05
+min_dist :  0.00016796589
+min_dist :  0.00012460351
+min_dist :  2.7477741e-05
+min_dist :  1.1444092e-05
+min_dist :  0.00019225478
+min_dist :  4.053116e-05
+min_dist :  0.0002641976
+min_dist :  8.225441e-05
+min_dist :  3.4689903e-05
+min_dist :  0.0005723834
+min_dist :  2.670288e-05
+min_dist :  2.9683113e-05
+min_dist :  5.722046e-05
+min_dist :  5.978346e-05
+min_dist :  4.3570995e-05
+min_dist :  9.179115e-06
+Number correspondences kept :  3  out of :  43
+number of true landmark correspondences returned from edge filtering :  0  out of  3
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 20.487 
-full-AccS: 0.679 
-full-AccR: 3.313 
-full-outlier: 77.542 
-vis-epe: 23.053 
-vis-AccS: 0.405 
-vis-AccR: 2.866 
-vis-outlier: 79.489 
-occ-epe: 13.686 
-occ-AccS: 1.404 
-occ-AccR: 4.500 
-occ-outlier: 72.378 
+0/1: full-epe: 23.104 
+full-AccS: 0.000 
+full-AccR: 2.488 
+full-outlier: 85.005 
+vis-epe: 25.284 
+vis-AccS: 0.000 
+vis-AccR: 0.825 
+vis-outlier: 88.242 
+occ-epe: 17.325 
+occ-AccS: 0.000 
+occ-AccR: 6.895 
+occ-outlier: 76.424 
 
-RMSE :  0.11725899064315681
-IR :  0.1309510347167251
+RMSE :  0.153132239730598
+IR :  0.07712314825285536
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -269,37 +393,88 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  18  out of  55
-fraction of true landmark correspondences returned from Lepard :  0.32727272727272727
-number of true landmark correspondences returned from Outlier Rejection :  15  out of  44
-fraction of true landmark correspondences returned from Outlier Rejection :  0.3409090909090909
-neighbors.shape :  (9130, 9130)
-n_neighbors.shape :  (9130,)
-number of true landmark correspondences returned from edge filtering :  15  out of  44
-fraction of true landmark correspondences returned from edge filtering :  0.3409090909090909
-initial_edge_points.shape :  (1012, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  21  out of  66
+fraction of true landmark correspondences returned from Lepard :  0.3181818181818182
+number of true landmark correspondences returned from Outlier Rejection :  16  out of  53
+fraction of true landmark correspondences returned from Outlier Rejection :  0.3018867924528302
+min_dist :  9.331107e-05
+min_dist :  9.9897385e-05
+min_dist :  5.6624413e-05
+min_dist :  9.536743e-05
+min_dist :  0.00011634827
+min_dist :  2.0623207e-05
+min_dist :  8.3208084e-05
+min_dist :  5.8412552e-05
+min_dist :  9.521842e-05
+min_dist :  0.00021335483
+min_dist :  9.328127e-05
+min_dist :  8.8870525e-05
+min_dist :  6.407499e-05
+min_dist :  4.7028065e-05
+min_dist :  6.237626e-05
+min_dist :  7.086992e-05
+min_dist :  0.00015079975
+min_dist :  0.00021147728
+min_dist :  9.75728e-05
+min_dist :  2.6464462e-05
+min_dist :  0.00014817715
+min_dist :  1.1026859e-05
+min_dist :  5.4478645e-05
+min_dist :  7.402897e-05
+min_dist :  3.385544e-05
+min_dist :  3.540516e-05
+min_dist :  1.2636185e-05
+min_dist :  1.8030405e-05
+min_dist :  5.939603e-05
+min_dist :  6.020069e-06
+min_dist :  1.5169382e-05
+min_dist :  3.1083822e-05
+min_dist :  5.492568e-05
+min_dist :  5.760789e-05
+min_dist :  7.849932e-05
+min_dist :  5.2571297e-05
+min_dist :  0.00012040138
+min_dist :  0.00014317036
+min_dist :  1.0579824e-05
+min_dist :  1.463294e-05
+min_dist :  1.7225742e-05
+min_dist :  2.8043985e-05
+min_dist :  0.00013938546
+min_dist :  6.15716e-05
+min_dist :  2.7120113e-05
+min_dist :  0.00013560057
+min_dist :  5.5402517e-05
+min_dist :  7.727742e-05
+min_dist :  0.00011897087
+min_dist :  7.06017e-05
+min_dist :  2.4318695e-05
+min_dist :  3.7819147e-05
+min_dist :  1.2814999e-06
+Number correspondences kept :  2  out of :  53
+number of true landmark correspondences returned from edge filtering :  1  out of  2
+fraction of true landmark correspondences returned from edge filtering :  0.5
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 10.302 
-full-AccS: 14.984 
-full-AccR: 29.124 
-full-outlier: 28.981 
-vis-epe: 13.054 
-vis-AccS: 0.805 
-vis-AccR: 4.592 
-vis-outlier: 39.451 
-occ-epe: 2.682 
-occ-AccS: 54.230 
-occ-AccR: 97.028 
-occ-outlier: 0.000 
+0/1: full-epe: 18.286 
+full-AccS: 0.613 
+full-AccR: 4.348 
+full-outlier: 60.296 
+vis-epe: 20.910 
+vis-AccS: 0.522 
+vis-AccR: 3.206 
+vis-outlier: 72.357 
+occ-epe: 11.022 
+occ-AccS: 0.867 
+occ-AccR: 7.511 
+occ-outlier: 26.909 
 
-RMSE :  0.03149256748401345
-IR :  0.9304490690032858
+RMSE :  0.14379032843673423
+IR :  0.08378970427163199
 model 085
 Partial Deformed
 Edge filtering not used
@@ -345,37 +520,63 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  2  out of  31
-fraction of true landmark correspondences returned from Lepard :  0.06451612903225806
-number of true landmark correspondences returned from Outlier Rejection :  1  out of  27
-fraction of true landmark correspondences returned from Outlier Rejection :  0.037037037037037035
-neighbors.shape :  (5199, 5199)
-n_neighbors.shape :  (5199,)
-number of true landmark correspondences returned from edge filtering :  1  out of  27
-fraction of true landmark correspondences returned from edge filtering :  0.037037037037037035
-initial_edge_points.shape :  (374, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  2  out of  35
+fraction of true landmark correspondences returned from Lepard :  0.05714285714285714
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  28
+fraction of true landmark correspondences returned from Outlier Rejection :  0.03571428571428571
+min_dist :  0.00015710294
+min_dist :  0.00025218725
+min_dist :  0.00014987588
+min_dist :  0.00027096272
+min_dist :  0.0003426075
+min_dist :  6.1392784e-06
+min_dist :  0.00044459105
+min_dist :  0.00029367208
+min_dist :  0.000438869
+min_dist :  8.59797e-06
+min_dist :  9.486079e-05
+min_dist :  0.00047004223
+min_dist :  0.0002899766
+min_dist :  4.184246e-05
+min_dist :  0.00087589025
+min_dist :  0.00011795759
+min_dist :  0.00017952919
+min_dist :  3.784895e-05
+min_dist :  0.0004710555
+min_dist :  0.00022315979
+min_dist :  3.284216e-05
+min_dist :  4.720688e-05
+min_dist :  0.00072073936
+min_dist :  0.00027500093
+min_dist :  0.00021323562
+min_dist :  3.8981438e-05
+min_dist :  4.735589e-05
+min_dist :  9.538233e-05
+Number correspondences kept :  2  out of :  28
+number of true landmark correspondences returned from edge filtering :  0  out of  2
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 13.959 
-full-AccS: 0.962 
-full-AccR: 8.579 
-full-outlier: 9.386 
-vis-epe: 18.240 
-vis-AccS: 0.482 
-vis-AccR: 7.804 
-vis-outlier: 19.991 
-occ-epe: 10.613 
-occ-AccS: 1.337 
-occ-AccR: 9.184 
-occ-outlier: 1.097 
+0/1: full-epe: 11.861 
+full-AccS: 1.135 
+full-AccR: 11.329 
+full-outlier: 0.462 
+vis-epe: 14.590 
+vis-AccS: 0.307 
+vis-AccR: 4.910 
+vis-outlier: 1.052 
+occ-epe: 9.728 
+occ-AccS: 1.782 
+occ-AccR: 16.347 
+occ-outlier: 0.000 
 
-RMSE :  0.11768369405680479
-IR :  0.12713983458357375
+RMSE :  0.10336268613415953
+IR :  0.16349297941911906
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -420,37 +621,64 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  1  out of  28
-fraction of true landmark correspondences returned from Lepard :  0.03571428571428571
-number of true landmark correspondences returned from Outlier Rejection :  1  out of  26
-fraction of true landmark correspondences returned from Outlier Rejection :  0.038461538461538464
-neighbors.shape :  (5242, 5242)
-n_neighbors.shape :  (5242,)
-number of true landmark correspondences returned from edge filtering :  1  out of  26
-fraction of true landmark correspondences returned from edge filtering :  0.038461538461538464
-initial_edge_points.shape :  (357, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  2  out of  32
+fraction of true landmark correspondences returned from Lepard :  0.0625
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  29
+fraction of true landmark correspondences returned from Outlier Rejection :  0.06896551724137931
+min_dist :  0.00010895729
+min_dist :  7.516891e-05
+min_dist :  5.9589744e-05
+min_dist :  0.00025209785
+min_dist :  0.0009484589
+min_dist :  7.939339e-05
+min_dist :  0.0012755841
+min_dist :  0.00011090934
+min_dist :  0.00081159174
+min_dist :  0.00028413534
+min_dist :  3.0234456e-05
+min_dist :  0.0
+min_dist :  0.0003004074
+min_dist :  0.00038844347
+min_dist :  2.7000904e-05
+min_dist :  0.00013452768
+min_dist :  1.8656254e-05
+min_dist :  0.00013573468
+min_dist :  0.0002220273
+min_dist :  5.1945448e-05
+min_dist :  0.00010064244
+min_dist :  0.0005105883
+min_dist :  6.055832e-05
+min_dist :  0.00013899803
+min_dist :  0.0002117157
+min_dist :  9.75728e-05
+min_dist :  0.00015950203
+min_dist :  0.0006458014
+min_dist :  0.0
+Number correspondences kept :  2  out of :  29
+number of true landmark correspondences returned from edge filtering :  0  out of  2
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 13.573 
-full-AccS: 0.362 
-full-AccR: 6.524 
-full-outlier: 64.899 
-vis-epe: 17.349 
-vis-AccS: 0.725 
-vis-AccR: 2.098 
-vis-outlier: 76.240 
-occ-epe: 9.794 
-occ-AccS: 0.000 
-occ-AccR: 10.954 
-occ-outlier: 53.550 
+0/1: full-epe: 15.108 
+full-AccS: 0.973 
+full-AccR: 13.239 
+full-outlier: 63.316 
+vis-epe: 19.254 
+vis-AccS: 0.153 
+vis-AccR: 2.250 
+vis-outlier: 84.172 
+occ-epe: 10.958 
+occ-AccS: 1.794 
+occ-AccR: 24.237 
+occ-outlier: 42.443 
 
-RMSE :  0.09218643820290809
-IR :  0.1781762685997711
+RMSE :  0.13113427146830728
+IR :  0.17970240366272416
 model 126
 Partial Deformed
 Edge filtering not used
@@ -496,37 +724,68 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  6  out of  32
-fraction of true landmark correspondences returned from Lepard :  0.1875
-number of true landmark correspondences returned from Outlier Rejection :  5  out of  23
-fraction of true landmark correspondences returned from Outlier Rejection :  0.21739130434782608
-neighbors.shape :  (8260, 8260)
-n_neighbors.shape :  (8260,)
-number of true landmark correspondences returned from edge filtering :  5  out of  23
-fraction of true landmark correspondences returned from edge filtering :  0.21739130434782608
-initial_edge_points.shape :  (843, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  9  out of  52
+fraction of true landmark correspondences returned from Lepard :  0.17307692307692307
+number of true landmark correspondences returned from Outlier Rejection :  7  out of  33
+fraction of true landmark correspondences returned from Outlier Rejection :  0.21212121212121213
+min_dist :  0.00019693375
+min_dist :  0.0008020401
+min_dist :  0.00035357475
+min_dist :  2.4735928e-05
+min_dist :  0.00012409687
+min_dist :  0.00038108975
+min_dist :  0.00026136637
+min_dist :  0.00038887188
+min_dist :  0.0004685223
+min_dist :  0.0
+min_dist :  3.6627054e-05
+min_dist :  1.0102987e-05
+min_dist :  3.501773e-05
+min_dist :  2.0958483e-05
+min_dist :  6.0141087e-05
+min_dist :  0.00016393885
+min_dist :  5.383417e-05
+min_dist :  0.0002477914
+min_dist :  2.4735928e-05
+min_dist :  2.094172e-05
+min_dist :  7.711351e-07
+min_dist :  0.00012719631
+min_dist :  4.285574e-05
+min_dist :  0.00024831295
+min_dist :  0.00014476478
+min_dist :  0.00017264485
+min_dist :  6.1243773e-06
+min_dist :  6.467104e-06
+min_dist :  0.0005299598
+min_dist :  0.00011855364
+min_dist :  0.00011968613
+min_dist :  0.00023247302
+min_dist :  0.0024489164
+Number correspondences kept :  4  out of :  33
+number of true landmark correspondences returned from edge filtering :  0  out of  4
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 18.153 
-full-AccS: 0.254 
-full-AccR: 2.373 
-full-outlier: 61.695 
-vis-epe: 22.314 
-vis-AccS: 0.000 
-vis-AccR: 0.254 
-vis-outlier: 82.909 
-occ-epe: 12.618 
-occ-AccS: 0.593 
-occ-AccR: 5.192 
-occ-outlier: 33.465 
+0/1: full-epe: 15.852 
+full-AccS: 0.351 
+full-AccR: 12.228 
+full-outlier: 46.017 
+vis-epe: 21.453 
+vis-AccS: 0.615 
+vis-AccR: 2.990 
+vis-outlier: 72.561 
+occ-epe: 8.398 
+occ-AccS: 0.000 
+occ-AccR: 24.520 
+occ-outlier: 10.694 
 
-RMSE :  0.13169099172717713
-IR :  0.18619854721549636
+RMSE :  0.1071569258813079
+IR :  0.20133171912832928
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -571,37 +830,78 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  8  out of  42
-fraction of true landmark correspondences returned from Lepard :  0.19047619047619047
-number of true landmark correspondences returned from Outlier Rejection :  8  out of  34
-fraction of true landmark correspondences returned from Outlier Rejection :  0.23529411764705882
-neighbors.shape :  (8348, 8348)
-n_neighbors.shape :  (8348,)
-number of true landmark correspondences returned from edge filtering :  8  out of  34
-fraction of true landmark correspondences returned from edge filtering :  0.23529411764705882
-initial_edge_points.shape :  (820, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  8  out of  60
+fraction of true landmark correspondences returned from Lepard :  0.13333333333333333
+number of true landmark correspondences returned from Outlier Rejection :  8  out of  43
+fraction of true landmark correspondences returned from Outlier Rejection :  0.18604651162790697
+min_dist :  9.351969e-05
+min_dist :  7.945299e-05
+min_dist :  0.00010818243
+min_dist :  0.00029623508
+min_dist :  0.00033152103
+min_dist :  1.1444092e-05
+min_dist :  9.268522e-05
+min_dist :  4.1127205e-05
+min_dist :  9.9390745e-06
+min_dist :  0.0003066659
+min_dist :  2.2497028e-05
+min_dist :  2.6524067e-05
+min_dist :  0.00015103817
+min_dist :  0.00042629242
+min_dist :  8.952618e-05
+min_dist :  2.9802322e-07
+min_dist :  0.0002439022
+min_dist :  0.0020768642
+min_dist :  2.5451183e-05
+min_dist :  2.3186207e-05
+min_dist :  2.849102e-05
+min_dist :  0.0
+min_dist :  0.00029534101
+min_dist :  0.00031024218
+min_dist :  0.0004194975
+min_dist :  0.0011516213
+min_dist :  0.00011707842
+min_dist :  0.000286337
+min_dist :  0.00019425154
+min_dist :  0.00022900105
+min_dist :  0.00020090863
+min_dist :  0.00011783838
+min_dist :  0.00015258789
+min_dist :  1.4483929e-05
+min_dist :  2.682209e-05
+min_dist :  0.00037577748
+min_dist :  0.00030058995
+min_dist :  5.286932e-05
+min_dist :  3.582239e-05
+min_dist :  6.3598156e-05
+min_dist :  6.443262e-05
+min_dist :  0.00024738722
+min_dist :  1.2647361e-05
+Number correspondences kept :  3  out of :  43
+number of true landmark correspondences returned from edge filtering :  0  out of  3
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 12.740 
-full-AccS: 0.024 
-full-AccR: 12.027 
-full-outlier: 37.662 
-vis-epe: 17.657 
-vis-AccS: 0.000 
-vis-AccR: 4.563 
-vis-outlier: 68.210 
-occ-epe: 6.889 
-occ-AccS: 0.052 
-occ-AccR: 20.908 
-occ-outlier: 1.312 
+0/1: full-epe: 9.491 
+full-AccS: 4.636 
+full-AccR: 46.203 
+full-outlier: 29.756 
+vis-epe: 14.418 
+vis-AccS: 1.874 
+vis-AccR: 7.011 
+vis-outlier: 54.563 
+occ-epe: 3.628 
+occ-AccS: 7.922 
+occ-AccR: 92.838 
+occ-outlier: 0.236 
 
-RMSE :  0.07869365519414079
-IR :  0.3170819357930043
+RMSE :  0.04194345747029544
+IR :  0.864638236703402
 model 167
 Partial Deformed
 Edge filtering not used
@@ -649,39 +949,54 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  0  out of  16
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  0  out of  21
 fraction of true landmark correspondences returned from Lepard :  0.0
 [1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
-number of true landmark correspondences returned from Outlier Rejection :  0  out of  14
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  17
 fraction of true landmark correspondences returned from Outlier Rejection :  0.0
 [1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
-neighbors.shape :  (3919, 3919)
-n_neighbors.shape :  (3919,)
-number of true landmark correspondences returned from edge filtering :  0  out of  14
+min_dist :  2.7775764e-05
+min_dist :  0.0
+min_dist :  0.00025731325
+min_dist :  0.00027102232
+min_dist :  7.325411e-05
+min_dist :  0.00014129281
+min_dist :  0.00022387505
+min_dist :  0.0002169013
+min_dist :  0.00022530556
+min_dist :  0.00033295155
+min_dist :  6.5505505e-05
+min_dist :  1.937151e-06
+min_dist :  0.00015252829
+min_dist :  4.36455e-05
+min_dist :  0.00039088726
+min_dist :  8.559227e-05
+min_dist :  2.861023e-06
+Number correspondences kept :  3  out of :  17
+number of true landmark correspondences returned from edge filtering :  0  out of  3
 fraction of true landmark correspondences returned from edge filtering :  0.0
-initial_edge_points.shape :  (332, 3)
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 17.441 
-full-AccS: 0.000 
-full-AccR: 1.225 
-full-outlier: 82.521 
-vis-epe: 19.798 
+0/1: full-epe: 15.790 
+full-AccS: 1.557 
+full-AccR: 5.333 
+full-outlier: 73.131 
+vis-epe: 19.404 
 vis-AccS: 0.000 
-vis-AccR: 0.000 
-vis-outlier: 85.921 
-occ-epe: 14.375 
-occ-AccS: 0.000 
-occ-AccR: 2.819 
-occ-outlier: 78.097 
+vis-AccR: 1.715 
+vis-outlier: 77.076 
+occ-epe: 11.086 
+occ-AccS: 3.582 
+occ-AccR: 10.041 
+occ-outlier: 67.998 
 
-RMSE :  0.14505784859637763
-IR :  0.035723398826231184
+RMSE :  0.12448889804140888
+IR :  0.12758356723653994
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -726,39 +1041,68 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  3  out of  20
-fraction of true landmark correspondences returned from Lepard :  0.15
-number of true landmark correspondences returned from Outlier Rejection :  1  out of  18
-fraction of true landmark correspondences returned from Outlier Rejection :  0.05555555555555555
-neighbors.shape :  (3919, 3919)
-n_neighbors.shape :  (3919,)
-initial_edge_point_indices.shape :  (332, 1)
-initial_edge_points.shape :  (332, 1, 3)
-number of true landmark correspondences returned from edge filtering :  1  out of  18
-fraction of true landmark correspondences returned from edge filtering :  0.05555555555555555
-initial_edge_points.shape :  (332, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  3  out of  23
+fraction of true landmark correspondences returned from Lepard :  0.13043478260869565
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  21
+fraction of true landmark correspondences returned from Outlier Rejection :  0.047619047619047616
+min_dist :  1.513958e-05
+min_dist :  0.00012397766
+min_dist :  0.000100672245
+min_dist :  2.3126602e-05
+min_dist :  0.00012248755
+min_dist :  6.1154366e-05
+min_dist :  0.00025898218
+min_dist :  0.00017946959
+min_dist :  0.0006133914
+min_dist :  0.0003310442
+min_dist :  0.00024050474
+min_dist :  0.00016367435
+min_dist :  0.000261724
+min_dist :  0.00047534704
+min_dist :  0.00011181831
+min_dist :  0.00018703938
+min_dist :  0.00025993586
+min_dist :  6.80387e-05
+min_dist :  7.304549e-05
+min_dist :  0.00022673607
+min_dist :  6.330013e-05
+Number correspondences kept :  0  out of :  21
+number of true landmark correspondences returned from edge filtering :  0  out of  0
+fraction of true landmark correspondences returned from edge filtering :  0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 16.653 
-full-AccS: 0.077 
-full-AccR: 2.322 
-full-outlier: 59.735 
-vis-epe: 18.017 
-vis-AccS: 0.000 
-vis-AccR: 2.015 
-vis-outlier: 59.607 
-occ-epe: 15.179 
-occ-AccS: 0.159 
-occ-AccR: 2.654 
-occ-outlier: 59.873 
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+0/1: full-epe: 14.784 
+full-AccS: 0.357 
+full-AccR: 3.725 
+full-outlier: 45.930 
+vis-epe: 17.005 
+vis-AccS: 0.688 
+vis-AccR: 4.275 
+vis-outlier: 50.860 
+occ-epe: 12.386 
+occ-AccS: 0.000 
+occ-AccR: 3.132 
+occ-outlier: 40.605 
 
-RMSE :  0.14208601655776096
-IR :  0.09823934677213575
+RMSE :  0.11538855070794483
+IR :  0.08879816279663179
 model 207
 Partial Deformed
 Edge filtering not used
@@ -804,37 +1148,62 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  3  out of  28
-fraction of true landmark correspondences returned from Lepard :  0.10714285714285714
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  3  out of  29
+fraction of true landmark correspondences returned from Lepard :  0.10344827586206896
 number of true landmark correspondences returned from Outlier Rejection :  3  out of  27
 fraction of true landmark correspondences returned from Outlier Rejection :  0.1111111111111111
-neighbors.shape :  (4129, 4129)
-n_neighbors.shape :  (4129,)
-number of true landmark correspondences returned from edge filtering :  3  out of  27
-fraction of true landmark correspondences returned from edge filtering :  0.1111111111111111
-initial_edge_points.shape :  (359, 3)
+min_dist :  7.432699e-05
+min_dist :  1.1563301e-05
+min_dist :  1.2397766e-05
+min_dist :  4.592538e-05
+min_dist :  0.0010983348
+min_dist :  8.839369e-05
+min_dist :  0.00035238266
+min_dist :  5.7399273e-05
+min_dist :  0.00010731816
+min_dist :  0.00051885843
+min_dist :  0.00010675192
+min_dist :  2.9683113e-05
+min_dist :  0.00013929605
+min_dist :  6.0021877e-05
+min_dist :  0.00024074316
+min_dist :  3.8847327e-05
+min_dist :  0.00018787384
+min_dist :  0.00027352571
+min_dist :  0.00013464689
+min_dist :  5.888939e-05
+min_dist :  1.7389655e-05
+min_dist :  0.00025242567
+min_dist :  0.0003953278
+min_dist :  0.00029313564
+min_dist :  1.6897917e-05
+min_dist :  0.0011214316
+min_dist :  0.0
+Number correspondences kept :  1  out of :  27
+number of true landmark correspondences returned from edge filtering :  0  out of  1
+fraction of true landmark correspondences returned from edge filtering :  0.0
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 12.830 
-full-AccS: 0.702 
-full-AccR: 5.062 
-full-outlier: 0.872 
-vis-epe: 13.769 
+0/1: full-epe: 18.796 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 7.944 
+vis-epe: 19.016 
 vis-AccS: 0.000 
-vis-AccR: 2.352 
-vis-outlier: 1.568 
-occ-epe: 11.655 
-occ-AccS: 1.582 
-occ-AccR: 8.456 
+vis-AccR: 0.000 
+vis-outlier: 14.286 
+occ-epe: 18.521 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
 occ-outlier: 0.000 
 
-RMSE :  0.10239559087550987
-IR :  0.21143133930733835
+RMSE :  0.1736870763158294
+IR :  0.0
 Partial Non Deformed
 Edge filtering not used
 feature_extractor :  kpfcn
@@ -879,34 +1248,59 @@ feature extractor inside of collate_fn_4dmatch :  kpfcn
 
 coarse_level :  -2
 Before coarse_transformer
-confidence threshold used in the matching :  0.1
+confidence threshold used in the matching :  0.01
 Before coarse_matching
-confidence threshold used in the matching :  0.1
-number of true landmarks correspondences returned from Lepard :  4  out of  28
-fraction of true landmark correspondences returned from Lepard :  0.14285714285714285
-number of true landmark correspondences returned from Outlier Rejection :  4  out of  26
-fraction of true landmark correspondences returned from Outlier Rejection :  0.15384615384615385
-neighbors.shape :  (4222, 4222)
-n_neighbors.shape :  (4222,)
-number of true landmark correspondences returned from edge filtering :  4  out of  26
-fraction of true landmark correspondences returned from edge filtering :  0.15384615384615385
-initial_edge_points.shape :  (380, 3)
+confidence threshold used in the matching :  0.01
+number of true landmarks correspondences returned from Lepard :  4  out of  30
+fraction of true landmark correspondences returned from Lepard :  0.13333333333333333
+number of true landmark correspondences returned from Outlier Rejection :  4  out of  27
+fraction of true landmark correspondences returned from Outlier Rejection :  0.14814814814814814
+min_dist :  0.00022000074
+min_dist :  0.0005111769
+min_dist :  0.00018244982
+min_dist :  0.00030457228
+min_dist :  0.00039716437
+min_dist :  0.00017720461
+min_dist :  0.00043076277
+min_dist :  0.00012146309
+min_dist :  0.0004541874
+min_dist :  4.827976e-06
+min_dist :  1.822412e-05
+min_dist :  8.881092e-06
+min_dist :  0.000305593
+min_dist :  0.00029551238
+min_dist :  0.00017637014
+min_dist :  0.00011962652
+min_dist :  0.00019454956
+min_dist :  0.0005944185
+min_dist :  0.00023961067
+min_dist :  7.984787e-05
+min_dist :  9.119511e-05
+min_dist :  0.00013483316
+min_dist :  8.3863735e-05
+min_dist :  1.4271587e-05
+min_dist :  0.00021540001
+min_dist :  0.00018000603
+min_dist :  0.0006992221
+Number correspondences kept :  2  out of :  27
+number of true landmark correspondences returned from edge filtering :  1  out of  2
+fraction of true landmark correspondences returned from edge filtering :  0.5
 k0 :  -8
 levels :  10
 posenc function :  None
 samples :  2000
-0/1: full-epe: 10.870 
-full-AccS: 4.453 
-full-AccR: 21.317 
-full-outlier: 0.000 
-vis-epe: 13.750 
+0/1: full-epe: 14.781 
+full-AccS: 0.142 
+full-AccR: 4.856 
+full-outlier: 0.166 
+vis-epe: 17.711 
 vis-AccS: 0.000 
-vis-AccR: 1.819 
-vis-outlier: 0.000 
-occ-epe: 7.006 
-occ-AccS: 10.427 
-occ-AccR: 47.476 
+vis-AccR: 0.537 
+vis-outlier: 0.289 
+occ-epe: 10.850 
+occ-AccS: 0.333 
+occ-AccR: 10.649 
 occ-outlier: 0.000 
 
-RMSE :  0.0712867524712679
-IR :  0.38370440549502605
+RMSE :  0.11050534989957438
+IR :  0.12979630506868783
