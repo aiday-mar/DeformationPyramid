@@ -57,7 +57,7 @@ class Landmark_Model():
         self.device = device
         self.kpfcn_config = config['kpfcn_config']
 
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering = False):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering = False, min_dist_thr = 1.0e-4):
         if base:
             self.path = base
         else:
@@ -1253,7 +1253,7 @@ class Landmark_Model():
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
                     print('min_dist : ', min_dist)
-                    if min_dist < 1.0e-4:
+                    if min_dist < min_dist_thr:
                         mask[i] = True
 
                 print('Number correspondences kept : ', mask.sum(), ' out of : ', mask.shape[0])               

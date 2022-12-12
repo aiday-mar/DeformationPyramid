@@ -15,6 +15,9 @@ touch ${file}
 model_numbers=('002' '042' '085' '126' '167' '207')
 confidence_threshold=0.01
 
+min_dist_thr_fcgf=0.0001
+min_dist_thr_kpfcn=0.0001
+
 if [ $type == "kpfcn" ]; then
 
         for k in ${model_numbers[@]}
@@ -78,6 +81,7 @@ if [ $type == "kpfcn" ]; then
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
             --edge_filtering \
+            --min_dist_thr=${min_dist_thr_kpfcn} \
             --print_keypoints >> ${file}
             
             if [ "$?" != "1" ]; then
@@ -144,6 +148,7 @@ if [ $type == "kpfcn" ]; then
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
             --edge_filtering \
+            --min_dist_thr=${min_dist_thr_kpfcn} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -233,6 +238,7 @@ if [ $type == "fcgf" ]; then
             --preprocessing=${preprocessing} \
             --confidence_threshold=${confidence_threshold} \
             --edge_filtering \
+            --min_dist_thr=${min_dist_thr_fcgf} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -305,6 +311,7 @@ if [ $type == "fcgf" ]; then
             --preprocessing=${preprocessing} \
             --confidence_threshold=${confidence_threshold} \
             --edge_filtering \
+            --min_dist_thr=${min_dist_thr_fcgf} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then

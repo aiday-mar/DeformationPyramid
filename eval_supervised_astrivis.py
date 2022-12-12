@@ -71,6 +71,8 @@ if __name__ == "__main__":
     parser.add_argument('--gt_thr', type=str, help='ground-truth threshold used to find the ground-truth correspondences')
     
     parser.add_argument('--edge_filtering', action = 'store_true', help= 'wether to filter filter the landmarks for the partial point-cloud case using edge detection')
+    parser.add_argument('--min_dist_thr', type=str, help='threshold used for the edge filtering computation')
+    
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
@@ -157,7 +159,8 @@ if __name__ == "__main__":
             reject_outliers = config.reject_outliers
         gt_thr = float(args.gt_thr) if args.gt_thr else 0.01
         edge_filtering = True if args.edge_filtering else False
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering = edge_filtering)
+        min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
+        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering = edge_filtering, min_dist_thr = min_dist_thr)
      
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
