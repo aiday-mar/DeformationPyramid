@@ -1256,7 +1256,6 @@ class Landmark_Model():
                     ldmk_s_np_point = ldmk_s_np[i]
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
-                    print('min_dist : ', min_dist)
                     if min_dist < 0.01:
                         mask[i] = True
                                 
@@ -1311,7 +1310,6 @@ class Landmark_Model():
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
                     
                     initial_edge_points = np.squeeze(initial_edge_points, axis=1)
-                    print('initial_edge_points.shape : ', initial_edge_points.shape)
                     initial_edge_points_pcd = o3d.geometry.PointCloud()
                     initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
                     o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_edge_points_pcd.ply', initial_edge_points_pcd)
