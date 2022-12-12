@@ -1253,7 +1253,7 @@ class Landmark_Model():
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
                     print('min_dist : ', min_dist)
-                    if min_dist < 1.0e-3:
+                    if min_dist < 1.0e-5:
                         mask[i] = True
 
                 print('Number correspondences kept : ', mask.sum(), ' out of : ', mask.shape[0])               
