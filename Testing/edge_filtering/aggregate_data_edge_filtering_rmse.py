@@ -6,8 +6,8 @@ import copy
 # FCGF TODO
 # KPFCN TODO
 
-# feature_extractor='kpfcn'
-feature_extractor='fcgf'
+feature_extractor='kpfcn'
+# feature_extractor='fcgf'
 
 # preprocessing=none
 preprocessing='mutual'
