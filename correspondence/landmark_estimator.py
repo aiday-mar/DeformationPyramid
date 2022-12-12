@@ -1239,14 +1239,10 @@ class Landmark_Model():
                 min_distances = dists.min(axis = 1)
                 average_distance = np.average(min_distances)
                 neighbors = dists < 1.5 * average_distance
-                print('neighbors.shape : ', neighbors.shape)
                 n_neighbors = np.sum(neighbors, axis=1)
-                print('n_neighbors.shape : ', n_neighbors.shape)
-                initial_edge_point_indices = np.argwhere(n_neighbors < 4)
-                print('initial_edge_point_indices.shape : ', initial_edge_point_indices.shape)
+                initial_edge_point_indices = np.argwhere(n_neighbors < 3)
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 initial_edge_points = np.array(initial_edge_points.cpu())
-                print('initial_edge_points.shape : ', initial_edge_points.shape)
                 
                 mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
                 ldmk_s_np = np.array(ldmk_s.cpu())
@@ -1256,9 +1252,11 @@ class Landmark_Model():
                     ldmk_s_np_point = ldmk_s_np[i]
                     dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
                     min_dist = dists_to_edge.min()
-                    if min_dist < 0.01:
+                    print('min_dist : ', min_dist)
+                    if min_dist < 1.0e-5:
                         mask[i] = True
-                                
+
+                print('Number correspondences kept : ', mask.sum(), ' out of : ', mask.shape[0])               
                 ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
                 ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
                 
@@ -1309,6 +1307,11 @@ class Landmark_Model():
                     if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
                         os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
                     
+                    src_pcd_points = data['src_pcd_list'][0]
+                    initial_points_pcd = o3d.geometry.PointCloud()
+                    initial_points_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_points_pcd.ply', initial_points_pcd)
+
                     initial_edge_points = np.squeeze(initial_edge_points, axis=1)
                     initial_edge_points_pcd = o3d.geometry.PointCloud()
                     initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
