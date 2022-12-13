@@ -21,7 +21,8 @@ if [ $type == "kpfcn" ]; then
 	do
 
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		arr=('020' '062' '125' '188')
+		# arr=('020' '062' '125' '188')
+		arr=('020' '104')
 
 		folder_name=output_full_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
@@ -72,7 +73,8 @@ if [ $type == "fcgf" ]; then
 	do
 
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		arr=('020' '062' '125' '188')
+		# arr=('020' '062' '125' '188')
+		arr=('020' '104')
 
 		folder_name=output_full_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}

@@ -20,7 +20,9 @@ if [ $type == "kpfcn" ]; then
 	for k in ${model_numbers[@]}
 	do
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		arr=('020' '062' '125' '188')
+		# arr=('020' '062' '125' '188')
+		arr=('020' '104')
+
 		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
@@ -103,7 +105,9 @@ if [ $type == "fcgf" ]; then
 	for k in ${model_numbers[@]}
 	do
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		arr=('020' '062' '125' '188')
+		# arr=('020' '062' '125' '188')
+		arr=('020' '104')
+		
 		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
