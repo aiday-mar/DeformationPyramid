@@ -346,6 +346,10 @@ def nerfies_regularization( jacobian, eps=1e-6):
 
 
 def scene_flow_metrics(pred, labels, strict=0.01, relax = 0.03, outlier_thr = 0.1):
+    print('strict threshold : ', strict)
+    print('relaxed threhold : ', relax)
+    print('outlier threshold : ', outlier_thr)
+    
     l2_norm = torch.sqrt(torch.sum((pred - labels) ** 2, 1)).cpu()  # Absolute distance error.
     labels_norm = torch.sqrt(torch.sum(labels * labels, 1)).cpu()
     relative_err = l2_norm / (labels_norm + 1e-20)
