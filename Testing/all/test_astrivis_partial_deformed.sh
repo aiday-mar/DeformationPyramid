@@ -7,12 +7,12 @@ type=fcgf
 # preprocessing=none
 preprocessing=mutual
 
-training_data=full_deformed
-# training_data=partial_deformed
+# training_data=full_deformed
+training_data=partial_deformed
 # training_data=pretrained
 
-epoch=2
-# epoch=1
+# epoch=2
+epoch=1
 # epoch=null
 
 filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
