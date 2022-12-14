@@ -179,8 +179,8 @@ if __name__ == "__main__":
             correspondence = final_correspondences
             indices_src = correspondences[:, 0]
             indices_tgt = correspondences[:, 1]
-            ldmk_s = torch.tensor(src_pcd[indices_src])
-            ldmk_t = torch.tensor(tgt_pcd[indices_tgt])
+            ldmk_s = torch.tensor(src_pcd[indices_src]).to('cuda:0')
+            ldmk_t = torch.tensor(tgt_pcd[indices_tgt]).to('cuda:0')
         else:
             raise Exception('Specify a valid combination')
         
