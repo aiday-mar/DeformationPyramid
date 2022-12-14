@@ -18,7 +18,7 @@ training_data='pretrained'
 # epoch='2'
 epoch='null'
 
-custom=False
+custom=True
 # custom=True
 
 custom_val = '_custom' if custom else ''
