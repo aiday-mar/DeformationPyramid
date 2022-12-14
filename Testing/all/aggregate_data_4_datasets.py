@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 # FCGF DONE
 # KPFCN TODO
 
-# feature_extractor='fcgf'
-feature_extractor='kpfcn'
+feature_extractor='fcgf'
+# feature_extractor='kpfcn'
 
 # preprocessing='none'
 preprocessing='mutual'
@@ -13,12 +13,12 @@ preprocessing='mutual'
 training_data='full_deformed'
 # training_data='partial_deformed'
 
-epoch='1'
-# epoch='2'
+# epoch='1'
+epoch='2'
 # epoch='none'
 
 partial_scan_1 = '020'
-partial_scan_2 = '125'
+partial_scan_2 = '104'
 
 model_numbers = ['002', '042', '085', '126', '167', '207']
 
