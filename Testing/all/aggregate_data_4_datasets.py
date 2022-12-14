@@ -141,8 +141,8 @@ plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all met
 
 # When the measure is fixed
 plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_rmse_' + feature_extractor + '.png')
-plot_across_types('Strict IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir_' + feature_extractor + '.png')
-plot_across_types('Relaxed IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir_' + feature_extractor + '.png')
+plot_across_types('Strict IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_strict_ir_' + feature_extractor + '.png')
+plot_across_types('Relaxed IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_relaxed_ir_' + feature_extractor + '.png')
 plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_epe_' + feature_extractor + '.png')
 plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accr_' + feature_extractor + '.png')
 plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accs_' + feature_extractor + '.png')
