@@ -76,6 +76,7 @@ if __name__ == "__main__":
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
+    parser.add_argument('--use_gt_ldmks', action = 'store_true', help= 'store the intermediate keypoints')
     args = parser.parse_args()
     
     if args.base:
@@ -160,8 +161,29 @@ if __name__ == "__main__":
         gt_thr = float(args.gt_thr) if args.gt_thr else 0.01
         edge_filtering = True if args.edge_filtering else False
         min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
-        ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering = edge_filtering, min_dist_thr = min_dist_thr)
-     
+        if not args.use_gt_ldmks:
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering = edge_filtering, min_dist_thr = min_dist_thr)
+        elif args.use_gt_ldmks and args.base:
+            src_pcd = o3d.io.read_point_cloud(args.base + args.s)
+            src_pcd = np.array(src_pcd.points).astype(np.float32)
+            tgt_pcd = o3d.io.read_point_cloud(args.base + args.t)
+            tgt_pcd = np.array(tgt_pcd.points).astype(np.float32)
+            matches = np.load(args.base + args.matches)
+            correspondences = np.array(matches['matches'])
+            final_correspondences = np.empty((0,2), int)
+            set_src_indices = set()
+            for correspondence in correspondences:
+                if correspondence[0] not in set_src_indices:
+                    final_correspondences = np.append(final_correspondences, np.array(np.expand_dims(correspondence, axis=0)), axis=0)
+                set_src_indices.add(correspondence[0])
+            correspondence = final_correspondences
+            indices_src = correspondences[:, 0]
+            indices_tgt = correspondences[:, 1]
+            ldmk_s = src_pcd[indices_src]
+            ldmk_t = tgt_pcd[indices_tgt]
+        else:
+            raise Exception('Specify a valid combination')
+        
         src_pcd, tgt_pcd = inputs["src_pcd_list"][0], inputs["tgt_pcd_list"][0]
         src_pcd_colors = inputs["src_pcd_colors_list"][0]
         copy_src_pcd = copy.deepcopy(src_pcd)
