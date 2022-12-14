@@ -14,7 +14,7 @@ def data_file(file_path, deformed):
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
-    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'relaxed-IR', 'strict-IR']
+    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'Relaxed IR', 'Strict IR']
     final_data = {}
     key = None
 
@@ -63,8 +63,8 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.clf()
     f = plt.figure(number)
     RMSE = retrieve_type(data, 'RMSE', partial1, partial2)
-    strict_IR = retrieve_type(data, 'strict-IR', partial1, partial2)
-    relaxed_IR = retrieve_type(data, 'relaxed-IR', partial1, partial2)
+    strict_IR = retrieve_type(data, 'Strict IR', partial1, partial2)
+    relaxed_IR = retrieve_type(data, 'Relaxed IR', partial1, partial2)
     full_epe = retrieve_type(data, 'full-epe', partial1, partial2)
     full_AccR = retrieve_type(data, 'full-AccR', partial1, partial2)
     full_AccS = retrieve_type(data, 'full-AccS', partial1, partial2)
@@ -116,7 +116,6 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_deformed_gt_ldmks.txt', deformed =True)
-print(data_full_deformed)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_non_deformed_gt_ldmks.txt', deformed = False)
