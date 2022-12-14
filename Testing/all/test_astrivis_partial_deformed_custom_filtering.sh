@@ -15,8 +15,8 @@ epoch=2
 # epoch=1
 # epoch=null
 
-filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
-folder_name=output_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
+filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom.txt
+folder_name=output_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom
 rm ${filename}
 touch ${filename}
 base='/home/aiday.kyzy/dataset/Synthetic/PartialDeformedData/TestingData/'
