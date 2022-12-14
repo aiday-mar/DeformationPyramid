@@ -1,0 +1,408 @@
+model 002 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  59  out of  402
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.14676616915422885
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  54  out of  262
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.20610687022900764
+Custom filtering is used
+number of landmarks before custom filtering :  402
+average distance :  0.013616260290562877
+average distance multiplier :  4.0
+number of unique source landmarks :  402
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  354
+number of true landmark correspondences returned from custom filtering :  56  out of  354
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.15819209039548024
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.701 
+full-AccS: 0.042 
+full-AccR: 0.315 
+full-outlier: 90.830 
+vis-epe: 17.583 
+vis-AccS: 0.090 
+vis-AccR: 0.678 
+vis-outlier: 93.713 
+occ-epe: 12.200 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 88.329 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[-0.65414087  0.20606572 -0.72776132]
+ [ 0.63104899  0.67912784 -0.37491694]
+ [ 0.41698533 -0.70450158 -0.57428265]]
+Predicted translation :  [-0.00671019 -0.05251449 -0.00812503]
+Relative Rotation Error :  0.4897065430711518
+Relative Translation Error :  2.0064756336823053
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.11097219888990499
+Strict IR :  0.0
+Relaxed IR :  0.0
+model 042 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  82  out of  444
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.18468468468468469
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  79  out of  346
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.22832369942196531
+Custom filtering is used
+number of landmarks before custom filtering :  444
+average distance :  0.011644789842607639
+average distance multiplier :  4.0
+number of unique source landmarks :  444
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  395
+number of true landmark correspondences returned from custom filtering :  80  out of  395
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.20253164556962025
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 18.342 
+full-AccS: 0.000 
+full-AccR: 0.441 
+full-outlier: 98.937 
+vis-epe: 21.417 
+vis-AccS: 0.000 
+vis-AccR: 0.311 
+vis-outlier: 99.097 
+occ-epe: 10.192 
+occ-AccS: 0.000 
+occ-AccR: 0.784 
+occ-outlier: 98.514 
+
+Actual rotation :  [[-0.87462848 -0.4705988  -0.11645507]
+ [ 0.24256895 -0.63279443  0.73534448]
+ [-0.41974435  0.61490485  0.66761269]]
+Actual translation :  [ 1.20593496  0.83257865 -0.4390415 ]
+Predicted rotation :  [[-0.27466302  0.3797744   0.88336372]
+ [ 0.9340219   0.32359371  0.15129506]
+ [-0.228393    0.86663631 -0.44359691]]
+Predicted translation :  [ 0.07181643 -0.073354    0.09209955]
+Relative Rotation Error :  1.862777618240375
+Relative Translation Error :  1.5456550832347702
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.09142446858790242
+Strict IR :  0.0
+Relaxed IR :  0.04093633382336311
+model 085 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  13  out of  244
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.05327868852459016
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  13  out of  219
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.0593607305936073
+Custom filtering is used
+number of landmarks before custom filtering :  244
+average distance :  0.01300009496540564
+average distance multiplier :  4.0
+number of unique source landmarks :  244
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  240
+number of true landmark correspondences returned from custom filtering :  13  out of  240
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.05416666666666667
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.915 
+full-AccS: 0.000 
+full-AccR: 0.539 
+full-outlier: 52.222 
+vis-epe: 14.673 
+vis-AccS: 0.000 
+vis-AccR: 0.307 
+vis-outlier: 82.727 
+occ-epe: 7.977 
+occ-AccS: 0.000 
+occ-AccR: 0.720 
+occ-outlier: 28.376 
+
+Actual rotation :  [[-0.08515318 -0.0477966  -0.99522079]
+ [-0.17928303  0.98328076 -0.03188333]
+ [ 0.98010537  0.17571123 -0.0922986 ]]
+Actual translation :  [ 0.67656808  0.74129062 -0.19986074]
+Predicted rotation :  [[-0.73128614 -0.43243753 -0.5274641 ]
+ [-0.37199455 -0.39532457  0.83984426]
+ [-0.57169969  0.81038016  0.12823095]]
+Predicted translation :  [ 0.08686564 -0.05587027 -0.05266684]
+Relative Rotation Error :  2.196098578732281
+Relative Translation Error :  1.0024372741480558
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07909817549372818
+Strict IR :  0.0
+Relaxed IR :  0.021157914983650702
+model 126 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  121  out of  455
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.26593406593406593
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  100  out of  328
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.3048780487804878
+Custom filtering is used
+number of landmarks before custom filtering :  455
+average distance :  0.012781736524366254
+average distance multiplier :  4.0
+number of unique source landmarks :  455
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  407
+number of true landmark correspondences returned from custom filtering :  119  out of  407
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.29238329238329236
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.223 
+full-AccS: 0.000 
+full-AccR: 0.315 
+full-outlier: 91.610 
+vis-epe: 18.594 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.300 
+occ-epe: 8.407 
+occ-AccS: 0.000 
+occ-AccR: 0.734 
+occ-outlier: 81.377 
+
+Actual rotation :  [[-0.81564788 -0.06094346 -0.57532984]
+ [ 0.57678234 -0.16330348 -0.80040871]
+ [-0.04517368 -0.98469176  0.16834925]]
+Actual translation :  [0.89703757 1.00050158 0.50390294]
+Predicted rotation :  [[-0.94714018 -0.05074308 -0.31678121]
+ [ 0.30995528 -0.39951917 -0.86273511]
+ [-0.08278235 -0.91531916  0.39412893]]
+Predicted translation :  [ 0.04607738  0.05608796 -0.05267601]
+Relative Rotation Error :  0.37112833396534795
+Relative Translation Error :  1.3877429371812422
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07220664508399105
+Strict IR :  0.004963680387409201
+Relaxed IR :  0.11077481840193705
+model 167 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  156  out of  332
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.46987951807228917
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  156  out of  284
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.5492957746478874
+Custom filtering is used
+number of landmarks before custom filtering :  332
+average distance :  0.009408493327812843
+average distance multiplier :  4.0
+number of unique source landmarks :  332
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  206
+number of true landmark correspondences returned from custom filtering :  114  out of  206
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.5533980582524272
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 9.134 
+full-AccS: 1.480 
+full-AccR: 12.223 
+full-outlier: 89.308 
+vis-epe: 11.328 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 6.278 
+occ-AccS: 3.406 
+occ-AccR: 28.127 
+occ-outlier: 75.396 
+
+Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
+ [ 0.42981428  0.61565456 -0.66047646]
+ [-0.39834628 -0.52716002 -0.75061478]]
+Actual translation :  [0.2961076  0.17846237 1.41276713]
+Predicted rotation :  [[ 0.72931647 -0.50097725  0.46596021]
+ [ 0.66394928  0.35386441 -0.65874974]
+ [ 0.16513196  0.78981105  0.59070269]]
+Predicted translation :  [-0.05451779  0.00771481  0.08901632]
+Relative Rotation Error :  2.769181084407566
+Relative Translation Error :  1.3800032939699827
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05594576160428109
+Strict IR :  0.07068129624904312
+Relaxed IR :  0.4585353406481245
+model 207 file1 020 file2 104
+0 to 1
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+confidence threshold used in the matching :  1e-06
+number of true landmarks correspondences returned from FCGF based Lepard :  47  out of  176
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.26704545454545453
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  47  out of  165
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.28484848484848485
+Custom filtering is used
+number of landmarks before custom filtering :  176
+average distance :  0.012782005751928824
+average distance multiplier :  4.0
+number of unique source landmarks :  176
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.1
+number of landmarks after custom filtering :  164
+number of true landmark correspondences returned from custom filtering :  41  out of  164
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.25
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.695 
+full-AccS: 0.000 
+full-AccR: 0.121 
+full-outlier: 35.166 
+vis-epe: 13.414 
+vis-AccS: 0.000 
+vis-AccR: 0.218 
+vis-outlier: 62.064 
+occ-epe: 7.288 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 1.473 
+
+Actual rotation :  [[-0.32787446  0.25529739 -0.9095722 ]
+ [ 0.93634976  0.21570775 -0.27698246]
+ [ 0.12548888 -0.94249319 -0.30977271]]
+Actual translation :  [0.74584319 0.0201462  0.21741575]
+Predicted rotation :  [[-0.07590909 -0.8671961  -0.4921472 ]
+ [-0.47368299  0.46568364 -0.74750456]
+ [ 0.87741804  0.17637933 -0.44612579]]
+Predicted translation :  [-0.05560355 -0.03911063 -0.02779398]
+Relative Rotation Error :  1.9838570846926258
+Relative Translation Error :  0.8402119093855404
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0652462172775619
+Strict IR :  0.0
+Relaxed IR :  0.07241462823928312
