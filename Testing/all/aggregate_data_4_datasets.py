@@ -4,21 +4,23 @@ import matplotlib.pyplot as plt
 # FCGF DONE
 # KPFCN TODO
 
-feature_extractor='fcgf'
-# feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
 
 # preprocessing='none'
 preprocessing='mutual'
 
 # training_data='full_deformed'
-training_data='partial_deformed'
+# training_data='partial_deformed'
+training_data='pretrained'
 
-epoch='1'
+# epoch='1'
 # epoch='2'
-# epoch='none'
+epoch='null'
 
-custom=True
-# custom=False
+custom=False
+# custom=True
+
 custom_val = '_custom' if custom else ''
 custom_val_title = ' - custom' if custom else ''
 adm_val = '_adm_4.0' if custom else ''
@@ -28,6 +30,8 @@ if training_data == 'full_deformed':
     training_data_val = 'full deformed'
 elif training_data == 'partial_deformed':
     training_data_val = 'partial deformed'
+elif training_data == 'pretrained':
+    training_data_val = 'pretrained'    
 else:
     raise Exception('specify a valid training dataset')
 
