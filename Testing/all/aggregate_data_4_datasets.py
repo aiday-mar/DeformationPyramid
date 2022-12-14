@@ -10,11 +10,15 @@ feature_extractor='fcgf'
 # preprocessing='none'
 preprocessing='mutual'
 
-training_data='full_deformed'
-# training_data='partial_deformed'
+# training_data='full_deformed'
+training_data='partial_deformed'
 
-custom=True
-# custom=False
+epoch='1'
+# epoch='2'
+# epoch='none'
+
+# custom=True
+custom=False
 custom_val = '_custom' if custom else ''
 custom_val_title = ' - custom' if custom else ''
 adm_val = '3.0' if custom else ''
@@ -25,10 +29,6 @@ elif training_data == 'partial_deformed':
     training_data_val = 'partial deformed'
 else:
     raise Exception('specify a valid training dataset')
-
-# epoch='1'
-epoch='2'
-# epoch='none'
 
 partial_scan_1 = '020'
 partial_scan_2 = '104'
