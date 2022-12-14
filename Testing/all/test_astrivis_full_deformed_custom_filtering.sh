@@ -25,9 +25,9 @@ touch ${filename}
 number_centers=50
 average_distance_multiplier=3.0
 if [ "$type" == "fcgf" ] ; then
-    inlier_outlier_thrs=0.1
+    inlier_outlier_thr=0.1
 else
-    inlier_outlier_thrs=0.01
+    inlier_outlier_thr=0.01
 fi
 
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
