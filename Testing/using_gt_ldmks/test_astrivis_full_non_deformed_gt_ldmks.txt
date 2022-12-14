@@ -40,9 +40,11 @@ Predicted rotation :  [[-0.58002772 -0.5151979   0.63098274]
 Predicted translation :  [ 0.00093169 -0.0004433   0.00100289]
 Relative Rotation Error :  0.10980468088481994
 Relative Translation Error :  1.5633030607108687
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.008425443328481804
-IR :  0.742285520515429
+Strict IR :  0.742285520515429
+Relaxed IR :  1.0
 model 042
 feature_extractor :  kpfcn
 feature extractor inside of get_dataloader :  kpfcn
@@ -85,9 +87,11 @@ Predicted rotation :  [[-0.3151167  -0.15462005 -0.93637282]
 Predicted translation :  [-0.000202    0.0002834   0.00192663]
 Relative Rotation Error :  0.13119146060734346
 Relative Translation Error :  1.2973992781824997
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.009470901024877436
-IR :  0.6501882667314466
+Strict IR :  0.6501882667314466
+Relaxed IR :  1.0
 model 085
 feature_extractor :  kpfcn
 feature extractor inside of get_dataloader :  kpfcn
@@ -130,9 +134,11 @@ Predicted rotation :  [[ 0.74526195 -0.01346029  0.66663589]
 Predicted translation :  [ 0.00074273 -0.00121123  0.00299102]
 Relative Rotation Error :  0.12322530945688265
 Relative Translation Error :  1.306783960426819
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.008981548310044078
-IR :  0.6911764705882353
+Strict IR :  0.6911764705882353
+Relaxed IR :  1.0
 model 126
 feature_extractor :  kpfcn
 feature extractor inside of get_dataloader :  kpfcn
@@ -175,9 +181,11 @@ Predicted rotation :  [[ 0.67744763 -0.12856191 -0.72424894]
 Predicted translation :  [ 0.00171527  0.00154095 -0.00153287]
 Relative Rotation Error :  0.05851620921124403
 Relative Translation Error :  1.5952805449323246
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.006646912434529054
-IR :  0.8611422172452408
+Strict IR :  0.8611422172452408
+Relaxed IR :  1.0
 model 167
 feature_extractor :  kpfcn
 feature extractor inside of get_dataloader :  kpfcn
@@ -220,9 +228,11 @@ Predicted rotation :  [[ 0.34316551  0.41510714 -0.84256952]
 Predicted translation :  [ 0.00094895 -0.00269707  0.00339131]
 Relative Rotation Error :  0.0890353635233049
 Relative Translation Error :  0.5673571321827313
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.007067200192947411
-IR :  0.8505603985056039
+Strict IR :  0.8505603985056039
+Relaxed IR :  1.0
 model 207
 feature_extractor :  kpfcn
 feature extractor inside of get_dataloader :  kpfcn
@@ -265,6 +275,8 @@ Predicted rotation :  [[-0.78253079  0.51615927  0.3481732 ]
 Predicted translation :  [0.00051234 0.00184967 0.00091015]
 Relative Rotation Error :  0.15900242038046175
 Relative Translation Error :  0.5197642283380195
-inlier ratio threshold :  0.01
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
 RMSE :  0.009761768829576979
-IR :  0.6685275645498954
+Strict IR :  0.6685275645498954
+Relaxed IR :  1.0
