@@ -14,7 +14,7 @@ def data_file(file_path, deformed):
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
-    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'Relaxed IR', 'Strict IR']
+    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'relaxed-IR', 'strict-IR']
     final_data = {}
     key = None
 
@@ -116,6 +116,7 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_deformed_gt_ldmks.txt', deformed =True)
+print(data_full_deformed)
 plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_non_deformed_gt_ldmks.txt', deformed = False)

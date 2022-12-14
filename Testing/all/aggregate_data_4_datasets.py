@@ -20,7 +20,7 @@ def data_file(file_path, deformed):
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
-    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'Relaxed IR', 'Strict IR']
+    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'relaxed-IR', 'strict-IR']
     final_data = {}
     key = None
 
