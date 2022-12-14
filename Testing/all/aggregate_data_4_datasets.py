@@ -13,8 +13,8 @@ preprocessing='mutual'
 training_data='full_deformed'
 # training_data='partial_deformed'
 
-# custom=True
-custom=False
+custom=True
+# custom=False
 custom_val = '_custom' if custom else ''
 custom_val_title = ' - custom' if custom else ''
 

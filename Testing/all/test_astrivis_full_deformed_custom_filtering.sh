@@ -23,7 +23,7 @@ rm ${filename}
 touch ${filename}
 
 number_centers=50
-average_distance_multiplier=3.0
+average_distance_multiplier=4.0
 if [ "$type" == "fcgf" ] ; then
     inlier_outlier_thr=0.1
 else
