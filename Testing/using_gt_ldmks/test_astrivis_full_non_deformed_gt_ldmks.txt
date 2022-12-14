@@ -1,0 +1,270 @@
+model 002
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 18.168 
+full-AccS: 0.119 
+full-AccR: 1.017 
+full-outlier: 94.897 
+vis-epe: 18.168 
+vis-AccS: 0.119 
+vis-AccR: 1.017 
+vis-outlier: 94.897 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[-0.58002772 -0.5151979   0.63098274]
+ [-0.68187125  0.73085405 -0.0300636 ]
+ [-0.44566762 -0.44768673 -0.77521432]]
+Predicted translation :  [ 0.00093169 -0.0004433   0.00100289]
+Relative Rotation Error :  0.10980468088481994
+Relative Translation Error :  1.5633030607108687
+inlier ratio threshold :  0.01
+RMSE :  0.008425443328481804
+IR :  0.742285520515429
+model 042
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 13.567 
+full-AccS: 0.194 
+full-AccR: 2.660 
+full-outlier: 92.846 
+vis-epe: 13.567 
+vis-AccS: 0.194 
+vis-AccR: 2.660 
+vis-outlier: 92.846 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.40066553 -0.11995433 -0.90833809]
+ [ 0.24675989  0.94063308 -0.23306431]
+ [ 0.88236993 -0.31752224 -0.34727933]]
+Actual translation :  [1.20244689 0.33445861 0.35577331]
+Predicted rotation :  [[-0.3151167  -0.15462005 -0.93637282]
+ [ 0.3254186   0.90922206 -0.25964954]
+ [ 0.89151789 -0.38653308 -0.23619477]]
+Predicted translation :  [-0.000202    0.0002834   0.00192663]
+Relative Rotation Error :  0.13119146060734346
+Relative Translation Error :  1.2973992781824997
+inlier ratio threshold :  0.01
+RMSE :  0.009470901024877436
+IR :  0.6501882667314466
+model 085
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 13.310 
+full-AccS: 0.178 
+full-AccR: 2.540 
+full-outlier: 95.811 
+vis-epe: 13.310 
+vis-AccS: 0.178 
+vis-AccR: 2.540 
+vis-outlier: 95.811 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.76902396  0.10084417  0.63121518]
+ [-0.46095699 -0.59664159  0.65691511]
+ [ 0.44285529 -0.79614651 -0.41234685]]
+Actual translation :  [-0.53063257  0.48585253  1.09298804]
+Predicted rotation :  [[ 0.74526195 -0.01346029  0.66663589]
+ [-0.53212741 -0.61445499  0.58248222]
+ [ 0.40177733 -0.78883707 -0.46509246]]
+Predicted translation :  [ 0.00074273 -0.00121123  0.00299102]
+Relative Rotation Error :  0.12322530945688265
+Relative Translation Error :  1.306783960426819
+inlier ratio threshold :  0.01
+RMSE :  0.008981548310044078
+IR :  0.6911764705882353
+model 126
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 19.327 
+full-AccS: 0.112 
+full-AccR: 1.022 
+full-outlier: 93.351 
+vis-epe: 19.327 
+vis-AccS: 0.112 
+vis-AccR: 1.022 
+vis-outlier: 93.351 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.63814927 -0.15503533 -0.7541416 ]
+ [-0.61475232 -0.69230752 -0.37787548]
+ [-0.46351385  0.70475126 -0.53710387]]
+Actual translation :  [0.96696898 0.79531393 0.98999611]
+Predicted rotation :  [[ 0.67744763 -0.12856191 -0.72424894]
+ [-0.5716156  -0.71169587 -0.40834393]
+ [-0.46294747  0.69062364 -0.55562473]]
+Predicted translation :  [ 0.00171527  0.00154095 -0.00153287]
+Relative Rotation Error :  0.05851620921124403
+Relative Translation Error :  1.5952805449323246
+inlier ratio threshold :  0.01
+RMSE :  0.006646912434529054
+IR :  0.8611422172452408
+model 167
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 7.306 
+full-AccS: 0.716 
+full-AccR: 7.721 
+full-outlier: 18.275 
+vis-epe: 7.306 
+vis-AccS: 0.716 
+vis-AccR: 7.721 
+vis-outlier: 18.275 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.39671545  0.36679516 -0.8414738 ]
+ [-0.57527497  0.81369012  0.08346918]
+ [ 0.71531501  0.4509653   0.53381151]]
+Actual translation :  [ 0.05762421 -0.46980197  0.32040084]
+Predicted rotation :  [[ 0.34316551  0.41510714 -0.84256952]
+ [-0.63803738  0.76133556  0.11522303]
+ [ 0.68930803  0.49805032  0.52611808]]
+Predicted translation :  [ 0.00094895 -0.00269707  0.00339131]
+Relative Rotation Error :  0.0890353635233049
+Relative Translation Error :  0.5673571321827313
+inlier ratio threshold :  0.01
+RMSE :  0.007067200192947411
+IR :  0.8505603985056039
+model 207
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 12.494 
+full-AccS: 0.209 
+full-AccR: 2.687 
+full-outlier: 95.953 
+vis-epe: 12.494 
+vis-AccS: 0.209 
+vis-AccR: 2.687 
+vis-outlier: 95.953 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.69578084  0.62399956  0.35568745]
+ [ 0.66485052  0.37215059  0.64767101]
+ [ 0.27177713  0.68711606 -0.67380168]]
+Actual translation :  [ 0.44784053 -0.19352481 -0.1776428 ]
+Predicted rotation :  [[-0.78253079  0.51615927  0.3481732 ]
+ [ 0.57104069  0.37215733  0.73171803]
+ [ 0.24810788  0.77141321 -0.58597248]]
+Predicted translation :  [0.00051234 0.00184967 0.00091015]
+Relative Rotation Error :  0.15900242038046175
+Relative Translation Error :  0.5197642283380195
+inlier ratio threshold :  0.01
+RMSE :  0.009761768829576979
+IR :  0.6685275645498954
