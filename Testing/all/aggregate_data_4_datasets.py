@@ -17,7 +17,7 @@ custom=True
 # custom=False
 custom_val = '_custom' if custom else ''
 custom_val_title = ' - custom' if custom else ''
-adm_val = '4.0' if custom else ''
+adm_val = '3.0' if custom else ''
 
 if training_data == 'full_deformed':
     training_data_val = 'full deformed'
