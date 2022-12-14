@@ -11,7 +11,7 @@ feature_extractor='kpfcn'
 preprocessing='mutual'
 
 partial_scan_1 = '020'
-partial_scan_2 = '125'
+partial_scan_2 = '104'
 
 model_numbers = ['002', '042', '085', '126', '167', '207']
 
