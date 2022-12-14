@@ -1,33 +1,12 @@
-config=LNDP_fcgf.yaml
-# config=LNDP.yaml
+config=LNDP.yaml
+type=kpfcn
 
-type=fcgf
-# type=kpfcn
-
-# preprocessing=none
-preprocessing=mutual
-
-training_data=full_deformed
-# training_data=partial_deformed
-# training_data=pretained
-
-epoch=2
-# epoch=1
-# epoch=null
-
-filename=Testing/all/test_astrivis_partial_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom.txt
-folder_name=output_partial_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom
+filename=Testing/using_gt_ldmks/test_astrivis_partial_non_deformed_gt_ldmks.txt
+folder_name=output_partial_non_deformed_gt_ldmks
 rm ${filename}
 touch ${filename}
-base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
 
-number_centers=50
-average_distance_multiplier=3.0
-if [ "$type" == "fcgf" ] ; then
-    inlier_outlier_thr=0.1
-else
-    inlier_outlier_thr=0.01
-fi
+base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
 
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
@@ -49,13 +28,7 @@ if [ $type == "kpfcn" ]; then
         --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
         --intermediate_output_folder="model${k}/${folder_name}/" \
         --base=${base} \
-        --print_keypoints \
-        --number_centers=${number_centers} \
-        --average_distance_multiplier=${average_distance_multiplier} \
-        --inlier_outlier_thr=${inlier_outlier_thr} \
-        --custom_filtering \
-        --reject_outliers=false \
-        >> ${filename}
+        --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
         python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -91,13 +64,7 @@ if [ $type == "fcgf" ]; then
         --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
         --intermediate_output_folder="model${k}/${folder_name}/" \
         --base=${base} \
-        --print_keypoints \
-        --number_centers=${number_centers} \
-        --average_distance_multiplier=${average_distance_multiplier} \
-        --inlier_outlier_thr=${inlier_outlier_thr} \
-        --custom_filtering \
-        --reject_outliers=false \
-        >> ${filename}
+        --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
         python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
