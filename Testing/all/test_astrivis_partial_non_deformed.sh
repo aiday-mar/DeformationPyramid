@@ -7,7 +7,14 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
-filename=Testing/all/test_astrivis_partial_non_deformed_pre_${preprocessing}_${type}.txt
+training_data=full_deformed
+# training_data=partial_deformed
+
+epoch=2
+# epoch=1
+
+filename=Testing/all/test_astrivis_partial_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
+folder_name=output_partial_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
 touch ${filename}
 

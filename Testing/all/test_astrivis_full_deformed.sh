@@ -1,20 +1,27 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
 
-# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
-model_numbers=('002' '042' '085' '126' '167' '207')
+training_data=full_deformed
+# training_data=partial_deformed
 
-filename=Testing/all/test_astrivis_full_deformed_pre_${preprocessing}_${type}.txt
+epoch=2
+# epoch=1
+
+filename=Testing/all/test_astrivis_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
+folder_name=output_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
 touch ${filename}
+
+# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
+model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $type == "kpfcn" ]; then
 	for k in ${model_numbers[@]}
@@ -23,8 +30,6 @@ if [ $type == "kpfcn" ]; then
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
-
-		folder_name=output_full_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
@@ -75,8 +80,6 @@ if [ $type == "fcgf" ]; then
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
-
-		folder_name=output_full_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
