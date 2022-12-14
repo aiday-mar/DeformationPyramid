@@ -17,12 +17,12 @@ epoch='1'
 # epoch='2'
 # epoch='none'
 
-# custom=True
-custom=False
+custom=True
+# custom=False
 custom_val = '_custom' if custom else ''
 custom_val_title = ' - custom' if custom else ''
-adm_val = '_adm_3.0' if custom else ''
-adm_val_title = '3.0' if custom else ''
+adm_val = '_adm_4.0' if custom else ''
+adm_val_title = '4.0' if custom else ''
 
 if training_data == 'full_deformed':
     training_data_val = 'full deformed'
