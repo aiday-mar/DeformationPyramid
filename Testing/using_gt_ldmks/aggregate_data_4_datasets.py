@@ -14,7 +14,7 @@ def data_file(file_path, deformed):
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
-    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'IR']
+    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'Relaxed IR', 'Strict IR']
     final_data = {}
     key = None
 
@@ -63,7 +63,8 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.clf()
     f = plt.figure(number)
     RMSE = retrieve_type(data, 'RMSE', partial1, partial2)
-    IR = retrieve_type(data, 'IR', partial1, partial2)
+    strict_IR = retrieve_type(data, 'Strict IR', partial1, partial2)
+    relaxed_IR = retrieve_type(data, 'Relaxed IR', partial1, partial2)
     full_epe = retrieve_type(data, 'full-epe', partial1, partial2)
     full_AccR = retrieve_type(data, 'full-AccR', partial1, partial2)
     full_AccS = retrieve_type(data, 'full-AccS', partial1, partial2)
@@ -73,7 +74,8 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     vis_AccS = retrieve_type(data, 'vis-AccS', partial1, partial2)
     vis_outlier = retrieve_type(data, 'vis-outlier', partial1, partial2)
     plt.plot(model_numbers, RMSE)
-    plt.plot(model_numbers, IR)
+    plt.plot(model_numbers, strict_IR)
+    plt.plot(model_numbers, relaxed_IR)
     plt.plot(model_numbers, full_epe)
     plt.plot(model_numbers, full_AccR)
     plt.plot(model_numbers, full_AccS)
@@ -84,7 +86,7 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.plot(model_numbers, vis_outlier)
     plt.xlabel("Model number")
     plt.ylabel("Value")
-    plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
+    plt.legend(['RMSE', 'Strict IR', 'Relaxed IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
     plt.title(title)
     if save_path:
         plt.savefig(save_path)
@@ -127,12 +129,13 @@ plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all met
 
 # When the measure is fixed
 plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_rmse.png')
-plot_across_types('IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_ir.png')
-plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_epe.png')
-plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accr.png')
-plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accs.png')
-plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_outlier.png')
-plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_epe.png')
-plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accr.png')
-plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accs.png')
-plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_outlier.png')
+plot_across_types('Strict IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_strict_ir.png')
+plot_across_types('Relaxed IR', 7, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_relaxed_ir.png')
+plot_across_types('full-epe', 8, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_epe.png')
+plot_across_types('full-AccR', 9, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accr.png')
+plot_across_types('full-AccS', 10, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accs.png')
+plot_across_types('full-outlier', 11, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_outlier.png')
+plot_across_types('vis-epe', 12, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_epe.png')
+plot_across_types('vis-AccR', 13, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accr.png')
+plot_across_types('vis-AccS', 14, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accs.png')
+plot_across_types('vis-outlier', 15, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_outlier.png')
