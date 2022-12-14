@@ -13,6 +13,13 @@ preprocessing='mutual'
 training_data='full_deformed'
 # training_data='partial_deformed'
 
+if training_data == 'full_deformed':
+    training_data_val = 'full deformed'
+elif training_data == 'partial_deformed':
+    training_data_val = 'partial deformed'
+else:
+    raise Exception('specify a valid training dataset')
+
 # epoch='1'
 epoch='2'
 # epoch='none'
@@ -101,9 +108,9 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.ylabel("Value")
     plt.legend(['RMSE', 'Strict IR', 'Relaxed IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
     if feature_extractor == 'fcgf':
-        plt.title(title + ' - ' + 'FCGF feature extractor')
+        plt.title(title + ' - ' + 'FCGF feature extractor' + ' - ' + ' trained on ' +  training_data_val + ' data' + ' - ' + ' epoch ' + epoch)
     elif feature_extractor == 'kpfcn':
-        plt.title(title + ' - ' + 'KPFCN feature extractor')
+        plt.title(title + ' - ' + 'KPFCN feature extractor' + ' - ' + ' trained on ' +  training_data_val + ' data' + ' - ' + ' epoch ' + epoch)
     if save_path:
         plt.savefig(save_path)
 
@@ -126,9 +133,9 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
     plt.ylabel(type)
     plt.legend(['Full Deformed', 'Partial Deformed', 'Full Non Deformed', 'Partial Non Deformed'])
     if feature_extractor == 'fcgf':
-        plt.title(type + ' - ' + 'FCGF feature extractor')
+        plt.title(type + ' - ' + 'FCGF feature extractor'  + ' - ' + ' trained on ' +  training_data_val + ' data' + ' - ' + ' epoch ' + epoch)
     elif feature_extractor == 'kpfcn':
-        plt.title(type + ' - ' + 'KPFCN feature extractor')
+        plt.title(type + ' - ' + 'KPFCN feature extractor'  + ' - ' + ' trained on ' +  training_data_val + ' data' + ' - ' + ' epoch ' + epoch)
     
     if save_path:
         plt.savefig(save_path)
