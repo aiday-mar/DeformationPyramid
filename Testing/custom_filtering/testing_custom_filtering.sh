@@ -1025,7 +1025,6 @@ if [ $type == "fcgf" ]; then
                     --intermediate_output_folder="FullNonDeformed/model${k}/${folder_name}/" \
                     --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                     --confidence_threshold=${confidence} \
-                    --preprocessing=${preprocessing} \
                     --index_coarse_feats=1 \
                     --coarse_level=${coarse_level} \
                     --number_centers=${number_center} \
