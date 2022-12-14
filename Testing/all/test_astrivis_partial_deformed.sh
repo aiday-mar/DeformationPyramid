@@ -7,7 +7,14 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
-filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}.txt
+training_data=full_deformed
+# training_data=partial_deformed
+
+epoch=2
+# epoch=1
+
+filename=Testing/all/test_astrivis_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
+folder_name=output_partial_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
 touch ${filename}
 
@@ -22,8 +29,6 @@ if [ $type == "kpfcn" ]; then
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
-
-		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
@@ -107,8 +112,6 @@ if [ $type == "fcgf" ]; then
 		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
 		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
-		
-		folder_name=output_partial_deformed_pre_${preprocessing}_${type}
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
 		end=$(($length_array - 1))
