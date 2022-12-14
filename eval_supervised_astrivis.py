@@ -179,8 +179,31 @@ if __name__ == "__main__":
             correspondence = final_correspondences
             indices_src = correspondences[:, 0]
             indices_tgt = correspondences[:, 1]
-            ldmk_s = torch.tensor(src_pcd[indices_src]).to('cuda:0')
-            ldmk_t = torch.tensor(tgt_pcd[indices_tgt]).to('cuda:0')
+            overlap_s_points = src_pcd[indices_src]
+            overlap_t_points = tgt_pcd[indices_tgt]
+            ldmk_s = torch.tensor(overlap_s_points).to('cuda:0')
+            ldmk_t = torch.tensor(overlap_t_points).to('cuda:0')
+            
+            if intermediate_output_folder:
+                if not os.path.exists(args.base + intermediate_output_folder + config.feature_extractor + '_gt_ldmk'):
+                    os.mkdir(args.base + intermediate_output_folder + config.feature_extractor + '_gt_ldmk')
+
+                ldmk_s_pcd = o3d.geometry.PointCloud()
+                ldmk_s_pcd.points = o3d.utility.Vector3dVector(overlap_s_points)
+                o3d.io.write_point_cloud(args.base + intermediate_output_folder + config.feature_extractor + '_gt_ldmk/' + 'ldmk_s_pcd.ply', ldmk_s_pcd)
+
+                ldmk_t_pcd = o3d.geometry.PointCloud()
+                ldmk_t_pcd.points = o3d.utility.Vector3dVector(overlap_t_points)
+                o3d.io.write_point_cloud(args.base + intermediate_output_folder + config.feature_extractor + '_gt_ldmk/' + 'ldmk_t_pcd.ply', ldmk_t_pcd)
+                
+                total_points = np.concatenate((overlap_s_points, overlap_t_points), axis = 0)
+                number_points_src = overlap_s_points.shape[0]
+                correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
+                line_set = o3d.geometry.LineSet(
+                    points=o3d.utility.Vector3dVector(total_points),
+                    lines=o3d.utility.Vector2iVector(correspondences),
+                )
+                o3d.io.write_line_set(args.base + intermediate_output_folder + config.feature_extractor + '_gt_ldmk/' + 'gt_line_set.ply', line_set)
         else:
             raise Exception('Specify a valid combination')
         

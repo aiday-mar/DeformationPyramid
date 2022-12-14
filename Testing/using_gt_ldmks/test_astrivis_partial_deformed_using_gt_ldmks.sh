@@ -61,37 +61,6 @@ do
 			--part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${filename}
 			fi
 			
-			# 1 -> 0
-			echo "1 to 0" >> ${filename}
-			python3 eval_supervised_astrivis.py \
-			--config=config/${config} \
-			--s="model${k}/transformed/${file_number1}_1.ply" \
-			--t="model${k}/transformed/${file_number2}_0.ply" \
-			--source_trans="model${k}/transformed/${file_number1}_1_se4.h5" \
-			--target_trans="model${k}/transformed/${file_number2}_0_se4.h5" \
-			--matches="model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-			--output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-			--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
-			--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
-			--base=${base} \
-			--print_keypoints \
-			--use_gt_ldmks \
-			>> ${filename}
-
-			if [ "$?" != "1" ]; then
-			python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-			--part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-			--part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" \
-			--pred="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" >> ${filename}
-
-			python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-			--final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-			--initial_1="${base}/model${k}/transformed/${file_number1}_1.ply" \
-			--initial_2="${base}/model${k}/transformed/${file_number2}_0.ply" \
-			--matches="${base}/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-			--part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-			--part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${filename}
-			fi
 		done
 	done
 done
