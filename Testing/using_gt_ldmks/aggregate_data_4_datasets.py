@@ -4,12 +4,6 @@ import matplotlib.pyplot as plt
 # FCGF DONE
 # KPFCN TODO
 
-# feature_extractor='fcgf'
-feature_extractor='kpfcn'
-
-# preprocessing='none'
-preprocessing='mutual'
-
 partial_scan_1 = '020'
 partial_scan_2 = '104'
 
@@ -91,10 +85,7 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.xlabel("Model number")
     plt.ylabel("Value")
     plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
-    if feature_extractor == 'fcgf':
-        plt.title(title + ' - ' + 'FCGF feature extractor')
-    elif feature_extractor == 'kpfcn':
-        plt.title(title + ' - ' + 'KPFCN feature extractor')
+    plt.title(title)
     if save_path:
         plt.savefig(save_path)
 
@@ -116,35 +107,32 @@ def plot_across_types(type, number, partial1, partial2, save_path = None):
     plt.xlabel("Model number")
     plt.ylabel(type)
     plt.legend(['Full Deformed', 'Partial Deformed', 'Full Non Deformed', 'Partial Non Deformed'])
-    if feature_extractor == 'fcgf':
-        plt.title(type + ' - ' + 'FCGF feature extractor')
-    elif feature_extractor == 'kpfcn':
-        plt.title(type + ' - ' + 'KPFCN feature extractor')
+    plt.title(type)
     
     if save_path:
         plt.savefig(save_path)
 
 # When the type is fixed
 data_full_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_deformed_gt_ldmks.txt', deformed =True)
-plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics_' + feature_extractor + '.png')
+plot_all_for_one_type(data_full_deformed, 'Full Deformed - all metrics', 1, partial_scan_1, partial_scan_2, save_path='Testing/all/full_deformed_all_metrics.png')
 
 data_full_non_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_full_non_deformed_gt_ldmks.txt', deformed = False)
-plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed - all metrics', 2, save_path='Testing/all/full_non_deformed_all_metrics_' + feature_extractor + '.png')
+plot_all_for_one_type(data_full_non_deformed, 'Full Non Deformed - all metrics', 2, save_path='Testing/all/full_non_deformed_all_metrics.png')
 
 data_partial_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_partial_deformed_gt_ldmks.txt', deformed =True)
-plot_all_for_one_type(data_partial_deformed, 'Partial Deformed - all metrics', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics_' + feature_extractor + '.png')
+plot_all_for_one_type(data_partial_deformed, 'Partial Deformed - all metrics', 3, partial_scan_1, partial_scan_2, save_path='Testing/all/partial_deformed_all_metrics.png')
 
 data_partial_non_deformed = data_file('Testing/using_gt_ldmks/test_astrivis_partial_non_deformed_gt_ldmks.txt', deformed = False)
-plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all metrics', 4, save_path='Testing/all/partial_non_deformed_all_metrics_' + feature_extractor + '.png')
+plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all metrics', 4, save_path='Testing/all/partial_non_deformed_all_metrics.png')
 
 # When the measure is fixed
-plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_rmse_' + feature_extractor + '.png')
-plot_across_types('IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_ir_' + feature_extractor + '.png')
-plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_epe_' + feature_extractor + '.png')
-plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accr_' + feature_extractor + '.png')
-plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accs_' + feature_extractor + '.png')
-plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_outlier_' + feature_extractor + '.png')
-plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_epe_' + feature_extractor + '.png')
-plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accr_' + feature_extractor + '.png')
-plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accs_' + feature_extractor + '.png')
-plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_outlier_' + feature_extractor + '.png')
+plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_rmse.png')
+plot_across_types('IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_ir.png')
+plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_epe.png')
+plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accr.png')
+plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_accs.png')
+plot_across_types('full-outlier', 10, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_full_outlier.png')
+plot_across_types('vis-epe', 11, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_epe.png')
+plot_across_types('vis-AccR', 12, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accr.png')
+plot_across_types('vis-AccS', 13, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_accs.png')
+plot_across_types('vis-outlier', 14, partial_scan_1, partial_scan_2, save_path='Testing/using_gt_ldmks/all_data_types_vis_outlier.png')
