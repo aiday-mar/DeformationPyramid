@@ -10,7 +10,7 @@ w_cd_list = [0, 0.2, 0.4, 0.6, 0.8, 1]
 base = '../../TestData/'
 types=['FullDeformed/', 'FullNonDeformed/', 'PartialDeformed/', 'PartialNonDeformed/']
 names=['Full Deformed', 'Full Non Deformed', 'Partial Deformed', 'Partial Non Deformed']
-metric_list=['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier']
+metric_list=['RMSE', 'Strict IR', 'Relaxed IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier']
 
 for metric in ['RMSE', 'IR']:
     for idx in range(len(types)):

@@ -20,7 +20,7 @@ def data_file(file_path, deformed):
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
-    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'IR']
+    list_keywords = ['full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccS', 'vis-AccR', 'vis-outlier', 'RMSE', 'Relaxed IR', 'Strict IR']
     final_data = {}
     key = None
 
@@ -69,7 +69,8 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.clf()
     f = plt.figure(number)
     RMSE = retrieve_type(data, 'RMSE', partial1, partial2)
-    IR = retrieve_type(data, 'IR', partial1, partial2)
+    strict_IR = retrieve_type(data, 'strict-IR', partial1, partial2)
+    relaxed_IR = retrieve_type(data, 'relaxed-IR', partial1, partial2)
     full_epe = retrieve_type(data, 'full-epe', partial1, partial2)
     full_AccR = retrieve_type(data, 'full-AccR', partial1, partial2)
     full_AccS = retrieve_type(data, 'full-AccS', partial1, partial2)
@@ -79,7 +80,8 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     vis_AccS = retrieve_type(data, 'vis-AccS', partial1, partial2)
     vis_outlier = retrieve_type(data, 'vis-outlier', partial1, partial2)
     plt.plot(model_numbers, RMSE)
-    plt.plot(model_numbers, IR)
+    plt.plot(model_numbers, strict_IR)
+    plt.plot(model_numbers, relaxed_IR)
     plt.plot(model_numbers, full_epe)
     plt.plot(model_numbers, full_AccR)
     plt.plot(model_numbers, full_AccS)
@@ -90,7 +92,7 @@ def plot_all_for_one_type(data, title, number, partial1 = None, partial2 = None,
     plt.plot(model_numbers, vis_outlier)
     plt.xlabel("Model number")
     plt.ylabel("Value")
-    plt.legend(['RMSE', 'IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
+    plt.legend(['RMSE', 'Strict IR', 'Relaxed IR', 'full-epe', 'full-AccR', 'full-AccS', 'full-outlier', 'vis-epe', 'vis-AccR', 'vis-AccS', 'vis-outlier'])
     if feature_extractor == 'fcgf':
         plt.title(title + ' - ' + 'FCGF feature extractor')
     elif feature_extractor == 'kpfcn':
@@ -139,7 +141,8 @@ plot_all_for_one_type(data_partial_non_deformed, 'Partial Non Deformed - all met
 
 # When the measure is fixed
 plot_across_types('RMSE', 5, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_rmse_' + feature_extractor + '.png')
-plot_across_types('IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir_' + feature_extractor + '.png')
+plot_across_types('Strict IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir_' + feature_extractor + '.png')
+plot_across_types('Relaxed IR', 6, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_ir_' + feature_extractor + '.png')
 plot_across_types('full-epe', 7, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_epe_' + feature_extractor + '.png')
 plot_across_types('full-AccR', 8, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accr_' + feature_extractor + '.png')
 plot_across_types('full-AccS', 9, partial_scan_1, partial_scan_2, save_path='Testing/all/all_data_types_full_accs_' + feature_extractor + '.png')

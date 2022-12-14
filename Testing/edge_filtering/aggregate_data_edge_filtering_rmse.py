@@ -23,8 +23,8 @@ models=['002', '042', '085', '126', '167', '207']
 shape = (len(edge_filtering_list),)
 
 sub_matrix={
-    'Partial Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)},  
-    'Partial Non Deformed': {'rmse' : np.zeros(shape), 'ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}
+    'Partial Deformed': {'rmse' : np.zeros(shape), 'strict-ir' : np.zeros(shape), 'relaxed-ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)},  
+    'Partial Non Deformed': {'rmse' : np.zeros(shape), 'strict-ir' : np.zeros(shape), 'relaxed-ir' : np.zeros(shape), 'vis-epe' : np.zeros(shape), 'vis-outlier' :  np.zeros(shape)}
 }
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
@@ -53,20 +53,25 @@ for line in Lines:
         i = edge_filtering_list.index(edge_filtering_val)
         final_matrices[current_model][current_data_type]['rmse'][i] = rmse
 
-    if 'IR' in line and current_model is not None and edge_filtering_val is not None:
-        rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
+    if 'Strict IR' in line and current_model is not None and edge_filtering_val is not None:
+        strict_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
         i = edge_filtering_list.index(edge_filtering_val)
-        final_matrices[current_model][current_data_type]['ir'][i] = rmse
+        final_matrices[current_model][current_data_type]['strict-ir'][i] = strict_ir
 
-    if 'vis-epe' in line and current_model is not None and edge_filtering_val is not None:
-        rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
+    if 'Relaxed IR' in line and current_model is not None and edge_filtering_val is not None:
+        relaxed_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
         i = edge_filtering_list.index(edge_filtering_val)
-        final_matrices[current_model][current_data_type]['vis-epe'][i] = rmse
+        final_matrices[current_model][current_data_type]['relaxed-ir'][i] = relaxed_ir
+        
+    if 'vis-epe' in line and current_model is not None and edge_filtering_val is not None:
+        vis_epe = list(map(float, re.findall("\d+\.\d+", line)))[0]
+        i = edge_filtering_list.index(edge_filtering_val)
+        final_matrices[current_model][current_data_type]['vis-epe'][i] = vis_epe
         
     if 'vis-outlier' in line and current_model is not None and edge_filtering_val is not None:
-        rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
+        vis_outlier = list(map(float, re.findall("\d+\.\d+", line)))[0]
         i = edge_filtering_list.index(edge_filtering_val)
-        final_matrices[current_model][current_data_type]['vis-outlier'][i] = rmse
+        final_matrices[current_model][current_data_type]['vis-outlier'][i] = vis_outlier
         
 print('final_matrices : ', final_matrices)
 
