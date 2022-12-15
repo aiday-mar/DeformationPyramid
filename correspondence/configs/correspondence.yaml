@@ -4,12 +4,10 @@ matcher_weights: 'correspondence/pretrained/lepard_full_deformed_epoch_1_kpfcn_m
 outlier_rejection_config: 'correspondence/configs/outlier_rejection.yaml'
 outlier_rejection_weights: 'correspondence/pretrained/outlier_weights.pth'
 
-
 mode: test
 gpu_mode:  True
 
 exp_dir: None
-
 
 #dataset:
 dataset: 4dmatch
