@@ -9,7 +9,7 @@ def gaussian_kernel(sigma, d):
 def find_probability_vector(pcd_points):
     number_points = pcd_points.shape[0]
     dists = distance_matrix(pcd_points, pcd_points)
-    k = 20
+    k = 10
     probabilities = []
     for i in range(number_points):
         print(i, '/', number_points - 1)
