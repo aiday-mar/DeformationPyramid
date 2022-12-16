@@ -58,3 +58,37 @@ o3d.io.write_point_cloud('half_disc_criterion.ply', edge_points_pcd)
 '''
 
 # Modified version of this code where we do not use the gaussian kernel
+def find_indices(pcd_points,n):
+    number_points = pcd_points.shape[0]
+    dists = distance_matrix(pcd_points, pcd_points)
+    k = 10
+    differences = []
+    for i in range(number_points):
+        print(i, '/', number_points - 1)
+        point = pcd_points[i]
+        dists_to_point = dists[i, :]
+        indices_neighbors = np.argsort(dists_to_point)[:k]
+        neighbor_points = pcd_points[indices_neighbors]
+        n_neighbor_points = neighbor_points.shape[0]
+
+        denominator = 0
+        mup = np.array([0., 0., 0.])
+        for j in range(n_neighbor_points):
+            mup += np.linalg.norm(point - neighbor_points[j])*neighbor_points[j]
+            denominator += np.linalg.norm(point - neighbor_points[j])
+        mup = mup/denominator
+
+        diff = np.linalg.norm(point - mup)
+        differences.append(diff)
+
+    indices = np.array(differences).argsort()[:n]
+    return indices
+
+n = 200
+pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
+pcd_points = np.array(pcd.points)
+indices = find_indices(pcd_points, n)
+edge_points = pcd_points[indices]
+edge_points_pcd = o3d.geometry.PointCloud()
+edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
+o3d.io.write_point_cloud('half_disc_criterion.ply', edge_points_pcd)
