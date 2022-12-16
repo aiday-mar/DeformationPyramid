@@ -13,7 +13,7 @@ characteristic_equations = {
 def gaussian_kernel(sigma, d):
     return math.exp(-d**2/sigma**2)
 
-def find_probability_vector(pcd_points):
+def find_indices(pcd_points, n):
     probabilities = []
     norms = []
     pi_tildas = {}
@@ -61,21 +61,35 @@ def find_probability_vector(pcd_points):
         probabilities.append(probability)
         norms.append(np.linalg.norm(lambdap - characteristic_equations['boundary']))
 
-    return np.array(probabilities), np.array(norms)
+    indices_proba = (-np.array(probabilities)).argsort()[:n]
+    indices_norm = np.array(probabilities).argsort()[:n]
+
+    return indices_proba, indices_norm
 
 pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
 pcd_points = np.array(pcd.points)
-probabilities, norms = find_probability_vector(pcd_points)
-n = 200
 
-indices = (-probabilities).argsort()[:n]
-edge_points = pcd_points[indices]
-edge_points_pcd = o3d.geometry.PointCloud()
-edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
-o3d.io.write_point_cloud('shape_criterion_probabilities.ply', edge_points_pcd)
+# Using the indices by looking at the norm
+n = 2000
+pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
+pcd_points = np.array(pcd.points)
+indices_proba, indices_norm = find_indices(pcd_points, n)
+edge_points = pcd_points[indices_norm]
+print('number of pcd points : ', pcd_points.shape[0])
+print('number of edge points : ', edge_points.shape[0])
 
-indices = norms.argsort()[:n]
-edge_points = pcd_points[indices]
-edge_points_pcd = o3d.geometry.PointCloud()
-edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
-o3d.io.write_point_cloud('shape_criterion_norms.ply', edge_points_pcd)
+n = 1000
+indices_proba, indices_norm = find_indices(edge_points, n)
+final_edge_points = edge_points[indices_norm]
+print('number of edge points : ', edge_points.shape[0])
+print('number of final edge points : ', final_edge_points.shape[0])
+
+n = 500
+indices_proba, indices_norm = find_indices(final_edge_points, n)
+final_final_edge_points = final_edge_points[indices_norm]
+print('number of final edge points : ', final_edge_points.shape[0])
+print('number of final final edge points : ', final_final_edge_points.shape[0])
+
+final_pcd = o3d.geometry.PointCloud()
+final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
+o3d.io.write_point_cloud('shape_criterion_norms.ply', final_pcd)

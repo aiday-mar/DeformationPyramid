@@ -3,6 +3,7 @@ import numpy as np
 from scipy.spatial import distance_matrix
 import math
 
+'''
 def gaussian_kernel(sigma, d):
     return math.exp(-d**2/sigma**2)
 
@@ -54,3 +55,6 @@ edge_points = pcd_points[indices]
 edge_points_pcd = o3d.geometry.PointCloud()
 edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
 o3d.io.write_point_cloud('half_disc_criterion.ply', edge_points_pcd)
+'''
+
+# Modified version of this code where we do not use the gaussian kernel
