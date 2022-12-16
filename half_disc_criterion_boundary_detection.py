@@ -84,11 +84,25 @@ def find_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-n = 200
+n = 2000
 pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
 pcd_points = np.array(pcd.points)
-indices = find_indices(pcd_points, n)
-edge_points = pcd_points[indices]
-edge_points_pcd = o3d.geometry.PointCloud()
-edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
-o3d.io.write_point_cloud('half_disc_criterion.ply', edge_points_pcd)
+final_edge_point_indices = find_indices(pcd_points, n)
+edge_points = pcd_points[final_edge_point_indices]
+print('number of pcd points : ', pcd_points.shape[0])
+print('number of edge points : ', edge_points.shape[0])
+
+n = 1000
+final_edge_point_indices = find_indices(edge_points, n)
+final_edge_points = edge_points[final_edge_point_indices]
+print('number of edge points : ', edge_points.shape[0])
+print('number of final edge points : ', final_edge_points.shape[0])
+
+n = 500
+final_final_edge_point_indices = find_indices(final_edge_points, n)
+final_final_edge_points = final_edge_points[final_final_edge_point_indices]
+print('number of final edge points : ', final_edge_points.shape[0])
+print('number of final final edge points : ', final_final_edge_points.shape[0])
+final_pcd = o3d.geometry.PointCloud()
+final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
+o3d.io.write_point_cloud('half_disc_criterion.ply', final_pcd)
