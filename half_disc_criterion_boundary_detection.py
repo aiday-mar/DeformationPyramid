@@ -84,7 +84,7 @@ def find_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_half_disc_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
+def get_half_disc_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
     n = 2000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
