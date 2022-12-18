@@ -75,25 +75,34 @@ def find_indices(points, n):
     final_edge_point_indices = (-final_edge_point_angles).argsort()[:n]
     return final_edge_point_indices
 
-n = 2000
-pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
-pcd_points = np.array(pcd.points)
-final_edge_point_indices = find_indices(pcd_points, n)
-edge_points = pcd_points[final_edge_point_indices]
-print('number of pcd points : ', pcd_points.shape[0])
-print('number of edge points : ', edge_points.shape[0])
+def get_angle_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
+    n = 2000
+    pcd = o3d.io.read_point_cloud(file_path)
+    pcd_points = np.array(pcd.points)
+    edge_point_indices = find_indices(pcd_points, n)
+    edge_points = pcd_points[edge_point_indices]
+    print('number of pcd points : ', pcd_points.shape[0])
+    print('number of edge points : ', edge_points.shape[0])
 
-n = 1000
-final_edge_point_indices = find_indices(edge_points, n)
-final_edge_points = edge_points[final_edge_point_indices]
-print('number of edge points : ', edge_points.shape[0])
-print('number of final edge points : ', final_edge_points.shape[0])
+    n = 1000
+    final_edge_point_indices = find_indices(edge_points, n)
+    final_edge_points = edge_points[final_edge_point_indices]
+    print('number of edge points : ', edge_points.shape[0])
+    print('number of final edge points : ', final_edge_points.shape[0])
 
-n = 500
-final_final_edge_point_indices = find_indices(final_edge_points, n)
-final_final_edge_points = final_edge_points[final_final_edge_point_indices]
-print('number of final edge points : ', final_edge_points.shape[0])
-print('number of final final edge points : ', final_final_edge_points.shape[0])
-final_pcd = o3d.geometry.PointCloud()
-final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-o3d.io.write_point_cloud('angle_criterion.ply', final_pcd)
+    n = 500
+    final_final_edge_point_indices = find_indices(final_edge_points, n)
+    final_final_edge_points = final_edge_points[final_final_edge_point_indices]
+    print('number of final edge points : ', final_edge_points.shape[0])
+    print('number of final final edge points : ', final_final_edge_points.shape[0])
+    final_pcd = o3d.geometry.PointCloud()
+    final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
+    o3d.io.write_point_cloud('angle_criterion.ply', final_pcd)
+
+    angle_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
+    n_pcd_points = pcd_points.shape[0]
+    mask = np.zeros((n_pcd_points,), dtype = bool)
+    for index in angle_indices:
+        mask[index] = True
+    
+    return mask
