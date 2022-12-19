@@ -27,6 +27,12 @@ else
     inlier_outlier_thr=0.01
 fi
 
+if [ "$training_data" == "pretrained" ] ; then
+	confidence_threshold=0.1
+else
+	confidence_threshold=0.000001
+fi
+
 filename=Testing/all/test_astrivis_full_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_adm_${average_distance_multiplier}.txt
 folder_name=output_full_non_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_adm_${average_distance_multiplier}
 rm ${filename}
@@ -56,6 +62,7 @@ if [ $type == "kpfcn" ]; then
         --inlier_outlier_thr=${inlier_outlier_thr} \
         --custom_filtering \
         --reject_outliers=false \
+        --confidence_threshold=${confidence_threshold} \
         >> ${filename}
         
         if [ "$?" != "1" ]; then
@@ -98,6 +105,7 @@ if [ $type == "fcgf" ]; then
         --inlier_outlier_thr=${inlier_outlier_thr} \
         --custom_filtering \
         --reject_outliers=false \
+        --confidence_threshold=${confidence_threshold} \
         >> ${filename}
         
         if [ "$?" != "1" ]; then

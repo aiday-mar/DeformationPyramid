@@ -17,6 +17,12 @@ epoch=2
 # epoch=1
 # epoch=null
 
+if [ "$training_data" == "pretrained" ] ; then
+	confidence_threshold=0.1
+else
+	confidence_threshold=0.000001
+fi
+
 filename=Testing/all/test_astrivis_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
 folder_name=output_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
@@ -56,6 +62,7 @@ if [ $type == "kpfcn" ]; then
 				--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
+				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints  >> ${filename}
 				
 				if [ "$?" != "1" ]; then
@@ -108,6 +115,7 @@ if [ $type == "fcgf" ]; then
 				--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
+				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints  >> ${filename}
 				
 				if [ "$?" != "1" ]; then
