@@ -920,7 +920,8 @@ if [ $type == "fcgf" ]; then
 
     echo 'Full Deformed' >> ${file_name} 
     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
-    --config=config/${config} --s="FullDeformed/model${k}/020.ply" \
+    --config=config/${config} \
+    --s="FullDeformed/model${k}/020.ply" \
     --t="FullDeformed/model${k}/104.ply" \
     --s_feats="FullDeformed/model${k}/020_fcgf.npz" \
     --t_feats="FullDeformed/model${k}/104_fcgf.npz" \

@@ -14,7 +14,7 @@ preprocessing='mutual'
 
 data_types=['Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
-folder = 'edge_filtering/'
+folder = 'exterior_boundary_detection/'
 file='testing_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
 
 edge_filtering_list=['Edge filtering not used', 'Edge filtering used']
