@@ -89,4 +89,29 @@ for data_type in data_types:
     plt.legend(legend)
     plt.title(data_type, wrap=True)
     plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse.png')
+
+for data_type in data_types:
+    number += 1
+    plt.clf()
+    f = plt.figure(number)
+    legend = []
+
+    for feature_extractor in weights:
+        for training_data_type in weights[feature_extractor]:
+            
+            epoch = str(weights[feature_extractor][training_data_type])
+            weights_legend = feature_extractor + ' - ' + training_data_type + ' - ' + epoch 
+            legend.append(weights_legend)
+            data = get_data(data_type, feature_extractor, training_data_type)
+            relaxed_ir = []             
+            for model_number in data:
+                relaxed_ir.append(float(data[model_number]['Relaxed IR']))
+            
+            plt.plot(model_numbers, relaxed_ir)
+    
+    plt.xlabel("Model number")
+    plt.ylabel("Relaxed IR")
+    plt.legend(legend)
+    plt.title(data_type, wrap=True)
+    plt.savefig('Testing/all/per_data_type_' + data_type + '_relaxed_ir.png')
             
