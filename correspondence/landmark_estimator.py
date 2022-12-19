@@ -16,6 +16,10 @@ from correspondence.lepard.pipeline_fcgf import PipelineFCGF as MatcherFCGF
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
 
+from angle_criterion import get_angle_criterion_mask
+from shape_criterion import get_shape_criterion_mask
+from disc_criterion import get_disc_criterion_mask
+
 from collections import defaultdict
 path = '/home/aiday.kyzy/dataset/Synthetic/'
 
@@ -44,7 +48,6 @@ class Landmark_Model():
             self.matcher = Matcher(matcher_config).to(device)
         if self.feature_extractor == 'fcgf':
             self.matcher = MatcherFCGF(matcher_config).to(device)
-
         state = torch.load(indent + config.matcher_weights if indent else config.matcher_weights)
         self.matcher.load_state_dict(state['state_dict'])
         self.indent = indent
@@ -53,11 +56,131 @@ class Landmark_Model():
         self.outlier_model = Outlier_Rejection(outlier_rejection_config.model).to(device)
         state = torch.load(indent + config.outlier_rejection_weights if indent else config.outlier_rejection_weights)
         self.outlier_model.load_state_dict(state['state_dict'])
-
         self.device = device
         self.kpfcn_config = config['kpfcn_config']
 
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering = False, min_dist_thr = 1.0e-4):
+        
+    def do_edge_filtering(self, initial_edge_point_indices, data, ldmk_s, ldmk_t, inlier_conf, min_dist_thr, matches_path, gt_thr, intermediate_output_folder, folder_name, final_indices, inlier_thr, coarse_flow, type = 'simple'):
+
+        src_pcd_points = data['src_pcd_list'][0]
+        initial_edge_points = src_pcd_points[initial_edge_point_indices]
+        initial_edge_points = np.array(initial_edge_points.cpu())
+        
+        mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
+        ldmk_s_np = np.array(ldmk_s.cpu())
+        ldmk_t_np = np.array(ldmk_t.cpu())
+        
+        print('minimum distance threshold : ', min_dist_thr)
+        for i in range(ldmk_s_np.shape[0]):
+            ldmk_s_np_point = ldmk_s_np[i]
+            dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
+            min_dist = dists_to_edge.min()
+            print('min_dist : ', min_dist)
+            if min_dist < min_dist_thr:
+                mask[i] = True
+
+        print('number correspondences kept in ' + type + ' edge filtering : ', mask.sum(), ' out of : ', mask.shape[0])               
+        ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
+        ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
+        
+        if matches_path:
+            gt_corr_mask = np.array([], dtype=bool)
+            matches = np.load(self.path + matches_path)
+            correspondences = np.array(matches['matches'])
+            ind_src = correspondences[:, 0]
+            ind_tgt = correspondences[:, 1]
+            
+            src_pcd_points = data['src_pcd_list'][0]
+            src_pcd_points = np.array(src_pcd_points.cpu())
+            tgt_pcd_points = data['tgt_pcd_list'][0]
+            tgt_pcd_points = np.array(tgt_pcd_points.cpu())
+            
+            matches_source = src_pcd_points[ind_src]
+            matches_target = tgt_pcd_points[ind_tgt]
+            
+            for i in range(ldmk_s_np[mask].shape[0]):
+                s_ldmk = np.array(ldmk_s_np[mask][i])
+                t_ldmk = np.array(ldmk_t_np[mask][i])
+                distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
+                distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
+                indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < gt_thr)[0])
+                indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < gt_thr)[0])
+                if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
+                    gt_corr_mask = np.append(gt_corr_mask, True)
+                else:
+                    gt_corr_mask = np.append(gt_corr_mask, False)
+            
+            edge_filtering_true_correspondences_mask = gt_corr_mask.astype(bool)
+            n_true_custom_filtering_correspondences = int(edge_filtering_true_correspondences_mask.sum())
+            n_total_custom_filtering_correspondences = edge_filtering_true_correspondences_mask.shape[0]
+            print('number of true landmark correspondences returned from ' + type + ' edge filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
+            
+            if self.feature_extractor == 'kpfcn':
+                if n_total_custom_filtering_correspondences != 0:
+                    print('fraction of true landmark correspondences returned from ' + type + ' edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                else:
+                    print('fraction of true landmark correspondences returned from ' + type + ' edge filtering : ', 0 )
+            elif self.feature_extractor == 'fcgf':
+                if n_total_custom_filtering_correspondences != 0:
+                    print('fraction of true landmark correspondences returned from FCGF based ' + type + ' edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
+                else:
+                    print('fraction of true landmark correspondences returned from FCGF based ' + type + ' edge filtering : ', 0 )
+
+        if intermediate_output_folder:
+            if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk'):
+                os.mkdir(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk')
+            
+            src_pcd_points = data['src_pcd_list'][0]
+            initial_points_pcd = o3d.geometry.PointCloud()
+            initial_points_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
+            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_initial_points_pcd.ply', initial_points_pcd)
+
+            initial_edge_points = np.squeeze(initial_edge_points, axis=1)
+            initial_edge_points_pcd = o3d.geometry.PointCloud()
+            initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
+            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_initial_edge_points_pcd.ply', initial_edge_points_pcd)
+
+            ldmk_s_pcd = o3d.geometry.PointCloud()
+            ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
+            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
+
+            rot = data['batched_rot'][0]
+            ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
+            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_edge_filtered_ldmk_s_pcd_rotated.ply', ldmk_s_pcd)
+            rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
+
+            ldmk_t_pcd = o3d.geometry.PointCloud()
+            ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
+            o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_edge_filtered_ldmk_t_pcd.ply', ldmk_t_pcd)
+
+            edge_filtered_total_points = np.concatenate((rotated_ldmk_s_np, ldmk_t_np), axis = 0)
+            number_ldmks_after_edge_filtering = rotated_ldmk_s_np.shape[0]
+            edge_filtered_correspondences = np.array([[i, i + number_ldmks_after_edge_filtering] for i in range(0, number_ldmks_after_edge_filtering)])
+            edge_filtering_line_set = o3d.geometry.LineSet()
+            edge_filtering_line_set.points=o3d.utility.Vector3dVector(edge_filtered_total_points)
+            edge_filtering_line_set.lines =o3d.utility.Vector2iVector(edge_filtered_correspondences)
+            o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_edge_filtered_line_set.ply', edge_filtering_line_set)
+            
+        data_mod = {}
+        vec_6d_edge = data['vec_6d'][0][final_indices][mask]
+        data_mod['vec_6d'] = vec_6d_edge[None, :]
+        vec_6d_mask_edge = data['vec_6d_mask'][0][final_indices][mask]
+        data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
+        vec_6d_ind_edge = data['vec_6d_ind'][0][final_indices][mask]
+        data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]         
+        
+        data_mod['s_pcd'] = data['s_pcd']
+        data_mod['t_pcd'] = data['t_pcd']
+        data_mod['batched_rot'] = data['batched_rot']
+        data_mod['batched_trn'] = data['batched_trn']
+
+        inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
+        inlier_conf = inlier_conf[final_indices][mask]
+        match_filtered = inlier_mask[0][ inlier_conf > inlier_thr ]
+        inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
+        return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
+        
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, min_dist_thr = 1.0e-4):
         if base:
             self.path = base
         else:
@@ -829,7 +952,6 @@ class Landmark_Model():
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             '''
             
-            # Custom filtering with the 4th method
             # VERSION 4
             if custom_filtering:
                 print('Custom filtering is used')
@@ -1154,7 +1276,6 @@ class Landmark_Model():
                             print('fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard : ', 0)
                     
                 if final_indices.shape[0] != 0 and intermediate_output_folder:
-
                     # inliers
                     rot = data['batched_rot'][0]
                     ldmk_s_custom_filtering = o3d.geometry.PointCloud()
@@ -1220,8 +1341,7 @@ class Landmark_Model():
                 match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             
-            if edge_filtering:
-                
+            if edge_filtering_simple:
                 src_pcd_points = data['src_pcd_list'][0]
                 n_src_points = src_pcd_points.shape[0]
                 dists = np.zeros((n_src_points, n_src_points))
@@ -1232,130 +1352,29 @@ class Landmark_Model():
                     square_difference = np.array(square_difference.cpu())
                     sum_by_row = np.sum(square_difference, axis=1)
                     dists[i, :] = np.sqrt(sum_by_row)
-                
+    
                 for i in range(n_src_points):
                     dists[i][i] = float('inf')
-                
                 min_distances = dists.min(axis = 1)
                 average_distance = np.average(min_distances)
                 neighbors = dists < 1.5 * average_distance
                 n_neighbors = np.sum(neighbors, axis=1)
                 initial_edge_point_indices = np.argwhere(n_neighbors < 3)
-                initial_edge_points = src_pcd_points[initial_edge_point_indices]
-                initial_edge_points = np.array(initial_edge_points.cpu())
-                
-                mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
-                ldmk_s_np = np.array(ldmk_s.cpu())
-                ldmk_t_np = np.array(ldmk_t.cpu())
-                
-                print('minimum distance threshold : ', min_dist_thr)
-                for i in range(ldmk_s_np.shape[0]):
-                    ldmk_s_np_point = ldmk_s_np[i]
-                    dists_to_edge = np.sqrt(np.sum((ldmk_s_np_point - initial_edge_points) ** 2, axis=1))
-                    min_dist = dists_to_edge.min()
-                    print('min_dist : ', min_dist)
-                    if min_dist < min_dist_thr:
-                        mask[i] = True
+                ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'simple')
 
-                print('number correspondences kept in edge filtering : ', mask.sum(), ' out of : ', mask.shape[0])               
-                ldmk_s = torch.tensor(ldmk_s_np[mask]).to('cuda:0')
-                ldmk_t = torch.tensor(ldmk_t_np[mask]).to('cuda:0')
-                
-                if matches_path:
-                    gt_corr_mask = np.array([], dtype=bool)
-                    matches = np.load(self.path + matches_path)
-                    correspondences = np.array(matches['matches'])
-                    ind_src = correspondences[:, 0]
-                    ind_tgt = correspondences[:, 1]
-                    
-                    src_pcd_points = data['src_pcd_list'][0]
-                    src_pcd_points = np.array(src_pcd_points.cpu())
-                    tgt_pcd_points = data['tgt_pcd_list'][0]
-                    tgt_pcd_points = np.array(tgt_pcd_points.cpu())
-                    
-                    matches_source = src_pcd_points[ind_src]
-                    matches_target = tgt_pcd_points[ind_tgt]
-                    
-                    for i in range(ldmk_s_np[mask].shape[0]):
-                        s_ldmk = np.array(ldmk_s_np[mask][i])
-                        t_ldmk = np.array(ldmk_t_np[mask][i])
-                        distance_to_s_ldmk = np.linalg.norm(matches_source - s_ldmk, axis=1)
-                        distance_to_t_ldmk = np.linalg.norm(matches_target - t_ldmk, axis=1)
-                        indices_neigh_s_ldmk = set(np.where(distance_to_s_ldmk < gt_thr)[0])
-                        indices_neigh_t_ldmk = set(np.where(distance_to_t_ldmk < gt_thr)[0])
-                        if indices_neigh_s_ldmk & indices_neigh_t_ldmk:
-                            gt_corr_mask = np.append(gt_corr_mask, True)
-                        else:
-                            gt_corr_mask = np.append(gt_corr_mask, False)
-                    
-                    edge_filtering_true_correspondences_mask = gt_corr_mask.astype(bool)
-                    n_true_custom_filtering_correspondences = int(edge_filtering_true_correspondences_mask.sum())
-                    n_total_custom_filtering_correspondences = edge_filtering_true_correspondences_mask.shape[0]
-                    print('number of true landmark correspondences returned from edge filtering : ', n_true_custom_filtering_correspondences , ' out of ', n_total_custom_filtering_correspondences)
-                    
-                    if self.feature_extractor == 'kpfcn':
-                        if n_total_custom_filtering_correspondences != 0:
-                            print('fraction of true landmark correspondences returned from edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
-                        else:
-                            print('fraction of true landmark correspondences returned from edge filtering : ', 0 )
-                    elif self.feature_extractor == 'fcgf':
-                        if n_total_custom_filtering_correspondences != 0:
-                            print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', n_true_custom_filtering_correspondences/n_total_custom_filtering_correspondences )
-                        else:
-                            print('fraction of true landmark correspondences returned from FCGF based edge filtering : ', 0 )
+            if edge_filtering_angle:
+                src_pcd_points = np.array(data['src_pcd_list'][0])
+                initial_edge_point_indices = get_angle_criterion_mask(src_pcd_points)
+                ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'angle')
+            
+            if edge_filtering_shape:
+                src_pcd_points = np.array(data['src_pcd_list'][0])
+                initial_edge_point_indices = get_shape_criterion_mask(src_pcd_points)
+                ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'shape')
 
-                if intermediate_output_folder:
-                    if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk'):
-                        os.mkdir(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk')
-                    
-                    src_pcd_points = data['src_pcd_list'][0]
-                    initial_points_pcd = o3d.geometry.PointCloud()
-                    initial_points_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_points_pcd.ply', initial_points_pcd)
-
-                    initial_edge_points = np.squeeze(initial_edge_points, axis=1)
-                    initial_edge_points_pcd = o3d.geometry.PointCloud()
-                    initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/initial_edge_points_pcd.ply', initial_edge_points_pcd)
-
-                    ldmk_s_pcd = o3d.geometry.PointCloud()
-                    ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s_np))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd.ply', ldmk_s_pcd)
-
-                    rot = data['batched_rot'][0]
-                    ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_s_pcd_rotated.ply', ldmk_s_pcd)
-                    rotated_ldmk_s_np = np.array(ldmk_s_pcd.points)
-
-                    ldmk_t_pcd = o3d.geometry.PointCloud()
-                    ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t_np))
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_ldmk_t_pcd.ply', ldmk_t_pcd)
-
-                    edge_filtered_total_points = np.concatenate((rotated_ldmk_s_np, ldmk_t_np), axis = 0)
-                    number_ldmks_after_edge_filtering = rotated_ldmk_s_np.shape[0]
-                    edge_filtered_correspondences = np.array([[i, i + number_ldmks_after_edge_filtering] for i in range(0, number_ldmks_after_edge_filtering)])
-                    edge_filtering_line_set = o3d.geometry.LineSet()
-                    edge_filtering_line_set.points=o3d.utility.Vector3dVector(edge_filtered_total_points)
-                    edge_filtering_line_set.lines =o3d.utility.Vector2iVector(edge_filtered_correspondences)
-                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_edge_filtering_ldmk/edge_filtered_line_set.ply', edge_filtering_line_set)
-                    
-                data_mod = {}
-
-                vec_6d_edge = data['vec_6d'][0][final_indices][mask]
-                data_mod['vec_6d'] = vec_6d_edge[None, :]
-                vec_6d_mask_edge = data['vec_6d_mask'][0][final_indices][mask]
-                data_mod['vec_6d_mask'] = vec_6d_mask_edge[None, :]
-                vec_6d_ind_edge = data['vec_6d_ind'][0][final_indices][mask]
-                data_mod['vec_6d_ind'] = vec_6d_ind_edge[None, :]         
-                
-                data_mod['s_pcd'] = data['s_pcd']
-                data_mod['t_pcd'] = data['t_pcd']
-                data_mod['batched_rot'] = data['batched_rot']
-                data_mod['batched_trn'] = data['batched_trn']
-        
-                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data_mod, inlier_thr, s2t_flow=coarse_flow)
-                inlier_conf = inlier_conf[final_indices][mask]
-                match_filtered = inlier_mask[0][ inlier_conf > inlier_thr ]
-                inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
-                 
+            if edge_filtering_disc:
+                src_pcd_points = np.array(data['src_pcd_list'][0])
+                initial_edge_point_indices = get_disc_criterion_mask(src_pcd_points)
+                ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'disc')
+            
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
