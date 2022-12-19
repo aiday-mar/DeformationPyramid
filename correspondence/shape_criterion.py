@@ -67,6 +67,7 @@ def find_indices(pcd_points, n):
     return indices_proba, indices_norm
 
 def get_shape_criterion_mask(pcd_points):
+    n = 2000
     n_pcd_points = pcd_points.shape[0]
     _, edge_point_indices = find_indices(pcd_points, n)
     edge_points = pcd_points[edge_point_indices]
