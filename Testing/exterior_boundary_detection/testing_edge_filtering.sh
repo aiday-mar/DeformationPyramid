@@ -103,6 +103,7 @@ if [ $type == "kpfcn" ]; then
         --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
         --confidence_threshold=${confidence_threshold} \
         --${edge_filtering_type} \
+        --reject_outliers=false \
         --min_dist_thr=${min_dist_thr_kpfcn} \
         --print_keypoints >> ${file}
         
@@ -170,6 +171,7 @@ if [ $type == "kpfcn" ]; then
         --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
         --confidence_threshold=${confidence_threshold} \
         --${edge_filtering_type} \
+        --reject_outliers=false \
         --min_dist_thr=${min_dist_thr_kpfcn} \
         --print_keypoints >> ${file}
 
@@ -260,6 +262,7 @@ if [ $type == "fcgf" ]; then
         --preprocessing=${preprocessing} \
         --confidence_threshold=${confidence_threshold} \
         --${edge_filtering_type} \
+        --reject_outliers=false \
         --min_dist_thr=${min_dist_thr_fcgf} \
         --print_keypoints >> ${file}
 
@@ -333,6 +336,7 @@ if [ $type == "fcgf" ]; then
         --preprocessing=${preprocessing} \
         --confidence_threshold=${confidence_threshold} \
         --${edge_filtering_type} \
+        --reject_outliers=false \
         --min_dist_thr=${min_dist_thr_fcgf} \
         --print_keypoints >> ${file}
 
