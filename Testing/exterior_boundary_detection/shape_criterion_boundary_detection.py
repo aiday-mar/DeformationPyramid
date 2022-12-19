@@ -82,7 +82,7 @@ def get_shape_criterion_mask(file_path, num):
     print('number of edge points : ', edge_points.shape[0])
     print('number of final edge points : ', final_edge_points.shape[0])
 
-    n = 500
+    n = 300
     indices_proba, final_final_edge_point_indices = find_indices(final_edge_points, n)
     final_final_edge_points = final_edge_points[final_final_edge_point_indices]
     print('number of final edge points : ', final_edge_points.shape[0])
@@ -93,7 +93,6 @@ def get_shape_criterion_mask(file_path, num):
     o3d.io.write_point_cloud('Testing/exterior_boundary_detection/shape_criterion_' + num + '.ply', final_pcd)
 
     shape_criterion_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
-    
     mask = np.zeros((n_pcd_points,), dtype = bool)
     for index in shape_criterion_indices:
         mask[index] = True

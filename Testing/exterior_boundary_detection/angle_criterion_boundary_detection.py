@@ -90,7 +90,7 @@ def get_angle_criterion_mask(file_path, num):
     print('number of edge points : ', edge_points.shape[0])
     print('number of final edge points : ', final_edge_points.shape[0])
 
-    n = 500
+    n = 300
     final_final_edge_point_indices = find_indices(final_edge_points, n)
     final_final_edge_points = final_edge_points[final_final_edge_point_indices]
     print('number of final edge points : ', final_edge_points.shape[0])
