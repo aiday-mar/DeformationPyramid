@@ -1342,6 +1342,7 @@ class Landmark_Model():
                 inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
             
             if edge_filtering_simple:
+                print('using simple exterior boundary detection')
                 src_pcd_points = data['src_pcd_list'][0]
                 n_src_points = src_pcd_points.shape[0]
                 dists = np.zeros((n_src_points, n_src_points))
@@ -1363,16 +1364,19 @@ class Landmark_Model():
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'simple')
 
             if edge_filtering_angle:
+                print('using angle exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
                 initial_edge_point_indices = get_angle_criterion_mask(src_pcd_points)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'angle')
             
             if edge_filtering_shape:
+                print('using shape exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
                 initial_edge_point_indices = get_shape_criterion_mask(src_pcd_points)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'shape')
 
             if edge_filtering_disc:
+                print('using disc exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
                 initial_edge_point_indices = get_disc_criterion_mask(src_pcd_points)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'disc')
