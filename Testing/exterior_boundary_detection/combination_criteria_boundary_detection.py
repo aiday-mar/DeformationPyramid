@@ -18,26 +18,26 @@ def apply_different_criteria(file_path, num):
     o3d.io.write_point_cloud('combination_criteria_' + num + '.ply', final_pcd)
 
    
-file_path = 'TestData/PartialDeformed/model002/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model002/020_0.ply'
 num = '020'
 apply_different_criteria(file_path, num)
 
-file_path = 'TestData/PartialDeformed/model042/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model042/020_0.ply'
 num = '042'
 apply_different_criteria(file_path, num)
 
-file_path = 'TestData/PartialDeformed/model085/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model085/020_0.ply'
 num = '085'
 apply_different_criteria(file_path, num)
 
-file_path = 'TestData/PartialDeformed/model126/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model126/020_0.ply'
 num = '126'
 apply_different_criteria(file_path, num)
 
-file_path = 'TestData/PartialDeformed/model167/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model167/020_0.ply'
 num = '167'
 apply_different_criteria(file_path, num)
 
-file_path = 'TestData/PartialDeformed/model207/020_0.ply'
+file_path = '../../TestData/PartialDeformed/model207/020_0.ply'
 num = '207'
 apply_different_criteria(file_path, num)
