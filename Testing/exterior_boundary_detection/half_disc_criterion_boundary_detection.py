@@ -107,7 +107,7 @@ def get_half_disc_criterion_mask(file_path, num):
     print('number of final final edge points : ', final_final_edge_points.shape[0])
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('half_disc_criterion_' + num +'.ply', final_pcd)
+    o3d.io.write_point_cloud('Testing/exterior_boundary_detection/half_disc_criterion_' + num +'.ply', final_pcd)
 
     half_disc_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     mask = np.zeros((n_pcd_points,), dtype = bool)
