@@ -1,3 +1,5 @@
+# using pretrained kpfcn based Lepard network
+
 # criterion=simple
 criterion=angle
 # criterion=shape
