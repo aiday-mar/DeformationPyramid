@@ -7,7 +7,7 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
-file="Testing/edge_filtering/testing_edge_filtering_pre_${preprocessing}_${type}.txt"
+file="Testing/simple_edge_filtering/testing_edge_filtering_pre_${preprocessing}_${type}.txt"
 rm ${file}
 touch ${file}
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
