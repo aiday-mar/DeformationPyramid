@@ -70,7 +70,10 @@ if __name__ == "__main__":
     parser.add_argument('--indent', type=str, help='indent level used in order to access different files')
     parser.add_argument('--gt_thr', type=str, help='ground-truth threshold used to find the ground-truth correspondences')
     
-    parser.add_argument('--edge_filtering_simple', action = 'store_true', help= 'wether to perform edge filtering using simple neighborhood method')
+    parser.add_argument('--edge_filtering_simple', action = 'store_true', help= 'wether to perform edge filtering using a simple neighborhood method')
+    parser.add_argument('--edge_filtering_angle', action = 'store_true', help= 'wether to perform edge filtering using the angle criterion')
+    parser.add_argument('--edge_filtering_shape', action = 'store_true', help= 'wether to perform edge filtering using the shape criterion')
+    parser.add_argument('--edge_filtering_disc', action = 'store_true', help= 'wether to perform edge filtering using the disc criterion')
     parser.add_argument('--min_dist_thr', type=str, help='threshold used for the edge filtering computation')
     
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
