@@ -6,6 +6,11 @@ import copy
 # FCGF TODO
 # KPFCN TODO
 
+# criterion='simple'
+criterion='angle'
+# criterion='shape'
+# criterion='disc'
+
 feature_extractor='kpfcn'
 # feature_extractor='fcgf'
 
@@ -15,7 +20,7 @@ preprocessing='mutual'
 data_types=['Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'exterior_boundary_detection/'
-file='testing_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
+file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
 
 edge_filtering_list=['Edge filtering not used', 'Edge filtering used']
 models=['002', '042', '085', '126', '167', '207']
@@ -95,4 +100,4 @@ for data_type in data_types:
         plt.title(data_type + ' - edge filtering comparison - ' + 'FCGF feature extraction')
     elif feature_extractor == 'kpfcn':
         plt.title(data_type + ' - edge filtering comparison - ' + 'KPFCN feature extraction')
-    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
+    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_' + criterion + '.png', bbox_inches='tight')
