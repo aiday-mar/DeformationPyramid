@@ -84,7 +84,7 @@ def find_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_half_disc_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
+def get_half_disc_criterion_mask(file_path, num):
     n = 2000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
@@ -107,7 +107,7 @@ def get_half_disc_criterion_mask(file_path = 'TestData/PartialDeformed/model002/
     print('number of final final edge points : ', final_final_edge_points.shape[0])
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('half_disc_criterion.ply', final_pcd)
+    o3d.io.write_point_cloud('half_disc_criterion_' + num +'.ply', final_pcd)
 
     half_disc_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     mask = np.zeros((n_pcd_points,), dtype = bool)

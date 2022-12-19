@@ -75,7 +75,7 @@ def find_indices(points, n):
     final_edge_point_indices = (-final_edge_point_angles).argsort()[:n]
     return final_edge_point_indices
 
-def get_angle_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
+def get_angle_criterion_mask(file_path, num):
     n = 2000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
@@ -97,7 +97,7 @@ def get_angle_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_
     print('number of final final edge points : ', final_final_edge_points.shape[0])
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('angle_criterion.ply', final_pcd)
+    o3d.io.write_point_cloud('angle_criterion_' + num + '.ply', final_pcd)
 
     angle_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     n_pcd_points = pcd_points.shape[0]

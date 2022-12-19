@@ -66,7 +66,7 @@ def find_indices(pcd_points, n):
 
     return indices_proba, indices_norm
 
-def get_shape_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_0.ply'):
+def get_shape_criterion_mask(file_path, num):
     n = 2000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
@@ -90,7 +90,7 @@ def get_shape_criterion_mask(file_path = 'TestData/PartialDeformed/model002/020_
 
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('shape_criterion_norms.ply', final_pcd)
+    o3d.io.write_point_cloud('shape_criterion_norms_' + num + '.ply', final_pcd)
 
     shape_criterion_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     
