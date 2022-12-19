@@ -11,8 +11,8 @@ training_data=full_deformed
 # training_data=partial_deformed
 # training_data=pretrained
 
-# epoch=2
-epoch=1
+epoch=2
+# epoch=1
 # epoch=null
 
 base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
