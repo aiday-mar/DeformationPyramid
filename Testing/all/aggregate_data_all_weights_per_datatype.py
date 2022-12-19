@@ -24,7 +24,6 @@ def get_data(data_type, feature_extractor, training_data_type):
     else:
         deformed = False
 
-    # print('weights[feature_extractor] : ', weights[feature_extractor])
     epoch = str(weights[feature_extractor][training_data_type])
     file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_mutual_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '.txt'
     file = open(file_path, 'r')
