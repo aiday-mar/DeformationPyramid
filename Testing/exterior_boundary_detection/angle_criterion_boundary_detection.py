@@ -97,7 +97,7 @@ def get_angle_criterion_mask(file_path, num):
     print('number of final final edge points : ', final_final_edge_points.shape[0])
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('angle_criterion_' + num + '.ply', final_pcd)
+    o3d.io.write_point_cloud('Testing/exterior_boundary_detection/angle_criterion_' + num + '.ply', final_pcd)
 
     angle_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     n_pcd_points = pcd_points.shape[0]
