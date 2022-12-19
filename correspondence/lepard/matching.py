@@ -86,7 +86,6 @@ class Matching(nn.Module):
             mask = torch.tensor(mask).to('cuda:0')
             mask = mask[None, :, :]
         
-        print('conf_matrix : ', conf_matrix)
         print('preprocessing : ', preprocessing)
         if preprocessing == 'mutual':
             mask = mask \
