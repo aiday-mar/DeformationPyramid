@@ -1,0 +1,351 @@
+model 002 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  2  out of  12
+fraction of true landmark correspondences returned from Lepard :  0.16666666666666666
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  12
+fraction of true landmark correspondences returned from Outlier Rejection :  0.16666666666666666
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 22.520 
+full-AccS: 0.000 
+full-AccR: 0.830 
+full-outlier: 94.157 
+vis-epe: 23.023 
+vis-AccS: 0.000 
+vis-AccR: 0.551 
+vis-outlier: 95.236 
+occ-epe: 12.367 
+occ-AccS: 0.000 
+occ-AccR: 6.452 
+occ-outlier: 72.401 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.77912422 -0.13601402 -0.61193554]
+ [ 0.54695329 -0.62444476 -0.55759358]
+ [-0.30627942 -0.76913485  0.56091368]]
+Predicted translation :  [0.02416765 0.03309385 0.0378547 ]
+Relative Rotation Error :  0.4560458607499015
+Relative Translation Error :  1.8503477364843905
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08604322775160708
+Strict IR :  0.0014314928425357874
+Relaxed IR :  0.09406952965235174
+model 042 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  1  out of  18
+fraction of true landmark correspondences returned from Lepard :  0.05555555555555555
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  14
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.554 
+full-AccS: 0.061 
+full-AccR: 1.208 
+full-outlier: 89.589 
+vis-epe: 15.240 
+vis-AccS: 0.095 
+vis-AccR: 1.142 
+vis-outlier: 90.617 
+occ-epe: 13.328 
+occ-AccS: 0.000 
+occ-AccR: 1.327 
+occ-outlier: 87.751 
+
+Actual rotation :  [[ 0.77604838  0.62888338 -0.04748266]
+ [ 0.31818631 -0.32541498  0.8904283 ]
+ [ 0.54452399 -0.70612378 -0.45263985]]
+Actual translation :  [-0.19578607  0.27815696  0.64648693]
+Predicted rotation :  [[ 0.90570038 -0.19744701 -0.3751285 ]
+ [ 0.41536485  0.59019812  0.69219809]
+ [ 0.08472767 -0.78273926  0.61655518]]
+Predicted translation :  [-0.00169593 -0.00071266 -0.00410622]
+Relative Rotation Error :  1.3321707493408657
+Relative Translation Error :  0.7339691325486761
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.10711673894773877
+Strict IR :  0.0006350550381033022
+Relaxed IR :  0.01905165114309907
+model 085 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  2  out of  14
+fraction of true landmark correspondences returned from Lepard :  0.14285714285714285
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  13
+fraction of true landmark correspondences returned from Outlier Rejection :  0.15384615384615385
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.602 
+full-AccS: 0.134 
+full-AccR: 8.779 
+full-outlier: 66.845 
+vis-epe: 14.159 
+vis-AccS: 0.062 
+vis-AccR: 2.551 
+vis-outlier: 84.879 
+occ-epe: 5.152 
+occ-AccS: 0.314 
+occ-AccR: 24.490 
+occ-outlier: 21.350 
+
+Actual rotation :  [[ 0.62309055  0.76764504 -0.14993086]
+ [ 0.39456846 -0.14298754  0.90767301]
+ [ 0.67533244 -0.62472046 -0.39198271]]
+Actual translation :  [-0.1258871  -0.82602395  0.43519561]
+Predicted rotation :  [[ 0.69723673  0.71683525  0.00283885]
+ [-0.22452131  0.2146184   0.95054163]
+ [ 0.6807725  -0.66339     0.31058462]]
+Predicted translation :  [-0.00667257  0.02469909 -0.00219419]
+Relative Rotation Error :  0.7375531334014779
+Relative Translation Error :  0.9639769942114096
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.058269257596434455
+Strict IR :  0.006443298969072165
+Relaxed IR :  0.26417525773195877
+model 126 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  4  out of  19
+fraction of true landmark correspondences returned from Lepard :  0.21052631578947367
+number of true landmark correspondences returned from Outlier Rejection :  4  out of  17
+fraction of true landmark correspondences returned from Outlier Rejection :  0.23529411764705882
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 16.650 
+full-AccS: 0.056 
+full-AccR: 2.352 
+full-outlier: 80.165 
+vis-epe: 17.412 
+vis-AccS: 0.015 
+vis-AccR: 1.823 
+vis-outlier: 85.159 
+occ-epe: 6.671 
+occ-AccS: 0.592 
+occ-AccR: 9.270 
+occ-outlier: 14.793 
+
+Actual rotation :  [[-0.22957138  0.09752936  0.968393  ]
+ [ 0.82843609  0.54182999  0.1418235 ]
+ [-0.51087242  0.83481033 -0.2051855 ]]
+Actual translation :  [-0.25784987 -0.18299676  1.01717296]
+Predicted rotation :  [[-0.07236978  0.0905256   0.9932611 ]
+ [ 0.64530692  0.7635898  -0.02257576]
+ [-0.76048782  0.63932456 -0.1136776 ]]
+Predicted translation :  [-0.01798196  0.00126406  0.01871955]
+Relative Rotation Error :  0.3510974763395756
+Relative Translation Error :  1.0432630903514102
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06684894867402984
+Strict IR :  0.007355399531929121
+Relaxed IR :  0.18288197927114677
+model 167 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  1  out of  11
+fraction of true landmark correspondences returned from Lepard :  0.09090909090909091
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  11
+fraction of true landmark correspondences returned from Outlier Rejection :  0.09090909090909091
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.129 
+full-AccS: 0.405 
+full-AccR: 3.207 
+full-outlier: 63.823 
+vis-epe: 15.411 
+vis-AccS: 0.286 
+vis-AccR: 2.323 
+vis-outlier: 72.981 
+occ-epe: 5.464 
+occ-AccS: 1.208 
+occ-AccR: 9.179 
+occ-outlier: 1.932 
+
+Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
+ [-0.33643314 -0.69811809  0.63201573]
+ [ 0.09760167  0.6416742   0.76074183]]
+Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
+Predicted rotation :  [[-0.56868942 -0.74904867  0.33988022]
+ [-0.69110849  0.65918486  0.29638566]
+ [-0.44605116 -0.06634281 -0.89254533]]
+Predicted translation :  [-0.04508201  0.00040413 -0.04258084]
+Relative Rotation Error :  2.466209820603567
+Relative Translation Error :  1.6640298469293027
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0675857233486485
+Strict IR :  0.01270078446021666
+Relaxed IR :  0.18490847964138962
+model 207 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  12
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  12
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 18.385 
+full-AccS: 0.000 
+full-AccR: 0.626 
+full-outlier: 91.099 
+vis-epe: 18.565 
+vis-AccS: 0.000 
+vis-AccR: 0.646 
+vis-outlier: 91.102 
+occ-epe: 12.738 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 91.011 
+
+Actual rotation :  [[ 0.73275637  0.1374364   0.66646781]
+ [ 0.60033779 -0.59170884 -0.53802899]
+ [ 0.32041012  0.79434998 -0.51608669]]
+Actual translation :  [0.26170502 1.10936721 0.50044207]
+Predicted rotation :  [[-0.19144784  0.94861754  0.25193745]
+ [-0.14043841  0.22756876 -0.96358161]
+ [-0.97140348 -0.21985732  0.08965482]]
+Predicted translation :  [-0.04001822 -0.06482916 -0.04665834]
+Relative Rotation Error :  2.1380837856031083
+Relative Translation Error :  1.3300725087904737
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.10150988172383552
+Strict IR :  0.003010752688172043
+Relaxed IR :  0.0546236559139785
