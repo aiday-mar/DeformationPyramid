@@ -135,8 +135,7 @@ class Landmark_Model():
             initial_points_pcd.points = o3d.utility.Vector3dVector(np.array(src_pcd_points.cpu()))
             o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_initial_points_pcd.ply', initial_points_pcd)
 
-            print('initial_edge_points.shape : ', initial_edge_points.shape)
-            initial_edge_points = np.squeeze(initial_edge_points, axis=1)
+            # initial_edge_points = np.squeeze(initial_edge_points, axis=1)
             initial_edge_points_pcd = o3d.geometry.PointCloud()
             initial_edge_points_pcd.points = o3d.utility.Vector3dVector(initial_edge_points)
             o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_' + type + '_edge_filtering_ldmk/' + type + '_initial_edge_points_pcd.ply', initial_edge_points_pcd)

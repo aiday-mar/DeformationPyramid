@@ -17,7 +17,6 @@ def find_indices(points, n):
     dists = distance_matrix(points, points)
     
     for i in range(points.shape[0]):
-        print(str(i) + '/' + str(points.shape[0]))
         dists_point = dists[i]
         res = sorted(range(len(dists_point)), key = lambda sub: dists_point[sub])[:k]
         if i == 0:

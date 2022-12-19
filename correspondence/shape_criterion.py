@@ -22,7 +22,6 @@ def find_indices(pcd_points, n):
     k = 10
     probabilities = []
     for i in range(number_points):
-        print(i, '/', number_points - 1)
         point = pcd_points[i]
         dists_to_point = dists[i, :]
         indices_neighbors = np.argsort(dists_to_point)[:k]
