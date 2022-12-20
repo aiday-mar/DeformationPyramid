@@ -10,12 +10,12 @@ type=kpfcn
 preprocessing=mutual
 
 # training_data=full_deformed
-training_data=partial_deformed
-# training_data=pretrained
+# training_data=partial_deformed
+training_data=pretrained
 
 # epoch=2
-epoch=1
-# epoch=null
+# epoch=1
+epoch=null
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
@@ -23,20 +23,16 @@ else
 	confidence_threshold=0.000001
 fi
 
-filename=Testing/current_deformation/test_astrivis_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
+filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
 folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
 touch ${filename}
 
-# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $type == "kpfcn" ]; then
 	for k in ${model_numbers[@]}
 	do
-
-		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
@@ -63,9 +59,17 @@ if [ $type == "kpfcn" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
+				--only_inference \ 
 				--print_keypoints  >> ${filename}
 				
 				if [ "$?" != "1" ]; then
+				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
+				--file1="model${k}/transformed/${file_number1}.ply" \
+				--file2="model${k}/transformed/${file_number2}.ply" \ 
+				--landmarks1="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
+				--landmarks2="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
+				--save_path="model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
+				--base=${base} >> ${filename}
 
 				python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
 				--part1="${base}/model${k}/transformed/${file_number1}_se4.h5" \
@@ -85,9 +89,6 @@ fi
 if [ $type == "fcgf" ]; then
 	for k in ${model_numbers[@]}
 	do
-
-		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
@@ -116,9 +117,17 @@ if [ $type == "fcgf" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
+				--only_inference \
 				--print_keypoints  >> ${filename}
 				
 				if [ "$?" != "1" ]; then
+				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
+				--file1="model${k}/transformed/${file_number1}.ply" \
+				--file2="model${k}/transformed/${file_number2}.ply" \ 
+				--landmarks1="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
+				--landmarks2="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
+				--save_path="model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
+				--base=${base} >> ${filename}
 
 				python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
 				--part1="${base}/model${k}/transformed/${file_number1}_se4.h5" \
