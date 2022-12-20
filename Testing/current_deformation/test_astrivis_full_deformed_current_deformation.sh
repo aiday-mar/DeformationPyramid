@@ -59,8 +59,8 @@ if [ $type == "kpfcn" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
-				--only_inference \ 
-				--print_keypoints  >> ${filename}
+				--print_keypoints \
+				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
@@ -117,8 +117,8 @@ if [ $type == "fcgf" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
-				--only_inference \
-				--print_keypoints  >> ${filename}
+				--print_keypoints \
+				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
