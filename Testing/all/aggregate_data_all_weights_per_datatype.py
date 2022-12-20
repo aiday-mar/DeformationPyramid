@@ -11,6 +11,7 @@ weights = {
     }, 
     'kpfcn' : {
         'full_deformed' : 2, 
+        'partial_deformed' : 1,
         'pretrained' : 'null'
     }
 }
