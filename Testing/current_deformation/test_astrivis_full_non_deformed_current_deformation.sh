@@ -21,7 +21,7 @@ else
 	confidence_threshold=0.000001
 fi
 
-filename=Testing/all/test_astrivis_full_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
+filename=Testing/current_deformation/test_astrivis_full_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
 folder_name=output_full_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
 rm ${filename}
 touch ${filename}
