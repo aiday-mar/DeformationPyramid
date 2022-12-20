@@ -2,8 +2,8 @@
 
 # criterion=none
 # criterion=angle
-criterion=simple
-# criterion=shape
+# criterion=simple
+criterion=shape
 # criterion=disc
 
 # config=LNDP_fcgf.yaml
