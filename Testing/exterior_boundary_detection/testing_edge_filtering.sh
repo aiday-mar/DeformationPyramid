@@ -23,8 +23,8 @@ touch ${file}
 model_numbers=('002' '042' '085' '126' '167' '207')
 confidence_threshold=0.001
 
-min_dist_thr_fcgf=0.02
-min_dist_thr_kpfcn=0.02
+min_dist_thr_fcgf=0.03
+min_dist_thr_kpfcn=0.03
 
 if [ $criterion == "simple" ]; then
     edge_filtering_type=edge_filtering_simple
