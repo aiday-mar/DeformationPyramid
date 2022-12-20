@@ -64,6 +64,7 @@ class Landmark_Model():
 
         src_pcd_points = data['src_pcd_list'][0]
         initial_edge_points = src_pcd_points[initial_edge_point_indices]
+        print('initial_edge_points.shape : ', initial_edge_points.shape)
         initial_edge_points = np.array(initial_edge_points.cpu())
         
         mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
