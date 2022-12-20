@@ -1361,6 +1361,7 @@ class Landmark_Model():
                 neighbors = dists < 1.5 * average_distance
                 n_neighbors = np.sum(neighbors, axis=1)
                 initial_edge_point_indices = np.argwhere(n_neighbors < 3)
+                print('initial_edge_point_indices : ', initial_edge_point_indices.shape)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_point_indices = initial_edge_point_indices, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'simple')
 
             if edge_filtering_angle:
