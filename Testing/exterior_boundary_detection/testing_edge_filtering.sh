@@ -1,10 +1,10 @@
 # using pretrained kpfcn based Lepard network
 
 # criterion=simple
-# criterion=angle
+criterion=angle
 # criterion=shape
 # criterion=disc
-criterion=none
+# criterion=none
 
 # config=LNDP_fcgf.yaml
 config=LNDP.yaml
