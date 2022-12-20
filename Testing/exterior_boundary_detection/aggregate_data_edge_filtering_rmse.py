@@ -85,7 +85,7 @@ for data_type in data_types:
         
         plt.plot(models, criterion_res)
     
-    plt.title(data_type)
+    plt.title(data_type + ' - ' + feature_extractor + ' feature extractor')
     plt.ylabel('RMSE')
     plt.xlabel('model numbers')
     plt.legend(criteria, loc = "upper right")
