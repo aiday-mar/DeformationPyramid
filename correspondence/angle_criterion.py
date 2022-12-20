@@ -19,17 +19,11 @@ def find_indices(points, n):
     for i in range(points.shape[0]):
         dists_point = dists[i]
         res = sorted(range(len(dists_point)), key = lambda sub: dists_point[sub])[:k]
-        if i == 0:
-            print(res)
         neighborhood_points = points[res]
         neighborhood_points_ext = np.c_[ neighborhood_points, np.ones(neighborhood_points.shape[0]) ]
         matrix_multiplication = neighborhood_points_ext.T @ neighborhood_points_ext
         w, v = np.linalg.eigh(matrix_multiplication)
         plane_coeffs = v[:, np.argmax(w)]
-        
-        if i == 0:
-            print(plane_coeffs)
-        
         projected_neighborhood_points = np.zeros(neighborhood_points.shape)
         
         for j in range(neighborhood_points.shape[0]):
