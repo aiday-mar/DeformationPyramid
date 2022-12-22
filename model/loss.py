@@ -3,6 +3,7 @@ import torch
 import torch.nn.functional as F
 from pytorch3d.ops.knn import knn_gather, knn_points
 from pytorch3d.structures.pointclouds import Pointclouds
+import matplotlib.pyplot as plt
 import numpy as np
 
 def _validate_chamfer_reduction_inputs(
@@ -398,10 +399,24 @@ def scene_flow_EPE_np(pred, labels, mask):
     return EPE, acc1, acc2
 
 
-def compute_flow_metrics( flow, flow_gt, overlap=None):
+def compute_flow_metrics( flow, flow_gt, overlap=None, base = None, intermediate_output_folder = None):
+
+    if base and intermediate_output_folder:
+        flow_transpose = np.transpose(flow)
+        X, Y, Z, U, V, W = zip(*flow_transpose)
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.quiver(X, Y, Z, U, V, W)
+        plt.savefig(base + intermediate_output_folder + 'flow.png')
+
+        flow_gt_transpose = np.transpose(flow_gt)
+        X, Y, Z, U, V, W = zip(*flow_transpose)
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.quiver(X, Y, Z, U, V, W)
+        plt.savefig(base + intermediate_output_folder + 'flow_gt.png')
 
     metric_info = {}
-
     # full point cloud
     epe, AccS, AccR, outlier = scene_flow_metrics(flow, flow_gt)
     metric_info.update(

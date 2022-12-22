@@ -290,7 +290,7 @@ if __name__ == "__main__":
         ls2.lines = o3d.utility.Vector2iVector(total_lines)
         
         flow = warped_pcd - model.src_pcd
-        metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap)
+        metric_info = compute_flow_metrics(flow, flow_gt, overlap=overlap, base = args.base, intermediate_output_folder = args.intermediate_output_folder)
 
         if stats_meter is None:
             stats_meter = dict()
