@@ -126,7 +126,10 @@ for data_type in data_types:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
-    plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse.png')
+    if with_custom is False:
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse.png')
+    else:
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse_custom.png')
 
 for data_type in data_types:
     number += 1
@@ -154,5 +157,5 @@ for data_type in data_types:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
-    plt.savefig('Testing/all/per_data_type_' + data_type + '_relaxed_ir.png')
+    plt.savefig('Testing/all/per_data_type_' + data_type + '_relaxed_ir.png')        
             
