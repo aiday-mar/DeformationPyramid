@@ -6,12 +6,12 @@ data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial
 
 weights = {
     'fcgf' : {
-        'full_deformed' : 2, 
-        'partial_deformed' : 1
+        # 'full_deformed' : 10, 
+        'partial_deformed' : 5
     }, 
     'kpfcn' : {
-        'full_deformed' : 2, 
-        'partial_deformed' : 1,
+        'full_deformed' : 10, 
+        'partial_deformed' : 5,
         'pretrained' : 'null'
     }
 }
@@ -75,7 +75,8 @@ for data_type in data_types:
         for training_data_type in weights[feature_extractor]:
             
             epoch = str(weights[feature_extractor][training_data_type])
-            weights_legend = feature_extractor + ' - ' + training_data_type + ' - ' + epoch 
+            training_data_type_mod = training_data_type.replace('_', ' ')
+            weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
             legend.append(weights_legend)
             data = get_data(data_type, feature_extractor, training_data_type)
             rmse = []             
@@ -86,8 +87,10 @@ for data_type in data_types:
     
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
-    plt.legend(legend)
-    plt.title(data_type, wrap=True)
+    plt.legend(legend, loc='upper right')
+    title = data_type.replace('_', ' ')
+    title = title.title()
+    plt.title(title, wrap=True)
     plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse.png')
 
 for data_type in data_types:
@@ -100,7 +103,8 @@ for data_type in data_types:
         for training_data_type in weights[feature_extractor]:
             
             epoch = str(weights[feature_extractor][training_data_type])
-            weights_legend = feature_extractor + ' - ' + training_data_type + ' - ' + epoch 
+            training_data_type_mod = training_data_type.replace('_', ' ')
+            weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
             legend.append(weights_legend)
             data = get_data(data_type, feature_extractor, training_data_type)
             relaxed_ir = []             
@@ -111,7 +115,9 @@ for data_type in data_types:
     
     plt.xlabel("Model number")
     plt.ylabel("Relaxed IR")
-    plt.legend(legend)
-    plt.title(data_type, wrap=True)
+    plt.legend(legend, loc='upper right')
+    title = data_type.replace('_', ' ')
+    title = title.title()
+    plt.title(title, wrap=True)
     plt.savefig('Testing/all/per_data_type_' + data_type + '_relaxed_ir.png')
             
