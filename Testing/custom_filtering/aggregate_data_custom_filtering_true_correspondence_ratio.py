@@ -191,7 +191,7 @@ for data_type in data_types:
     modified_nc = [str(nc_v) for nc_v in nc]
     modified_nc_pos = range(len(modified_nc))
                 
-    plt.title(data_type + ' - RMSE - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
+    plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_pos, rmse, color='r')
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
@@ -201,14 +201,14 @@ for data_type in data_types:
     modified_nc_lepard_outlier.append('outlier rejection')
     modified_nc_lepard_outlier_pos = range(len(modified_nc_lepard_outlier))
     
-    plt.title(data_type + ' - GT ratio - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
+    plt.title(data_type + ' - varying number of centers')
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title(data_type + ' - GT ratio - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
+    plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
