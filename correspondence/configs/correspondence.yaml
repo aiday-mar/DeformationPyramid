@@ -1,5 +1,5 @@
 matcher_config: 'correspondence/configs/lepard.yaml'
-matcher_weights: 'correspondence/pretrained/lepard_weights.pth ' # final/lepard_partial_deformed_epoch_5_kpfcn_mutual_true.pth'
+matcher_weights: 'correspondence/pretrained/lepard_weights.pth' # final/lepard_partial_deformed_epoch_5_kpfcn_mutual_true.pth'
 
 outlier_rejection_config: 'correspondence/configs/outlier_rejection.yaml'
 outlier_rejection_weights: 'correspondence/pretrained/outlier_weights.pth'
