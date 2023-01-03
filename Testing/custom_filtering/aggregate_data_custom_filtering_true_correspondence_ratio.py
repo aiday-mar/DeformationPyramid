@@ -30,11 +30,11 @@ base = 'Testing/custom_filtering/'
 type='kpfcn'
 
 # nc = [100, 200, 300]:
-nc = [5, 10, 50, 100]
+nc = [50]
 
 # adm = [1, 2, 3, 4]
 # adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
-adm = [3.0]
+adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 
 # iot=[0.005, 0.01, 0.02, 0.03, 0.04, 0.05]
 # iot = [0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009, 0.01, 0.02, 0.03, 0.04, 0.05]
@@ -194,7 +194,7 @@ for data_type in data_types:
     plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_pos, rmse, color='r')
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
     
     modified_nc_lepard_outlier = [str(nc_v) for nc_v in nc]
     modified_nc_lepard_outlier.append('lepard')
@@ -205,11 +205,11 @@ for data_type in data_types:
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
     
     plt.clf()
     plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
