@@ -66,12 +66,11 @@ if [ $type == "kpfcn" ]; then
 
 				if [ "$?" != "1" ]; then
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
-				--file1="model${k}/transformed/${file_number1}_0.ply" \
-				--file2="model${k}/transformed/${file_number2}_1.ply" \ 
-				--landmarks1="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
-				--landmarks2="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
-				--save_path="model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
-				--base=$base >> ${filename}
+				--file1="${base}/model${k}/transformed/${file_number1}_0.ply" \
+				--file2="${base}/model${k}/transformed/${file_number2}_1.ply" \ 
+				--landmarks1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
+				--landmarks2="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
+				--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 				
 				python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
 				--part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
@@ -129,12 +128,11 @@ if [ $type == "fcgf" ]; then
 
 				if [ "$?" != "1" ]; then
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
-				--file1="model${k}/transformed/${file_number1}_0.ply" \
-				--file2="model${k}/transformed/${file_number2}_1.ply" \ 
-				--landmarks1="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
-				--landmarks2="model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
-				--save_path="model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
-				--base=$base >> ${filename}
+				--file1="${base}/model${k}/transformed/${file_number1}_0.ply" \
+				--file2="${base}/model${k}/transformed/${file_number2}_1.ply" \ 
+				--landmarks1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
+				--landmarks2="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
+				--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 
 				python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
 				--part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
