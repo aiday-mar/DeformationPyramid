@@ -21,6 +21,7 @@ model_numbers = ['002', '042', '085', '126', '167', '207']
 adm = 2.0
 with_custom = True
 # with_custom = False
+colors = ['blue', 'orange', 'green', 'red', 'magenta']
 
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
@@ -79,6 +80,7 @@ for data_type in data_types:
     legend = []
 
     if with_custom is False:
+        color_idx = 0
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
 
@@ -91,11 +93,13 @@ for data_type in data_types:
                 for model_number in data:
                     rmse.append(float(data[model_number]['RMSE']))
                 
-                plt.plot(model_numbers, rmse)
+                plt.plot(model_numbers, rmse, color = colors[color_idx])
+                color_idx += 1
     else:
+        color_idx = 0
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
-                for custom in [True, False]:
+                for custom in [False, True]:
                     epoch = str(weights[feature_extractor][training_data_type])
                     training_data_type_mod = training_data_type.replace('_', ' ')
                     if custom is True:
@@ -109,7 +113,12 @@ for data_type in data_types:
                     for model_number in data:
                         rmse.append(float(data[model_number]['RMSE']))
                     
-                    plt.plot(model_numbers, rmse)
+                    if custom is False:
+                        plt.plot(model_numbers, rmse, color = colors[color_idx])
+                    else:
+                        plt.plot(model_numbers, rmse, color = colors[color_idx], linestyle='dashed')
+                
+                color_idx += 1
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
