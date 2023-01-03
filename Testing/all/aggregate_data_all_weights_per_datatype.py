@@ -18,15 +18,22 @@ weights = {
 
 number = 0
 model_numbers = ['002', '042', '085', '126', '167', '207']
+adm = 2.0
+with_custom = True
+# with_custom = False
 
-def get_data(data_type, feature_extractor, training_data_type):
+def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
         deformed = True
     else:
         deformed = False
 
     epoch = str(weights[feature_extractor][training_data_type])
-    file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_mutual_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '.txt'
+    if custom is False:
+        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_mutual_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '.txt'
+    else:
+        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_mutual_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '.txt'
+    
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
@@ -71,20 +78,39 @@ for data_type in data_types:
     f = plt.figure(number)
     legend = []
 
-    for feature_extractor in weights:
-        for training_data_type in weights[feature_extractor]:
-            
-            epoch = str(weights[feature_extractor][training_data_type])
-            training_data_type_mod = training_data_type.replace('_', ' ')
-            weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
-            legend.append(weights_legend)
-            data = get_data(data_type, feature_extractor, training_data_type)
-            rmse = []             
-            for model_number in data:
-                rmse.append(float(data[model_number]['RMSE']))
-            
-            plt.plot(model_numbers, rmse)
-    
+    if with_custom is False:
+        for feature_extractor in weights:
+            for training_data_type in weights[feature_extractor]:
+
+                epoch = str(weights[feature_extractor][training_data_type])
+                training_data_type_mod = training_data_type.replace('_', ' ')
+                weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
+                legend.append(weights_legend)
+                data = get_data(data_type, feature_extractor, training_data_type)
+                rmse = []             
+                for model_number in data:
+                    rmse.append(float(data[model_number]['RMSE']))
+                
+                plt.plot(model_numbers, rmse)
+    else:
+        for feature_extractor in weights:
+            for training_data_type in weights[feature_extractor]:
+                for custom in [True, False]:
+                    epoch = str(weights[feature_extractor][training_data_type])
+                    training_data_type_mod = training_data_type.replace('_', ' ')
+                    if custom is True:
+                        weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch + ' - custom filtering' 
+                    else: 
+                        weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch
+
+                    legend.append(weights_legend)
+                    data = get_data(data_type, feature_extractor, training_data_type, custom)
+                    rmse = []             
+                    for model_number in data:
+                        rmse.append(float(data[model_number]['RMSE']))
+                    
+                    plt.plot(model_numbers, rmse)
+
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
     plt.legend(legend, loc='upper right')
