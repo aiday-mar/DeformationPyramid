@@ -21,7 +21,7 @@ epoch=5
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
 else
-	confidence_threshold=0.000001
+	confidence_threshold=0.0000001 # added one more zero
 fi
 
 filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
