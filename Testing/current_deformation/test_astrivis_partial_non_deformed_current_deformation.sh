@@ -58,11 +58,6 @@ if [ $type == "kpfcn" ]; then
         --landmarks1="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
         --landmarks2="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
         --save_path="${base}/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
-        
-        python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-        --part1="${base}model${k}/transformed/mesh_transformed_0_se4.h5" \
-        --part2="${base}model${k}/transformed/mesh_transformed_1_se4.h5" \
-        --pred="${base}model${k}/${folder_name}/0_1_se4.h5" >> ${filename}
 
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --final="${base}model${k}/${folder_name}/0_1.ply" \
@@ -103,11 +98,6 @@ if [ $type == "fcgf" ]; then
         --landmarks1="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \ 
         --landmarks2="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \ 
         --save_path="${base}/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
-        
-        python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-        --part1="${base}model${k}/transformed/mesh_transformed_0_se4.h5" \
-        --part2="${base}model${k}/transformed/mesh_transformed_1_se4.h5" \
-        --pred="${base}model${k}/${folder_name}/0_1_se4.h5" >> ${filename}
 
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
         --final="${base}model${k}/${folder_name}/0_1.ply" \
