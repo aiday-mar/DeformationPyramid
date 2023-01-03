@@ -58,7 +58,7 @@ if [ $type == "kpfcn" ]; then
 				--output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
 				--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
-				--base=$base \
+				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints \
 				--only_inference >> ${filename}
@@ -115,7 +115,7 @@ if [ $type == "fcgf" ]; then
 				--output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
 				--output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_se4.h5" \
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
-				--base=$base \
+				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints \
 				--only_inference >> ${filename}
