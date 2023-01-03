@@ -1,20 +1,21 @@
-config=LNDP_fcgf.yaml
-# config=LNDP.yaml
+# config=LNDP_fcgf.yaml
+config=LNDP.yaml
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
 
-# training_data=full_deformed
-training_data=partial_deformed
+training_data=full_deformed
+# training_data=partial_deformed
 # training_data=pretrained
 
 # epoch=2
 # epoch=1
 # epoch=null
-epoch=5
+# epoch=5
+epoch=10
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
