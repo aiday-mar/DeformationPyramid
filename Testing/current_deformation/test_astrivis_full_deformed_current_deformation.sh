@@ -6,8 +6,8 @@ config=LNDP.yaml
 # type=fcgf
 type=kpfcn
 
-# preprocessing=none
-preprocessing=mutual
+preprocessing=none
+# preprocessing=mutual
 
 # training_data=full_deformed
 # training_data=partial_deformed
@@ -61,6 +61,7 @@ if [ $type == "kpfcn" ]; then
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints \
+				--preprocessing=${preprocessing} \
 				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then
@@ -113,6 +114,7 @@ if [ $type == "fcgf" ]; then
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--print_keypoints \
+				--preprocessing=${preprocessing} \
 				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then

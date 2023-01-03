@@ -56,7 +56,7 @@ if __name__ == "__main__":
     
     parser.add_argument('--reject_outliers', type=str, help= 'whether to use or not the outlier rejection network')
     parser.add_argument('--intermediate_output_folder', type=str, help='Where to place all the intermediate outputs')
-    parser.add_argument('--preprocessing', type=str, help='Type of the preprocessing, can be single or mutual. By default mutual.')
+    parser.add_argument('--preprocessing', type=str, help='Type of the preprocessing, can be single or mutual or none. By default mutual.')
 
     parser.add_argument('--coarse_level', type=str, help= 'coarse level')
     parser.add_argument('--index_coarse_feats', type=str, help='index at which to return coarse features in the lepard decoder')

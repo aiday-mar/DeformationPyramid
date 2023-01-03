@@ -49,6 +49,7 @@ if [ $type == "kpfcn" ]; then
         --base=$base \
         --confidence_threshold=${confidence_threshold} \
         --only_inference \
+        --preprocessing=${preprocessing} \
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
@@ -89,6 +90,7 @@ if [ $type == "fcgf" ]; then
         --base=$base \
         --confidence_threshold=${confidence_threshold} \
         --only_inference \
+        --preprocessing=${preprocessing} \
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
