@@ -19,7 +19,7 @@ epoch=null
 # epoch=5
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.001
+	confidence_threshold=0.0001
 else
 	confidence_threshold=0.000001
 fi
