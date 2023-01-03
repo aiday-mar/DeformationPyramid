@@ -45,6 +45,9 @@ sampling='linspace'
 
 version=4
 
+adm_changed=True
+# nc_changed=True
+
 shape=(len(nc), len(adm), len(iot))
 final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
                 'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
@@ -69,28 +72,50 @@ for i in nc :
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['lepard']['true'][count][0][0] = true
-                    final_matrices[current_data_type]['lepard']['total'][count][0][0] = total - true
+                    if adm_changed is True:
+                        final_matrices[current_data_type]['lepard']['true'][0][count][0] = true
+                        final_matrices[current_data_type]['lepard']['total'][0][count][0] = total - true
+                    else:
+                        final_matrices[current_data_type]['lepard']['true'][count][0][0] = true
+                        final_matrices[current_data_type]['lepard']['total'][count][0][0] = total - true
                 
                 if 'number of true landmark correspondences returned from custom filtering' in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['custom']['true'][count][0][0] = true
-                    final_matrices[current_data_type]['custom']['total'][count][0][0] = total - true
+                    if adm_changed is True:
+                        final_matrices[current_data_type]['custom']['true'][0][count][0] = true
+                        final_matrices[current_data_type]['custom']['total'][0][count][0] = total - true
+                    else:
+                        final_matrices[current_data_type]['custom']['true'][count][0][0] = true
+                        final_matrices[current_data_type]['custom']['total'][count][0][0] = total - true
                 
                 if 'number of true landmark correspondences returned from Outlier Rejection' in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[current_data_type]['outlier']['true'][count][0][0] = true
-                    final_matrices[current_data_type]['outlier']['total'][count][0][0] = total - true
+                    if adm_changed is True:
+                        final_matrices[current_data_type]['outlier']['true'][0][count][0] = true
+                        final_matrices[current_data_type]['outlier']['total'][0][count][0] = total - true
+                    else:
+                        final_matrices[current_data_type]['outlier']['true'][count][0][0] = true
+                        final_matrices[current_data_type]['outlier']['total'][count][0][0] = total - true
                 
                 if 'RMSE' in line:
                     rmse = float(re.findall("\d+\.\d+", line)[0])
-                    final_matrices[current_data_type]['custom']['rmse'][count][0][0] = rmse
-            
-    count += 1
+                    if adm_changed is True:
+                        final_matrices[current_data_type]['custom']['rmse'][0][count][0] = rmse
+                    else:
+                        final_matrices[current_data_type]['custom']['rmse'][count][0][0] = rmse
+
+        if adm_changed is True:      
+            count += 1
+
+    if adm_changed is False:      
+        count += 1
+
+
+print(final_matrices)
 
 for data_type in data_types:
     plt.clf()
@@ -112,7 +137,7 @@ for data_type in data_types:
                 else:
                     fraction.append(0)
                     
-                if i==len(nc) -1:
+                if j==len(adm) -1:
                     true_data.append(final_matrices[data_type]['lepard']['true'][i][j][k])
                     total_data.append(final_matrices[data_type]['lepard']['total'][i][j][k])
                     
@@ -159,34 +184,35 @@ for data_type in data_types:
     '''
     
     # Changing ADM
-    '''
     modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
     modified_adm_pos = range(len(modified_adm))
     
-    plt.title(data_type + ' - RMSE - nc : ' + str(nc[i]) + ' - sampling : ' + sampling + ' varying ADM')
+    plt.title(data_type + ' - varying ADM')
     plt.plot(modified_adm_pos, rmse, color='r')
     plt.xticks(modified_adm_pos, modified_adm, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
     
     modified_adm_lepard_outlier = ['custom - ' + str(adm_r) for adm_r in adm]
     modified_adm_lepard_outlier.append('lepard')
     modified_adm_lepard_outlier.append('outlier rejection')
     modified_adm_lepard_outlier_pos = range(len(modified_adm_lepard_outlier))
     
-    plt.title(data_type + ' - GT ratio - nc : ' + str(nc[i]) + ' - sampling : ' + sampling + ' varying ADM')
+    plt.title(data_type + ' - varying ADM')
+    print(modified_adm_lepard_outlier_pos)
+    print(true_data)
     plt.bar(modified_adm_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_adm_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title(data_type + ' - GT ratio - nc : ' + str(nc[i]) + ' - sampling : ' + sampling + ' varying ADM')
+    plt.title(data_type + ' - varying ADM')
     plt.plot(modified_adm_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
-    '''  
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
             
+    '''
     # Changing NC
     modified_nc = [str(nc_v) for nc_v in nc]
     modified_nc_pos = range(len(modified_nc))
@@ -194,7 +220,7 @@ for data_type in data_types:
     plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_pos, rmse, color='r')
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
     
     modified_nc_lepard_outlier = [str(nc_v) for nc_v in nc]
     modified_nc_lepard_outlier.append('lepard')
@@ -205,11 +231,12 @@ for data_type in data_types:
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
     
     plt.clf()
     plt.title(data_type + ' - varying number of centers')
     plt.plot(modified_nc_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_adm.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
+    '''
