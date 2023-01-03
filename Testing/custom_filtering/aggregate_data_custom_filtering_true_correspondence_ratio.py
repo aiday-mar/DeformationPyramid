@@ -46,7 +46,7 @@ sampling='linspace'
 version=4
 
 adm_changed=True
-# nc_changed=True
+# adm_changed=False
 
 shape=(len(nc), len(adm), len(iot))
 final_matrices={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'outlier' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
@@ -113,9 +113,6 @@ for i in nc :
 
     if adm_changed is False:      
         count += 1
-
-
-print(final_matrices)
 
 for data_type in data_types:
     plt.clf()
@@ -198,8 +195,6 @@ for data_type in data_types:
     modified_adm_lepard_outlier_pos = range(len(modified_adm_lepard_outlier))
     
     plt.title(data_type + ' - varying ADM')
-    print(modified_adm_lepard_outlier_pos)
-    print(true_data)
     plt.bar(modified_adm_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_adm_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
