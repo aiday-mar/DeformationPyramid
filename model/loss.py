@@ -401,11 +401,13 @@ def scene_flow_EPE_np(pred, labels, mask):
 
 def compute_flow_metrics( flow, flow_gt, overlap=None, base = None, intermediate_output_folder = None):
 
+    '''
     if base and intermediate_output_folder:
         
         print('flow.shape : ', flow.shape)
         flow = np.array(flow.cpu())
         flow_transpose = np.transpose(flow)
+        print('flow_transpose.shape : ', flow_transpose.shape)
         X, Y, Z, U, V, W = zip(*flow_transpose)
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
@@ -418,7 +420,8 @@ def compute_flow_metrics( flow, flow_gt, overlap=None, base = None, intermediate
         ax = fig.add_subplot(111, projection='3d')
         ax.quiver(X, Y, Z, U, V, W)
         plt.savefig(base + intermediate_output_folder + 'flow_gt.png')
-
+    '''
+    
     metric_info = {}
     # full point cloud
     epe, AccS, AccR, outlier = scene_flow_metrics(flow, flow_gt)
