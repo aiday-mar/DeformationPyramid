@@ -402,6 +402,7 @@ def scene_flow_EPE_np(pred, labels, mask):
 def compute_flow_metrics( flow, flow_gt, overlap=None, base = None, intermediate_output_folder = None):
 
     if base and intermediate_output_folder:
+        flow = np.array(flow.cpu())
         flow_transpose = np.transpose(flow)
         X, Y, Z, U, V, W = zip(*flow_transpose)
         fig = plt.figure()
