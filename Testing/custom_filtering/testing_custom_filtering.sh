@@ -1,8 +1,8 @@
-config=LNDP_fcgf.yaml
-# config=LNDP.yaml
+# config=LNDP_fcgf.yaml
+config=LNDP.yaml
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # version=1
 # version=2
@@ -40,7 +40,7 @@ index_coarse_feats=1
 # number_center=300
 # number_center=400
 # number_centers=(100 200 300)
-number_centers=(1 5 10 50 100)
+number_centers=(5 10 50 100)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
@@ -66,7 +66,7 @@ sampling=linspace
 # sampling=poisson
 
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
-model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('002')
 
 if [ $type == "kpfcn" ] 
 then
