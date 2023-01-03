@@ -10,18 +10,18 @@ type=kpfcn
 preprocessing=mutual
 
 # training_data=full_deformed
-training_data=partial_deformed
-# training_data=pretrained
+# training_data=partial_deformed
+training_data=pretrained
 
 # epoch=2
 # epoch=1
-# epoch=null
-epoch=5
+epoch=null
+# epoch=5
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
 else
-	confidence_threshold=0.0000001 # added one more zero
+	confidence_threshold=0.000001
 fi
 
 filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
