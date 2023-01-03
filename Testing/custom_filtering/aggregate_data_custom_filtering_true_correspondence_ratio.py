@@ -27,8 +27,10 @@ number_iterations=1
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/custom_filtering/'
 
+type='kpfcn'
+
 # nc = [100, 200, 300]:
-nc = [1, 5, 10, 50, 100, 200]
+nc = [5, 10, 50, 100]
 
 # adm = [1, 2, 3, 4]
 # adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
@@ -53,7 +55,7 @@ count = 0
 for i in nc :
     for j in adm:
         for k in iot:
-            file = 'v_' + str(version) + '_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '_s_' + sampling + '.txt'
+            file = 'v_' + str(version) + '_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '_s_' + sampling + '_' + type + '.txt'
             files.append(file)
             file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations, k, sampling))
             file_txt = open(base + file, 'r')
@@ -192,7 +194,7 @@ for data_type in data_types:
     plt.title(data_type + ' - RMSE - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
     plt.plot(modified_nc_pos, rmse, color='r')
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
     
     modified_nc_lepard_outlier = [str(nc_v) for nc_v in nc]
     modified_nc_lepard_outlier.append('lepard')
@@ -203,11 +205,11 @@ for data_type in data_types:
     plt.bar(modified_nc_lepard_outlier_pos, true_data, color='r')
     plt.bar(modified_nc_lepard_outlier_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
     
     plt.clf()
     plt.title(data_type + ' - GT ratio - adm : ' + str(adm[0]) + ' - sampling : ' + sampling + ' varying number of centers')
     plt.plot(modified_nc_lepard_outlier_pos, fraction, color='r')
     plt.xticks(modified_nc_lepard_outlier_pos, modified_nc_lepard_outlier, rotation=90)
     plt.ylim(0, 1)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
