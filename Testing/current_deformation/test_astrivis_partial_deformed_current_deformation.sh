@@ -74,7 +74,7 @@ if [ $type == "kpfcn" ]; then
 				--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 
 				python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-                --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
+                --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
                 --initial_1="${base}/model${k}/transformed/${file_number1}_0.ply" \
                 --initial_2="${base}/model${k}/transformed/${file_number2}_1.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
@@ -132,7 +132,7 @@ if [ $type == "fcgf" ]; then
 				--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 
 				python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-                --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_0_1.ply" \
+                --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
                 --initial_1="${base}/model${k}/transformed/${file_number1}_0.ply" \
                 --initial_2="${base}/model${k}/transformed/${file_number2}_1.ply" \
                 --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_0_1.npz" \
