@@ -53,6 +53,8 @@ if [ $type == "kpfcn" ]; then
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
+        rm "${base}/model${k}/${folder_name}/current_deformation.ply"
+
         python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
         --file1="${base}/model${k}/transformed/mesh_transformed_0.ply" \
         --file2="${base}/model${k}/transformed/mesh_transformed_1.ply" \
@@ -94,6 +96,8 @@ if [ $type == "fcgf" ]; then
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
+        rm "${base}/model${k}/${folder_name}/current_deformation.ply"
+        
         python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
         --file1="${base}/model${k}/transformed/mesh_transformed_0.ply" \
         --file2="${base}/model${k}/transformed/mesh_transformed_1.ply" \

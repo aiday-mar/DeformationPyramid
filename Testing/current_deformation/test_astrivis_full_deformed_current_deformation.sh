@@ -65,6 +65,8 @@ if [ $type == "kpfcn" ]; then
 				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then
+				rm "${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply"
+
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
 				--file1="${base}/model${k}/transformed/${file_number1}.ply" \
 				--file2="${base}/model${k}/transformed/${file_number2}.ply" \
@@ -118,6 +120,8 @@ if [ $type == "fcgf" ]; then
 				--only_inference >> ${filename}
 				
 				if [ "$?" != "1" ]; then
+				rm "${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply"
+				
 				python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
 				--file1="${base}/model${k}/transformed/${file_number1}.ply" \
 				--file2="${base}/model${k}/transformed/${file_number2}.ply" \
