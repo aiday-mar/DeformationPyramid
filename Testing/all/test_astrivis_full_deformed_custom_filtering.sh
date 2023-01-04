@@ -9,14 +9,14 @@ type=kpfcn
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
-# epoch=10
+epoch=10
 # epoch=5
 # epoch=1
-epoch=null
+# epoch=null
 
 number_centers=50
 average_distance_multiplier=2.0
