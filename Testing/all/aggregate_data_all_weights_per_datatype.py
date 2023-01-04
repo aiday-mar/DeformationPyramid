@@ -22,6 +22,8 @@ adm = 2.0
 with_custom = True
 # with_custom = False
 colors = ['blue', 'orange', 'green', 'red', 'magenta']
+preprocessing='none'
+# preprocessing='mutual'
 
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
@@ -127,9 +129,9 @@ for data_type in data_types:
     title = title.title()
     plt.title(title, wrap=True)
     if with_custom is False:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse.png')
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing + '_rmse.png')
     else:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_rmse_custom.png')
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing + ' _rmse_custom.png')
 
 for data_type in data_types:
     number += 1
@@ -157,5 +159,5 @@ for data_type in data_types:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
-    plt.savefig('Testing/all/per_data_type_' + data_type + '_relaxed_ir.png')        
+    plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing + '_relaxed_ir.png')        
             
