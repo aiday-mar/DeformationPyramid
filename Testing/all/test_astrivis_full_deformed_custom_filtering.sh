@@ -1,10 +1,10 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
+config=LNDP_fcgf.yaml
+# config=LNDP.yaml
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
