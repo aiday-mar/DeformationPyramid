@@ -64,6 +64,7 @@ if [ $type == "kpfcn" ]; then
         --inlier_outlier_thr=${inlier_outlier_thr} \
         --custom_filtering \
         --confidence_threshold=${confidence_threshold} \
+        --preprocessing=${preprocessing} \
         --reject_outliers=false \
         >> ${filename}
         
@@ -107,6 +108,7 @@ if [ $type == "fcgf" ]; then
         --inlier_outlier_thr=${inlier_outlier_thr} \
         --custom_filtering \
         --confidence_threshold=${confidence_threshold} \
+        --preprocessing=${preprocessing} \
         --reject_outliers=false \
         >> ${filename}
         
