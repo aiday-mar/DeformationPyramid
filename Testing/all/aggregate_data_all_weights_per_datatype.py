@@ -114,15 +114,15 @@ for data_type in data_types:
                         rmse.append(float(data[model_number]['RMSE']))
                     
                     if custom is False:
-                        plt.plot(model_numbers, rmse, color = colors[color_idx])
+                        plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
                     else:
-                        plt.plot(model_numbers, rmse, color = colors[color_idx], linestyle='dashed')
+                        plt.plot(model_numbers, rmse, color = colors[color_idx], linestyle='dashed', label='_nolegend_')
                 
                 color_idx += 1
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
-    plt.legend(legend, loc='upper right')
+    plt.legend(loc='upper right') # legend
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
