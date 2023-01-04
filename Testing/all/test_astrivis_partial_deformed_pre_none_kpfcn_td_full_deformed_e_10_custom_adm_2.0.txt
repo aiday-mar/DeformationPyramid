@@ -1,0 +1,451 @@
+model 002 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  18
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  18
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks before custom filtering :  18
+average distance :  0.06117199330280225
+average distance multiplier :  2.0
+number of unique source landmarks :  18
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  13
+number of true landmark correspondences returned from custom filtering :  0  out of  13
+fraction of true landmark correspondences returned from custom filtering :  0.0
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 23.876 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 99.695 
+vis-epe: 22.829 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.819 
+occ-epe: 24.784 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 99.588 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[-0.42405343  0.45850853 -0.78099209]
+ [-0.70050088  0.38051509  0.60374398]
+ [ 0.57400105  0.80310524  0.15982686]]
+Predicted translation :  [-0.011673    0.00656915 -0.02852326]
+Relative Rotation Error :  2.282541407825447
+Relative Translation Error :  2.0219515639404677
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.2276557095658447
+Strict IR :  0.0004201680672268908
+Relaxed IR :  0.009033613445378152
+model 042 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  19
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  18
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks before custom filtering :  19
+average distance :  0.053364634219753126
+average distance multiplier :  2.0
+number of unique source landmarks :  19
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  15
+number of true landmark correspondences returned from custom filtering :  0  out of  15
+fraction of true landmark correspondences returned from custom filtering :  0.0
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 26.390 
+full-AccS: 0.011 
+full-AccR: 0.859 
+full-outlier: 98.496 
+vis-epe: 29.425 
+vis-AccS: 0.016 
+vis-AccR: 0.763 
+vis-outlier: 98.816 
+occ-epe: 18.345 
+occ-AccS: 0.000 
+occ-AccR: 1.115 
+occ-outlier: 97.647 
+
+Actual rotation :  [[-0.87462848 -0.4705988  -0.11645507]
+ [ 0.24256895 -0.63279443  0.73534448]
+ [-0.41974435  0.61490485  0.66761269]]
+Actual translation :  [ 1.20593496  0.83257865 -0.4390415 ]
+Predicted rotation :  [[ 0.93139393 -0.3162971  -0.1801703 ]
+ [ 0.28532589  0.94171402 -0.17822367]
+ [ 0.22604052  0.11458918  0.96735453]]
+Predicted translation :  [-0.04138021 -0.05082292  0.00291191]
+Relative Rotation Error :  2.5691387583939447
+Relative Translation Error :  1.5910739430198602
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.1769048493492163
+Strict IR :  0.00011308379509216329
+Relaxed IR :  0.013570055411059595
+model 085 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  18
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  17
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks before custom filtering :  18
+average distance :  0.041361256813009575
+average distance multiplier :  2.0
+number of unique source landmarks :  18
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  15
+number of true landmark correspondences returned from custom filtering :  0  out of  15
+fraction of true landmark correspondences returned from custom filtering :  0.0
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 16.472 
+full-AccS: 0.019 
+full-AccR: 0.904 
+full-outlier: 78.015 
+vis-epe: 19.823 
+vis-AccS: 0.000 
+vis-AccR: 0.701 
+vis-outlier: 80.886 
+occ-epe: 13.853 
+occ-AccS: 0.034 
+occ-AccR: 1.062 
+occ-outlier: 75.771 
+
+Actual rotation :  [[-0.08515318 -0.0477966  -0.99522079]
+ [-0.17928303  0.98328076 -0.03188333]
+ [ 0.98010537  0.17571123 -0.0922986 ]]
+Actual translation :  [ 0.67656808  0.74129062 -0.19986074]
+Predicted rotation :  [[ 0.0963913   0.82000644  0.56417935]
+ [ 0.27268834  0.52337636 -0.80729066]
+ [-0.95726161  0.23166099 -0.17315728]]
+Predicted translation :  [-0.01087493 -0.02804892 -0.0085528 ]
+Relative Rotation Error :  3.108996121425289
+Relative Translation Error :  1.0493140392127231
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.14389614578454676
+Strict IR :  0.0009617234083477592
+Relaxed IR :  0.018080400076937873
+model 126 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  3  out of  21
+fraction of true landmark correspondences returned from Lepard :  0.14285714285714285
+number of true landmark correspondences returned from Outlier Rejection :  3  out of  20
+fraction of true landmark correspondences returned from Outlier Rejection :  0.15
+Custom filtering is used
+number of landmarks before custom filtering :  21
+average distance :  0.05635020580320132
+average distance multiplier :  2.0
+number of unique source landmarks :  21
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  18
+number of true landmark correspondences returned from custom filtering :  3  out of  18
+fraction of true landmark correspondences returned from custom filtering :  0.16666666666666666
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 15.592 
+full-AccS: 0.000 
+full-AccR: 0.024 
+full-outlier: 93.632 
+vis-epe: 19.806 
+vis-AccS: 0.000 
+vis-AccR: 0.021 
+vis-outlier: 99.597 
+occ-epe: 9.985 
+occ-AccS: 0.000 
+occ-AccR: 0.028 
+occ-outlier: 85.694 
+
+Actual rotation :  [[-0.81564788 -0.06094346 -0.57532984]
+ [ 0.57678234 -0.16330348 -0.80040871]
+ [-0.04517368 -0.98469176  0.16834925]]
+Actual translation :  [0.89703757 1.00050158 0.50390294]
+Predicted rotation :  [[ 0.04933274 -0.26603909 -0.96269901]
+ [ 0.6075738   0.77301535 -0.18248604]
+ [ 0.79272943 -0.57590822  0.19977341]]
+Predicted translation :  [ 0.0410602  -0.02151969 -0.03248107]
+Relative Rotation Error :  1.3361371078720987
+Relative Translation Error :  1.4369873109622184
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.10758421250503601
+Strict IR :  0.003389830508474576
+Relaxed IR :  0.06767554479418886
+model 167 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  14
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  14
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks before custom filtering :  14
+average distance :  0.04326178825327329
+average distance multiplier :  2.0
+number of unique source landmarks :  14
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  14
+number of true landmark correspondences returned from custom filtering :  0  out of  14
+fraction of true landmark correspondences returned from custom filtering :  0.0
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 13.116 
+full-AccS: 0.000 
+full-AccR: 0.102 
+full-outlier: 99.949 
+vis-epe: 15.982 
+vis-AccS: 0.000 
+vis-AccR: 0.181 
+vis-outlier: 99.910 
+occ-epe: 9.387 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 100.000 
+
+Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
+ [ 0.42981428  0.61565456 -0.66047646]
+ [-0.39834628 -0.52716002 -0.75061478]]
+Actual translation :  [0.2961076  0.17846237 1.41276713]
+Predicted rotation :  [[ 0.80341702 -0.55004684 -0.22796865]
+ [ 0.39048371  0.77578333 -0.49566416]
+ [ 0.44949275  0.30920699  0.83806173]]
+Predicted translation :  [0.00465553 0.06829692 0.00667941]
+Relative Rotation Error :  2.9856394790042042
+Relative Translation Error :  1.4401956126045636
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.09288012499819935
+Strict IR :  0.001786169941311559
+Relaxed IR :  0.028833886195458024
+model 207 file1 020 file2 104
+0 to 1
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  11
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  9
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Custom filtering is used
+number of landmarks before custom filtering :  11
+average distance :  0.04180558330633423
+average distance multiplier :  2.0
+number of unique source landmarks :  11
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of landmarks after custom filtering :  8
+number of true landmark correspondences returned from custom filtering :  0  out of  8
+fraction of true landmark correspondences returned from custom filtering :  0.0
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 9.933 
+full-AccS: 0.048 
+full-AccR: 14.386 
+full-outlier: 42.771 
+vis-epe: 11.914 
+vis-AccS: 0.087 
+vis-AccR: 1.742 
+vis-outlier: 50.131 
+occ-epe: 7.451 
+occ-AccS: 0.000 
+occ-AccR: 30.224 
+occ-outlier: 33.552 
+
+Actual rotation :  [[-0.32787446  0.25529739 -0.9095722 ]
+ [ 0.93634976  0.21570775 -0.27698246]
+ [ 0.12548888 -0.94249319 -0.30977271]]
+Actual translation :  [0.74584319 0.0201462  0.21741575]
+Predicted rotation :  [[ 0.45130957  0.10492047 -0.88617801]
+ [ 0.83799662  0.29150906  0.46128559]
+ [ 0.30672716 -0.95079662  0.04363785]]
+Predicted translation :  [-0.10019426  0.0774703   0.03167525]
+Relative Rotation Error :  0.8461649445227015
+Relative Translation Error :  0.8680811884042342
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07654466766478085
+Strict IR :  0.015984499878905305
+Relaxed IR :  0.2751271494308549
