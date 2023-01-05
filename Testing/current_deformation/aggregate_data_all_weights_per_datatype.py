@@ -37,9 +37,9 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
 
     epoch = str(weights[feature_extractor][training_data_type])
     if custom is False:
-        file_path = 'Testing/current_deformation/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '.txt'
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_.txt"
     else:
-        file_path = 'Testing/current_deformation/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '.txt'
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + ".txt"
     
     file = open(file_path, 'r')
     lines = file.readlines()
@@ -128,7 +128,7 @@ for data_type in data_types:
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
-    plt.legend(loc='upper right') # legend
+    plt.legend(loc='upper right')
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
