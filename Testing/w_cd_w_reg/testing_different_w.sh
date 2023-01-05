@@ -13,6 +13,18 @@ w_cd_list=(0 0.2 0.4 0.6 0.8 1)
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 file="Testing/w_cd_w_reg/testing_w_pre_${preprocessing}_${type}.txt"
 rm ${file} 
 touch ${file}

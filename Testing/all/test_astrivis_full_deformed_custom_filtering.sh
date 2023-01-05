@@ -13,10 +13,13 @@ preprocessing=none
 training_data=partial_deformed
 # training_data=pretrained
 
-# epoch=10
-epoch=5
-# epoch=1
-# epoch=null
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
 
 number_centers=50
 average_distance_multiplier=2.0

@@ -7,6 +7,18 @@ type=fcgf
 # preprocessing=none
 preprocessing=mutual
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 levels_list=(2 4 6 8 10)
 file="Testing/levels/testing_levels_pre_${preprocessing}_${type}.txt"
 rm ${file} 

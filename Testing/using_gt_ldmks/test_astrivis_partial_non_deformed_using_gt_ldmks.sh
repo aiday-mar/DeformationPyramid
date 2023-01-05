@@ -6,6 +6,18 @@ folder_name=output_partial_non_deformed_gt_ldmks
 rm ${filename}
 touch ${filename}
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
 
 # model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')

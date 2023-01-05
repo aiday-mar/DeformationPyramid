@@ -3,6 +3,18 @@ base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 config=LNDP.yaml
 type=kpfcn
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 filename=Testing/using_gt_ldmks/test_astrivis_full_deformed_gt_ldmks.txt
 folder_name=output_full_deformed_gt_ldmks
 rm ${filename}

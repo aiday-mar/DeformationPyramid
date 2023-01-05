@@ -7,6 +7,18 @@ type=fcgf
 # preprocessing=none
 preprocessing=mutual
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 k0_list=(-11 -10 -9 -8)
 file="Testing/k0/testing_k0_pre_${preprocessing}_${type}.txt"
 rm ${file} 

@@ -7,6 +7,18 @@ type=fcgf
 # preprocessing=none
 preprocessing=mutual 
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 samples_list=(50 100 500 1000 2000)
 file="Testing/samples/testing_samples_pre_${preprocessing}_${type}.txt"
 rm ${file} 
