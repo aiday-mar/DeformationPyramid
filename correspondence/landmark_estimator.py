@@ -383,9 +383,10 @@ class Landmark_Model():
             
                 ldmk_s_pcd = o3d.geometry.PointCloud()
                 ldmk_s_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
                 ldmk_s_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                 rotated_ldmk_s = np.array(ldmk_s_pcd.points)
-                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 's_outlier_rejected_pcd.ply', ldmk_s_pcd)
+                o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 's_outlier_rejected_rotated_pcd.ply', ldmk_s_pcd)
                 
                 ldmk_t_pcd = o3d.geometry.PointCloud()
                 ldmk_t_pcd.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))
