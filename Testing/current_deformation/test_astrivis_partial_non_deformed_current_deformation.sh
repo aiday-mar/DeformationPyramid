@@ -7,14 +7,17 @@ type=kpfcn
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
-# epoch=2
-# epoch=1
-epoch=null
-# epoch=5
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
