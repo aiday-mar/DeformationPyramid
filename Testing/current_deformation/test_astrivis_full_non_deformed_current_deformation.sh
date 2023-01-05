@@ -107,7 +107,7 @@ if [ $type == "fcgf" ]; then
         --save_path="${base}/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
         
         python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-        --input1=""${base}/model${k}/${folder_name}/current_deformation.ply" \
+        --input1="${base}/model${k}/${folder_name}/current_deformation.ply" \
         --input2="${base}/model${k}/mesh_transformed_1.ply" \
         --matches="${base}/model${k}/0_1.npz" >> ${filename}
         fi
