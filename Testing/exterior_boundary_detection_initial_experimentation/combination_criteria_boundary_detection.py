@@ -16,7 +16,7 @@ def apply_different_criteria(file_path, num):
     final_pcd = o3d.geometry.PointCloud()
     final_points = pcd_points[mask]
     final_pcd.points = o3d.utility.Vector3dVector(final_points)
-    o3d.io.write_point_cloud('Testing/exterior_boundary_detection/combination_criteria_' + num + '.ply', final_pcd)
+    o3d.io.write_point_cloud('Testing/exterior_boundary_detection_initial_experimentation/combination_criteria_' + num + '.ply', final_pcd)
 
    
 file_path = 'TestData/PartialDeformed/model002/020_0.ply'
