@@ -1,17 +1,18 @@
 
 import re
 import matplotlib.pyplot as plt
+import numpy as np
 
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 
 weights = {
-    'fcgf' : {
-        # 'full_deformed' : 10, 
-        'partial_deformed' : 5
-    }, 
+    # 'fcgf' : {
+    #    'full_deformed' : 10, 
+    #    'partial_deformed' : 5
+    # }, 
     'kpfcn' : {
-        'full_deformed' : 10, 
-        'partial_deformed' : 5,
+    #   'full_deformed' : 10, 
+    #   'partial_deformed' : 5,
         'pretrained' : 'null'
     }
 }
@@ -26,8 +27,10 @@ colors = ['blue', 'orange', 'green', 'red', 'magenta']
 preprocessing_custom='none'
 # preprocessing_custom='mutual'
 
-preprocessing_normal='mutual'
-# preprocessing_normal='none'
+# preprocessing_normal='mutual'
+preprocessing_normal='none'
+
+model_search = re.compile(r'model (\d+)')
 
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
@@ -37,7 +40,7 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
 
     epoch = str(weights[feature_extractor][training_data_type])
     if custom is False:
-        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_.txt"
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + ".txt"
     else:
         file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + ".txt"
     
@@ -49,7 +52,7 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
     key = None
 
     for line in lines:
-        if 'model' in line:
+        if 'model' in line and len(line) < 35:
             if data:
                 final_data[key] = data
             
@@ -97,7 +100,10 @@ for data_type in data_types:
                 data = get_data(data_type, feature_extractor, training_data_type)
                 rmse = []             
                 for model_number in data:
-                    rmse.append(float(data[model_number]['RMSE']))
+                    if 'RMSE' in data[model_number]:
+                        rmse.append(float(data[model_number]['RMSE']))
+                    else:
+                        rmse.append(np.nan)
                 
                 plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
                 color_idx += 1
