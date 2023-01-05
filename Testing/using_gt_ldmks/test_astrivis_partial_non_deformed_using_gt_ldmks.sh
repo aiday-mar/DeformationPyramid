@@ -27,6 +27,7 @@ do
     --output_trans="model${k}/${folder_name}/0_1_se4.h5" \
     --intermediate_output_folder="model${k}/${folder_name}/" \
     --base=${base} \
+    --use_gt_ldmks \
     --print_keypoints >> ${filename}
     
     if [ "$?" != "1" ]; then
