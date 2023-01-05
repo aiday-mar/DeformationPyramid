@@ -1,11 +1,17 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-config=LNDP.yaml
 type=kpfcn
+# type=fcgf
 
 training_data=full_deformed
 # training_data=partial_deformed
 # training_data=pretrained
+
+if [ "$type" == "kpfcn" ] ; then
+	config=LNDP.yaml
+else
+	config=LNDP_fcgf.yaml
+fi
 
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10

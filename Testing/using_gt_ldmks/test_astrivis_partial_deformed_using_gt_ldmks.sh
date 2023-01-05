@@ -1,5 +1,5 @@
-config=LNDP.yaml
 type=kpfcn
+# type=fcgf
 
 filename=Testing/using_gt_ldmks/test_astrivis_partial_deformed_gt_ldmks.txt
 folder_name=output_partial_deformed_gt_ldmks
@@ -9,6 +9,12 @@ touch ${filename}
 training_data=full_deformed
 # training_data=partial_deformed
 # training_data=pretrained
+
+if [ "$type" == "kpfcn" ] ; then
+	config=LNDP.yaml
+else
+	config=LNDP_fcgf.yaml
+fi
 
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10

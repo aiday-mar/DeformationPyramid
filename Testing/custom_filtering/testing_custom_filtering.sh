@@ -1,6 +1,3 @@
-# config=LNDP_fcgf.yaml
-config=LNDP.yaml
-
 # type=fcgf
 type=kpfcn
 
@@ -10,6 +7,12 @@ version=4
 
 custom_filtering=true
 # custom_filtering=false
+
+if [ "$type" == "kpfcn" ] ; then
+	config=LNDP.yaml
+else
+	config=LNDP_fcgf.yaml
+fi
 
 if [ "$custom_filtering" == "true" ] ; then
     custom_filtering_type=custom
