@@ -3,8 +3,8 @@ base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 type=fcgf
 # type=kpfcn
 
-# training_data=full_deformed
-training_data=partial_deformed
+training_data=full_deformed
+# training_data=partial_deformed
 # training_data=pretrained
 
 preprocessing=none

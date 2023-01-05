@@ -4,8 +4,8 @@ type=fcgf
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
-training_data=partial_deformed
+training_data=full_deformed
+# training_data=partial_deformed
 # training_data=pretrained
 
 if [ "$type" == "kpfcn" ] ; then

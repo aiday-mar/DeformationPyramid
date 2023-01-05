@@ -6,10 +6,10 @@ import numpy as np
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 
 weights = {
-    # 'fcgf' : {
+    'fcgf' : {
     #    'full_deformed' : 10, 
-    #    'partial_deformed' : 5
-    # }, 
+        'partial_deformed' : 5
+    }, 
     'kpfcn' : {
         'full_deformed' : 10, 
         'partial_deformed' : 5,
