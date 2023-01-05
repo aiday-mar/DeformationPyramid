@@ -15,6 +15,18 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
+training_data=full_deformed
+# training_data=partial_deformed
+# training_data=pretrained
+
+if [ "$training_data" == "full_deformed" ] ; then
+	epoch=10
+elif [ "$training_data" == "partial_deformed" ] ; then
+	epoch=5
+elif [ "$training_data" == "pretrained" ] ; then
+	epoch=null
+fi
+
 file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}.txt"
 rm ${file}
 touch ${file}
