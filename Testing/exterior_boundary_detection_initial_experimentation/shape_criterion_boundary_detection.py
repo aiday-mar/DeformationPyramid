@@ -10,9 +10,9 @@ characteristic_equations = {
     'line' : np.array([1, 0, 0])
 }
 
-number1 = 1000
-number2 = 700
-number3 = 500
+number1 = '1000'
+number2 = '700'
+number3 = '500'
 
 def gaussian_kernel(sigma, d):
     return math.exp(-d**2/sigma**2)
@@ -100,7 +100,11 @@ def get_shape_criterion_mask(file_path, num, use_proba=False):
 
     final_pcd = o3d.geometry.PointCloud()
     final_pcd.points = o3d.utility.Vector3dVector(np.array(final_final_edge_points))
-    o3d.io.write_point_cloud('Testing/exterior_boundary_detection_initial_experimentation/shape_criterion_' + num + '_' + number1 + '_' + number2 + '_' + number3 + '.ply', final_pcd)
+
+    if use_proba:
+        o3d.io.write_point_cloud('Testing/exterior_boundary_detection_initial_experimentation/shape_criterion_' + num + '_' + number1 + '_' + number2 + '_' + number3 + '_proba.ply', final_pcd)
+    else:
+        o3d.io.write_point_cloud('Testing/exterior_boundary_detection_initial_experimentation/shape_criterion_' + num + '_' + number1 + '_' + number2 + '_' + number3 + '_norm.ply', final_pcd)
 
     shape_criterion_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     mask = np.zeros((n_pcd_points,), dtype = bool)
