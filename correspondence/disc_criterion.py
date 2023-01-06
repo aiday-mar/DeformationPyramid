@@ -77,7 +77,7 @@ def find_norm_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_half_disc_criterion_mask(file_path, num, use_proba = False):
+def get_disc_criterion_mask(file_path, num, use_proba = False):
     n = 1000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
