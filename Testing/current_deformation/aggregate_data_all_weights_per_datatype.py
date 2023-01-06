@@ -7,7 +7,7 @@ data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial
 
 weights = {
     'fcgf' : {
-    #    'full_deformed' : 10, 
+        'full_deformed' : 10, 
         'partial_deformed' : 5
     }, 
     'kpfcn' : {

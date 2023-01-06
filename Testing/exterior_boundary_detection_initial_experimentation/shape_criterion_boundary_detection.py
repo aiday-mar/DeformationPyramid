@@ -67,7 +67,7 @@ def find_indices(pcd_points, n):
     return indices_proba, indices_norm
 
 def get_shape_criterion_mask(file_path, num):
-    n = 2000
+    n = 1000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
     n_pcd_points = pcd_points.shape[0]
@@ -76,13 +76,13 @@ def get_shape_criterion_mask(file_path, num):
     print('number of pcd points : ', pcd_points.shape[0])
     print('number of edge points : ', edge_points.shape[0])
 
-    n = 1000
+    n = 700
     indices_proba, final_edge_point_indices = find_indices(edge_points, n)
     final_edge_points = edge_points[final_edge_point_indices]
     print('number of edge points : ', edge_points.shape[0])
     print('number of final edge points : ', final_edge_points.shape[0])
 
-    n = 300
+    n = 500
     indices_proba, final_final_edge_point_indices = find_indices(final_edge_points, n)
     final_final_edge_points = final_edge_points[final_final_edge_point_indices]
     print('number of final edge points : ', final_edge_points.shape[0])

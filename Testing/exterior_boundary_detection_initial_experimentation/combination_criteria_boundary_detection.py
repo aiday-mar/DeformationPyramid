@@ -20,7 +20,7 @@ def apply_different_criteria(file_path, num):
 
    
 file_path = 'TestData/PartialDeformed/model002/020_0.ply'
-num = '020'
+num = '002'
 apply_different_criteria(file_path, num)
 apply_simple_boundary_detection(file_path, num)
 
