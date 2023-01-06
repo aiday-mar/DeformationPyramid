@@ -70,7 +70,7 @@ def find_indices(pcd_points, n):
 
     return indices_proba, indices_norm
 
-def get_shape_criterion_mask(file_path, num, use_proba=False):
+def get_shape_criterion_mask(file_path, use_proba=False):
     n = 1000
     pcd = o3d.io.read_point_cloud(file_path)
     pcd_points = np.array(pcd.points)
