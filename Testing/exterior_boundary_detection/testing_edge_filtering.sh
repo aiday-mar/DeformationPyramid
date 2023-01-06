@@ -1,6 +1,6 @@
 
-criterion=none
-# criterion=angle
+# criterion=none
+criterion=angle
 # criterion=simple
 # criterion=shape
 # criterion=disc
