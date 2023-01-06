@@ -3,11 +3,14 @@ import numpy as np
 from scipy.spatial import distance_matrix
 import math
 
-'''
+number1 = '1000'
+number2 = '700'
+number3 = '500'
+
 def gaussian_kernel(sigma, d):
     return math.exp(-d**2/sigma**2)
 
-def find_probability_vector(pcd_points):
+def find_proba_indices(pcd_points, n):
     number_points = pcd_points.shape[0]
     dists = distance_matrix(pcd_points, pcd_points)
     k = 10
@@ -44,25 +47,17 @@ def find_probability_vector(pcd_points):
         probability = min([diff/(4*rp/(3 * math.pi)), 1])
         probabilities.append(probability)
 
-    return np.array(probabilities)
+    probabilities = np.array(probabilities)
+    indices = (-probabilities).argsort()[:n]
+    return indices
 
-pcd = o3d.io.read_point_cloud('TestData/PartialDeformed/model002/020_0.ply')
-pcd_points = np.array(pcd.points)
-probabilities = find_probability_vector(pcd_points)
-n = 200
-indices = (-probabilities).argsort()[:n]
-edge_points = pcd_points[indices]
-edge_points_pcd = o3d.geometry.PointCloud()
-edge_points_pcd.points = o3d.utility.Vector3dVector(edge_points)
-o3d.io.write_point_cloud('half_disc_criterion.ply', edge_points_pcd)
-'''
-
-def find_indices(pcd_points,n):
+def find_norm_indices(pcd_points,n):
     number_points = pcd_points.shape[0]
     dists = distance_matrix(pcd_points, pcd_points)
     k = 10
     differences = []
     for i in range(number_points):
+        print(i, '/', number_points - 1)
         point = pcd_points[i]
         dists_to_point = dists[i, :]
         indices_neighbors = np.argsort(dists_to_point)[:k]
@@ -82,18 +77,29 @@ def find_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_disc_criterion_mask(pcd_points):
-    n = 2000
+def get_half_disc_criterion_mask(file_path, num, use_proba = False):
+    n = 1000
+    pcd = o3d.io.read_point_cloud(file_path)
+    pcd_points = np.array(pcd.points)
     n_pcd_points = pcd_points.shape[0]
-    edge_point_indices = find_indices(pcd_points, n)
+    if use_proba:
+        edge_point_indices = find_proba_indices(pcd_points, n)
+    else:
+        edge_point_indices = find_norm_indices(pcd_points, n)
     edge_points = pcd_points[edge_point_indices]
 
-    n = 1000
-    final_edge_point_indices = find_indices(edge_points, n)
+    n = 700
+    if use_proba:
+        final_edge_point_indices = find_proba_indices(edge_points, n)
+    else:
+        final_edge_point_indices = find_norm_indices(edge_points, n)
     final_edge_points = edge_points[final_edge_point_indices]
 
-    n = 300
-    final_final_edge_point_indices = find_indices(final_edge_points, n)
+    n = 500
+    if use_proba:
+        final_final_edge_point_indices = find_proba_indices(final_edge_points, n)
+    else:
+        final_final_edge_point_indices = find_norm_indices(final_edge_points, n)
 
     half_disc_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     mask = np.zeros((n_pcd_points,), dtype = bool)

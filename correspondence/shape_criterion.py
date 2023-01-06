@@ -10,6 +10,10 @@ characteristic_equations = {
     'line' : np.array([1, 0, 0])
 }
 
+number1 = '1000'
+number2 = '700'
+number3 = '500'
+
 def gaussian_kernel(sigma, d):
     return math.exp(-d**2/sigma**2)
 
@@ -22,6 +26,7 @@ def find_indices(pcd_points, n):
     k = 10
     probabilities = []
     for i in range(number_points):
+        print(i, '/', number_points - 1)
         point = pcd_points[i]
         dists_to_point = dists[i, :]
         indices_neighbors = np.argsort(dists_to_point)[:k]
@@ -61,22 +66,30 @@ def find_indices(pcd_points, n):
         norms.append(np.linalg.norm(lambdap - characteristic_equations['boundary']))
 
     indices_proba = (-np.array(probabilities)).argsort()[:n]
-    indices_norm = np.array(probabilities).argsort()[:n]
+    indices_norm = np.array(norms).argsort()[:n]
 
     return indices_proba, indices_norm
 
-def get_shape_criterion_mask(pcd_points):
-    n = 2000
+def get_shape_criterion_mask(file_path, num, use_proba=False):
+    n = 1000
+    pcd = o3d.io.read_point_cloud(file_path)
+    pcd_points = np.array(pcd.points)
     n_pcd_points = pcd_points.shape[0]
-    _, edge_point_indices = find_indices(pcd_points, n)
+    indices_proba, edge_point_indices = find_indices(pcd_points, n)
+    if use_proba:
+        edge_point_indices = indices_proba
     edge_points = pcd_points[edge_point_indices]
 
-    n = 1000
-    _, final_edge_point_indices = find_indices(edge_points, n)
+    n = 700
+    indices_proba, final_edge_point_indices = find_indices(edge_points, n)
+    if use_proba:
+        final_edge_point_indices = indices_proba
     final_edge_points = edge_points[final_edge_point_indices]
-   
-    n = 300
-    _, final_final_edge_point_indices = find_indices(final_edge_points, n)
+
+    n = 500
+    indices_proba, final_final_edge_point_indices = find_indices(final_edge_points, n)
+    if use_proba:
+        final_final_edge_point_indices = indices_proba
 
     shape_criterion_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     mask = np.zeros((n_pcd_points,), dtype = bool)

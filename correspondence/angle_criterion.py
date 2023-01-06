@@ -1,6 +1,11 @@
 import open3d as o3d
 import numpy as np
 from scipy.spatial import distance_matrix
+import math
+
+number1 = '1000'
+number2 = '700'
+number3 = '500'
 
 def unit_vector(vector):
     return vector / np.linalg.norm(vector)
@@ -14,16 +19,26 @@ def find_indices(points, n):
     k = 50
     final_edge_point_indices = []
     final_edge_point_angles = []
+    probabilities = []
     dists = distance_matrix(points, points)
     
     for i in range(points.shape[0]):
+        print(str(i) + '/' + str(points.shape[0]))
         dists_point = dists[i]
         res = sorted(range(len(dists_point)), key = lambda sub: dists_point[sub])[:k]
+        if i == 0:
+            print(res)
+
         neighborhood_points = points[res]
+        n_neighborhood_points = neighborhood_points.shape[0]
         neighborhood_points_ext = np.c_[ neighborhood_points, np.ones(neighborhood_points.shape[0]) ]
         matrix_multiplication = neighborhood_points_ext.T @ neighborhood_points_ext
         w, v = np.linalg.eigh(matrix_multiplication)
         plane_coeffs = v[:, np.argmax(w)]
+        
+        if i == 0:
+            print(plane_coeffs)
+        
         projected_neighborhood_points = np.zeros(neighborhood_points.shape)
         
         for j in range(neighborhood_points.shape[0]):
@@ -63,21 +78,36 @@ def find_indices(points, n):
         max_angle = final_angles.max()
         final_edge_point_angles.append(max_angle)
 
-    final_edge_point_angles = np.array(final_edge_point_angles)
-    final_edge_point_indices = (-final_edge_point_angles).argsort()[:n]
-    return final_edge_point_indices
+        probability = min((max_angle - 2*math.pi/n_neighborhood_points)/(math.pi - 2*math.pi/n_neighborhood_points), 1)
+        probabilities.append(probability)
 
-def get_angle_criterion_mask(pcd_points):
-    n = 2000
-    edge_point_indices = find_indices(pcd_points, n)
+    final_edge_point_angles = np.array(final_edge_point_angles)
+    probabilities = np.array(probabilities)
+
+    final_edge_point_indices = (-final_edge_point_angles).argsort()[:n]
+    proba_indices = (-probabilities).argsort()[:n]
+
+    return proba_indices, final_edge_point_indices
+
+def get_angle_criterion_mask(file_path, num, use_proba = False):
+    n = 1000
+    pcd = o3d.io.read_point_cloud(file_path)
+    pcd_points = np.array(pcd.points)
+    proba_indices, edge_point_indices = find_indices(pcd_points, n)
+    if use_proba:
+        edge_point_indices = proba_indices
     edge_points = pcd_points[edge_point_indices]
 
-    n = 1000
-    final_edge_point_indices = find_indices(edge_points, n)
+    n = 700
+    proba_indices, final_edge_point_indices = find_indices(edge_points, n)
+    if use_proba:
+        final_edge_point_indices = proba_indices
     final_edge_points = edge_points[final_edge_point_indices]
 
-    n = 300
-    final_final_edge_point_indices = find_indices(final_edge_points, n)
+    n = 500
+    proba_indices, final_final_edge_point_indices = find_indices(final_edge_points, n)
+    if use_proba:
+        final_final_edge_point_indices = proba_indices
 
     angle_indices = edge_point_indices[final_edge_point_indices[final_final_edge_point_indices]]
     n_pcd_points = pcd_points.shape[0]
