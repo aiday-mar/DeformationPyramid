@@ -71,6 +71,7 @@ if [ $type == "kpfcn" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
+				--preprocessing=${preprocessing} \
 				--print_keypoints >> ${filename}
 
 				if [ "$?" != "1" ]; then
@@ -157,6 +158,7 @@ if [ $type == "fcgf" ]; then
 				--intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
+				--preprocessing=${preprocessing} \
 				--print_keypoints >> ${filename}
 
 				if [ "$?" != "1" ]; then

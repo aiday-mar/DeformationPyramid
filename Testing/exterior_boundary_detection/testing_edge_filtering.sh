@@ -1,8 +1,4 @@
 
-file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}.txt"
-rm ${file}
-touch ${file}
-
 criterion=none
 # criterion=angle
 # criterion=simple
@@ -55,6 +51,10 @@ if [ $criterion == "disc" ]; then
     edge_filtering_type=edge_filtering_disc
 fi
 
+file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}.txt"
+rm ${file}
+touch ${file}
+
 model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $type == "kpfcn" ]; then
@@ -85,6 +85,7 @@ if [ $type == "kpfcn" ]; then
             --output_trans="PartialDeformed/model${k}/${folder}/result_se4.h5" \
             --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+            --confidence_threshold=${confidence_threshold} \
             --print_keypoints >> ${file}
             
             if [ "$?" != "1" ]; then
@@ -118,6 +119,7 @@ if [ $type == "kpfcn" ]; then
             --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" \
             --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
+            --confidence_threshold=${confidence_threshold} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -155,6 +157,7 @@ if [ $type == "kpfcn" ]; then
             --${edge_filtering_type} \
             --reject_outliers=false \
             --min_dist_thr=${min_dist_thr_kpfcn} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
             
             if [ "$?" != "1" ]; then
@@ -192,6 +195,7 @@ if [ $type == "kpfcn" ]; then
             --${edge_filtering_type} \
             --reject_outliers=false \
             --min_dist_thr=${min_dist_thr_kpfcn} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -244,7 +248,7 @@ if [ $type == "fcgf" ]; then
             --output_trans="PartialDeformed/model${k}/${folder}/result_se4.h5" \
             --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
-            --preprocessing=${preprocessing} \
+            --confidence_threshold=${confidence_threshold} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -280,7 +284,7 @@ if [ $type == "fcgf" ]; then
             --output_trans="PartialNonDeformed/model${k}/${folder}/result_se4.h5" \
             --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
-            --preprocessing=${preprocessing} \
+            --confidence_threshold=${confidence_threshold} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
