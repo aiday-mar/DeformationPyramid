@@ -62,7 +62,7 @@ def find_indices(pcd_points, n):
         norms.append(np.linalg.norm(lambdap - characteristic_equations['boundary']))
 
     indices_proba = (-np.array(probabilities)).argsort()[:n]
-    indices_norm = np.array(probabilities).argsort()[:n]
+    indices_norm = np.array(norms).argsort()[:n]
 
     return indices_proba, indices_norm
 
