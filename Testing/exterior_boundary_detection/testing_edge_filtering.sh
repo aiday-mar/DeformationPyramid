@@ -61,7 +61,7 @@ if [ $type == "kpfcn" ]; then
     for k in ${model_numbers[@]}
     do
         echo "model ${k}" >> ${file}
-        folder="${criterion}_edge_filtering_pre_${preprocessing}_${type}"
+        folder="${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}"
         rm -rf TestData/FullNonDeformed/model${k}/${folder}
         mkdir TestData/FullNonDeformed/model${k}/${folder}
         rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -218,7 +218,7 @@ if [ $type == "fcgf" ]; then
     do
 
         echo "model ${k}" >> ${file}
-        folder=edge_filtering_pre_${preprocessing}_${type}
+        folder=${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}
         rm -rf TestData/FullNonDeformed/model${k}/${folder}
         mkdir TestData/FullNonDeformed/model${k}/${folder}
         rm -rf TestData/FullDeformed/model${k}/${folder}
