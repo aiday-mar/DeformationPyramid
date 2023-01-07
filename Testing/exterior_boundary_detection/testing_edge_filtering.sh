@@ -1,9 +1,9 @@
 
 # criterion=none
-# criterion=angle
+criterion=angle
 # criterion=simple
 # criterion=shape
-criterion=disc
+# criterion=disc
 
 # type=fcgf
 type=kpfcn
