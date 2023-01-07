@@ -8,8 +8,8 @@ criterion=disc
 # type=fcgf
 type=kpfcn
 
-preprocessing=none
-# preprocessing=mutual
+# preprocessing=none
+preprocessing=mutual
 
 # training_data=full_deformed
 # training_data=partial_deformed

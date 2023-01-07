@@ -9,8 +9,11 @@ import copy
 feature_extractor='kpfcn'
 # feature_extractor='fcgf'
 
-# preprocessing=none
-preprocessing='mutual'
+preprocessing='none'
+# preprocessing='mutual'
+
+epoch = 'null'
+training_data = 'pretrained'
 
 models=['002', '042', '085', '126', '167', '207']
 criteria = ['simple', 'angle', 'shape', 'disc', 'none']
@@ -26,7 +29,7 @@ sub_matrix = {
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
 for criterion in criteria:
-    file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '.txt'
+    file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
     file_txt = open(base + folder + file, 'r')
     Lines = file_txt.readlines()
     current_data_type = ''
@@ -83,6 +86,7 @@ for data_type in data_types:
         for model_number in models:
             criterion_res.append(final_matrices[model_number][data_type][criterion]['rmse'])
         
+        print(criterion_res)
         plt.plot(models, criterion_res)
     
     plt.title(data_type + ' - ' + feature_extractor + ' feature extractor')
