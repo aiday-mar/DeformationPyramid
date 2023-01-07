@@ -89,10 +89,8 @@ def find_indices(points, n):
 
     return proba_indices, final_edge_point_indices
 
-def get_angle_criterion_mask(file_path, use_proba = False):
+def get_angle_criterion_mask(pcd_points, use_proba = False):
     n = 1000
-    pcd = o3d.io.read_point_cloud(file_path)
-    pcd_points = np.array(pcd.points)
     proba_indices, edge_point_indices = find_indices(pcd_points, n)
     if use_proba:
         edge_point_indices = proba_indices
