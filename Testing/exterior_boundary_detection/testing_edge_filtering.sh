@@ -1,8 +1,8 @@
 
 # criterion=none
 # criterion=angle
-criterion=simple
-# criterion=shape
+# criterion=simple
+criterion=shape
 # criterion=disc
 
 # type=fcgf
