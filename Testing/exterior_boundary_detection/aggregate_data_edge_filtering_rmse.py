@@ -16,7 +16,7 @@ epoch = 'null'
 training_data = 'pretrained'
 
 models=['002', '042', '085', '126', '167', '207']
-criteria = ['simple', 'angle', 'shape', 'disc', 'none', 'mesh']
+criteria = ['simple', 'angle', 'shape', 'disc', 'mesh', 'none - no mnn', 'none - mnn']
 data_types=['Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'exterior_boundary_detection/'
@@ -29,7 +29,14 @@ sub_matrix = {
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
 for criterion in criteria:
-    file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+
+    if criterion == 'none - no mnn':
+        file='testing_none_edge_filtering_pre_none_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+    elif criterion == 'none - mnn':
+        file='testing_none_edge_filtering_pre_mutual_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+    else:
+        file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+    
     file_txt = open(base + folder + file, 'r')
     Lines = file_txt.readlines()
     current_data_type = ''
@@ -56,7 +63,10 @@ for criterion in criteria:
             criterion_val = 'mesh'
 
         if 'Edge filtering not used' in line:
-            criterion_val = 'none'
+            if criterion == 'none - no mnn':
+                criterion_val = 'none - no mnn'
+            elif criterion == 'none - mnn':
+                criterion_val = 'none - mnn'
         
         if line[:-1] in data_types:
             current_data_type = line[:-1]
