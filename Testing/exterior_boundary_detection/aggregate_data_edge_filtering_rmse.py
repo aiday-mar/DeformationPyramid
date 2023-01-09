@@ -9,8 +9,8 @@ import copy
 feature_extractor='kpfcn'
 # feature_extractor='fcgf'
 
-# preprocessing='none'
-preprocessing='mutual'
+preprocessing='none'
+# preprocessing='mutual'
 
 epoch = 'null'
 training_data = 'pretrained'
@@ -52,6 +52,9 @@ for criterion in criteria:
         if 'using simple exterior boundary detection' in line:
             criterion_val = 'simple'
 
+        if 'using mesh exterior boundary detection' in line:
+            criterion_val = 'mesh'
+
         if 'Edge filtering not used' in line:
             criterion_val = 'none'
         
@@ -89,7 +92,7 @@ for data_type in data_types:
         print(criterion_res)
         plt.plot(models, criterion_res)
     
-    plt.title(data_type + ' - ' + feature_extractor + ' feature extractor')
+    plt.title(data_type)
     plt.ylabel('RMSE')
     plt.xlabel('model numbers')
     plt.legend(criteria, loc = "upper right")
