@@ -114,5 +114,4 @@ def get_angle_criterion_edge_vertices(pcd_points, use_proba = False):
         mask[index] = True
     
     initial_edge_points = pcd_points[mask]
-    initial_edge_points = np.array(initial_edge_points.cpu())
     return initial_edge_points
