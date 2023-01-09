@@ -6,8 +6,8 @@
 # criterion=disc
 criterion=mesh
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
