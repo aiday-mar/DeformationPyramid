@@ -1,7 +1,7 @@
 
 # criterion=none
-criterion=simple
-# criterion=angle
+# criterion=simple
+criterion=angle
 # criterion=shape
 # criterion=disc
 # criterion=mesh

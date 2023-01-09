@@ -16,7 +16,7 @@ epoch = 'null'
 training_data = 'pretrained'
 
 models=['002', '042', '085', '126', '167', '207']
-criteria = ['simple', 'angle', 'shape', 'disc', 'none']
+criteria = ['simple', 'angle', 'shape', 'disc', 'none', 'mesh']
 data_types=['Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'exterior_boundary_detection/'
