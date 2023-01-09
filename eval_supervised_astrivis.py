@@ -74,6 +74,7 @@ if __name__ == "__main__":
     parser.add_argument('--edge_filtering_angle', action = 'store_true', help= 'wether to perform edge filtering using the angle criterion')
     parser.add_argument('--edge_filtering_shape', action = 'store_true', help= 'wether to perform edge filtering using the shape criterion')
     parser.add_argument('--edge_filtering_disc', action = 'store_true', help= 'wether to perform edge filtering using the disc criterion')
+    parser.add_argument('--edge_filtering_mesh', action = 'store_true', help= 'wether to perform edge filtering using the mesh criterion')
     parser.add_argument('--min_dist_thr', type=str, help='threshold used for the edge filtering computation')
     
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
@@ -167,9 +168,10 @@ if __name__ == "__main__":
         edge_filtering_angle = True if args.edge_filtering_angle else False
         edge_filtering_shape = True if args.edge_filtering_shape else False
         edge_filtering_disc = True if args.edge_filtering_disc else False
+        edge_filtering_mesh = True if args.edge_filtering_mesh else False
         min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
         if not args.use_gt_ldmks:
-            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering_simple = edge_filtering_simple, edge_filtering_angle = edge_filtering_angle, edge_filtering_shape = edge_filtering_shape, edge_filtering_disc = edge_filtering_disc, min_dist_thr = min_dist_thr)
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering_simple = edge_filtering_simple, edge_filtering_angle = edge_filtering_angle, edge_filtering_shape = edge_filtering_shape, edge_filtering_disc = edge_filtering_disc, edge_filtering_mesh = edge_filtering_mesh, min_dist_thr = min_dist_thr)
             # normal exit
             if args.only_inference:
                 sys.exit(0)

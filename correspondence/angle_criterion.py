@@ -89,7 +89,7 @@ def find_indices(points, n):
 
     return proba_indices, final_edge_point_indices
 
-def get_angle_criterion_mask(pcd_points, use_proba = False):
+def get_angle_criterion_edge_vertices(pcd_points, use_proba = False):
     n = 1000
     proba_indices, edge_point_indices = find_indices(pcd_points, n)
     if use_proba:
@@ -113,4 +113,4 @@ def get_angle_criterion_mask(pcd_points, use_proba = False):
     for index in angle_indices:
         mask[index] = True
     
-    return mask
+    return pcd_points[mask]

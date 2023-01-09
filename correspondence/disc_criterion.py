@@ -77,7 +77,7 @@ def find_norm_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_disc_criterion_mask(pcd_points, use_proba = False):
+def get_disc_criterion_edge_vertices(pcd_points, use_proba = False):
     n = 1000
     n_pcd_points = pcd_points.shape[0]
     if use_proba:
@@ -104,4 +104,4 @@ def get_disc_criterion_mask(pcd_points, use_proba = False):
     for index in half_disc_indices:
         mask[index] = True
     
-    return mask
+    return pcd_points[mask]

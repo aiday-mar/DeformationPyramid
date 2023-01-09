@@ -4,6 +4,7 @@ criterion=simple
 # criterion=angle
 # criterion=shape
 # criterion=disc
+# criterion=mesh
 
 # type=fcgf
 type=kpfcn
@@ -51,6 +52,10 @@ fi
 
 if [ $criterion == "disc" ]; then
     edge_filtering_type=edge_filtering_disc
+fi
+
+if [ $criterion == "mesh" ]; then
+    edge_filtering_type=edge_filtering_mesh
 fi
 
 file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}.txt"
