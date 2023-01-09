@@ -1,0 +1,330 @@
+model 002
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  288  out of  569
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5061511423550088
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  280  out of  434
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.6451612903225806
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.027 
+full-AccS: 0.192 
+full-AccR: 6.940 
+full-outlier: 78.443 
+vis-epe: 14.948 
+vis-AccS: 0.000 
+vis-AccR: 0.071 
+vis-outlier: 99.315 
+occ-epe: 5.984 
+occ-AccS: 0.350 
+occ-AccR: 12.585 
+occ-outlier: 61.293 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[-0.05938473  0.70144714 -0.71024311]
+ [ 0.57220897  0.60692285  0.55156297]
+ [ 0.81795507 -0.37365302 -0.43741637]]
+Predicted translation :  [ 0.03365434  0.00629772 -0.0567869 ]
+Relative Rotation Error :  0.1396874754684918
+Relative Translation Error :  1.0227427815639007
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05308146028411569
+Strict IR :  0.06044776119402985
+Relaxed IR :  0.3365671641791045
+model 042
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  393  out of  613
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.6411092985318108
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  378  out of  492
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7682926829268293
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.745 
+full-AccS: 2.092 
+full-AccR: 8.499 
+full-outlier: 87.306 
+vis-epe: 12.925 
+vis-AccS: 0.060 
+vis-AccR: 2.758 
+vis-outlier: 95.184 
+occ-epe: 4.711 
+occ-AccS: 7.718 
+occ-AccR: 24.391 
+occ-outlier: 65.497 
+
+Actual rotation :  [[-0.11586111  0.98316587 -0.14128365]
+ [-0.23037909  0.11176292  0.96666154]
+ [ 0.96617891  0.14454728  0.21355188]]
+Actual translation :  [ 0.37739668  0.30691966 -0.00802446]
+Predicted rotation :  [[-0.11530425  0.98152662 -0.15267697]
+ [-0.22472469  0.12394139  0.96650774]
+ [ 0.96757619  0.14575281  0.2062823 ]]
+Predicted translation :  [-0.00088717 -0.03329635  0.04183139]
+Relative Rotation Error :  0.0135966566498641
+Relative Translation Error :  0.5112056452387574
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.03585757643662964
+Strict IR :  0.28806133625410735
+Relaxed IR :  0.6328587075575027
+model 085
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  193  out of  345
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5594202898550724
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  193  out of  301
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.6411960132890365
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.931 
+full-AccS: 5.055 
+full-AccR: 15.261 
+full-outlier: 82.831 
+vis-epe: 13.333 
+vis-AccS: 0.153 
+vis-AccR: 1.297 
+vis-outlier: 97.941 
+occ-epe: 8.528 
+occ-AccS: 9.962 
+occ-AccR: 29.237 
+occ-outlier: 67.710 
+
+Actual rotation :  [[-0.57899306  0.15459214 -0.80054251]
+ [-0.44369772 -0.88348371  0.15029591]
+ [-0.6840317   0.44221917  0.58012312]]
+Actual translation :  [0.3859729  1.90526434 0.1799051 ]
+Predicted rotation :  [[-0.69325463  0.14723348 -0.70549309]
+ [-0.35679024 -0.92064623  0.15846587]
+ [-0.62617791  0.36157029  0.69077368]]
+Predicted translation :  [0.04192268 0.02535457 0.00088649]
+Relative Rotation Error :  0.1633368055245458
+Relative Translation Error :  1.9194996651819736
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07783863491693829
+Strict IR :  0.14250286150324304
+Relaxed IR :  0.5278519648988935
+model 126
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  177  out of  436
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4059633027522936
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  164  out of  310
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.5290322580645161
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.135 
+full-AccS: 1.150 
+full-AccR: 7.020 
+full-outlier: 87.829 
+vis-epe: 13.958 
+vis-AccS: 0.331 
+vis-AccR: 2.601 
+vis-outlier: 96.517 
+occ-epe: 5.587 
+occ-AccS: 2.125 
+occ-AccR: 12.277 
+occ-outlier: 77.492 
+
+Actual rotation :  [[ 0.24307924  0.85381521 -0.46033908]
+ [-0.25108054  0.51378222  0.82035748]
+ [ 0.93694773 -0.08382969  0.33926617]]
+Actual translation :  [ 0.76110673 -0.4081355  -0.54307167]
+Predicted rotation :  [[ 0.30795429  0.72205989 -0.61951094]
+ [-0.0400483   0.66041743  0.74982994]
+ [ 0.95055793 -0.20610299  0.23229562]]
+Predicted translation :  [ 0.01701662  0.01162856 -0.04953297]
+Relative Rotation Error :  0.26960290157726824
+Relative Translation Error :  0.9866369166860505
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05289001092744264
+Strict IR :  0.11535697172975563
+Relaxed IR :  0.32606612362242454
+model 167
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  285  out of  383
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.7441253263707572
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  254  out of  331
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7673716012084593
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 8.446 
+full-AccS: 0.357 
+full-AccR: 10.896 
+full-outlier: 78.132 
+vis-epe: 9.906 
+vis-AccS: 0.000 
+vis-AccR: 2.604 
+vis-outlier: 85.749 
+occ-epe: 6.870 
+occ-AccS: 0.743 
+occ-AccR: 19.851 
+occ-outlier: 69.904 
+
+Actual rotation :  [[-0.99327492 -0.01998061  0.11404261]
+ [ 0.03301676  0.8952149   0.44440992]
+ [-0.11097222  0.44518654 -0.88853481]]
+Actual translation :  [ 1.44910973 -0.21174583  0.20930933]
+Predicted rotation :  [[-0.99127509 -0.1294213   0.02497149]
+ [-0.10085855  0.86674779  0.48844225]
+ [-0.08485881  0.48166221 -0.87223885]]
+Predicted translation :  [0.02899308 0.02342562 0.02484468]
+Relative Rotation Error :  0.14652917692881579
+Relative Translation Error :  1.4512284791983479
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05810832497569703
+Strict IR :  0.31895891809134985
+Relaxed IR :  0.5371268180658331
+model 207
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+number of true landmarks correspondences returned from FCGF based Lepard :  80  out of  218
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3669724770642202
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  67  out of  175
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.38285714285714284
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.923 
+full-AccS: 0.000 
+full-AccR: 3.979 
+full-outlier: 29.867 
+vis-epe: 13.610 
+vis-AccS: 0.000 
+vis-AccR: 0.041 
+vis-outlier: 50.351 
+occ-epe: 7.317 
+occ-AccS: 0.000 
+occ-AccR: 9.262 
+occ-outlier: 2.385 
+
+Actual rotation :  [[-0.87307663 -0.48120204  0.07862435]
+ [ 0.28082325 -0.36444525  0.88787272]
+ [-0.39859189  0.79726047  0.45332135]]
+Actual translation :  [1.8123437  0.01131148 0.68376541]
+Predicted rotation :  [[-0.94338151 -0.277539   -0.18166798]
+ [-0.19353743  0.0157435   0.9809664 ]
+ [-0.26939634  0.96058516 -0.06856615]]
+Predicted translation :  [0.01901484 0.01879788 0.04766691]
+Relative Rotation Error :  0.6468832531131463
+Relative Translation Error :  1.902815207310817
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0653172801432937
+Strict IR :  0.0
+Relaxed IR :  0.12766461392704878
