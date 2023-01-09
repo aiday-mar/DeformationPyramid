@@ -65,8 +65,7 @@ class Landmark_Model():
 
         if type == 'simple':
             initial_edge_points = np.squeeze(initial_edge_points, axis=1)
-        initial_edge_points = np.array(initial_edge_points.cpu())
-        
+                
         mask = np.zeros((ldmk_s.shape[0], ), dtype = bool)
         ldmk_s_np = np.array(ldmk_s.cpu())
         ldmk_t_np = np.array(ldmk_t.cpu())
