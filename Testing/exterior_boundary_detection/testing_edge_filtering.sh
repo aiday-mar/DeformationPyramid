@@ -8,8 +8,8 @@ criterion=disc
 # type=fcgf
 type=kpfcn
 
-# preprocessing=none
-preprocessing=mutual
+preprocessing=none
+# preprocessing=mutual
 
 # training_data=full_deformed
 # training_data=partial_deformed
@@ -17,8 +17,10 @@ training_data=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
+    min_dist_thr_kpfcn=0.01
 else
 	config=LNDP_fcgf.yaml
+    min_dist_thr_fcgf=0.01
 fi
 
 if [ "$training_data" == "full_deformed" ] ; then

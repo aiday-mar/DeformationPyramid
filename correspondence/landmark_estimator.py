@@ -182,7 +182,7 @@ class Landmark_Model():
         inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
         return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
         
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, min_dist_thr = 1.0e-4):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, min_dist_thr = 1.0e-2):
         if base:
             self.path = base
         else:

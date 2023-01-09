@@ -9,8 +9,8 @@ import copy
 feature_extractor='kpfcn'
 # feature_extractor='fcgf'
 
-preprocessing='none'
-# preprocessing='mutual'
+# preprocessing='none'
+preprocessing='mutual'
 
 epoch = 'null'
 training_data = 'pretrained'
