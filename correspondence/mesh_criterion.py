@@ -5,7 +5,7 @@ from collections import defaultdict
 def get_mesh_criterion_edge_vertices(pcd_points):
     pcd = o3d.geometry.PointCloud()
     pcd.points = o3d.utility.Vector3dVector(pcd_points)
-    o3d.geometry.estimate_normals(pcd_points)
+    pcd.estimate_normals()
     radii = [0.01, 0.02, 0.04]
     mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(pcd, o3d.utility.DoubleVector(radii))
     mesh_vertices = np.asarray(mesh.vertices)
