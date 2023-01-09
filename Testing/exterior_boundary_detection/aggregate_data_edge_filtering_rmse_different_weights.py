@@ -27,6 +27,8 @@ weights = {
     }
 }
 
+legend = ['kpfcn - pretrained', 'kpfcn - partial deformed', 'fcgf - partial deformed']
+
 criterion = 'mesh'
 models=['002', '042', '085', '126', '167', '207']
 data_types=['Partial Deformed', 'Partial Non Deformed']
@@ -40,10 +42,9 @@ sub_matrix = {
 }
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
-for weights_data in weights:
+for weights_name in weights:
 
-    weights_names = weights_data
-    weights_data = weights[weights_data]
+    weights_data = weights[weights_name]
     feature_extractor = weights_data['feature_extractor']
     training_data = weights_data['training_data']
     epoch = weights_data['epoch']
@@ -68,37 +69,35 @@ for weights_data in weights:
             
         if 'RMSE' in line and current_model is not None:
             rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][weights_names]['rmse'] = rmse
+            final_matrices[current_model][current_data_type][weights_name]['rmse'] = rmse
 
         if 'Strict IR' in line and current_model is not None:
             strict_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][weights_names]['strict-ir'] = strict_ir
+            final_matrices[current_model][current_data_type][weights_name]['strict-ir'] = strict_ir
 
         if 'Relaxed IR' in line and current_model is not None:
             relaxed_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][weights_names]['relaxed-ir'] = relaxed_ir
+            final_matrices[current_model][current_data_type][weights_name]['relaxed-ir'] = relaxed_ir
             
         if 'vis-epe' in line and current_model is not None:
             vis_epe = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][weights_names]['vis-epe'] = vis_epe
+            final_matrices[current_model][current_data_type][weights_name]['vis-epe'] = vis_epe
             
         if 'vis-outlier' in line and current_model is not None:
             vis_outlier = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][weights_names]['vis-outlier'] = vis_outlier
+            final_matrices[current_model][current_data_type][weights_name]['vis-outlier'] = vis_outlier
             
 for data_type in data_types:
     plt.clf()
-    for criterion in criteria:
-        criterion_res = []
-
+    for weights_name in weights:
+        res = []
         for model_number in models:
-            criterion_res.append(final_matrices[model_number][data_type][criterion]['rmse'])
+            res.append(final_matrices[model_number][data_type][weights_name]['rmse'])
         
-        print(criterion_res)
-        plt.plot(models, criterion_res)
+        plt.plot(models, res)
     
     plt.title(data_type)
     plt.ylabel('RMSE')
     plt.xlabel('model numbers')
-    plt.legend(criteria, loc = "upper right")
-    plt.savefig(base + folder + data_type.replace(' ', '_') + '_rmse_' + feature_extractor + '.png', bbox_inches='tight')
+    plt.legend(legend, loc = "upper right")
+    plt.savefig(base + folder + data_type.replace(' ', '_') + '_rmse_different_weights.png', bbox_inches='tight')
