@@ -7,7 +7,7 @@ preprocessing=mutual
 w_reg_list=(0 0.3 0.5 0.7 1)
 w_cd_list=(0 0.3 0.5 0.7 1)
 
-model_numbers=('002')
+model_numbers=('042')
 
 # training_data=full_deformed
 # training_data=partial_deformed
