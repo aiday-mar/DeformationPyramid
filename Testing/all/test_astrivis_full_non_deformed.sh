@@ -37,6 +37,8 @@ base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
 model_numbers=('002' '042' '085' '126' '167' '207')
 n_deformed_levels=4
 n_non_deformed_levels=1
+w_cd=0
+w_reg=0
 
 if [ $type == "kpfcn" ]; then
     for k in ${model_numbers[@]}
@@ -59,6 +61,8 @@ if [ $type == "kpfcn" ]; then
         --confidence_threshold=${confidence_threshold} \
         --preprocessing=${preprocessing} \
         --level=${n_non_deformed_levels} \
+        --w_cd=${w_cd} \
+		--w_reg=${w_reg} \
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
@@ -98,6 +102,8 @@ if [ $type == "fcgf" ]; then
         --confidence_threshold=${confidence_threshold} \
         --preprocessing=${preprocessing} \
         --level=${n_non_deformed_levels} \
+        --w_cd=${w_cd} \
+		--w_reg=${w_reg} \
         --print_keypoints >> ${filename}
         
         if [ "$?" != "1" ]; then
