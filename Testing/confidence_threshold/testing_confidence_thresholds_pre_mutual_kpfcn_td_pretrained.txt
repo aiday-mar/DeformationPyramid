@@ -1,0 +1,880 @@
+model 002
+Test - confidence threshold : 0.01
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  5
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  3
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  1
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 25.930 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 99.746 
+vis-epe: 25.930 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.746 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[-0.2762394   0.95032561  0.14343345]
+ [ 0.34840986  0.23810852 -0.90659523]
+ [-0.89571333 -0.20046365 -0.39687788]]
+Predicted translation :  [ 0.07515227  0.04578515 -0.06047301]
+Relative Rotation Error :  1.9158516561409116
+Relative Translation Error :  1.558791107681669
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.15726843926824302
+Strict IR :  0.0
+Relaxed IR :  0.0
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  2  out of  13
+fraction of true landmark correspondences returned from Lepard :  0.15384615384615385
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  12
+fraction of true landmark correspondences returned from Outlier Rejection :  0.16666666666666666
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 9.556 
+full-AccS: 0.000 
+full-AccR: 0.641 
+full-outlier: 52.405 
+vis-epe: 13.405 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 95.952 
+occ-epe: 6.218 
+occ-AccS: 0.000 
+occ-AccR: 1.197 
+occ-outlier: 14.633 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0580080667927436
+Strict IR :  0.0
+Relaxed IR :  0.06302521008403361
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  1  out of  10
+fraction of true landmark correspondences returned from Lepard :  0.1
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  10
+fraction of true landmark correspondences returned from Outlier Rejection :  0.1
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 17.752 
+full-AccS: 0.000 
+full-AccR: 0.627 
+full-outlier: 85.538 
+vis-epe: 18.285 
+vis-AccS: 0.000 
+vis-AccR: 0.658 
+vis-outlier: 89.549 
+occ-epe: 6.996 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 4.659 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.47424357 -0.04380176 -0.87930323]
+ [ 0.49425894 -0.83976132 -0.22474171]
+ [-0.72856082 -0.5411859   0.41990097]]
+Predicted translation :  [ 0.05846028 -0.0096395  -0.01255519]
+Relative Rotation Error :  0.4097930349499356
+Relative Translation Error :  1.8641016212984955
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06564238651898034
+Strict IR :  0.0
+Relaxed IR :  0.05603271983640082
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.01
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  2  out of  13
+fraction of true landmark correspondences returned from Lepard :  0.15384615384615385
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  11
+fraction of true landmark correspondences returned from Outlier Rejection :  0.18181818181818182
+k0 :  -8
+levels :  1
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 7.003 
+full-AccS: 0.000 
+full-AccR: 55.192 
+full-outlier: 44.190 
+vis-epe: 13.815 
+vis-AccS: 0.000 
+vis-AccR: 0.662 
+vis-outlier: 97.967 
+occ-epe: 1.405 
+occ-AccS: 0.000 
+occ-AccR: 100.000 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[-0.05210066  0.67321324 -0.73761064]
+ [ 0.48474824  0.66280997  0.57070315]
+ [ 0.87310058 -0.32782143 -0.36087167]]
+Predicted translation :  [ 0.02334185 -0.00764858 -0.05670714]
+Relative Rotation Error :  0.0505710410826427
+Relative Translation Error :  1.0263843590141508
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.014391392849074503
+Strict IR :  0.0
+Relaxed IR :  1.0
+model 002
+Test - confidence threshold : 0.03
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  1
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  1
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  1
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 40.227 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 99.813 
+vis-epe: 40.227 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.813 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[ 0.99497873  0.05758699 -0.08185998]
+ [-0.06125907  0.99719197 -0.04307594]
+ [ 0.0791495   0.04787431  0.99571252]]
+Predicted translation :  [0.14375277 0.05207578 0.17330022]
+Relative Rotation Error :  2.64803398367317
+Relative Translation Error :  1.334159257394516
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.3041888744434281
+Strict IR :  0.0
+Relaxed IR :  0.001525940996948118
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  4
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  4
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 20.728 
+full-AccS: 0.000 
+full-AccR: 0.756 
+full-outlier: 94.485 
+vis-epe: 27.377 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 14.960 
+occ-AccS: 0.000 
+occ-AccR: 1.412 
+occ-outlier: 89.702 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.1736301053778513
+Strict IR :  0.0
+Relaxed IR :  0.023949579831932775
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  2
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  2
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 36.642 
+full-AccS: 0.051 
+full-AccR: 0.610 
+full-outlier: 95.546 
+vis-epe: 37.621 
+vis-AccS: 0.000 
+vis-AccR: 0.124 
+vis-outlier: 98.454 
+occ-epe: 16.890 
+occ-AccS: 1.075 
+occ-AccR: 10.394 
+occ-outlier: 36.918 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[ 0.06833027 -0.68538157  0.72497115]
+ [ 0.29963855 -0.6790221  -0.67018341]
+ [ 0.95160273  0.26302315  0.15896885]]
+Predicted translation :  [0.02933398 0.00471825 0.26119752]
+Relative Rotation Error :  2.3177923722635883
+Relative Translation Error :  1.7813467544124597
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.3220433335402915
+Strict IR :  0.0010224948875255625
+Relaxed IR :  0.03783231083844581
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.03
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  5
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  5
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  1
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 7.383 
+full-AccS: 3.273 
+full-AccR: 55.267 
+full-outlier: 44.136 
+vis-epe: 14.074 
+vis-AccS: 0.000 
+vis-AccR: 0.851 
+vis-outlier: 97.613 
+occ-epe: 1.886 
+occ-AccS: 5.962 
+occ-AccR: 99.981 
+occ-outlier: 0.194 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[-0.09518826  0.63565999 -0.766078  ]
+ [ 0.53931826  0.67977321  0.49703535]
+ [ 0.83670485 -0.36584792 -0.40752947]]
+Predicted translation :  [ 0.03166252 -0.00141818 -0.05733519]
+Relative Rotation Error :  0.111608976408429
+Relative Translation Error :  1.0212879622410853
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.019880601724253405
+Strict IR :  0.058528784648187636
+Relaxed IR :  0.9997867803837953
+model 002
+Test - confidence threshold : 0.05
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  2
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  2
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 36.642 
+full-AccS: 0.051 
+full-AccR: 0.610 
+full-outlier: 95.546 
+vis-epe: 37.621 
+vis-AccS: 0.000 
+vis-AccR: 0.124 
+vis-outlier: 98.454 
+occ-epe: 16.890 
+occ-AccS: 1.075 
+occ-AccR: 10.394 
+occ-outlier: 36.918 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[ 0.06833027 -0.68538157  0.72497115]
+ [ 0.29963855 -0.6790221  -0.67018341]
+ [ 0.95160273  0.26302315  0.15896885]]
+Predicted translation :  [0.02933398 0.00471825 0.26119752]
+Relative Rotation Error :  2.3177923722635883
+Relative Translation Error :  1.7813467544124597
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.3220433335402915
+Strict IR :  0.0010224948875255625
+Relaxed IR :  0.03783231083844581
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.05
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  2
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  2
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  1
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 7.697 
+full-AccS: 0.000 
+full-AccR: 33.934 
+full-outlier: 46.770 
+vis-epe: 13.535 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.764 
+occ-epe: 2.900 
+occ-AccS: 0.000 
+occ-AccR: 61.818 
+occ-outlier: 3.224 
+
+Actual rotation :  [[-0.01511908  0.6490511  -0.76059456]
+ [ 0.47666865  0.67335838  0.56513316]
+ [ 0.87895302 -0.35400729 -0.31956287]]
+Actual translation :  [ 0.93734424 -0.40657474 -0.29944652]
+Predicted rotation :  [[ 0.06759357  0.72836828 -0.68184364]
+ [ 0.38527799  0.61134028  0.69124812]
+ [ 0.9203217  -0.30942327 -0.23930156]]
+Predicted translation :  [ 0.00398887 -0.01952357 -0.05445911]
+Relative Rotation Error :  0.16987845806037416
+Relative Translation Error :  1.03970172763404
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.02887580773260036
+Strict IR :  0.0
+Relaxed IR :  0.6844349680170576
+model 002
+Test - confidence threshold : 0.07
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+number of true landmarks correspondences returned from Lepard :  0  out of  2
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  2
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 36.642 
+full-AccS: 0.051 
+full-AccR: 0.610 
+full-outlier: 95.546 
+vis-epe: 37.621 
+vis-AccS: 0.000 
+vis-AccR: 0.124 
+vis-outlier: 98.454 
+occ-epe: 16.890 
+occ-AccS: 1.075 
+occ-AccR: 10.394 
+occ-outlier: 36.918 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[ 0.06833027 -0.68538157  0.72497115]
+ [ 0.29963855 -0.6790221  -0.67018341]
+ [ 0.95160273  0.26302315  0.15896885]]
+Predicted translation :  [0.02933398 0.00471825 0.26119752]
+Relative Rotation Error :  2.3177923722635883
+Relative Translation Error :  1.7813467544124597
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.3220433335402915
+Strict IR :  0.0010224948875255625
+Relaxed IR :  0.03783231083844581
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.07
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+model 002
+Test - confidence threshold : 0.1
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+model 002
+Test - confidence threshold : 0.3
+Full Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
+Partial Non Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+coarse_level :  -2
+Before coarse_transformer
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+Before coarse_matching
+confidence threshold used in the matching :  0.3
+preprocessing :  mutual
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+Early exit
