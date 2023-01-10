@@ -22,6 +22,9 @@ elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
 fi
 
+n_deformed_levels=4
+n_non_deformed_levels=1
+
 file="Testing/confidence_threshold/testing_confidence_thresholds_pre_${preprocessing}_${type}_td_${training_data}.txt"
 rm ${file}
 touch ${file}
@@ -36,7 +39,7 @@ if [ $type == "kpfcn" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - confidence threshold : ${confidence_threshold}" >> ${file}
-                folder=confidence_threshold_${confidence_threshold}_pre_${preprocessing}_${type}
+                folder=confidence_threshold_${confidence_threshold}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -60,6 +63,7 @@ if [ $type == "kpfcn" ]; then
                 --intermediate_output_folder="FullNonDeformed/model${k}/${folder}/" \
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
+                --level=${n_non_deformed_levels} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -86,6 +90,7 @@ if [ $type == "kpfcn" ]; then
                 --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
+                --level=${n_deformed_levels} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -118,6 +123,7 @@ if [ $type == "kpfcn" ]; then
                 --intermediate_output_folder="FullDeformed/model${k}/${folder}/" \
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
+                --level=${n_deformed_levels} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -147,6 +153,7 @@ if [ $type == "kpfcn" ]; then
                 --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
+                --level=${n_non_deformed_levels} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -201,6 +208,7 @@ if [ $type == "fcgf" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --preprocessing=${preprocessing} \
+                --level=${n_non_deformed_levels} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -230,6 +238,7 @@ if [ $type == "fcgf" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --preprocessing=${preprocessing} \
+                --level=${n_deformed_levels} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -265,6 +274,7 @@ if [ $type == "fcgf" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --preprocessing=${preprocessing} \
+                --level=${n_deformed_levels} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -297,6 +307,7 @@ if [ $type == "fcgf" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --preprocessing=${preprocessing} \
+                --level=${n_non_deformed_levels} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
