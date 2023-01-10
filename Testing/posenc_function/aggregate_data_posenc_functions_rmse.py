@@ -6,13 +6,15 @@ import copy
 # FCGF DONE
 # KPFCN TODO
 
-# feature_extractor='kpfcn'
-feature_extractor='fcgf'
+feature_extractor='kpfcn'
+# feature_extractor='fcgf'
 
+training_data='pretrained'
+preprocessing='mutual'
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'posenc_function/'
-file='testing_posenc_functions_' + feature_extractor + '.txt'
+file='testing_posenc_functions_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '.txt'
 
 posenc_functions_list=['log', 'linear', 'square', 'power2', 'power4']
 models=['002', '042', '085', '126', '167', '207']
@@ -55,8 +57,6 @@ for line in Lines:
         i = posenc_functions_list.index(posenc_function_val)
         final_matrices[current_model][current_data_type]['rmse'][i] = rmse
         
-print('final_matrices : ', final_matrices)
-
 for data_type in data_types:
     plt.clf()
     for model in models:
@@ -64,11 +64,7 @@ for data_type in data_types:
         plt.plot(posenc_function_pos, final_matrices[model][data_type]['rmse'])
         plt.xticks(posenc_function_pos, posenc_functions_list, rotation=90)
     
-    if feature_extractor == 'fcgf':
-        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - FCGF')
-    elif feature_extractor == 'kpfcn':
-        plt.title('Varying positional encoding - ' + data_type + ' - RMSE - KPFCN')
-        
+    plt.title(data_type)   
     plt.ylabel('RMSE')
     plt.xlabel('positional encoding')
     plt.legend(models, loc = "upper right")

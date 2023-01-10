@@ -23,7 +23,7 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 posenc_functions_list=(linear none power4 log square)
-file="Testing/posenc_function/testing_posenc_functions_pre_${preprocessing}_${type}.txt"
+file="Testing/posenc_function/testing_posenc_functions_pre_${preprocessing}_${type}_td_${training_data}.txt"
 rm ${file} 
 touch ${file}
 model_numbers=('002' '042' '085' '126' '167' '207')
@@ -35,7 +35,7 @@ if [ $type == "kpfcn" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - positional encoding : ${posenc_function}" >> ${file}
-                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}
+                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -172,7 +172,7 @@ if [ $type == "fcgf" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - positional encoding : ${posenc_function}" >> ${file}
-                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}
+                folder=posenc_function_${posenc_function}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
