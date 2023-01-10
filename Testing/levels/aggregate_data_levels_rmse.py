@@ -50,8 +50,6 @@ for line in Lines:
         i = levels_list.index(levels_val)
         final_matrices[current_model][current_data_type]['rmse'][i] = rmse
         
-print('final_matrices : ', final_matrices)
-
 for data_type in data_types:
     plt.clf()
     for model in models:
@@ -60,11 +58,11 @@ for data_type in data_types:
         plt.xticks(levels_pos, levels_list, rotation=90)
     
     if feature_extractor == 'fcgf':
-        plt.title('Varying levels - ' + data_type + ' - RMSE - FCGF')
+        plt.title(data_type)
     elif feature_extractor == 'kpfcn':
-        plt.title('Varying levels - ' + data_type + ' - RMSE - KPFCN')
+        plt.title(data_type)
         
     plt.ylabel('RMSE')
     plt.xlabel('levels')
     plt.legend(models, loc = "upper right")
-    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '.png', bbox_inches='tight')
+    plt.savefig(base + folder + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_td_' + training_data + '.png', bbox_inches='tight')
