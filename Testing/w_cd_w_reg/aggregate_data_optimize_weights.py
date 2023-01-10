@@ -10,7 +10,7 @@ matrix = np.zeros([len(w_reg_list), len(w_cd_list)])
 final_matrices = {type : copy.deepcopy(matrix) for type in types}
 w_reg_idx = 0
 w_cd_idx = 0
-model='207'
+model='042'
 
 file='Testing/w_cd_w_reg/testing_w_pre_mutual_kpfcn_td_pretrained_' + model + '.txt'
 f = open(file, "r")
@@ -30,8 +30,6 @@ for line in f:
         res = float(list_res[0])
         final_matrices[types[idx]][w_reg_idx][w_cd_idx] = res
         idx += 1
-
-print(final_matrices)
 
 for idx in range(len(types)):
                     
