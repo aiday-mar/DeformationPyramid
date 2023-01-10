@@ -14,14 +14,15 @@ else
 	config=LNDP_fcgf.yaml
 fi
 
-confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
-
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10
+        confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
 elif [ "$training_data" == "partial_deformed" ] ; then
 	epoch=5
+        confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
 elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
+        confidence_threshold_list=(0.01 0.03 0.05 0.07 0.1)
 fi
 
 n_deformed_levels=4
