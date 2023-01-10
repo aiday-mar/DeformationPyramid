@@ -14,7 +14,7 @@ else
 	config=LNDP_fcgf.yaml
 fi
 
-confidence_threshold_list=(1.0e-01 1.0e-02 1.0e-03 1.0e-04)
+confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
 
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10
