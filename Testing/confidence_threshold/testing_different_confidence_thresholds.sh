@@ -31,7 +31,7 @@ n_non_deformed_levels=1
 file="Testing/confidence_threshold/testing_confidence_thresholds_pre_${preprocessing}_${type}_td_${training_data}.txt"
 rm ${file}
 touch ${file}
-model_numbers=('002') # '042' '085' '126' '167' '207')
+model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $type == "kpfcn" ]; then
 
