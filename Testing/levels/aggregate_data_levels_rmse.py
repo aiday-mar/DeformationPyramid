@@ -6,13 +6,17 @@ import copy
 # FCGF DONE
 # KPFCN TODO
 
-# feature_extractor='kpfcn'
-feature_extractor='fcgf'
+feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+
+training_data='pretrained'
+
+preprocessing='mutual'
 
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 base = 'Testing/'
 folder = 'levels/'
-file='testing_levels_' + feature_extractor + '.txt'
+file='testing_levels_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '.txt'
 
 levels_list=[2, 4, 6, 8, 10]
 models=['002', '042', '085', '126', '167', '207']

@@ -35,7 +35,7 @@ if [ $type == "kpfcn" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - levels : ${levels}" >> ${file}
-                folder=levels_${levels}_pre_${preprocessing}_${type}
+                folder=levels_${levels}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
@@ -172,7 +172,7 @@ if [ $type == "fcgf" ]; then
 
                 echo "model ${k}" >> ${file}
                 echo "Test - levels : ${levels}" >> ${file}
-                folder=levels_${levels}_pre_${preprocessing}_${type}
+                folder=levels_${levels}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}
