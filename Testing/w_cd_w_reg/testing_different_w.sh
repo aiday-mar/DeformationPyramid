@@ -1,18 +1,17 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
 
-w_reg_list=(0 0.2 0.4 0.6 0.8 1)
-w_cd_list=(0 0.2 0.4 0.6 0.8 1)
+w_reg_list=(0 0.3 0.5 0.7 1)
+w_cd_list=(0 0.3 0.5 0.7 1)
 
-# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
-model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('002')
 
-training_data=full_deformed
+# training_data=full_deformed
 # training_data=partial_deformed
-# training_data=pretrained
+training_data=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -28,7 +27,7 @@ elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
 fi
 
-file="Testing/w_cd_w_reg/testing_w_pre_${preprocessing}_${type}.txt"
+file="Testing/w_cd_w_reg/testing_w_pre_${preprocessing}_${type}_td_${pretrained}.txt"
 rm ${file} 
 touch ${file}
 
@@ -41,7 +40,7 @@ if [ $type == "kpfcn" ]; then
             echo "model ${k}" >> ${file}
             echo "w_reg ${w_reg}" >> ${file}
             echo "w_cd ${w_cd}" >> ${file}
-            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}
+            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}_td_${pretrained}
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             touch TestData/FullNonDeformed/model${k}/${folder}/result.txt
@@ -177,7 +176,7 @@ if [ $type == "fcgf" ]; then
             echo "model ${k}" >> ${file}
             echo "w_reg ${w_reg}" >> ${file}
             echo "w_cd ${w_cd}" >> ${file}
-            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}
+            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}_td_${pretrained}
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             touch TestData/FullNonDeformed/model${k}/${folder}/result.txt
