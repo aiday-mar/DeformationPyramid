@@ -6,11 +6,12 @@ import copy
 # FCGF DONE
 # KPFCN TODO
 
-feature_extractor = 'fcgf'
-# feature_extractor = 'kpfcn'
+# feature_extractor = 'fcgf'
+feature_extractor = 'kpfcn'
+preprocessing='mutual'
+training_data='pretrained'
 
 models=['002', '042', '085', '126', '167', '207']
-preprocessing='none'
 
 if feature_extractor == 'fcgf':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
@@ -23,7 +24,7 @@ if feature_extractor == 'fcgf':
     line_file = 'number of true landmarks correspondences returned from FCGF based Lepard'
     title = 'FCGF based Lepard'
 elif feature_extractor == 'kpfcn':
-    confidence_thresholds = [0.04, 0.06, 0.08, 0.1, 0.2, 0.3, 0.4, 0.5]
+    confidence_thresholds = [0.01, 0.03, 0.05, 0.07, 0.1]
     shape = (len(confidence_thresholds),)
     sub_matrix={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
                 'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
@@ -45,7 +46,7 @@ sub_matrix_rmse={'Full Non Deformed': np.zeros((len(confidence_thresholds),)),
 final_matrices_rmse = {model : copy.deepcopy(sub_matrix_rmse) for model in models}
 
 base = 'Testing/'
-file='confidence_threshold/testing_confidence_thresholds_pre_' + preprocessing + '_' + feature_extractor + '.txt'
+file='confidence_threshold/testing_confidence_thresholds_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '.txt'
 file_txt = open(base + file, 'r')
 Lines = file_txt.readlines()
 confidence_threshold = -1
@@ -73,8 +74,6 @@ for line in Lines:
         res = list_res[0]
         i = confidence_thresholds.index(confidence_threshold)
         final_matrices_rmse[current_model][current_data_type][i] = res
-    
-print(final_matrices_rmse)
 
 for data_type in data_types:
     plt.clf()
@@ -88,9 +87,11 @@ for data_type in data_types:
         rmse = []
         for i in range(len(confidence_thresholds)):
             rmse.append(final_matrices_rmse[model][data_type][i])
-        plt.plot(confidence_thresholds_pos, rmse, color='r')
+        plt.plot(confidence_thresholds_pos, rmse)
+    plt.legend(models)
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_rmse.png', bbox_inches='tight')
     
+    '''
     plt.clf()
     plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
     confidence_thresholds_pos = range(0, len(confidence_thresholds))
@@ -132,5 +133,4 @@ for data_type in data_types:
         
     plt.legend(models)
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_bar_chart_'  + feature_extractor + '.png', bbox_inches='tight')
-    
-    
+    '''
