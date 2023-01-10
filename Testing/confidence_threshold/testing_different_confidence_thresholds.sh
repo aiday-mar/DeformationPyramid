@@ -16,10 +16,13 @@ fi
 
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10
+        confidence_threshold_list=(1.0e-01 1.0e-02 1.0e-03 1.0e-04)
 elif [ "$training_data" == "partial_deformed" ] ; then
 	epoch=5
+        confidence_threshold_list=(1.0e-01 1.0e-02 1.0e-03 1.0e-04)
 elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
+        confidence_threshold_list=(0.01 0.03 0.05 0.07 0.1 0.3)
 fi
 
 n_deformed_levels=4
@@ -31,7 +34,6 @@ touch ${file}
 model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $type == "kpfcn" ]; then
-        confidence_threshold_list=(0.01 0.03 0.05 0.07 0.1 0.3)
 
         for k in ${model_numbers[@]}
         do
@@ -175,14 +177,13 @@ if [ $type == "kpfcn" ]; then
 fi
 
 if [ $type == "fcgf" ]; then
-        confidence_threshold_list=(5.0e-07 7.5e-07 1.0e-06 2.5e-06)
         for k in ${model_numbers[@]}
         do
         for confidence_threshold in ${confidence_threshold_list[@]}; do
 
                 echo "model ${k}" >> ${file}
                 echo "Test - confidence threshold : ${confidence_threshold}" >> ${file}
-                folder=confidence_threshold_${confidence_threshold}_pre_${preprocessing}_${type}
+                folder=confidence_threshold_${confidence_threshold}_pre_${preprocessing}_${type}_td_${training_data}
                 rm -rf TestData/FullNonDeformed/model${k}/${folder}
                 mkdir TestData/FullNonDeformed/model${k}/${folder}
                 rm -rf TestData/FullDeformed/model${k}/${folder}

@@ -9,9 +9,8 @@ import copy
 feature_extractor = 'fcgf'
 # feature_extractor = 'kpfcn'
 
-# models = ['002', '008', '015', '022', '029', '035', '042', '049', '056', '066', '073', '079', '085', '093', '100', '106', '113', '120', '126', '133', '140', '147', '153', '160', '167', '174', '180', '187', '194', '201', '207', '214', '221']
-# models = ['002', '022', '042', '066', '085', '106', '126', '147', '167', '187', '207']
 models=['002', '042', '085', '126', '167', '207']
+preprocessing='none'
 
 if feature_extractor == 'fcgf':
     confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
@@ -39,8 +38,14 @@ else:
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
+sub_matrix_rmse={'Full Non Deformed': np.zeros((len(confidence_thresholds),)), 
+            'Full Deformed': np.zeros((len(confidence_thresholds),)), 
+            'Partial Deformed': np.zeros((len(confidence_thresholds),)),  
+            'Partial Non Deformed': np.zeros((len(confidence_thresholds),))}
+final_matrices_rmse = {model : copy.deepcopy(sub_matrix_rmse) for model in models}
+
 base = 'Testing/'
-file='confidence_threshold/testing_confidence_thresholds_' + feature_extractor + '.txt'
+file='confidence_threshold/testing_confidence_thresholds_pre_' + preprocessing + '_' + feature_extractor + '.txt'
 file_txt = open(base + file, 'r')
 Lines = file_txt.readlines()
 confidence_threshold = -1
@@ -63,10 +68,29 @@ for line in Lines:
         i = confidence_thresholds.index(confidence_threshold)
         final_matrices[current_model][current_data_type][type]['true'][i] = true
         final_matrices[current_model][current_data_type][type]['total'][i] = total - true
+    if 'RMSE' in line and current_model is not None:
+        list_res = re.findall("\d+\.\d+", line)
+        res = list_res[0]
+        i = confidence_thresholds.index(confidence_threshold)
+        final_matrices_rmse[current_model][current_data_type][i] = res
     
-print(final_matrices)
+print(final_matrices_rmse)
 
 for data_type in data_types:
+    plt.clf()
+    plt.title(data_type, y=1.0)
+    confidence_thresholds_pos = range(0, len(confidence_thresholds))
+    plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
+    plt.xlabel('model')
+    plt.ylabel('RMSE')
+
+    for model in models:
+        rmse = []
+        for i in range(len(confidence_thresholds)):
+            rmse.append(final_matrices_rmse[model][data_type][i])
+        plt.plot(confidence_thresholds_pos, rmse, color='r')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_rmse.png', bbox_inches='tight')
+    
     plt.clf()
     plt.title('Varying the confidence threshold - ' + data_type + ' -  ' + title, y=1.0)
     confidence_thresholds_pos = range(0, len(confidence_thresholds))
