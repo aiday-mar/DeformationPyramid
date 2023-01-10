@@ -137,7 +137,7 @@ if [ $type == "kpfcn" ]; then
             --initial_2="TestData/PartialDeformed/model${k}/104_1.ply" \
             --matches="TestData/PartialDeformed/model${k}/020_104_0_1.npz" \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
-            --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
+            --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" >> ${file}
             fi
 
             python3 eval_supervised_astrivis.py \
@@ -165,7 +165,7 @@ if [ $type == "kpfcn" ]; then
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
             --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
-            --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+            --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" >> ${file}
             fi
         done
     done
@@ -284,7 +284,7 @@ if [ $type == "fcgf" ]; then
             --initial_2="TestData/PartialDeformed/model${k}/104_1.ply" \
             --matches="TestData/PartialDeformed/model${k}/020_104_0_1.npz" \
             --part1="TestData/PartialDeformed/model${k}/020_0_se4.h5" \
-            --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" \
+            --part2="TestData/PartialDeformed/model${k}/104_1_se4.h5" >> ${file}
             fi
 
             python3 eval_supervised_astrivis.py \
@@ -315,7 +315,7 @@ if [ $type == "fcgf" ]; then
             --final="TestData/PartialNonDeformed/model${k}/${folder}/result.ply" \
             --initial="TestData/PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
             --part1="TestData/PartialNonDeformed/model${k}/mesh_transformed_0_se4.h5" \
-            --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" \
+            --part2="TestData/PartialNonDeformed/model${k}/mesh_transformed_1_se4.h5" >> ${file}
             fi
         done
     done
