@@ -27,9 +27,12 @@ elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
 fi
 
-file="Testing/w_cd_w_reg/testing_w_pre_${preprocessing}_${type}_td_${pretrained}.txt"
+file="Testing/w_cd_w_reg/testing_w_pre_${preprocessing}_${type}_td_${training_data}.txt"
 rm ${file} 
 touch ${file}
+
+n_deformed_levels=4
+n_non_deformed_levels=1
 
 if [ $type == "kpfcn" ]; then
     for k in ${model_numbers[@]}
@@ -40,7 +43,7 @@ if [ $type == "kpfcn" ]; then
             echo "model ${k}" >> ${file}
             echo "w_reg ${w_reg}" >> ${file}
             echo "w_cd ${w_cd}" >> ${file}
-            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}_td_${pretrained}
+            folder=output_${w_reg}_${w_cd}_pre_${preprocessing}_${type}_td_${training_data}
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             touch TestData/FullNonDeformed/model${k}/${folder}/result.txt
@@ -66,7 +69,8 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="FullNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --w_cd=${w_cd} \
-            --w_reg=${w_reg} >> ${file}
+            --w_reg=${w_reg} \
+            --level=${n_non_deformed_levels} >> ${file}
 
             if [ "$?" != "1" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -91,7 +95,8 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="FullDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --w_cd=${w_cd} \
-            --w_reg=${w_reg} >> ${file}
+            --w_reg=${w_reg} \
+            --level=${n_deformed_levels} >> ${file}
 
             if [ "$?" != "1" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -117,7 +122,8 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --w_cd=${w_cd} \
-            --w_reg=${w_reg} >> ${file}
+            --w_reg=${w_reg} \
+            --level=${n_deformed_levels} >> ${file}
 
             if [ "$?" != "1" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
@@ -147,7 +153,8 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --w_cd=${w_cd} \
-            --w_reg=${w_reg} >> ${file}
+            --w_reg=${w_reg} \
+            --level=${n_non_deformed_levels} >> ${file}
 
             if [ "$?" != "1" ]; then
             python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
