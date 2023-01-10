@@ -34,15 +34,14 @@ rm ${filename}
 touch ${filename}
 
 base='/home/aiday.kyzy/dataset/Synthetic/PartialDeformedData/TestingData/'
-
-# model_numbers=('002' '008' '015' '022' '029' '035' '042' '049' '056' '066' '073' '079' '085' '093' '100' '106' '113' '120' '126' '133' '140' '147' '153' '160' '167' '174' '180' '187' '194' '201' '207' '214' '221')
 model_numbers=('002' '042' '085' '126' '167' '207')
+n_deformed_levels=4
+n_non_deformed_levels=1
 
 if [ $type == "kpfcn" ]; then
 	for k in ${model_numbers[@]}
 	do
-		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		# arr=('020' '062' '125' '188')
+
 		arr=('020' '104')
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
@@ -72,6 +71,7 @@ if [ $type == "kpfcn" ]; then
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--preprocessing=${preprocessing} \
+				--level=${n_deformed_levels} \
 				--print_keypoints >> ${filename}
 
 				if [ "$?" != "1" ]; then
@@ -88,36 +88,6 @@ if [ $type == "kpfcn" ]; then
                 --part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
                 --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${filename}
 				fi
-				
-				# 1 -> 0
-				# echo "1 to 0" >> ${filename}
-				# python3 eval_supervised_astrivis.py \
-				# --config=config/${config} \
-				# --s="model${k}/transformed/${file_number1}_1.ply" \
-				# --t="model${k}/transformed/${file_number2}_0.ply" \
-				# --source_trans="model${k}/transformed/${file_number1}_1_se4.h5" \
-				# --target_trans="model${k}/transformed/${file_number2}_0_se4.h5" \
-				# --matches="model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-				# --output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-				# --output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
-				# --intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
-				# --base=${base} \
-				# --print_keypoints >> ${filename}
-
-				# if [ "$?" != "1" ]; then
-				# python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-				# --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-				# --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" \
-				# --pred="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" >> ${filename}
-
-				# python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-                # --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-                # --initial_1="${base}/model${k}/transformed/${file_number1}_1.ply" \
-                # --initial_2="${base}/model${k}/transformed/${file_number2}_0.ply" \
-                # --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-                # --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-                # --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${filename}
-				# fi
 			done
 		done
 	done
@@ -126,8 +96,6 @@ fi
 if [ $type == "fcgf" ]; then
 	for k in ${model_numbers[@]}
 	do
-		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
@@ -159,6 +127,7 @@ if [ $type == "fcgf" ]; then
 				--base=${base} \
 				--confidence_threshold=${confidence_threshold} \
 				--preprocessing=${preprocessing} \
+				--level=${n_deformed_levels} \
 				--print_keypoints >> ${filename}
 
 				if [ "$?" != "1" ]; then
@@ -175,38 +144,6 @@ if [ $type == "fcgf" ]; then
                 --part1="${base}/model${k}/transformed/${file_number1}_0_se4.h5" \
                 --part2="${base}/model${k}/transformed/${file_number2}_1_se4.h5" >> ${filename}
 				fi
-				
-				# 1 -> 0
-				# echo "1 to 0" >> ${filename}
-				# python3 eval_supervised_astrivis.py \
-				# --config=config/${config} \
-				# --s="model${k}/transformed/${file_number1}_1.ply" \
-				# --t="model${k}/transformed/${file_number2}_0.ply" \
-				# --s_feats="model${k}/transformed/${file_number1}_1_fcgf.npz" \
-				# --t_feats="model${k}/transformed/${file_number2}_0_fcgf.npz" \
-				# --source_trans="model${k}/transformed/${file_number1}_1_se4.h5" \
-				# --target_trans="model${k}/transformed/${file_number2}_0_se4.h5" \
-				# --matches="model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-				# --output="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-				# --output_trans="model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" \
-				# --intermediate_output_folder="model${k}/${folder_name}/${file_number1}_${file_number2}/" \
-				# --base=${base} \
-				# --print_keypoints >> ${filename}
-
-				# if [ "$?" != "1" ]; then
-				# python3 ../../code/sfm/python/graphics/mesh/compute_relative_transformation_error.py \
-				# --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-				# --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" \
-				# --pred="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0_se4.h5" >> ${filename}
-
-				# python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-                # --final="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}_1_0.ply" \
-                # --initial_1="${base}/model${k}/transformed/${file_number1}_1.ply" \
-                # --initial_2="${base}/model${k}/transformed/${file_number2}_0.ply" \
-                # --matches="${base}/model${k}/matches/${file_number1}_${file_number2}_1_0.npz" \
-                # --part1="${base}/model${k}/transformed/${file_number1}_1_se4.h5" \
-                # --part2="${base}/model${k}/transformed/${file_number2}_0_se4.h5" >> ${filename}
-				# fi
 			done
 		done
 	done
