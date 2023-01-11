@@ -2,6 +2,8 @@ import torch
 import numpy as np
 
 def pdist(A, B, dist_type='L2'):
+  print(A.shape)
+  print(B.shape)
   if dist_type == 'L2':
     D2 = torch.sum((A.unsqueeze(1) - B.unsqueeze(0)).pow(2), 2)
     return torch.sqrt(D2 + 1e-7)
@@ -35,6 +37,9 @@ def find_knn_gpu(F0, F1, nn_max_n=-1, knn=1, return_distance=False):
     ind = torch.cat(knn_inds, 1)
 
     return min_dist, ind
+
+  print(F0.shape)
+  print(F1.shape)
 
   if nn_max_n > 1:
     N = len(F0)
