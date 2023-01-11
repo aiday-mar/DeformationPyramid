@@ -34,32 +34,45 @@ class Pipeline(nn.Module):
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
-        if self.timers: self.timers.tic('coarse feature transformer')
-        print('Before coarse_transformer')
-        src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, timers=timers)
-        if self.timers: self.timers.toc('coarse feature transformer')
-
-        if self.timers: self.timers.tic('match feature coarse')
-        print('Before coarse_matching')
-        conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
-        
         if knn_matching is False:
+            if self.timers: self.timers.tic('coarse feature transformer')
+            src_feats, tgt_feats, src_pe, tgt_pe = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, feature_extractor = self.feature_extractor, timers=timers)
+            if self.timers: self.timers.toc('coarse feature transformer')
+
+            if self.timers: self.timers.tic('match feature coarse')
+            conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
+            
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
+
+            if self.timers: self.timers.toc('match feature coarse')
+
         elif knn_matching is True:
+
+            if self.timers: self.timers.tic('coarse feature transformer')
+            src_feats_i, tgt_feats_i, src_pe_i, tgt_pe_i = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, feature_extractor = self.feature_extractor, timers=timers)
+            if self.timers: self.timers.toc('coarse feature transformer')
+
+            if self.timers: self.timers.tic('match feature coarse')
+            conf_matrix_pred, _ = self.coarse_matching(src_feats_i, tgt_feats_i, src_pe_i, tgt_pe_i, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
+            
             coarse_match_pred = find_knn_gpu(src_feats, tgt_feats, nn_max_n=20, knn=1,return_distance=False)
             n_src_coarse = coarse_match_pred.shape[0]
             src_indices = np.arange(n_src_coarse)
             src_indices = np.expand_dims(src_indices, axis=1)
             src_indices = torch.tensor(src_indices).to('cuda:0')
             coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
-            print('src_indices.shape : ', src_indices.shape)
-            print('coarse_match_pred.shape : ', coarse_match_pred.shape)
             coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
             coarse_match_pred = coarse_match_pred[None, :]
-            print('coarse_match_pred.shape : ', coarse_match_pred.shape)
-            print('coarse_match_pred : ', coarse_match_pred)
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
-        if self.timers: self.timers.toc('match feature coarse')
+
+            data['vec_6d'] = []
+            ldmk_s = s_pcd
+            ldmk_t_indices = coarse_match_pred[0][:, 1]
+            print('ldmk_t_indices : ', ldmk_t_indices)
+            ldmk_t = t_pcd[ldmk_t_indices]
+            vec_6d = torch.cat((ldmk_s, ldmk_t), 1)
+            data['vec_6d'].append(vec_6d)
+            if self.timers: self.timers.toc('match feature coarse')
 
         if self.timers: self.timers.tic('procrustes_layer')
         R, t, _, _, _, _ = self.soft_procrustes(conf_matrix_pred, s_pcd, t_pcd, src_mask, tgt_mask)
