@@ -215,8 +215,14 @@ class Landmark_Model():
                 
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
-                bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
-
+                print('ind : ', ind)
+                if knn_matching is False:
+                    bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
+                else:
+                    bi = 0
+                    si = ind[bi][:, 0]
+                    ti = ind[bi][:, 1]
+                    
                 print('bi : ', bi)
                 print('si : ', si)
                 print('ti : ', ti)
