@@ -38,6 +38,8 @@ def find_knn_gpu(F0, F1, nn_max_n=-1, knn=1, return_distance=False):
 
     return min_dist, ind
 
+  F0 = np.squeeze(F0, axis=0)
+  F1 = np.squeeze(F1, axis=0)
   print(F0.shape)
   print(F1.shape)
 
