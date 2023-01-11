@@ -383,6 +383,8 @@ class Landmark_Model():
                 vec_6d = data['vec_6d'][0]
 
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
+            print('ldmk_s.shape : ', ldmk_s.shape)
+            print('ldmk_t.shape : ', ldmk_t.shape)
             
             if knn_matching is False and not custom_filtering and intermediate_output_folder :
                 if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
