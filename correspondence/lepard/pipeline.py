@@ -61,7 +61,7 @@ class Pipeline(nn.Module):
             src_indices = np.arange(n_src_coarse)
             src_indices = np.expand_dims(src_indices, axis=1)
             src_indices = torch.tensor(src_indices).to('cuda:0')
-            coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
+            # coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
             coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
             coarse_match_pred = coarse_match_pred[None, :]
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
