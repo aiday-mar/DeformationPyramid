@@ -180,7 +180,7 @@ class Landmark_Model():
         inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
         return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
         
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2, knn_matching = False):
         if base:
             self.path = base
         else:
@@ -202,9 +202,9 @@ class Landmark_Model():
         with torch.no_grad():
             if timer: timer.tic("matcher")
             if self.feature_extractor == 'fcgf':
-                data = self.matcher(inputs, confidence_threshold = confidence_threshold, preprocessing = preprocessing)
+                data = self.matcher(inputs, confidence_threshold = confidence_threshold, preprocessing = preprocessing, knn_matching = knn_matching)
             elif self.feature_extractor == 'kpfcn':
-                data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, timers=None)
+                data = self.matcher(inputs, coarse_level = coarse_level, confidence_threshold = confidence_threshold, preprocessing = preprocessing, index_at_which_to_return_coarse_feats = index_at_which_to_return_coarse_feats, knn_matching = knn_matching, timers=None)
             else:
                 raise Exception('Choose a valid feature extractor')
             if timer: timer.toc("matcher")
@@ -342,28 +342,31 @@ class Landmark_Model():
                         outliers_lepard_line_set.lines =o3d.utility.Vector2iVector(outlier_correspondences)
                         outliers_lepard_line_set.colors = o3d.utility.Vector3dVector(colors)
                         o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/outliers.ply', outliers_lepard_line_set)
-                        
-            if timer: timer.tic("outlier rejection")
-            confidence = self.outlier_model(data, self.feature_extractor)
-            if timer: timer.toc("outlier rejection")
 
-            inlier_conf = confidence[0]
+            if knn_matching is False:
+                if timer: timer.tic("outlier rejection")
+                confidence = self.outlier_model(data, self.feature_extractor)
+                if timer: timer.toc("outlier rejection")
 
-            coarse_flow = data['coarse_flow'][0]
-            inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
-            match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
-            inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
-            vec_6d = data['vec_6d'][0]
+                inlier_conf = confidence[0]
 
-            if not custom_filtering and reject_outliers:
-                vec_6d = vec_6d[inlier_conf > inlier_thr]
-                final_indices = inlier_conf > inlier_thr
-            elif not custom_filtering and not reject_outliers:
-                final_indices = np.ones((vec_6d.shape[0],), dtype=bool)
-            
+                coarse_flow = data['coarse_flow'][0]
+                inlier_mask, inlier_rate = NeCoLoss.compute_inlier_mask(data, inlier_thr, s2t_flow=coarse_flow)
+                match_filtered = inlier_mask[0] [  inlier_conf > inlier_thr ]
+                inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
+                vec_6d = data['vec_6d'][0]
+
+                if not custom_filtering and reject_outliers:
+                    vec_6d = vec_6d[inlier_conf > inlier_thr]
+                    final_indices = inlier_conf > inlier_thr
+                elif not custom_filtering and not reject_outliers:
+                    final_indices = np.ones((vec_6d.shape[0],), dtype=bool)
+            else:
+                vec_6d = data['vec_6d'][0]
+
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             
-            if not custom_filtering and intermediate_output_folder :
+            if knn_matching is False and not custom_filtering and intermediate_output_folder :
                 if not os.path.exists(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk')
 
@@ -399,7 +402,7 @@ class Landmark_Model():
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 'outlier_line_set.ply', line_set)
                 
-            if matches_path:
+            if knn_matching is False and inlier_conf and matches_path:
                 outlier_rejected_vec_6d = data['vec_6d'][0][inlier_conf > inlier_thr]
                 ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
                 mask = np.array([])
@@ -1389,4 +1392,8 @@ class Landmark_Model():
                 initial_edge_points = get_mesh_criterion_edge_vertices(src_pcd_points)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_points = initial_edge_points, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'mesh')
             
+            if knn_matching is True:
+                inlier_rate = 0
+                inlier_rate_2 = 0
+
             return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2

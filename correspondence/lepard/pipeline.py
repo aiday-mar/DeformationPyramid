@@ -4,6 +4,7 @@ from .transformer import RepositioningTransformer
 from .matching import Matching
 from .procrustes import SoftProcrustesLayer
 from .models import kpfcn_backbone
+from .knn import find_knn_gpu
 
 class Pipeline(nn.Module):
 
@@ -18,8 +19,9 @@ class Pipeline(nn.Module):
         self.coarse_matching = Matching(config['coarse_matching'])
         self.soft_procrustes = SoftProcrustesLayer(config['coarse_transformer']['procrustes'])
 
-    def forward(self, data, confidence_threshold = None, preprocessing = 'mutual', index_at_which_to_return_coarse_feats = 1, coarse_level = None, timers=None):
+    def forward(self, data, confidence_threshold = None, preprocessing = 'mutual', index_at_which_to_return_coarse_feats = 1, coarse_level = None, knn_matching = False, timers=None):
 
+        print('knn_matching : ', knn_matching)
         self.timers = timers
 
         if self.timers: self.timers.tic('kpfcn backbone encode')
@@ -27,7 +29,7 @@ class Pipeline(nn.Module):
         if self.timers: self.timers.toc('kpfcn backbone encode')
 
         if self.timers: self.timers.tic('coarse_preprocess')
-        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats (coarse_feats, data, coarse_level)
+        src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask = self.split_feats(coarse_feats, data, coarse_level)
         data.update({ 's_pcd': s_pcd, 't_pcd': t_pcd })
         if self.timers: self.timers.toc('coarse_preprocess')
 
@@ -39,7 +41,13 @@ class Pipeline(nn.Module):
         if self.timers: self.timers.tic('match feature coarse')
         print('Before coarse_matching')
         conf_matrix_pred, coarse_match_pred = self.coarse_matching(src_feats, tgt_feats, src_pe, tgt_pe, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, pe_type = self.pe_type)
-        data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
+        
+        if knn_matching is False:
+            data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
+        elif knn_matching is True:
+            coarse_match_pred = find_knn_gpu(src_feats, tgt_feats, nn_max_n=20, knn=1,return_distance=False)
+            data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
+        
         if self.timers: self.timers.toc('match feature coarse')
 
         if self.timers: self.timers.tic('procrustes_layer')
