@@ -30,8 +30,8 @@ else
 	confidence_threshold=0.000001
 fi
 
-filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}.txt
-folder_name=output_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}
+filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt
+folder_name=output_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
 rm ${filename}
 touch ${filename}
 
