@@ -292,25 +292,35 @@ class Landmark_Model():
             if matches_path:
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
-                print('ind : ', ind)
+                print('ind.shape : ', ind.shape)
                 if knn_matching is False:
                     bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
                 else:
                     bi = 0
                     si = ind[bi][:, 0]
                     ti = ind[bi][:, 1]
-                    
+
                 print('bi : ', bi)
-                print('si : ', si)
-                print('ti : ', ti)
+                print('si.shape : ', si.shape)
+                print('ti.shape : ', ti.shape)
             
                 for i in range(b_size):
                     bmask = bi == i
                     rot = data['batched_rot'][0]
 
-                    s_pos = data['s_pcd'][i][si[bmask]]
-                    t_pos = data['t_pcd'][i][ti[bmask]]
+                    if knn_matching is False:
+                        s_pos = data['s_pcd'][i][si[bmask]]
+                        t_pos = data['t_pcd'][i][ti[bmask]]
+                    else:
+                        s_pos = data['s_pcd'][i][si]
+                        t_pos = data['t_pcd'][i][ti]
+
+                    print('s_pos.shape : ', s_pos.shape)
+                    print('t_pos.shape : ', t_pos.shape)
                     
+                    s_pos_pcd_points = np.array(s_pos.cpu())
+                    t_pos_pcd_points = np.array(t_pos.cpu())
+
                     mask = np.array([])
                     matches = np.load(self.path + matches_path)
                     correspondences = np.array(matches['matches'])
@@ -322,8 +332,6 @@ class Landmark_Model():
                     tgt_pcd_points = data['tgt_pcd_list'][0]
                     tgt_pcd_points = np.array(tgt_pcd_points.cpu())
                     matches_target = tgt_pcd_points[ind_tgt]
-                    s_pos_pcd_points = np.array(s_pos.cpu())
-                    t_pos_pcd_points = np.array(t_pos.cpu())
                     thr = 0.01
                     
                     for i in range(s_pos_pcd_points.shape[0]):
