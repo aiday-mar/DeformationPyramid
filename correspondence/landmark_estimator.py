@@ -240,17 +240,26 @@ class Landmark_Model():
                     s_pos_pcd = o3d.geometry.PointCloud()
                     s_pos_pcd_points = np.array(s_pos.cpu())
                     s_pos_pcd.points = o3d.utility.Vector3dVector(s_pos_pcd_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
-                    
+                    if knn_matching is False:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd.ply', s_pos_pcd)
+                    else:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_knn_matching_pcd.ply', s_pos_pcd)
+
                     s_pos_pcd_rotated = s_pos_pcd.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     s_pos_pcd_points_rotated = np.array(s_pos_pcd_rotated.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd_rotated.ply', s_pos_pcd_rotated)
-                    
+                    if knn_matching is False:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_lepard_pcd_rotated.ply', s_pos_pcd_rotated)
+                    else:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 's_knn_matching_rotated.ply', s_pos_pcd_rotated)
+
                     t_pos_pcd = o3d.geometry.PointCloud()
                     t_pos_pcd_points = np.array(t_pos.cpu())
                     t_pos_pcd.points = o3d.utility.Vector3dVector(t_pos_pcd_points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
-                    
+                    if knn_matching is False:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 't_lepard_pcd.ply', t_pos_pcd)
+                    else:
+                        o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 't_knn_matching_pcd.ply', t_pos_pcd)
+
                     total_points = np.concatenate((s_pos_pcd_points_rotated, t_pos_pcd_points), axis = 0)
                     number_points_src = s_pos.shape[0]
                     correspondences = [[i, i + number_points_src] for i in range(0, number_points_src)]
@@ -258,7 +267,10 @@ class Landmark_Model():
                         points=o3d.utility.Vector3dVector(total_points),
                         lines=o3d.utility.Vector2iVector(correspondences),
                     )
-                    o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'lepard_line_set.ply', line_set)
+                    if knn_matching is False:
+                        o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'lepard_line_set.ply', line_set)
+                    else:
+                        o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_ldmk/' + 'knn_matching_line_set.ply', line_set)
                     
             if matches_path:
                 b_size=len(data['s_pcd'])
@@ -306,12 +318,14 @@ class Landmark_Model():
                         print('Early exit')
                         sys.exit(1)
 
+                    network = 'Lepard' if knn_matching is False else 'KNN matching'
+
                     if self.feature_extractor == 'kpfcn':
-                        print('number of true landmarks correspondences returned from Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
-                        print('fraction of true landmark correspondences returned from Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
+                        print('number of true landmarks correspondences returned from ' + network + ' : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        print('fraction of true landmark correspondences returned from ' + network + ' : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
                     elif self.feature_extractor == 'fcgf':
-                        print('number of true landmarks correspondences returned from FCGF based Lepard : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
-                        print('fraction of true landmark correspondences returned from FCGF based Lepard : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
+                        print('number of true landmarks correspondences returned from FCGF based ' + network + ' : ', n_true_lepard_correspondences , ' out of ', n_total_lepard_correspondences)
+                        print('fraction of true landmark correspondences returned from FCGF based ' + network + ' : ', n_true_lepard_correspondences/n_total_lepard_correspondences if n_total_lepard_correspondences != 0 else 0)
                     
                     if intermediate_output_folder:
                         s_pos_pcd = o3d.geometry.PointCloud()

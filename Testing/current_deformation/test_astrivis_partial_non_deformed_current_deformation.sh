@@ -154,8 +154,8 @@ if [ $knn_matching == "True" ]; then
             python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
             --file1="${base}/model${k}/transformed/mesh_transformed_0.ply" \
             --file2="${base}/model${k}/transformed/mesh_transformed_1.ply" \
-            --landmarks1="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \
-            --landmarks2="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \
+            --landmarks1="${base}/model${k}/${folder_name}/${type}_ldmk/s_knn_matching_pcd.ply" \
+            --landmarks2="${base}/model${k}/${folder_name}/${type}_ldmk/t_knn_matching_pcd.ply" \
             --save_path="${base}/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
@@ -198,8 +198,8 @@ if [ $knn_matching == "True" ]; then
             python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
             --file1="${base}/model${k}/transformed/mesh_transformed_0.ply" \
             --file2="${base}/model${k}/transformed/mesh_transformed_1.ply" \
-            --landmarks1="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/s_outlier_rejected_pcd.ply" \
-            --landmarks2="${base}/model${k}/${folder_name}/${type}_outlier_ldmk/t_outlier_rejected_pcd.ply" \
+            --landmarks1="${base}/model${k}/${folder_name}/${type}_ldmk/s_knn_matching_pcd.ply" \
+            --landmarks2="${base}/model${k}/${folder_name}/${type}_ldmk/t_knn_matching_pcd.ply" \
             --save_path="${base}/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
 
             python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
