@@ -47,10 +47,12 @@ class Pipeline(nn.Module):
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         elif knn_matching is True:
             coarse_match_pred = find_knn_gpu(src_feats, tgt_feats, nn_max_n=20, knn=1,return_distance=False)
+            coarse_match_pred = torch.tensor(coarse_match_pred)
             n_src_coarse = coarse_match_pred.shape[0]
             src_indices = np.arange(n_src_coarse)
             src_indices = np.expand_dims(src_indices, axis=0)
-            coarse_match_pred = np.concatenate((src_indices, coarse_match_pred), axis=1)
+            src_indices = torch.tensor(src_indices)
+            coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
             print('coarse_match_pred.shape : ', coarse_match_pred.shape)
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
