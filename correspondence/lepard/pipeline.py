@@ -54,7 +54,7 @@ class Pipeline(nn.Module):
             coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
             print('src_indices.shape : ', src_indices.shape)
             print('coarse_match_pred.shape : ', coarse_match_pred.shape)
-            coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
+            coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 0)
             print('coarse_match_pred.shape : ', coarse_match_pred.shape)
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
         if self.timers: self.timers.toc('match feature coarse')
