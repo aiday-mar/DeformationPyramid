@@ -55,6 +55,7 @@ class Pipeline(nn.Module):
             print('src_indices.shape : ', src_indices.shape)
             print('coarse_match_pred.shape : ', coarse_match_pred.shape)
             coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
+            coarse_match_pred = coarse_match_pred[None, :]
             print('coarse_match_pred.shape : ', coarse_match_pred.shape)
             print('coarse_match_pred : ', coarse_match_pred)
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
