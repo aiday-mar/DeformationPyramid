@@ -47,7 +47,7 @@ class Pipeline(nn.Module):
         elif knn_matching is True:
             coarse_match_pred = find_knn_gpu(src_feats, tgt_feats, nn_max_n=20, knn=1,return_distance=False)
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
-        
+        print(coarse_match_pred)
         if self.timers: self.timers.toc('match feature coarse')
 
         if self.timers: self.timers.tic('procrustes_layer')
