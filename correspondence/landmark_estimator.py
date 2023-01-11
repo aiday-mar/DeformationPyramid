@@ -216,6 +216,10 @@ class Landmark_Model():
                 b_size=len(data['s_pcd'])
                 ind = data['coarse_match_pred']
                 bi, si, ti = ind[:, 0], ind[:, 1], ind[:, 2]
+
+                print('bi : ', bi)
+                print('si : ', si)
+                print('ti : ', ti)
             
                 for i in range(b_size):
                     bmask = bi == i
