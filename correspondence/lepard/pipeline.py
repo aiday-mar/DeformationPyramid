@@ -71,6 +71,8 @@ class Pipeline(nn.Module):
             ldmk_t_indices = coarse_match_pred[0][:, 1]
             print('ldmk_t_indices : ', ldmk_t_indices)
             ldmk_t = t_pcd[ldmk_t_indices]
+            print('ldmk_s.shape : ', ldmk_s.shape)
+            print('ldmk_t.shape : ', ldmk_t.shape)
             vec_6d = torch.cat((ldmk_s, ldmk_t), 1)
             data['vec_6d'].append(vec_6d)
             if self.timers: self.timers.toc('match feature coarse')
