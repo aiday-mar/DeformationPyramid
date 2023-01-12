@@ -29,7 +29,7 @@ confidence_thresholds = {
     },
     'partial_non_deformed' : {
         'kpfcn_pretrained' : '0.1',
-        'kpfcn_full_deformed' : '1e-06',
+        'kpfcn_full_deformed' : '1e-02',
         'fcgf_full_deformed' : '1e-06',
         'kpfcn_partial_deformed' : '1e-02',
         'fcgf_partial_deformed' : '1e-06'
