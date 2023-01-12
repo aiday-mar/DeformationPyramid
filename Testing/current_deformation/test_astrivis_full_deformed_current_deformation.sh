@@ -37,11 +37,11 @@ else
 	fi
 fi
 
-# model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('085')
+model_numbers=('002' '042' '085' '126' '167' '207')
+# model_numbers=('085')
 
-one_model=True
-# one_model=False
+# one_model=True
+one_model=False
 
 if [ "$one_model" == "False" ] ; then
 	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt

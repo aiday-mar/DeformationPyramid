@@ -1,14 +1,15 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
 
-training_data=full_deformed
-# training_data=partial_deformed
+# training_data=full_deformed
+training_data=partial_deformed
 # training_data=pretrained
 
-knn_matching=True
+# knn_matching=True
+knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -28,7 +29,7 @@ fi
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
 else
-	confidence_threshold=0.0000001
+	confidence_threshold=0.00001
 fi
 
 filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt
