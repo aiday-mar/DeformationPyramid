@@ -10,7 +10,8 @@ training_data=pretrained
 preprocessing=none
 # preprocessing=mutual
 
-knn_matching=True
+# knn_matching=True
+knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -139,7 +140,7 @@ if [ $knn_matching == "False" ]; then
 					--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 
 					python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-					--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
+					--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
 					--input2="${base}/model${k}/transformed/${file_number2}.ply" \
 					--matches="${base}/model${k}/matches/${file_number1}_${file_number2}.npz" >> ${filename}
 					fi
@@ -251,7 +252,7 @@ if [ $knn_matching == "True" ]; then
 					--save_path="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" >> ${filename}
 
 					python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
-					--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/${file_number1}_${file_number2}.ply" \
+					--input1="${base}/model${k}/${folder_name}/${file_number1}_${file_number2}/current_deformation.ply" \
 					--input2="${base}/model${k}/transformed/${file_number2}.ply" \
 					--matches="${base}/model${k}/matches/${file_number1}_${file_number2}.npz" >> ${filename}
 					fi

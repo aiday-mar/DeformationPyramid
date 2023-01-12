@@ -32,8 +32,8 @@ preprocessing_normal='none'
 
 model_search = re.compile(r'model (\d+)')
 
-knn_matching = 'True'
-# knn_matching = 'False'
+# knn_matching = 'True'
+knn_matching = 'False'
 
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
@@ -91,6 +91,7 @@ for data_type in data_types:
     f = plt.figure(number)
     legend = []
 
+    print('data_type : ', data_type)
     if with_custom is False:
         color_idx = 0
         for feature_extractor in weights:
@@ -107,7 +108,10 @@ for data_type in data_types:
                         rmse.append(float(data[model_number]['RMSE']))
                     else:
                         rmse.append(np.nan)
-                
+
+                print('feature_extractor : ', feature_extractor)
+                print('training_data_type : ', training_data_type)
+                print('rmse : ', rmse)
                 plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
                 color_idx += 1
     else:
