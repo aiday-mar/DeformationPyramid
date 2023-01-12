@@ -26,8 +26,8 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.001
-	confidence_threshold_name=1e-03
+	confidence_threshold=0.0001
+	confidence_threshold_name=1e-04
 else
 	confidence_threshold=0.001
 	confidence_threshold_name=1e-03
