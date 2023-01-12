@@ -71,9 +71,11 @@ class PipelineFCGF(nn.Module):
             print('ldmk_t_indices : ', ldmk_t_indices)
             ldmk_t = t_pcd[0][ldmk_t_indices]
             ldmk_t = ldmk_t[None, :]
+            ldmk_s = torch.squeeze(ldmk_s)
+            ldmk_t = torch.squeeze(ldmk_t)
             print('ldmk_s.shape : ', ldmk_s.shape)
             print('ldmk_t.shape : ', ldmk_t.shape)
-            vec_6d = torch.vstack((ldmk_s,ldmk_t))
+            vec_6d = torch.hstack((ldmk_s,ldmk_t))
             print('vec_6d.shape : ', vec_6d.shape)
             data['vec_6d'].append(vec_6d)
             if self.timers: self.timers.toc('match feature coarse')
