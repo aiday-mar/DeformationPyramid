@@ -4,9 +4,9 @@ type=kpfcn
 preprocessing=none
 # preprocessing=mutual
 
-training_data=full_deformed
+# training_data=full_deformed
 # training_data=partial_deformed
-# training_data=pretrained
+training_data=pretrained
 
 # knn_matching=True
 knn_matching=False
@@ -35,7 +35,7 @@ else
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('085')
+model_numbers=('167')
 
 one_model=True
 # one_model=False
