@@ -2,6 +2,7 @@
 import re
 import matplotlib.pyplot as plt
 import numpy as np
+from os import path
 
 knn_matching = 'True'
 # knn_matching = 'False'
@@ -120,6 +121,9 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
     else:
         file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + "_knn_" + knn_matching + conf_text + ".txt"
     
+    if not path.exists(file_path):
+        return 'Does not exist'
+    
     file = open(file_path, 'r')
     lines = file.readlines()
     data = {}
@@ -170,12 +174,16 @@ for data_type in data_types:
         color_idx = 0
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
-
+                
                 epoch = str(weights[feature_extractor][training_data_type])
                 training_data_type_mod = training_data_type.replace('_', ' ')
                 weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
                 legend.append(weights_legend)
                 data = get_data(data_type, feature_extractor, training_data_type)
+                
+                if data == 'Does not exist':
+                    break
+
                 rmse = []             
                 for model_number in data:
                     if 'RMSE' in data[model_number]:
