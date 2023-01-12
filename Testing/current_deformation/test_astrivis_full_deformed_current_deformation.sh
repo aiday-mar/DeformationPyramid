@@ -30,7 +30,7 @@ fi
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
 else
-	if [ "$training_data" == "partial_deformed" ]  && ["$type" == "kpfcn" ] ; then
+	if [ "$training_data" == "partial_deformed" ]  && [ "$type" == "kpfcn" ] ; then
 		confidence_threshold=0.0000001
 	else
 		confidence_threshold=0.000001
