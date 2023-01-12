@@ -6,6 +6,7 @@ import numpy as np
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 
 confidence_thresholds = {
+    # FINAL
     'full_deformed' : {
         'kpfcn_pretrained' : '0.1',
         'kpfcn_full_deformed' : '1e-06',
@@ -13,6 +14,7 @@ confidence_thresholds = {
         'kpfcn_partial_deformed' : '1e-06',
         'fcgf_partial_deformed' : '1e-06'
     },
+    # FINAL
     'full_non_deformed' : {
         'kpfcn_pretrained' : '0.1',
         'kpfcn_full_deformed' : '1e-06',
@@ -20,18 +22,19 @@ confidence_thresholds = {
         'kpfcn_partial_deformed' : '1e-06',
         'fcgf_partial_deformed' : '1e-06'  
     },
+
     'partial_deformed' : {
         'kpfcn_pretrained' : '0.1', 
-        'kpfcn_full_deformed' : '1e-02',
+        'kpfcn_full_deformed' : '1e-06',
         'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-02',
+        'kpfcn_partial_deformed' : '1e-04',
         'fcgf_partial_deformed' : '1e-06'
     },
     'partial_non_deformed' : {
         'kpfcn_pretrained' : '0.1',
-        'kpfcn_full_deformed' : '1e-02',
+        'kpfcn_full_deformed' : '1e-06',
         'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-02',
+        'kpfcn_partial_deformed' : '1e-04',
         'fcgf_partial_deformed' : '1e-06'
     },
 }
@@ -129,6 +132,7 @@ for data_type in data_types:
     f = plt.figure(number)
     legend = []
 
+    print('\n')
     print('data_type : ', data_type)
     if with_custom is False:
         color_idx = 0

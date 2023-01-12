@@ -1,12 +1,12 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
 
-training_data=full_deformed
+# training_data=full_deformed
 # training_data=partial_deformed
-# training_data=pretrained
+training_data=pretrained
 
 # knn_matching=True
 knn_matching=False
@@ -26,27 +26,27 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.01
-	confidence_threshold_name=0.01
+	confidence_threshold=0.1
+	confidence_threshold_name=0.1
 else
-	confidence_threshold=0.01
-	confidence_threshold_name=1e-02
+	confidence_threshold=0.00001
+	confidence_threshold_name=1e-05
 fi
 
-model_numbers=('002' '042' '085' '126' '167' '207')
-# model_numbers=('085')
+# model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('042')
 
 # one_model=True
 one_model=False
 
 if [ "$one_model" == "False" ] ; then
 	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
-	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
+	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
 if [ "$one_model" == "True" ] ; then
 	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model.txt
-	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
+	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
 rm ${filename}
