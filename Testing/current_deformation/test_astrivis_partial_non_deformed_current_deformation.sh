@@ -1,12 +1,12 @@
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
 # knn_matching=True
 knn_matching=False
