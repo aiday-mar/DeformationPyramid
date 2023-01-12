@@ -1,6 +1,7 @@
 
 import re
 import matplotlib.pyplot as plt
+from os import path
 
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 
@@ -15,6 +16,9 @@ weights = {
         'pretrained' : 'null'
     }
 }
+
+# knn_matching = 'False'
+knn_matching = 'True'
 
 number = 0
 model_numbers = ['002', '042', '085', '126', '167', '207']
@@ -37,9 +41,12 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
 
     epoch = str(weights[feature_extractor][training_data_type])
     if custom is False:
-        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '.txt'
+        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_knn_' + knn_matching + '.txt'
     else:
-        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '.txt'
+        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '_knn_' + knn_matching + '.txt'
+
+    if not path.exists(file_path):
+        return 'Does not exist'
     
     file = open(file_path, 'r')
     lines = file.readlines()
@@ -95,6 +102,10 @@ for data_type in data_types:
                 weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
                 legend.append(weights_legend)
                 data = get_data(data_type, feature_extractor, training_data_type)
+
+                if data == 'Does not exist':
+                    break
+
                 rmse = []             
                 for model_number in data:
                     rmse.append(float(data[model_number]['RMSE']))
@@ -115,6 +126,10 @@ for data_type in data_types:
 
                     legend.append(weights_legend)
                     data = get_data(data_type, feature_extractor, training_data_type, custom)
+
+                    if data == 'Does not exist':
+                        break
+
                     rmse = []             
                     for model_number in data:
                         rmse.append(float(data[model_number]['RMSE']))
@@ -133,9 +148,9 @@ for data_type in data_types:
     title = title.title()
     plt.title(title, wrap=True)
     if with_custom is False:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_rmse.png')
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_rmse.png')
     else:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_custom + ' _rmse_custom.png')
+        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + ' _rmse_custom.png')
 
 '''
 for data_type in data_types:
