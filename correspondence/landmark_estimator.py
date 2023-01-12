@@ -411,6 +411,7 @@ class Landmark_Model():
                 elif not custom_filtering and not reject_outliers:
                     final_indices = np.ones((vec_6d.shape[0],), dtype=bool)
             else:
+                inlier_conf = None
                 vec_6d = data['vec_6d'][0]
 
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
@@ -452,8 +453,8 @@ class Landmark_Model():
                     lines=o3d.utility.Vector2iVector(correspondences),
                 )
                 o3d.io.write_line_set(self.path + intermediate_output_folder + folder_name + '_outlier_ldmk/' + 'outlier_line_set.ply', line_set)
-                
-            if knn_matching is False and inlier_conf and matches_path:
+            
+            if knn_matching is False and inlier_conf is not None and matches_path:
                 outlier_rejected_vec_6d = data['vec_6d'][0][inlier_conf > inlier_thr]
                 ldmk_s_outlier_rejected, ldmk_t_outlier_rejected = outlier_rejected_vec_6d[:, :3], outlier_rejected_vec_6d[:, 3:]
                 mask = np.array([])
