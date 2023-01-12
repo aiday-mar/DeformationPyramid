@@ -1,0 +1,406 @@
+model 002
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+feature extractor inside of collate_fn_4dmatch :  fcgf
+
+
+knn_matching :  False
+confidence threshold used in the matching :  0.01
+preprocessing :  none
+confidence threshold used in the matching :  0.01
+preprocessing :  none
+ind.shape :  torch.Size([207, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([207])
+ti.shape :  torch.Size([207])
+s_pos.shape :  torch.Size([207, 3])
+t_pos.shape :  torch.Size([207, 3])
+ind.shape :  torch.Size([207, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([207])
+ti.shape :  torch.Size([207])
+s_pos.shape :  torch.Size([207, 3])
+t_pos.shape :  torch.Size([207, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  136  out of  207
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.6570048309178744
+ldmk_s.shape :  torch.Size([173, 3])
+ldmk_t.shape :  torch.Size([173, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  121  out of  173
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.6994219653179191
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(AlignAndNonRigidMerge) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L167:#points1: 173
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L168:#points2: 173
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L169:#matches: 173
+Before Run of ransac
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SquentialRANSAC) {
+num_inliers : 78
+num_inliers : 77
+num_inliers : 121
+num_inliers : 65
+num_inliers : 60
+num_inliers : 65
+num_inliers : 79
+num_inliers : 97
+num_inliers : 121
+num_inliers : 125
+num_inliers : 32
+num_inliers : 122
+num_inliers : 38
+num_inliers : 35
+num_inliers : 65
+num_inliers : 69
+num_inliers : 52
+num_inliers : 25
+num_inliers : 138
+num_inliers : 111
+num_inliers : 122
+num_inliers : 75
+num_inliers : 70
+num_inliers : 15
+num_inliers : 94
+num_inliers : 49
+num_inliers : 122
+num_inliers : 122
+num_inliers : 132
+num_inliers : 71
+num_inliers : 61
+num_inliers : 55
+num_inliers : 122
+num_inliers : 122
+num_inliers : 115
+num_inliers : 39
+num_inliers : 58
+num_inliers : 104
+num_inliers : 60
+num_inliers : 78
+num_inliers : 30
+num_inliers : 53
+num_inliers : 122
+num_inliers : 92
+num_inliers : 91
+num_inliers : 100
+num_inliers : 76
+num_inliers : 10
+num_inliers : 122
+num_inliers : 122
+num_inliers : 94
+num_inliers : 122
+num_inliers : 3
+num_inliers : 119
+num_inliers : 115
+num_inliers : 34
+num_inliers : 47
+num_inliers : 34
+num_inliers : 58
+num_inliers : 48
+num_inliers : 113
+num_inliers : 117
+num_inliers : 120
+num_inliers : 53
+num_inliers : 77
+num_inliers : 65
+num_inliers : 65
+num_inliers : 76
+num_inliers : 118
+num_inliers : 122
+num_inliers : 121
+num_inliers : 122
+num_inliers : 66
+num_inliers : 54
+num_inliers : 52
+num_inliers : 102
+num_inliers : 82
+num_inliers : 122
+num_inliers : 47
+num_inliers : 66
+num_inliers : 61
+num_inliers : 71
+num_inliers : 106
+num_inliers : 116
+num_inliers : 72
+num_inliers : 122
+num_inliers : 122
+num_inliers : 68
+num_inliers : 122
+num_inliers : 61
+num_inliers : 122
+num_inliers : 74
+num_inliers : 49
+num_inliers : 138
+num_inliers : 122
+num_inliers : 61
+num_inliers : 54
+num_inliers : 84
+num_inliers : 73
+num_inliers : 136
+num_inliers : 122
+num_inliers inside of Run : 138
+num_inliers : 19
+num_inliers : 19
+num_inliers : 13
+num_inliers : 10
+num_inliers : 16
+num_inliers : 16
+num_inliers : 12
+num_inliers : 14
+num_inliers : 21
+num_inliers : 5
+num_inliers : 19
+num_inliers : 16
+num_inliers : 8
+num_inliers : 5
+num_inliers : 9
+num_inliers : 15
+num_inliers : 6
+num_inliers : 15
+num_inliers : 9
+num_inliers : 3
+num_inliers : 2
+num_inliers : 15
+num_inliers : 4
+num_inliers : 6
+num_inliers : 11
+num_inliers : 16
+num_inliers : 12
+num_inliers : 17
+num_inliers : 6
+num_inliers : 13
+num_inliers : 7
+num_inliers : 15
+num_inliers : 8
+num_inliers : 19
+num_inliers : 18
+num_inliers : 13
+num_inliers : 18
+num_inliers : 4
+num_inliers : 18
+num_inliers : 14
+num_inliers : 6
+num_inliers : 14
+num_inliers : 6
+num_inliers : 20
+num_inliers : 17
+num_inliers : 16
+num_inliers : 16
+num_inliers : 9
+num_inliers : 14
+num_inliers : 14
+num_inliers : 18
+num_inliers : 16
+num_inliers : 16
+num_inliers : 13
+num_inliers : 11
+num_inliers : 14
+num_inliers : 11
+num_inliers : 15
+num_inliers : 14
+num_inliers : 19
+num_inliers : 19
+num_inliers : 15
+num_inliers : 8
+num_inliers : 15
+num_inliers : 18
+num_inliers : 16
+num_inliers : 9
+num_inliers : 14
+num_inliers : 14
+num_inliers : 6
+num_inliers : 19
+num_inliers : 16
+num_inliers : 6
+num_inliers : 11
+num_inliers : 14
+num_inliers : 21
+num_inliers : 0
+num_inliers : 18
+num_inliers : 12
+num_inliers : 16
+num_inliers : 17
+num_inliers : 7
+num_inliers : 4
+num_inliers : 15
+num_inliers : 13
+num_inliers : 9
+num_inliers : 5
+num_inliers : 12
+num_inliers : 19
+num_inliers : 10
+num_inliers : 12
+num_inliers : 16
+num_inliers : 10
+num_inliers : 19
+num_inliers : 16
+num_inliers : 12
+num_inliers : 17
+num_inliers : 15
+num_inliers : 20
+num_inliers : 14
+num_inliers : 18
+num_inliers inside of Run : 21
+num_inliers : 6
+num_inliers : 6
+num_inliers : 11
+num_inliers : 8
+num_inliers : 7
+num_inliers : 9
+num_inliers : 8
+num_inliers : 9
+num_inliers : 7
+num_inliers : 6
+num_inliers : 8
+num_inliers : 4
+num_inliers : 2
+num_inliers : 9
+num_inliers : 9
+num_inliers : 0
+num_inliers : 8
+num_inliers : 8
+num_inliers : 6
+num_inliers : 0
+num_inliers : 6
+num_inliers : 8
+num_inliers : 8
+num_inliers : 8
+num_inliers : 8
+num_inliers : 6
+num_inliers : 7
+num_inliers : 9
+num_inliers : 6
+num_inliers : 9
+num_inliers : 1
+num_inliers : 7
+num_inliers : 9
+num_inliers : 11
+num_inliers : 8
+num_inliers : 9
+num_inliers : 11
+num_inliers : 6
+num_inliers : 8
+num_inliers : 0
+num_inliers : 9
+num_inliers : 5
+num_inliers : 1
+num_inliers : 6
+num_inliers : 9
+num_inliers : 11
+num_inliers : 11
+num_inliers : 2
+num_inliers : 8
+num_inliers : 3
+num_inliers : 5
+num_inliers : 4
+num_inliers : 11
+num_inliers : 7
+num_inliers : 11
+num_inliers : 1
+num_inliers : 9
+num_inliers : 9
+num_inliers : 8
+num_inliers : 8
+num_inliers : 8
+num_inliers : 1
+num_inliers : 8
+num_inliers : 0
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 11
+num_inliers : 9
+num_inliers : 6
+num_inliers : 7
+num_inliers : 6
+num_inliers : 8
+num_inliers : 11
+num_inliers : 11
+num_inliers : 8
+num_inliers : 0
+num_inliers : 1
+num_inliers : 11
+num_inliers : 9
+num_inliers : 8
+num_inliers : 8
+num_inliers : 8
+num_inliers : 11
+num_inliers : 5
+num_inliers : 8
+num_inliers : 8
+num_inliers : 4
+num_inliers : 9
+num_inliers : 1
+num_inliers : 9
+num_inliers : 7
+num_inliers : 5
+num_inliers : 6
+num_inliers : 6
+num_inliers : 9
+num_inliers : 8
+num_inliers : 8
+num_inliers : 6
+num_inliers : 9
+num_inliers : 8
+num_inliers inside of Run : 11
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SquentialRANSAC) [7.016103 s]
+ 0.102412  0.822346 -0.359351  0.761321
+ 0.437198  0.270144  0.742801 -0.350055
+ 0.783737 -0.258154 -0.367406 -0.231609
+        0         0         0         1
+ 0.669453 -0.168867  0.808537  0.456613
+-0.666038 -0.725893   0.39986  0.533721
+ 0.488509 -0.758273 -0.562845 0.0240222
+        0         0         0         1
+  0.303468    0.40979  -0.484879   0.810936
+  0.324861   0.361497   0.508835  -0.222488
+  0.545436  -0.443305 -0.0332864  -0.153901
+         0          0          0          1
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(DenseGaussNewton::optimize()) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L118:# parameters: 7
+VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L119:# residuals: 9380
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L238:Gauss-Newton gradient threshold reached.
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L240:Gauss-Newton gradient max norm 4.547438e-07 <= 1.000000e-06
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L241:Gauss-Newton convergence #iters: 12
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L242:Gauss-Newton converged.
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (DenseGaussNewton::optimize()) [0.069101 s]
+Affine transform: -0.0165311   0.653877  -0.780109   0.940412
+  0.481256   0.692523   0.570265   -0.41376
+  0.896949   -0.35952  -0.320352  -0.307867
+         0          0          0          1
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L232:#models: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 0 | #inliers 138
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 1 | #inliers 21
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 2 | #inliers 11
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L235:#inilers: 170
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L257:Mesh1: #vertices: 9132
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L258:Mesh2: #vertices: 9380
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L784:SampleDeformationNodes
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.011354 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L790:Create balltree...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L797:Build kdtree...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L804:Create matches...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L826:#matches / #inliers: 173/173
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L827:Mesh1: #points | #normals: 170 | 170
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L828:Mesh2: #points | #normals: 170 | 170
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.009319 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  6.035377e-04    0.00e+00    1.90e-03   0.00e+00   0.00e+00  1.00e+04        0    1.85e-02    2.55e-02
+   1  1.574346e-04    4.46e-04    5.06e-04   1.70e+01   7.43e-01  1.13e+04        1    1.87e+01    1.87e+01
+   2  1.291511e-04    2.83e-05    6.21e-04   1.72e+01   1.90e-01  9.14e+03        1    1.00e+01    2.87e+01
