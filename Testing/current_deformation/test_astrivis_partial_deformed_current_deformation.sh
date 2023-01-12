@@ -40,12 +40,12 @@ model_numbers=('002' '042' '085' '126' '167' '207')
 one_model=False
 
 if [ "$one_model" == "False" ] ; then
-	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
+	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
 	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
 if [ "$one_model" == "True" ] ; then
-	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model.txt
+	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model.txt
 	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
