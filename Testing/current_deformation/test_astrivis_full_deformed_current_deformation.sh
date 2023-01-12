@@ -31,18 +31,30 @@ if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
 else
 	if [ "$training_data" == "partial_deformed" ]  && [ "$type" == "kpfcn" ] ; then
-		confidence_threshold=0.0000001
+		confidence_threshold=0.00001
 	else
 		confidence_threshold=0.000001
 	fi
 fi
 
-filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt
-folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
+# model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('085')
+
+one_model=True
+# one_model=False
+
+if [ "$one_model" == "False" ] ; then
+	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt
+	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
+fi
+
+if [ "$one_model" == "True" ] ; then
+	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_one_model.txt
+	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
+fi
+
 rm ${filename}
 touch ${filename}
-
-model_numbers=('002' '042' '085' '126' '167' '207')
 
 if [ $knn_matching == "False" ]; then
 	if [ $type == "kpfcn" ]; then
