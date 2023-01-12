@@ -172,6 +172,7 @@ class Registration():
                 if not os.path.exists(self.path + intermediate_output_folder + 'training_ldmk'):
                     os.mkdir(self.path + intermediate_output_folder + 'training_ldmk')
 
+                print('src_ldmk.shape in optimize_deformation_pyramid : ', src_ldmk.shape)
                 src_ldmk_pcd = o3d.geometry.PointCloud()
                 src_ldmk_pcd.points = o3d.utility.Vector3dVector(np.array(src_ldmk.cpu()))
                 o3d.io.write_point_cloud(self.path + intermediate_output_folder + 'training_ldmk/' + 'src_warped_ldmk_initial_pcd.ply', src_ldmk_pcd)
