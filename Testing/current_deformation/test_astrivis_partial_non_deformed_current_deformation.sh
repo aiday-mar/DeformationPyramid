@@ -35,7 +35,7 @@ else
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('002')
+model_numbers=('085')
 
 one_model=True
 # one_model=False
