@@ -1,12 +1,12 @@
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -35,8 +35,14 @@ touch ${filename}
 
 base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
 model_numbers=('002' '042' '085' '126' '167' '207')
-n_deformed_levels=4
-n_non_deformed_levels=1
+
+# n_deformed_levels=4
+# n_non_deformed_levels=1
+# w_cd=0
+# w_reg=0
+
+n_deformed_levels=10
+n_non_deformed_levels=10
 w_cd=0
 w_reg=0
 
