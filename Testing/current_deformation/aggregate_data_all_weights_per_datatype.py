@@ -45,12 +45,12 @@ confidence_thresholds = {
         'other' : '1e-06'
     },
     'partial_deformed' : {
-        'pretrained' : None, 
-        'other' : None
+        'pretrained' : '0.1', 
+        'other' : '1e-06'
     },
     'partial_non_deformed' : {
-        'pretrained' : None,
-        'other' : None
+        'pretrained' : '0.1',
+        'other' : '1e-06'
     },
 }
 
@@ -174,8 +174,14 @@ for data_type in data_types:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
-    if with_custom is False:
-        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_rmse.png')
+
+    if confidence_thresholds[data_type]['pretrained'] is not None and confidence_thresholds[data_type]['other'] is not None:
+        conf_text = '_conf_' + confidence_thresholds[data_type]['pretrained'] + '_' + confidence_thresholds[data_type]['other']
     else:
-        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + '_rmse.png')
+        conf_text = ''
+
+    if with_custom is False:
+        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching  + conf_text + '_rmse.png')
+    else:
+        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching  + conf_text + '_rmse.png')
  
