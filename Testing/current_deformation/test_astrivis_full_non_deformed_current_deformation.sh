@@ -26,11 +26,15 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.1
-    confidence_threshold_name=0.1
+	# confidence_threshold=0.1
+    # confidence_threshold_name=0.1
+    confidence_threshold=0.01
+	confidence_threshold_name=0.01
 else
-	confidence_threshold=0.000001
-    confidence_threshold_name=1e-06
+    confidence_threshold=0.00001
+	confidence_threshold_name=1e-05
+	# confidence_threshold=0.000001
+    # confidence_threshold_name=1e-06
 fi
 
 filename=Testing/current_deformation/test_astrivis_full_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
