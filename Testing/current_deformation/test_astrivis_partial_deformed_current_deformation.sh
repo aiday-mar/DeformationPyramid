@@ -29,7 +29,7 @@ if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
 	confidence_threshold_name=0.02
 else
-	confidence_threshold=0.01
+	confidence_threshold=0.005
 	confidence_threshold_name=1e-02
 fi
 
