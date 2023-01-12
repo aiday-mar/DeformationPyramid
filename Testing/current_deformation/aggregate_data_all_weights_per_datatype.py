@@ -5,6 +5,37 @@ import numpy as np
 
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 
+confidence_thresholds = {
+    'full_deformed' : {
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-04',
+        'fcgf_partial_deformed' : '1e-06'
+    },
+    'full_non_deformed' : {
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-04',
+        'fcgf_partial_deformed' : '1e-06'  
+    },
+    'partial_deformed' : {
+        'kpfcn_pretrained' : '0.1', 
+        'kpfcn_full_deformed' : '1e-02',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-02',
+        'fcgf_partial_deformed' : '1e-06'
+    },
+    'partial_non_deformed' : {
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-02',
+        'fcgf_partial_deformed' : '1e-06'
+    },
+}
+
 weights = {
     'fcgf' : {
         'full_deformed' : 10, 
@@ -34,37 +65,6 @@ model_search = re.compile(r'model (\d+)')
 
 # knn_matching = 'True'
 knn_matching = 'False'
-
-confidence_thresholds = {
-    'full_deformed' : {
-        'kpfcn_pretrained' : '0.1',
-        'kpfcn_full_deformed' : '1e-06',
-        'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-04',
-        'fcgf_partial_deformed' : '1e-06'
-    },
-    'full_non_deformed' : {
-        'kpfcn_pretrained' : '0.1',
-        'kpfcn_full_deformed' : '1e-06',
-        'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-04',
-        'fcgf_partial_deformed' : '1e-06'  
-    },
-    'partial_deformed' : {
-        'kpfcn_pretrained' : '0.1', 
-        'kpfcn_full_deformed' : '1e-06',
-        'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-02',
-        'fcgf_partial_deformed' : '1e-06'
-    },
-    'partial_non_deformed' : {
-        'kpfcn_pretrained' : '0.1',
-        'kpfcn_full_deformed' : '1e-06',
-        'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-02',
-        'fcgf_partial_deformed' : '1e-06'
-    },
-}
 
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
