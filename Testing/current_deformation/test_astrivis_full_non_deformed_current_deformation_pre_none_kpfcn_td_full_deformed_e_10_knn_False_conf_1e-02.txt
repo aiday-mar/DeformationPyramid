@@ -745,3 +745,187 @@ iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_
    0  6.381454e-07    0.00e+00    4.90e-06   0.00e+00   0.00e+00  1.00e+04        0    1.56e-01    1.72e-01
    1  2.157546e-07    4.22e-07    1.18e-06   3.23e+00   1.01e+00  3.00e+04        1    3.18e+01    3.20e+01
    2  2.087796e-07    6.97e-09    9.06e-08   5.06e-01   1.02e+00  9.00e+04        1    3.06e+01    6.25e+01
+   3  2.086477e-07    1.32e-10    1.84e-08   9.07e-02   1.08e+00  2.70e+05        1    3.24e+01    9.50e+01
+   4  2.086364e-07    1.13e-11    5.91e-09   2.82e-02   1.08e+00  8.10e+05        1    2.27e+01    1.18e+02
+   5  2.086350e-07    1.41e-12    2.91e-09   1.04e-02   1.08e+00  2.43e+06        1    1.52e+01    1.33e+02
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [132.856656 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1442                     1442
+Parameters                               8652                     8652
+Residual blocks                         13024                    13024
+Residuals                               27444                    27444
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1442
+
+Cost:
+Initial                          6.381454e-07
+Final                            2.086350e-07
+Change                           4.295104e-07
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.015758
+
+  Residual only evaluation           0.039736 (5)
+  Jacobian & residual evaluation     0.968088 (6)
+  Linear solver                    131.819330 (5)
+Minimizer                          132.840101
+
+Postprocessor                        0.000503
+Total                              132.856376
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000218 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [133.005751 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 3 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000226 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002188 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.023214
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.013393 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  3.518559e-07    0.00e+00    4.13e-06   0.00e+00   0.00e+00  1.00e+04        0    1.31e-01    1.38e-01
+   1  1.635970e-07    1.88e-07    5.78e-07   2.17e+00   1.01e+00  3.00e+04        1    3.95e+00    4.09e+00
+   2  1.612338e-07    2.36e-09    4.26e-08   3.13e-01   1.00e+00  9.00e+04        1    2.05e+01    2.45e+01
+   3  1.611591e-07    7.47e-11    1.84e-08   6.72e-02   1.15e+00  2.70e+05        1    3.48e+01    5.93e+01
+   4  1.611461e-07    1.30e-11    7.25e-09   2.80e-02   1.41e+00  8.10e+05        1    3.32e+01    9.25e+01
+   5  1.611417e-07    4.42e-12    5.06e-09   1.62e-02   1.61e+00  2.43e+06        1    3.74e+01    1.30e+02
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [129.960259 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1442                     1442
+Parameters                               8652                     8652
+Residual blocks                         13031                    13031
+Residuals                               27451                    27451
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1442
+
+Cost:
+Initial                          3.518559e-07
+Final                            1.611417e-07
+Change                           1.907142e-07
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.007102
+
+  Residual only evaluation           0.035093 (5)
+  Jacobian & residual evaluation     1.152957 (6)
+  Linear solver                    128.744900 (5)
+Minimizer                          129.952461
+
+Postprocessor                        0.000433
+Total                              129.960009
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000207 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [130.059875 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 4 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000239 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002362 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.023326
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.018721 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  2.442883e-07    0.00e+00    2.49e-06   0.00e+00   0.00e+00  1.00e+04        0    1.32e-01    1.39e-01
+   1  1.351869e-07    1.09e-07    1.93e-07   1.79e+00   1.01e+00  3.00e+04        1    3.23e+01    3.24e+01
+   2  1.344760e-07    7.11e-10    2.56e-08   1.98e-01   1.04e+00  9.00e+04        1    3.34e+01    6.59e+01
+   3  1.344573e-07    1.86e-11    8.31e-09   3.61e-02   1.26e+00  2.70e+05        1    3.63e+01    1.02e+02
+   4  1.344548e-07    2.55e-12    4.00e-09   1.38e-02   1.44e+00  8.10e+05        1    3.85e+01    1.41e+02
+   5  1.344542e-07    5.69e-13    1.95e-09   6.35e-03   1.50e+00  2.43e+06        1    3.69e+01    1.78e+02
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [177.536822 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1441                     1441
+Parameters                               8646                     8646
+Residual blocks                         13030                    13030
+Residuals                               27440                    27440
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1441
+
+Cost:
+Initial                          2.442883e-07
+Final                            1.344542e-07
+Change                           1.098341e-07
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.006720
+
+  Residual only evaluation           0.034715 (5)
+  Jacobian & residual evaluation     1.131851 (6)
+  Linear solver                    176.348562 (5)
+Minimizer                          177.529323
+
+Postprocessor                        0.000504
+Total                              177.536562
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000210 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [177.723548 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 5 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000228 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002299 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.023346
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.010975 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  1.897202e-07    0.00e+00    2.32e-06   0.00e+00   0.00e+00  1.00e+04        0    1.43e-01    1.49e-01
