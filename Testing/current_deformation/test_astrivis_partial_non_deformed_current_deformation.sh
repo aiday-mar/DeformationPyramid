@@ -1,5 +1,5 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
@@ -30,12 +30,12 @@ if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
     confidence_threshold_name=0.01
 else
-	confidence_threshold=0.01
-    confidence_threshold_name=1e-02
+	confidence_threshold=0.00001
+    confidence_threshold_name=1e-05
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('167')
+model_numbers=('002')
 
 one_model=True
 # one_model=False
@@ -46,7 +46,7 @@ if [ "$one_model" == "False" ] ; then
 fi
 
 if [ "$one_model" == "True" ] ; then
-	filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model.txt
+	filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model_${model_numbers[0]}.txt
 	folder_name=output_partial_non_deformed_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
