@@ -32,6 +32,9 @@ preprocessing_normal='none'
 
 model_search = re.compile(r'model (\d+)')
 
+knn_matching = 'True'
+# knn_matching = 'False'
+
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
         deformed = True
@@ -40,9 +43,9 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
 
     epoch = str(weights[feature_extractor][training_data_type])
     if custom is False:
-        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + ".txt"
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_knn_" + knn_matching + ".txt"
     else:
-        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + ".txt"
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + "_knn_" + knn_matching + ".txt"
     
     file = open(file_path, 'r')
     lines = file.readlines()
@@ -139,7 +142,7 @@ for data_type in data_types:
     title = title.title()
     plt.title(title, wrap=True)
     if with_custom is False:
-        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_rmse.png')
+        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_rmse.png')
     else:
-        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + ' _rmse_custom.png')
+        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + '_rmse.png')
  
