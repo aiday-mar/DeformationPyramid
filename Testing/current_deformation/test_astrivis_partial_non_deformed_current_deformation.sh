@@ -1,15 +1,15 @@
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
-# knn_matching=True
-knn_matching=False
+knn_matching=True
+# knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -27,18 +27,18 @@ fi
 
 # further decreasing the confidence threshold
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.001
-    confidence_threshold_name=0.001
+	confidence_threshold=0.1
+    confidence_threshold_name=0.1
 else
-	confidence_threshold=0.001
-    confidence_threshold_name=1e-03
+	confidence_threshold=0.000001
+    confidence_threshold_name=1e-06
 fi
 
-# model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('167')
+model_numbers=('002' '042' '085' '126' '167' '207')
+# model_numbers=('167')
 
-one_model=True
-# one_model=False
+# one_model=True
+one_model=False
 
 if [ "$one_model" == "False" ] ; then
 	filename=Testing/current_deformation/test_astrivis_partial_non_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt

@@ -8,8 +8,8 @@ training_data=full_deformed
 # training_data=partial_deformed
 # training_data=pretrained
 
-# knn_matching=True
-knn_matching=False
+knn_matching=True
+# knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -26,15 +26,11 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	# confidence_threshold=0.1
-    # confidence_threshold_name=0.1
-    confidence_threshold=0.01
-	confidence_threshold_name=0.01
+	confidence_threshold=0.1
+    confidence_threshold_name=0.1
 else
-    confidence_threshold=0.01
-	confidence_threshold_name=1e-02
-	# confidence_threshold=0.000001
-    # confidence_threshold_name=1e-06
+	confidence_threshold=0.000001
+    confidence_threshold_name=1e-06
 fi
 
 model_numbers=('002' '042' '085' '126' '167' '207')
