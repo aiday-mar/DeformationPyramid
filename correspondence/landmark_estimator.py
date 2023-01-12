@@ -414,6 +414,7 @@ class Landmark_Model():
                 inlier_conf = None
                 vec_6d = data['vec_6d'][0]
 
+            print('vec6d.shape : ', vec_6d.shape)
             ldmk_s, ldmk_t = vec_6d[:, :3], vec_6d[:, 3:]
             print('ldmk_s.shape : ', ldmk_s.shape)
             print('ldmk_t.shape : ', ldmk_t.shape)
