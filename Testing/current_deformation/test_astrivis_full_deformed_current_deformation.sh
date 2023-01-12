@@ -29,11 +29,14 @@ fi
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.1
+	confidence_threshold_name=0.1
 else
 	if [ "$training_data" == "partial_deformed" ]  && [ "$type" == "kpfcn" ] ; then
 		confidence_threshold=0.00001
+		confidence_threshold_name=1e-05
 	else
 		confidence_threshold=0.000001
+		confidence_threshold_name=1e-06
 	fi
 fi
 
@@ -44,13 +47,13 @@ model_numbers=('002' '042' '085' '126' '167' '207')
 one_model=False
 
 if [ "$one_model" == "False" ] ; then
-	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}.txt
-	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
+	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
+	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
 if [ "$one_model" == "True" ] ; then
-	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_one_model.txt
-	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}
+	filename=Testing/current_deformation/test_astrivis_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model.txt
+	folder_name=output_full_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
 fi
 
 rm ${filename}
