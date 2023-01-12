@@ -40,14 +40,14 @@ confidence_thresholds = {
         'kpfcn_pretrained' : '0.1',
         'kpfcn_full_deformed' : '1e-06',
         'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-05',
+        'kpfcn_partial_deformed' : '1e-04',
         'fcgf_partial_deformed' : '1e-06'
     },
     'full_non_deformed' : {
         'kpfcn_pretrained' : '0.1',
         'kpfcn_full_deformed' : '1e-06',
         'fcgf_full_deformed' : '1e-06',
-        'kpfcn_partial_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-04',
         'fcgf_partial_deformed' : '1e-06'  
     },
     'partial_deformed' : {
