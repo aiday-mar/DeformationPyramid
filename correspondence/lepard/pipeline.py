@@ -74,7 +74,7 @@ class Pipeline(nn.Module):
             ldmk_t = ldmk_t[None, :]
             print('ldmk_s.shape : ', ldmk_s.shape)
             print('ldmk_t.shape : ', ldmk_t.shape)
-            vec_6d = torch.cat((ldmk_s, ldmk_t), 1)
+            vec_6d = torch.cat((ldmk_s, ldmk_t), 0)
             data['vec_6d'].append(vec_6d)
             if self.timers: self.timers.toc('match feature coarse')
 
