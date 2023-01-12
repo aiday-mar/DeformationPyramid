@@ -47,7 +47,7 @@ class Pipeline(nn.Module):
 
             if self.timers: self.timers.toc('match feature coarse')
 
-        elif knn_matching is True:
+        else:
 
             if self.timers: self.timers.tic('coarse feature transformer')
             src_feats_i, tgt_feats_i, src_pe_i, tgt_pe_i = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, feature_extractor = self.feature_extractor, timers=timers)

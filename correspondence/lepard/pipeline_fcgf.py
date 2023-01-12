@@ -45,8 +45,8 @@ class PipelineFCGF(nn.Module):
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
 
             if self.timers: self.timers.toc('match feature coarse')
-            
-        elif knn_matching is True:
+
+        else:
 
             if self.timers: self.timers.tic('coarse feature transformer')
             src_feats_i, tgt_feats_i, src_pe_i, tgt_pe_i = self.coarse_transformer(src_feats, tgt_feats, s_pcd, t_pcd, src_mask, tgt_mask, data, preprocessing = preprocessing, confidence_threshold = confidence_threshold, feature_extractor = self.feature_extractor, timers=timers)
@@ -60,11 +60,21 @@ class PipelineFCGF(nn.Module):
             src_indices = np.arange(n_src_coarse)
             src_indices = np.expand_dims(src_indices, axis=1)
             src_indices = torch.tensor(src_indices).to('cuda:0')
-            coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
+            # coarse_match_pred = torch.tensor(coarse_match_pred).to('cuda:0')
             coarse_match_pred = torch.cat((src_indices, coarse_match_pred), 1)
             coarse_match_pred = coarse_match_pred[None, :]
             data.update({'conf_matrix_pred': conf_matrix_pred, 'coarse_match_pred': coarse_match_pred })
-        
+
+            data['vec_6d'] = []
+            ldmk_s = s_pcd
+            ldmk_t_indices = coarse_match_pred[0][:, 1]
+            print('ldmk_t_indices : ', ldmk_t_indices)
+            ldmk_t = t_pcd[0][ldmk_t_indices]
+            ldmk_t = ldmk_t[None, :]
+            print('ldmk_s.shape : ', ldmk_s.shape)
+            print('ldmk_t.shape : ', ldmk_t.shape)
+            vec_6d = torch.cat((ldmk_s, ldmk_t), 1)
+            data['vec_6d'].append(vec_6d)
             if self.timers: self.timers.toc('match feature coarse')
 
         if self.timers: self.timers.tic('procrustes_layer')
