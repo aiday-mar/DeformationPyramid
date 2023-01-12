@@ -35,17 +35,46 @@ model_search = re.compile(r'model (\d+)')
 # knn_matching = 'True'
 knn_matching = 'False'
 
+confidence_thresholds = {
+    'full_deformed' : {
+        'pretrained' : '0.1',
+        'other' : '1e-06'
+    },
+    'full_non_deformed' : {
+        'pretrained' : '0.1',
+        'other' : '1e-06'
+    },
+    'partial_deformed' : {
+        'pretrained' : None, 
+        'other' : None
+    },
+    'partial_non_deformed' : {
+        'pretrained' : None,
+        'other' : None
+    },
+}
+
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
         deformed = True
     else:
         deformed = False
 
+    if training_data_type == 'pretrained':
+        conf_type='pretrained'
+    else:
+        conf_type='other'
+
+    if confidence_thresholds[data_type][conf_type] is not None:
+        conf_text = '_conf_' + confidence_thresholds[data_type][conf_type]
+    else:
+        conf_text = ''
+
     epoch = str(weights[feature_extractor][training_data_type])
     if custom is False:
-        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_knn_" + knn_matching + ".txt"
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_knn_" + knn_matching + conf_text + ".txt"
     else:
-        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + "_knn_" + knn_matching + ".txt"
+        file_path = "Testing/current_deformation/test_astrivis_" + data_type + "_current_deformation_pre_" + preprocessing_normal + "_" + feature_extractor + "_td_" + training_data_type + "_e_" + epoch + "_custom_adm_" + str(adm) + "_knn_" + knn_matching + conf_text + ".txt"
     
     file = open(file_path, 'r')
     lines = file.readlines()
