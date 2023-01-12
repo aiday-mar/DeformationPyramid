@@ -37,20 +37,32 @@ knn_matching = 'False'
 
 confidence_thresholds = {
     'full_deformed' : {
-        'pretrained' : '0.1',
-        'other' : '1e-06'
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-05',
+        'fcgf_partial_deformed' : '1e-06'
     },
     'full_non_deformed' : {
-        'pretrained' : '0.1',
-        'other' : '1e-06'
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-06',
+        'fcgf_partial_deformed' : '1e-06'  
     },
     'partial_deformed' : {
-        'pretrained' : '0.1', 
-        'other' : '1e-06'
+        'kpfcn_pretrained' : '0.1', 
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-04',
+        'fcgf_partial_deformed' : '1e-06'
     },
     'partial_non_deformed' : {
-        'pretrained' : '0.1',
-        'other' : '1e-06'
+        'kpfcn_pretrained' : '0.1',
+        'kpfcn_full_deformed' : '1e-06',
+        'fcgf_full_deformed' : '1e-06',
+        'kpfcn_partial_deformed' : '1e-04',
+        'fcgf_partial_deformed' : '1e-06'
     },
 }
 
@@ -60,10 +72,7 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
     else:
         deformed = False
 
-    if training_data_type == 'pretrained':
-        conf_type='pretrained'
-    else:
-        conf_type='other'
+    conf_type = feature_extractor + '_' + training_data_type
 
     if confidence_thresholds[data_type][conf_type] is not None:
         conf_text = '_conf_' + confidence_thresholds[data_type][conf_type]
@@ -175,10 +184,7 @@ for data_type in data_types:
     title = title.title()
     plt.title(title, wrap=True)
 
-    if confidence_thresholds[data_type]['pretrained'] is not None and confidence_thresholds[data_type]['other'] is not None:
-        conf_text = '_conf_' + confidence_thresholds[data_type]['pretrained'] + '_' + confidence_thresholds[data_type]['other']
-    else:
-        conf_text = ''
+    conf_text = '_conf_' + confidence_thresholds[data_type]['kpfcn_pretrained'] + '_' + confidence_thresholds[data_type]['kpfcn_full_deformed'] + '_' + confidence_thresholds[data_type]['fcgf_full_deformed'] + '_' + confidence_thresholds[data_type]['kpfcn_partial_deformed'] + '_' + confidence_thresholds[data_type]['fcgf_partial_deformed']
 
     if with_custom is False:
         plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching  + conf_text + '_rmse.png')
