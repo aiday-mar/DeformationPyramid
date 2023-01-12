@@ -6,7 +6,7 @@ data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial
 
 weights = {
     'fcgf' : {
-        # 'full_deformed' : 10, 
+        'full_deformed' : 10, 
         'partial_deformed' : 5
     }, 
     'kpfcn' : {
@@ -19,8 +19,8 @@ weights = {
 number = 0
 model_numbers = ['002', '042', '085', '126', '167', '207']
 adm = 2.0
-# with_custom = False
-with_custom = True
+with_custom = False
+# with_custom = True
 colors = ['blue', 'orange', 'green', 'red', 'magenta']
 
 preprocessing_custom='none'
