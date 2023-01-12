@@ -27,10 +27,10 @@ fi
 
 if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
-	confidence_threshold_name=0.01
+	confidence_threshold_name=0.02
 else
-	confidence_threshold=0.001
-	confidence_threshold_name=1e-03
+	confidence_threshold=0.01
+	confidence_threshold_name=1e-02
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
