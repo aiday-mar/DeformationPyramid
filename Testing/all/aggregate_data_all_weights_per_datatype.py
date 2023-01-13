@@ -2,26 +2,51 @@
 import re
 import matplotlib.pyplot as plt
 from os import path
+import numpy as np
+import copy
 
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
+model_numbers = ['002', '042', '085', '126', '167', '207']
+
+barWidth = 0.15
+barWidthPlot = 0.15
+br1 = np.array([0, 1, 2, 3, 4, 5])
+br2 = np.array([x + barWidth for x in br1])
+br3 = np.array([x + barWidth for x in br2])
+br4 = np.array([x + barWidth for x in br3])
+br5 = np.array([x + barWidth for x in br4])
 
 weights = {
     'fcgf' : {
-        'full_deformed' : 10, 
-        'partial_deformed' : 5
+        'full_deformed' : {
+            'epoch' : 10,
+            'bar' :  br1
+        },
+        'partial_deformed' : {
+            'epoch' : 5, 
+            'bar' : br2
+        }
     }, 
     'kpfcn' : {
-        'full_deformed' : 10, 
-        'partial_deformed' : 5,
-        'pretrained' : 'null'
+        'full_deformed' : {
+            'epoch' : 10,
+            'bar' : br3
+        }, 
+        'partial_deformed' : {
+            'epoch' : 5,
+            'bar' : br4
+        },
+        'pretrained' : {
+            'epoch' : 'null',
+            'bar' : br5
+        }
     }
 }
 
-# knn_matching = 'False'
-knn_matching = 'True'
+knn_matching = 'False'
+# knn_matching = 'True'
 
 number = 0
-model_numbers = ['002', '042', '085', '126', '167', '207']
 adm = 2.0
 with_custom = False
 # with_custom = True
@@ -39,13 +64,14 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
     else:
         deformed = False
 
-    epoch = str(weights[feature_extractor][training_data_type])
+    epoch = str(weights[feature_extractor][training_data_type]['epoch'])
     if custom is False:
         file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_knn_' + knn_matching + '.txt'
     else:
         file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '_knn_' + knn_matching + '.txt'
 
     if not path.exists(file_path):
+        print('Does not exist, file_path : ', file_path)
         return 'Does not exist'
     
     file = open(file_path, 'r')
@@ -90,18 +116,26 @@ for data_type in data_types:
     number += 1
     plt.clf()
     f = plt.figure(number)
+    # fig, ax = plt.subplots()
+
     legend = []
 
+    print('\n')
+    print('data_type : ', data_type)
     if with_custom is False:
         color_idx = 0
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
 
-                epoch = str(weights[feature_extractor][training_data_type])
+                epoch = str(weights[feature_extractor][training_data_type]['epoch'])
+                bar = weights[feature_extractor][training_data_type]['bar']
                 training_data_type_mod = training_data_type.replace('_', ' ')
                 weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
                 legend.append(weights_legend)
                 data = get_data(data_type, feature_extractor, training_data_type)
+
+                print('feature_extractor : ', feature_extractor)
+                print('training_data_type : ', training_data_type)
 
                 if data == 'Does not exist':
                     break
@@ -110,7 +144,8 @@ for data_type in data_types:
                 for model_number in data:
                     rmse.append(float(data[model_number]['RMSE']))
                 
-                plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
+                rmse = np.array(rmse)
+                plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend)              
                 color_idx += 1
     else:
         color_idx = 0
@@ -143,7 +178,8 @@ for data_type in data_types:
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
-    plt.legend(loc='upper right') # legend
+    plt.xticks([r + barWidth for r in range(len(model_numbers))], model_numbers)
+    plt.legend(loc='upper right')
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
