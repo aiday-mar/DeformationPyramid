@@ -1,7 +1,7 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
