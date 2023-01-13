@@ -1,0 +1,504 @@
+model 002
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([156, 528])
+F1.shape : torch.Size([163, 528])
+ldmk_t_indices :  tensor([ 66,  66,  66,  14,  25,  19,  51,  53,  63, 152,  15,  27,  20, 162,
+        124,  33,  52,  27,  51, 149,   4,  61,  58,  51,  33,  19,  11, 134,
+         24,  51,  33,  25,  52, 159,  70,  33,  54,  29,  15,  59,  29,  59,
+         33,  24,  19,  57, 159,  70,  53,  19, 140,  52,  20, 134,  40,  50,
+        146,  71, 146, 140,  44,  52,  12,  19,  44,   2,  51,  11,  94,  68,
+        130, 112,  44, 118, 140, 131, 118, 114,  90,  31, 130, 140, 152,  54,
+        118,  54,  12,   9, 124,  91,  19,  56, 162, 154,  32, 102,  27, 118,
+          3, 114,  27, 104,  93,  91,  19, 102,  12,  31,  21,  84,  94,  53,
+        142,  56,  96,  93, 104, 103,  19, 109, 161,  37, 131, 122, 142,  68,
+         65,   6,  94, 140, 122, 140, 122, 142, 117,  94, 100, 145,  53, 146,
+         92,  31, 146, 130,  94,   6, 152,  90,   6, 140, 146,  70, 146,   7,
+          1,  30], device='cuda:0')
+ldmk_s.shape :  torch.Size([156, 3])
+ldmk_t.shape :  torch.Size([156, 3])
+vec_6d.shape :  torch.Size([156, 6])
+ind.shape :  torch.Size([1, 156, 2])
+bi :  0
+si.shape :  torch.Size([156])
+ti.shape :  torch.Size([156])
+s_pos.shape :  torch.Size([156, 3])
+t_pos.shape :  torch.Size([156, 3])
+ind.shape :  torch.Size([1, 156, 2])
+bi :  0
+si.shape :  torch.Size([156])
+ti.shape :  torch.Size([156])
+s_pos.shape :  torch.Size([156, 3])
+t_pos.shape :  torch.Size([156, 3])
+number of true landmarks correspondences returned from KNN matching :  38  out of  156
+fraction of true landmark correspondences returned from KNN matching :  0.24358974358974358
+vec6d.shape :  torch.Size([156, 6])
+ldmk_s.shape :  torch.Size([156, 3])
+ldmk_t.shape :  torch.Size([156, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([156, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 24.222 
+full-AccS: 0.051 
+full-AccR: 0.661 
+full-outlier: 96.270 
+vis-epe: 24.222 
+vis-AccS: 0.051 
+vis-AccR: 0.661 
+vis-outlier: 96.270 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.53486491 -0.60002104  0.59489014]
+ [-0.74890142  0.66266287 -0.00495792]
+ [-0.39123675 -0.44816589 -0.80379173]]
+Actual translation :  [0.89692495 0.43777249 1.20478005]
+Predicted rotation :  [[-0.73483853 -0.49240112  0.46642662]
+ [-0.58597161  0.80721406 -0.07101089]
+ [-0.34154026 -0.32549428 -0.88170508]]
+Predicted translation :  [-0.04394234  0.02914118  0.05753211]
+Relative Rotation Error :  0.26863797642430737
+Relative Translation Error :  1.5389569944895007
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0919194248483136
+Strict IR :  0.020684977958630044
+Relaxed IR :  0.2448287555103425
+model 042
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([123, 528])
+F1.shape : torch.Size([130, 528])
+ldmk_t_indices :  tensor([ 12,  14,  79,  47, 119,  87,  87,  36,  74, 119, 122, 109,  84,  87,
+        119, 113, 106,  29,  84, 102,  94,  30,  46,  54,  35,  54,  24,  64,
+         46,  23,  40,  43,  94,  40,  53,  64,  66,  67, 115,  45,  10, 122,
+         26,  61,   7,  38,  53,  57,  57,  32,  54,  54, 102,  57, 125,  50,
+        125,  77,  30,  94,  72,  12,  58,  28,  53,  72,  67, 121,  31, 122,
+        115,  64,  14,  40,  61,  86,  86,   7,  44, 126,   7,  14,   1,  46,
+         14,  14,  77,  79,  28,  64, 100,  92,   9,   8,  77, 113, 117,  35,
+         23,  35,  67,  95,  57, 120,  45, 106,  87, 117,  10,  32,  71,  24,
+         62,  28,  79, 120,  87,  57, 122,  45,  12,   5,  35],
+       device='cuda:0')
+ldmk_s.shape :  torch.Size([123, 3])
+ldmk_t.shape :  torch.Size([123, 3])
+vec_6d.shape :  torch.Size([123, 6])
+ind.shape :  torch.Size([1, 123, 2])
+bi :  0
+si.shape :  torch.Size([123])
+ti.shape :  torch.Size([123])
+s_pos.shape :  torch.Size([123, 3])
+t_pos.shape :  torch.Size([123, 3])
+ind.shape :  torch.Size([1, 123, 2])
+bi :  0
+si.shape :  torch.Size([123])
+ti.shape :  torch.Size([123])
+s_pos.shape :  torch.Size([123, 3])
+t_pos.shape :  torch.Size([123, 3])
+number of true landmarks correspondences returned from KNN matching :  38  out of  123
+fraction of true landmark correspondences returned from KNN matching :  0.3089430894308943
+vec6d.shape :  torch.Size([123, 6])
+ldmk_s.shape :  torch.Size([123, 3])
+ldmk_t.shape :  torch.Size([123, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([123, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 15.121 
+full-AccS: 0.061 
+full-AccR: 2.745 
+full-outlier: 92.967 
+vis-epe: 15.121 
+vis-AccS: 0.061 
+vis-AccR: 2.745 
+vis-outlier: 92.967 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.40066553 -0.11995433 -0.90833809]
+ [ 0.24675989  0.94063308 -0.23306431]
+ [ 0.88236993 -0.31752224 -0.34727933]]
+Actual translation :  [1.20244689 0.33445861 0.35577331]
+Predicted rotation :  [[-0.30741838 -0.17768438 -0.93483821]
+ [ 0.25283302  0.93184809 -0.2602593 ]
+ [ 0.91737112 -0.31636639 -0.24154288]]
+Predicted translation :  [0.01349127 0.00485021 0.01125539]
+Relative Rotation Error :  0.11405586969574277
+Relative Translation Error :  1.2809956106496478
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.049728657439037524
+Strict IR :  0.11344588849751001
+Relaxed IR :  0.6136280821085874
+model 085
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([88, 528])
+F1.shape : torch.Size([89, 528])
+ldmk_t_indices :  tensor([84,  9, 42,  9, 57, 69,  9,  0,  7,  7, 69, 66, 82, 77, 25,  9,  9, 21,
+        30,  5, 62,  9,  2, 86, 77,  9, 77, 48, 14, 67, 21, 74,  5, 53, 19,  5,
+         9, 39,  1, 17, 12, 39, 30, 25, 49, 25, 49, 53, 77, 50, 33, 30, 77, 14,
+        50,  3, 65, 33, 30, 77, 75, 20, 21, 70, 21, 70, 39,  9, 48, 82,  0, 19,
+        27, 19, 75, 37, 81, 48,  0,  9,  4, 37, 86, 19, 34,  0,  1,  0],
+       device='cuda:0')
+ldmk_s.shape :  torch.Size([88, 3])
+ldmk_t.shape :  torch.Size([88, 3])
+vec_6d.shape :  torch.Size([88, 6])
+ind.shape :  torch.Size([1, 88, 2])
+bi :  0
+si.shape :  torch.Size([88])
+ti.shape :  torch.Size([88])
+s_pos.shape :  torch.Size([88, 3])
+t_pos.shape :  torch.Size([88, 3])
+ind.shape :  torch.Size([1, 88, 2])
+bi :  0
+si.shape :  torch.Size([88])
+ti.shape :  torch.Size([88])
+s_pos.shape :  torch.Size([88, 3])
+t_pos.shape :  torch.Size([88, 3])
+number of true landmarks correspondences returned from KNN matching :  30  out of  88
+fraction of true landmark correspondences returned from KNN matching :  0.3409090909090909
+vec6d.shape :  torch.Size([88, 6])
+ldmk_s.shape :  torch.Size([88, 3])
+ldmk_t.shape :  torch.Size([88, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([88, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 19.522 
+full-AccS: 0.000 
+full-AccR: 1.337 
+full-outlier: 97.861 
+vis-epe: 19.522 
+vis-AccS: 0.000 
+vis-AccR: 1.337 
+vis-outlier: 97.861 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.76902396  0.10084417  0.63121518]
+ [-0.46095699 -0.59664159  0.65691511]
+ [ 0.44285529 -0.79614651 -0.41234685]]
+Actual translation :  [-0.53063257  0.48585253  1.09298804]
+Predicted rotation :  [[ 0.55444743  0.6058209   0.57058653]
+ [-0.55627042 -0.24017113  0.7955383 ]
+ [ 0.61899214 -0.7584845   0.20383803]]
+Predicted translation :  [-0.02474597 -0.01005752 -0.03670525]
+Relative Rotation Error :  0.6730159678976738
+Relative Translation Error :  1.3334372728584167
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.10945835043381619
+Strict IR :  0.062388591800356503
+Relaxed IR :  0.47593582887700536
+model 126
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([142, 528])
+F1.shape : torch.Size([137, 528])
+ldmk_t_indices :  tensor([113, 113,  91, 113, 113,  23,  59,  18, 131, 131, 109, 129,  37,  64,
+         81,  28,  31, 129, 110,  28, 125,  91,  23,  30,  40,  59, 101, 110,
+         40,  79,  64, 128,  30, 123, 117, 119, 128,   6, 113,  73, 115,  17,
+         43, 128,  85,  51,  49, 126, 133, 122,  51, 123,  30, 113,  54,  68,
+         49,  59,  91,  60,  63, 103,  18,  63,  60,  53,  61,  69,  84,  85,
+        110,  79,  96,  60,  73,  61,  95,  96,  99,  99,  81,   3,  47, 108,
+         39,  75,  95,  79,  72,  95,  72,  49,  32,  95,  88,  73,  79, 131,
+         63, 103,  53,  26, 125,  81,  50,  34,  81,  47, 104,  52,  47,  75,
+         26,  47,  79, 101, 106,  49, 102, 107,  97,  47,   1, 127,  82, 126,
+        128,  67,  75,  51, 103,  54,  51,  51, 126, 118, 128, 113,  62,  49,
+        113,  33], device='cuda:0')
+ldmk_s.shape :  torch.Size([142, 3])
+ldmk_t.shape :  torch.Size([142, 3])
+vec_6d.shape :  torch.Size([142, 6])
+ind.shape :  torch.Size([1, 142, 2])
+bi :  0
+si.shape :  torch.Size([142])
+ti.shape :  torch.Size([142])
+s_pos.shape :  torch.Size([142, 3])
+t_pos.shape :  torch.Size([142, 3])
+ind.shape :  torch.Size([1, 142, 2])
+bi :  0
+si.shape :  torch.Size([142])
+ti.shape :  torch.Size([142])
+s_pos.shape :  torch.Size([142, 3])
+t_pos.shape :  torch.Size([142, 3])
+number of true landmarks correspondences returned from KNN matching :  44  out of  142
+fraction of true landmark correspondences returned from KNN matching :  0.30985915492957744
+vec6d.shape :  torch.Size([142, 6])
+ldmk_s.shape :  torch.Size([142, 3])
+ldmk_t.shape :  torch.Size([142, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([142, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 21.581 
+full-AccS: 0.056 
+full-AccR: 0.714 
+full-outlier: 95.241 
+vis-epe: 21.581 
+vis-AccS: 0.056 
+vis-AccR: 0.714 
+vis-outlier: 95.241 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.63814927 -0.15503533 -0.7541416 ]
+ [-0.61475232 -0.69230752 -0.37787548]
+ [-0.46351385  0.70475126 -0.53710387]]
+Actual translation :  [0.96696898 0.79531393 0.98999611]
+Predicted rotation :  [[ 0.59128813 -0.16347114 -0.78971864]
+ [-0.59899135 -0.74469985 -0.29433206]
+ [-0.53998855  0.64706971 -0.53824999]]
+Predicted translation :  [ 0.00178364 -0.005562   -0.0114098 ]
+Relative Rotation Error :  0.10654641925122045
+Relative Translation Error :  1.6049295351770188
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.03722208407369758
+Strict IR :  0.09322508398656215
+Relaxed IR :  0.6353583426651735
+model 167
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([64, 528])
+F1.shape : torch.Size([60, 528])
+ldmk_t_indices :  tensor([27,  8, 59, 12, 14, 44,  6, 10, 27,  2, 12, 59, 18, 27, 54, 56, 48, 14,
+        12, 12, 10, 27, 48, 10,  8, 46, 12, 53, 49, 40, 27, 12, 12, 40,  8, 46,
+        12, 33,  8, 12, 40, 12, 30, 46, 12, 53, 54, 45, 51, 18, 21, 21, 48, 12,
+        14, 16, 21,  8, 14, 54, 56, 27, 53, 21], device='cuda:0')
+ldmk_s.shape :  torch.Size([64, 3])
+ldmk_t.shape :  torch.Size([64, 3])
+vec_6d.shape :  torch.Size([64, 6])
+ind.shape :  torch.Size([1, 64, 2])
+bi :  0
+si.shape :  torch.Size([64])
+ti.shape :  torch.Size([64])
+s_pos.shape :  torch.Size([64, 3])
+t_pos.shape :  torch.Size([64, 3])
+ind.shape :  torch.Size([1, 64, 2])
+bi :  0
+si.shape :  torch.Size([64])
+ti.shape :  torch.Size([64])
+s_pos.shape :  torch.Size([64, 3])
+t_pos.shape :  torch.Size([64, 3])
+number of true landmarks correspondences returned from KNN matching :  18  out of  64
+fraction of true landmark correspondences returned from KNN matching :  0.28125
+vec6d.shape :  torch.Size([64, 6])
+ldmk_s.shape :  torch.Size([64, 3])
+ldmk_t.shape :  torch.Size([64, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([64, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.516 
+full-AccS: 0.156 
+full-AccR: 4.795 
+full-outlier: 39.072 
+vis-epe: 10.516 
+vis-AccS: 0.156 
+vis-AccR: 4.795 
+vis-outlier: 39.072 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[ 0.39671545  0.36679516 -0.8414738 ]
+ [-0.57527497  0.81369012  0.08346918]
+ [ 0.71531501  0.4509653   0.53381151]]
+Actual translation :  [ 0.05762421 -0.46980197  0.32040084]
+Predicted rotation :  [[ 0.97474581 -0.09273519 -0.20315254]
+ [-0.07612419  0.71723898 -0.69265682]
+ [ 0.20994256  0.69062907  0.69206622]]
+Predicted translation :  [ 0.03588758 -0.06012853 -0.00919458]
+Relative Rotation Error :  1.0903927109883658
+Relative Translation Error :  0.5262489371322002
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08102875581034223
+Strict IR :  0.053549190535491904
+Relaxed IR :  0.4178082191780822
+model 207
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+
+
+knn_matching :  True
+coarse_level :  -2
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+F0.shape : torch.Size([70, 528])
+F1.shape : torch.Size([65, 528])
+ldmk_t_indices :  tensor([53, 44, 44, 44, 16, 22, 12, 29,  4,  4, 59, 29,  4, 16, 21, 16, 35, 18,
+        53, 43, 22, 19,  4, 47, 43, 50, 51, 45, 32, 16, 19, 19, 29, 43, 34, 50,
+        29, 44, 34, 32, 48, 22, 29, 22,  4, 32, 40, 22, 29, 46, 29,  4, 22, 40,
+        43, 47, 16, 29, 53, 46, 16, 51,  4, 52, 48, 40, 53, 51, 53, 43],
+       device='cuda:0')
+ldmk_s.shape :  torch.Size([70, 3])
+ldmk_t.shape :  torch.Size([70, 3])
+vec_6d.shape :  torch.Size([70, 6])
+ind.shape :  torch.Size([1, 70, 2])
+bi :  0
+si.shape :  torch.Size([70])
+ti.shape :  torch.Size([70])
+s_pos.shape :  torch.Size([70, 3])
+t_pos.shape :  torch.Size([70, 3])
+ind.shape :  torch.Size([1, 70, 2])
+bi :  0
+si.shape :  torch.Size([70])
+ti.shape :  torch.Size([70])
+s_pos.shape :  torch.Size([70, 3])
+t_pos.shape :  torch.Size([70, 3])
+number of true landmarks correspondences returned from KNN matching :  15  out of  70
+fraction of true landmark correspondences returned from KNN matching :  0.21428571428571427
+vec6d.shape :  torch.Size([70, 6])
+ldmk_s.shape :  torch.Size([70, 3])
+ldmk_t.shape :  torch.Size([70, 3])
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([70, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 17.550 
+full-AccS: 0.070 
+full-AccR: 1.535 
+full-outlier: 97.802 
+vis-epe: 17.550 
+vis-AccS: 0.070 
+vis-AccR: 1.535 
+vis-outlier: 97.802 
+occ-epe: nan 
+occ-AccS: nan 
+occ-AccR: nan 
+occ-outlier: nan 
+
+Actual rotation :  [[-0.69578084  0.62399956  0.35568745]
+ [ 0.66485052  0.37215059  0.64767101]
+ [ 0.27177713  0.68711606 -0.67380168]]
+Actual translation :  [ 0.44784053 -0.19352481 -0.1776428 ]
+Predicted rotation :  [[-0.6991628   0.70101531 -0.14053208]
+ [ 0.50255626  0.62167043  0.60080206]
+ [ 0.50853611  0.349433   -0.78694856]]
+Predicted translation :  [ 0.03598113 -0.02514284  0.04369024]
+Relative Rotation Error :  0.518557055205074
+Relative Translation Error :  0.4969597247499211
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07987757318567243
+Strict IR :  0.03314724354501047
+Relaxed IR :  0.3342637822749477
