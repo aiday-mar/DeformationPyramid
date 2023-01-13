@@ -43,8 +43,8 @@ weights = {
     }
 }
 
-knn_matching = 'False'
-# knn_matching = 'True'
+# knn_matching = 'False'
+knn_matching = 'True'
 
 number = 0
 adm = 2.0

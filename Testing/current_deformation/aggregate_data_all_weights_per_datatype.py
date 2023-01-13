@@ -240,6 +240,10 @@ for data_type in data_types:
 
                     legend.append(weights_legend)
                     data = get_data(data_type, feature_extractor, training_data_type, custom)
+
+                    if data == 'Does not exist':
+                        break
+
                     rmse = []             
                     for model_number in data:
                         rmse.append(float(data[model_number]['RMSE']))
@@ -263,5 +267,5 @@ for data_type in data_types:
     if with_custom is False:
         plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching  + conf_text + '_rmse.png')
     else:
-        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching  + conf_text + '_rmse.png')
+        plt.savefig('Testing/current_deformation/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching  + conf_text + '_rmse_custom.png')
  
