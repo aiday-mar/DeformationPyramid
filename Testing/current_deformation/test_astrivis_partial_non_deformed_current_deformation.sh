@@ -1,12 +1,12 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 preprocessing=none
 # preprocessing=mutual
 
 # training_data=full_deformed
-training_data=partial_deformed
-# training_data=pretrained
+# training_data=partial_deformed
+training_data=pretrained
 
 knn_matching=True
 # knn_matching=False
@@ -27,8 +27,8 @@ fi
 
 # further decreasing the confidence threshold
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.1
-    confidence_threshold_name=0.1
+	confidence_threshold=0.000001
+    confidence_threshold_name=1e-06
 else
 	confidence_threshold=0.000001
     confidence_threshold_name=1e-06

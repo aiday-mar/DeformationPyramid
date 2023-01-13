@@ -1,11 +1,11 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # training_data=full_deformed
-training_data=partial_deformed
-# training_data=pretrained
+# training_data=partial_deformed
+training_data=pretrained
 
 preprocessing=none
 # preprocessing=mutual
@@ -28,8 +28,8 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.1
-	confidence_threshold_name=0.1
+	confidence_threshold=0.000001
+	confidence_threshold_name=1e-06
 else
 	confidence_threshold=0.000001
 	confidence_threshold_name=1e-06
