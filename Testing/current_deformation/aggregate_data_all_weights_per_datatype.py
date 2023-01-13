@@ -12,28 +12,28 @@ data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial
 if knn_matching == 'False':
     confidence_thresholds = {
         'full_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
             'fcgf_partial_deformed' : '1e-06'
         },
         'full_non_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
             'fcgf_partial_deformed' : '1e-06'  
         },
         'partial_deformed' : {
-            'kpfcn_pretrained' : '0.1', 
+            'kpfcn_pretrained' : '1e-06', 
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-04',
             'fcgf_partial_deformed' : '1e-06'
         },
         'partial_non_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-04',
@@ -43,14 +43,14 @@ if knn_matching == 'False':
 elif knn_matching == 'True':
     confidence_thresholds = {
         'full_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
             'fcgf_partial_deformed' : '1e-06'
         },
         'full_non_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
@@ -58,14 +58,14 @@ elif knn_matching == 'True':
         },
 
         'partial_deformed' : {
-            'kpfcn_pretrained' : '0.1', 
+            'kpfcn_pretrained' : '1e-06', 
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
             'fcgf_partial_deformed' : '1e-06'
         },
         'partial_non_deformed' : {
-            'kpfcn_pretrained' : '0.1',
+            'kpfcn_pretrained' : '1e-06',
             'kpfcn_full_deformed' : '1e-06',
             'fcgf_full_deformed' : '1e-06',
             'kpfcn_partial_deformed' : '1e-06',
@@ -194,7 +194,8 @@ for data_type in data_types:
                 print('feature_extractor : ', feature_extractor)
                 print('training_data_type : ', training_data_type)
                 print('rmse : ', rmse)
-                plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
+                if len(rmse) == 6:
+                    plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
                 color_idx += 1
     else:
         color_idx = 0

@@ -10,8 +10,8 @@ training_data=pretrained
 preprocessing=none
 # preprocessing=mutual
 
-knn_matching=True
-# knn_matching=False
+# knn_matching=True
+knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
