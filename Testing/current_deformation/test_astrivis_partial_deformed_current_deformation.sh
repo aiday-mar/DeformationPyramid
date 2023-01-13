@@ -5,8 +5,8 @@ preprocessing=none
 # preprocessing=mutual
 
 # training_data=full_deformed
-# training_data=partial_deformed
-training_data=pretrained
+training_data=partial_deformed
+# training_data=pretrained
 
 knn_matching=True
 # knn_matching=False
@@ -29,12 +29,12 @@ if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
 	confidence_threshold_name=1e-02
 else
-	confidence_threshold=0.000001
-	confidence_threshold_name=1e-06
+	confidence_threshold=0.0001
+	confidence_threshold_name=1e-04
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
-model_numbers=('042')
+model_numbers=('126')
 
 one_model=True
 # one_model=False
