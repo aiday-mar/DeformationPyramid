@@ -4,9 +4,9 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -16,10 +16,10 @@ fi
 
 if [ "$training_data" == "full_deformed" ] ; then
 	epoch=10
-        confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
+        confidence_threshold_list=(1.0e-08 1.0e-06 1.0e-04 1.0e-02 0.1)
 elif [ "$training_data" == "partial_deformed" ] ; then
 	epoch=5
-        confidence_threshold_list=(1.0e-04 1.0e-03 1.0e-02 1.0e-01)
+        confidence_threshold_list=(1.0e-08 1.0e-06 1.0e-04 1.0e-02 0.1)
 elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
         confidence_threshold_list=(0.01 0.03 0.05 0.07 0.1)
