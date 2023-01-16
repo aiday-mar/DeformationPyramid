@@ -91,6 +91,7 @@ class Pipeline(nn.Module):
         return data
 
     def split_feats(self, geo_feats, data, coarse_level):
+        print('data : ', data)
         coarse_level = coarse_level if coarse_level else self.config['kpfcn_config']['coarse_level']
         coarse_level = int(coarse_level)
         print('coarse_level : ', coarse_level)
@@ -101,7 +102,9 @@ class Pipeline(nn.Module):
         src_ind_coarse_split = data[ 'src_ind_coarse_split']
         tgt_ind_coarse_split = data['tgt_ind_coarse_split']
         src_ind_coarse = data['src_ind_coarse']
+        print('src_ind_coarse.shape : ', src_ind_coarse.shape)
         tgt_ind_coarse = data['tgt_ind_coarse']
+        print('tgt_ind_coarse.shape : ', tgt_ind_coarse.shape)
 
         b_size, src_pts_max = src_mask.shape
         tgt_pts_max = tgt_mask.shape[1]
