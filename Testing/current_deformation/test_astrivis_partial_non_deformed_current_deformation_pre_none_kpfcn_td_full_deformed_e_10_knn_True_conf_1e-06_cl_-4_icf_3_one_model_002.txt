@@ -1,0 +1,21 @@
+model 002
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  -4
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  -4
+coarse_level :  -4
+pts_num_coarse :  tensor([[9380, 9132]], dtype=torch.int32)
+
+
+knn_matching :  True
+index_at_which_to_return_coarse_feats :  3
+block_i :  0
+x.shape :  torch.Size([255, 2048])
+block_i :  1
+x.shape :  torch.Size([255, 1024])
+block_i :  2
+x.shape :  torch.Size([908, 1024])
+block_i :  3
+x.shape :  torch.Size([908, 512])
+coarse_feats.shape :  torch.Size([1, 512, 908])
