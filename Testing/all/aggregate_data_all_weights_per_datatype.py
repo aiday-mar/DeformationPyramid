@@ -152,7 +152,8 @@ for data_type in data_types:
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
                 for custom in [False, True]:
-                    epoch = str(weights[feature_extractor][training_data_type])
+                    epoch = str(weights[feature_extractor][training_data_type]['epoch'])
+                    bar = weights[feature_extractor][training_data_type]['bar']
                     training_data_type_mod = training_data_type.replace('_', ' ')
                     if custom is True:
                         weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch + ' - custom filtering' 
@@ -170,8 +171,9 @@ for data_type in data_types:
                         rmse.append(float(data[model_number]['RMSE']))
                     
                     if custom is False:
-                        plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
+                        plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend) 
                     else:
+                        # plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend) 
                         plt.plot(model_numbers, rmse, color = colors[color_idx], linestyle='dashed', label='_nolegend_')
                 
                 color_idx += 1
