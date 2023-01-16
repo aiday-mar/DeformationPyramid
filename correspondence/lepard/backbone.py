@@ -130,9 +130,11 @@ class KPFCN(nn.Module):
                 print('x.shape : ', x.shape)
                 if block_i == index_at_which_to_return_coarse_feats:
                     coarse_feats = x.transpose(0,1).unsqueeze(0)  #[B, C, N]
+                    print('coarse_feats.shape : ', coarse_feats.shape)
                     coarse_feats = self.coarse_out(coarse_feats)  #[B, C, N]
+                    print('coarse_feats.shape : ', coarse_feats.shape)
                     coarse_feats = coarse_feats.transpose(1,2).squeeze(0)
-
+                    print('coarse_feats.shape : ', coarse_feats.shape)
                     return coarse_feats #[N,C2]
 
         # elif phase == "fine":
