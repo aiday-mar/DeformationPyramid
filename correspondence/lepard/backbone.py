@@ -62,7 +62,6 @@ class KPFCN(nn.Module):
         #####################
         # bottleneck output & input layer
         dim = in_dim//2
-        dim = 512
         self.coarse_out = nn.Conv1d(dim, config.coarse_feature_dim,  kernel_size=1, bias=True)
         coarse_in_dim = config.coarse_feature_dim
         self.coarse_in = nn.Conv1d(coarse_in_dim, in_dim//2,  kernel_size=1, bias=True)
