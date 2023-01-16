@@ -123,6 +123,7 @@ class KPFCN(nn.Module):
                 x = block_op(x, batch)  # [N,C]
 
             for block_i, block_op in enumerate(self.decoder_blocks):
+                print('block_i : ', block_i)
                 if block_i in self.decoder_concats:
                     x = torch.cat([x, self.skip_x.pop()], dim=1)
                 x = block_op(x, batch)
