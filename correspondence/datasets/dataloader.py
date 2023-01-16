@@ -715,6 +715,7 @@ def get_datasets(config):
 def get_dataloader(dataset, config,  shuffle=True, neighborhood_limits=None, output_folder = None, base = None, coarse_level = None, feature_extractor = 'kpfcn'):
 
     print('feature extractor inside of get_dataloader : ', feature_extractor)
+    print('coarse_level : ', coarse_level)
     collate_fn = collate_fn_4dmatch
 
     if neighborhood_limits is None:

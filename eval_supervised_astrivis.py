@@ -124,10 +124,11 @@ if __name__ == "__main__":
     
     test_set = _AstrivisCustomSingle(config, args.s, args.t, args.matches, args.source_trans, args.target_trans, args.base, source_feats = args.s_feats, target_feats = args.t_feats)
     
+    coarse_level = int(args.coarse_level) if args.coarse_level else None
     if args.print_keypoints:
-        test_loader, _ = get_dataloader(test_set, config, shuffle=False, output_folder=args.intermediate_output_folder, base = args.base, feature_extractor = config.feature_extractor)
+        test_loader, _ = get_dataloader(test_set, config, shuffle=False, coarse_level = coarse_level, output_folder=args.intermediate_output_folder, base = args.base, feature_extractor = config.feature_extractor)
     else:
-        test_loader, _ = get_dataloader(test_set, config, shuffle=False, feature_extractor = config.feature_extractor)
+        test_loader, _ = get_dataloader(test_set, config, shuffle=False, coarse_level = coarse_level, feature_extractor = config.feature_extractor)
         
     num_iter =  len(test_set)
     c_loader_iter = test_loader.__iter__()
