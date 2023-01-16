@@ -4,8 +4,8 @@ type=kpfcn
 preprocessing=none
 # preprocessing=mutual
 
-# training_data=full_deformed
-training_data=partial_deformed
+training_data=full_deformed
+# training_data=partial_deformed
 # training_data=pretrained
 
 knn_matching=True
@@ -39,21 +39,6 @@ model_numbers=('126')
 one_model=True
 # one_model=False
 
-if [ "$one_model" == "False" ] ; then
-	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
-	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
-fi
-
-if [ "$one_model" == "True" ] ; then
-	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_one_model_${model_numbers[0]}.txt
-	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
-fi
-
-rm ${filename}
-touch ${filename}
-
-base='/home/aiday.kyzy/dataset/Synthetic/PartialDeformedData/TestingData/'
-
 if [ $knn_matching == "False" ]; then
 	coarse_level=-2
 	index_coarse_feats=1
@@ -61,6 +46,21 @@ else
 	coarse_level=-3
 	index_coarse_feats=2
 fi
+
+if [ "$one_model" == "False" ] ; then
+	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}.txt
+	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}
+fi
+
+if [ "$one_model" == "True" ] ; then
+	filename=Testing/current_deformation/test_astrivis_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_cl_${coarse_level}_icf_${index_coarse_feats}_one_model_${model_numbers[0]}.txt
+	folder_name=output_partial_deformed_current_deformation_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_knn_${knn_matching}_conf_${confidence_threshold_name}_cl_${coarse_level}_icf_${index_coarse_feats}
+fi
+
+rm ${filename}
+touch ${filename}
+
+base='/home/aiday.kyzy/dataset/Synthetic/PartialDeformedData/TestingData/'
 
 if [ $knn_matching == "False" ]; then
 	if [ $type == "kpfcn" ]; then
