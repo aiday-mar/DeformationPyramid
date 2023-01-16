@@ -1,0 +1,328 @@
+model 002 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[150, 164]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([314, 2048])
+block_i :  1
+x.shape :  torch.Size([314, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 314])
+coarse_feats.shape :  torch.Size([1, 528, 314])
+coarse_feats.shape :  torch.Size([314, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 150])
+tgt_mask.shape :  torch.Size([1, 164])
+src_ind_coarse_split.shape :  torch.Size([150])
+tgt_ind_coarse_split.shape :  torch.Size([164])
+src_ind_coarse.shape :  torch.Size([150])
+tgt_ind_coarse.shape :  torch.Size([164])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
+model 042 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[124, 112]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([236, 2048])
+block_i :  1
+x.shape :  torch.Size([236, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 236])
+coarse_feats.shape :  torch.Size([1, 528, 236])
+coarse_feats.shape :  torch.Size([236, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 124])
+tgt_mask.shape :  torch.Size([1, 112])
+src_ind_coarse_split.shape :  torch.Size([124])
+tgt_ind_coarse_split.shape :  torch.Size([112])
+src_ind_coarse.shape :  torch.Size([124])
+tgt_ind_coarse.shape :  torch.Size([112])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([1, 3])
+bi :  tensor([0], device='cuda:0')
+si.shape :  torch.Size([1])
+ti.shape :  torch.Size([1])
+s_pos.shape :  torch.Size([1, 3])
+t_pos.shape :  torch.Size([1, 3])
+ind.shape :  torch.Size([1, 3])
+bi :  tensor([0], device='cuda:0')
+si.shape :  torch.Size([1])
+ti.shape :  torch.Size([1])
+s_pos.shape :  torch.Size([1, 3])
+t_pos.shape :  torch.Size([1, 3])
+number of true landmarks correspondences returned from Lepard :  0  out of  1
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+vec6d.shape :  torch.Size([1, 6])
+ldmk_s.shape :  torch.Size([1, 3])
+ldmk_t.shape :  torch.Size([1, 3])
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  1
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+k0 :  -8
+levels :  4
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 20.109 
+full-AccS: 0.037 
+full-AccR: 0.684 
+full-outlier: 91.493 
+vis-epe: 21.988 
+vis-AccS: 0.000 
+vis-AccR: 0.362 
+vis-outlier: 95.242 
+occ-epe: 16.751 
+occ-AccS: 0.102 
+occ-AccR: 1.259 
+occ-outlier: 84.791 
+
+Actual rotation :  [[ 0.77604838  0.62888338 -0.04748266]
+ [ 0.31818631 -0.32541498  0.8904283 ]
+ [ 0.54452399 -0.70612378 -0.45263985]]
+Actual translation :  [-0.19578607  0.27815696  0.64648693]
+Predicted rotation :  [[ 0.99730166 -0.03094995  0.06656891]
+ [ 0.02863619  0.99896161  0.0354354 ]
+ [-0.06759652 -0.03343351  0.9971524 ]]
+Predicted translation :  [-0.00489967  0.01918524 -0.11944269]
+Relative Rotation Error :  2.0930295316183267
+Relative Translation Error :  0.8307539609297406
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.1723430977788773
+Strict IR :  0.0012701100762066045
+Relaxed IR :  0.03090601185436071
+model 085 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[72, 76]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([148, 2048])
+block_i :  1
+x.shape :  torch.Size([148, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 148])
+coarse_feats.shape :  torch.Size([1, 528, 148])
+coarse_feats.shape :  torch.Size([148, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 72])
+tgt_mask.shape :  torch.Size([1, 76])
+src_ind_coarse_split.shape :  torch.Size([72])
+tgt_ind_coarse_split.shape :  torch.Size([76])
+src_ind_coarse.shape :  torch.Size([72])
+tgt_ind_coarse.shape :  torch.Size([76])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
+model 126 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[139, 135]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([274, 2048])
+block_i :  1
+x.shape :  torch.Size([274, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 274])
+coarse_feats.shape :  torch.Size([1, 528, 274])
+coarse_feats.shape :  torch.Size([274, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 139])
+tgt_mask.shape :  torch.Size([1, 135])
+src_ind_coarse_split.shape :  torch.Size([139])
+tgt_ind_coarse_split.shape :  torch.Size([135])
+src_ind_coarse.shape :  torch.Size([139])
+tgt_ind_coarse.shape :  torch.Size([135])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
+model 167 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[64, 56]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([120, 2048])
+block_i :  1
+x.shape :  torch.Size([120, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 120])
+coarse_feats.shape :  torch.Size([1, 528, 120])
+coarse_feats.shape :  torch.Size([120, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 64])
+tgt_mask.shape :  torch.Size([1, 56])
+src_ind_coarse_split.shape :  torch.Size([64])
+tgt_ind_coarse_split.shape :  torch.Size([56])
+src_ind_coarse.shape :  torch.Size([64])
+tgt_ind_coarse.shape :  torch.Size([56])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
+model 207 file1 020 file2 104
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[67, 66]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([133, 2048])
+block_i :  1
+x.shape :  torch.Size([133, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 133])
+coarse_feats.shape :  torch.Size([1, 528, 133])
+coarse_feats.shape :  torch.Size([133, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 67])
+tgt_mask.shape :  torch.Size([1, 66])
+src_ind_coarse_split.shape :  torch.Size([67])
+tgt_ind_coarse_split.shape :  torch.Size([66])
+src_ind_coarse.shape :  torch.Size([67])
+tgt_ind_coarse.shape :  torch.Size([66])
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+confidence threshold used in the matching :  0.1
+preprocessing :  mutual
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
