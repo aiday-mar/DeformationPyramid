@@ -333,6 +333,7 @@ def collate_fn_4dmatch_multiview_sequence(multiview_data, config, neighborhood_l
 def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder = None, base = None, coarse_level = None, feature_extractor = None):
 
     print('feature extractor inside of collate_fn_4dmatch : ', feature_extractor)
+    print('coarse_level : ', coarse_level)
     batched_points_list = []
     batched_features_list = []
     batched_lengths_list = []
@@ -474,7 +475,9 @@ def collate_fn_4dmatch(pairwise_data, config, neighborhood_limits, output_folder
 
         # coarse infomation
         coarse_level = coarse_level if coarse_level else config.coarse_level
+        print('coarse_level : ', coarse_level)
         pts_num_coarse = input_batches_len[coarse_level].view(-1, 2)
+        print('pts_num_coarse : ', pts_num_coarse)
         b_size = pts_num_coarse.shape[0]
         src_pts_max, tgt_pts_max = pts_num_coarse.amax(dim=0)
         coarse_pcd = input_points[coarse_level] # .numpy()

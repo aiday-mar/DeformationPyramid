@@ -98,9 +98,13 @@ class Pipeline(nn.Module):
         pcd = data['points'][coarse_level]
 
         src_mask = data['src_mask']
+        print('src_mask.shape : ', src_mask.shape)
         tgt_mask = data['tgt_mask']
+        print('tgt_mask.shape : ', tgt_mask.shape)
         src_ind_coarse_split = data[ 'src_ind_coarse_split']
+        print('src_ind_coarse_split.shape : ', src_ind_coarse_split.shape)
         tgt_ind_coarse_split = data['tgt_ind_coarse_split']
+        print('tgt_ind_coarse_split.shape : ', tgt_ind_coarse_split.shape)
         src_ind_coarse = data['src_ind_coarse']
         print('src_ind_coarse.shape : ', src_ind_coarse.shape)
         tgt_ind_coarse = data['tgt_ind_coarse']
