@@ -66,6 +66,7 @@ if [ $type == "kpfcn" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --level=${n_non_deformed_levels} \
+                --preprocessing=${preprocessing} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -88,6 +89,7 @@ if [ $type == "kpfcn" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --level=${n_deformed_levels} \
+                --preprocessing=${preprocessing} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -116,6 +118,7 @@ if [ $type == "kpfcn" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --level=${n_deformed_levels} \
+                --preprocessing=${preprocessing} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then                
@@ -141,6 +144,7 @@ if [ $type == "kpfcn" ]; then
                 --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
                 --confidence_threshold=${confidence_threshold} \
                 --level=${n_non_deformed_levels} \
+                --preprocessing=${preprocessing} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
