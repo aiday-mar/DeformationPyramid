@@ -9,27 +9,30 @@ import copy
 # feature_extractor = 'fcgf'
 feature_extractor = 'kpfcn'
 preprocessing='mutual'
-training_data='pretrained'
+training_data='full_deformed'
 
 models=['002', '042', '085', '126', '167', '207']
 
 if feature_extractor == 'fcgf':
-    confidence_thresholds = [5.0e-07, 7.5e-07, 1.0e-06, 2.5e-06]
+    confidence_thresholds = [1e-08, 1e-06, 1e-04, 1e-02, 0.1]
     shape = (len(confidence_thresholds),)
-    sub_matrix={'Full Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Full Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Partial Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
-                'Partial Non Deformed': {'lepard_fcgf' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+    nan_array = np.full(shape, np.nan)
+
+    sub_matrix={'Full Non Deformed': {'lepard_fcgf' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}, 
+                'Full Deformed': {'lepard_fcgf' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}, 
+                'Partial Deformed': {'lepard_fcgf' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}},  
+                'Partial Non Deformed': {'lepard_fcgf' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}}
     type = 'lepard_fcgf'
     line_file = 'number of true landmarks correspondences returned from FCGF based Lepard'
     title = 'FCGF based Lepard'
 elif feature_extractor == 'kpfcn':
-    confidence_thresholds = [0.01, 0.03, 0.05, 0.07, 0.1]
+    confidence_thresholds = [1e-08, 1e-06, 1e-04, 1e-02, 0.1]
     shape = (len(confidence_thresholds),)
-    sub_matrix={'Full Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Full Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}, 
-                'Partial Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}},  
-                'Partial Non Deformed': {'lepard' : {'total' : np.zeros(shape), 'true' : np.zeros(shape)}}}
+    nan_array = np.full(shape, np.nan)
+    sub_matrix={'Full Non Deformed': {'lepard' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}, 
+                'Full Deformed': {'lepard' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}, 
+                'Partial Deformed': {'lepard' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}},  
+                'Partial Non Deformed': {'lepard' : {'total' : copy.deepcopy(nan_array), 'true' : copy.deepcopy(nan_array)}}}
     type ='lepard'
     line_file = 'number of true landmarks correspondences returned from Lepard'
     title = 'KPFCN based Lepard'
@@ -39,10 +42,11 @@ else:
 data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
 final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
 
-sub_matrix_rmse={'Full Non Deformed': np.zeros((len(confidence_thresholds),)), 
-            'Full Deformed': np.zeros((len(confidence_thresholds),)), 
-            'Partial Deformed': np.zeros((len(confidence_thresholds),)),  
-            'Partial Non Deformed': np.zeros((len(confidence_thresholds),))}
+nan_array_2 = np.full((len(confidence_thresholds),), np.nan)
+sub_matrix_rmse={'Full Non Deformed': copy.deepcopy(nan_array_2), 
+            'Full Deformed': copy.deepcopy(nan_array_2), 
+            'Partial Deformed': copy.deepcopy(nan_array_2),  
+            'Partial Non Deformed': copy.deepcopy(nan_array_2)}
 final_matrices_rmse = {model : copy.deepcopy(sub_matrix_rmse) for model in models}
 
 base = 'Testing/'
@@ -75,9 +79,11 @@ for line in Lines:
         i = confidence_thresholds.index(confidence_threshold)
         final_matrices_rmse[current_model][current_data_type][i] = res
 
+training_data = training_data.replace('_', ' ')
+
 for data_type in data_types:
     plt.clf()
-    plt.title(data_type, y=1.0)
+    plt.title(data_type + ' - ' + feature_extractor.upper() + ' ' + training_data, y=1.0)
     confidence_thresholds_pos = range(0, len(confidence_thresholds))
     plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
     plt.xlabel('model')
@@ -89,7 +95,7 @@ for data_type in data_types:
             rmse.append(final_matrices_rmse[model][data_type][i])
         plt.plot(confidence_thresholds_pos, rmse)
     plt.legend(models)
-    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_rmse.png', bbox_inches='tight')
+    plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_pre_' + preprocessing + '_td_' + training_data + '_rmse.png', bbox_inches='tight')
     
     '''
     plt.clf()
