@@ -45,7 +45,7 @@ if [ $knn_matching == "False" ]; then
 	index_coarse_feats=1
 else
 	coarse_level=-4
-	index_coarse_feats=3
+	index_coarse_feats=4
 fi
 
 
