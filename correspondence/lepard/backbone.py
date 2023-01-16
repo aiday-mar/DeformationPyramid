@@ -113,6 +113,7 @@ class KPFCN(nn.Module):
         self.fine_out = nn.Conv1d(out_dim, fine_feature_dim, kernel_size=1, bias=True)
 
     def forward(self, batch, index_at_which_to_return_coarse_feats = 1, phase = 'encode'):
+        print('index_at_which_to_return_coarse_feats : ', index_at_which_to_return_coarse_feats)
         if phase == 'coarse' :
             x = batch['features'].clone().detach()
             self.skip_x = []
