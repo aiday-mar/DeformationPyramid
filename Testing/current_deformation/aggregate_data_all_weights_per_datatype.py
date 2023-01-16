@@ -223,8 +223,11 @@ for data_type in data_types:
                 if np.isnan(np.sum(rmse)):
                     print('rmse with NaN: ', rmse)
                 # plt.plot(model_numbers, rmse, color = colors[color_idx], label=weights_legend)
-                plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend)              
+                plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend)    
                 
+                for i in range(len(rmse)):
+                    if rmse[i] is np.nan:
+                        plt.axvline(x=bar[i], color='red', ls='--')
                 color_idx += 1
     else:
         color_idx = 0
@@ -257,6 +260,7 @@ for data_type in data_types:
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
+    plt.xticks([r + barWidth for r in range(len(model_numbers))], model_numbers)
     plt.legend(loc='upper right')
     title = data_type.replace('_', ' ')
     title = title.title()
