@@ -91,7 +91,6 @@ class Pipeline(nn.Module):
         return data
 
     def split_feats(self, geo_feats, data, coarse_level):
-        print('data : ', data)
         coarse_level = coarse_level if coarse_level else self.config['kpfcn_config']['coarse_level']
         coarse_level = int(coarse_level)
         print('coarse_level : ', coarse_level)
