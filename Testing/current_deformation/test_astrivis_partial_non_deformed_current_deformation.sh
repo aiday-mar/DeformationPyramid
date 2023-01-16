@@ -30,8 +30,8 @@ if [ "$training_data" == "pretrained" ] ; then
 	confidence_threshold=0.01
     confidence_threshold_name=1e-02
 else
-	confidence_threshold=0.0000001
-    confidence_threshold_name=1e-07
+	confidence_threshold=0.000001
+    confidence_threshold_name=1e-06
 fi
 
 # model_numbers=('002' '042' '085' '126' '167' '207')
@@ -54,6 +54,14 @@ rm ${filename}
 touch ${filename}
 
 base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
+
+if [ $knn_matching == "False" ]; then
+	coarse_level=-2
+	index_coarse_feats=1
+else
+	coarse_level=-3
+	index_coarse_feats=2
+fi
 
 if [ $knn_matching == "False" ]; then
     if [ $type == "kpfcn" ]; then
@@ -163,6 +171,8 @@ if [ $knn_matching == "True" ]; then
             --only_inference \
             --preprocessing=${preprocessing} \
             --knn_matching \
+            --index_coarse_feats=${index_coarse_feats} \
+            --coarse_level=${coarse_level} \
             --print_keypoints >> ${filename}
             
             if [ "$?" != "1" ]; then
@@ -207,6 +217,8 @@ if [ $knn_matching == "True" ]; then
             --only_inference \
             --preprocessing=${preprocessing} \
             --knn_matching \
+            --index_coarse_feats=${index_coarse_feats} \
+            --coarse_level=${coarse_level} \
             --print_keypoints >> ${filename}
             
             if [ "$?" != "1" ]; then

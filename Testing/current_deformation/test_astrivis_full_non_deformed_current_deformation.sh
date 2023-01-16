@@ -55,6 +55,14 @@ touch ${filename}
 base='/home/aiday.kyzy/dataset/Synthetic/FullNonDeformedData/TestingData/'
 
 if [ $knn_matching == "False" ]; then
+	coarse_level=-2
+	index_coarse_feats=1
+else
+	coarse_level=-3
+	index_coarse_feats=2
+fi
+
+if [ $knn_matching == "False" ]; then
     if [ $type == "kpfcn" ]; then
         for k in ${model_numbers[@]}
         do
@@ -163,6 +171,8 @@ if [ $knn_matching == "True" ]; then
             --only_inference \
             --preprocessing=${preprocessing} \
             --knn_matching \
+            --index_coarse_feats=${index_coarse_feats} \
+            --coarse_level=${coarse_level} \
             --print_keypoints >> ${filename}
             
             if [ "$?" != "1" ]; then
@@ -207,6 +217,8 @@ if [ $knn_matching == "True" ]; then
             --only_inference \
             --preprocessing=${preprocessing} \
             --knn_matching \
+            --index_coarse_feats=${index_coarse_feats} \
+            --coarse_level=${coarse_level} \
             --print_keypoints >> ${filename}
             
             if [ "$?" != "1" ]; then
