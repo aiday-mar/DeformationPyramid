@@ -43,8 +43,8 @@ weights = {
     }
 }
 
-knn_matching = 'False'
-# knn_matching = 'True'
+# knn_matching = 'False'
+knn_matching = 'True'
 
 number = 0
 adm = 2.0
@@ -130,8 +130,6 @@ for data_type in data_types:
     number += 1
     plt.clf()
     f = plt.figure(number)
-    # fig, ax = plt.subplots()
-
     legend = []
 
     print('\n')
@@ -218,7 +216,7 @@ for data_type in data_types:
 
     plt.xlabel("Model number")
     plt.ylabel("RMSE")
-    plt.xticks([r + barWidth for r in range(len(model_numbers))], model_numbers)
+    plt.xticks([r + 2*barWidth for r in np.array([0, 2, 4, 6, 8, 10])], model_numbers)
     plt.legend(loc='upper right')
     title = data_type.replace('_', ' ')
     title = title.title()
