@@ -77,7 +77,7 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False, g
         if data_type == 'full_non_deformed' or data_type == 'partial_non_deformed':
             levels = '1'
         elif data_type == 'full_deformed' or data_type == 'partial_deformed':
-            levels = '4'
+            levels = '8'
 
         if custom is False:
             file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_levels_' + levels + '_knn_' + knn_matching + '.txt'
