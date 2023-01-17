@@ -25,73 +25,27 @@ src_ind_coarse_split.shape :  torch.Size([132])
 tgt_ind_coarse_split.shape :  torch.Size([123])
 src_ind_coarse.shape :  torch.Size([132])
 tgt_ind_coarse.shape :  torch.Size([123])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([29, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([29])
-ti.shape :  torch.Size([29])
-s_pos.shape :  torch.Size([29, 3])
-t_pos.shape :  torch.Size([29, 3])
-ind.shape :  torch.Size([29, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([29])
-ti.shape :  torch.Size([29])
-s_pos.shape :  torch.Size([29, 3])
-t_pos.shape :  torch.Size([29, 3])
-number of true landmarks correspondences returned from Lepard :  3  out of  29
-fraction of true landmark correspondences returned from Lepard :  0.10344827586206896
-vec6d.shape :  torch.Size([25, 6])
-ldmk_s.shape :  torch.Size([25, 3])
-ldmk_t.shape :  torch.Size([25, 3])
-number of true landmark correspondences returned from Outlier Rejection :  3  out of  25
-fraction of true landmark correspondences returned from Outlier Rejection :  0.12
-k0 :  -8
-levels :  4
-posenc function :  None
-samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([25, 3])
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-0/1: full-epe: 7.338 
-full-AccS: 0.000 
-full-AccR: 13.708 
-full-outlier: 37.542 
-vis-epe: 11.990 
-vis-AccS: 0.000 
-vis-AccR: 0.452 
-vis-outlier: 80.823 
-occ-epe: 3.304 
-occ-AccS: 0.000 
-occ-AccR: 25.206 
-occ-outlier: 0.000 
-
-Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
- [ 0.82672423  0.41532003 -0.37952117]
- [ 0.38553367 -0.90950145 -0.15546996]]
-Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
-Predicted rotation :  [[-0.32510134  0.01207936 -0.945602  ]
- [ 0.85956114  0.42067773 -0.29014644]
- [ 0.39428891 -0.90712971 -0.1471459 ]]
-Predicted translation :  [-0.00805239 -0.04034972 -0.02134817]
-Relative Rotation Error :  0.09603240385029309
-Relative Translation Error :  2.0107377226914513
-strict inlier ratio threshold :  0.01
-relaxed inlier ratio threshold :  0.03
-RMSE :  0.03369563404660386
-Strict IR :  0.0
-Relaxed IR :  0.2434873949579832
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
 model 042 file1 020 file2 104
 0 to 1
 feature_extractor :  kpfcn
@@ -119,73 +73,27 @@ src_ind_coarse_split.shape :  torch.Size([117])
 tgt_ind_coarse_split.shape :  torch.Size([114])
 src_ind_coarse.shape :  torch.Size([117])
 tgt_ind_coarse.shape :  torch.Size([114])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([28, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([28])
-ti.shape :  torch.Size([28])
-s_pos.shape :  torch.Size([28, 3])
-t_pos.shape :  torch.Size([28, 3])
-ind.shape :  torch.Size([28, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([28])
-ti.shape :  torch.Size([28])
-s_pos.shape :  torch.Size([28, 3])
-t_pos.shape :  torch.Size([28, 3])
-number of true landmarks correspondences returned from Lepard :  3  out of  28
-fraction of true landmark correspondences returned from Lepard :  0.10714285714285714
-vec6d.shape :  torch.Size([25, 6])
-ldmk_s.shape :  torch.Size([25, 3])
-ldmk_t.shape :  torch.Size([25, 3])
-number of true landmark correspondences returned from Outlier Rejection :  2  out of  25
-fraction of true landmark correspondences returned from Outlier Rejection :  0.08
-k0 :  -8
-levels :  4
-posenc function :  None
-samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([25, 3])
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-0/1: full-epe: 12.078 
-full-AccS: 2.002 
-full-AccR: 9.906 
-full-outlier: 79.249 
-vis-epe: 15.336 
-vis-AccS: 0.140 
-vis-AccR: 3.395 
-vis-outlier: 94.892 
-occ-epe: 3.440 
-occ-AccS: 6.936 
-occ-AccR: 27.168 
-occ-outlier: 37.779 
-
-Actual rotation :  [[-0.87462848 -0.4705988  -0.11645507]
- [ 0.24256895 -0.63279443  0.73534448]
- [-0.41974435  0.61490485  0.66761269]]
-Actual translation :  [ 1.20593496  0.83257865 -0.4390415 ]
-Predicted rotation :  [[-0.75281649 -0.48242158 -0.44781362]
- [ 0.07381693 -0.73791299  0.67084716]
- [-0.65407842  0.47196848  0.59112365]]
-Predicted translation :  [ 0.02310781 -0.00809576  0.02348673]
-Relative Rotation Error :  0.3551744309225648
-Relative Translation Error :  1.5230712115200014
-strict inlier ratio threshold :  0.01
-relaxed inlier ratio threshold :  0.03
-RMSE :  0.038813861566085
-Strict IR :  0.059595160013570056
-Relaxed IR :  0.38776433337102795
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
 model 085 file1 020 file2 104
 0 to 1
 feature_extractor :  kpfcn
@@ -213,73 +121,27 @@ src_ind_coarse_split.shape :  torch.Size([73])
 tgt_ind_coarse_split.shape :  torch.Size([57])
 src_ind_coarse.shape :  torch.Size([73])
 tgt_ind_coarse.shape :  torch.Size([57])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([19, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([19])
-ti.shape :  torch.Size([19])
-s_pos.shape :  torch.Size([19, 3])
-t_pos.shape :  torch.Size([19, 3])
-ind.shape :  torch.Size([19, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([19])
-ti.shape :  torch.Size([19])
-s_pos.shape :  torch.Size([19, 3])
-t_pos.shape :  torch.Size([19, 3])
-number of true landmarks correspondences returned from Lepard :  3  out of  19
-fraction of true landmark correspondences returned from Lepard :  0.15789473684210525
-vec6d.shape :  torch.Size([16, 6])
-ldmk_s.shape :  torch.Size([16, 3])
-ldmk_t.shape :  torch.Size([16, 3])
-number of true landmark correspondences returned from Outlier Rejection :  3  out of  16
-fraction of true landmark correspondences returned from Outlier Rejection :  0.1875
-k0 :  -8
-levels :  4
-posenc function :  None
-samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([16, 3])
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-strict threshold :  0.01
-relaxed threhold :  0.03
-outlier threshold :  0.1
-0/1: full-epe: 5.264 
-full-AccS: 0.000 
-full-AccR: 40.219 
-full-outlier: 18.715 
-vis-epe: 8.342 
-vis-AccS: 0.000 
-vis-AccR: 10.127 
-vis-outlier: 42.657 
-occ-epe: 2.859 
-occ-AccS: 0.000 
-occ-AccR: 63.742 
-occ-outlier: 0.000 
-
-Actual rotation :  [[-0.08515318 -0.0477966  -0.99522079]
- [-0.17928303  0.98328076 -0.03188333]
- [ 0.98010537  0.17571123 -0.0922986 ]]
-Actual translation :  [ 0.67656808  0.74129062 -0.19986074]
-Predicted rotation :  [[ 0.20332093 -0.17470494 -0.96339967]
- [-0.09319343  0.97603187 -0.19666372]
- [ 0.97466693  0.12976835  0.18216636]]
-Predicted translation :  [ 0.02452183 -0.00991175 -0.02736023]
-Relative Rotation Error :  0.3273612133757355
-Relative Translation Error :  1.00956710397177
-strict inlier ratio threshold :  0.01
-relaxed inlier ratio threshold :  0.03
-RMSE :  0.032014968345788083
-Strict IR :  0.0051933064050779
-Relaxed IR :  0.5687632236968648
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+ind.shape :  torch.Size([0, 3])
+bi :  tensor([], device='cuda:0', dtype=torch.int64)
+si.shape :  torch.Size([0])
+ti.shape :  torch.Size([0])
+s_pos.shape :  torch.Size([0, 3])
+t_pos.shape :  torch.Size([0, 3])
+Early exit
 model 126 file1 020 file2 104
 0 to 1
 feature_extractor :  kpfcn
@@ -307,36 +169,47 @@ src_ind_coarse_split.shape :  torch.Size([128])
 tgt_ind_coarse_split.shape :  torch.Size([132])
 src_ind_coarse.shape :  torch.Size([128])
 tgt_ind_coarse.shape :  torch.Size([132])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([26, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0], device='cuda:0')
-si.shape :  torch.Size([26])
-ti.shape :  torch.Size([26])
-s_pos.shape :  torch.Size([26, 3])
-t_pos.shape :  torch.Size([26, 3])
-ind.shape :  torch.Size([26, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0], device='cuda:0')
-si.shape :  torch.Size([26])
-ti.shape :  torch.Size([26])
-s_pos.shape :  torch.Size([26, 3])
-t_pos.shape :  torch.Size([26, 3])
-number of true landmarks correspondences returned from Lepard :  5  out of  26
-fraction of true landmark correspondences returned from Lepard :  0.19230769230769232
-vec6d.shape :  torch.Size([22, 6])
-ldmk_s.shape :  torch.Size([22, 3])
-ldmk_t.shape :  torch.Size([22, 3])
-number of true landmark correspondences returned from Outlier Rejection :  5  out of  22
-fraction of true landmark correspondences returned from Outlier Rejection :  0.22727272727272727
+ind.shape :  torch.Size([1, 3])
+bi :  tensor([0], device='cuda:0')
+si.shape :  torch.Size([1])
+ti.shape :  torch.Size([1])
+s_pos.shape :  torch.Size([1, 3])
+t_pos.shape :  torch.Size([1, 3])
+ind.shape :  torch.Size([1, 3])
+bi :  tensor([0], device='cuda:0')
+si.shape :  torch.Size([1])
+ti.shape :  torch.Size([1])
+s_pos.shape :  torch.Size([1, 3])
+t_pos.shape :  torch.Size([1, 3])
+number of true landmarks correspondences returned from Lepard :  0  out of  1
+fraction of true landmark correspondences returned from Lepard :  0.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+vec6d.shape :  torch.Size([0, 6])
+ldmk_s.shape :  torch.Size([0, 3])
+ldmk_t.shape :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+number of true landmark correspondences returned from Outlier Rejection :  0  out of  0
+fraction of true landmark correspondences returned from Outlier Rejection :  0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
 k0 :  -8
 levels :  4
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([22, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([0, 3])
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
+[1;33m[Open3D WARNING] Write PLY failed: point cloud has 0 points.[0;m
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -346,34 +219,34 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 10.088 
-full-AccS: 0.000 
-full-AccR: 18.148 
-full-outlier: 54.782 
-vis-epe: 15.405 
-vis-AccS: 0.000 
-vis-AccR: 1.399 
-vis-outlier: 95.950 
-occ-epe: 3.013 
+0/1: full-epe: 23.851 
+full-AccS: 0.085 
+full-AccR: 0.448 
+full-outlier: 98.862 
+vis-epe: 29.722 
+vis-AccS: 0.148 
+vis-AccR: 0.785 
+vis-outlier: 98.367 
+occ-epe: 16.039 
 occ-AccS: 0.000 
-occ-AccR: 40.435 
-occ-outlier: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 99.520 
 
 Actual rotation :  [[-0.81564788 -0.06094346 -0.57532984]
  [ 0.57678234 -0.16330348 -0.80040871]
  [-0.04517368 -0.98469176  0.16834925]]
 Actual translation :  [0.89703757 1.00050158 0.50390294]
-Predicted rotation :  [[-0.82420252  0.02336177 -0.56581319]
- [ 0.54691217 -0.22633368 -0.80601504]
- [-0.14689255 -0.97376974  0.17376788]]
-Predicted translation :  [0.03476589 0.01961453 0.00165885]
-Relative Rotation Error :  0.10649870274990504
-Relative Translation Error :  1.3992501435538798
+Predicted rotation :  [[ 9.99999886e-01 -4.12772528e-04 -1.40133016e-04]
+ [ 4.12764430e-04  9.99999895e-01 -8.25150018e-05]
+ [ 1.40155324e-04  8.24518441e-05  9.99999996e-01]]
+Predicted translation :  [-0.00060375  0.00062108 -0.00012283]
+Relative Rotation Error :  2.702504811617085
+Relative Translation Error :  1.4351177317315351
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.03140374821688779
+RMSE :  0.1720644467598004
 Strict IR :  0.0
-Relaxed IR :  0.44055690072639225
+Relaxed IR :  0.0
 model 167 file1 020 file2 104
 0 to 1
 feature_extractor :  kpfcn
@@ -401,34 +274,35 @@ src_ind_coarse_split.shape :  torch.Size([61])
 tgt_ind_coarse_split.shape :  torch.Size([52])
 src_ind_coarse.shape :  torch.Size([61])
 tgt_ind_coarse.shape :  torch.Size([52])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([17, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([17])
-ti.shape :  torch.Size([17])
-s_pos.shape :  torch.Size([17, 3])
-t_pos.shape :  torch.Size([17, 3])
-ind.shape :  torch.Size([17, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([17])
-ti.shape :  torch.Size([17])
-s_pos.shape :  torch.Size([17, 3])
-t_pos.shape :  torch.Size([17, 3])
-number of true landmarks correspondences returned from Lepard :  2  out of  17
-fraction of true landmark correspondences returned from Lepard :  0.11764705882352941
-vec6d.shape :  torch.Size([16, 6])
-ldmk_s.shape :  torch.Size([16, 3])
-ldmk_t.shape :  torch.Size([16, 3])
-number of true landmark correspondences returned from Outlier Rejection :  2  out of  16
-fraction of true landmark correspondences returned from Outlier Rejection :  0.125
+ind.shape :  torch.Size([2, 3])
+bi :  tensor([0, 0], device='cuda:0')
+si.shape :  torch.Size([2])
+ti.shape :  torch.Size([2])
+s_pos.shape :  torch.Size([2, 3])
+t_pos.shape :  torch.Size([2, 3])
+ind.shape :  torch.Size([2, 3])
+bi :  tensor([0, 0], device='cuda:0')
+si.shape :  torch.Size([2])
+ti.shape :  torch.Size([2])
+s_pos.shape :  torch.Size([2, 3])
+t_pos.shape :  torch.Size([2, 3])
+number of true landmarks correspondences returned from Lepard :  1  out of  2
+fraction of true landmark correspondences returned from Lepard :  0.5
+vec6d.shape :  torch.Size([1, 6])
+ldmk_s.shape :  torch.Size([1, 3])
+ldmk_t.shape :  torch.Size([1, 3])
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  1
+fraction of true landmark correspondences returned from Outlier Rejection :  1.0
+[1;33m[Open3D WARNING] Write PLY failed: line set has 0 points.[0;m
 k0 :  -8
 levels :  4
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([16, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -438,34 +312,34 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 6.859 
-full-AccS: 0.255 
-full-AccR: 27.533 
-full-outlier: 73.386 
-vis-epe: 10.045 
+0/1: full-epe: 23.630 
+full-AccS: 0.000 
+full-AccR: 1.123 
+full-outlier: 97.678 
+vis-epe: 23.520 
 vis-AccS: 0.000 
-vis-AccR: 0.135 
-vis-outlier: 99.819 
-occ-epe: 2.715 
-occ-AccS: 0.587 
-occ-AccR: 63.183 
-occ-outlier: 38.990 
+vis-AccR: 1.986 
+vis-outlier: 95.894 
+occ-epe: 23.774 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 100.000 
 
 Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
  [ 0.42981428  0.61565456 -0.66047646]
  [-0.39834628 -0.52716002 -0.75061478]]
 Actual translation :  [0.2961076  0.17846237 1.41276713]
-Predicted rotation :  [[-0.83559691  0.50747398 -0.21035119]
- [ 0.5341709   0.66122169 -0.52673269]
- [-0.12821436 -0.5524997  -0.82359256]]
-Predicted translation :  [-0.01043285  0.02685453 -0.00841971]
-Relative Rotation Error :  0.29172603788959106
-Relative Translation Error :  1.4617537456754495
+Predicted rotation :  [[ 0.99496473 -0.0408753   0.09151138]
+ [ 0.04420876  0.99841946 -0.03469999]
+ [-0.08994838  0.03857087  0.99519927]]
+Predicted translation :  [ 0.17212134 -0.04118998 -0.02227851]
+Relative Rotation Error :  2.8294606126904047
+Relative Translation Error :  1.457043488324052
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.027052965446734037
-Strict IR :  0.05077825976014289
-Relaxed IR :  0.610104618525134
+RMSE :  0.22063633813306163
+Strict IR :  0.0
+Relaxed IR :  0.005613676958407757
 model 207 file1 020 file2 104
 0 to 1
 feature_extractor :  kpfcn
@@ -493,36 +367,34 @@ src_ind_coarse_split.shape :  torch.Size([51])
 tgt_ind_coarse_split.shape :  torch.Size([52])
 src_ind_coarse.shape :  torch.Size([51])
 tgt_ind_coarse.shape :  torch.Size([52])
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-confidence threshold used in the matching :  0.0001
+confidence threshold used in the matching :  0.1
 preprocessing :  mutual
-ind.shape :  torch.Size([23, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([23])
-ti.shape :  torch.Size([23])
-s_pos.shape :  torch.Size([23, 3])
-t_pos.shape :  torch.Size([23, 3])
-ind.shape :  torch.Size([23, 3])
-bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([23])
-ti.shape :  torch.Size([23])
-s_pos.shape :  torch.Size([23, 3])
-t_pos.shape :  torch.Size([23, 3])
-number of true landmarks correspondences returned from Lepard :  2  out of  23
-fraction of true landmark correspondences returned from Lepard :  0.08695652173913043
-vec6d.shape :  torch.Size([23, 6])
-ldmk_s.shape :  torch.Size([23, 3])
-ldmk_t.shape :  torch.Size([23, 3])
-number of true landmark correspondences returned from Outlier Rejection :  2  out of  23
-fraction of true landmark correspondences returned from Outlier Rejection :  0.08695652173913043
+ind.shape :  torch.Size([3, 3])
+bi :  tensor([0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3])
+ti.shape :  torch.Size([3])
+s_pos.shape :  torch.Size([3, 3])
+t_pos.shape :  torch.Size([3, 3])
+ind.shape :  torch.Size([3, 3])
+bi :  tensor([0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3])
+ti.shape :  torch.Size([3])
+s_pos.shape :  torch.Size([3, 3])
+t_pos.shape :  torch.Size([3, 3])
+number of true landmarks correspondences returned from Lepard :  1  out of  3
+fraction of true landmark correspondences returned from Lepard :  0.3333333333333333
+vec6d.shape :  torch.Size([3, 6])
+ldmk_s.shape :  torch.Size([3, 3])
+ldmk_t.shape :  torch.Size([3, 3])
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  3
+fraction of true landmark correspondences returned from Outlier Rejection :  0.3333333333333333
 k0 :  -8
 levels :  4
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([23, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -532,31 +404,31 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 5.739 
-full-AccS: 16.396 
-full-AccR: 46.307 
-full-outlier: 18.552 
-vis-epe: 9.209 
-vis-AccS: 0.000 
-vis-AccR: 3.441 
-vis-outlier: 33.362 
-occ-epe: 1.393 
-occ-AccS: 36.934 
-occ-AccR: 100.000 
+0/1: full-epe: 6.165 
+full-AccS: 7.290 
+full-AccR: 34.512 
+full-outlier: 18.019 
+vis-epe: 9.119 
+vis-AccS: 0.305 
+vis-AccR: 6.664 
+vis-outlier: 32.404 
+occ-epe: 2.466 
+occ-AccS: 16.039 
+occ-AccR: 69.394 
 occ-outlier: 0.000 
 
 Actual rotation :  [[-0.32787446  0.25529739 -0.9095722 ]
  [ 0.93634976  0.21570775 -0.27698246]
  [ 0.12548888 -0.94249319 -0.30977271]]
 Actual translation :  [0.74584319 0.0201462  0.21741575]
-Predicted rotation :  [[-0.1600007   0.2941196  -0.94228096]
- [ 0.985884    0.09531004 -0.13765479]
- [ 0.04932191 -0.95100463 -0.30521747]]
-Predicted translation :  [-0.01452167  0.01282331 -0.03094222]
-Relative Rotation Error :  0.19136048113008391
-Relative Translation Error :  0.7999312637560635
+Predicted rotation :  [[ 0.03941426  0.47576058 -0.87869128]
+ [ 0.98273305  0.14064252  0.12023095]
+ [ 0.18078251 -0.86825774 -0.46200239]]
+Predicted translation :  [-0.03155506  0.01084144 -0.02155594]
+Relative Rotation Error :  0.44045295593988
+Relative Translation Error :  0.8133523775379775
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.015679698175574294
-Strict IR :  0.33349479292806977
-Relaxed IR :  0.970210704771131
+RMSE :  0.0331039115511442
+Strict IR :  0.05739888592879632
+Relaxed IR :  0.5221603293775733
