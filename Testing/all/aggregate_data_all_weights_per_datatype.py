@@ -43,8 +43,8 @@ weights = {
     }
 }
 
-# knn_matching = 'False'
-knn_matching = 'True'
+knn_matching = 'False'
+# knn_matching = 'True'
 
 number = 0
 adm = 2.0
@@ -58,6 +58,7 @@ preprocessing_custom='none'
 preprocessing_normal='mutual'
 # preprocessing_normal='none'
 
+optimized=True
 def get_data(data_type, feature_extractor, training_data_type, custom = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
         deformed = True
@@ -65,10 +66,22 @@ def get_data(data_type, feature_extractor, training_data_type, custom = False):
         deformed = False
 
     epoch = str(weights[feature_extractor][training_data_type]['epoch'])
-    if custom is False:
-        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_knn_' + knn_matching + '.txt'
+    if optimized == False:
+        if custom is False:
+            file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_knn_' + knn_matching + '.txt'
+        else:
+            file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '_knn_' + knn_matching + '.txt'
     else:
-        file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_custom_adm_' + str(adm) + '_knn_' + knn_matching + '.txt'
+        levels = '0'
+        if data_type == 'full_non_deformed' or data_type == 'partial_non_deformed':
+            levels = '1'
+        elif data_type == 'full_deformed' or data_type == 'partial_deformed':
+            levels = '4'
+
+        if custom is False:
+            file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_levels_' + levels + '_knn_' + knn_matching + '.txt'
+        else:
+            file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_custom + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_levels_' + levels + '_custom_adm_' + str(adm) + '_knn_' + knn_matching + '.txt'
 
     if not path.exists(file_path):
         print('Does not exist, file_path : ', file_path)
@@ -185,11 +198,16 @@ for data_type in data_types:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title, wrap=True)
-    if with_custom is False:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_rmse.png')
+    if optimized is False:
+        if with_custom is False:
+            plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_rmse.png')
+        else:
+            plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + ' _rmse_custom.png')
     else:
-        plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + ' _rmse_custom.png')
-
+        if with_custom is False:
+            plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_normal + '_knn_' + knn_matching + '_optimized_rmse.png')
+        else:
+            plt.savefig('Testing/all/per_data_type_' + data_type + '_pre_' + preprocessing_custom + '_knn_' + knn_matching + ' _optimized_rmse_custom.png')
 '''
 for data_type in data_types:
     number += 1

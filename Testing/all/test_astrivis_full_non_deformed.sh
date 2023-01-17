@@ -8,8 +8,8 @@ preprocessing=mutual
 # training_data=partial_deformed
 training_data=pretrained
 
-knn_matching=True
-# knn_matching=False
+# knn_matching=True
+knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -26,7 +26,7 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.0001
+	confidence_threshold=0.1
 else
 	confidence_threshold=0.0001
 fi
