@@ -8,9 +8,9 @@ import copy
 data_types = ['full_deformed', 'partial_deformed', 'full_non_deformed', 'partial_non_deformed']
 model_numbers = ['002', '042', '085', '126', '167', '207']
 
-barWidth = 0.15
-barWidthPlot = 0.15
-br1 = np.array([0, 1, 2, 3, 4, 5])
+barWidth = 0.30
+barWidthPlot = 0.24
+br1 = np.array([0, 2, 4, 6, 8, 10])
 br2 = np.array([x + barWidth for x in br1])
 br3 = np.array([x + barWidth for x in br2])
 br4 = np.array([x + barWidth for x in br3])
@@ -59,14 +59,15 @@ preprocessing_normal='mutual'
 # preprocessing_normal='none'
 
 optimized=True
-def get_data(data_type, feature_extractor, training_data_type, custom = False):
+
+def get_data(data_type, feature_extractor, training_data_type, custom = False, get_optimized_data = False):
     if data_type == 'full_deformed' or data_type == 'partial_deformed':
         deformed = True
     else:
         deformed = False
 
     epoch = str(weights[feature_extractor][training_data_type]['epoch'])
-    if optimized == False:
+    if get_optimized_data == False:
         if custom is False:
             file_path = 'Testing/all/test_astrivis_' + data_type + '_pre_' + preprocessing_normal + '_' + feature_extractor + '_td_' + training_data_type + '_e_' + epoch + '_knn_' + knn_matching + '.txt'
         else:
@@ -139,16 +140,32 @@ for data_type in data_types:
         color_idx = 0
         for feature_extractor in weights:
             for training_data_type in weights[feature_extractor]:
+                
+                print('feature_extractor : ', feature_extractor)
+                print('training_data_type : ', training_data_type)
 
                 epoch = str(weights[feature_extractor][training_data_type]['epoch'])
                 bar = weights[feature_extractor][training_data_type]['bar']
                 training_data_type_mod = training_data_type.replace('_', ' ')
                 weights_legend = feature_extractor + ' - ' + training_data_type_mod + ' - ' + epoch 
                 legend.append(weights_legend)
-                data = get_data(data_type, feature_extractor, training_data_type)
 
-                print('feature_extractor : ', feature_extractor)
-                print('training_data_type : ', training_data_type)
+                if optimized is True:
+                    data = get_data(data_type, feature_extractor, training_data_type, get_optimized_data=True)
+                    if data == 'Does not exist':
+                        break
+
+                    rmse = []             
+                    for model_number in data:
+                        if 'RMSE' in data[model_number]:
+                            rmse.append(float(data[model_number]['RMSE']))
+                        else:
+                            rmse.append(np.nan)
+                    
+                    rmse = np.array(rmse)
+                    plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, label = weights_legend)
+                
+                data = get_data(data_type, feature_extractor, training_data_type)
 
                 if data == 'Does not exist':
                     break
@@ -161,7 +178,12 @@ for data_type in data_types:
                         rmse.append(np.nan)
                 
                 rmse = np.array(rmse)
-                plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend)              
+
+                if optimized == False:
+                    plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, label = weights_legend)
+                else:
+                    plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, fill = False, edgecolor = 'black', linestyle='dashed')
+                    
                 color_idx += 1
     else:
         color_idx = 0
