@@ -34,7 +34,6 @@ fi
 base='/home/aiday.kyzy/dataset/Synthetic/PartialNonDeformedData/TestingData/'
 model_numbers=('002' '042' '085' '126' '167' '207')
 
-n_deformed_levels=4
 n_non_deformed_levels=1
 # n_deformed_levels=10
 # n_non_deformed_levels=10
