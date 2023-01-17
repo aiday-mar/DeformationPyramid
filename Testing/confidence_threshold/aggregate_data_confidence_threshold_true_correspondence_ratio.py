@@ -3,13 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-# FCGF DONE
-# KPFCN TODO
-
-# feature_extractor = 'fcgf'
-feature_extractor = 'kpfcn'
-# preprocessing='mutual'
-preprocessing='none'
+feature_extractor = 'fcgf'
+# feature_extractor = 'kpfcn'
+preprocessing='mutual'
+# preprocessing='none'
 # training_data='full_deformed'
 training_data='partial_deformed'
 
