@@ -35,7 +35,7 @@ fi
 
 model_numbers=('002' '042' '085' '126' '167' '207')
 
-n_deformed_levels=20
+n_deformed_levels=30
 # n_deformed_levels=10
 # n_non_deformed_levels=10
 w_cd=0
