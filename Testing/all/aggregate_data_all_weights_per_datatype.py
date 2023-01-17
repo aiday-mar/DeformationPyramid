@@ -155,7 +155,10 @@ for data_type in data_types:
 
                 rmse = []             
                 for model_number in data:
-                    rmse.append(float(data[model_number]['RMSE']))
+                    if 'RMSE' in data[model_number]:
+                        rmse.append(float(data[model_number]['RMSE']))
+                    else:
+                        rmse.append(np.nan)
                 
                 rmse = np.array(rmse)
                 plt.bar(bar, rmse, color = colors[color_idx], width = barWidthPlot, edgecolor='white', label = weights_legend)              
