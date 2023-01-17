@@ -1,17 +1,17 @@
 base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
 
-training_data=full_deformed
-# training_data=partial_deformed
+# training_data=full_deformed
+training_data=partial_deformed
 # training_data=pretrained
 
-knn_matching=True
-# knn_matching=False
+# knn_matching=True
+knn_matching=False
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
