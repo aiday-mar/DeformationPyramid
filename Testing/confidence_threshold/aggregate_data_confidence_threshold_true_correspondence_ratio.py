@@ -8,8 +8,8 @@ import copy
 
 # feature_extractor = 'fcgf'
 feature_extractor = 'kpfcn'
-preprocessing='mutual'
-# preprocessing='none'
+# preprocessing='mutual'
+preprocessing='none'
 # training_data='full_deformed'
 training_data='partial_deformed'
 
