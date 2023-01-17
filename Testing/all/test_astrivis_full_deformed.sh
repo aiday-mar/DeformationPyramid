@@ -6,9 +6,9 @@ type=kpfcn
 # preprocessing=none
 preprocessing=mutual
 
-# training_data=full_deformed
+training_data=full_deformed
 # training_data=partial_deformed
-training_data=pretrained
+# training_data=pretrained
 
 # knn_matching=True
 knn_matching=False
@@ -28,9 +28,9 @@ elif [ "$training_data" == "pretrained" ] ; then
 fi
 
 if [ "$training_data" == "pretrained" ] ; then
-	confidence_threshold=0.1
+	confidence_threshold=0.0001
 else
-	confidence_threshold=0.000001
+	confidence_threshold=0.0001
 fi
 
 model_numbers=('002' '042' '085' '126' '167' '207')
