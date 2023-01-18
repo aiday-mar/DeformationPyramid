@@ -29,7 +29,7 @@ preprocessing=none
 if [ "$type" == "fcgf" ] ; then
     confidence=0.000001
 else
-    confidence=0.01
+    confidence=0.0001
     # confidence=0.05
     # confidence=0.01
 fi
@@ -407,7 +407,7 @@ then
                     --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
 
                     ### 
-                    
+
                     echo "Full Deformed" >> ${file_name} 
                     CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
                     --config=config/${config} \
