@@ -29,7 +29,7 @@ preprocessing=none
 if [ "$type" == "fcgf" ] ; then
     confidence=0.000001
 else
-    confidence=0.000001
+    confidence=0.00000001
     # confidence=0.05
     # confidence=0.01
 fi
