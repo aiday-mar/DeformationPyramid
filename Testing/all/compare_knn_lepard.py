@@ -3,10 +3,17 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 
-td = 'full_deformed'
-epoch = '10'
+# td = 'full_deformed'
+td = 'partial_deformed'
+
+# epoch = '10'
+epoch = '5'
+
 feature_extractor_list = ['fcgf', 'kpfcn']
-data_type_list = ['full_deformed', 'full_non_deformed']
+
+# data_type_list = ['full_deformed', 'full_non_deformed']
+data_type_list = ['partial_deformed', 'partial_non_deformed']
+
 optimized = True
 preprocessing_normal = 'mutual'
 preprocessing_custom = 'mutual'
