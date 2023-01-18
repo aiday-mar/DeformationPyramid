@@ -5,19 +5,21 @@ import numpy as np
 
 td = 'full_deformed'
 epoch = '10'
-feature_extractor = 'fcgf'
+feature_extractor_list = ['fcgf', 'kpfcn']
 data_type_list = ['full_deformed', 'full_non_deformed']
 optimized = True
 preprocessing_normal = 'mutual'
 preprocessing_custom = 'mutual'
 knn_matching_list = ['True', 'False']
-colors = ['green', 'orange']
+colors = ['green', 'orange', 'purple', 'blue']
 model_numbers = ['002', '042', '085', '126', '167', '207']
-barWidth = 0.40
-barWidthPlot = 0.40
+barWidth = 0.20
+barWidthPlot = 0.20
 br1 = np.array([0, 1, 2, 3, 4, 5])
 br2 = np.array([x + barWidth for x in br1])
-bars = [br1, br2]
+br3 = np.array([x + barWidth for x in br2])
+br4 = np.array([x + barWidth for x in br3])
+bars = [br1, br2, br3, br4]
 
 def get_data(data_type, feature_extractor, training_data_type, knn_matching, get_optimized_data = False):
 
@@ -83,18 +85,26 @@ for data_type in data_type_list:
     plt.clf()
     f = plt.figure(number)
     index = 0
-    for knn_matching in knn_matching_list:
-        data = get_data(data_type, feature_extractor, td, knn_matching, optimized)
-        rmse = []             
-        for model_number in data:
-            rmse.append(float(data[model_number]['RMSE']))
-        
-        bar = bars[index]
-        if knn_matching == 'True':
-            plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'KNN matching')
-        elif knn_matching == 'False':
-            plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'Lepard matching')
-        index += 1
+    for feature_extractor in feature_extractor_list:
+        for knn_matching in knn_matching_list:
+            data = get_data(data_type, feature_extractor, td, knn_matching, optimized)
+            rmse = []             
+            for model_number in data:
+                rmse.append(float(data[model_number]['RMSE']))
+            
+            bar = bars[index]
+            if knn_matching == 'True':
+                if feature_extractor == 'kpfcn':
+                    plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'KPFCN - KNN matching')
+                elif feature_extractor == 'fcgf':
+                    plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'FCGF - KNN matching')
+            elif knn_matching == 'False':
+                if feature_extractor == 'kpfcn':
+                    plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'KPFCN - Lepard matching')
+                elif feature_extractor == 'fcgf':
+                    plt.bar(bar, rmse, color = colors[index], width = barWidthPlot, edgecolor='white', label = 'FCGF - Lepard matching')
+
+            index += 1
 
     plt.legend(loc='upper right')
     plt.xlabel("Model number")
@@ -102,5 +112,5 @@ for data_type in data_type_list:
     title = data_type.replace('_', ' ')
     title = title.title()
     plt.title(title)
-    plt.xticks([r + barWidth/2 for r in np.array([0, 1, 2, 3, 4, 5])], model_numbers)
-    plt.savefig('Testing/all/compare_knn_lepard_' + data_type + '_' + feature_extractor + '_td_' + td + '_rmse.png')
+    plt.xticks([r + barWidth for r in np.array([0, 1, 2, 3, 4, 5])], model_numbers)
+    plt.savefig('Testing/all/compare_knn_lepard_' + data_type + '_rmse.png')
