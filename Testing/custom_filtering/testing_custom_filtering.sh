@@ -82,7 +82,7 @@ then
 
     # Not using custom filtering
     folder_name=output_lepard_default_${type}
-    file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
+    file_name=Testing/custom_filtering/output_lepard_default_${type}_model_${k}.txt
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -170,7 +170,7 @@ then
 
     # Using custom filtering
     folder_name=output_outlier_rejection_default_${type}
-    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}_model_${k}.txt
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -266,7 +266,7 @@ then
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
                 folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
-                file_name=Testing/custom_filtering/v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
+                file_name=Testing/custom_filtering/v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_model_${k}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -458,7 +458,7 @@ if [ $type == "fcgf" ]; then
 
     # Not using custom filtering
     folder_name=output_lepard_default_${type}
-    file_name=Testing/custom_filtering/output_lepard_default_${type}.txt
+    file_name=Testing/custom_filtering/output_lepard_default_${type}_model_${k}.txt
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -546,7 +546,7 @@ if [ $type == "fcgf" ]; then
 
     # Using custom filtering
     folder_name=output_outlier_rejection_default_${type}
-    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}.txt
+    file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}_model_${k}.txt
 
     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -644,7 +644,7 @@ if [ $type == "fcgf" ]; then
                 echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
                 folder_name=output_v_${version}_t_${custom_filtering_type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}
-                file_name=Testing/custom_filtering/v_${custom_filtering_type}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}.txt
+                file_name=Testing/custom_filtering/v_${custom_filtering_type}_t_${type}_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_cl_${coarse_level}_ic_${index_coarse_feats}_ni_${number_iterations_custom_filtering}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_model_${k}.txt
 
                 rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                 mkdir TestData/FullNonDeformed/model${k}/${folder_name}
