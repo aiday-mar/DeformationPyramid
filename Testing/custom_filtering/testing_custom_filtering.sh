@@ -46,7 +46,7 @@ index_coarse_feats=1
 # number_center=400
 # number_centers=(100 200 300)
 # number_centers=(50)
-number_centers=(5 10 30 50 100 300 500)
+number_centers=(10 50 100 300 500)
 
 # average_distance_multiplier=1
 # average_distance_multiplier=2
