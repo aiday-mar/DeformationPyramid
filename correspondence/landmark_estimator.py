@@ -1255,6 +1255,7 @@ class Landmark_Model():
                 number_points = ldmk_s_np.shape[0]
                 final_outlier_indices = np.arange(number_points)
                 final_indices = np.array([])
+                print('number of distinct source landmarks : ', len(map_ldmk_s_correspondences))
                 for ldmk_s_point in map_ldmk_s_correspondences:
                     correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
                     correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
