@@ -175,7 +175,7 @@ if __name__ == "__main__":
         edge_filtering_mesh = True if args.edge_filtering_mesh else False
         min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
         knn_matching = True if args.knn_matching else False
-        if args.max_ldmks.isnumeric():
+        if isinstance(args.max_ldmks, str) and args.max_ldmks.isnumeric():
             max_ldmks = int(args.max_ldmks)
         else:
             max_ldmks = None
