@@ -1,3 +1,5 @@
+Lepard
+model 085
 Full Deformed
 feature_extractor :  fcgf
 feature extractor inside of get_dataloader :  fcgf
@@ -64,27 +66,11 @@ ldmk_s.shape :  torch.Size([426, 3])
 ldmk_t.shape :  torch.Size([426, 3])
 number of true landmark correspondences returned from FCGF based Outlier Rejection :  109  out of  314
 fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.3471337579617834
-Custom filtering is used
-number of landmarks before custom filtering :  426
-average distance :  0.010894659582521119
-average distance multiplier :  3.0
-number of unique source landmarks :  426
-number of centers :  150
-sampling :  linspace
-number of neighborhood centers :  150
-number of iterations of custom filtering :  1
-inlier outlier threshold :  0.01
-number of distinct source landmarks :  426
-max_ldmks :  None
-number of landmarks after custom filtering :  260
-number of true landmark correspondences returned from custom filtering :  105  out of  260
-fraction of true landmark correspondences returned from FCGF based custom filtering :  0.40384615384615385
-fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
 k0 :  -8
 levels :  8
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([260, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([426, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -94,35 +80,31 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 11.041 
-full-AccS: 0.000 
-full-AccR: 4.590 
-full-outlier: 63.503 
-vis-epe: 13.411 
-vis-AccS: 0.000 
-vis-AccR: 2.676 
-vis-outlier: 85.376 
-occ-epe: 5.063 
-occ-AccS: 0.000 
-occ-AccR: 9.419 
-occ-outlier: 8.320 
+0/1: full-epe: 11.036 
+full-AccS: 0.223 
+full-AccR: 6.729 
+full-outlier: 59.046 
+vis-epe: 13.674 
+vis-AccS: 0.249 
+vis-AccR: 4.480 
+vis-outlier: 82.452 
+occ-epe: 4.384 
+occ-AccS: 0.157 
+occ-AccR: 12.402 
+occ-outlier: 0.000 
 
 Actual rotation :  [[ 0.62309055  0.76764504 -0.14993086]
  [ 0.39456846 -0.14298754  0.90767301]
  [ 0.67533244 -0.62472046 -0.39198271]]
 Actual translation :  [-0.1258871  -0.82602395  0.43519561]
-Predicted rotation :  [[ 0.68901649  0.70501038  0.1679787 ]
- [ 0.0737789  -0.29880361  0.95145837]
- [ 0.72098055 -0.64317723 -0.25789554]]
-Predicted translation :  [ 0.02415778  0.01925482 -0.01083352]
-Relative Rotation Error :  0.36171949441590023
-Relative Translation Error :  0.9674459439218198
+Predicted rotation :  [[ 0.61146342  0.77756198  0.14666302]
+ [ 0.07963464 -0.24488183  0.96627703]
+ [ 0.78725524 -0.57916349 -0.21165711]]
+Predicted translation :  [ 0.01400158 -0.01477354 -0.01053905]
+Relative Rotation Error :  0.3542129734660504
+Relative Translation Error :  0.9361492742154814
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.03148170723720837
-Strict IR :  0.03994845360824742
-Relaxed IR :  0.5393041237113402
-model 085
-number of centers 150
-average distance multiplier 4.0
-inlier outlier thresholds 0.01
+RMSE :  0.034608718369506485
+Strict IR :  0.028994845360824743
+Relaxed IR :  0.47036082474226804
