@@ -1,0 +1,111 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[150, 164]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([314, 2048])
+block_i :  1
+x.shape :  torch.Size([314, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 314])
+coarse_feats.shape :  torch.Size([1, 528, 314])
+coarse_feats.shape :  torch.Size([314, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 150])
+tgt_mask.shape :  torch.Size([1, 164])
+src_ind_coarse_split.shape :  torch.Size([150])
+tgt_ind_coarse_split.shape :  torch.Size([164])
+src_ind_coarse.shape :  torch.Size([150])
+tgt_ind_coarse.shape :  torch.Size([164])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  110  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.022
+vec6d.shape :  torch.Size([5000, 6])
+ldmk_s.shape :  torch.Size([5000, 3])
+ldmk_t.shape :  torch.Size([5000, 3])
+number of true landmark correspondences returned from Outlier Rejection :  98  out of  4507
+fraction of true landmark correspondences returned from Outlier Rejection :  0.02174395384956734
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.03380258818510944
+average distance multiplier :  3.0
+number of unique source landmarks :  150
+number of centers :  300
+sampling :  linspace
+number of neighborhood centers :  300
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  150
+max_ldmks :  50
+number of landmarks after custom filtering :  50
+number of true landmark correspondences returned from custom filtering :  1  out of  50
+fraction of true landmark correspondences returned from custom filtering :  0.02
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([50, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 20.171 
+full-AccS: 0.017 
+full-AccR: 0.847 
+full-outlier: 89.975 
+vis-epe: 20.657 
+vis-AccS: 0.000 
+vis-AccR: 0.693 
+vis-outlier: 91.557 
+occ-epe: 10.373 
+occ-AccS: 0.358 
+occ-AccR: 3.943 
+occ-outlier: 58.065 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.34736515 -0.54379411 -0.76395363]
+ [ 0.72562115 -0.67191394  0.14834317]
+ [-0.5939792  -0.50281169  0.62798806]]
+Predicted translation :  [0.02210908 0.02176291 0.00593519]
+Relative Rotation Error :  0.8630253208568518
+Relative Translation Error :  1.8701788935260462
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06680102084681817
+Strict IR :  0.004498977505112475
+Relaxed IR :  0.15276073619631902
+model 002
+number of centers 500
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
