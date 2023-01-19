@@ -1,0 +1,94 @@
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  1513  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3026
+vec6d.shape :  torch.Size([5000, 6])
+ldmk_s.shape :  torch.Size([5000, 3])
+ldmk_t.shape :  torch.Size([5000, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  1441  out of  4002
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.3600699650174913
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.005914892556471761
+average distance multiplier :  3.0
+number of unique source landmarks :  1468
+number of centers :  50
+sampling :  linspace
+number of neighborhood centers :  50
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  1468
+max_ldmks :  None
+number of landmarks after custom filtering :  487
+number of true landmark correspondences returned from custom filtering :  225  out of  487
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.4620123203285421
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([487, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 16.008 
+full-AccS: 0.237 
+full-AccR: 3.065 
+full-outlier: 95.115 
+vis-epe: 18.921 
+vis-AccS: 0.047 
+vis-AccR: 1.184 
+vis-outlier: 97.866 
+occ-epe: 8.286 
+occ-AccS: 0.743 
+occ-AccR: 8.051 
+occ-outlier: 87.820 
+
+Actual rotation :  [[-0.87462848 -0.4705988  -0.11645507]
+ [ 0.24256895 -0.63279443  0.73534448]
+ [-0.41974435  0.61490485  0.66761269]]
+Actual translation :  [ 1.20593496  0.83257865 -0.4390415 ]
+Predicted rotation :  [[-0.6027868  -0.53940801 -0.58795165]
+ [ 0.3666852  -0.84172258  0.39628932]
+ [-0.70865389  0.02328466  0.70517204]]
+Predicted translation :  [ 0.02264726 -0.03856545  0.00546618]
+Relative Rotation Error :  0.6879683302954325
+Relative Translation Error :  1.5351380817349007
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07095387779677514
+Strict IR :  0.010516792943571187
+Relaxed IR :  0.21463304308492592
+model 042
+number of centers 100
+average distance multiplier 3.0
+inlier outlier thresholds 0.01

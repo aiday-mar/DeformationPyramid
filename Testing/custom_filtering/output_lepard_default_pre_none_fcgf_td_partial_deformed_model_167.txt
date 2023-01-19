@@ -1,0 +1,76 @@
+Lepard
+model 167
+Partial Deformed
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  2254  out of  5000
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4508
+vec6d.shape :  torch.Size([5000, 6])
+ldmk_s.shape :  torch.Size([5000, 3])
+ldmk_t.shape :  torch.Size([5000, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  2244  out of  4255
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.52737955346651
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([5000, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 8.104 
+full-AccS: 0.000 
+full-AccR: 18.347 
+full-outlier: 83.031 
+vis-epe: 10.555 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 4.916 
+occ-AccS: 0.000 
+occ-AccR: 42.220 
+occ-outlier: 60.951 
+
+Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
+ [ 0.42981428  0.61565456 -0.66047646]
+ [-0.39834628 -0.52716002 -0.75061478]]
+Actual translation :  [0.2961076  0.17846237 1.41276713]
+Predicted rotation :  [[-0.58158552  0.80676964  0.10431211]
+ [ 0.58978433  0.50649018 -0.62898524]
+ [-0.56027919 -0.30428701 -0.77038737]]
+Predicted translation :  [ 0.01542111  0.04509425 -0.02570369]
+Relative Rotation Error :  0.33570749534802063
+Relative Translation Error :  1.4716556188624217
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04648827267256241
+Strict IR :  0.031130390405715743
+Relaxed IR :  0.5447818321000255
