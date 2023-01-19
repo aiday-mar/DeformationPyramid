@@ -52,7 +52,7 @@ fraction of true landmark correspondences returned from Outlier Rejection :  0.1
 Custom filtering is used
 number of landmarks before custom filtering :  23
 average distance :  0.05645152270469977
-average distance multiplier :  3.0
+average distance multiplier :  2.0
 number of unique source landmarks :  23
 number of centers :  15
 sampling :  linspace
@@ -79,35 +79,35 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 16.198 
-full-AccS: 0.056 
-full-AccR: 3.289 
-full-outlier: 81.425 
-vis-epe: 16.852 
-vis-AccS: 0.060 
-vis-AccR: 2.124 
-vis-outlier: 85.656 
-occ-epe: 7.633 
-occ-AccS: 0.000 
-occ-AccR: 18.540 
-occ-outlier: 26.036 
+0/1: full-epe: 13.388 
+full-AccS: 0.504 
+full-AccR: 2.884 
+full-outlier: 77.898 
+vis-epe: 13.586 
+vis-AccS: 0.045 
+vis-AccR: 2.109 
+vis-outlier: 79.192 
+occ-epe: 10.802 
+occ-AccS: 6.509 
+occ-AccR: 13.018 
+occ-outlier: 60.947 
 
 Actual rotation :  [[-0.22957138  0.09752936  0.968393  ]
  [ 0.82843609  0.54182999  0.1418235 ]
  [-0.51087242  0.83481033 -0.2051855 ]]
 Actual translation :  [-0.25784987 -0.18299676  1.01717296]
-Predicted rotation :  [[ 0.58775097 -0.41754924  0.69296573]
- [ 0.80652062  0.36996453 -0.46114086]
- [-0.06382362  0.82992714  0.55420914]]
-Predicted translation :  [-0.06822149  0.01417671  0.02076246]
-Relative Rotation Error :  1.0982338123584625
-Relative Translation Error :  1.0332812709669545
+Predicted rotation :  [[ 0.44016837 -0.42812239  0.78928014]
+ [ 0.86592807  0.43492416 -0.24700156]
+ [-0.23753012  0.79218198  0.56216293]]
+Predicted translation :  [-0.05709317 -0.00288388  0.02030681]
+Relative Rotation Error :  0.9230128273016108
+Relative Translation Error :  1.0327081058401997
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.07864492764439454
-Strict IR :  0.0
-Relaxed IR :  0.052825142092945504
+RMSE :  0.07825958788039437
+Strict IR :  0.01922433968572384
+Relaxed IR :  0.12754931461049815
 model 126
 number of centers 15
-average distance multiplier 4.0
+average distance multiplier 3.0
 inlier outlier thresholds 0.01
