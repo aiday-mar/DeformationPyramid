@@ -1,0 +1,111 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[64, 56]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([120, 2048])
+block_i :  1
+x.shape :  torch.Size([120, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 120])
+coarse_feats.shape :  torch.Size([1, 528, 120])
+coarse_feats.shape :  torch.Size([120, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 64])
+tgt_mask.shape :  torch.Size([1, 56])
+src_ind_coarse_split.shape :  torch.Size([64])
+tgt_ind_coarse_split.shape :  torch.Size([56])
+src_ind_coarse.shape :  torch.Size([64])
+tgt_ind_coarse.shape :  torch.Size([56])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([15, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([15])
+ti.shape :  torch.Size([15])
+s_pos.shape :  torch.Size([15, 3])
+t_pos.shape :  torch.Size([15, 3])
+ind.shape :  torch.Size([15, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([15])
+ti.shape :  torch.Size([15])
+s_pos.shape :  torch.Size([15, 3])
+t_pos.shape :  torch.Size([15, 3])
+number of true landmarks correspondences returned from Lepard :  1  out of  15
+fraction of true landmark correspondences returned from Lepard :  0.06666666666666667
+vec6d.shape :  torch.Size([15, 6])
+ldmk_s.shape :  torch.Size([15, 3])
+ldmk_t.shape :  torch.Size([15, 3])
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  15
+fraction of true landmark correspondences returned from Outlier Rejection :  0.06666666666666667
+Custom filtering is used
+number of landmarks before custom filtering :  15
+average distance :  0.040894817809263864
+average distance multiplier :  3.0
+number of unique source landmarks :  15
+number of centers :  5
+sampling :  linspace
+number of neighborhood centers :  5
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  15
+max_ldmks :  None
+number of landmarks after custom filtering :  9
+number of true landmark correspondences returned from custom filtering :  1  out of  9
+fraction of true landmark correspondences returned from custom filtering :  0.1111111111111111
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([9, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 18.785 
+full-AccS: 0.031 
+full-AccR: 2.366 
+full-outlier: 76.743 
+vis-epe: 20.538 
+vis-AccS: 0.036 
+vis-AccR: 1.179 
+vis-outlier: 85.025 
+occ-epe: 6.940 
+occ-AccS: 0.000 
+occ-AccR: 10.386 
+occ-outlier: 20.773 
+
+Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
+ [-0.33643314 -0.69811809  0.63201573]
+ [ 0.09760167  0.6416742   0.76074183]]
+Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
+Predicted rotation :  [[ 0.51595715  0.52602681  0.67607986]
+ [-0.71863466  0.6953483   0.00741458]
+ [-0.46621072 -0.48968007  0.73679094]]
+Predicted translation :  [-0.0245107   0.0007777   0.01881833]
+Relative Rotation Error :  2.384926798254454
+Relative Translation Error :  1.666476241896281
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.11479871681177224
+Strict IR :  0.0
+Relaxed IR :  0.02652222637280538
+model 167
+number of centers 10
+average distance multiplier 3.0
+inlier outlier thresholds 0.01

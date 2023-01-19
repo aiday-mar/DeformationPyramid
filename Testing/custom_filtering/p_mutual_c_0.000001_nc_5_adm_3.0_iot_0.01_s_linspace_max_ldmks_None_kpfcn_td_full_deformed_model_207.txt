@@ -1,0 +1,111 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[67, 66]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([133, 2048])
+block_i :  1
+x.shape :  torch.Size([133, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 133])
+coarse_feats.shape :  torch.Size([1, 528, 133])
+coarse_feats.shape :  torch.Size([133, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 67])
+tgt_mask.shape :  torch.Size([1, 66])
+src_ind_coarse_split.shape :  torch.Size([67])
+tgt_ind_coarse_split.shape :  torch.Size([66])
+src_ind_coarse.shape :  torch.Size([67])
+tgt_ind_coarse.shape :  torch.Size([66])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([18, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([18])
+ti.shape :  torch.Size([18])
+s_pos.shape :  torch.Size([18, 3])
+t_pos.shape :  torch.Size([18, 3])
+ind.shape :  torch.Size([18, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([18])
+ti.shape :  torch.Size([18])
+s_pos.shape :  torch.Size([18, 3])
+t_pos.shape :  torch.Size([18, 3])
+number of true landmarks correspondences returned from Lepard :  1  out of  18
+fraction of true landmark correspondences returned from Lepard :  0.05555555555555555
+vec6d.shape :  torch.Size([18, 6])
+ldmk_s.shape :  torch.Size([18, 3])
+ldmk_t.shape :  torch.Size([18, 3])
+number of true landmark correspondences returned from Outlier Rejection :  1  out of  17
+fraction of true landmark correspondences returned from Outlier Rejection :  0.058823529411764705
+Custom filtering is used
+number of landmarks before custom filtering :  18
+average distance :  0.04626804848925935
+average distance multiplier :  3.0
+number of unique source landmarks :  18
+number of centers :  5
+sampling :  linspace
+number of neighborhood centers :  5
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  18
+max_ldmks :  None
+number of landmarks after custom filtering :  7
+number of true landmark correspondences returned from custom filtering :  1  out of  7
+fraction of true landmark correspondences returned from custom filtering :  0.14285714285714285
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([7, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.967 
+full-AccS: 0.174 
+full-AccR: 5.459 
+full-outlier: 60.153 
+vis-epe: 12.276 
+vis-AccS: 0.179 
+vis-AccR: 2.476 
+vis-outlier: 62.074 
+occ-epe: 2.317 
+occ-AccS: 0.000 
+occ-AccR: 98.876 
+occ-outlier: 0.000 
+
+Actual rotation :  [[ 0.73275637  0.1374364   0.66646781]
+ [ 0.60033779 -0.59170884 -0.53802899]
+ [ 0.32041012  0.79434998 -0.51608669]]
+Actual translation :  [0.26170502 1.10936721 0.50044207]
+Predicted rotation :  [[ 0.69329134 -0.21261489  0.68857981]
+ [ 0.66631924 -0.17486631 -0.72487255]
+ [ 0.27452814  0.9613619   0.02043611]]
+Predicted translation :  [-0.01203972  0.03785361  0.00730169]
+Relative Rotation Error :  0.580597147397021
+Relative Translation Error :  1.2108943021354226
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04733889319719317
+Strict IR :  0.022365591397849462
+Relaxed IR :  0.32688172043010755
+model 207
+number of centers 10
+average distance multiplier 3.0
+inlier outlier thresholds 0.01

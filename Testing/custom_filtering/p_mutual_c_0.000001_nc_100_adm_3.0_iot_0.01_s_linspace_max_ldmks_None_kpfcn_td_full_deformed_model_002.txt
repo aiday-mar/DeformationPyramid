@@ -1,0 +1,109 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[150, 164]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([314, 2048])
+block_i :  1
+x.shape :  torch.Size([314, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 314])
+coarse_feats.shape :  torch.Size([1, 528, 314])
+coarse_feats.shape :  torch.Size([314, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 150])
+tgt_mask.shape :  torch.Size([1, 164])
+src_ind_coarse_split.shape :  torch.Size([150])
+tgt_ind_coarse_split.shape :  torch.Size([164])
+src_ind_coarse.shape :  torch.Size([150])
+tgt_ind_coarse.shape :  torch.Size([164])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([25, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([25])
+ti.shape :  torch.Size([25])
+s_pos.shape :  torch.Size([25, 3])
+t_pos.shape :  torch.Size([25, 3])
+ind.shape :  torch.Size([25, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([25])
+ti.shape :  torch.Size([25])
+s_pos.shape :  torch.Size([25, 3])
+t_pos.shape :  torch.Size([25, 3])
+number of true landmarks correspondences returned from Lepard :  7  out of  25
+fraction of true landmark correspondences returned from Lepard :  0.28
+vec6d.shape :  torch.Size([25, 6])
+ldmk_s.shape :  torch.Size([25, 3])
+ldmk_t.shape :  torch.Size([25, 3])
+number of true landmark correspondences returned from Outlier Rejection :  7  out of  22
+fraction of true landmark correspondences returned from Outlier Rejection :  0.3181818181818182
+Custom filtering is used
+number of landmarks before custom filtering :  25
+average distance :  0.05328733328729868
+average distance multiplier :  3.0
+number of unique source landmarks :  25
+number of centers :  100
+sampling :  linspace
+number of neighborhood centers :  100
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  25
+max_ldmks :  None
+number of landmarks after custom filtering :  20
+number of true landmark correspondences returned from custom filtering :  7  out of  20
+fraction of true landmark correspondences returned from custom filtering :  0.35
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([20, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 19.426 
+full-AccS: 0.085 
+full-AccR: 1.439 
+full-outlier: 87.959 
+vis-epe: 19.773 
+vis-AccS: 0.089 
+vis-AccR: 1.049 
+vis-outlier: 89.122 
+occ-epe: 12.432 
+occ-AccS: 0.000 
+occ-AccR: 9.319 
+occ-outlier: 64.516 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.58209414 -0.06514329 -0.81050781]
+ [ 0.51904299 -0.79705387 -0.30870662]
+ [-0.62590814 -0.60038474  0.49777238]]
+Predicted translation :  [ 0.02817938 -0.02300303 -0.0026281 ]
+Relative Rotation Error :  0.34074195160948023
+Relative Translation Error :  1.8896647721607114
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0784451853095382
+Strict IR :  0.005521472392638037
+Relaxed IR :  0.18773006134969325

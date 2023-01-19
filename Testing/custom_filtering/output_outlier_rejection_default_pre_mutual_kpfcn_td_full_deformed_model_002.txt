@@ -1,0 +1,99 @@
+Outlier Rejection
+model 002
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[150, 164]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([314, 2048])
+block_i :  1
+x.shape :  torch.Size([314, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 314])
+coarse_feats.shape :  torch.Size([1, 528, 314])
+coarse_feats.shape :  torch.Size([314, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 150])
+tgt_mask.shape :  torch.Size([1, 164])
+src_ind_coarse_split.shape :  torch.Size([150])
+tgt_ind_coarse_split.shape :  torch.Size([164])
+src_ind_coarse.shape :  torch.Size([150])
+tgt_ind_coarse.shape :  torch.Size([164])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([25, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([25])
+ti.shape :  torch.Size([25])
+s_pos.shape :  torch.Size([25, 3])
+t_pos.shape :  torch.Size([25, 3])
+ind.shape :  torch.Size([25, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([25])
+ti.shape :  torch.Size([25])
+s_pos.shape :  torch.Size([25, 3])
+t_pos.shape :  torch.Size([25, 3])
+number of true landmarks correspondences returned from Lepard :  7  out of  25
+fraction of true landmark correspondences returned from Lepard :  0.28
+vec6d.shape :  torch.Size([22, 6])
+ldmk_s.shape :  torch.Size([22, 3])
+ldmk_t.shape :  torch.Size([22, 3])
+number of true landmark correspondences returned from Outlier Rejection :  7  out of  22
+fraction of true landmark correspondences returned from Outlier Rejection :  0.3181818181818182
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([22, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 17.308 
+full-AccS: 0.102 
+full-AccR: 2.405 
+full-outlier: 84.488 
+vis-epe: 17.942 
+vis-AccS: 0.071 
+vis-AccR: 1.262 
+vis-outlier: 88.500 
+occ-epe: 4.522 
+occ-AccS: 0.717 
+occ-AccR: 25.448 
+occ-outlier: 3.584 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.56029178  0.00271827 -0.82829087]
+ [ 0.28959875 -0.9362392  -0.19896963]
+ [-0.77601914 -0.35135309  0.52377982]]
+Predicted translation :  [ 0.04292558 -0.01919993 -0.01068101]
+Relative Rotation Error :  0.36392430485516836
+Relative Translation Error :  1.8798143263971288
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05098985415320166
+Strict IR :  0.020858895705521473
+Relaxed IR :  0.2756646216768916
+model 002
+number of centers 5
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
