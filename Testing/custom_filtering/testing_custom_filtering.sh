@@ -19,7 +19,7 @@ preprocessing_default=mutual
 confidence=0.000001
 confidence_default=0.000001
 
-number_centers=(5 10 20 50 100 150 200 300 500)
+number_centers=(10 50 100 150 200 300 500)
 
 average_distance_multipliers=(3.0)
 
