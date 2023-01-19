@@ -16,12 +16,13 @@ weights = {
     #    'partial_deformed'
     # }
 }
-
+# model_numbers = ['002', '042', '085', '126', '167', '207']
+model_numbers = ['002']
+max_ldmks = '50'
 nc = [10, 50, 100, 300, 500]
 
 preprocessing = 'none'
 confidence = '1e-06'
-max_ldmks = 'None'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 adm = [3.0]
 
@@ -32,8 +33,6 @@ sampling='linspace'
 
 # adm_changed=True
 adm_changed=False
-
-model_numbers = ['002', '042', '085', '126', '167', '207']
 
 shape=(len(nc), len(adm), len(iot))
 
@@ -225,7 +224,7 @@ for data_type in data_types:
                 plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
                 plt.xticks(modified_nc_pos, modified_nc, rotation=90)
                 plt.axhline(y = final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
-                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
+                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
     plt.clf()
     drawn = False
@@ -255,6 +254,6 @@ for data_type in data_types:
         plt.title(data_type)
         plt.legend(loc ="upper right")
         plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-        plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
+        plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
             
         
