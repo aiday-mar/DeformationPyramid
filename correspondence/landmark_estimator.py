@@ -15,6 +15,7 @@ from correspondence.lepard.pipeline import Pipeline as Matcher
 from correspondence.lepard.pipeline_fcgf import PipelineFCGF as MatcherFCGF
 from correspondence.outlier_rejection.pipeline import   Outlier_Rejection
 from correspondence.outlier_rejection.loss import   NeCoLoss
+from operator import itemgetter
 
 from angle_criterion import get_angle_criterion_edge_vertices
 from shape_criterion import get_shape_criterion_edge_vertices
@@ -180,7 +181,7 @@ class Landmark_Model():
         inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
         return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
         
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2, knn_matching = False):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2, max_ldmks = None, knn_matching = False):
         if base:
             self.path = base
         else:
@@ -1256,17 +1257,32 @@ class Landmark_Model():
                 final_outlier_indices = np.arange(number_points)
                 final_indices = np.array([])
                 print('number of distinct source landmarks : ', len(map_ldmk_s_correspondences))
-                for ldmk_s_point in map_ldmk_s_correspondences:
-                    correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
-                    correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
+                print('max_ldmks : ', max_ldmks)
+
+                if max_ldmks is None:
+                    for ldmk_s_point in map_ldmk_s_correspondences:
+                        correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
+                        correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
+                        
+                        if correspondence_indices_to_inliers:
+                            correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
+                            final_indices = np.append(final_indices, correspondence_min)
+                        # correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
+                        # elif correspondence_indices_to_outliers:
+                        # correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
+                        # final_indices = np.append(final_indices, correspondence_min)
+                else:
+                    temp_dict = {}
+                    for ldmk_s_point in map_ldmk_s_correspondences:
+                        correspondence_indices = map_ldmk_s_correspondences[ldmk_s_point]
+                        correspondence_indices_to_inliers = {key: inliers[key] for key in correspondence_indices if key in inliers}
+                        
+                        if correspondence_indices_to_inliers:
+                            correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
+                            temp_dict[correspondence_min] = correspondence_indices_to_inliers[correspondence_min]
                     
-                    if correspondence_indices_to_inliers:
-                        correspondence_min = min(correspondence_indices_to_inliers, key=correspondence_indices_to_inliers.get)
-                        final_indices = np.append(final_indices, correspondence_min)
-                    # correspondence_indices_to_outliers = {key: outliers[key] for key in correspondence_indices if key in outliers}
-                    # elif correspondence_indices_to_outliers:
-                    # correspondence_min = min(correspondence_indices_to_outliers, key=correspondence_indices_to_outliers.get)
-                    # final_indices = np.append(final_indices, correspondence_min)
+                    temp_dict = dict(sorted(temp_dict.items(), key = itemgetter(1))[:max_ldmks])
+                    final_indices = temp_dict.keys()
                 
                 final_indices = set(final_indices)
                 final_outlier_indices = [outlier_idx for outlier_idx in final_outlier_indices if outlier_idx not in final_indices]                 

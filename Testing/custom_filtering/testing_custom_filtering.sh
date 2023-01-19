@@ -16,7 +16,7 @@ n_deformed_levels=8
 preprocessing=none
 preprocessing_default=mutual
 
-confidence=0.0001
+confidence=0.000001
 confidence_default=0.000001
 
 number_centers=(10 50 100 300 500)
@@ -28,6 +28,8 @@ inlier_outlier_thrs=(0.01)
 sampling=linspace
 
 model_numbers=('002' '042' '085' '126' '167' '207')
+
+max_ldmks=50
 
 if [ $type == "kpfcn" ] 
 then
@@ -270,6 +272,7 @@ then
                         --number_iterations_custom_filtering=1 \
                         --inlier_outlier_thr=${inlier_outlier_thr} \
                         --sampling=${sampling} \
+                        --max_ldmks=${max_ldmks} \
                         --print_keypoints \
                         --level=${n_deformed_levels} \
                         --custom_filtering  >> ${file_name}
@@ -314,6 +317,7 @@ then
                         --number_iterations_custom_filtering=1 \
                         --inlier_outlier_thr=${inlier_outlier_thr} \
                         --sampling=${sampling} \
+                        --max_ldmks=${max_ldmks} \
                         --print_keypoints \
                         --level=${n_deformed_levels} \
                         --custom_filtering   >> ${file_name}
@@ -590,6 +594,7 @@ if [ $type == "fcgf" ]; then
                         --number_iterations_custom_filtering=1 \
                         --inlier_outlier_thr=${inlier_outlier_thr} \
                         --sampling=${sampling} \
+                        --max_ldmks=${max_ldmks} \
                         --print_keypoints \
                         --custom_filtering  \
                         --level=${n_deformed_levels} \
@@ -639,6 +644,7 @@ if [ $type == "fcgf" ]; then
                         --number_iterations_custom_filtering=1 \
                         --inlier_outlier_thr=${inlier_outlier_thr} \
                         --sampling=${sampling} \
+                        --max_ldmks=${max_ldmks} \
                         --print_keypoints \
                         --custom_filtering  \
                         --level=${n_deformed_levels} \
