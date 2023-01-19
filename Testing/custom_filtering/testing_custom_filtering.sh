@@ -1,5 +1,5 @@
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
 td=full_deformed
 # td=partial_deformed
