@@ -17,8 +17,11 @@ if preprocessing == 'mutual':
             'full_deformed' : {
                 'conf' : '0.000001',
                 'nc' : [5, 10, 15]
+            },
+            'partial_deformed' : {
+                'conf' : '0.000001',
+                'nc' : [5, 10, 15]
             }
-        #    'partial_deformed' : '0.000001'
         },
         'fcgf' : {
             'full_deformed' : {
@@ -247,10 +250,7 @@ for data_type in data_types:
             modified_nc.append('lepard')
             modified_nc.append('outlier rejection')
             modified_nc_pos = range(len(modified_nc))
-            
-            print(data_type)
-            print(training_data)
-            
+
             if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
                 continue
 

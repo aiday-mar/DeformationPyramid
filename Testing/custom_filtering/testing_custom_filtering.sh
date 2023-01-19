@@ -1,8 +1,8 @@
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
-# td=full_deformed
-td=partial_deformed
+td=full_deformed
+# td=partial_deformed
 # td=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
@@ -23,9 +23,10 @@ confidence=0.000001
 confidence_default=0.000001
 
 # number_centers=(50 100 200 300 500 700)
-number_centers=(5 10 15 20 30)
+# number_centers=(5 10 15 20 30)
+number_centers=(150)
 
-average_distance_multipliers=(3.0)
+average_distance_multipliers=(1.0 2.0 3.0 4.0 5.0 6.0)
 
 inlier_outlier_thrs=(0.01)
 
