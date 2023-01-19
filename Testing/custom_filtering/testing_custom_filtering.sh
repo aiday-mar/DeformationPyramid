@@ -13,7 +13,7 @@ fi
 
 n_deformed_levels=8
 
-preprocessing=none
+preprocessing=mutual
 preprocessing_default=mutual
 
 confidence=0.000001
