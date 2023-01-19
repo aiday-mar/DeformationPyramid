@@ -3,12 +3,15 @@ base='/home/aiday.kyzy/dataset/Synthetic/FullDeformedData/TestingData/'
 type=fcgf
 # type=kpfcn
 
-preprocessing=none
-# preprocessing=mutual
+# preprocessing=none
+preprocessing=mutual
 
 # training_data=full_deformed
 training_data=partial_deformed
 # training_data=pretrained
+
+number_centers=50
+average_distance_multiplier=2.0
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
@@ -24,8 +27,6 @@ elif [ "$training_data" == "pretrained" ] ; then
 	epoch=null
 fi
 
-number_centers=50
-average_distance_multiplier=2.0
 
 if [ "$type" == "fcgf" ] ; then
     inlier_outlier_thr=0.01
@@ -39,8 +40,8 @@ else
 	confidence_threshold=0.000001
 fi
 
-filename=Testing/all/test_astrivis_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_adm_${average_distance_multiplier}.txt
-folder_name=output_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_adm_${average_distance_multiplier}
+filename=Testing/all/test_astrivis_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_nc_${number_centers}_adm_${average_distance_multiplier}.txt
+folder_name=output_full_deformed_pre_${preprocessing}_${type}_td_${training_data}_e_${epoch}_custom_nc_${number_centers}_adm_${average_distance_multiplier}
 rm ${filename}
 touch ${filename}
 
@@ -106,8 +107,6 @@ if [ $type == "fcgf" ]; then
 	for k in ${model_numbers[@]}
 	do
 
-		# arr=('020' '041' '062' '104' '125' '146' '188' '209' '230')
-		# arr=('020' '062' '125' '188')
 		arr=('020' '104')
 		mkdir $base/model$k/${folder_name}
 		length_array=${#arr[@]}
