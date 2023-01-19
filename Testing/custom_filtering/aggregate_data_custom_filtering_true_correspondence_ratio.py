@@ -16,12 +16,11 @@ weights = {
     #    'partial_deformed' : '0.000001'
     }
 }
-# model_numbers = ['002', '042', '085', '126', '167', '207']
-model_numbers = ['002']
+model_numbers = ['002', '042', '085', '126', '167', '207']
 preprocessing = 'mutual'
 max_ldmks = 'None'
 
-nc = [10, 50, 100, 300, 500]
+nc = [10, 50, 100, 150, 200]
 
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
@@ -200,8 +199,6 @@ plt.ylim(0, 1)
 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
 '''
 
-print(final_matrices)
-
 for data_type in data_types:
 
     modified_nc = [str(nc_v) for nc_v in nc]
@@ -236,22 +233,20 @@ for data_type in data_types:
                 total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['total'])
 
                 plt.clf()
-                plt.title(data_type)
+                plt.title('Model ' + model_number + ' - ' + data_type)
                 plt.bar(modified_nc_pos, true_data, color='r')
                 plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
                 plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-                plt.axhline(y = final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
+                # plt.axhline(y = final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
                 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
     plt.clf()
-    drawn = False
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
 
             if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
                 break
             
-            drawn = True
             for model_number in model_numbers:
         
                 rmse = []
@@ -265,12 +260,11 @@ for data_type in data_types:
                 rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['rmse'])
                 rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['rmse'])
 
-                plt.plot(modified_nc_pos, rmse, label = model_number + ' - ' + feature_extractor + ' - ' + training_data)
+                plt.plot(modified_nc_pos, rmse, label = model_number)
 
-    if drawn is True:
-        plt.title(data_type)
-        plt.legend(loc ="upper right")
-        plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-        plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
+            plt.title(data_type)
+            plt.legend(loc ="upper right")
+            plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+            plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_rmse.png', bbox_inches='tight')
             
         

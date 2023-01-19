@@ -1,8 +1,8 @@
 type=fcgf
 # type=kpfcn
 
-td=full_deformed
-# td=partial_deformed
+# td=full_deformed
+td=partial_deformed
 # td=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
@@ -19,7 +19,7 @@ preprocessing_default=mutual
 confidence=0.000001
 confidence_default=0.000001
 
-number_centers=(10 50 100 150 200 300 500)
+number_centers=(5 10 50 70 100 150 200)
 
 average_distance_multipliers=(3.0)
 
@@ -29,7 +29,6 @@ sampling=linspace
 
 model_numbers=('002' '042' '085' '126' '167' '207')
 
-# max_ldmks=50
 max_ldmks=None
 
 if [ $type == "kpfcn" ] 
