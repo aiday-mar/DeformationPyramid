@@ -43,11 +43,11 @@ if preprocessing == 'mutual':
             # 'kpfcn' : {
             #    'full_deformed' : {
             #        'conf' : '0.000001',
-            #        'adm' : [1, 2, 3, 4, 5, 6]
+            #        'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
             #    },
             #    'partial_deformed' : {
             #        'conf' : '0.000001',
-            #        'adm' : [1, 2, 3, 4, 5, 6]
+            #        'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
             #    }
             # },
             'fcgf' : {
@@ -57,7 +57,7 @@ if preprocessing == 'mutual':
                 },
                 'partial_deformed' : {
                     'conf' : '0.000001',
-                    'adm' : [1, 2, 3, 4, 5, 6]
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
                 }
             }   
         }

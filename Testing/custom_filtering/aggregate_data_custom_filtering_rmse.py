@@ -5,10 +5,12 @@ import copy
 
 data_types=['Full Deformed', 'Partial Deformed']
 model_numbers = ['002', '042', '085', '126', '167', '207']
+base = 'Testing/custom_filtering/'
 
 preprocessing = 'mutual'
 nc=150
-adm=3.0
+adm=4.0
+iot=0.01
 
 if preprocessing == 'mutual':
     weights = {
@@ -55,18 +57,6 @@ confidence = '1e-06'
 sampling='linspace'
 max_ldmks = 'None'
 
-def create_final_matrix(nc):
-
-    shape=(len(nc), len(adm), len(iot))
-
-    final_submatrix ={
-    'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
-    'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
-    }
-
-    final_matrix = { model_number : copy.deepcopy(final_submatrix) for model_number in model_numbers}
-    return final_matrix
-
 final_matrices = {}
 
 for model_number in model_numbers:
@@ -82,6 +72,32 @@ for model_number in model_numbers:
 
 print(final_matrices)
 
+for training_data in weights:
+    for feature_extractor in weights[training_data]:
+        for model_number in model_numbers:
+
+            file = 'p_' + preprocessing + '_c_' + confidence + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            file_txt = open(base + file, 'r')
+            Lines = file_txt.readlines()
+            current_data_type = ''
+            for line in Lines:
+
+                if 'RMSE' in line:
+                    rmse = float(re.findall("\d+\.\d+", line)[0])
+                    final_matrices[model_number][training_data][model_number][feature_extractor]['final'] = rmse
+
+            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            file_txt = open(file_txt, 'r')
+            Lines = file_txt.readlines()
+            current_data_type = ''
+            for line in Lines:
+                
+                if 'RMSE' in line:
+                    rmse = float(re.findall("\d+\.\d+", line)[0])
+                    final_matrices[model_number][training_data][model_number][feature_extractor]['final'] = rmse
+
+for training_data in weights:
+    
 '''
 for i in nc : 
     count = 0
