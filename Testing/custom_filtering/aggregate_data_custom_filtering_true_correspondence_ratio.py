@@ -16,7 +16,7 @@ if preprocessing == 'mutual':
         'kpfcn' : {
             'full_deformed' : {
                 'conf' : '0.000001',
-                'nc' : [5, 10, 20, 50, 100]
+                'nc' : [5, 10, 15]
             }
         #    'partial_deformed' : '0.000001'
         },
@@ -279,10 +279,11 @@ for data_type in data_types:
                 plt.xticks(modified_nc_pos, modified_nc, rotation=90)
                 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
-    plt.clf()
+    
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
             
+            plt.clf()
             nc = weights[feature_extractor][training_data]['nc']
             modified_nc = [str(nc_v) for nc_v in nc]
             modified_nc.append('lepard')
