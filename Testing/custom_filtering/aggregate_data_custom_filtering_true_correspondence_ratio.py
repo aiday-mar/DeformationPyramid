@@ -40,23 +40,26 @@ if preprocessing == 'mutual':
         }
     else:
         weights = {
-            # 'kpfcn' : {
-            #    'full_deformed' : {
-            #        'conf' : '0.000001',
-            #        'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-            #    },
+            'kpfcn' : {
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [15],
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                },
             #    'partial_deformed' : {
             #        'conf' : '0.000001',
             #        'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
             #    }
-            # },
+            },
             'fcgf' : {
                 'full_deformed' : {
                     'conf' : '0.000001',
+                    'nc' : [150],
                     'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
                 },
                 'partial_deformed' : {
                     'conf' : '0.000001',
+                    'nc' : [150],
                     'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
                 }
             }   
@@ -88,7 +91,7 @@ else:
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 adm = [3.0]
-nc = [150]
+nc = [15]
 iot = [0.01]
 
 # sampling = 'poisson'
@@ -130,6 +133,7 @@ for feature_extractor in weights:
         confidence = weights[feature_extractor][training_data]['conf']
         if adm_changed is True:
             adm = weights[feature_extractor][training_data]['adm']
+            nc = weights[feature_extractor][training_data]['nc']
         else:
             nc = weights[feature_extractor][training_data]['nc']
 

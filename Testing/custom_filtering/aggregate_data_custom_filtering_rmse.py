@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
+# Replaces the code in the all folder which also calculates the RMSE
+
 data_types=['Full Deformed', 'Partial Deformed']
 model_numbers = ['002', '042', '085', '126', '167', '207']
 base = 'Testing/custom_filtering/'
@@ -11,6 +13,12 @@ preprocessing = 'mutual'
 nc=150
 adm=4.0
 iot=0.01
+
+barWidth = 0.30
+barWidthPlot = 0.30
+br1 = np.array([0, 1, 2, 3, 4, 5])
+br2 = np.array([x + barWidth for x in br1])
+bars = [br1, br2]
 
 if preprocessing == 'mutual':
     weights = {
@@ -97,99 +105,20 @@ for training_data in weights:
                     final_matrices[model_number][training_data][model_number][feature_extractor]['final'] = rmse
 
 for training_data in weights:
-    
-'''
-for i in nc : 
+    plt.clf()
     count = 0
-    for j in adm:
-        file = 'v_2_t_custom_p_none_c_0.1_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) +'.txt'
-        files.append(file)
-        file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations))
-        final_data[file] = {}
-        file_txt = open(base + file, 'r')
-        Lines = file_txt.readlines()
-        current_data_type = ''
-        for line in Lines:
-            if line[:-1] in data_types:
-                current_data_type = line[:-1]
-                final_data[file][current_data_type] = {}
+    for feature_extractor in weights[training_data]:
 
-            if heatmap and 'RMSE' in line:
-                rmse = float(re.findall("\d+\.\d+", line)[0])
-                final_data[file][current_data_type]['RMSE'] = rmse
-                final_matrices[current_data_type][int(i/100)-1][j-1] = rmse
-
-            if not heatmap and 'RMSE' in line:
-                rmse = float(re.findall("\d+\.\d+", line)[0])
-                final_data[file][current_data_type]['RMSE'] = rmse
-                final_matrices[current_data_type][0][count] = rmse
+        initial_rmse = []
+        rmse = []
+        for model_number in model_numbers:
+            initial_rmse.append(final_matrices[model_number][training_data][feature_extractor]['initial'])
+            rmse.append(final_matrices[model_number][training_data][feature_extractor]['final'])
         
+        bar = bars[count]
+        weights_legend = feature_extractor
+        plt.bar(bar, rmse, width = barWidthPlot, edgecolor='white', label = weights_legend) 
+        plt.bar(bar, rmse, linestyle='dashed', label='_nolegend_')
         count += 1
-
-# print('final_data : ', final_data)
-# print('final_matrices : ', final_matrices)
-
-# Heatmap
-if heatmap:
-    for data_type in data_types:
-        ax = sns.heatmap(final_matrices[data_type], linewidth=0.5)
-        figure = ax.get_figure()    
-        figure.savefig('plots/custom_filtering_v2/' + data_type.replace(' ', '_') + '.png', dpi=400)
-
-if not heatmap:
-    for data_type in data_types:
-        plt.plot(adm, np.squeeze(final_matrices[data_type].T))
-    plt.legend(data_types)
-    plt.savefig('plots/custom_filtering_v2/varying_radius.png')
-
-RMSE_full_deformed = []
-RMSE_full_non_deformed = []
-RMSE_partial_deformed = []
-RMSE_partial_non_deformed = []
-
-for file in files:
-    RMSE_full_deformed.append(final_data[file]['Full Deformed']['RMSE'])
-    RMSE_full_non_deformed.append(final_data[file]['Full Non Deformed']['RMSE'])
-    RMSE_partial_deformed.append(final_data[file]['Partial Deformed']['RMSE'])
-    RMSE_partial_non_deformed.append(final_data[file]['Partial Non Deformed']['RMSE'])
-
-fig = plt.figure(figsize = (10, 5))
-plt.bar(files, RMSE_full_deformed, width = 0.4)
-plt.ylabel("RMSE")
-plt.title("RMSE - Full Deformed")
-plt.savefig('plots/custom_filtering_v2/RMSE_Full_Deformed_Custom_Filtering.png')
-
-fig = plt.figure(figsize = (10, 5))
-plt.bar(files, RMSE_full_non_deformed, width = 0.4)
-plt.ylabel("RMSE")
-plt.title("RMSE - Full Non Deformed")
-plt.savefig('plots/custom_filtering_v2/RMSE_Full_Non_Deformed_Custom_Filtering.png')
-
-fig = plt.figure(figsize = (10, 5))
-plt.bar(files, RMSE_partial_deformed, width = 0.4)
-plt.ylabel("RMSE")
-plt.title("RMSE - Partial Deformed")
-plt.savefig('plots/custom_filtering_v2/RMSE_Partial_Deformed_Custom_Filtering.png')
-
-fig = plt.figure(figsize = (10, 5))
-plt.bar(files, RMSE_partial_non_deformed, width = 0.4)
-plt.ylabel("RMSE")
-plt.title("RMSE - Partial Non Deformed")
-plt.savefig('plots/custom_filtering_v2/RMSE_Partial_Non_Deformed_Custom_Filtering.png')
-
-print('RMSE_full_deformed : ', RMSE_full_deformed)
-RMSE_full_deformed_index = RMSE_full_deformed.index(min(RMSE_full_deformed))
-print('Minimum attained for : ', file_types[RMSE_full_deformed_index])
-
-print('RMSE_full_non_deformed : ', RMSE_full_non_deformed)
-RMSE_full_non_deformed_index = RMSE_full_non_deformed.index(min(RMSE_full_non_deformed))
-print('Minimum attained for : ', file_types[RMSE_full_non_deformed_index])
-
-print('RMSE_partial_deformed : ', RMSE_partial_deformed)
-RMSE_partial_deformed_index = RMSE_partial_deformed.index(min(RMSE_partial_deformed))
-print('Minimum attained for : ', file_types[RMSE_partial_deformed_index])
-
-print('RMSE_partial_non_deformed : ', RMSE_partial_non_deformed)
-RMSE_partial_non_deformed_index = RMSE_partial_non_deformed.index(min(RMSE_partial_non_deformed))
-print('Minimum attained for : ', file_types[RMSE_partial_non_deformed_index])
-'''
+    
+    plt.savefig('Testing/custom_filtering/ndp_final_rmse_' + training_data + '.png', bbox_inches='tight')
