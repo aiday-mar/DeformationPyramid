@@ -92,7 +92,7 @@ then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
         fi
 
-        if [ $td == "full_deformed" || $td == "pretrained" ] 
+        if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
         then
             echo "Full Deformed" >> ${file_name} 
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
@@ -183,7 +183,7 @@ then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
         fi
         
-        if [ $td == "full_deformed" || $td == "pretrained" ] 
+        if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
         then
             echo "Full Deformed" >> ${file_name} 
             CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
@@ -290,7 +290,7 @@ then
                         --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
                     fi
 
-                    if [ $td == "full_deformed" || $td == "pretrained" ] 
+                    if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
                     then
                         echo "Full Deformed" >> ${file_name} 
                         CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
@@ -400,7 +400,7 @@ if [ $type == "fcgf" ]; then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
         fi
 
-        if [ $td == "full_deformed" || $td == "pretrained" ] 
+        if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
         then
             
             echo 'Full Deformed' >> ${file_name} 
@@ -497,7 +497,7 @@ if [ $type == "fcgf" ]; then
             --save_destination_path="TestData/PartialDeformed/model${k}/${folder_name}/destination.ply" >> ${file_name}
         fi
 
-        if [ $td == "full_deformed" || $td == "pretrained" ] 
+        if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
         then
             
             echo 'Full Deformed' >> ${file_name} 
@@ -613,7 +613,7 @@ if [ $type == "fcgf" ]; then
                         fi
                     fi
 
-                    if [ $td == "full_deformed" || $td == "pretrained" ] 
+                    if [ $td == "full_deformed" ] || [ $td == "pretrained" ] 
                     then
                         echo 'Full Deformed' >> ${file_name} 
                         CUDA_LAUNCH_BLOCKING=1 python3 eval_supervised_astrivis.py \
