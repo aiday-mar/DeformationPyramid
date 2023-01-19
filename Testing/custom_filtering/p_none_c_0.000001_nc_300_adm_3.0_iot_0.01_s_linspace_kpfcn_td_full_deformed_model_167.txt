@@ -1,0 +1,110 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[64, 56]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([120, 2048])
+block_i :  1
+x.shape :  torch.Size([120, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 120])
+coarse_feats.shape :  torch.Size([1, 528, 120])
+coarse_feats.shape :  torch.Size([120, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 64])
+tgt_mask.shape :  torch.Size([1, 56])
+src_ind_coarse_split.shape :  torch.Size([64])
+tgt_ind_coarse_split.shape :  torch.Size([56])
+src_ind_coarse.shape :  torch.Size([64])
+tgt_ind_coarse.shape :  torch.Size([56])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([1910, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1910])
+ti.shape :  torch.Size([1910])
+s_pos.shape :  torch.Size([1910, 3])
+t_pos.shape :  torch.Size([1910, 3])
+ind.shape :  torch.Size([1910, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1910])
+ti.shape :  torch.Size([1910])
+s_pos.shape :  torch.Size([1910, 3])
+t_pos.shape :  torch.Size([1910, 3])
+number of true landmarks correspondences returned from Lepard :  58  out of  1910
+fraction of true landmark correspondences returned from Lepard :  0.030366492146596858
+vec6d.shape :  torch.Size([1910, 6])
+ldmk_s.shape :  torch.Size([1910, 3])
+ldmk_t.shape :  torch.Size([1910, 3])
+number of true landmark correspondences returned from Outlier Rejection :  49  out of  1679
+fraction of true landmark correspondences returned from Outlier Rejection :  0.029184038117927337
+Custom filtering is used
+number of landmarks before custom filtering :  1910
+average distance :  0.03026005613290888
+average distance multiplier :  3.0
+number of unique source landmarks :  64
+number of centers :  300
+sampling :  linspace
+number of neighborhood centers :  300
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  64
+number of landmarks after custom filtering :  64
+number of true landmark correspondences returned from custom filtering :  1  out of  64
+fraction of true landmark correspondences returned from custom filtering :  0.015625
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([64, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.161 
+full-AccS: 0.125 
+full-AccR: 2.927 
+full-outlier: 64.415 
+vis-epe: 15.490 
+vis-AccS: 0.000 
+vis-AccR: 0.751 
+vis-outlier: 73.946 
+occ-epe: 5.183 
+occ-AccS: 0.966 
+occ-AccR: 17.633 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
+ [-0.33643314 -0.69811809  0.63201573]
+ [ 0.09760167  0.6416742   0.76074183]]
+Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
+Predicted rotation :  [[-0.58485491 -0.14929546  0.79728004]
+ [-0.7517804  -0.2693167  -0.60190924]
+ [ 0.30458309 -0.95140913  0.04527388]]
+Predicted translation :  [ 0.00873473 -0.01900328 -0.04881788]
+Relative Rotation Error :  2.155088912131422
+Relative Translation Error :  1.623689415367367
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06145555793957461
+Strict IR :  0.008965259618976467
+Relaxed IR :  0.1692192753081808
+model 167
+number of centers 500
+average distance multiplier 3.0
+inlier outlier thresholds 0.01

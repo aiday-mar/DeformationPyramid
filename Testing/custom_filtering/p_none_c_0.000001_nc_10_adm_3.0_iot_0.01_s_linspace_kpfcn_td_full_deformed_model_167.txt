@@ -1,0 +1,110 @@
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[64, 56]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([120, 2048])
+block_i :  1
+x.shape :  torch.Size([120, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 120])
+coarse_feats.shape :  torch.Size([1, 528, 120])
+coarse_feats.shape :  torch.Size([120, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 64])
+tgt_mask.shape :  torch.Size([1, 56])
+src_ind_coarse_split.shape :  torch.Size([64])
+tgt_ind_coarse_split.shape :  torch.Size([56])
+src_ind_coarse.shape :  torch.Size([64])
+tgt_ind_coarse.shape :  torch.Size([56])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([1910, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1910])
+ti.shape :  torch.Size([1910])
+s_pos.shape :  torch.Size([1910, 3])
+t_pos.shape :  torch.Size([1910, 3])
+ind.shape :  torch.Size([1910, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1910])
+ti.shape :  torch.Size([1910])
+s_pos.shape :  torch.Size([1910, 3])
+t_pos.shape :  torch.Size([1910, 3])
+number of true landmarks correspondences returned from Lepard :  58  out of  1910
+fraction of true landmark correspondences returned from Lepard :  0.030366492146596858
+vec6d.shape :  torch.Size([1910, 6])
+ldmk_s.shape :  torch.Size([1910, 3])
+ldmk_t.shape :  torch.Size([1910, 3])
+number of true landmark correspondences returned from Outlier Rejection :  49  out of  1679
+fraction of true landmark correspondences returned from Outlier Rejection :  0.029184038117927337
+Custom filtering is used
+number of landmarks before custom filtering :  1910
+average distance :  0.03026005613290888
+average distance multiplier :  3.0
+number of unique source landmarks :  64
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  64
+number of landmarks after custom filtering :  32
+number of true landmark correspondences returned from custom filtering :  1  out of  32
+fraction of true landmark correspondences returned from custom filtering :  0.03125
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([32, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.121 
+full-AccS: 0.000 
+full-AccR: 0.965 
+full-outlier: 59.589 
+vis-epe: 15.278 
+vis-AccS: 0.000 
+vis-AccR: 0.286 
+vis-outlier: 68.406 
+occ-epe: 6.304 
+occ-AccS: 0.000 
+occ-AccR: 5.556 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
+ [-0.33643314 -0.69811809  0.63201573]
+ [ 0.09760167  0.6416742   0.76074183]]
+Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
+Predicted rotation :  [[-0.74131705 -0.06523013  0.66797757]
+ [-0.60230618 -0.37443572 -0.7050002 ]
+ [ 0.29610191 -0.92495576  0.23828699]]
+Predicted translation :  [ 0.0154837  -0.01457371 -0.02833543]
+Relative Rotation Error :  1.9768337113357737
+Relative Translation Error :  1.6227004414931145
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05982053703083217
+Strict IR :  0.01307433694434068
+Relaxed IR :  0.16249533059394844
+model 167
+number of centers 50
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
