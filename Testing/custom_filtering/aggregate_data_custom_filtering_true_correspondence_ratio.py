@@ -12,8 +12,8 @@ weights = {
     #    'partial_deformed' : '0.000001'
     # }
     'fcgf' : {
-        'full_deformed' : '0.000001'
-    #    'partial_deformed' : '0.000001'
+        'full_deformed' : '0.000001',
+        'partial_deformed' : '0.000001'
     }
 }
 model_numbers = ['002', '042', '085', '126', '167', '207']
