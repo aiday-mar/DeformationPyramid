@@ -7,21 +7,22 @@ data_types=['Full Deformed', 'Partial Deformed']
 base = 'Testing/custom_filtering/'
 
 weights = {
-    'kpfcn' : {
-        'full_deformed' : '0.000001'
-    #    'partial_deformed'
-    }
-    # 'fcgf' : {
-    #    'full_deformed', 
-    #    'partial_deformed'
+    # 'kpfcn' : {
+    #    'full_deformed' : '0.000001'
+    #    'partial_deformed' : '0.000001'
     # }
+    'fcgf' : {
+        'full_deformed' : '0.000001'
+    #    'partial_deformed' : '0.000001'
+    }
 }
 # model_numbers = ['002', '042', '085', '126', '167', '207']
 model_numbers = ['002']
-max_ldmks = '50'
+preprocessing = 'mutual'
+max_ldmks = 'None'
+
 nc = [10, 50, 100, 300, 500]
 
-preprocessing = 'none'
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 adm = [3.0]
@@ -108,7 +109,14 @@ for feature_extractor in weights:
                 if line[:-1] in data_types:
                     current_data_type = line[:-1]
 
-                if 'number of true landmarks correspondences returned from Lepard' in line:
+                line_to_check = ''
+
+                if feature_extractor == 'kpfcn':
+                    line_to_check = 'number of true landmarks correspondences returned from Lepard'
+                elif feature_extractor == 'fcgf':
+                    line_to_check = 'number of true landmarks correspondences returned from FCGF based Lepard'
+
+                if line_to_check in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
@@ -138,7 +146,14 @@ for feature_extractor in weights:
                 if line[:-1] in data_types:
                     current_data_type = line[:-1]
 
-                if 'number of true landmark correspondences returned from Outlier Rejection' in line:
+                line_to_check = ''
+
+                if feature_extractor == 'kpfcn':
+                    line_to_check = 'number of true landmark correspondences returned from Outlier Rejection'
+                elif feature_extractor == 'fcgf':
+                    line_to_check = 'number of true landmark correspondences returned from FCGF based Outlier Rejection'
+
+                if line_to_check in line:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
@@ -184,6 +199,8 @@ plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotatio
 plt.ylim(0, 1)
 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
 '''
+
+print(final_matrices)
 
 for data_type in data_types:
 
