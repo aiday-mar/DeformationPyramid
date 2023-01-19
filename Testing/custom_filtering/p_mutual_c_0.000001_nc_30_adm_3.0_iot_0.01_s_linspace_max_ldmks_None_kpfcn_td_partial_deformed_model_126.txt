@@ -1,0 +1,109 @@
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[128, 132]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([260, 2048])
+block_i :  1
+x.shape :  torch.Size([260, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 260])
+coarse_feats.shape :  torch.Size([1, 528, 260])
+coarse_feats.shape :  torch.Size([260, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 128])
+tgt_mask.shape :  torch.Size([1, 132])
+src_ind_coarse_split.shape :  torch.Size([128])
+tgt_ind_coarse_split.shape :  torch.Size([132])
+src_ind_coarse.shape :  torch.Size([128])
+tgt_ind_coarse.shape :  torch.Size([132])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([26, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([26])
+ti.shape :  torch.Size([26])
+s_pos.shape :  torch.Size([26, 3])
+t_pos.shape :  torch.Size([26, 3])
+ind.shape :  torch.Size([26, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([26])
+ti.shape :  torch.Size([26])
+s_pos.shape :  torch.Size([26, 3])
+t_pos.shape :  torch.Size([26, 3])
+number of true landmarks correspondences returned from Lepard :  5  out of  26
+fraction of true landmark correspondences returned from Lepard :  0.19230769230769232
+vec6d.shape :  torch.Size([26, 6])
+ldmk_s.shape :  torch.Size([26, 3])
+ldmk_t.shape :  torch.Size([26, 3])
+number of true landmark correspondences returned from Outlier Rejection :  5  out of  22
+fraction of true landmark correspondences returned from Outlier Rejection :  0.22727272727272727
+Custom filtering is used
+number of landmarks before custom filtering :  26
+average distance :  0.05719137951158559
+average distance multiplier :  3.0
+number of unique source landmarks :  26
+number of centers :  30
+sampling :  linspace
+number of neighborhood centers :  30
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  26
+max_ldmks :  None
+number of landmarks after custom filtering :  19
+number of true landmark correspondences returned from custom filtering :  5  out of  19
+fraction of true landmark correspondences returned from custom filtering :  0.2631578947368421
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([19, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.833 
+full-AccS: 1.065 
+full-AccR: 25.339 
+full-outlier: 61.029 
+vis-epe: 16.582 
+vis-AccS: 0.000 
+vis-AccR: 0.318 
+vis-outlier: 96.416 
+occ-epe: 3.184 
+occ-AccS: 2.483 
+occ-AccR: 58.634 
+occ-outlier: 13.939 
+
+Actual rotation :  [[-0.81564788 -0.06094346 -0.57532984]
+ [ 0.57678234 -0.16330348 -0.80040871]
+ [-0.04517368 -0.98469176  0.16834925]]
+Actual translation :  [0.89703757 1.00050158 0.50390294]
+Predicted rotation :  [[-0.85788723 -0.01002351 -0.51374   ]
+ [ 0.49406568 -0.29077117 -0.81936009]
+ [-0.14116794 -0.95674003  0.25440129]]
+Predicted translation :  [0.03062002 0.01634573 0.00500058]
+Relative Rotation Error :  0.15671911979647585
+Relative Translation Error :  1.4029061519827668
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04005786288195893
+Strict IR :  0.04067796610169491
+Relaxed IR :  0.4635593220338983

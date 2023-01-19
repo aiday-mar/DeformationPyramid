@@ -1,0 +1,113 @@
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[128, 132]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([260, 2048])
+block_i :  1
+x.shape :  torch.Size([260, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 260])
+coarse_feats.shape :  torch.Size([1, 528, 260])
+coarse_feats.shape :  torch.Size([260, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 128])
+tgt_mask.shape :  torch.Size([1, 132])
+src_ind_coarse_split.shape :  torch.Size([128])
+tgt_ind_coarse_split.shape :  torch.Size([132])
+src_ind_coarse.shape :  torch.Size([128])
+tgt_ind_coarse.shape :  torch.Size([132])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([26, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([26])
+ti.shape :  torch.Size([26])
+s_pos.shape :  torch.Size([26, 3])
+t_pos.shape :  torch.Size([26, 3])
+ind.shape :  torch.Size([26, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([26])
+ti.shape :  torch.Size([26])
+s_pos.shape :  torch.Size([26, 3])
+t_pos.shape :  torch.Size([26, 3])
+number of true landmarks correspondences returned from Lepard :  5  out of  26
+fraction of true landmark correspondences returned from Lepard :  0.19230769230769232
+vec6d.shape :  torch.Size([26, 6])
+ldmk_s.shape :  torch.Size([26, 3])
+ldmk_t.shape :  torch.Size([26, 3])
+number of true landmark correspondences returned from Outlier Rejection :  5  out of  22
+fraction of true landmark correspondences returned from Outlier Rejection :  0.22727272727272727
+Custom filtering is used
+number of landmarks before custom filtering :  26
+average distance :  0.05719137951158559
+average distance multiplier :  3.0
+number of unique source landmarks :  26
+number of centers :  15
+sampling :  linspace
+number of neighborhood centers :  15
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  26
+max_ldmks :  None
+number of landmarks after custom filtering :  15
+number of true landmark correspondences returned from custom filtering :  5  out of  15
+fraction of true landmark correspondences returned from custom filtering :  0.3333333333333333
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([15, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.599 
+full-AccS: 2.252 
+full-AccR: 21.877 
+full-outlier: 57.688 
+vis-epe: 16.269 
+vis-AccS: 0.000 
+vis-AccR: 0.318 
+vis-outlier: 96.968 
+occ-epe: 3.055 
+occ-AccS: 5.248 
+occ-AccR: 50.564 
+occ-outlier: 5.418 
+
+Actual rotation :  [[-0.81564788 -0.06094346 -0.57532984]
+ [ 0.57678234 -0.16330348 -0.80040871]
+ [-0.04517368 -0.98469176  0.16834925]]
+Actual translation :  [0.89703757 1.00050158 0.50390294]
+Predicted rotation :  [[-9.03426416e-01 -1.57826720e-01 -3.98637031e-01]
+ [ 4.28743164e-01 -3.32016329e-01 -8.40205090e-01]
+ [ 2.52807479e-04 -9.29976276e-01  3.67619399e-01]]
+Predicted translation :  [0.01880947 0.00530621 0.00383456]
+Relative Rotation Error :  0.27011671537353155
+Relative Translation Error :  1.418367651986662
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.03688570254422436
+Strict IR :  0.0585956416464891
+Relaxed IR :  0.48922518159806294
+model 126
+number of centers 20
+average distance multiplier 3.0
+inlier outlier thresholds 0.01

@@ -1,0 +1,111 @@
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[61, 52]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([113, 2048])
+block_i :  1
+x.shape :  torch.Size([113, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 113])
+coarse_feats.shape :  torch.Size([1, 528, 113])
+coarse_feats.shape :  torch.Size([113, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 61])
+tgt_mask.shape :  torch.Size([1, 52])
+src_ind_coarse_split.shape :  torch.Size([61])
+tgt_ind_coarse_split.shape :  torch.Size([52])
+src_ind_coarse.shape :  torch.Size([61])
+tgt_ind_coarse.shape :  torch.Size([52])
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([17, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([17])
+ti.shape :  torch.Size([17])
+s_pos.shape :  torch.Size([17, 3])
+t_pos.shape :  torch.Size([17, 3])
+ind.shape :  torch.Size([17, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([17])
+ti.shape :  torch.Size([17])
+s_pos.shape :  torch.Size([17, 3])
+t_pos.shape :  torch.Size([17, 3])
+number of true landmarks correspondences returned from Lepard :  2  out of  17
+fraction of true landmark correspondences returned from Lepard :  0.11764705882352941
+vec6d.shape :  torch.Size([17, 6])
+ldmk_s.shape :  torch.Size([17, 3])
+ldmk_t.shape :  torch.Size([17, 3])
+number of true landmark correspondences returned from Outlier Rejection :  2  out of  16
+fraction of true landmark correspondences returned from Outlier Rejection :  0.125
+Custom filtering is used
+number of landmarks before custom filtering :  17
+average distance :  0.04968039746231893
+average distance multiplier :  3.0
+number of unique source landmarks :  17
+number of centers :  20
+sampling :  linspace
+number of neighborhood centers :  20
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  17
+max_ldmks :  None
+number of landmarks after custom filtering :  15
+number of true landmark correspondences returned from custom filtering :  2  out of  15
+fraction of true landmark correspondences returned from custom filtering :  0.13333333333333333
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([15, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 8.305 
+full-AccS: 0.179 
+full-AccR: 21.460 
+full-outlier: 79.153 
+vis-epe: 10.928 
+vis-AccS: 0.000 
+vis-AccR: 0.045 
+vis-outlier: 99.458 
+occ-epe: 4.892 
+occ-AccS: 0.411 
+occ-AccR: 49.325 
+occ-outlier: 52.730 
+
+Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
+ [ 0.42981428  0.61565456 -0.66047646]
+ [-0.39834628 -0.52716002 -0.75061478]]
+Actual translation :  [0.2961076  0.17846237 1.41276713]
+Predicted rotation :  [[-0.78216436  0.60627324 -0.14370578]
+ [ 0.5233084   0.51403275 -0.6796459 ]
+ [-0.33818164 -0.60679748 -0.71932602]]
+Predicted translation :  [-0.0032149   0.00999367 -0.04295114]
+Relative Rotation Error :  0.1704328818549651
+Relative Translation Error :  1.4956909249877366
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04844120352140297
+Strict IR :  0.003572339882623118
+Relaxed IR :  0.5151824445011483
+model 167
+number of centers 30
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
