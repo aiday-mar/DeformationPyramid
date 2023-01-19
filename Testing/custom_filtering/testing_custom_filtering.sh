@@ -23,7 +23,7 @@ confidence=0.000001
 confidence_default=0.000001
 
 # number_centers=(50 100 200 300 500 700)
-number_centers=(5 10 20 50 100)
+number_centers=(15)
 
 average_distance_multipliers=(3.0)
 

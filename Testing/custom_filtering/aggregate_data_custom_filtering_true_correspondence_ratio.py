@@ -6,27 +6,51 @@ import copy
 data_types=['Full Deformed', 'Partial Deformed']
 base = 'Testing/custom_filtering/'
 
-weights = {
-    # 'kpfcn' : {
-    #    'full_deformed' : '0.000001'
-    #    'partial_deformed' : '0.000001'
-    # }
-    'fcgf' : {
-        'full_deformed' : {
-            'conf' : '0.000001',
-            'nc' : [10, 50, 100, 150, 200]
-        },
-        'partial_deformed' : {
-            'conf' : '0.000001',
-            'nc' : [10, 50, 100, 150]
-        }
-    }   
-}
 model_numbers = ['002', '042', '085', '126', '167', '207']
+# preprocessing = 'none'
 preprocessing = 'mutual'
 max_ldmks = 'None'
 
+if preprocessing == 'mutual':
+    weights = {
+        'kpfcn' : {
+            'full_deformed' : {
+                'conf' : '0.000001',
+                'nc' : [5, 10, 20, 50, 100]
+            }
+        #    'partial_deformed' : '0.000001'
+        },
+        'fcgf' : {
+            'full_deformed' : {
+                'conf' : '0.000001',
+                'nc' : [10, 50, 100, 150, 200]
+            },
+            'partial_deformed' : {
+                'conf' : '0.000001',
+                'nc' : [10, 50, 100, 150]
+            }
+        }   
+    }
 
+elif preprocessing == 'none':
+    weights = {
+        # 'kpfcn' : {
+        #    'full_deformed' : '0.000001'
+        #    'partial_deformed' : '0.000001'
+        # }
+        'fcgf' : {
+            # 'full_deformed' : {
+            #    'conf' : '0.000001',
+            #    'nc' : [10, 50, 100, 150, 200]
+            # },
+            'partial_deformed' : {
+                'conf' : '0.000001',
+                'nc' : [50, 100, 200, 300, 500, 700]
+            }
+        }   
+    }
+else:
+    raise Exception('Must be one of the preprocessing options')
 
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
@@ -112,7 +136,7 @@ for feature_extractor in weights:
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
         for model_number in model_numbers:
-            file_txt = 'Testing/custom_filtering/output_lepard_default_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            file_txt = 'Testing/custom_filtering/output_lepard_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(file_txt, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
@@ -148,7 +172,7 @@ for feature_extractor in weights:
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
         for model_number in model_numbers:
-            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(file_txt, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
