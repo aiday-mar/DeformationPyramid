@@ -16,7 +16,7 @@ n_deformed_levels=8
 preprocessing=none
 preprocessing_default=mutual
 
-confidence=0.000001
+confidence=0.0001
 confidence_default=0.000001
 
 number_centers=(10 50 100 300 500)

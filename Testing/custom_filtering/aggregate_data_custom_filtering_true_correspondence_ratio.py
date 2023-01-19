@@ -19,6 +19,9 @@ weights = {
 
 nc = [10, 50, 100, 300, 500]
 
+preprocessing = 'none'
+confidence = '1e-06'
+
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 adm = [3.0]
 
@@ -31,9 +34,10 @@ sampling='linspace'
 adm_changed=False
 
 # model_number='002'
-model_numbers = ['002', '042']
+model_numbers = ['002', '042', '085', '126', '167', '207']
 
 shape=(len(nc), len(adm), len(iot))
+
 final_submatrix ={
                 'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
                 'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
@@ -44,6 +48,7 @@ final_matrix = { model_number : copy.deepcopy(final_submatrix) for model_number 
 final_matrices = {}
 
 for feature_extractor in weights:
+    final_matrices[feature_extractor] = {}
     for training_data in weights[feature_extractor]:
         final_matrices[feature_extractor][training_data] = copy.deepcopy(final_matrix)
 
@@ -57,7 +62,7 @@ for feature_extractor in weights:
             for i in nc :
                 for j in adm:
                     for k in iot:
-                        file = 'p_none_c_' + confidence + '_nc_' + str(i) + '_adm_' + str(j) + '_iot_' + str(k) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + 'model_' + model_number + '.txt'
+                        file = 'p_' + preprocessing + '_c_' + confidence + '_nc_' + str(i) + '_adm_' + str(j) + '_iot_' + str(k) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
                         file_txt = open(base + file, 'r')
                         Lines = file_txt.readlines()
                         current_data_type = ''
@@ -97,7 +102,7 @@ for feature_extractor in weights:
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
         for model_number in model_numbers:
-            file_txt = 'Testing/custom_filtering/output_lepard_default_' + feature_extractor + '_td_' + training_data + 'model_' + model_number + '.txt'
+            file_txt = 'Testing/custom_filtering/output_lepard_default_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(file_txt, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
@@ -126,7 +131,7 @@ for feature_extractor in weights:
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
         for model_number in model_numbers:
-            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_' + feature_extractor + '_td_' + training_data + 'model_' + model_number + '.txt'
+            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(file_txt, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
@@ -193,6 +198,10 @@ for data_type in data_types:
 
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
+
+            if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                break
+
             for model_number in model_numbers:
         
                 true_data = []
@@ -215,13 +224,17 @@ for data_type in data_types:
                 plt.title(data_type)
                 plt.bar(modified_nc_pos, true_data, color='r')
                 plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
-                plt.xticks(modified_nc_pos, modified_nc_pos, rotation=90)
+                plt.xticks(modified_nc_pos, modified_nc, rotation=90)
                 plt.axhline(y = final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
-                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + feature_extractor + '_td_' training_data '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
+                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
     plt.clf()
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
+
+            if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                break
+            
             for model_number in model_numbers:
         
                 rmse = []
@@ -240,6 +253,6 @@ for data_type in data_types:
     plt.title(data_type)
     plt.legend(loc ="upper right")
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_nc.png', bbox_inches='tight')
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
         
         
