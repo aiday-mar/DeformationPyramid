@@ -1,47 +1,88 @@
 import re
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
+import copy
 
-# FCGF TODO
-# KPFCN TODO
+data_types=['Full Deformed', 'Partial Deformed']
+model_numbers = ['002', '042', '085', '126', '167', '207']
 
-class File:
-    def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse, number_iterations):
-        self.type = type
-        self.preprocessing = preprocessing
-        self.confidence = confidence
-        self.number_centers = number_centers
-        self.average_distance_multiplier = average_distance_multiplier
-        self.coarse_level = coarse_level
-        self.index_coarse = index_coarse
-        self.number_iterations = number_iterations
-    
-    def __str__(self):
-        return " - Type : " + str(self.type) + " - Preprocessing : " + str(self.preprocessing) + " - Confidence : " + str(self.confidence) + " - Number Centers : " + str(self.number_centers) + " - Average Distance Multiplier : " + str(self.average_distance_multiplier) + " - Coarse Level : " + str(self.coarse_level) + " - Index Coarse : " + str(self.index_coarse) + ' - Number Iterations : ' + str(self.number_iterations)
+preprocessing = 'mutual'
+nc=150
+adm=3.0
 
-# Version 2 files
-files=[]
-file_types=[]
-number_iterations=1
-data_types=['Full Non Deformed', 'Full Deformed', 'Partial Deformed', 'Partial Non Deformed']
-base = '../../TestData/'
+if preprocessing == 'mutual':
+    weights = {
+        'full_deformed' : {
+            'kpfcn' : {
+                'conf' : '0.000001',
+            },
+            'fcgf' : {
+                'conf' : '0.000001',
+            }
+        },
+        'partial_deformed' : {
+            'kpfcn' : {
+                'conf' : '0.000001',
+            },
+            'fcgf' : {
+                'conf' : '0.000001',
+            }
+        }   
+    }
+elif preprocessing == 'none':
+    weights = {
+        'full_deformed' : {
+            'kpfcn' : {
+                'conf' : '0.000001',
+            },
+            'fcgf' : {
+                'conf' : '0.000001',
+            }
+        },
+        'partial_deformed' : {
+            'kpfcn' : {
+                'conf' : '0.000001',
+            },
+            'fcgf' : {
+                'conf' : '0.000001',
+            }
+        }   
+    }
+else:
+    raise Exception('Must be one of the preprocessing options')
 
-# For heatmap, can specify the number of centers and the adm
-# nc = [100, 200, 300]:
-nc = [20]
+confidence = '1e-06'
+sampling='linspace'
+max_ldmks = 'None'
 
-# radius adm
-# adm = [1, 2, 3, 4]
-adm =  [1.0, 1.4, 1.8, 2.2, 2.6, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0]
+def create_final_matrix(nc):
 
-# heatmap = True
-heatmap = False
+    shape=(len(nc), len(adm), len(iot))
 
-shape=(len(nc), len(adm))
-final_matrices={'Full Non Deformed': np.zeros(shape), 'Full Deformed': np.zeros(shape), 'Partial Deformed': np.zeros(shape),  'Partial Non Deformed': np.zeros(shape)}
-final_data = {}
+    final_submatrix ={
+    'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
+    'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
+    }
 
+    final_matrix = { model_number : copy.deepcopy(final_submatrix) for model_number in model_numbers}
+    return final_matrix
+
+final_matrices = {}
+
+for model_number in model_numbers:
+    final_matrices[model_number] = {}
+
+    for training_data in weights:
+        final_matrices[model_number][training_data] = {}
+
+        for feature_extractor in weights[training_data]:
+            final_matrices[model_number][training_data][feature_extractor] = {}
+            final_matrices[model_number][training_data][feature_extractor]['initial'] = 0
+            final_matrices[model_number][training_data][feature_extractor]['final'] = 0
+
+print(final_matrices)
+
+'''
 for i in nc : 
     count = 0
     for j in adm:
@@ -135,3 +176,4 @@ print('Minimum attained for : ', file_types[RMSE_partial_deformed_index])
 print('RMSE_partial_non_deformed : ', RMSE_partial_non_deformed)
 RMSE_partial_non_deformed_index = RMSE_partial_non_deformed.index(min(RMSE_partial_non_deformed))
 print('Minimum attained for : ', file_types[RMSE_partial_non_deformed_index])
+'''

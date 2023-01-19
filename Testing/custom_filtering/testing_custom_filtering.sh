@@ -1,8 +1,8 @@
 type=fcgf
 # type=kpfcn
 
-td=full_deformed
-# td=partial_deformed
+# td=full_deformed
+td=partial_deformed
 # td=pretrained
 
 if [ "$type" == "kpfcn" ] ; then

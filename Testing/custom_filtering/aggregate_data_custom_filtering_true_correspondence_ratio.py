@@ -11,63 +11,97 @@ model_numbers = ['002', '042', '085', '126', '167', '207']
 preprocessing = 'mutual'
 max_ldmks = 'None'
 
+adm_changed=True
+# adm_changed=False
+
 if preprocessing == 'mutual':
-    weights = {
-        'kpfcn' : {
-            'full_deformed' : {
-                'conf' : '0.000001',
-                'nc' : [5, 10, 15]
+    if adm_changed is False:
+        weights = {
+            'kpfcn' : {
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [5, 10, 15]
+                },
+                'partial_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [5, 10, 15]
+                }
             },
-            'partial_deformed' : {
-                'conf' : '0.000001',
-                'nc' : [5, 10, 15]
-            }
-        },
-        'fcgf' : {
-            'full_deformed' : {
-                'conf' : '0.000001',
-                'nc' : [10, 50, 100, 150, 200]
-            },
-            'partial_deformed' : {
-                'conf' : '0.000001',
-                'nc' : [10, 50, 100, 150]
-            }
-        }   
-    }
+            'fcgf' : {
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [10, 50, 100, 150, 200]
+                },
+                'partial_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [10, 50, 100, 150]
+                }
+            }   
+        }
+    else:
+        weights = {
+            # 'kpfcn' : {
+            #    'full_deformed' : {
+            #        'conf' : '0.000001',
+            #        'adm' : [1, 2, 3, 4, 5, 6]
+            #    },
+            #    'partial_deformed' : {
+            #        'conf' : '0.000001',
+            #        'adm' : [1, 2, 3, 4, 5, 6]
+            #    }
+            # },
+            'fcgf' : {
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                },
+            #    'partial_deformed' : {
+            #        'conf' : '0.000001',
+            #        'adm' : [1, 2, 3, 4, 5, 6]
+            #    }
+            }   
+        }
 
 elif preprocessing == 'none':
-    weights = {
-        # 'kpfcn' : {
-        #    'full_deformed' : '0.000001'
-        #    'partial_deformed' : '0.000001'
-        # }
-        'fcgf' : {
-            # 'full_deformed' : {
-            #    'conf' : '0.000001',
-            #    'nc' : [10, 50, 100, 150, 200]
-            # },
-            'partial_deformed' : {
-                'conf' : '0.000001',
-                'nc' : [50, 100, 200, 300, 500, 700]
-            }
-        }   
-    }
+    if adm_changed is False:
+        weights = {
+            # 'kpfcn' : {
+            #    'full_deformed' : '0.000001'
+            #    'partial_deformed' : '0.000001'
+            # }
+            'fcgf' : {
+                # 'full_deformed' : {
+                #    'conf' : '0.000001',
+                #    'nc' : [10, 50, 100, 150, 200]
+                # },
+                'partial_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [50, 100, 200, 300, 500, 700]
+                }
+            }   
+        }
+    else:
+        weights = {}
 else:
     raise Exception('Must be one of the preprocessing options')
 
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
 adm = [3.0]
-
+nc = [150]
 iot = [0.01]
 
 # sampling = 'poisson'
 sampling='linspace'
 
-# adm_changed=True
-adm_changed=False
+def create_final_matrix(var, type):
 
-def create_final_matrix(nc):
+    if type == 'adm':
+        adm = var
+        nc = [150]
+    elif type == 'nc':
+        nc = var
+        adm = [3.0]
 
     shape=(len(nc), len(adm), len(iot))
 
@@ -84,15 +118,20 @@ final_matrices = {}
 for feature_extractor in weights:
     final_matrices[feature_extractor] = {}
     for training_data in weights[feature_extractor]:
-
-        final_matrix = create_final_matrix(weights[feature_extractor][training_data]['nc'])
+        if adm_changed is True:
+            final_matrix = create_final_matrix(weights[feature_extractor][training_data]['adm'], 'adm')
+        else:
+            final_matrix = create_final_matrix(weights[feature_extractor][training_data]['nc'], 'nc')
         final_matrices[feature_extractor][training_data] = copy.deepcopy(final_matrix)
 
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
 
         confidence = weights[feature_extractor][training_data]['conf']
-        nc = weights[feature_extractor][training_data]['nc']
+        if adm_changed is True:
+            adm = weights[feature_extractor][training_data]['adm']
+        else:
+            nc = weights[feature_extractor][training_data]['nc']
 
         for model_number in model_numbers:
             count = 0
@@ -238,79 +277,156 @@ plt.ylim(0, 1)
 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
 '''
 
-for data_type in data_types:
-    
-    plt.clf()
+print('final_matrices : ', final_matrices)
 
-    for feature_extractor in weights:
-        for training_data in weights[feature_extractor]:
-            
-            nc = weights[feature_extractor][training_data]['nc']
-            modified_nc = [str(nc_v) for nc_v in nc]
-            modified_nc.append('lepard')
-            modified_nc.append('outlier rejection')
-            modified_nc_pos = range(len(modified_nc))
-
-            if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
-                continue
-
-            for model_number in model_numbers:
+if adm_changed is False:
+    for data_type in data_types:
         
-                true_data = []
-                total_data = []
+        plt.clf()
+
+        for feature_extractor in weights:
+            for training_data in weights[feature_extractor]:
                 
-                for i in range(len(nc)) :
-                    for j in range(len(adm)):
-                        for k in range(len(iot)):
-                                
-                            true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['true'][i][j][k])
-                            total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['total'][i][j][k])
+                nc = weights[feature_extractor][training_data]['nc']
+                modified_nc = [str(nc_v) for nc_v in nc]
+                modified_nc.append('lepard')
+                modified_nc.append('outlier rejection')
+                modified_nc_pos = range(len(modified_nc))
+
+                if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                    continue
+
+                for model_number in model_numbers:
+            
+                    true_data = []
+                    total_data = []
                     
-                true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['true'])
-                total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['total'])
+                    for i in range(len(nc)) :
+                        for j in range(len(adm)):
+                            for k in range(len(iot)):
+                                    
+                                true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['true'][i][j][k])
+                                total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['total'][i][j][k])
+                        
+                    true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['true'])
+                    total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['total'])
 
-                true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['true'])
-                total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['total'])
+                    true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['true'])
+                    total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['total'])
 
+                    plt.clf()
+                    plt.title('Model ' + model_number + ' - ' + data_type)
+                    plt.bar(modified_nc_pos, true_data, color='r')
+                    plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
+                    plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+                    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
+                
+        
+        for feature_extractor in weights:
+            for training_data in weights[feature_extractor]:
+                
                 plt.clf()
-                plt.title('Model ' + model_number + ' - ' + data_type)
-                plt.bar(modified_nc_pos, true_data, color='r')
-                plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
-                plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
-            
-    
-    for feature_extractor in weights:
-        for training_data in weights[feature_extractor]:
-            
-            plt.clf()
-            nc = weights[feature_extractor][training_data]['nc']
-            modified_nc = [str(nc_v) for nc_v in nc]
-            modified_nc.append('lepard')
-            modified_nc.append('outlier rejection')
-            modified_nc_pos = range(len(modified_nc))
+                nc = weights[feature_extractor][training_data]['nc']
+                modified_nc = [str(nc_v) for nc_v in nc]
+                modified_nc.append('lepard')
+                modified_nc.append('outlier rejection')
+                modified_nc_pos = range(len(modified_nc))
 
-            if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
-                continue
-            
-            for model_number in model_numbers:
-        
-                rmse = []
+                if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                    continue
                 
-                for i in range(len(nc)) :
-                    for j in range(len(adm)):
-                        for k in range(len(iot)):
-
-                            rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['rmse'][i][j][k])
-                    
-                rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['rmse'])
-                rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['rmse'])
-
-                plt.plot(modified_nc_pos, rmse, label = model_number)
-
-            plt.title(data_type)
-            plt.legend(loc ="upper right")
-            plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-            plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_rmse.png', bbox_inches='tight')
+                for model_number in model_numbers:
             
+                    rmse = []
+                    
+                    for i in range(len(nc)) :
+                        for j in range(len(adm)):
+                            for k in range(len(iot)):
+
+                                rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['rmse'][i][j][k])
+                        
+                    rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['rmse'])
+                    rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['rmse'])
+
+                    plt.plot(modified_nc_pos, rmse, label = model_number)
+
+                plt.title(data_type)
+                plt.legend(loc ="upper right")
+                plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_rmse.png', bbox_inches='tight')
+else:
+
+    for data_type in data_types:
         
+        plt.clf()
+        for feature_extractor in weights:
+            for training_data in weights[feature_extractor]:
+                
+                adm = weights[feature_extractor][training_data]['adm']
+                modified_adm = [str(adm_v) for adm_v in adm]
+                modified_adm.append('lepard')
+                modified_adm.append('outlier rejection')
+                modified_adm_pos = range(len(modified_adm))
+
+                if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                    continue
+
+                for model_number in model_numbers:
+            
+                    true_data = []
+                    total_data = []
+                    
+                    for i in range(len(nc)) :
+                        for j in range(len(adm)):
+                            for k in range(len(iot)):
+                                    
+                                true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['true'][i][j][k])
+                                total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['total'][i][j][k])
+                        
+                    true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['true'])
+                    total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['total'])
+
+                    true_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['true'])
+                    total_data.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['total'])
+
+                    plt.clf()
+                    plt.title('Model ' + model_number + ' - ' + data_type)
+                    plt.bar(modified_adm_pos, true_data, color='r')
+                    plt.bar(modified_adm_pos, total_data, bottom=true_data, color='b')
+                    plt.xticks(modified_adm_pos, modified_adm, rotation=90)
+                    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
+                
+        
+        for feature_extractor in weights:
+            for training_data in weights[feature_extractor]:
+                
+                plt.clf()
+                adm = weights[feature_extractor][training_data]['adm']
+                modified_adm = [str(adm_v) for adm_v in adm]
+                modified_adm.append('lepard')
+                modified_adm.append('outlier rejection')
+                modified_adm_pos = range(len(modified_adm))
+
+                if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
+                    continue
+                
+                for model_number in model_numbers:
+            
+                    rmse = []
+                    
+                    for i in range(len(nc)) :
+                        for j in range(len(adm)):
+                            for k in range(len(iot)):
+
+                                rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['custom']['rmse'][i][j][k])
+                        
+                    rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['lepard']['rmse'])
+                    rmse.append(final_matrices[feature_extractor][training_data][model_number][data_type]['outlier']['rmse'])
+
+                    plt.plot(modified_adm_pos, rmse, label = model_number)
+
+                plt.title(data_type)
+                plt.legend(loc ="upper right")
+                plt.xticks(modified_adm_pos, modified_adm, rotation=90)
+                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_rmse.png', bbox_inches='tight')
+                        
