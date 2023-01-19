@@ -11,7 +11,7 @@ confidence threshold used in the matching :  1e-06
 preprocessing :  mutual
 confidence threshold used in the matching :  1e-06
 preprocessing :  mutual
-ind.shape :  torch.Size([576, 3])
+ind.shape :  torch.Size([488, 3])
 bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -32,16 +32,12 @@ bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([576])
-ti.shape :  torch.Size([576])
-s_pos.shape :  torch.Size([576, 3])
-t_pos.shape :  torch.Size([576, 3])
-ind.shape :  torch.Size([576, 3])
+        0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([488])
+ti.shape :  torch.Size([488])
+s_pos.shape :  torch.Size([488, 3])
+t_pos.shape :  torch.Size([488, 3])
+ind.shape :  torch.Size([488, 3])
 bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -62,43 +58,39 @@ bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-       device='cuda:0')
-si.shape :  torch.Size([576])
-ti.shape :  torch.Size([576])
-s_pos.shape :  torch.Size([576, 3])
-t_pos.shape :  torch.Size([576, 3])
-number of true landmarks correspondences returned from FCGF based Lepard :  197  out of  576
-fraction of true landmark correspondences returned from FCGF based Lepard :  0.3420138888888889
-vec6d.shape :  torch.Size([576, 6])
-ldmk_s.shape :  torch.Size([576, 3])
-ldmk_t.shape :  torch.Size([576, 3])
-number of true landmark correspondences returned from FCGF based Outlier Rejection :  183  out of  493
-fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.3711967545638945
+        0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([488])
+ti.shape :  torch.Size([488])
+s_pos.shape :  torch.Size([488, 3])
+t_pos.shape :  torch.Size([488, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  354  out of  488
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.7254098360655737
+vec6d.shape :  torch.Size([488, 6])
+ldmk_s.shape :  torch.Size([488, 3])
+ldmk_t.shape :  torch.Size([488, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  354  out of  461
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7678958785249458
 Custom filtering is used
-number of landmarks before custom filtering :  576
-average distance :  0.011902197653802826
+number of landmarks before custom filtering :  488
+average distance :  0.008059416026865579
 average distance multiplier :  3.0
-number of unique source landmarks :  576
-number of centers :  100
+number of unique source landmarks :  488
+number of centers :  150
 sampling :  linspace
-number of neighborhood centers :  100
+number of neighborhood centers :  150
 number of iterations of custom filtering :  1
 inlier outlier threshold :  0.01
-number of distinct source landmarks :  576
+number of distinct source landmarks :  488
 max_ldmks :  None
-number of landmarks after custom filtering :  227
-number of true landmark correspondences returned from custom filtering :  148  out of  227
-fraction of true landmark correspondences returned from FCGF based custom filtering :  0.6519823788546255
+number of landmarks after custom filtering :  387
+number of true landmark correspondences returned from custom filtering :  333  out of  387
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.8604651162790697
 fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
 k0 :  -8
 levels :  8
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([227, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([387, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -108,35 +100,35 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 16.620 
-full-AccS: 0.339 
-full-AccR: 5.199 
-full-outlier: 82.388 
-vis-epe: 17.348 
-vis-AccS: 0.000 
-vis-AccR: 0.960 
-vis-outlier: 86.456 
-occ-epe: 1.935 
-occ-AccS: 7.168 
-occ-AccR: 90.681 
-occ-outlier: 0.358 
+0/1: full-epe: 10.594 
+full-AccS: 0.342 
+full-AccR: 16.407 
+full-outlier: 39.477 
+vis-epe: 11.832 
+vis-AccS: 0.393 
+vis-AccR: 4.039 
+vis-outlier: 45.318 
+occ-epe: 2.230 
+occ-AccS: 0.000 
+occ-AccR: 100.000 
+occ-outlier: 0.000 
 
-Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
- [ 0.253515   -0.81682267 -0.51819964]
- [-0.6448932  -0.54199926  0.53884094]]
-Actual translation :  [1.49731921 0.86758808 0.78433351]
-Predicted rotation :  [[-0.75412643  0.01179362 -0.65662334]
- [ 0.35611371 -0.8327359  -0.42395038]
- [-0.55179385 -0.55354481  0.6237883 ]]
-Predicted translation :  [ 0.0148929   0.0031222  -0.00491912]
-Relative Rotation Error :  0.18915997033032717
-Relative Translation Error :  1.8888644056877795
+Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
+ [-0.33643314 -0.69811809  0.63201573]
+ [ 0.09760167  0.6416742   0.76074183]]
+Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
+Predicted rotation :  [[-0.90965427  0.40917443 -0.07145451]
+ [-0.33338199 -0.61661063  0.71319567]
+ [ 0.24776183  0.67258293  0.69731363]]
+Predicted translation :  [-0.00085226 -0.00028077  0.00068042]
+Relative Rotation Error :  0.16707470823344808
+Relative Translation Error :  1.6405074513015678
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.030883868712084362
-Strict IR :  0.10552147239263804
-Relaxed IR :  0.7478527607361963
-model 002
-number of centers 150
+RMSE :  0.013089251742211828
+Strict IR :  0.5065371684721703
+Relaxed IR :  0.9887934254762795
+model 167
+number of centers 200
 average distance multiplier 3.0
 inlier outlier thresholds 0.01
