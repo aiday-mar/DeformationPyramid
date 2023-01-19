@@ -1,9 +1,7 @@
 import re
 import matplotlib.pyplot as plt
 import numpy as np
-
-# FCGF TODO
-# KPFCN TODO
+import copy
 
 class File:
     def __init__(self, type, preprocessing, confidence, number_centers, average_distance_multiplier, coarse_level, index_coarse, number_iterations, inlier_outlier_thr, sampling):
@@ -49,268 +47,200 @@ version=4
 # adm_changed=True
 adm_changed=False
 
-model_number='042'
+# model_number='002'
+model_numbers = ['002', '042']
 
 shape=(len(nc), len(adm), len(iot))
-final_matrices={
+final_submatrix ={
                 'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
                 'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
                 }
 
-count = 0
-for i in nc :
-    for j in adm:
-        for k in iot:
-            file = 'v_' + str(version) + '_t_custom_p_none_c_0.00000001_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '_s_' + sampling + '_' + type + '_model_' + model_number + '.txt'
-            files.append(file)
-            file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations, k, sampling))
-            file_txt = open(base + file, 'r')
-            Lines = file_txt.readlines()
-            current_data_type = ''
-            for line in Lines:
-                if line[:-1] in data_types:
-                    current_data_type = line[:-1]
+final_matrices = { model_number : copy.deepcopy(final_submatrix) for model_number in model_numbers}
 
-                '''
-                if 'number of true landmarks correspondences returned from Lepard' in line:
-                    search = list(map(int, re.findall(r'\d+', line)))
-                    true = int(search[0])
-                    total = int(search[1])
-                    if adm_changed is True:
-                        final_matrices[current_data_type]['lepard']['true'][0][count][0] = true
-                        final_matrices[current_data_type]['lepard']['total'][0][count][0] = total - true
-                    else:
-                        final_matrices[current_data_type]['lepard']['true'][count][0][0] = true
-                        final_matrices[current_data_type]['lepard']['total'][count][0][0] = total - true
-                
-                if 'number of true landmark correspondences returned from Outlier Rejection' in line:
-                    search = list(map(int, re.findall(r'\d+', line)))
-                    true = int(search[0])
-                    total = int(search[1])
-                    if adm_changed is True:
-                        final_matrices[current_data_type]['outlier']['true'][0][count][0] = true
-                        final_matrices[current_data_type]['outlier']['total'][0][count][0] = total - true
-                    else:
-                        final_matrices[current_data_type]['outlier']['true'][count][0][0] = true
-                        final_matrices[current_data_type]['outlier']['total'][count][0][0] = total - true
-                '''
-                        
-                if 'number of true landmark correspondences returned from custom filtering' in line:
-                    search = list(map(int, re.findall(r'\d+', line)))
-                    true = int(search[0])
-                    total = int(search[1])
-                    if adm_changed is True:
-                        final_matrices[current_data_type]['custom']['true'][0][count][0] = true
-                        final_matrices[current_data_type]['custom']['total'][0][count][0] = total - true
-                    else:
-                        final_matrices[current_data_type]['custom']['true'][count][0][0] = true
-                        final_matrices[current_data_type]['custom']['total'][count][0][0] = total - true
-                
-                if 'RMSE' in line:
-                    rmse = float(re.findall("\d+\.\d+", line)[0])
-                    if adm_changed is True:
-                        final_matrices[current_data_type]['custom']['rmse'][0][count][0] = rmse
-                    else:
-                        final_matrices[current_data_type]['custom']['rmse'][count][0][0] = rmse
+for model_number in model_numbers:
+    count = 0
+    for i in nc :
+        for j in adm:
+            for k in iot:
+                file = 'v_' + str(version) + '_t_custom_p_none_c_0.00000001_nc_' + str(i) + '_adm_' + str(j) + '_cl_-2_ic_1_ni_' + str(number_iterations) + '_iot_' + str(k) + '_s_' + sampling + '_' + type + '_model_' + model_number + '.txt'
+                files.append(file)
+                file_types.append(File('custom', 'none', 0.1, i, j, -2, 1, number_iterations, k, sampling))
+                file_txt = open(base + file, 'r')
+                Lines = file_txt.readlines()
+                current_data_type = ''
+                for line in Lines:
+                    if line[:-1] in data_types:
+                        current_data_type = line[:-1]
+                            
+                    if 'number of true landmark correspondences returned from custom filtering' in line:
+                        search = list(map(int, re.findall(r'\d+', line)))
+                        true = int(search[0])
+                        total = int(search[1])
+                        if adm_changed is True:
+                            final_matrices[model_number][current_data_type]['custom']['true'][0][count][0] = true
+                            final_matrices[model_number][current_data_type]['custom']['total'][0][count][0] = total - true
+                        else:
+                            final_matrices[model_number][current_data_type]['custom']['true'][count][0][0] = true
+                            final_matrices[model_number][current_data_type]['custom']['total'][count][0][0] = total - true
                     
-                if 'number of distinct source landmarks ' in line:
-                    search = list(map(int, re.findall(r'\d+', line)))
-                    n_distinct = search[0]
-                    final_matrices[current_data_type]['n_distinct'] = n_distinct
+                    if 'RMSE' in line:
+                        rmse = float(re.findall("\d+\.\d+", line)[0])
+                        if adm_changed is True:
+                            final_matrices[model_number][current_data_type]['custom']['rmse'][0][count][0] = rmse
+                        else:
+                            final_matrices[model_number][current_data_type]['custom']['rmse'][count][0][0] = rmse
+                        
+                    if 'number of distinct source landmarks ' in line:
+                        search = list(map(int, re.findall(r'\d+', line)))
+                        n_distinct = search[0]
+                        final_matrices[model_number][current_data_type]['n_distinct'] = n_distinct
 
-        if adm_changed is True:      
+            if adm_changed is True:      
+                count += 1
+
+        if adm_changed is False:      
             count += 1
 
-    if adm_changed is False:      
-        count += 1
+for model_number in model_numbers:
+    file_txt = 'Testing/custom_filtering/output_lepard_default_kpfcn_model_' + model_number + '.txt'
+    file_txt = open(file_txt, 'r')
+    Lines = file_txt.readlines()
+    current_data_type = ''
+    for line in Lines:
+        if line[:-1] in data_types:
+            current_data_type = line[:-1]
 
-file_txt = 'Testing/custom_filtering/output_lepard_default_kpfcn_model_042.txt'
-file_txt = open(file_txt, 'r')
-Lines = file_txt.readlines()
-current_data_type = ''
-for line in Lines:
-    if line[:-1] in data_types:
-        current_data_type = line[:-1]
+        if 'number of true landmarks correspondences returned from Lepard' in line:
+            search = list(map(int, re.findall(r'\d+', line)))
+            true = int(search[0])
+            total = int(search[1])
+            if adm_changed is True:
+                final_matrices[model_number][current_data_type]['lepard']['true'] = true
+                final_matrices[model_number][current_data_type]['lepard']['total'] = total - true
+            else:
+                final_matrices[model_number][current_data_type]['lepard']['true'] = true
+                final_matrices[model_number][current_data_type]['lepard']['total'] = total - true
 
-    if 'number of true landmarks correspondences returned from Lepard' in line:
-        search = list(map(int, re.findall(r'\d+', line)))
-        true = int(search[0])
-        total = int(search[1])
-        if adm_changed is True:
-            final_matrices[current_data_type]['lepard']['true'] = true
-            final_matrices[current_data_type]['lepard']['total'] = total - true
-        else:
-            final_matrices[current_data_type]['lepard']['true'] = true
-            final_matrices[current_data_type]['lepard']['total'] = total - true
+        if 'RMSE' in line:
+            rmse = float(re.findall("\d+\.\d+", line)[0])
+            if adm_changed is True:
+                final_matrices[model_number][current_data_type]['lepard']['rmse'] = rmse
+            else:
+                final_matrices[model_number][current_data_type]['lepard']['rmse'] = rmse
 
-    if 'RMSE' in line:
-        rmse = float(re.findall("\d+\.\d+", line)[0])
-        if adm_changed is True:
-            final_matrices[current_data_type]['lepard']['rmse'] = rmse
-        else:
-            final_matrices[current_data_type]['lepard']['rmse'] = rmse
+for model_number in model_numbers:
+    file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_kpfcn_model_' + model_number + '.txt'
+    file_txt = open(file_txt, 'r')
+    Lines = file_txt.readlines()
+    current_data_type = ''
+    count = 0
+    for line in Lines:
+        if line[:-1] in data_types:
+            current_data_type = line[:-1]
 
-file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_kpfcn_model_042.txt'
-file_txt = open(file_txt, 'r')
-Lines = file_txt.readlines()
-current_data_type = ''
-count = 0
-for line in Lines:
-    if line[:-1] in data_types:
-        current_data_type = line[:-1]
+        if 'number of true landmark correspondences returned from Outlier Rejection' in line:
+            search = list(map(int, re.findall(r'\d+', line)))
+            true = int(search[0])
+            total = int(search[1])
+            if adm_changed is True:
+                final_matrices[model_number][current_data_type]['outlier']['true'] = true
+                final_matrices[model_number][current_data_type]['outlier']['total'] = total - true
+            else:
+                final_matrices[model_number][current_data_type]['outlier']['true'] = true
+                final_matrices[model_number][current_data_type]['outlier']['total'] = total - true
+        
+        if 'RMSE' in line:
+            rmse = float(re.findall("\d+\.\d+", line)[0])
+            if adm_changed is True:
+                final_matrices[model_number][current_data_type]['outlier']['rmse'] = rmse
+            else:
+                final_matrices[model_number][current_data_type]['outlier']['rmse'] = rmse
 
-    if 'number of true landmark correspondences returned from Outlier Rejection' in line:
-        search = list(map(int, re.findall(r'\d+', line)))
-        true = int(search[0])
-        total = int(search[1])
-        if adm_changed is True:
-            final_matrices[current_data_type]['outlier']['true'] = true
-            final_matrices[current_data_type]['outlier']['total'] = total - true
-        else:
-            final_matrices[current_data_type]['outlier']['true'] = true
-            final_matrices[current_data_type]['outlier']['total'] = total - true
-    
-    if 'RMSE' in line:
-        rmse = float(re.findall("\d+\.\d+", line)[0])
-        if adm_changed is True:
-            final_matrices[current_data_type]['outlier']['rmse'] = rmse
-        else:
-            final_matrices[current_data_type]['outlier']['rmse'] = rmse
+ # Changing ADM
+'''
+modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
+modified_adm_pos = range(len(modified_adm))
+
+plt.title(data_type + ' - varying ADM')
+plt.plot(modified_adm_pos, rmse, color='r')
+plt.xticks(modified_adm_pos, modified_adm, rotation=90)
+plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
+
+modified_adm_lepard_outlier = ['custom - ' + str(adm_r) for adm_r in adm]
+modified_adm_lepard_outlier.append('lepard')
+modified_adm_lepard_outlier.append('outlier rejection')
+modified_adm_lepard_outlier_pos = range(len(modified_adm_lepard_outlier))
+
+plt.title(data_type + ' - varying ADM')
+plt.bar(modified_adm_lepard_outlier_pos, true_data, color='r')
+plt.bar(modified_adm_lepard_outlier_pos, total_data, bottom=true_data, color='b')
+plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
+plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
+
+plt.clf()
+plt.title(data_type + ' - varying ADM')
+plt.plot(modified_adm_lepard_outlier_pos, fraction, color='r')
+plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
+plt.ylim(0, 1)
+plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
+'''
 
 for data_type in data_types:
-    plt.clf()
-    true_data = []
-    rmse = []
-    total_data = []
-    fraction = []
-    
-    for i in range(len(nc)) :
-        for j in range(len(adm)):
-            for k in range(len(iot)):
-                    
-                true_data.append(final_matrices[data_type]['custom']['true'][i][j][k])
-                total_data.append(final_matrices[data_type]['custom']['total'][i][j][k])
-                rmse.append(final_matrices[data_type]['custom']['rmse'][i][j][k])
-                
-                '''
-                if final_matrices[data_type]['custom']['total'][i][j][k] != 0:
-                    fraction.append(final_matrices[data_type]['custom']['true'][i][j][k]/(final_matrices[data_type]['custom']['total'][i][j][k]+final_matrices[data_type]['custom']['true'][i][j][k]))
-                else:
-                    fraction.append(0)
-                '''
-                '''
-                if adm_changed is True:
-                    var = adm
-                else:
-                    var = nc
 
-                if j==len(var) -1:
-                    true_data.append(final_matrices[data_type]['lepard']['true'][i][j][k])
-                    total_data.append(final_matrices[data_type]['lepard']['total'][i][j][k])
-                    
-                    true_data.append(final_matrices[data_type]['outlier']['true'][i][j][k])
-                    total_data.append(final_matrices[data_type]['outlier']['total'][i][j][k])
-                    
-                    if final_matrices[data_type]['lepard']['total'][i][j][k] != 0:
-                        fraction.append(final_matrices[data_type]['lepard']['true'][i][j][k]/(final_matrices[data_type]['lepard']['total'][i][j][k]+final_matrices[data_type]['lepard']['true'][i][j][k]))
-                    else:
-                        fraction.append(0)
-
-                    if final_matrices[data_type]['outlier']['total'][i][j][k] != 0:
-                        fraction.append(final_matrices[data_type]['outlier']['true'][i][j][k]/(final_matrices[data_type]['outlier']['total'][i][j][k]+final_matrices[data_type]['outlier']['true'][i][j][k]))
-                    else:
-                        fraction.append(0)
-                '''
-            
-    # Changing IOT
-    '''    
-    modified_iot = [str(iot_v) for iot_v in iot]
-    modified_iot_pos = range(len(modified_iot))
-                
-    plt.title(data_type + ' - RMSE - nc : ' + str(nc[i]) + ' - adm : ' + str(adm[j]) + ' - sampling : ' + sampling + ' varying I/O threshold')
-    plt.plot(modified_iot_pos, rmse, color='r')
-    plt.xticks(modified_iot_pos, modified_iot, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_iot.png', bbox_inches='tight')
-    
-    modified_iot_lepard_outlier = [str(iot_v) for iot_v in iot]
-    modified_iot_lepard_outlier.append('lepard')
-    modified_iot_lepard_outlier.append('outlier rejection')
-    modified_iot_lepard_outlier_pos = range(len(modified_iot_lepard_outlier))
-    
-    plt.title(data_type + ' - GT ratio - nc : ' + str(nc[i]) + ' - adm : ' + str(adm[j]) + ' - sampling : ' + sampling + ' varying I/O threshold')
-    plt.bar(modified_iot_lepard_outlier_pos, true_data, color='r')
-    plt.bar(modified_iot_lepard_outlier_pos, total_data, bottom=true_data, color='b')
-    plt.xticks(modified_iot_lepard_outlier_pos, modified_iot_lepard_outlier, rotation=90)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_iot.png', bbox_inches='tight')
-    
-    plt.clf()
-    plt.title(data_type + ' - GT ratio - nc : ' + str(nc[i]) + ' - adm : ' + str(adm[j]) + ' - sampling : ' + sampling + ' varying I/O threshold')
-    plt.plot(modified_iot_lepard_outlier_pos, fraction, color='r')
-    plt.xticks(modified_iot_lepard_outlier_pos, modified_iot_lepard_outlier_pos, rotation=90)
-    plt.ylim(0, 1)
-    plt.savefig('plots/custom_filtering_v4/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[i]) + '_adm_' + str(adm[j]) + '_sampling_' + sampling + '_varying_iot.png', bbox_inches='tight')
-    '''
-    
-    # Changing ADM
-    '''
-    modified_adm = ['custom - ' + str(adm_r) for adm_r in adm]
-    modified_adm_pos = range(len(modified_adm))
-    
-    plt.title(data_type + ' - varying ADM')
-    plt.plot(modified_adm_pos, rmse, color='r')
-    plt.xticks(modified_adm_pos, modified_adm, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
-    
-    modified_adm_lepard_outlier = ['custom - ' + str(adm_r) for adm_r in adm]
-    modified_adm_lepard_outlier.append('lepard')
-    modified_adm_lepard_outlier.append('outlier rejection')
-    modified_adm_lepard_outlier_pos = range(len(modified_adm_lepard_outlier))
-    
-    plt.title(data_type + ' - varying ADM')
-    plt.bar(modified_adm_lepard_outlier_pos, true_data, color='r')
-    plt.bar(modified_adm_lepard_outlier_pos, total_data, bottom=true_data, color='b')
-    plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
-    
-    plt.clf()
-    plt.title(data_type + ' - varying ADM')
-    plt.plot(modified_adm_lepard_outlier_pos, fraction, color='r')
-    plt.xticks(modified_adm_lepard_outlier_pos, modified_adm_lepard_outlier, rotation=90)
-    plt.ylim(0, 1)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_varying_adm.png', bbox_inches='tight')
-    '''
-
-    true_data.append(final_matrices[data_type]['lepard']['true'])
-    total_data.append(final_matrices[data_type]['lepard']['total'])
-    rmse.append(final_matrices[data_type]['lepard']['rmse'])
-
-    true_data.append(final_matrices[data_type]['outlier']['true'])
-    total_data.append(final_matrices[data_type]['outlier']['total'])
-    rmse.append(final_matrices[data_type]['outlier']['rmse'])
-
-    # Changing NC
+     # Changing NC
     modified_nc = [str(nc_v) for nc_v in nc]
     modified_nc.append('lepard')
     modified_nc.append('outlier rejection')
     modified_nc_pos = range(len(modified_nc))
-
-    plt.clf()     
-    plt.title(data_type)
-    plt.plot(modified_nc_pos, rmse, color='r')
-    plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
     
     plt.clf()
-    plt.title(data_type)
-    plt.bar(modified_nc_pos, true_data, color='r')
-    plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
-    plt.xticks(modified_nc_pos, modified_nc_pos, rotation=90)
-    plt.axhline(y = final_matrices[data_type]['n_distinct'], color = 'r', linestyle = '-')
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
+
+    for model_number in model_numbers:
+        
+        true_data = []
+        total_data = []
+        
+        for i in range(len(nc)) :
+            for j in range(len(adm)):
+                for k in range(len(iot)):
+                        
+                    true_data.append(final_matrices[model_number][data_type]['custom']['true'][i][j][k])
+                    total_data.append(final_matrices[model_number][data_type]['custom']['total'][i][j][k])
+            
+        true_data.append(final_matrices[model_number][data_type]['lepard']['true'])
+        total_data.append(final_matrices[model_number][data_type]['lepard']['total'])
+
+        true_data.append(final_matrices[model_number][data_type]['outlier']['true'])
+        total_data.append(final_matrices[model_number][data_type]['outlier']['total'])
+
+        plt.clf()
+        plt.title(data_type)
+        plt.bar(modified_nc_pos, true_data, color='r')
+        plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
+        plt.xticks(modified_nc_pos, modified_nc_pos, rotation=90)
+        plt.axhline(y = final_matrices[model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
+        plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
     
-    # plt.clf()
-    # plt.title(data_type + ' - varying number of centers')
-    # plt.plot(modified_nc_lepard_outlier, fraction, color='r')
-    # plt.xticks(modified_nc_lepard_outlier, modified_nc_lepard_outlier, rotation=90)
-    # plt.ylim(0, 1)
-    # plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_graph_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
+    plt.clf()
+    for model_number in model_numbers:
+        
+        rmse = []
+        
+        for i in range(len(nc)) :
+            for j in range(len(adm)):
+                for k in range(len(iot)):
+
+                    rmse.append(final_matrices[model_number][data_type]['custom']['rmse'][i][j][k])
+            
+        rmse.append(final_matrices[model_number][data_type]['lepard']['rmse'])
+        rmse.append(final_matrices[model_number][data_type]['outlier']['rmse'])
+
+        plt.plot(modified_nc_pos, rmse, label = model_number)
+
+    plt.title(data_type)
+    plt.legend(loc ="upper right")
+    plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_varying_nc.png', bbox_inches='tight')
+        
+        
