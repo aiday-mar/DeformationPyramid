@@ -1,0 +1,216 @@
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  -2
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  -2
+coarse_level :  -2
+pts_num_coarse :  tensor([[132, 123]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([255, 2048])
+block_i :  1
+x.shape :  torch.Size([255, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 255])
+coarse_feats.shape :  torch.Size([1, 528, 255])
+coarse_feats.shape :  torch.Size([255, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 132])
+tgt_mask.shape :  torch.Size([1, 123])
+src_ind_coarse_split.shape :  torch.Size([132])
+tgt_ind_coarse_split.shape :  torch.Size([123])
+src_ind_coarse.shape :  torch.Size([132])
+tgt_ind_coarse.shape :  torch.Size([123])
+confidence threshold used in the matching :  1e-08
+preprocessing :  none
+confidence threshold used in the matching :  1e-08
+preprocessing :  none
+ind.shape :  torch.Size([2508, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2508])
+ti.shape :  torch.Size([2508])
+s_pos.shape :  torch.Size([2508, 3])
+t_pos.shape :  torch.Size([2508, 3])
+ind.shape :  torch.Size([2508, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2508])
+ti.shape :  torch.Size([2508])
+s_pos.shape :  torch.Size([2508, 3])
+t_pos.shape :  torch.Size([2508, 3])
+number of true landmarks correspondences returned from Lepard :  36  out of  2508
+fraction of true landmark correspondences returned from Lepard :  0.014354066985645933
+vec6d.shape :  torch.Size([2508, 6])
+ldmk_s.shape :  torch.Size([2508, 3])
+ldmk_t.shape :  torch.Size([2508, 3])
+number of true landmark correspondences returned from Outlier Rejection :  14  out of  1214
+fraction of true landmark correspondences returned from Outlier Rejection :  0.011532125205930808
+Custom filtering is used
+number of landmarks before custom filtering :  2508
+average distance :  0.034828152176679075
+average distance multiplier :  3.0
+number of unique source landmarks :  132
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  132
+number of landmarks after custom filtering :  26
+number of true landmark correspondences returned from custom filtering :  4  out of  26
+fraction of true landmark correspondences returned from custom filtering :  0.15384615384615385
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([26, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 20.210 
+full-AccS: 0.000 
+full-AccR: 0.231 
+full-outlier: 96.492 
+vis-epe: 21.009 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 97.919 
+occ-epe: 19.517 
+occ-AccS: 0.000 
+occ-AccR: 0.432 
+occ-outlier: 95.253 
+
+Actual rotation :  [[-0.40974485 -0.0177874  -0.91202674]
+ [ 0.82672423  0.41532003 -0.37952117]
+ [ 0.38553367 -0.90950145 -0.15546996]]
+Actual translation :  [ 1.97322969 -0.31353126  0.18591825]
+Predicted rotation :  [[-0.25459815  0.45526975 -0.85317607]
+ [-0.94291918  0.07897583  0.32352159]
+ [ 0.21466995  0.88684398  0.40917552]]
+Predicted translation :  [-0.04750279  0.04848829 -0.02062188]
+Relative Rotation Error :  2.671015457425283
+Relative Translation Error :  2.063268457806369
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.17798195811043518
+Strict IR :  0.0
+Relaxed IR :  0.01796218487394958
+Full Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  -2
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  -2
+coarse_level :  -2
+pts_num_coarse :  tensor([[150, 164]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([314, 2048])
+block_i :  1
+x.shape :  torch.Size([314, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 314])
+coarse_feats.shape :  torch.Size([1, 528, 314])
+coarse_feats.shape :  torch.Size([314, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 150])
+tgt_mask.shape :  torch.Size([1, 164])
+src_ind_coarse_split.shape :  torch.Size([150])
+tgt_ind_coarse_split.shape :  torch.Size([164])
+src_ind_coarse.shape :  torch.Size([150])
+tgt_ind_coarse.shape :  torch.Size([164])
+confidence threshold used in the matching :  1e-08
+preprocessing :  none
+confidence threshold used in the matching :  1e-08
+preprocessing :  none
+ind.shape :  torch.Size([1159, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1159])
+ti.shape :  torch.Size([1159])
+s_pos.shape :  torch.Size([1159, 3])
+t_pos.shape :  torch.Size([1159, 3])
+ind.shape :  torch.Size([1159, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1159])
+ti.shape :  torch.Size([1159])
+s_pos.shape :  torch.Size([1159, 3])
+t_pos.shape :  torch.Size([1159, 3])
+number of true landmarks correspondences returned from Lepard :  128  out of  1159
+fraction of true landmark correspondences returned from Lepard :  0.11044003451251079
+vec6d.shape :  torch.Size([1159, 6])
+ldmk_s.shape :  torch.Size([1159, 3])
+ldmk_t.shape :  torch.Size([1159, 3])
+number of true landmark correspondences returned from Outlier Rejection :  116  out of  1043
+fraction of true landmark correspondences returned from Outlier Rejection :  0.1112176414189837
+Custom filtering is used
+number of landmarks before custom filtering :  1159
+average distance :  0.033595394196087015
+average distance multiplier :  3.0
+number of unique source landmarks :  150
+number of centers :  10
+sampling :  linspace
+number of neighborhood centers :  10
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  150
+number of landmarks after custom filtering :  29
+number of true landmark correspondences returned from custom filtering :  10  out of  29
+fraction of true landmark correspondences returned from custom filtering :  0.3448275862068966
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+k0 :  -8
+levels :  8
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([29, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 16.343 
+full-AccS: 0.390 
+full-AccR: 4.691 
+full-outlier: 81.067 
+vis-epe: 17.017 
+vis-AccS: 0.160 
+vis-AccR: 1.280 
+vis-outlier: 85.087 
+occ-epe: 2.753 
+occ-AccS: 5.018 
+occ-AccR: 73.477 
+occ-outlier: 0.000 
+
+Actual rotation :  [[-0.72100132  0.19757917 -0.66416833]
+ [ 0.253515   -0.81682267 -0.51819964]
+ [-0.6448932  -0.54199926  0.53884094]]
+Actual translation :  [1.49731921 0.86758808 0.78433351]
+Predicted rotation :  [[-0.58981824  0.12978696 -0.7970383 ]
+ [ 0.38974457 -0.81868483 -0.42172755]
+ [-0.70725783 -0.55938389  0.43229148]]
+Predicted translation :  [-0.00594848  0.00463915 -0.0057586 ]
+Relative Rotation Error :  0.20391198399050312
+Relative Translation Error :  1.904925233794168
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.02496926449897331
+Strict IR :  0.10715746421267894
+Relaxed IR :  0.7664621676891615
+model 002
+number of centers 50
+average distance multiplier 3.0
+inlier outlier thresholds 0.01
