@@ -29,8 +29,8 @@ sampling=linspace
 
 model_numbers=('002') # '042' '085' '126' '167' '207')
 
-max_ldmks=50
-# max_ldmks=None
+# max_ldmks=50
+max_ldmks=None
 
 if [ $type == "kpfcn" ] 
 then
