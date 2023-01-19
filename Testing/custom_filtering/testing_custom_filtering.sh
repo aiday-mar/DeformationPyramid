@@ -27,7 +27,7 @@ inlier_outlier_thrs=(0.01)
 
 sampling=linspace
 
-model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('002') # '042' '085' '126' '167' '207')
 
 max_ldmks=50
 # max_ldmks=None
