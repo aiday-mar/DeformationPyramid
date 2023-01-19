@@ -53,8 +53,8 @@ model_number='042'
 
 shape=(len(nc), len(adm), len(iot))
 final_matrices={
-                'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}}, 
-                'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}},  
+                'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
+                'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
                 }
 
 count = 0
@@ -112,6 +112,11 @@ for i in nc :
                         final_matrices[current_data_type]['custom']['rmse'][0][count][0] = rmse
                     else:
                         final_matrices[current_data_type]['custom']['rmse'][count][0][0] = rmse
+                    
+                if 'number of distinct source landmarks ' in line:
+                    search = list(map(int, re.findall(r'\d+', line)))
+                    n_distinct = search[0]
+                    final_matrices[current_data_type]['n_distinct'] = n_distinct
 
         if adm_changed is True:      
             count += 1
@@ -172,7 +177,6 @@ for line in Lines:
         else:
             final_matrices[current_data_type]['outlier']['rmse'] = rmse
 
-print(final_matrices)
 for data_type in data_types:
     plt.clf()
     true_data = []
@@ -289,16 +293,19 @@ for data_type in data_types:
     modified_nc.append('lepard')
     modified_nc.append('outlier rejection')
     modified_nc_pos = range(len(modified_nc))
-                
+
+    plt.clf()     
     plt.title(data_type)
     plt.plot(modified_nc_pos, rmse, color='r')
     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_rmse_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
-        
+    
+    plt.clf()
     plt.title(data_type)
     plt.bar(modified_nc_pos, true_data, color='r')
     plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
     plt.xticks(modified_nc_pos, modified_nc_pos, rotation=90)
+    plt.axhline(y = final_matrices[data_type]['n_distinct'], color = 'r', linestyle = '-')
     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_ratio_barchart_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_sampling_' + sampling + '_' + type + '_model_' + model_number + '_varying_nc.png', bbox_inches='tight')
     
     # plt.clf()
