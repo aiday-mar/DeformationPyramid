@@ -30,6 +30,7 @@ sampling=linspace
 model_numbers=('002' '042' '085' '126' '167' '207')
 
 max_ldmks=50
+# max_ldmks=None
 
 if [ $type == "kpfcn" ] 
 then
@@ -232,8 +233,8 @@ then
                     echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                     echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                    folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_td_${td}
-                    file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_td_${td}_model_${k}.txt
+                    folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}
+                    file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_model_${k}.txt
 
                     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                     mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -552,8 +553,8 @@ if [ $type == "fcgf" ]; then
                     echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
                     echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
-                    folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_td_${td}
-                    file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_${type}_td_${td}_model_${k}.txt
+                    folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}
+                    file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_model_${k}.txt
 
                     rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
                     mkdir TestData/FullNonDeformed/model${k}/${folder_name}

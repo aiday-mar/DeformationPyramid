@@ -175,7 +175,10 @@ if __name__ == "__main__":
         edge_filtering_mesh = True if args.edge_filtering_mesh else False
         min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
         knn_matching = True if args.knn_matching else False
-        max_ldmks = int(args.max_ldmks) if args.max_ldmks else None
+        if args.max_ldmks.isnumeric():
+            max_ldmks = int(args.max_ldmks)
+        else:
+            max_ldmks = None
 
         if not args.use_gt_ldmks:
             ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering_simple = edge_filtering_simple, edge_filtering_angle = edge_filtering_angle, edge_filtering_shape = edge_filtering_shape, edge_filtering_disc = edge_filtering_disc, edge_filtering_mesh = edge_filtering_mesh, min_dist_thr = min_dist_thr, max_ldmks = max_ldmks, knn_matching = knn_matching)
