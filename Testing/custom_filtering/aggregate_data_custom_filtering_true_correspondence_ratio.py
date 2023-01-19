@@ -12,15 +12,21 @@ weights = {
     #    'partial_deformed' : '0.000001'
     # }
     'fcgf' : {
-        'full_deformed' : '0.000001',
-        'partial_deformed' : '0.000001'
-    }
+        'full_deformed' : {
+            'conf' : '0.000001',
+            'nc' : [10, 50, 100, 150, 200]
+        },
+        'partial_deformed' : {
+            'conf' : '0.000001',
+            'nc' : [10, 50, 100, 150]
+        }
+    }   
 }
 model_numbers = ['002', '042', '085', '126', '167', '207']
 preprocessing = 'mutual'
 max_ldmks = 'None'
 
-nc = [10, 50, 100, 150, 200]
+
 
 confidence = '1e-06'
 # adm = [1.0, 2.0, 3.0, 4.0, 5.0]
@@ -34,26 +40,32 @@ sampling='linspace'
 # adm_changed=True
 adm_changed=False
 
-shape=(len(nc), len(adm), len(iot))
+def create_final_matrix(nc):
 
-final_submatrix ={
-                'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
-                'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
-                }
+    shape=(len(nc), len(adm), len(iot))
 
-final_matrix = { model_number : copy.deepcopy(final_submatrix) for model_number in model_numbers}
+    final_submatrix ={
+    'Full Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0}, 
+    'Partial Deformed': {'lepard' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'outlier' : {'total' : 0, 'true' : 0, 'rmse': 0}, 'custom' : {'total' : np.zeros(shape), 'true' : np.zeros(shape), 'rmse': np.zeros(shape)}, 'n_distinct' : 0},  
+    }
+
+    final_matrix = { model_number : copy.deepcopy(final_submatrix) for model_number in model_numbers}
+    return final_matrix
 
 final_matrices = {}
 
 for feature_extractor in weights:
     final_matrices[feature_extractor] = {}
     for training_data in weights[feature_extractor]:
+
+        final_matrix = create_final_matrix(weights[feature_extractor][training_data]['nc'])
         final_matrices[feature_extractor][training_data] = copy.deepcopy(final_matrix)
 
 for feature_extractor in weights:
     for training_data in weights[feature_extractor]:
 
-        confidence = weights[feature_extractor][training_data]
+        confidence = weights[feature_extractor][training_data]['conf']
+        nc = weights[feature_extractor][training_data]['nc']
 
         for model_number in model_numbers:
             count = 0
@@ -200,19 +212,23 @@ plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_gt_rat
 '''
 
 for data_type in data_types:
-
-    modified_nc = [str(nc_v) for nc_v in nc]
-    modified_nc.append('lepard')
-    modified_nc.append('outlier rejection')
-    modified_nc_pos = range(len(modified_nc))
     
     plt.clf()
 
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
-
+            
+            nc = weights[feature_extractor][training_data]['nc']
+            modified_nc = [str(nc_v) for nc_v in nc]
+            modified_nc.append('lepard')
+            modified_nc.append('outlier rejection')
+            modified_nc_pos = range(len(modified_nc))
+            
+            print(data_type)
+            print(training_data)
+            
             if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
-                break
+                continue
 
             for model_number in model_numbers:
         
@@ -237,15 +253,20 @@ for data_type in data_types:
                 plt.bar(modified_nc_pos, true_data, color='r')
                 plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
                 plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-                # plt.axhline(y = final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], color = 'r', linestyle = '-')
                 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
     plt.clf()
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
+            
+            nc = weights[feature_extractor][training_data]['nc']
+            modified_nc = [str(nc_v) for nc_v in nc]
+            modified_nc.append('lepard')
+            modified_nc.append('outlier rejection')
+            modified_nc_pos = range(len(modified_nc))
 
             if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
-                break
+                continue
             
             for model_number in model_numbers:
         
