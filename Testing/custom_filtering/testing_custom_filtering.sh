@@ -1,8 +1,8 @@
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
-# td=full_deformed
-td=partial_deformed
+td=full_deformed
+# td=partial_deformed
 # td=pretrained
 
 if [ "$type" == "kpfcn" ] ; then
@@ -13,16 +13,17 @@ fi
 
 n_deformed_levels=8
 
-# preprocessing=mutual
-# preprocessing_default=mutual
+preprocessing=mutual
+preprocessing_default=mutual
 
-preprocessing=none
-preprocessing_default=none
+# preprocessing=none
+# preprocessing_default=none
 
 confidence=0.000001
 confidence_default=0.000001
 
-number_centers=(50 100 200 300 500 700)
+# number_centers=(50 100 200 300 500 700)
+number_centers=(5 10 20 50 100)
 
 average_distance_multipliers=(3.0)
 
@@ -41,8 +42,8 @@ then
 
         # Using Lepard matching
 
-        folder_name=output_lepard_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_lepard_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_lepard_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_lepard_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -133,8 +134,8 @@ then
 
         # Using Outlier Rejection
 
-        folder_name=output_outlier_rejection_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}
