@@ -33,7 +33,7 @@ sampling='linspace'
 # adm_changed=True
 adm_changed=False
 
-model_numbers = ['002'] # , '042', '085', '126', '167', '207']
+model_numbers = ['002', '042', '085', '126', '167', '207']
 
 shape=(len(nc), len(adm), len(iot))
 
@@ -61,7 +61,7 @@ for feature_extractor in weights:
             for i in nc :
                 for j in adm:
                     for k in iot:
-                        file = 'p_' + preprocessing + '_c_' + confidence + '_nc_' + str(i) + '_adm_' + str(j) + '_iot_' + str(k) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+                        file = 'p_' + preprocessing + '_c_' + confidence + '_nc_' + str(i) + '_adm_' + str(j) + '_iot_' + str(k) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
                         file_txt = open(base + file, 'r')
                         Lines = file_txt.readlines()
                         current_data_type = ''
@@ -228,12 +228,14 @@ for data_type in data_types:
                 plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
             
     plt.clf()
+    drawn = False
     for feature_extractor in weights:
         for training_data in weights[feature_extractor]:
 
             if 'Full' in data_type and 'partial' in training_data or 'Partial' in data_type and 'full' in training_data:
                 break
             
+            drawn = True
             for model_number in model_numbers:
         
                 rmse = []
@@ -249,9 +251,10 @@ for data_type in data_types:
 
                 plt.plot(modified_nc_pos, rmse, label = model_number + ' - ' + feature_extractor + ' - ' + training_data)
 
-    plt.title(data_type)
-    plt.legend(loc ="upper right")
-    plt.xticks(modified_nc_pos, modified_nc, rotation=90)
-    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
-        
+    if drawn is True:
+        plt.title(data_type)
+        plt.legend(loc ="upper right")
+        plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+        plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_varying_nc_rmse.png', bbox_inches='tight')
+            
         
