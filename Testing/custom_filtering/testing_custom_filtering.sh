@@ -19,7 +19,7 @@ preprocessing_default=mutual
 confidence=0.000001
 confidence_default=0.000001
 
-number_centers=(10 50 100 300 500)
+number_centers=(5 10 20 50 100 150 200 300 500)
 
 average_distance_multipliers=(3.0)
 
@@ -27,8 +27,7 @@ inlier_outlier_thrs=(0.01)
 
 sampling=linspace
 
-# model_numbers=('002', '042' '085' '126' '167' '207')
-model_numbers=('042' '085' '126' '167' '207')
+model_numbers=('002' '042' '085' '126' '167' '207')
 
 # max_ldmks=50
 max_ldmks=None
