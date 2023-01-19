@@ -42,8 +42,8 @@ then
 
         # Using Lepard matching
 
-        folder_name=output_lepard_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_lepard_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_lepard_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_lepard_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -134,8 +134,8 @@ then
 
         # Using Outlier Rejection
 
-        folder_name=output_outlier_rejection_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}
