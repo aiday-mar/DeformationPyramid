@@ -51,24 +51,32 @@ elif preprocessing == 'none':
             'kpfcn' : {
                 'conf' : '0.000001',
                 'adm' : 2.0,
-                'nc' : 500
+                'nc' : 500,
+                'epoch' : 10,
+                'conf' : '1e-06'
             },
             'fcgf' : {
                 'conf' : '0.000001',
                 'adm' : 2.0,
-                'nc' : 500
+                'nc' : 500,
+                'epoch' : 10,
+                'conf' : '1e-06'
             }
         },
         'partial_deformed' : {
             'kpfcn' : {
                 'conf' : '0.000001',
                 'adm' : 2.0,
-                'nc' : 500
+                'nc' : 500,
+                'epoch' : 5,
+                'conf' : '1e-04'
             },
             'fcgf' : {
                 'conf' : '0.000001',
                 'adm' : 2.0,
-                'nc' : 500
+                'nc' : 500,
+                'epoch' : 5,
+                'conf' : '1e-06'
             }
         }   
     }
@@ -125,6 +133,10 @@ for training_data in weights:
                     if 'RMSE' in line:
                         rmse = float(re.findall("\d+\.\d+", line)[0])
                         final_matrices[model_number][training_data][feature_extractor]['initial'] = rmse
+        
+        if preprocessing == 'none':
+
+            file_txt = 'Testing/custom_filtering/test_astrivis_' + training_data + '_current_deformation_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_e_' +  weights[training_data][feature_extractor]['epoch'] + '_knn_False_conf_' + weights[training_data][feature_extractor]['conf'] + '.txt'
 
 for training_data in weights:
     plt.clf()
