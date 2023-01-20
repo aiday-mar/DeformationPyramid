@@ -7,12 +7,12 @@ data_types=['Full Deformed', 'Partial Deformed']
 base = 'Testing/custom_filtering/'
 
 model_numbers = ['002', '042', '085', '126', '167', '207']
-# preprocessing = 'none'
-preprocessing = 'mutual'
+preprocessing = 'none'
+# preprocessing = 'mutual'
 max_ldmks = 'None'
 
-adm_changed=True
-# adm_changed=False
+# adm_changed=True
+adm_changed=False
 
 if preprocessing == 'mutual':
     if adm_changed is False:
@@ -80,7 +80,7 @@ elif preprocessing == 'none':
                 # },
                 'partial_deformed' : {
                     'conf' : '0.000001',
-                    'nc' : [50, 100, 200, 300, 500, 700]
+                    'nc' : [50, 100, 200, 300, 500, 700, 1000, 2000, 3000]
                 }
             }   
         }

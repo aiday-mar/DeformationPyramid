@@ -131,6 +131,7 @@ for training_data in weights:
     title = training_data.replace('_', ' ').title()
     plt.title(title)
     plt.legend(loc = 'upper right')
+    plt.xticks([r + barWidth/2 for r in br1], model_numbers)
     plt.xlabel('Model number')
     plt.ylabel('RMSE')
     plt.savefig('Testing/custom_filtering/ndp_final_rmse_' + training_data + '.png', bbox_inches='tight')
