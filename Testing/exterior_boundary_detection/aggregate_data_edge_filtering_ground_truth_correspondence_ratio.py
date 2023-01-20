@@ -6,11 +6,18 @@ model_numbers=['002', '042', '085', '126', '167', '207']
 
 feature_extractor='fcgf'
 training_data='full_deformed'
+epoch='5'
+preprocessing='mutual'
 
 final_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : 0}
 final_submatrix = {model_number : copy.deepcopy(final_sub_sub_matrix) for model_number in model_numbers}
 final_matrices = {criterion : copy.deepcopy(final_submatrix) for criterion in criteria}
 
+for criterion in criteria:
+    for model_number in model_numbers:
+        file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+        file_txt = open(file_txt, 'r')
+        Lines = file_txt.readlines()
 '''
 if 'number of true landmark correspondences returned from custom filtering' in line:
     search = list(map(int, re.findall(r'\d+', line)))
