@@ -1351,12 +1351,14 @@ class Landmark_Model():
                     
                 if final_indices.shape[0] != 0 and intermediate_output_folder:
                     # inliers
-                    rot = data['batched_rot'][0]
                     ldmk_s_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_s_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_s.cpu()))
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 's_custom_filtering_pcd.ply', ldmk_s_custom_filtering)
+
+                    rot = data['batched_rot'][0]
                     ldmk_s_custom_filtering.rotate(np.array(rot.cpu()), center=(0, 0, 0))
                     rotated_ldmk_s = np.array(ldmk_s_custom_filtering.points)
-                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 's_custom_filtering_pcd.ply', ldmk_s_custom_filtering)
+                    o3d.io.write_point_cloud(self.path + intermediate_output_folder + folder_name + '_custom_filtering_ldmk/' + 's_custom_filtering_rotated_pcd.ply', ldmk_s_custom_filtering)
                     
                     ldmk_t_custom_filtering = o3d.geometry.PointCloud()
                     ldmk_t_custom_filtering.points = o3d.utility.Vector3dVector(np.array(ldmk_t.cpu()))

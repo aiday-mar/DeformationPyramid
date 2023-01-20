@@ -6,13 +6,13 @@ import copy
 data_types=['Full Deformed', 'Partial Deformed']
 base = 'Testing/custom_filtering/'
 
-model_numbers = ['002', '042', '085', '126', '167', '207']
+model_numbers = ['002', '042', '085'] #  '126', '167', '207'
 preprocessing = 'none'
 # preprocessing = 'mutual'
 max_ldmks = 'None'
 
-# adm_changed=True
-adm_changed=False
+adm_changed=True
+# adm_changed=False
 
 if preprocessing == 'mutual':
     if adm_changed is False:
@@ -69,12 +69,6 @@ if preprocessing == 'mutual':
 elif preprocessing == 'none':
     if adm_changed is False:
         weights = {
-            # 'kpfcn' : {
-            #    'full_deformed' : {
-            #        '0.000001',
-            #    }
-            #    'partial_deformed' : '0.000001'
-            # },
             'fcgf' : {
                 'full_deformed' : {
                     'conf' : '0.000001',
@@ -87,7 +81,20 @@ elif preprocessing == 'none':
             }   
         }
     else:
-        weights = {}
+        weights = {
+            'fcgf' : {
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [500],
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                },
+                'partial_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [500],
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                }
+            }   
+        }
 else:
     raise Exception('Must be one of the preprocessing options')
 
