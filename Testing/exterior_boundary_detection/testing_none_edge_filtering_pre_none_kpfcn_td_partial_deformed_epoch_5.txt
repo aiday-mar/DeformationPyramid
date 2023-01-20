@@ -1,0 +1,990 @@
+model 002
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[132, 123]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([255, 2048])
+block_i :  1
+x.shape :  torch.Size([255, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 255])
+coarse_feats.shape :  torch.Size([1, 528, 255])
+coarse_feats.shape :  torch.Size([255, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 132])
+tgt_mask.shape :  torch.Size([1, 123])
+src_ind_coarse_split.shape :  torch.Size([132])
+tgt_ind_coarse_split.shape :  torch.Size([123])
+src_ind_coarse.shape :  torch.Size([132])
+tgt_ind_coarse.shape :  torch.Size([123])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  84  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0168
+vec6d.shape :  torch.Size([3206, 6])
+ldmk_s.shape :  torch.Size([3206, 3])
+ldmk_t.shape :  torch.Size([3206, 3])
+number of true landmark correspondences returned from Outlier Rejection :  66  out of  3206
+fraction of true landmark correspondences returned from Outlier Rejection :  0.020586400499064253
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3206, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.269 
+full-AccS: 0.011 
+full-AccR: 0.305 
+full-outlier: 67.700 
+vis-epe: 16.270 
+vis-AccS: 0.023 
+vis-AccR: 0.656 
+vis-outlier: 94.392 
+occ-epe: 6.931 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 44.547 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06776882371534218
+Strict IR :  0.0
+Relaxed IR :  0.0018907563025210084
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[123, 132]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([255, 2048])
+block_i :  1
+x.shape :  torch.Size([255, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 255])
+coarse_feats.shape :  torch.Size([1, 528, 255])
+coarse_feats.shape :  torch.Size([255, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 123])
+tgt_mask.shape :  torch.Size([1, 132])
+src_ind_coarse_split.shape :  torch.Size([123])
+tgt_ind_coarse_split.shape :  torch.Size([132])
+src_ind_coarse.shape :  torch.Size([123])
+tgt_ind_coarse.shape :  torch.Size([132])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  73  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0146
+vec6d.shape :  torch.Size([3916, 6])
+ldmk_s.shape :  torch.Size([3916, 3])
+ldmk_t.shape :  torch.Size([3916, 3])
+number of true landmark correspondences returned from Outlier Rejection :  66  out of  3916
+fraction of true landmark correspondences returned from Outlier Rejection :  0.016853932584269662
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3916, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.024 
+full-AccS: 0.000 
+full-AccR: 0.043 
+full-outlier: 94.350 
+vis-epe: 16.263 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 6.718 
+occ-AccS: 0.000 
+occ-AccR: 0.078 
+occ-outlier: 89.707 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06485720451850047
+Strict IR :  0.0
+Relaxed IR :  0.014712153518123668
+model 042
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[117, 114]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([231, 2048])
+block_i :  1
+x.shape :  torch.Size([231, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 231])
+coarse_feats.shape :  torch.Size([1, 528, 231])
+coarse_feats.shape :  torch.Size([231, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 117])
+tgt_mask.shape :  torch.Size([1, 114])
+src_ind_coarse_split.shape :  torch.Size([117])
+tgt_ind_coarse_split.shape :  torch.Size([114])
+src_ind_coarse.shape :  torch.Size([117])
+tgt_ind_coarse.shape :  torch.Size([114])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  92  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0184
+vec6d.shape :  torch.Size([3835, 6])
+ldmk_s.shape :  torch.Size([3835, 3])
+ldmk_t.shape :  torch.Size([3835, 3])
+number of true landmark correspondences returned from Outlier Rejection :  78  out of  3835
+fraction of true landmark correspondences returned from Outlier Rejection :  0.020338983050847456
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3835, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 15.104 
+full-AccS: 0.034 
+full-AccR: 1.368 
+full-outlier: 94.346 
+vis-epe: 18.585 
+vis-AccS: 0.000 
+vis-AccR: 0.187 
+vis-outlier: 99.424 
+occ-epe: 5.877 
+occ-AccS: 0.124 
+occ-AccR: 4.500 
+occ-outlier: 80.884 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05882917847134734
+Strict IR :  0.0052018545742395115
+Relaxed IR :  0.10075766142711749
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[117, 115]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([232, 2048])
+block_i :  1
+x.shape :  torch.Size([232, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 232])
+coarse_feats.shape :  torch.Size([1, 528, 232])
+coarse_feats.shape :  torch.Size([232, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 117])
+tgt_mask.shape :  torch.Size([1, 115])
+src_ind_coarse_split.shape :  torch.Size([117])
+tgt_ind_coarse_split.shape :  torch.Size([115])
+src_ind_coarse.shape :  torch.Size([117])
+tgt_ind_coarse.shape :  torch.Size([115])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  92  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0184
+vec6d.shape :  torch.Size([3770, 6])
+ldmk_s.shape :  torch.Size([3770, 3])
+ldmk_t.shape :  torch.Size([3770, 3])
+number of true landmark correspondences returned from Outlier Rejection :  70  out of  3770
+fraction of true landmark correspondences returned from Outlier Rejection :  0.01856763925729443
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3770, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.174 
+full-AccS: 0.000 
+full-AccR: 0.131 
+full-outlier: 97.678 
+vis-epe: 16.465 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 7.833 
+occ-AccS: 0.000 
+occ-AccR: 0.495 
+occ-outlier: 91.251 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0768455097198937
+Strict IR :  0.0
+Relaxed IR :  0.018400876232201532
+model 085
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[73, 57]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([130, 2048])
+block_i :  1
+x.shape :  torch.Size([130, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 130])
+coarse_feats.shape :  torch.Size([1, 528, 130])
+coarse_feats.shape :  torch.Size([130, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 73])
+tgt_mask.shape :  torch.Size([1, 57])
+src_ind_coarse_split.shape :  torch.Size([73])
+tgt_ind_coarse_split.shape :  torch.Size([57])
+src_ind_coarse.shape :  torch.Size([73])
+tgt_ind_coarse.shape :  torch.Size([57])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([3646, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3646])
+ti.shape :  torch.Size([3646])
+s_pos.shape :  torch.Size([3646, 3])
+t_pos.shape :  torch.Size([3646, 3])
+ind.shape :  torch.Size([3646, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3646])
+ti.shape :  torch.Size([3646])
+s_pos.shape :  torch.Size([3646, 3])
+t_pos.shape :  torch.Size([3646, 3])
+number of true landmarks correspondences returned from Lepard :  57  out of  3646
+fraction of true landmark correspondences returned from Lepard :  0.015633571036752607
+vec6d.shape :  torch.Size([2950, 6])
+ldmk_s.shape :  torch.Size([2950, 3])
+ldmk_t.shape :  torch.Size([2950, 3])
+number of true landmark correspondences returned from Outlier Rejection :  47  out of  2950
+fraction of true landmark correspondences returned from Outlier Rejection :  0.015932203389830507
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([2950, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.369 
+full-AccS: 0.000 
+full-AccR: 0.923 
+full-outlier: 59.415 
+vis-epe: 14.776 
+vis-AccS: 0.000 
+vis-AccR: 0.307 
+vis-outlier: 76.896 
+occ-epe: 8.705 
+occ-AccS: 0.000 
+occ-AccR: 1.405 
+occ-outlier: 45.751 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08611085363634671
+Strict IR :  0.0
+Relaxed IR :  0.038276591652240816
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[69, 64]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([133, 2048])
+block_i :  1
+x.shape :  torch.Size([133, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 133])
+coarse_feats.shape :  torch.Size([1, 528, 133])
+coarse_feats.shape :  torch.Size([133, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 69])
+tgt_mask.shape :  torch.Size([1, 64])
+src_ind_coarse_split.shape :  torch.Size([69])
+tgt_ind_coarse_split.shape :  torch.Size([64])
+src_ind_coarse.shape :  torch.Size([69])
+tgt_ind_coarse.shape :  torch.Size([64])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([3048, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3048])
+ti.shape :  torch.Size([3048])
+s_pos.shape :  torch.Size([3048, 3])
+t_pos.shape :  torch.Size([3048, 3])
+ind.shape :  torch.Size([3048, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([3048])
+ti.shape :  torch.Size([3048])
+s_pos.shape :  torch.Size([3048, 3])
+t_pos.shape :  torch.Size([3048, 3])
+number of true landmarks correspondences returned from Lepard :  51  out of  3048
+fraction of true landmark correspondences returned from Lepard :  0.01673228346456693
+vec6d.shape :  torch.Size([2414, 6])
+ldmk_s.shape :  torch.Size([2414, 3])
+ldmk_t.shape :  torch.Size([2414, 3])
+number of true landmark correspondences returned from Outlier Rejection :  43  out of  2414
+fraction of true landmark correspondences returned from Outlier Rejection :  0.017812758906379452
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([2414, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 12.210 
+full-AccS: 0.000 
+full-AccR: 0.019 
+full-outlier: 99.809 
+vis-epe: 16.691 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.886 
+occ-epe: 7.726 
+occ-AccS: 0.000 
+occ-AccR: 0.038 
+occ-outlier: 99.733 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.0706695524832866
+Strict IR :  0.0
+Relaxed IR :  0.02003052270125906
+model 126
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[128, 132]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([260, 2048])
+block_i :  1
+x.shape :  torch.Size([260, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 260])
+coarse_feats.shape :  torch.Size([1, 528, 260])
+coarse_feats.shape :  torch.Size([260, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 128])
+tgt_mask.shape :  torch.Size([1, 132])
+src_ind_coarse_split.shape :  torch.Size([128])
+tgt_ind_coarse_split.shape :  torch.Size([132])
+src_ind_coarse.shape :  torch.Size([128])
+tgt_ind_coarse.shape :  torch.Size([132])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  88  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0176
+vec6d.shape :  torch.Size([3187, 6])
+ldmk_s.shape :  torch.Size([3187, 3])
+ldmk_t.shape :  torch.Size([3187, 3])
+number of true landmark correspondences returned from Outlier Rejection :  61  out of  3187
+fraction of true landmark correspondences returned from Outlier Rejection :  0.019140257295262003
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3187, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 13.315 
+full-AccS: 0.036 
+full-AccR: 0.545 
+full-outlier: 89.528 
+vis-epe: 18.732 
+vis-AccS: 0.064 
+vis-AccR: 0.891 
+vis-outlier: 98.240 
+occ-epe: 6.106 
+occ-AccS: 0.000 
+occ-AccR: 0.085 
+occ-outlier: 77.935 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05915156269984337
+Strict IR :  0.00024213075060532688
+Relaxed IR :  0.06307506053268765
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[129, 129]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([258, 2048])
+block_i :  1
+x.shape :  torch.Size([258, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 258])
+coarse_feats.shape :  torch.Size([1, 528, 258])
+coarse_feats.shape :  torch.Size([258, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 129])
+tgt_mask.shape :  torch.Size([1, 129])
+src_ind_coarse_split.shape :  torch.Size([129])
+tgt_ind_coarse_split.shape :  torch.Size([129])
+src_ind_coarse.shape :  torch.Size([129])
+tgt_ind_coarse.shape :  torch.Size([129])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  97  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0194
+vec6d.shape :  torch.Size([3622, 6])
+ldmk_s.shape :  torch.Size([3622, 3])
+ldmk_t.shape :  torch.Size([3622, 3])
+number of true landmark correspondences returned from Outlier Rejection :  84  out of  3622
+fraction of true landmark correspondences returned from Outlier Rejection :  0.02319160684704583
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([3622, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.428 
+full-AccS: 0.000 
+full-AccR: 2.108 
+full-outlier: 94.382 
+vis-epe: 14.805 
+vis-AccS: 0.000 
+vis-AccR: 0.904 
+vis-outlier: 98.016 
+occ-epe: 5.220 
+occ-AccS: 0.000 
+occ-AccR: 3.541 
+occ-outlier: 90.058 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04828275749240876
+Strict IR :  0.004192620987062769
+Relaxed IR :  0.12577862961188307
+model 167
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[61, 52]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([113, 2048])
+block_i :  1
+x.shape :  torch.Size([113, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 113])
+coarse_feats.shape :  torch.Size([1, 528, 113])
+coarse_feats.shape :  torch.Size([113, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 61])
+tgt_mask.shape :  torch.Size([1, 52])
+src_ind_coarse_split.shape :  torch.Size([61])
+tgt_ind_coarse_split.shape :  torch.Size([52])
+src_ind_coarse.shape :  torch.Size([61])
+tgt_ind_coarse.shape :  torch.Size([52])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([2407, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2407])
+ti.shape :  torch.Size([2407])
+s_pos.shape :  torch.Size([2407, 3])
+t_pos.shape :  torch.Size([2407, 3])
+ind.shape :  torch.Size([2407, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2407])
+ti.shape :  torch.Size([2407])
+s_pos.shape :  torch.Size([2407, 3])
+t_pos.shape :  torch.Size([2407, 3])
+number of true landmarks correspondences returned from Lepard :  57  out of  2407
+fraction of true landmark correspondences returned from Lepard :  0.023680930619027835
+vec6d.shape :  torch.Size([1673, 6])
+ldmk_s.shape :  torch.Size([1673, 3])
+ldmk_t.shape :  torch.Size([1673, 3])
+number of true landmark correspondences returned from Outlier Rejection :  49  out of  1673
+fraction of true landmark correspondences returned from Outlier Rejection :  0.029288702928870293
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1673, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.021 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 100.000 
+vis-epe: 14.522 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 6.466 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 100.000 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.060749326597861426
+Strict IR :  0.0
+Relaxed IR :  0.010461852513396274
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[54, 52]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([106, 2048])
+block_i :  1
+x.shape :  torch.Size([106, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 106])
+coarse_feats.shape :  torch.Size([1, 528, 106])
+coarse_feats.shape :  torch.Size([106, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 54])
+tgt_mask.shape :  torch.Size([1, 52])
+src_ind_coarse_split.shape :  torch.Size([54])
+tgt_ind_coarse_split.shape :  torch.Size([52])
+src_ind_coarse.shape :  torch.Size([54])
+tgt_ind_coarse.shape :  torch.Size([52])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([2072, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2072])
+ti.shape :  torch.Size([2072])
+s_pos.shape :  torch.Size([2072, 3])
+t_pos.shape :  torch.Size([2072, 3])
+ind.shape :  torch.Size([2072, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2072])
+ti.shape :  torch.Size([2072])
+s_pos.shape :  torch.Size([2072, 3])
+t_pos.shape :  torch.Size([2072, 3])
+number of true landmarks correspondences returned from Lepard :  44  out of  2072
+fraction of true landmark correspondences returned from Lepard :  0.021235521235521235
+vec6d.shape :  torch.Size([1733, 6])
+ldmk_s.shape :  torch.Size([1733, 3])
+ldmk_t.shape :  torch.Size([1733, 3])
+number of true landmark correspondences returned from Outlier Rejection :  36  out of  1733
+fraction of true landmark correspondences returned from Outlier Rejection :  0.0207732256203116
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1733, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.357 
+full-AccS: 0.000 
+full-AccR: 0.230 
+full-outlier: 97.959 
+vis-epe: 13.280 
+vis-AccS: 0.000 
+vis-AccR: 0.442 
+vis-outlier: 97.445 
+occ-epe: 7.199 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 98.514 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06662545822164619
+Strict IR :  0.0
+Relaxed IR :  0.05307476397040061
+model 207
+Partial Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[51, 52]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([103, 2048])
+block_i :  1
+x.shape :  torch.Size([103, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 103])
+coarse_feats.shape :  torch.Size([1, 528, 103])
+coarse_feats.shape :  torch.Size([103, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 51])
+tgt_mask.shape :  torch.Size([1, 52])
+src_ind_coarse_split.shape :  torch.Size([51])
+tgt_ind_coarse_split.shape :  torch.Size([52])
+src_ind_coarse.shape :  torch.Size([51])
+tgt_ind_coarse.shape :  torch.Size([52])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([1770, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1770])
+ti.shape :  torch.Size([1770])
+s_pos.shape :  torch.Size([1770, 3])
+t_pos.shape :  torch.Size([1770, 3])
+ind.shape :  torch.Size([1770, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([1770])
+ti.shape :  torch.Size([1770])
+s_pos.shape :  torch.Size([1770, 3])
+t_pos.shape :  torch.Size([1770, 3])
+number of true landmarks correspondences returned from Lepard :  41  out of  1770
+fraction of true landmark correspondences returned from Lepard :  0.023163841807909605
+vec6d.shape :  torch.Size([1701, 6])
+ldmk_s.shape :  torch.Size([1701, 3])
+ldmk_t.shape :  torch.Size([1701, 3])
+number of true landmark correspondences returned from Outlier Rejection :  40  out of  1701
+fraction of true landmark correspondences returned from Outlier Rejection :  0.023515579071134628
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1701, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 9.924 
+full-AccS: 0.000 
+full-AccR: 0.121 
+full-outlier: 36.498 
+vis-epe: 13.093 
+vis-AccS: 0.000 
+vis-AccR: 0.218 
+vis-outlier: 65.636 
+occ-epe: 5.956 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 0.000 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.055155316731071304
+Strict IR :  0.0
+Relaxed IR :  0.042867522402518767
+Partial Non Deformed
+Edge filtering not used
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[47, 62]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([109, 2048])
+block_i :  1
+x.shape :  torch.Size([109, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 109])
+coarse_feats.shape :  torch.Size([1, 528, 109])
+coarse_feats.shape :  torch.Size([109, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 47])
+tgt_mask.shape :  torch.Size([1, 62])
+src_ind_coarse_split.shape :  torch.Size([47])
+tgt_ind_coarse_split.shape :  torch.Size([62])
+src_ind_coarse.shape :  torch.Size([47])
+tgt_ind_coarse.shape :  torch.Size([62])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([2749, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2749])
+ti.shape :  torch.Size([2749])
+s_pos.shape :  torch.Size([2749, 3])
+t_pos.shape :  torch.Size([2749, 3])
+ind.shape :  torch.Size([2749, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([2749])
+ti.shape :  torch.Size([2749])
+s_pos.shape :  torch.Size([2749, 3])
+t_pos.shape :  torch.Size([2749, 3])
+number of true landmarks correspondences returned from Lepard :  41  out of  2749
+fraction of true landmark correspondences returned from Lepard :  0.014914514368861403
+vec6d.shape :  torch.Size([2085, 6])
+ldmk_s.shape :  torch.Size([2085, 3])
+ldmk_t.shape :  torch.Size([2085, 3])
+number of true landmark correspondences returned from Outlier Rejection :  34  out of  2085
+fraction of true landmark correspondences returned from Outlier Rejection :  0.01630695443645084
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([2085, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 12.522 
+full-AccS: 0.000 
+full-AccR: 0.000 
+full-outlier: 35.362 
+vis-epe: 15.415 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 61.720 
+occ-epe: 8.641 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 0.000 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07733855268376948
+Strict IR :  0.0
+Relaxed IR :  0.01989578398863098
