@@ -1,5 +1,3 @@
-Outlier Rejection
-model 167
 Full Deformed
 feature_extractor :  fcgf
 feature extractor inside of get_dataloader :  fcgf
@@ -27,16 +25,32 @@ s_pos.shape :  torch.Size([5000, 3])
 t_pos.shape :  torch.Size([5000, 3])
 number of true landmarks correspondences returned from FCGF based Lepard :  3742  out of  5000
 fraction of true landmark correspondences returned from FCGF based Lepard :  0.7484
-vec6d.shape :  torch.Size([4746, 6])
-ldmk_s.shape :  torch.Size([4746, 3])
-ldmk_t.shape :  torch.Size([4746, 3])
+vec6d.shape :  torch.Size([5000, 6])
+ldmk_s.shape :  torch.Size([5000, 3])
+ldmk_t.shape :  torch.Size([5000, 3])
 number of true landmark correspondences returned from FCGF based Outlier Rejection :  3742  out of  4746
 fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7884534344711336
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.005088238413445672
+average distance multiplier :  3.0
+number of unique source landmarks :  1210
+number of centers :  2000
+sampling :  linspace
+number of neighborhood centers :  2000
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  1210
+max_ldmks :  None
+number of landmarks after custom filtering :  1108
+number of true landmark correspondences returned from custom filtering :  823  out of  1108
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.7427797833935018
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
 k0 :  -8
 levels :  8
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([4746, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([1108, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -46,15 +60,15 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 10.628 
-full-AccS: 0.436 
-full-AccR: 16.314 
-full-outlier: 39.726 
-vis-epe: 11.881 
-vis-AccS: 0.500 
-vis-AccR: 3.931 
-vis-outlier: 45.604 
-occ-epe: 2.162 
+0/1: full-epe: 10.639 
+full-AccS: 0.374 
+full-AccR: 16.345 
+full-outlier: 39.851 
+vis-epe: 11.885 
+vis-AccS: 0.429 
+vis-AccR: 3.967 
+vis-outlier: 45.747 
+occ-epe: 2.217 
 occ-AccS: 0.000 
 occ-AccR: 100.000 
 occ-outlier: 0.000 
@@ -63,18 +77,18 @@ Actual rotation :  [[-0.93663582  0.31762455 -0.14774298]
  [-0.33643314 -0.69811809  0.63201573]
  [ 0.09760167  0.6416742   0.76074183]]
 Actual translation :  [ 1.39406826  0.65549133 -0.56094614]
-Predicted rotation :  [[-0.92086423  0.38239725 -0.0760378 ]
- [-0.31662962 -0.61968725  0.71814604]
- [ 0.22749742  0.68539084  0.6917258 ]]
-Predicted translation :  [-0.0034406   0.00119179  0.00094799]
-Relative Rotation Error :  0.15360159813022495
-Relative Translation Error :  1.6422131144083254
+Predicted rotation :  [[-0.9051867   0.41687116 -0.0828032 ]
+ [-0.34903668 -0.61796009  0.7044851 ]
+ [ 0.24251039  0.66659158  0.70487194]]
+Predicted translation :  [-0.00138745 -0.00184371  0.00084744]
+Relative Rotation Error :  0.16084603373709105
+Relative Translation Error :  1.6416449121379104
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.012864910433522427
-Strict IR :  0.5147553231228987
-Relaxed IR :  0.9929025028016436
+RMSE :  0.012804916609036553
+Strict IR :  0.5397833395592081
+Relaxed IR :  0.9899140829286515
 model 167
-number of centers 50
+number of centers 3000
 average distance multiplier 3.0
 inlier outlier thresholds 0.01
