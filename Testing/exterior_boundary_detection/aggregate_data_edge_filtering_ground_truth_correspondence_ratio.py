@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import copy
+import re
 
 criteria = ['simple', 'angle', 'shape', 'disc', 'mesh', 'none']
 model_numbers=['002', '042', '085', '126', '167', '207']
@@ -18,32 +19,26 @@ for criterion in criteria:
         file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
         file_txt = open(file_txt, 'r')
         Lines = file_txt.readlines()
-'''
-if 'number of true landmark correspondences returned from custom filtering' in line:
-    search = list(map(int, re.findall(r'\d+', line)))
-    true = int(search[0])
-    total = int(search[1])
-    if adm_changed is True:
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['true'][0][count][0] = true
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['total'][0][count][0] = total - true
-    else:
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['true'][count][0][0] = true
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['total'][count][0][0] = total - true
 
-if 'RMSE' in line:
-    rmse = float(re.findall("\d+\.\d+", line)[0])
-    if adm_changed is True:
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['rmse'][0][count][0] = rmse
-    else:
-        final_matrices[feature_extractor][training_data][model_number][current_data_type]['custom']['rmse'][count][0][0] = rmse
-    
-if 'number of distinct source landmarks ' in line:
-    search = list(map(int, re.findall(r'\d+', line)))
-    n_distinct = search[0]
-    final_matrices[feature_extractor][training_data][model_number][current_data_type]['n_distinct'] = n_distinct
-'''
+        for line in Lines:
+            if 'model' in line and len(line) < 100:
+                current_model = re.findall(r'\b\d+\b',line)[0]
+            
+            line_to_check = 'number of true landmark correspondences returned from ' + criterion + ' edge filtering'
+            if line_to_check in line:
+                search = list(map(int, re.findall(r'\d+', line)))
+                true = int(search[0])
+                total = int(search[1])
+                final_matrices[criterion][model_number]['true'] = true
+                final_matrices[criterion][model_number]['total'] = total - true
+          
+            if 'RMSE' in line:
+                rmse = float(re.findall("\d+\.\d+", line)[0])
+                final_matrices[criterion][model_number]['rmse'] = rmse
+
+print(final_matrices)
 
 for model_number in model_numbers:
 
     plt.clf()
-    plt.savefig('Testing/exterior_boundary_detection/')
+    # plt.savefig('Testing/exterior_boundary_detection/')
