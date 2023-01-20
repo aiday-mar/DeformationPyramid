@@ -1,5 +1,3 @@
-Lepard
-model 167
 Partial Deformed
 feature_extractor :  fcgf
 feature extractor inside of get_dataloader :  fcgf
@@ -32,11 +30,27 @@ ldmk_s.shape :  torch.Size([5000, 3])
 ldmk_t.shape :  torch.Size([5000, 3])
 number of true landmark correspondences returned from FCGF based Outlier Rejection :  2244  out of  4255
 fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.52737955346651
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.00492650355231017
+average distance multiplier :  3.0
+number of unique source landmarks :  1037
+number of centers :  3000
+sampling :  linspace
+number of neighborhood centers :  3000
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  1037
+max_ldmks :  None
+number of landmarks after custom filtering :  981
+number of true landmark correspondences returned from custom filtering :  366  out of  981
+fraction of true landmark correspondences returned from FCGF based custom filtering :  0.3730886850152905
+fraction of true landmark correspondences returned from FCGF based custom filtering also returned from Lepard :  1.0
 k0 :  -8
 levels :  8
 posenc function :  None
 samples :  2000
-src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([5000, 3])
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([981, 3])
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
@@ -46,31 +60,31 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 8.104 
+0/1: full-epe: 8.448 
 full-AccS: 0.000 
-full-AccR: 18.347 
-full-outlier: 83.031 
-vis-epe: 10.555 
+full-AccR: 18.882 
+full-outlier: 81.653 
+vis-epe: 10.693 
 vis-AccS: 0.000 
 vis-AccR: 0.000 
 vis-outlier: 100.000 
-occ-epe: 4.916 
+occ-epe: 5.526 
 occ-AccS: 0.000 
-occ-AccR: 42.220 
-occ-outlier: 60.951 
+occ-AccR: 43.453 
+occ-outlier: 57.780 
 
 Actual rotation :  [[-0.81029619  0.58572329  0.0186628 ]
  [ 0.42981428  0.61565456 -0.66047646]
  [-0.39834628 -0.52716002 -0.75061478]]
 Actual translation :  [0.2961076  0.17846237 1.41276713]
-Predicted rotation :  [[-0.58158552  0.80676964  0.10431211]
- [ 0.58978433  0.50649018 -0.62898524]
- [-0.56027919 -0.30428701 -0.77038737]]
-Predicted translation :  [ 0.01542111  0.04509425 -0.02570369]
-Relative Rotation Error :  0.33570749534802063
-Relative Translation Error :  1.4716556188624217
+Predicted rotation :  [[-0.57990464  0.80492361  0.12573104]
+ [ 0.58154828  0.51707607 -0.62803959]
+ [-0.57053649 -0.29108449 -0.76795682]]
+Predicted translation :  [ 0.02017934  0.05030004 -0.02869358]
+Relative Rotation Error :  0.34230667485992505
+Relative Translation Error :  1.4732178929743907
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.04648827267256241
-Strict IR :  0.031130390405715743
-Relaxed IR :  0.5447818321000255
+RMSE :  0.05221353559766052
+Strict IR :  0.006889512630773156
+Relaxed IR :  0.5310028068384792
