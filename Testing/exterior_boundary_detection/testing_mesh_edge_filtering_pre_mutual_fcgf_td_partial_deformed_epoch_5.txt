@@ -1,0 +1,5867 @@
+model 002
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([385, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([385])
+ti.shape :  torch.Size([385])
+s_pos.shape :  torch.Size([385, 3])
+t_pos.shape :  torch.Size([385, 3])
+ind.shape :  torch.Size([385, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], device='cuda:0')
+si.shape :  torch.Size([385])
+ti.shape :  torch.Size([385])
+s_pos.shape :  torch.Size([385, 3])
+t_pos.shape :  torch.Size([385, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  80  out of  385
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.2077922077922078
+vec6d.shape :  torch.Size([385, 6])
+ldmk_s.shape :  torch.Size([385, 3])
+ldmk_t.shape :  torch.Size([385, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  74  out of  226
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.3274336283185841
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.005862554789815878
+min_dist :  0.007565944575431805
+min_dist :  0.0
+min_dist :  0.007834447573758063
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031079693650191463
+min_dist :  0.0034007506324336004
+min_dist :  0.0
+min_dist :  0.0030180691412945862
+min_dist :  0.0035709777870197527
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.016464703697887408
+min_dist :  0.009325694692808525
+min_dist :  0.0036854388003565476
+min_dist :  0.01004350949420965
+min_dist :  0.015315667681988778
+min_dist :  0.005858113407024633
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006404447344416041
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00313723389334908
+min_dist :  0.005632134334559778
+min_dist :  0.0031174420865971216
+min_dist :  0.0
+min_dist :  0.0030691416062173793
+min_dist :  0.0030133488756465014
+min_dist :  0.005648806407973573
+min_dist :  0.004858506337232247
+min_dist :  0.003071444396266486
+min_dist :  0.0
+min_dist :  0.01379875891351471
+min_dist :  0.0031466843782203733
+min_dist :  0.0
+min_dist :  0.00353417423356855
+min_dist :  0.015681440068869328
+min_dist :  0.033305006583810984
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032219486252853266
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030250153332896062
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0033598917007513487
+min_dist :  0.0
+min_dist :  0.007333953901488207
+min_dist :  0.00394116416413794
+min_dist :  0.01724408590846312
+min_dist :  0.00974592478084313
+min_dist :  0.004136105550309818
+min_dist :  0.02269385785324603
+min_dist :  0.0031118788898404494
+min_dist :  0.004021838711267432
+min_dist :  0.0
+min_dist :  0.013383743944187107
+min_dist :  0.015400490899527199
+min_dist :  0.004233153066182643
+min_dist :  0.014300599482612008
+min_dist :  0.006929786367889062
+min_dist :  0.03164138161863248
+min_dist :  0.003000992556883278
+min_dist :  0.009674874988174079
+min_dist :  0.0033550857968498555
+min_dist :  0.032398547730801135
+min_dist :  0.0
+min_dist :  0.007630512554018256
+min_dist :  0.003330710458280629
+min_dist :  0.0
+min_dist :  0.0075114382203483425
+min_dist :  0.0
+min_dist :  0.00623160336160471
+min_dist :  0.0
+min_dist :  0.003504593435388929
+min_dist :  0.005544075161499492
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031204911860366245
+min_dist :  0.03839969367837099
+min_dist :  0.008973604023321837
+min_dist :  0.0
+min_dist :  0.006305575295853157
+min_dist :  0.003114727430022558
+min_dist :  0.0044516000375117255
+min_dist :  0.01626983249951088
+min_dist :  0.003813309412026061
+min_dist :  0.0
+min_dist :  0.01192569920644395
+min_dist :  0.013220758761746092
+min_dist :  0.010705116019162849
+min_dist :  0.016381572656701728
+min_dist :  0.01606595768363523
+min_dist :  0.016419319006198047
+min_dist :  0.020421480753483576
+min_dist :  0.0202684233484142
+min_dist :  0.022384008400270872
+min_dist :  0.021681821238599554
+min_dist :  0.021395012235129945
+min_dist :  0.021084324226516155
+min_dist :  0.0
+min_dist :  0.021819361687435812
+min_dist :  0.0
+min_dist :  0.010891701765974923
+min_dist :  0.023773588740893956
+min_dist :  0.025371912291693485
+min_dist :  0.006130333368094001
+min_dist :  0.028330867563210734
+min_dist :  0.003513659915713077
+min_dist :  0.0
+min_dist :  0.003040125219610872
+min_dist :  0.0
+min_dist :  0.00983845465166586
+min_dist :  0.007249219094912062
+min_dist :  0.0
+min_dist :  0.006538049236708245
+min_dist :  0.004965147408770062
+min_dist :  0.009963392468615493
+min_dist :  0.00778934518660679
+min_dist :  0.005493802968898194
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003005829596895407
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034811371767438353
+min_dist :  0.00352992220113854
+min_dist :  0.0
+min_dist :  0.00327022251027942
+min_dist :  0.0030494182844644966
+min_dist :  0.0
+min_dist :  0.0034361372237967174
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00537680119742204
+min_dist :  0.0
+min_dist :  0.015743420074446148
+min_dist :  0.003060885558923396
+min_dist :  0.005617802185731495
+min_dist :  0.020413883888597568
+min_dist :  0.013551518856899506
+min_dist :  0.022569382171837613
+min_dist :  0.006984502356053161
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031527949018638752
+min_dist :  0.006094898625536355
+min_dist :  0.01254609638592626
+min_dist :  0.00874436795395173
+min_dist :  0.0
+min_dist :  0.01472912318152164
+min_dist :  0.0
+min_dist :  0.012022261349063304
+min_dist :  0.007584954651260116
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003243747149233544
+min_dist :  0.0
+min_dist :  0.004914191633961535
+min_dist :  0.007035156060447769
+min_dist :  0.00847130197941497
+min_dist :  0.013116729526608164
+min_dist :  0.0
+min_dist :  0.0034299913887999704
+min_dist :  0.00562902475944567
+min_dist :  0.006986257164640504
+min_dist :  0.00641722979145793
+min_dist :  0.0
+min_dist :  0.011915751323030055
+min_dist :  0.0
+min_dist :  0.01042618647099957
+min_dist :  0.004610214309464744
+min_dist :  0.004144664441185724
+min_dist :  0.009440035368562161
+min_dist :  0.011064343883556055
+min_dist :  0.006949840456451385
+min_dist :  0.0
+min_dist :  0.006820675849516003
+min_dist :  0.0
+min_dist :  0.009160488082570889
+min_dist :  0.00438973215824688
+min_dist :  0.031842335461884155
+min_dist :  0.0368978356785977
+min_dist :  0.04075632279563355
+min_dist :  0.039338580706530214
+min_dist :  0.011266393356853524
+min_dist :  0.003030783348505548
+min_dist :  0.028132316261739627
+min_dist :  0.0031712163244014668
+min_dist :  0.0
+min_dist :  0.028812225047235466
+min_dist :  0.0060848496445050256
+min_dist :  0.0038913678959080853
+min_dist :  0.02948377086373105
+min_dist :  0.015529612976943764
+min_dist :  0.027007375027352166
+min_dist :  0.0
+min_dist :  0.01182924212256604
+min_dist :  0.0
+min_dist :  0.013517558079330689
+min_dist :  0.0033141768862977113
+min_dist :  0.019560402471853585
+min_dist :  0.006066021558545598
+min_dist :  0.006657912046741977
+min_dist :  0.024956027124312944
+min_dist :  0.0266102878420533
+min_dist :  0.018840364948272008
+min_dist :  0.0
+min_dist :  0.03359509404474612
+min_dist :  0.0
+min_dist :  0.018069966094075348
+min_dist :  0.0
+min_dist :  0.0030634176080958295
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.015590544155486502
+min_dist :  0.012384705878357181
+min_dist :  0.020755464571857108
+min_dist :  0.0033599275361129127
+min_dist :  0.023461062927014886
+min_dist :  0.04590524568418986
+min_dist :  0.04498258352388061
+min_dist :  0.0032462141038824836
+min_dist :  0.006303163041960563
+min_dist :  0.009377624497122296
+min_dist :  0.053391243958808794
+min_dist :  0.0030263358928518114
+min_dist :  0.04846914164646461
+min_dist :  0.014202382856959805
+min_dist :  0.008482001989476727
+min_dist :  0.02339019771050321
+min_dist :  0.009438574364414367
+min_dist :  0.04760006935690901
+min_dist :  0.05002843560855205
+min_dist :  0.0031072897526531907
+min_dist :  0.04445258514321037
+min_dist :  0.009214855333639213
+min_dist :  0.0
+min_dist :  0.006405151475144827
+min_dist :  0.0033566482100951143
+min_dist :  0.0034823619838924634
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007188139329451794
+min_dist :  0.0033813586616249346
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007532373141745798
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032416697233372247
+min_dist :  0.007912065851233888
+min_dist :  0.008051673855342468
+min_dist :  0.0034805506878460186
+min_dist :  0.0
+min_dist :  0.009229052279337608
+min_dist :  0.007690912831032897
+min_dist :  0.005671748670134991
+min_dist :  0.012018327826838931
+min_dist :  0.03503092145177558
+min_dist :  0.018405221887184818
+min_dist :  0.03530413279941046
+min_dist :  0.036777425464138785
+min_dist :  0.036092131029718484
+min_dist :  0.00401573616840237
+min_dist :  0.006523358660270977
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.012522869009083691
+min_dist :  0.022975797383077177
+min_dist :  0.004548468976945206
+min_dist :  0.03425766904877833
+min_dist :  0.016225106084737068
+min_dist :  0.023186609375169333
+min_dist :  0.02140200884467589
+min_dist :  0.006484503041109821
+min_dist :  0.005053745642195136
+min_dist :  0.0031924151262377205
+min_dist :  0.0
+min_dist :  0.022524455120125818
+min_dist :  0.0030836213807174224
+min_dist :  0.01628858713023613
+min_dist :  0.0032815360607004805
+min_dist :  0.007672857024038803
+min_dist :  0.0
+min_dist :  0.020130767481188326
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.02574236781546682
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.021668478959327258
+min_dist :  0.005116053729312737
+min_dist :  0.008293633765771266
+min_dist :  0.0031606898429345845
+min_dist :  0.012236538254020601
+min_dist :  0.0055974972735163084
+min_dist :  0.005234066429319071
+min_dist :  0.006706040694893075
+min_dist :  0.0
+min_dist :  0.007918296617046966
+min_dist :  0.006391525313456748
+min_dist :  0.00924361272112921
+min_dist :  0.0
+min_dist :  0.01748972551407773
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008925723441375261
+min_dist :  0.0037495936603123047
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00781336983687458
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006294609983274746
+min_dist :  0.0
+min_dist :  0.006521662746123751
+min_dist :  0.006506836763775962
+min_dist :  0.006555132495609412
+min_dist :  0.0
+min_dist :  0.011497718411334203
+min_dist :  0.0032471596791824437
+min_dist :  0.0037961725390050134
+min_dist :  0.03031421228772471
+min_dist :  0.03217922321491711
+min_dist :  0.014555636481305298
+min_dist :  0.020344785187695225
+min_dist :  0.006558280751760019
+min_dist :  0.0037790664988615564
+min_dist :  0.020407469548612275
+min_dist :  0.019608259471564003
+min_dist :  0.006132554879661465
+min_dist :  0.004367214815979642
+min_dist :  0.0033653360954783535
+min_dist :  0.004611707178189134
+min_dist :  0.0
+min_dist :  0.010029752323207837
+min_dist :  0.012919487050949112
+min_dist :  0.0
+min_dist :  0.004621091152222884
+min_dist :  0.003878004936238861
+min_dist :  0.00379713859824141
+min_dist :  0.004548226009066286
+min_dist :  0.007449318240885755
+min_dist :  0.012555462717466437
+min_dist :  0.00796242491716587
+min_dist :  0.013201617922647797
+min_dist :  0.017729358796180903
+min_dist :  0.0
+min_dist :  0.007094609732589078
+min_dist :  0.005026651854805433
+min_dist :  0.0
+min_dist :  0.00892699499293803
+min_dist :  0.010550942330525967
+min_dist :  0.011185802965619416
+min_dist :  0.013922603003200695
+min_dist :  0.0
+min_dist :  0.010743090577721517
+min_dist :  0.0030464608239201066
+min_dist :  0.003255659904485338
+min_dist :  0.0033776463275867244
+min_dist :  0.005428358588974275
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0061457349925923095
+min_dist :  0.013654435365622523
+min_dist :  0.0035841620149523147
+number correspondences kept in mesh edge filtering :  275  out of :  385
+number of true landmark correspondences returned from mesh edge filtering :  60  out of  275
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.21818181818181817
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([275, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 12.951 
+full-AccS: 0.000 
+full-AccR: 0.263 
+full-outlier: 79.422 
+vis-epe: 17.271 
+vis-AccS: 0.000 
+vis-AccR: 0.565 
+vis-outlier: 94.708 
+occ-epe: 9.204 
+occ-AccS: 0.000 
+occ-AccR: 0.000 
+occ-outlier: 66.163 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08363454540751278
+Strict IR :  0.0
+Relaxed IR :  0.0125
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([569, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([569])
+ti.shape :  torch.Size([569])
+s_pos.shape :  torch.Size([569, 3])
+t_pos.shape :  torch.Size([569, 3])
+ind.shape :  torch.Size([569, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([569])
+ti.shape :  torch.Size([569])
+s_pos.shape :  torch.Size([569, 3])
+t_pos.shape :  torch.Size([569, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  288  out of  569
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5061511423550088
+vec6d.shape :  torch.Size([569, 6])
+ldmk_s.shape :  torch.Size([569, 3])
+ldmk_t.shape :  torch.Size([569, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  280  out of  434
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.6451612903225806
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031635584635577594
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030086230426638765
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.016351265103579475
+min_dist :  0.005378541359883817
+min_dist :  0.0
+min_dist :  0.003148940458614135
+min_dist :  0.0042855699887281344
+min_dist :  0.0
+min_dist :  0.003293253948299852
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008633240295619377
+min_dist :  0.003166274633926681
+min_dist :  0.0
+min_dist :  0.017441515987210606
+min_dist :  0.01266462182867608
+min_dist :  0.006596680641465248
+min_dist :  0.0
+min_dist :  0.0030912638142132315
+min_dist :  0.018391342556298797
+min_dist :  0.008947099462154483
+min_dist :  0.017623500988538876
+min_dist :  0.01087089742164127
+min_dist :  0.019329159628692964
+min_dist :  0.003515648051891555
+min_dist :  0.02486279212123405
+min_dist :  0.0
+min_dist :  0.003171036848241425
+min_dist :  0.008885482077482968
+min_dist :  0.016416182839082884
+min_dist :  0.0
+min_dist :  0.01894682835934896
+min_dist :  0.02029006860625886
+min_dist :  0.0
+min_dist :  0.005370937125390748
+min_dist :  0.01234170676809744
+min_dist :  0.0
+min_dist :  0.0032010162812703895
+min_dist :  0.006683093027605443
+min_dist :  0.0
+min_dist :  0.019220585149004574
+min_dist :  0.01933124906175125
+min_dist :  0.0032113529793600186
+min_dist :  0.0
+min_dist :  0.019256508742044744
+min_dist :  0.0
+min_dist :  0.004862825618387721
+min_dist :  0.006433648618457604
+min_dist :  0.004795063664616458
+min_dist :  0.01263180046155302
+min_dist :  0.01649834607014402
+min_dist :  0.008343168541154087
+min_dist :  0.01862523343750358
+min_dist :  0.010981830253721549
+min_dist :  0.017049184889369413
+min_dist :  0.008125388216691233
+min_dist :  0.006921983874349476
+min_dist :  0.006176632396094633
+min_dist :  0.010096001137761167
+min_dist :  0.00893287908517014
+min_dist :  0.0
+min_dist :  0.0038218766392205564
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0033832331644566426
+min_dist :  0.019606984026554083
+min_dist :  0.012970904010335472
+min_dist :  0.018812392481728436
+min_dist :  0.01331903152646465
+min_dist :  0.004859299467369387
+min_dist :  0.0
+min_dist :  0.006867352525098104
+min_dist :  0.006512362591326078
+min_dist :  0.021238884159684633
+min_dist :  0.03081650068980346
+min_dist :  0.03229293617480513
+min_dist :  0.0031251305319665687
+min_dist :  0.029703200137722825
+min_dist :  0.02796234629306411
+min_dist :  0.013445442494284587
+min_dist :  0.016746167898786572
+min_dist :  0.020295500793164476
+min_dist :  0.01783565318380383
+min_dist :  0.030842920563937264
+min_dist :  0.02029548963059975
+min_dist :  0.025718672423713947
+min_dist :  0.027459973050587817
+min_dist :  0.029897515454191136
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004359430188250855
+min_dist :  0.00344780568233379
+min_dist :  0.0
+min_dist :  0.0031301020298765986
+min_dist :  0.0031902090802293503
+min_dist :  0.0
+min_dist :  0.004788322738285914
+min_dist :  0.012174594742073401
+min_dist :  0.011124034181074419
+min_dist :  0.014973868365863636
+min_dist :  0.006853157562016856
+min_dist :  0.0032729654429269808
+min_dist :  0.016849319350717314
+min_dist :  0.013569625133318082
+min_dist :  0.017804403656400354
+min_dist :  0.014192390190739763
+min_dist :  0.016286149670548797
+min_dist :  0.024789322329136467
+min_dist :  0.029721192805466104
+min_dist :  0.026584157361257157
+min_dist :  0.021206888982588826
+min_dist :  0.01593178829478104
+min_dist :  0.026449940281206223
+min_dist :  0.007401551458030038
+min_dist :  0.023162357970573606
+min_dist :  0.011769921868888995
+min_dist :  0.012390465665552547
+min_dist :  0.016086081770021653
+min_dist :  0.023973899571573924
+min_dist :  0.008206413613590926
+min_dist :  0.004055002116792454
+min_dist :  0.0038204459243336626
+min_dist :  0.0
+min_dist :  0.004740851190077685
+min_dist :  0.012380995671093093
+min_dist :  0.021653019770794403
+min_dist :  0.019582611684672686
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.020102061299276403
+min_dist :  0.011947064541208799
+min_dist :  0.006068817890514542
+min_dist :  0.005940748189906003
+min_dist :  0.02036482575016697
+min_dist :  0.006664172528481604
+min_dist :  0.004128389817081358
+min_dist :  0.008958902320672929
+min_dist :  0.018203484280247758
+min_dist :  0.004716174913733903
+min_dist :  0.0
+min_dist :  0.009809659667727228
+min_dist :  0.0
+min_dist :  0.013591166647120182
+min_dist :  0.0151078662879031
+min_dist :  0.014217084708467142
+min_dist :  0.012607746981382086
+min_dist :  0.0187580559347804
+min_dist :  0.027335344027144323
+min_dist :  0.015031841915578732
+min_dist :  0.013148481274688482
+min_dist :  0.015515686271017412
+min_dist :  0.0181003526488575
+min_dist :  0.02260459533308944
+min_dist :  0.020653677377922963
+min_dist :  0.02089312448608325
+min_dist :  0.0298113602835208
+min_dist :  0.005788197717619446
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00305365927480926
+min_dist :  0.007852142986044518
+min_dist :  0.009276164033609537
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030628161218515565
+min_dist :  0.02131583482620956
+min_dist :  0.0
+min_dist :  0.012430010375731734
+min_dist :  0.0
+min_dist :  0.0030351749115438195
+min_dist :  0.003441665424909861
+min_dist :  0.004398928481274953
+min_dist :  0.0033642412443067394
+min_dist :  0.003822557356353882
+min_dist :  0.023818302547357527
+min_dist :  0.0
+min_dist :  0.009834153097033504
+min_dist :  0.0
+min_dist :  0.011489506460302843
+min_dist :  0.006325817199622926
+min_dist :  0.019068781250164604
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005702754311367382
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004200241968099133
+min_dist :  0.009894427428601874
+min_dist :  0.007779882482585626
+min_dist :  0.003021187017111348
+min_dist :  0.011263428973634595
+min_dist :  0.005672277389597578
+min_dist :  0.0
+min_dist :  0.003773968921034429
+min_dist :  0.00911368350419748
+min_dist :  0.0
+min_dist :  0.006260577586771913
+min_dist :  0.009850678182463362
+min_dist :  0.003014261478989042
+min_dist :  0.003110625434839411
+min_dist :  0.0
+min_dist :  0.00846449723778997
+min_dist :  0.0
+min_dist :  0.0034574217345088756
+min_dist :  0.0033510596641572856
+min_dist :  0.0
+min_dist :  0.009879399520640982
+min_dist :  0.01197847186715042
+min_dist :  0.01321280734679867
+min_dist :  0.0032237789696635604
+min_dist :  0.003010204784443172
+min_dist :  0.0
+min_dist :  0.003548776626235605
+min_dist :  0.011984328647365816
+min_dist :  0.009414490836372483
+min_dist :  0.011539969314558104
+min_dist :  0.0
+min_dist :  0.0037954019299115014
+min_dist :  0.0
+min_dist :  0.01171043030287177
+min_dist :  0.014395726314265648
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.014769569796613006
+min_dist :  0.003939189158803198
+min_dist :  0.007316168328557469
+min_dist :  0.0172666031693063
+min_dist :  0.0031014289078744673
+min_dist :  0.0036460669260986503
+min_dist :  0.006355311174483206
+min_dist :  0.0
+min_dist :  0.0030139011257498327
+min_dist :  0.006012078071864122
+min_dist :  0.004035534746198712
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01261798451397544
+min_dist :  0.003614050367472824
+min_dist :  0.00749987960877907
+min_dist :  0.0030716455418321143
+min_dist :  0.004573308159182007
+min_dist :  0.007514983775533114
+min_dist :  0.0
+min_dist :  0.010785985723849197
+min_dist :  0.0
+min_dist :  0.018337129120430423
+min_dist :  0.00578947351014673
+min_dist :  0.015203643686554946
+min_dist :  0.006928663355837391
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.013185706207530925
+min_dist :  0.0
+min_dist :  0.0036554389730905886
+min_dist :  0.008604692449207746
+min_dist :  0.0045255100425542994
+min_dist :  0.013927628633569496
+min_dist :  0.012786062621989294
+min_dist :  0.026463865704780588
+min_dist :  0.02296510800875636
+min_dist :  0.011416870215552825
+min_dist :  0.012381314140631493
+min_dist :  0.0047715487578396274
+min_dist :  0.0030745446399002654
+min_dist :  0.0
+min_dist :  0.00943385934562213
+min_dist :  0.006037609212894591
+min_dist :  0.017018867938750314
+min_dist :  0.015116854099815027
+min_dist :  0.02500340827190114
+min_dist :  0.014050384366620337
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.020746719576320297
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.015074953219939395
+min_dist :  0.01788093324260321
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.016406396737577357
+min_dist :  0.022002594122365594
+min_dist :  0.0031816455504034453
+min_dist :  0.0055638029303727524
+min_dist :  0.01180190637191257
+min_dist :  0.03352881316219326
+min_dist :  0.00854834914563318
+min_dist :  0.018595933446045626
+min_dist :  0.013743037271631337
+min_dist :  0.027197961159295597
+min_dist :  0.009339655395102736
+min_dist :  0.019760291898018888
+min_dist :  0.01847616567241526
+min_dist :  0.011208511114779765
+min_dist :  0.015951875956149445
+min_dist :  0.025459032615675798
+min_dist :  0.02215755566632336
+min_dist :  0.003994281853376318
+min_dist :  0.012292507365853519
+min_dist :  0.0
+min_dist :  0.007833813150315538
+min_dist :  0.0
+min_dist :  0.00832640022724679
+min_dist :  0.006059213672408609
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003128349885303336
+min_dist :  0.006774892292318458
+min_dist :  0.0031614655048106365
+min_dist :  0.0032470378330563343
+min_dist :  0.0031340854158087576
+min_dist :  0.0034534597094588127
+min_dist :  0.00346486342189717
+min_dist :  0.007868104597205825
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008312443819350705
+min_dist :  0.008566074088669854
+min_dist :  0.012739606368525008
+min_dist :  0.003054541764480842
+min_dist :  0.003045668762466518
+min_dist :  0.0
+min_dist :  0.00611918584365782
+min_dist :  0.005987479376115315
+min_dist :  0.014070256886026058
+min_dist :  0.0
+min_dist :  0.0031356587402252426
+min_dist :  0.0030876795778969845
+min_dist :  0.0
+min_dist :  0.003232738301065018
+min_dist :  0.005898917923330934
+min_dist :  0.003218819575168395
+min_dist :  0.00581308845406154
+min_dist :  0.006477097766046389
+min_dist :  0.0
+min_dist :  0.005433734315327746
+min_dist :  0.007113056124786581
+min_dist :  0.011477641276687264
+min_dist :  0.0
+min_dist :  0.004092547442817188
+min_dist :  0.0033355227133053987
+min_dist :  0.003100499695283056
+min_dist :  0.003000659173523456
+min_dist :  0.0
+min_dist :  0.004629897069863964
+min_dist :  0.003157401048501027
+min_dist :  0.010578544653224614
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006720727294400977
+min_dist :  0.023876542255159408
+min_dist :  0.007955424543367623
+min_dist :  0.00685363738657147
+min_dist :  0.0
+min_dist :  0.02327659877265105
+min_dist :  0.010293094701018291
+min_dist :  0.01600958869625548
+min_dist :  0.01669561138937406
+min_dist :  0.014163157364570187
+min_dist :  0.01217082300806604
+min_dist :  0.006487661799594527
+min_dist :  0.006142832613793304
+min_dist :  0.0072688710571744645
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.02140708534286965
+min_dist :  0.0
+min_dist :  0.012679012932007327
+min_dist :  0.0031755232434722068
+min_dist :  0.019901976018617474
+min_dist :  0.005976535147867825
+min_dist :  0.025923914289904055
+min_dist :  0.016953947673821478
+min_dist :  0.02747828455367859
+min_dist :  0.015055319917775232
+min_dist :  0.02053866846134698
+min_dist :  0.011523189367880438
+min_dist :  0.004188441665375808
+min_dist :  0.019418660399291944
+min_dist :  0.014773226668618017
+min_dist :  0.017949043339119578
+min_dist :  0.0
+min_dist :  0.008315122971562934
+min_dist :  0.003241905154031679
+min_dist :  0.003189152442160518
+min_dist :  0.005212821244771013
+min_dist :  0.0030412246097058335
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0039613600949202086
+min_dist :  0.003205244059986345
+min_dist :  0.0030147508524014546
+min_dist :  0.003745086711479892
+min_dist :  0.0
+min_dist :  0.005693147982159187
+min_dist :  0.027431961177752533
+min_dist :  0.003137597156603032
+min_dist :  0.0
+min_dist :  0.013501300687523457
+min_dist :  0.003471541913970579
+min_dist :  0.0031767159742108523
+min_dist :  0.003463987475696661
+min_dist :  0.0
+min_dist :  0.018684709145691872
+min_dist :  0.021298858408026693
+min_dist :  0.010402608463914814
+min_dist :  0.007019118260054435
+min_dist :  0.0
+min_dist :  0.010710302424860537
+min_dist :  0.0036799707561356136
+min_dist :  0.02286201782704769
+min_dist :  0.017720480023273377
+min_dist :  0.02052412469993232
+min_dist :  0.03523242976089659
+min_dist :  0.03224053962578301
+min_dist :  0.02982779244722571
+min_dist :  0.03250727962661116
+min_dist :  0.004104526159626369
+min_dist :  0.035420322015293645
+min_dist :  0.0
+min_dist :  0.012696658462798213
+min_dist :  0.0033618235081615843
+min_dist :  0.016858465547321632
+min_dist :  0.009135320818525182
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.030271386203479498
+min_dist :  0.0057706623928422554
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005558771904175591
+min_dist :  0.0
+min_dist :  0.010369781462611409
+min_dist :  0.0
+min_dist :  0.02092286915371499
+min_dist :  0.02831004559868643
+min_dist :  0.019257843998793153
+min_dist :  0.006444142620884486
+min_dist :  0.01672784592183167
+min_dist :  0.01681579325160415
+min_dist :  0.015463476151176278
+min_dist :  0.013102869520945136
+min_dist :  0.008761555580851095
+min_dist :  0.007439683331321979
+min_dist :  0.02517936770890326
+min_dist :  0.016332248302439758
+min_dist :  0.003236716075467662
+min_dist :  0.02682898916332619
+min_dist :  0.006544223345795258
+min_dist :  0.005286332833866326
+min_dist :  0.013497543860306823
+min_dist :  0.0036669315212860634
+min_dist :  0.023953548406627858
+min_dist :  0.003097051602952869
+min_dist :  0.016565417836962495
+min_dist :  0.015226963900283405
+min_dist :  0.005342957677671388
+min_dist :  0.017152210462027168
+min_dist :  0.0
+min_dist :  0.006079069975090564
+min_dist :  0.007331343446570565
+min_dist :  0.004126067373761969
+min_dist :  0.008497939420022024
+min_dist :  0.0053161918245501144
+min_dist :  0.018378935895517985
+min_dist :  0.008889402912142732
+min_dist :  0.014229203408356197
+min_dist :  0.012314814557657129
+min_dist :  0.0202358786494537
+min_dist :  0.012580388783567015
+min_dist :  0.01060755568578782
+min_dist :  0.009812659213506113
+min_dist :  0.011967099554802588
+min_dist :  0.012725880594187104
+min_dist :  0.0035246236377088178
+min_dist :  0.007644253527516759
+min_dist :  0.0059579370020033506
+min_dist :  0.0
+min_dist :  0.003277447490833262
+min_dist :  0.007019015369659856
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00628134371426505
+min_dist :  0.003900279919558057
+min_dist :  0.0
+min_dist :  0.0056482450621146785
+min_dist :  0.0031449261559823617
+min_dist :  0.01924272381800101
+min_dist :  0.014735823022506884
+min_dist :  0.015308628178661831
+min_dist :  0.013939480613145445
+min_dist :  0.011162845375314286
+min_dist :  0.010747211435742957
+min_dist :  0.008531822631468254
+min_dist :  0.006915012603261304
+min_dist :  0.01154165958427208
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031488297780947303
+min_dist :  0.0
+min_dist :  0.004252511502731493
+min_dist :  0.0
+min_dist :  0.003025902882891303
+min_dist :  0.003705742938603057
+min_dist :  0.012921297951242434
+min_dist :  0.014132219237632797
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031449316400785693
+min_dist :  0.0033718512756801293
+min_dist :  0.008924306062025105
+min_dist :  0.013533985723131671
+min_dist :  0.03213366975966456
+min_dist :  0.0
+min_dist :  0.007979172282596989
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003113124034072838
+min_dist :  0.022167233882112652
+min_dist :  0.028016178575296907
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003251837301394925
+min_dist :  0.0032573908657735433
+min_dist :  0.003782483626275769
+min_dist :  0.003503839868295965
+min_dist :  0.015428057517750261
+min_dist :  0.0
+min_dist :  0.003851814170602669
+min_dist :  0.00328026868358583
+min_dist :  0.0
+min_dist :  0.006468688545810052
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  366  out of :  569
+number of true landmark correspondences returned from mesh edge filtering :  209  out of  366
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5710382513661202
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([366, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.210 
+full-AccS: 0.000 
+full-AccR: 0.714 
+full-outlier: 92.324 
+vis-epe: 16.516 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 99.953 
+occ-epe: 6.850 
+occ-AccS: 0.000 
+occ-AccR: 1.301 
+occ-outlier: 86.056 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06253464771876631
+Strict IR :  0.006609808102345416
+Relaxed IR :  0.14616204690831555
+model 042
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([487, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([487])
+ti.shape :  torch.Size([487])
+s_pos.shape :  torch.Size([487, 3])
+t_pos.shape :  torch.Size([487, 3])
+ind.shape :  torch.Size([487, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([487])
+ti.shape :  torch.Size([487])
+s_pos.shape :  torch.Size([487, 3])
+t_pos.shape :  torch.Size([487, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  133  out of  487
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.2731006160164271
+vec6d.shape :  torch.Size([487, 6])
+ldmk_s.shape :  torch.Size([487, 3])
+ldmk_t.shape :  torch.Size([487, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  124  out of  389
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.31876606683804626
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.007474877116548545
+min_dist :  0.003058348115854397
+min_dist :  0.0
+min_dist :  0.00306279003906768
+min_dist :  0.003218667836607868
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011108045415539803
+min_dist :  0.004821101264105041
+min_dist :  0.0
+min_dist :  0.004853109825130741
+min_dist :  0.003276925644710779
+min_dist :  0.0030617824823723568
+min_dist :  0.0
+min_dist :  0.0030343286414976816
+min_dist :  0.0070151422228785345
+min_dist :  0.0
+min_dist :  0.006260158479075536
+min_dist :  0.0
+min_dist :  0.0031945705686285296
+min_dist :  0.0
+min_dist :  0.004802542776808488
+min_dist :  0.0
+min_dist :  0.003013957188864006
+min_dist :  0.0030312155043831323
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006361950189214402
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030636194877481536
+min_dist :  0.0
+min_dist :  0.006905063633873698
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.020425462811875926
+min_dist :  0.018476499688859654
+min_dist :  0.003017182499225642
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003994922884503261
+min_dist :  0.003949939215354387
+min_dist :  0.017050747869940774
+min_dist :  0.0033017492703972025
+min_dist :  0.0
+min_dist :  0.0032850578117657545
+min_dist :  0.006620952172532738
+min_dist :  0.006736989431766022
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01192467568064744
+min_dist :  0.003288174122460628
+min_dist :  0.0
+min_dist :  0.0052564254050493356
+min_dist :  0.00863632179918403
+min_dist :  0.006107629344896366
+min_dist :  0.003486925139104588
+min_dist :  0.007778438421434538
+min_dist :  0.0037969640383076274
+min_dist :  0.00655332214266556
+min_dist :  0.0059509725117183245
+min_dist :  0.0031368221911883412
+min_dist :  0.007856843252564971
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004538878175799096
+min_dist :  0.0
+min_dist :  0.008919769045787678
+min_dist :  0.003560156883486001
+min_dist :  0.008888504382968003
+min_dist :  0.01583720682865636
+min_dist :  0.004183360180327385
+min_dist :  0.0
+min_dist :  0.014616859104662087
+min_dist :  0.0035180066174463503
+min_dist :  0.008307159999697942
+min_dist :  0.0068597700516698145
+min_dist :  0.012861700109590323
+min_dist :  0.0
+min_dist :  0.00893865124336284
+min_dist :  0.008031667647931352
+min_dist :  0.0
+min_dist :  0.003101226563456302
+min_dist :  0.01838944169838999
+min_dist :  0.008147432011692757
+min_dist :  0.017530591026449556
+min_dist :  0.0
+min_dist :  0.006373386003117577
+min_dist :  0.0
+min_dist :  0.013381159113919149
+min_dist :  0.008804893418401386
+min_dist :  0.0052464727669681785
+min_dist :  0.010416001548067261
+min_dist :  0.006908018067998725
+min_dist :  0.003125821725371579
+min_dist :  0.013031249506084495
+min_dist :  0.003445557585044167
+min_dist :  0.004994170287163517
+min_dist :  0.009091240460915556
+min_dist :  0.011236663822014065
+min_dist :  0.006627416571274248
+min_dist :  0.020149526294146673
+min_dist :  0.013862354727113077
+min_dist :  0.011248263283917865
+min_dist :  0.010008703580188606
+min_dist :  0.00985752248263566
+min_dist :  0.01029477214183885
+min_dist :  0.02727062396948053
+min_dist :  0.005319488263209446
+min_dist :  0.0039414832825340205
+min_dist :  0.0030973424193655747
+min_dist :  0.007458969574323866
+min_dist :  0.0
+min_dist :  0.012497396087068695
+min_dist :  0.003267639530424805
+min_dist :  0.013845157556415053
+min_dist :  0.010809887705072192
+min_dist :  0.00817378829833722
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011721234181432559
+min_dist :  0.0030908989737506217
+min_dist :  0.018329192733135092
+min_dist :  0.028644973201393215
+min_dist :  0.014051497218848998
+min_dist :  0.02885622761679647
+min_dist :  0.006829756107032772
+min_dist :  0.0168689058952426
+min_dist :  0.017252883305266812
+min_dist :  0.013231141122016883
+min_dist :  0.0
+min_dist :  0.01520251343704208
+min_dist :  0.012342245771518713
+min_dist :  0.009151012311379839
+min_dist :  0.008814440541845396
+min_dist :  0.010887186828344593
+min_dist :  0.010738735815385713
+min_dist :  0.018158750878053964
+min_dist :  0.01682435649822693
+min_dist :  0.02449740545955469
+min_dist :  0.013136157310774969
+min_dist :  0.007650546201567977
+min_dist :  0.016131339399915404
+min_dist :  0.0
+min_dist :  0.015189714674440006
+min_dist :  0.01637254509153909
+min_dist :  0.004956923451665754
+min_dist :  0.011700941598710917
+min_dist :  0.01001156701330551
+min_dist :  0.003471079898475591
+min_dist :  0.008058434810477393
+min_dist :  0.007351004553200605
+min_dist :  0.0
+min_dist :  0.012807938648576413
+min_dist :  0.032798650350563674
+min_dist :  0.003591878273154217
+min_dist :  0.0037343160253734175
+min_dist :  0.011744153884751841
+min_dist :  0.006428489818771736
+min_dist :  0.02442920802950768
+min_dist :  0.007578776547772209
+min_dist :  0.013342002930132971
+min_dist :  0.011792201370453765
+min_dist :  0.005660438407375053
+min_dist :  0.007095109036861639
+min_dist :  0.006095927553269412
+min_dist :  0.01439883285335454
+min_dist :  0.0035108819851937157
+min_dist :  0.012348453747065362
+min_dist :  0.006102592993689857
+min_dist :  0.006917850347879152
+min_dist :  0.0
+min_dist :  0.006155022722727755
+min_dist :  0.0094606435204165
+min_dist :  0.007186348074397756
+min_dist :  0.014107007818980938
+min_dist :  0.006647171977206801
+min_dist :  0.016646626901337763
+min_dist :  0.006402081025617652
+min_dist :  0.015214628928193452
+min_dist :  0.00435540996501702
+min_dist :  0.014475681826284278
+min_dist :  0.005316279302572431
+min_dist :  0.003033345907483604
+min_dist :  0.007864131657947148
+min_dist :  0.01236715540358947
+min_dist :  0.0
+min_dist :  0.01355612378641686
+min_dist :  0.009420050010886407
+min_dist :  0.009563509858241281
+min_dist :  0.008940930969427862
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003108961676185985
+min_dist :  0.009776845462310193
+min_dist :  0.0037477397821821384
+min_dist :  0.0
+min_dist :  0.011570660450485853
+min_dist :  0.0030873879308726906
+min_dist :  0.009337376370472439
+min_dist :  0.0
+min_dist :  0.01060476149442526
+min_dist :  0.006843464935558675
+min_dist :  0.0030490544243114773
+min_dist :  0.0
+min_dist :  0.006894150423053877
+min_dist :  0.020677948980509397
+min_dist :  0.011910148530189289
+min_dist :  0.010045083496968794
+min_dist :  0.008423533360095659
+min_dist :  0.00329758705489058
+min_dist :  0.0
+min_dist :  0.019005639128332863
+min_dist :  0.019831313937576055
+min_dist :  0.01967536056965383
+min_dist :  0.02352889693928533
+min_dist :  0.021365299613834453
+min_dist :  0.0031998818260860476
+min_dist :  0.013968631117840476
+min_dist :  0.0031586390016197902
+min_dist :  0.006340779419749064
+min_dist :  0.004308028872664755
+min_dist :  0.003066175041370904
+min_dist :  0.003446357150592084
+min_dist :  0.0045010422896418125
+min_dist :  0.006725193808079704
+min_dist :  0.0
+min_dist :  0.00468030648035051
+min_dist :  0.005737367682472588
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030559433409878744
+min_dist :  0.004341600733036103
+min_dist :  0.004023537491816309
+min_dist :  0.008415964444760726
+min_dist :  0.0
+min_dist :  0.004159376371849622
+min_dist :  0.023762629862548613
+min_dist :  0.007659626317893342
+min_dist :  0.020711110060966518
+min_dist :  0.02499071853523525
+min_dist :  0.0116099019894086
+min_dist :  0.018499779363837274
+min_dist :  0.023262414018422377
+min_dist :  0.025738453102766366
+min_dist :  0.006378673950063004
+min_dist :  0.003431015973321839
+min_dist :  0.003483466166754685
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003146503871685776
+min_dist :  0.0
+min_dist :  0.003215767380820464
+min_dist :  0.003772992906105999
+min_dist :  0.0
+min_dist :  0.007302219049310997
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030926469836510327
+min_dist :  0.0030814460965255985
+min_dist :  0.005865892161898787
+min_dist :  0.00903391437062476
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006136209100069859
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005921049895363846
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.019203279152664936
+min_dist :  0.0030488438368699196
+min_dist :  0.0
+min_dist :  0.0030616966240102498
+min_dist :  0.0
+min_dist :  0.017066490212743486
+min_dist :  0.015133119720456164
+min_dist :  0.003910829890719494
+min_dist :  0.003307305932655669
+min_dist :  0.010849888633344427
+min_dist :  0.009920946415697176
+min_dist :  0.010767769915160643
+min_dist :  0.00981089824623781
+min_dist :  0.0
+min_dist :  0.008257848818249593
+min_dist :  0.011177298147340127
+min_dist :  0.00622944873406883
+min_dist :  0.012746854300443372
+min_dist :  0.0032680835613969933
+min_dist :  0.009438705664815535
+min_dist :  0.006401230757614096
+min_dist :  0.011957811684835735
+min_dist :  0.0
+min_dist :  0.008404737463344027
+min_dist :  0.008847886891826732
+min_dist :  0.003328993616627362
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003396892529220998
+min_dist :  0.0037629794505240092
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.016507788776878054
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007923308374958055
+min_dist :  0.0047442456972408295
+min_dist :  0.0034505132989245636
+min_dist :  0.007782263366750472
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0041111776223934264
+min_dist :  0.0030968504189699225
+min_dist :  0.0
+min_dist :  0.005130839341887975
+min_dist :  0.009728817114765684
+min_dist :  0.006223314019845107
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003310638575130886
+min_dist :  0.0
+min_dist :  0.012724250410513364
+min_dist :  0.0033524813490483697
+min_dist :  0.016219631552653938
+min_dist :  0.017430756712598142
+min_dist :  0.016154177441342753
+min_dist :  0.009984054887236101
+min_dist :  0.01348659767895454
+min_dist :  0.0075231070257088
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030367384434971337
+min_dist :  0.005924694848803215
+min_dist :  0.009594009973278701
+min_dist :  0.0038170713636842004
+min_dist :  0.0033668111295096907
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0065045402963625175
+min_dist :  0.0
+min_dist :  0.0030128455668712744
+min_dist :  0.0
+min_dist :  0.006145656840784454
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.015394886954732616
+min_dist :  0.012500560807462294
+min_dist :  0.006401687587099178
+min_dist :  0.0
+min_dist :  0.0033825626348344988
+min_dist :  0.0
+min_dist :  0.009308012982465195
+min_dist :  0.01058223006613728
+min_dist :  0.0037963556917688553
+min_dist :  0.0
+min_dist :  0.007074456118358358
+min_dist :  0.0
+min_dist :  0.0092458467448445
+min_dist :  0.0071655064403990075
+min_dist :  0.004085220057402584
+min_dist :  0.0056219562687977905
+min_dist :  0.0
+min_dist :  0.009095422595893451
+min_dist :  0.00434438060044341
+min_dist :  0.007487005977843643
+min_dist :  0.012753177018167073
+min_dist :  0.01181091395919863
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005832368207464496
+min_dist :  0.003159709951355593
+min_dist :  0.004706657138932657
+min_dist :  0.0
+min_dist :  0.012081582930879336
+min_dist :  0.020906318107926296
+min_dist :  0.010823065067186988
+min_dist :  0.015319808162152525
+min_dist :  0.0
+min_dist :  0.005344476800407133
+min_dist :  0.005988022264540554
+min_dist :  0.015816931559997496
+min_dist :  0.006371815439985432
+min_dist :  0.0
+min_dist :  0.017462367125369076
+min_dist :  0.009742017824756645
+min_dist :  0.0059590153122335695
+min_dist :  0.00745541129245927
+min_dist :  0.0
+min_dist :  0.0033881127437903687
+min_dist :  0.007096959930362347
+min_dist :  0.00347527301997709
+min_dist :  0.005539406539269132
+min_dist :  0.00354453819721776
+min_dist :  0.0037516923186423335
+min_dist :  0.006988125578534977
+min_dist :  0.003314368787891978
+min_dist :  0.005140406254913726
+min_dist :  0.025881658147272543
+min_dist :  0.0
+min_dist :  0.004550937750634257
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.03720485304224151
+min_dist :  0.0207896397599756
+min_dist :  0.009566378251113216
+min_dist :  0.0
+min_dist :  0.003017370376052766
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034003009262044285
+min_dist :  0.0
+min_dist :  0.00953108834946433
+min_dist :  0.0032714919789315713
+min_dist :  0.0
+min_dist :  0.004905435525414555
+min_dist :  0.0
+min_dist :  0.017714037861988264
+min_dist :  0.022058171409365997
+min_dist :  0.005914013839423762
+min_dist :  0.0031505423849214906
+min_dist :  0.009763320932138542
+min_dist :  0.0
+min_dist :  0.004325907687483749
+min_dist :  0.023854548156008955
+min_dist :  0.02200325085440584
+min_dist :  0.0212797453206858
+min_dist :  0.015561058444315259
+min_dist :  0.012327808371005776
+min_dist :  0.0
+min_dist :  0.00748411313605538
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007568684961232266
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004017862336658261
+min_dist :  0.0
+min_dist :  0.003943130660778704
+min_dist :  0.0
+min_dist :  0.007747468562591969
+min_dist :  0.007177434058390262
+min_dist :  0.003974294642916549
+min_dist :  0.0030396954758328473
+min_dist :  0.003218431268263931
+min_dist :  0.0032932402689967526
+min_dist :  0.0038497574184688864
+min_dist :  0.012034824632027171
+min_dist :  0.0038687445020240342
+min_dist :  0.0032742061428901736
+min_dist :  0.005008131943106793
+min_dist :  0.0
+min_dist :  0.0030314658419041663
+min_dist :  0.008204907833789207
+min_dist :  0.007525765936923331
+min_dist :  0.0
+min_dist :  0.0034174539945351708
+min_dist :  0.004610344050795665
+min_dist :  0.0069899001348480904
+min_dist :  0.006519683103667427
+min_dist :  0.003782885849869437
+min_dist :  0.00834366101958811
+min_dist :  0.0059654542315560315
+min_dist :  0.006260045136583159
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0035659511339394072
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004703569436084542
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003052547912542343
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  375  out of :  487
+number of true landmark correspondences returned from mesh edge filtering :  102  out of  375
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.272
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([375, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 16.336 
+full-AccS: 0.034 
+full-AccR: 1.481 
+full-outlier: 97.444 
+vis-epe: 19.423 
+vis-AccS: 0.031 
+vis-AccR: 0.623 
+vis-outlier: 98.801 
+occ-epe: 8.154 
+occ-AccS: 0.041 
+occ-AccR: 3.757 
+occ-outlier: 93.848 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07038160286479916
+Strict IR :  0.0041841004184100415
+Relaxed IR :  0.08051566210562026
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([613, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([613])
+ti.shape :  torch.Size([613])
+s_pos.shape :  torch.Size([613, 3])
+t_pos.shape :  torch.Size([613, 3])
+ind.shape :  torch.Size([613, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([613])
+ti.shape :  torch.Size([613])
+s_pos.shape :  torch.Size([613, 3])
+t_pos.shape :  torch.Size([613, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  393  out of  613
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.6411092985318108
+vec6d.shape :  torch.Size([613, 6])
+ldmk_s.shape :  torch.Size([613, 3])
+ldmk_t.shape :  torch.Size([613, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  378  out of  492
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7682926829268293
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.003244549125677421
+min_dist :  0.010170292415797361
+min_dist :  0.0032047338333863265
+min_dist :  0.0
+min_dist :  0.006473037889704587
+min_dist :  0.008925625512140474
+min_dist :  0.003453038037855624
+min_dist :  0.014008354255929799
+min_dist :  0.00800441096414298
+min_dist :  0.005338951543612194
+min_dist :  0.009457016463895357
+min_dist :  0.009113454717893665
+min_dist :  0.0
+min_dist :  0.013702731846059543
+min_dist :  0.007835269128355637
+min_dist :  0.0
+min_dist :  0.012156675206664304
+min_dist :  0.017678103757960785
+min_dist :  0.011806209234129703
+min_dist :  0.006894723715089551
+min_dist :  0.011310782989080611
+min_dist :  0.021084116488345593
+min_dist :  0.00840475205087591
+min_dist :  0.0070768585018979235
+min_dist :  0.015054429306670314
+min_dist :  0.006030046286606304
+min_dist :  0.023159287439316112
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003357547295104258
+min_dist :  0.011927704276315483
+min_dist :  0.01336492045727426
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030383038541168307
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004442188454438474
+min_dist :  0.0037166923475408023
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0037469636378216274
+min_dist :  0.0032178548721678176
+min_dist :  0.0066076319396730174
+min_dist :  0.0051278647419709285
+min_dist :  0.0035762102642070467
+min_dist :  0.003578625530986091
+min_dist :  0.009630553353296073
+min_dist :  0.005603117367074429
+min_dist :  0.0
+min_dist :  0.008151453308351743
+min_dist :  0.0056974540641275065
+min_dist :  0.0071930620591028685
+min_dist :  0.0044575653197487216
+min_dist :  0.0
+min_dist :  0.004301154168818631
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0033916274730417155
+min_dist :  0.02451933174535606
+min_dist :  0.003484200033422283
+min_dist :  0.0032929495917916533
+min_dist :  0.004494098832479765
+min_dist :  0.03514072867333795
+min_dist :  0.005414955022481122
+min_dist :  0.003232698937262368
+min_dist :  0.0031040328359819617
+min_dist :  0.0030782017822972543
+min_dist :  0.0034552734006445592
+min_dist :  0.0
+min_dist :  0.03696617457568341
+min_dist :  0.005516577900229875
+min_dist :  0.0
+min_dist :  0.00491318199632721
+min_dist :  0.0
+min_dist :  0.030637525520067994
+min_dist :  0.025158676617670107
+min_dist :  0.0
+min_dist :  0.003055637835067358
+min_dist :  0.0
+min_dist :  0.006817431082538079
+min_dist :  0.003276609364858935
+min_dist :  0.0
+min_dist :  0.004296334584712069
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006654828936329377
+min_dist :  0.020659129135578155
+min_dist :  0.009823406708794781
+min_dist :  0.03952340970539261
+min_dist :  0.02171707413229312
+min_dist :  0.01959423592816903
+min_dist :  0.006580103262104944
+min_dist :  0.01444291862753507
+min_dist :  0.04026504978162276
+min_dist :  0.01862863688401635
+min_dist :  0.008627478414853057
+min_dist :  0.007814220065193082
+min_dist :  0.003026802660315477
+min_dist :  0.016317745797308873
+min_dist :  0.011875350879896966
+min_dist :  0.004308565960324809
+min_dist :  0.017201824574818746
+min_dist :  0.008813365396733538
+min_dist :  0.02277741323792497
+min_dist :  0.01800470080992128
+min_dist :  0.0
+min_dist :  0.011792626646440377
+min_dist :  0.0
+min_dist :  0.0036086315808896113
+min_dist :  0.013060550314338365
+min_dist :  0.0
+min_dist :  0.03763454277119634
+min_dist :  0.0
+min_dist :  0.003471300775261781
+min_dist :  0.0
+min_dist :  0.006326273496992755
+min_dist :  0.0052291964848702535
+min_dist :  0.005433919593955038
+min_dist :  0.0
+min_dist :  0.006738045406802457
+min_dist :  0.038159383795625224
+min_dist :  0.031818210584702855
+min_dist :  0.0
+min_dist :  0.0071555702729504235
+min_dist :  0.010020305641777567
+min_dist :  0.005927254005452439
+min_dist :  0.005715120244271814
+min_dist :  0.03444647130434208
+min_dist :  0.030923566706808493
+min_dist :  0.006713450955029802
+min_dist :  0.012779439636062654
+min_dist :  0.0036977654663065077
+min_dist :  0.015266950085278506
+min_dist :  0.006414242218605759
+min_dist :  0.012975423070495928
+min_dist :  0.0037818477749537397
+min_dist :  0.003097214434811391
+min_dist :  0.019078194207474832
+min_dist :  0.015738106759074805
+min_dist :  0.01284809534308987
+min_dist :  0.00673004460240187
+min_dist :  0.025601818286462477
+min_dist :  0.007185395575105767
+min_dist :  0.025111453607389863
+min_dist :  0.012858404930244148
+min_dist :  0.008859900031136353
+min_dist :  0.02273327802597546
+min_dist :  0.017006458930969845
+min_dist :  0.006802483000021189
+min_dist :  0.008410640788916866
+min_dist :  0.017191228010771022
+min_dist :  0.0031139348650861967
+min_dist :  0.013789110042951467
+min_dist :  0.01698404910257351
+min_dist :  0.017128389670569635
+min_dist :  0.006438378549784181
+min_dist :  0.003415842488567691
+min_dist :  0.016881880988944716
+min_dist :  0.014959385996805474
+min_dist :  0.004389111207435385
+min_dist :  0.006133347997627124
+min_dist :  0.00790842705819731
+min_dist :  0.021200841305803728
+min_dist :  0.01796449417295081
+min_dist :  0.011875590600482546
+min_dist :  0.01451651910558734
+min_dist :  0.0
+min_dist :  0.021408834231685006
+min_dist :  0.01815158837792757
+min_dist :  0.0
+min_dist :  0.016277744241717178
+min_dist :  0.012399513586205167
+min_dist :  0.013150225531591307
+min_dist :  0.020946151055532766
+min_dist :  0.017978683037991647
+min_dist :  0.01911452732506142
+min_dist :  0.011903382007055537
+min_dist :  0.02244307582667832
+min_dist :  0.008142969669736906
+min_dist :  0.019034617154513718
+min_dist :  0.0038655739813595455
+min_dist :  0.0133485252166891
+min_dist :  0.01609029611089122
+min_dist :  0.02045206041101859
+min_dist :  0.006290309583750907
+min_dist :  0.021375750780533918
+min_dist :  0.02288357895319477
+min_dist :  0.016367151914319967
+min_dist :  0.0225392239610744
+min_dist :  0.012507884288835607
+min_dist :  0.02461160405576628
+min_dist :  0.012695642542836897
+min_dist :  0.009981223565355623
+min_dist :  0.018285698569556655
+min_dist :  0.02252146846156575
+min_dist :  0.006214278939061672
+min_dist :  0.0162515937320415
+min_dist :  0.005092828670960707
+min_dist :  0.014081091522475097
+min_dist :  0.0036596939477233584
+min_dist :  0.005271306690690149
+min_dist :  0.020371697419240106
+min_dist :  0.0
+min_dist :  0.00912483983697197
+min_dist :  0.0031182319418264293
+min_dist :  0.016221270926069186
+min_dist :  0.015238923671827113
+min_dist :  0.011746548129795992
+min_dist :  0.0
+min_dist :  0.013482842914033451
+min_dist :  0.0059051720310213775
+min_dist :  0.016351224968956572
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.010199418138465251
+min_dist :  0.004140529732858075
+min_dist :  0.006221326034128171
+min_dist :  0.00961212873909643
+min_dist :  0.012499643237399594
+min_dist :  0.017822723138643262
+min_dist :  0.015186455417916026
+min_dist :  0.0
+min_dist :  0.0061924644691351395
+min_dist :  0.0
+min_dist :  0.013305911496059628
+min_dist :  0.007499351081095655
+min_dist :  0.0030776572825547827
+min_dist :  0.003112292582896546
+min_dist :  0.00603407467183455
+min_dist :  0.008657578549624255
+min_dist :  0.009205134780301365
+min_dist :  0.009602092254736282
+min_dist :  0.0
+min_dist :  0.0030915942479065087
+min_dist :  0.010919754854013421
+min_dist :  0.01163724249308868
+min_dist :  0.014769675159348974
+min_dist :  0.029570457086323415
+min_dist :  0.03285733638630516
+min_dist :  0.030252261577256346
+min_dist :  0.011741560993741067
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0050836918316581855
+min_dist :  0.004998095385282331
+min_dist :  0.0059812839384925905
+min_dist :  0.0031134374913781462
+min_dist :  0.0
+min_dist :  0.004520501429886331
+min_dist :  0.003720834417509797
+min_dist :  0.0
+min_dist :  0.0030288580279652566
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009939521187756803
+min_dist :  0.005117063311620359
+min_dist :  0.03234571167577638
+min_dist :  0.024966689374565792
+min_dist :  0.0070334762022605775
+min_dist :  0.039643553337701386
+min_dist :  0.038151310971396304
+min_dist :  0.003047414693793724
+min_dist :  0.0302608387874378
+min_dist :  0.00300407596848965
+min_dist :  0.012778493020702662
+min_dist :  0.03548455734848635
+min_dist :  0.01002333683733667
+min_dist :  0.011731711508712063
+min_dist :  0.03424168320624495
+min_dist :  0.035520325505921144
+min_dist :  0.015383263472276369
+min_dist :  0.04456375232500251
+min_dist :  0.016884184151931405
+min_dist :  0.02023394826842657
+min_dist :  0.02238785214710227
+min_dist :  0.028307654769196246
+min_dist :  0.004138911148266089
+min_dist :  0.026555830083044126
+min_dist :  0.026882003602270395
+min_dist :  0.018148650131649038
+min_dist :  0.024809611220759642
+min_dist :  0.024357985471922992
+min_dist :  0.015290585196803243
+min_dist :  0.019545011336240547
+min_dist :  0.019470966258790808
+min_dist :  0.00630364910570643
+min_dist :  0.0065048731796146265
+min_dist :  0.011023260349678805
+min_dist :  0.009686572790723866
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003073354271524934
+min_dist :  0.0
+min_dist :  0.004695286711694958
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004462313092720525
+min_dist :  0.005151207545650698
+min_dist :  0.009994921480095068
+min_dist :  0.0
+min_dist :  0.0066197571189002685
+min_dist :  0.0033990828930764746
+min_dist :  0.0053913040360639005
+min_dist :  0.0032159817517059923
+min_dist :  0.0
+min_dist :  0.005880834159833705
+min_dist :  0.0034184887939390026
+min_dist :  0.0
+min_dist :  0.003086648519654647
+min_dist :  0.0
+min_dist :  0.009204232844467343
+min_dist :  0.004067733667885019
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030351818728000133
+min_dist :  0.02819264162240181
+min_dist :  0.007947306924161505
+min_dist :  0.01021700362657551
+min_dist :  0.0030233939305606508
+min_dist :  0.007121903527270481
+min_dist :  0.007349862643591197
+min_dist :  0.0
+min_dist :  0.013183554232328611
+min_dist :  0.0
+min_dist :  0.008639619295066226
+min_dist :  0.01338342122381052
+min_dist :  0.010709847698275154
+min_dist :  0.003990466338660622
+min_dist :  0.0037360442583938705
+min_dist :  0.01843791365491874
+min_dist :  0.007198851438136948
+min_dist :  0.012036363660837771
+min_dist :  0.009169984793854724
+min_dist :  0.0035868934550793326
+min_dist :  0.005308172663903617
+min_dist :  0.0032953986034262666
+min_dist :  0.0063147132500828845
+min_dist :  0.005937652781946553
+min_dist :  0.0
+min_dist :  0.031189362095520187
+min_dist :  0.01706808008695316
+min_dist :  0.02381269135884532
+min_dist :  0.02308042552250576
+min_dist :  0.021164856385930585
+min_dist :  0.005478168588027915
+min_dist :  0.00600990490252022
+min_dist :  0.03068338662109165
+min_dist :  0.01727214945340382
+min_dist :  0.014051483414828194
+min_dist :  0.020094941151613716
+min_dist :  0.012796402045663456
+min_dist :  0.016558045186058686
+min_dist :  0.03032985869296312
+min_dist :  0.0444765654617041
+min_dist :  0.037698835303807215
+min_dist :  0.040922255542847605
+min_dist :  0.02956560987894859
+min_dist :  0.04567849231061588
+min_dist :  0.04069665081358435
+min_dist :  0.04221763006465509
+min_dist :  0.009755594211931402
+min_dist :  0.0460809473351194
+min_dist :  0.043616791531831935
+min_dist :  0.029693416470684873
+min_dist :  0.03140729381678675
+min_dist :  0.024149171088639076
+min_dist :  0.027766166829134856
+min_dist :  0.003118050066607075
+min_dist :  0.005862578795693622
+min_dist :  0.0
+min_dist :  0.0034402200349561794
+min_dist :  0.008226055717582637
+min_dist :  0.0
+min_dist :  0.003010436914600061
+min_dist :  0.003319320227770925
+min_dist :  0.0038024983340184484
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0036700761914529503
+min_dist :  0.0
+min_dist :  0.006256070404322421
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.010385829083912695
+min_dist :  0.01060308762447394
+min_dist :  0.006127714943005582
+min_dist :  0.003081688086801951
+min_dist :  0.00308797736513366
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031299320119920425
+min_dist :  0.003202275082244054
+min_dist :  0.004000534769732348
+min_dist :  0.007845269145415282
+min_dist :  0.00448881604578689
+min_dist :  0.004454029736894603
+min_dist :  0.005603989402724212
+min_dist :  0.004904627494851349
+min_dist :  0.008721363447606696
+min_dist :  0.004150400635100615
+min_dist :  0.003939098746604003
+min_dist :  0.009997764250274219
+min_dist :  0.003320184305391933
+min_dist :  0.0
+min_dist :  0.006878600783808443
+min_dist :  0.0033529724449303418
+min_dist :  0.0
+min_dist :  0.003103023955375563
+min_dist :  0.0066271582203957955
+min_dist :  0.003338592995922798
+min_dist :  0.006243270637428654
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032169616450679023
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.020259919564107328
+min_dist :  0.0032877671754924535
+min_dist :  0.0
+min_dist :  0.023740206188646158
+min_dist :  0.02005582886495619
+min_dist :  0.008146791323263203
+min_dist :  0.017382514809330896
+min_dist :  0.011720718058090263
+min_dist :  0.0043225343437225195
+min_dist :  0.003067925794119616
+min_dist :  0.0033418940337274477
+min_dist :  0.0036991777584008275
+min_dist :  0.0
+min_dist :  0.004858025535147412
+min_dist :  0.004829266882741535
+min_dist :  0.005501782774459782
+min_dist :  0.0
+min_dist :  0.022375776590418936
+min_dist :  0.03328083581666818
+min_dist :  0.022094619091118834
+min_dist :  0.022788395364710973
+min_dist :  0.0178527119155131
+min_dist :  0.01577404295939101
+min_dist :  0.03348336082426823
+min_dist :  0.02513065477613601
+min_dist :  0.02842431880854437
+min_dist :  0.024999632300815748
+min_dist :  0.024222601615415534
+min_dist :  0.01785102796318083
+min_dist :  0.0195167650670611
+min_dist :  0.02815216110837313
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01683188985399637
+min_dist :  0.019784869613779822
+min_dist :  0.01804992782034877
+min_dist :  0.03743702540304793
+min_dist :  0.037695436272529734
+min_dist :  0.010719173118513073
+min_dist :  0.01347390621139422
+min_dist :  0.023244418980331624
+min_dist :  0.015287800178663146
+min_dist :  0.027005689833240212
+min_dist :  0.027001226373198607
+min_dist :  0.024032676102197767
+min_dist :  0.021902368263442402
+min_dist :  0.017093050654433412
+min_dist :  0.014595418092617546
+min_dist :  0.02064087151560239
+min_dist :  0.022567063289857726
+min_dist :  0.006637686493525496
+min_dist :  0.00419608492249883
+min_dist :  0.027480519293975644
+min_dist :  0.027773718308659497
+min_dist :  0.018430250922919063
+min_dist :  0.015766294729767667
+min_dist :  0.023005168422878926
+min_dist :  0.011156106475039989
+min_dist :  0.01498235000008682
+min_dist :  0.012820171073198515
+min_dist :  0.011718989531474757
+min_dist :  0.00915855408802906
+min_dist :  0.0031772151701040872
+min_dist :  0.015498165791320302
+min_dist :  0.014375092155200544
+min_dist :  0.009912302236580956
+min_dist :  0.014531593464174252
+min_dist :  0.015051062590078757
+min_dist :  0.0037924495695161407
+min_dist :  0.00317753986766675
+min_dist :  0.0030562012914253436
+min_dist :  0.007502424010474394
+min_dist :  0.033123137934118266
+min_dist :  0.02078353319768869
+min_dist :  0.01603331240106193
+min_dist :  0.011095913040150094
+min_dist :  0.00662949274618057
+min_dist :  0.005311824779509783
+min_dist :  0.008913263525281448
+min_dist :  0.0031237831648885887
+min_dist :  0.008529557876451403
+min_dist :  0.00974824570067273
+min_dist :  0.0034342840163002777
+min_dist :  0.006413195767098733
+min_dist :  0.01600594470696287
+min_dist :  0.014898376608695639
+min_dist :  0.00382265914284259
+min_dist :  0.0046622211167096665
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0036062711042946765
+min_dist :  0.006856186123477223
+min_dist :  0.008620810207426883
+min_dist :  0.01296026094785438
+min_dist :  0.00430678025292769
+min_dist :  0.004803052353323173
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003498586143224102
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003476361192254516
+min_dist :  0.008632020918299328
+min_dist :  0.011586594818103674
+min_dist :  0.0
+min_dist :  0.007600172109777826
+min_dist :  0.004093208972928017
+min_dist :  0.0
+min_dist :  0.004582282412089297
+min_dist :  0.0030706471453811174
+min_dist :  0.006598462527124212
+min_dist :  0.01724695239176345
+min_dist :  0.013030714297722535
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006107101833107789
+min_dist :  0.0
+min_dist :  0.003105338454568944
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003079626270449005
+min_dist :  0.0030923863366404745
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034154462198942056
+min_dist :  0.006417032601402569
+min_dist :  0.0
+min_dist :  0.007991177350277118
+min_dist :  0.006319919167723313
+min_dist :  0.006978484596221309
+min_dist :  0.009722262364948869
+min_dist :  0.003794571131180733
+min_dist :  0.010520000799139518
+min_dist :  0.010895636880001303
+min_dist :  0.010994992812469226
+min_dist :  0.003076328314557013
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01897063466161255
+min_dist :  0.012169692166290574
+min_dist :  0.008777670382608184
+min_dist :  0.00411901899656195
+min_dist :  0.005665565427016267
+min_dist :  0.0034868123220617676
+min_dist :  0.0
+min_dist :  0.003163940647873278
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004586246868495773
+min_dist :  0.0
+min_dist :  0.003064881648395718
+min_dist :  0.011471502980962186
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0054691221318115294
+min_dist :  0.009212875348769125
+min_dist :  0.0
+min_dist :  0.006486080178802217
+number correspondences kept in mesh edge filtering :  387  out of :  613
+number of true landmark correspondences returned from mesh edge filtering :  231  out of  387
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5968992248062015
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([387, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 13.979 
+full-AccS: 0.252 
+full-AccR: 3.045 
+full-outlier: 94.699 
+vis-epe: 14.682 
+vis-AccS: 0.045 
+vis-AccR: 2.072 
+vis-outlier: 96.481 
+occ-epe: 12.032 
+occ-AccS: 0.825 
+occ-AccR: 5.737 
+occ-outlier: 89.765 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08677024626305227
+Strict IR :  0.05312157721796276
+Relaxed IR :  0.3670317634173056
+model 085
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([232, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([232])
+ti.shape :  torch.Size([232])
+s_pos.shape :  torch.Size([232, 3])
+t_pos.shape :  torch.Size([232, 3])
+ind.shape :  torch.Size([232, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([232])
+ti.shape :  torch.Size([232])
+s_pos.shape :  torch.Size([232, 3])
+t_pos.shape :  torch.Size([232, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  17  out of  232
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.07327586206896551
+vec6d.shape :  torch.Size([232, 6])
+ldmk_s.shape :  torch.Size([232, 3])
+ldmk_t.shape :  torch.Size([232, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  14  out of  198
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.0707070707070707
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.003181102441499586
+min_dist :  0.0030264847441096527
+min_dist :  0.003210806378576311
+min_dist :  0.00980713535591384
+min_dist :  0.004573181220668823
+min_dist :  0.007158539323406394
+min_dist :  0.008669493817043784
+min_dist :  0.0
+min_dist :  0.00552613437081808
+min_dist :  0.010059365786763405
+min_dist :  0.016011672298546043
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007427844787144405
+min_dist :  0.00844668160243944
+min_dist :  0.018580508859409955
+min_dist :  0.011743757293862336
+min_dist :  0.0
+min_dist :  0.012079800980759807
+min_dist :  0.022805230462050047
+min_dist :  0.004046723421967064
+min_dist :  0.01000327168395485
+min_dist :  0.008873518417563984
+min_dist :  0.007483006696988944
+min_dist :  0.02057132158453089
+min_dist :  0.02297161543748604
+min_dist :  0.01878476833898661
+min_dist :  0.0
+min_dist :  0.0031786028747241733
+min_dist :  0.0030540824896157772
+min_dist :  0.017280246207436987
+min_dist :  0.011384570812567356
+min_dist :  0.017568691137327296
+min_dist :  0.01813174168523962
+min_dist :  0.012928369876573538
+min_dist :  0.0032985611510675727
+min_dist :  0.02224437887593189
+min_dist :  0.006322460610130074
+min_dist :  0.02736267035852813
+min_dist :  0.005860260894196029
+min_dist :  0.007514923047120594
+min_dist :  0.0032065008350698415
+min_dist :  0.009724375432602876
+min_dist :  0.014437522070024302
+min_dist :  0.02182532186256863
+min_dist :  0.005683777309163266
+min_dist :  0.0
+min_dist :  0.010020058809916075
+min_dist :  0.007853734652853236
+min_dist :  0.02403800630674493
+min_dist :  0.0030774921549674675
+min_dist :  0.02108388760423299
+min_dist :  0.01103171152913442
+min_dist :  0.007239711532079224
+min_dist :  0.0031101849309590475
+min_dist :  0.0064221931309300356
+min_dist :  0.025635530209578507
+min_dist :  0.003252802612356319
+min_dist :  0.006697597799820279
+min_dist :  0.005162472041607444
+min_dist :  0.011197565518129463
+min_dist :  0.006905193654549586
+min_dist :  0.010175747403076404
+min_dist :  0.00341259563679558
+min_dist :  0.003471831880618229
+min_dist :  0.003097106590568686
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.04255470190980097
+min_dist :  0.0034693616578403566
+min_dist :  0.0
+min_dist :  0.00649268745697296
+min_dist :  0.03870198413838815
+min_dist :  0.04387782904399015
+min_dist :  0.02974129658388034
+min_dist :  0.043739728607130025
+min_dist :  0.024448820377501925
+min_dist :  0.014418985739689777
+min_dist :  0.0264469478076618
+min_dist :  0.016449892851024526
+min_dist :  0.01570410200379622
+min_dist :  0.0
+min_dist :  0.007970439281034684
+min_dist :  0.014397597862170961
+min_dist :  0.015409739603942041
+min_dist :  0.015532092697669508
+min_dist :  0.01893598527277646
+min_dist :  0.019239367646303195
+min_dist :  0.018224786473006543
+min_dist :  0.01588639696125144
+min_dist :  0.012503590458896222
+min_dist :  0.017601452238535476
+min_dist :  0.021244027081135514
+min_dist :  0.018465733364779715
+min_dist :  0.021542979206801965
+min_dist :  0.016847512192646453
+min_dist :  0.012736743792413935
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005557807115430376
+min_dist :  0.020984521244753047
+min_dist :  0.003098734903624624
+min_dist :  0.006218098247011807
+min_dist :  0.0
+min_dist :  0.005849757028857142
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006086371932710122
+min_dist :  0.003242175890791952
+min_dist :  0.0030660523323472
+min_dist :  0.0032050975386113817
+min_dist :  0.009046784602936233
+min_dist :  0.00925418144248474
+min_dist :  0.009237759554387893
+min_dist :  0.010551647975801218
+min_dist :  0.013217936713463562
+min_dist :  0.0031624814976208295
+min_dist :  0.0
+min_dist :  0.00868807726347558
+min_dist :  0.005762740829077269
+min_dist :  0.008133424324107933
+min_dist :  0.00796897116657501
+min_dist :  0.013762681813188333
+min_dist :  0.005517930465226357
+min_dist :  0.003228158799169099
+min_dist :  0.0037590346827077047
+min_dist :  0.0
+min_dist :  0.0031890821867405256
+min_dist :  0.005988838699869528
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003217696968345138
+min_dist :  0.0
+min_dist :  0.0033421876623028
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009085203620210409
+min_dist :  0.0030291183494128935
+min_dist :  0.014659402520167139
+min_dist :  0.017511203977465965
+min_dist :  0.02049079011586757
+min_dist :  0.02206138753514164
+min_dist :  0.016051916500172077
+min_dist :  0.011267791173730925
+min_dist :  0.009479702855315584
+min_dist :  0.02626325236669325
+min_dist :  0.0
+min_dist :  0.007118575780146178
+min_dist :  0.019198805722473945
+min_dist :  0.032626449316122075
+min_dist :  0.0236680442509118
+min_dist :  0.02341049545625047
+min_dist :  0.02684877558600644
+min_dist :  0.014509001237743206
+min_dist :  0.02472788553450138
+min_dist :  0.022974359808929444
+min_dist :  0.02647662305351919
+min_dist :  0.021796765201761048
+min_dist :  0.0
+min_dist :  0.008452518357820522
+min_dist :  0.020627936957065815
+min_dist :  0.0030145581616555094
+min_dist :  0.00935125866966734
+min_dist :  0.005827987314681903
+min_dist :  0.009319324098772517
+min_dist :  0.009318383562307778
+min_dist :  0.019108979815296433
+min_dist :  0.026492648571572918
+min_dist :  0.018073836121352434
+min_dist :  0.012563844154440956
+min_dist :  0.02275667179744839
+min_dist :  0.003594415818399918
+min_dist :  0.004117643920622696
+min_dist :  0.0031079993112214104
+min_dist :  0.0
+min_dist :  0.009403940079700274
+min_dist :  0.003053217954557433
+min_dist :  0.009712459015424805
+min_dist :  0.019867355625676028
+min_dist :  0.02090457794925077
+min_dist :  0.019798959831179092
+min_dist :  0.003525010152342018
+min_dist :  0.0177209004042926
+min_dist :  0.020534167960889804
+min_dist :  0.015079242096507505
+min_dist :  0.0
+min_dist :  0.007010529211446444
+min_dist :  0.01660444126893809
+min_dist :  0.008589666049636438
+min_dist :  0.007383347456460103
+min_dist :  0.007853283642800754
+min_dist :  0.015202677715671895
+min_dist :  0.007452475340557645
+min_dist :  0.018670656184984955
+min_dist :  0.009709501305311166
+min_dist :  0.015738312653702426
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.015309476568422534
+min_dist :  0.01747203184987843
+min_dist :  0.01651350676503662
+min_dist :  0.010699923997050864
+min_dist :  0.00901275905342484
+min_dist :  0.017727359738810313
+min_dist :  0.01689205434873139
+min_dist :  0.0032450186358798246
+min_dist :  0.012267601298566761
+min_dist :  0.007883942928726777
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034334564459930104
+min_dist :  0.0030103456958180475
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003616676618334464
+min_dist :  0.003012407557383408
+min_dist :  0.006088939625010122
+min_dist :  0.004018997424393533
+min_dist :  0.0
+min_dist :  0.006416504089104268
+min_dist :  0.0
+min_dist :  0.003315203704123485
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  138  out of :  232
+number of true landmark correspondences returned from mesh edge filtering :  11  out of  138
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.07971014492753623
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([138, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.167 
+full-AccS: 0.019 
+full-AccR: 0.827 
+full-outlier: 60.762 
+vis-epe: 14.946 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 83.253 
+occ-epe: 8.213 
+occ-AccS: 0.034 
+occ-AccR: 1.474 
+occ-outlier: 43.180 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.08212878125470222
+Strict IR :  0.0026928255433737256
+Relaxed IR :  0.04366224273898827
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([345, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([345])
+ti.shape :  torch.Size([345])
+s_pos.shape :  torch.Size([345, 3])
+t_pos.shape :  torch.Size([345, 3])
+ind.shape :  torch.Size([345, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([345])
+ti.shape :  torch.Size([345])
+s_pos.shape :  torch.Size([345, 3])
+t_pos.shape :  torch.Size([345, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  193  out of  345
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.5594202898550724
+vec6d.shape :  torch.Size([345, 6])
+ldmk_s.shape :  torch.Size([345, 3])
+ldmk_t.shape :  torch.Size([345, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  193  out of  301
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.6411960132890365
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030126141492981756
+min_dist :  0.005738206378802268
+min_dist :  0.0033168342133334423
+min_dist :  0.0
+min_dist :  0.0030330817059131122
+min_dist :  0.0
+min_dist :  0.0037415465772758357
+min_dist :  0.0
+min_dist :  0.0033063625140873684
+min_dist :  0.0069168648894501125
+min_dist :  0.006317280209738911
+min_dist :  0.0030649758106827928
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009163663658721472
+min_dist :  0.007930076824957891
+min_dist :  0.0
+min_dist :  0.007820242823119418
+min_dist :  0.0033268344544941974
+min_dist :  0.005193237176905245
+min_dist :  0.005493443224845623
+min_dist :  0.015123787150432725
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01321775295213518
+min_dist :  0.00955824264730494
+min_dist :  0.0077588274097756225
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030760906633213107
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.015208787835679059
+min_dist :  0.0
+min_dist :  0.01610277036117726
+min_dist :  0.021138494383512067
+min_dist :  0.007460632329840919
+min_dist :  0.0033841655212335725
+min_dist :  0.013313118915229004
+min_dist :  0.003894881090253958
+min_dist :  0.00848121900750344
+min_dist :  0.013628869358171964
+min_dist :  0.00851693781631929
+min_dist :  0.008047177096517057
+min_dist :  0.009773964292101037
+min_dist :  0.016764824633453614
+min_dist :  0.01087944605390386
+min_dist :  0.0
+min_dist :  0.009405647582902106
+min_dist :  0.013525013609665053
+min_dist :  0.006180629215298821
+min_dist :  0.01577354727450692
+min_dist :  0.012126686971439411
+min_dist :  0.003084011432486009
+min_dist :  0.005921894684581283
+min_dist :  0.02497061475497773
+min_dist :  0.0031914565557496577
+min_dist :  0.003509517886380481
+min_dist :  0.009638180457224926
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009719194775450019
+min_dist :  0.00301771545697532
+min_dist :  0.003795268732229645
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006621181451797965
+min_dist :  0.0
+min_dist :  0.006590868856896202
+min_dist :  0.008533704951539656
+min_dist :  0.00405303031721252
+min_dist :  0.010148652035492006
+min_dist :  0.007175998886975763
+min_dist :  0.003454563719493809
+min_dist :  0.026824421262658424
+min_dist :  0.0
+min_dist :  0.01975582617875179
+min_dist :  0.0038900940211877267
+min_dist :  0.0031452444948491245
+min_dist :  0.003394093665803714
+min_dist :  0.010332870325884685
+min_dist :  0.003284871690426126
+min_dist :  0.0
+min_dist :  0.0030161305055102245
+min_dist :  0.00909876831138117
+min_dist :  0.01942823511815876
+min_dist :  0.003418745087878254
+min_dist :  0.01253146399376352
+min_dist :  0.0032537965578265343
+min_dist :  0.0
+min_dist :  0.022727662856451804
+min_dist :  0.023712726481215793
+min_dist :  0.009913837107960085
+min_dist :  0.006880663860671992
+min_dist :  0.018817250318498232
+min_dist :  0.0
+min_dist :  0.007960248094024416
+min_dist :  0.005868359330966303
+min_dist :  0.004934165535882463
+min_dist :  0.0032960326927903003
+min_dist :  0.0030295103889521426
+min_dist :  0.005342354074848042
+min_dist :  0.004083125588646948
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008884831562283303
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031832086655210383
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031425232107060246
+min_dist :  0.007115938212675272
+min_dist :  0.007563056454059407
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032226641012227416
+min_dist :  0.006791323623938811
+min_dist :  0.005899601425037553
+min_dist :  0.0034697477155163315
+min_dist :  0.008983810056271453
+min_dist :  0.018484678470079428
+min_dist :  0.0
+min_dist :  0.0030114016292168543
+min_dist :  0.019216882326312162
+min_dist :  0.0032161979380220455
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00977875248966303
+min_dist :  0.005701201720359501
+min_dist :  0.012027148442123933
+min_dist :  0.010903384659079486
+min_dist :  0.0
+min_dist :  0.0033459768704922864
+min_dist :  0.015861530173985294
+min_dist :  0.0033884944418820545
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004416420247539896
+min_dist :  0.0400598002012198
+min_dist :  0.0
+min_dist :  0.009335505044997418
+min_dist :  0.0
+min_dist :  0.006152904555718141
+min_dist :  0.0034966520701463395
+min_dist :  0.0
+min_dist :  0.0035077974715041513
+min_dist :  0.017458485254590584
+min_dist :  0.007295433378401809
+min_dist :  0.003097070247844344
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030704431572207078
+min_dist :  0.02952356424858215
+min_dist :  0.0342578049199121
+min_dist :  0.007398134569148475
+min_dist :  0.02970101112694117
+min_dist :  0.003195469449181201
+min_dist :  0.0042086969686803925
+min_dist :  0.00912108409311431
+min_dist :  0.028016229967798283
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005528342319314103
+min_dist :  0.0
+min_dist :  0.004920031795985577
+min_dist :  0.02026743692982368
+min_dist :  0.02797018389667712
+min_dist :  0.04616144244382539
+min_dist :  0.03654749907254369
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011812605311206849
+min_dist :  0.0
+min_dist :  0.008997075601655897
+min_dist :  0.0037061351707308246
+min_dist :  0.007988903415421003
+min_dist :  0.0462426388838452
+min_dist :  0.010663988647965209
+min_dist :  0.016042984936240706
+min_dist :  0.018639155703429104
+min_dist :  0.016305943616670166
+min_dist :  0.019895598903471232
+min_dist :  0.02463924702586041
+min_dist :  0.003055074039486033
+min_dist :  0.020072404024884694
+min_dist :  0.039842378705489616
+min_dist :  0.0
+min_dist :  0.0032645022745942743
+min_dist :  0.03363225595501259
+min_dist :  0.0031357937694345152
+min_dist :  0.0059646676258436745
+min_dist :  0.0
+min_dist :  0.04628590649389713
+min_dist :  0.006395767895007603
+min_dist :  0.003267360954337441
+min_dist :  0.0
+min_dist :  0.005456219895563226
+min_dist :  0.011048746241070585
+min_dist :  0.003087167761850522
+min_dist :  0.012900600222471014
+min_dist :  0.01655555060301098
+min_dist :  0.02431681115242387
+min_dist :  0.0
+min_dist :  0.029195004469401317
+min_dist :  0.010892163259108275
+min_dist :  0.005805346328453547
+min_dist :  0.0035639138996248015
+min_dist :  0.03794079210314426
+min_dist :  0.036426473646807976
+min_dist :  0.031922671408331056
+min_dist :  0.03461468616505946
+min_dist :  0.027072872790108303
+min_dist :  0.02787185635231814
+min_dist :  0.013369217161684327
+min_dist :  0.0
+min_dist :  0.00929195106435274
+min_dist :  0.009632948576398008
+min_dist :  0.032753115569173374
+min_dist :  0.026596852934263247
+min_dist :  0.032488006520563606
+min_dist :  0.0033904542989979126
+min_dist :  0.011780901154956313
+min_dist :  0.004916521583038014
+min_dist :  0.01914722226282217
+min_dist :  0.028439685239721967
+min_dist :  0.013865247403203638
+min_dist :  0.02902781950427451
+min_dist :  0.017112687280448378
+min_dist :  0.029834961233847164
+min_dist :  0.020773762976063537
+min_dist :  0.007535549265223664
+min_dist :  0.017742884984536533
+min_dist :  0.019662097681100145
+min_dist :  0.03546350091265994
+min_dist :  0.033138877052549295
+min_dist :  0.01579532688877545
+min_dist :  0.016117896755623206
+min_dist :  0.03383242814547707
+min_dist :  0.010093169538345142
+min_dist :  0.011632081686020063
+min_dist :  0.01833043951173194
+min_dist :  0.005862153098215781
+min_dist :  0.011842970895269053
+min_dist :  0.009069307655564754
+min_dist :  0.0035006582142622956
+min_dist :  0.0
+min_dist :  0.004942040459746117
+min_dist :  0.011678805373836232
+min_dist :  0.0
+min_dist :  0.011491568624324398
+min_dist :  0.014858393596902273
+min_dist :  0.0035106309697255683
+min_dist :  0.01861827011265564
+min_dist :  0.018155567710624647
+min_dist :  0.023443949773783567
+min_dist :  0.015390433638023438
+min_dist :  0.02227208955692568
+min_dist :  0.0
+min_dist :  0.00465551838419703
+min_dist :  0.010744248535598428
+min_dist :  0.01340227257173397
+min_dist :  0.003957944767032478
+min_dist :  0.007627275461240444
+min_dist :  0.007369437682086297
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.012420234561526597
+min_dist :  0.01826443185138326
+min_dist :  0.0034368060188095374
+min_dist :  0.006047986165000079
+min_dist :  0.010456037028146847
+min_dist :  0.007779338712040955
+min_dist :  0.024048023112810114
+min_dist :  0.015018140875963034
+min_dist :  0.028941582648971897
+min_dist :  0.0
+min_dist :  0.013946923495227007
+min_dist :  0.0
+min_dist :  0.004811505264677964
+min_dist :  0.0030811634763316027
+min_dist :  0.004578801896004537
+min_dist :  0.0032465899346959017
+min_dist :  0.0
+min_dist :  0.006204010322287595
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.014898734334143873
+min_dist :  0.015154322133123385
+min_dist :  0.0
+min_dist :  0.01817958121362064
+min_dist :  0.00985873281472733
+min_dist :  0.004310222865353751
+min_dist :  0.0035799685079750698
+min_dist :  0.01217034413134627
+min_dist :  0.00966512769912403
+min_dist :  0.007439695898974026
+min_dist :  0.0032969206815884433
+min_dist :  0.0
+min_dist :  0.006387134690253315
+min_dist :  0.0037762785509282025
+min_dist :  0.0031815932772796636
+min_dist :  0.0
+min_dist :  0.0030933464887872384
+min_dist :  0.0
+min_dist :  0.0032771248902965238
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007483559371040862
+min_dist :  0.008806372255877775
+min_dist :  0.00401836083596901
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01177781550449842
+min_dist :  0.004516533199764214
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004014202325393393
+min_dist :  0.0
+min_dist :  0.0031798957781368413
+min_dist :  0.004923021244941607
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003217137653251482
+number correspondences kept in mesh edge filtering :  239  out of :  345
+number of true landmark correspondences returned from mesh edge filtering :  134  out of  239
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5606694560669456
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([239, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 12.742 
+full-AccS: 0.878 
+full-AccR: 10.454 
+full-outlier: 86.379 
+vis-epe: 15.359 
+vis-AccS: 0.000 
+vis-AccR: 0.686 
+vis-outlier: 98.665 
+occ-epe: 10.123 
+occ-AccS: 1.756 
+occ-AccR: 20.229 
+occ-outlier: 74.084 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.09262896968186042
+Strict IR :  0.013735215566577643
+Relaxed IR :  0.2396032048836322
+model 126
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([461, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([461])
+ti.shape :  torch.Size([461])
+s_pos.shape :  torch.Size([461, 3])
+t_pos.shape :  torch.Size([461, 3])
+ind.shape :  torch.Size([461, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([461])
+ti.shape :  torch.Size([461])
+s_pos.shape :  torch.Size([461, 3])
+t_pos.shape :  torch.Size([461, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  105  out of  461
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.227765726681128
+vec6d.shape :  torch.Size([461, 6])
+ldmk_s.shape :  torch.Size([461, 3])
+ldmk_t.shape :  torch.Size([461, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  77  out of  277
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.2779783393501805
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.0034315505361026495
+min_dist :  0.005731704336218838
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003998014203906876
+min_dist :  0.0
+min_dist :  0.006174802991900581
+min_dist :  0.0087811315407365
+min_dist :  0.005766154924518672
+min_dist :  0.0032301779995110745
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030100144295104794
+min_dist :  0.0
+min_dist :  0.0030827978353855303
+min_dist :  0.0042195083147443056
+min_dist :  0.011764533216154822
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030555337835492
+min_dist :  0.01712276613808597
+min_dist :  0.01774895336468409
+min_dist :  0.004830270505650158
+min_dist :  0.0058797725378546915
+min_dist :  0.003130344700359976
+min_dist :  0.0071762119586188805
+min_dist :  0.018852903996459225
+min_dist :  0.0
+min_dist :  0.007507287433521849
+min_dist :  0.012218012403283527
+min_dist :  0.01030200929371637
+min_dist :  0.024146268678037562
+min_dist :  0.015964625950316415
+min_dist :  0.0
+min_dist :  0.02441114700425207
+min_dist :  0.014531129455556534
+min_dist :  0.003187352672724458
+min_dist :  0.019139875570352034
+min_dist :  0.011192664873067843
+min_dist :  0.018553253954228847
+min_dist :  0.014569253541055675
+min_dist :  0.02777244738757543
+min_dist :  0.03364370198589563
+min_dist :  0.010238164518414392
+min_dist :  0.027654991300674326
+min_dist :  0.006671458139347342
+min_dist :  0.02427998340594255
+min_dist :  0.0075348821352012275
+min_dist :  0.015403109992600781
+min_dist :  0.012986493763700655
+min_dist :  0.014208420312933054
+min_dist :  0.006339490227679707
+min_dist :  0.0035635505256470185
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.010126722744532423
+min_dist :  0.0
+min_dist :  0.009105419397632859
+min_dist :  0.006372744154673452
+min_dist :  0.012530144136100627
+min_dist :  0.0030494624847339905
+min_dist :  0.0031662221401380906
+min_dist :  0.006408741927255898
+min_dist :  0.006668910919436355
+min_dist :  0.007219119829981983
+min_dist :  0.005307228226339068
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01116672159152976
+min_dist :  0.012602614275040764
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034204707359489404
+min_dist :  0.006628020555466348
+min_dist :  0.007604876593293063
+min_dist :  0.0
+min_dist :  0.009814696031443311
+min_dist :  0.0
+min_dist :  0.0033404400795631374
+min_dist :  0.009227413209216169
+min_dist :  0.010250458417639573
+min_dist :  0.008896665258342576
+min_dist :  0.015740195814876484
+min_dist :  0.021726983913533476
+min_dist :  0.013681375295301347
+min_dist :  0.01210177391250427
+min_dist :  0.005903224911083354
+min_dist :  0.003979863031823434
+min_dist :  0.01523444801115982
+min_dist :  0.009271059327088167
+min_dist :  0.003940357220539816
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030905944982803283
+min_dist :  0.013213099459875095
+min_dist :  0.0055954781079779504
+min_dist :  0.01194477738772418
+min_dist :  0.012206357241294154
+min_dist :  0.00889192039933469
+min_dist :  0.012258569424244881
+min_dist :  0.010767968944024887
+min_dist :  0.016727407506494534
+min_dist :  0.012828152618932897
+min_dist :  0.0030489201535830257
+min_dist :  0.003109379086392595
+min_dist :  0.007600587718711082
+min_dist :  0.008637852272578942
+min_dist :  0.018001411367942092
+min_dist :  0.01657609293384242
+min_dist :  0.008169140686455736
+min_dist :  0.006275284042292459
+min_dist :  0.018524057029955746
+min_dist :  0.010025546744852077
+min_dist :  0.01232379256745975
+min_dist :  0.015424794670431403
+min_dist :  0.003150607854576423
+min_dist :  0.0
+min_dist :  0.00650516904577285
+min_dist :  0.0141150203884322
+min_dist :  0.00452728263741525
+min_dist :  0.0
+min_dist :  0.017903997209747367
+min_dist :  0.01157131038798179
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00494538935154274
+min_dist :  0.004402375225323753
+min_dist :  0.003070727562030929
+min_dist :  0.0
+min_dist :  0.003221587420746274
+min_dist :  0.0033114537707957764
+min_dist :  0.003311461783638849
+min_dist :  0.006292448367937431
+min_dist :  0.0
+min_dist :  0.0033807081850111644
+min_dist :  0.006597670394563481
+min_dist :  0.009892809688129212
+min_dist :  0.0
+min_dist :  0.014012483949611318
+min_dist :  0.003390483764464962
+min_dist :  0.0228177236360152
+min_dist :  0.007262809413589041
+min_dist :  0.004715338436502933
+min_dist :  0.016227399946547753
+min_dist :  0.0
+min_dist :  0.004054212549303302
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003597952979387558
+min_dist :  0.0
+min_dist :  0.022312258397553728
+min_dist :  0.0034475646660700795
+min_dist :  0.020957634167818723
+min_dist :  0.024640735039141905
+min_dist :  0.019518147885683963
+min_dist :  0.019474261180885605
+min_dist :  0.0033656260599823564
+min_dist :  0.004997848644508601
+min_dist :  0.0
+min_dist :  0.005467797227501866
+min_dist :  0.0
+min_dist :  0.006882923514389465
+min_dist :  0.003386959612137455
+min_dist :  0.0
+min_dist :  0.01562960484381138
+min_dist :  0.0050391933210649255
+min_dist :  0.005680122166570822
+min_dist :  0.0037128749376449236
+min_dist :  0.0
+min_dist :  0.006401440508786733
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.010516683352022726
+min_dist :  0.003957613322356793
+min_dist :  0.003578233581928444
+min_dist :  0.008566354031434643
+min_dist :  0.006877185123847416
+min_dist :  0.012950252174495414
+min_dist :  0.00371368955550357
+min_dist :  0.0
+min_dist :  0.006821857856636978
+min_dist :  0.00629534439148289
+min_dist :  0.0
+min_dist :  0.016852129576690657
+min_dist :  0.006903574792599633
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008330399209645203
+min_dist :  0.010004968091864444
+min_dist :  0.003354476484528091
+min_dist :  0.0030052957664784634
+min_dist :  0.0
+min_dist :  0.006972752455438871
+min_dist :  0.010018773064390037
+min_dist :  0.014701744260683009
+min_dist :  0.013491375601955707
+min_dist :  0.004793028053294661
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003584989855965149
+min_dist :  0.0
+min_dist :  0.0075768969362531
+min_dist :  0.0
+min_dist :  0.003983559760139139
+min_dist :  0.0035573038207703483
+min_dist :  0.019691062305787536
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004455961250794565
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008405564465020533
+min_dist :  0.006150370734532256
+min_dist :  0.011116895857918748
+min_dist :  0.0
+min_dist :  0.00622447634621999
+min_dist :  0.0
+min_dist :  0.004791418171868912
+min_dist :  0.00612485673409391
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034475740786417135
+min_dist :  0.010873992143661332
+min_dist :  0.006291131872981068
+min_dist :  0.00413011746901566
+min_dist :  0.0033927687552324872
+min_dist :  0.005464456029975058
+min_dist :  0.006064693110723416
+min_dist :  0.0
+min_dist :  0.006086601903071598
+min_dist :  0.009132736670682358
+min_dist :  0.003158101891133457
+min_dist :  0.0
+min_dist :  0.018691136191128707
+min_dist :  0.01126679822307757
+min_dist :  0.011298736872893282
+min_dist :  0.0031599545234595764
+min_dist :  0.026929645787059066
+min_dist :  0.0
+min_dist :  0.01081736759636745
+min_dist :  0.022089637719512344
+min_dist :  0.0
+min_dist :  0.017139530973035166
+min_dist :  0.0034849190782307335
+min_dist :  0.0
+min_dist :  0.003160027023632639
+min_dist :  0.01983512247107393
+min_dist :  0.009672397791670574
+min_dist :  0.0062852626415643075
+min_dist :  0.012114743638491209
+min_dist :  0.008115037546083937
+min_dist :  0.011625994131939738
+min_dist :  0.0
+min_dist :  0.012436957900951852
+min_dist :  0.00926276241249355
+min_dist :  0.0
+min_dist :  0.0038362184912721607
+min_dist :  0.0
+min_dist :  0.0030200975070176043
+min_dist :  0.0
+min_dist :  0.005766203532797196
+min_dist :  0.004220640191918812
+min_dist :  0.0030242815650471633
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003244252377793114
+min_dist :  0.018725979601593206
+min_dist :  0.008475042837006742
+min_dist :  0.010209132845723832
+min_dist :  0.009307802737523413
+min_dist :  0.00477108967215537
+min_dist :  0.009190344728356949
+min_dist :  0.006941421924273816
+min_dist :  0.003269274727357079
+min_dist :  0.013823342251861418
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030115427758658896
+min_dist :  0.017392686055613595
+min_dist :  0.012417151358773137
+min_dist :  0.0
+min_dist :  0.006802496406818906
+min_dist :  0.03175410299025936
+min_dist :  0.00936823590071659
+min_dist :  0.020215432041998004
+min_dist :  0.004657574804838288
+min_dist :  0.0
+min_dist :  0.015411498036873921
+min_dist :  0.032273127586426316
+min_dist :  0.03355856473460657
+min_dist :  0.014168201295855519
+min_dist :  0.011863391997055779
+min_dist :  0.037368465739728414
+min_dist :  0.003005898236016394
+min_dist :  0.04015583982914099
+min_dist :  0.0030679442937494505
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01067099346232879
+min_dist :  0.019531111146023752
+min_dist :  0.015383175183603059
+min_dist :  0.0
+min_dist :  0.016346285296565878
+min_dist :  0.022778158826709905
+min_dist :  0.007304796792199253
+min_dist :  0.009887143406836696
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007058440329601647
+min_dist :  0.011845541151595416
+min_dist :  0.0037080291588122
+min_dist :  0.004003013485548642
+min_dist :  0.0070262581750671835
+min_dist :  0.010929452121869411
+min_dist :  0.00808222886558095
+min_dist :  0.010270897397751298
+min_dist :  0.0034473959471157042
+min_dist :  0.0034208208409906523
+min_dist :  0.0
+min_dist :  0.010568103521466808
+min_dist :  0.0
+min_dist :  0.015141557909427096
+min_dist :  0.008737240828965175
+min_dist :  0.0
+min_dist :  0.013420413684864891
+min_dist :  0.003424547677662208
+min_dist :  0.0137200964082827
+min_dist :  0.008276573824475011
+min_dist :  0.0036661393533430203
+min_dist :  0.004146177544529262
+min_dist :  0.006977642897632001
+min_dist :  0.0030324446688595923
+min_dist :  0.003697240649095307
+min_dist :  0.0031330385594163877
+min_dist :  0.003599356584722961
+min_dist :  0.0
+min_dist :  0.0035493801525650873
+min_dist :  0.0
+min_dist :  0.007302584436313869
+min_dist :  0.007638849107813648
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006756126344080879
+min_dist :  0.008185256391474074
+min_dist :  0.012925572451019206
+min_dist :  0.003116894260185012
+min_dist :  0.007251170665785077
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003299181566817704
+min_dist :  0.0031856806347194786
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006471389094181236
+min_dist :  0.0
+min_dist :  0.003250487186298741
+min_dist :  0.00668470560832554
+min_dist :  0.015611781431051335
+min_dist :  0.015646825219685134
+min_dist :  0.014404585941880335
+min_dist :  0.013633188943108773
+min_dist :  0.0030824824969996013
+min_dist :  0.0
+min_dist :  0.0038285390832974936
+min_dist :  0.0031695390378860596
+min_dist :  0.00313085755312092
+min_dist :  0.00585322278651535
+min_dist :  0.005667757062008415
+min_dist :  0.009408044747334655
+min_dist :  0.00379943639935639
+min_dist :  0.012027126256353595
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004453500590284075
+min_dist :  0.007968906149859433
+min_dist :  0.010675282334341143
+min_dist :  0.008794461710889236
+min_dist :  0.0038685164712911092
+min_dist :  0.009860951468114016
+min_dist :  0.0032238118524652096
+min_dist :  0.008487006840624887
+min_dist :  0.004385219195619992
+min_dist :  0.02242905088796947
+min_dist :  0.0031912560703277037
+min_dist :  0.011116767085572675
+min_dist :  0.008840973010320037
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003205178908846714
+min_dist :  0.003296047844059502
+min_dist :  0.0
+min_dist :  0.006711579524108026
+min_dist :  0.0
+min_dist :  0.013103001848792612
+min_dist :  0.00746438711479975
+min_dist :  0.0
+min_dist :  0.0048338394381406725
+min_dist :  0.007533388336475138
+min_dist :  0.0
+min_dist :  0.006785692019899757
+min_dist :  0.003738866580060021
+min_dist :  0.0
+min_dist :  0.003888634424441616
+min_dist :  0.0
+min_dist :  0.00868455009063984
+min_dist :  0.0036803873191904608
+min_dist :  0.0050396847405143625
+min_dist :  0.0077628594538467965
+min_dist :  0.010295218835768881
+min_dist :  0.007743729411009049
+min_dist :  0.008717043781971991
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003113814120800741
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007847355645787393
+min_dist :  0.009782498691274682
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005705206689308738
+min_dist :  0.0041770022551849
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003303816678760377
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  346  out of :  461
+number of true landmark correspondences returned from mesh edge filtering :  81  out of  346
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.23410404624277456
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([346, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 14.609 
+full-AccS: 0.000 
+full-AccR: 0.545 
+full-outlier: 89.939 
+vis-epe: 19.279 
+vis-AccS: 0.000 
+vis-AccR: 0.276 
+vis-outlier: 98.728 
+occ-epe: 8.395 
+occ-AccS: 0.000 
+occ-AccR: 0.903 
+occ-outlier: 78.245 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07491485172605515
+Strict IR :  0.007627118644067797
+Relaxed IR :  0.0937046004842615
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([436, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([436])
+ti.shape :  torch.Size([436])
+s_pos.shape :  torch.Size([436, 3])
+t_pos.shape :  torch.Size([436, 3])
+ind.shape :  torch.Size([436, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([436])
+ti.shape :  torch.Size([436])
+s_pos.shape :  torch.Size([436, 3])
+t_pos.shape :  torch.Size([436, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  177  out of  436
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.4059633027522936
+vec6d.shape :  torch.Size([436, 6])
+ldmk_s.shape :  torch.Size([436, 3])
+ldmk_t.shape :  torch.Size([436, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  164  out of  310
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.5290322580645161
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.0033468359959379773
+min_dist :  0.0
+min_dist :  0.004816170608093066
+min_dist :  0.0032247940656980672
+min_dist :  0.003351382121309324
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008607883670612618
+min_dist :  0.012084407808197417
+min_dist :  0.00966696883077608
+min_dist :  0.0
+min_dist :  0.008887935674072776
+min_dist :  0.012106826095591843
+min_dist :  0.003332995315278574
+min_dist :  0.011965621758447103
+min_dist :  0.011788548482935288
+min_dist :  0.008062348043645619
+min_dist :  0.017176598710929702
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.025574098590355285
+min_dist :  0.0
+min_dist :  0.030746061612987412
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.03151331011311368
+min_dist :  0.0037684762138894684
+min_dist :  0.003505010985180849
+min_dist :  0.02317361432570747
+min_dist :  0.003098600191528201
+min_dist :  0.004042720078413256
+min_dist :  0.007169008450820982
+min_dist :  0.0
+min_dist :  0.006254063525809477
+min_dist :  0.0
+min_dist :  0.005259118444353399
+min_dist :  0.006609162458367822
+min_dist :  0.016693835817407614
+min_dist :  0.0
+min_dist :  0.010404958246765674
+min_dist :  0.008793955351014349
+min_dist :  0.0
+min_dist :  0.005186811817350193
+min_dist :  0.021845690491611544
+min_dist :  0.02870597293898826
+min_dist :  0.003472631662430188
+min_dist :  0.004833835938820033
+min_dist :  0.03073830980206781
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.013455627409410427
+min_dist :  0.021350087708470876
+min_dist :  0.010563573424018558
+min_dist :  0.003081863036721372
+min_dist :  0.0053911118213247605
+min_dist :  0.0043716597510467785
+min_dist :  0.006070545474145197
+min_dist :  0.008323429146553691
+min_dist :  0.00359433380513393
+min_dist :  0.004862958476267707
+min_dist :  0.004404018268925998
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004591797833487923
+min_dist :  0.00732892739459792
+min_dist :  0.013326006383708474
+min_dist :  0.012158124192091148
+min_dist :  0.015458458814331263
+min_dist :  0.011540127035095216
+min_dist :  0.011382051675796909
+min_dist :  0.011176473813324136
+min_dist :  0.003555667893637775
+min_dist :  0.011661057623014252
+min_dist :  0.0
+min_dist :  0.0037300951486903774
+min_dist :  0.0
+min_dist :  0.004971723111484697
+min_dist :  0.007769172475968135
+min_dist :  0.005944157646371864
+min_dist :  0.004823036530400657
+min_dist :  0.0056952279731264065
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031106971246887267
+min_dist :  0.0030301503123375964
+min_dist :  0.01574645639062371
+min_dist :  0.0
+min_dist :  0.006053093861233649
+min_dist :  0.0033098926503632464
+min_dist :  0.00914448457626789
+min_dist :  0.010358704397496797
+min_dist :  0.013226495490980478
+min_dist :  0.0035612306269101196
+min_dist :  0.01712559773696389
+min_dist :  0.006510302929832757
+min_dist :  0.011392193022207866
+min_dist :  0.009850698763607455
+min_dist :  0.013107229093269977
+min_dist :  0.026352194104972967
+min_dist :  0.02188297232094315
+min_dist :  0.007430939466556129
+min_dist :  0.006460160919335211
+min_dist :  0.017101320415490864
+min_dist :  0.0032390463094981365
+min_dist :  0.030256339091100017
+min_dist :  0.0
+min_dist :  0.004270369168354608
+min_dist :  0.0346433868100512
+min_dist :  0.007148442345807555
+min_dist :  0.0
+min_dist :  0.017183270246093816
+min_dist :  0.01261947567121169
+min_dist :  0.0334609530721654
+min_dist :  0.022802653949384414
+min_dist :  0.011622257747826669
+min_dist :  0.005510174980481345
+min_dist :  0.0132475537860235
+min_dist :  0.02239532635454467
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011954370325221137
+min_dist :  0.018966530896499738
+min_dist :  0.01132510569986952
+min_dist :  0.006942460573939224
+min_dist :  0.003679663448518258
+min_dist :  0.00307849927882956
+min_dist :  0.006781803561165607
+min_dist :  0.00883928874127174
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.017307032984517946
+min_dist :  0.003931220112365196
+min_dist :  0.0
+min_dist :  0.010737836454236321
+min_dist :  0.008515953553321484
+min_dist :  0.010374512256432317
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004122086518625654
+min_dist :  0.0030216509079968386
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.013320406963393589
+min_dist :  0.003932005468012163
+min_dist :  0.012116820602775042
+min_dist :  0.013873379848681965
+min_dist :  0.018581283403617952
+min_dist :  0.012585420127328818
+min_dist :  0.003084077934657883
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.013495949208499893
+min_dist :  0.0030347541801787363
+min_dist :  0.015038705059335867
+min_dist :  0.008305720541322857
+min_dist :  0.003910859551429994
+min_dist :  0.01072123726494771
+min_dist :  0.008180647364668817
+min_dist :  0.00723867761588501
+min_dist :  0.010029482547332845
+min_dist :  0.006015719652663041
+min_dist :  0.0131659990129532
+min_dist :  0.023217327367476358
+min_dist :  0.0
+min_dist :  0.004549243380578998
+min_dist :  0.0035010337239154135
+min_dist :  0.02054373908823282
+min_dist :  0.0034640104453653947
+min_dist :  0.032124055570813104
+min_dist :  0.007583829446627668
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005156162519684624
+min_dist :  0.003106356829256863
+min_dist :  0.0039985532681514925
+min_dist :  0.008650195138517783
+min_dist :  0.0
+min_dist :  0.004374265172507086
+min_dist :  0.0
+min_dist :  0.0033652149961716413
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0054831720370006635
+min_dist :  0.0
+min_dist :  0.0031986007364809017
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004980682077785609
+min_dist :  0.008699575425917136
+min_dist :  0.005808358730356859
+min_dist :  0.0033226405280714706
+min_dist :  0.0
+min_dist :  0.00879211029637734
+min_dist :  0.0034515811302861282
+min_dist :  0.008934843215660503
+min_dist :  0.0033892925581797432
+min_dist :  0.0052230564311875095
+min_dist :  0.0031144966294009008
+min_dist :  0.003108049560411824
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003532213423120425
+min_dist :  0.0
+min_dist :  0.003086138452135378
+min_dist :  0.015579120003112927
+min_dist :  0.007949009150893895
+min_dist :  0.0060984791007894674
+min_dist :  0.00848623829115799
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007429320439830133
+min_dist :  0.0
+min_dist :  0.003704086971913891
+min_dist :  0.0
+min_dist :  0.00384587674121104
+min_dist :  0.003502151296703284
+min_dist :  0.0036222970971337446
+min_dist :  0.008005497549970757
+min_dist :  0.00503543115292843
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003260936707038063
+min_dist :  0.004974146844815557
+min_dist :  0.0
+min_dist :  0.007840764766961245
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030475414629396614
+min_dist :  0.00809574180016825
+min_dist :  0.003209401782399039
+min_dist :  0.006288375267754984
+min_dist :  0.031224483378713728
+min_dist :  0.003031745824590033
+min_dist :  0.021658978129689636
+min_dist :  0.005815911444988341
+min_dist :  0.0
+min_dist :  0.016857074570845093
+min_dist :  0.0
+min_dist :  0.018378627729903788
+min_dist :  0.0030103721789666647
+min_dist :  0.003145293670591693
+min_dist :  0.0
+min_dist :  0.003622106909836784
+min_dist :  0.0
+min_dist :  0.014162332227050758
+min_dist :  0.006441604721771676
+min_dist :  0.0
+min_dist :  0.004567432724548463
+min_dist :  0.01182371929623946
+min_dist :  0.0
+min_dist :  0.0060955021279822325
+min_dist :  0.0
+min_dist :  0.005803026962421485
+min_dist :  0.005838246600288401
+min_dist :  0.0035653007154389208
+min_dist :  0.01735151892946923
+min_dist :  0.004454376423373133
+min_dist :  0.0
+min_dist :  0.0070196051613823736
+min_dist :  0.003249136338408631
+min_dist :  0.0034240925282847273
+min_dist :  0.0070692610982932835
+min_dist :  0.0
+min_dist :  0.0060746956584089165
+min_dist :  0.007510874001128767
+min_dist :  0.005707670892138513
+min_dist :  0.0031860855624715593
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006710453427780214
+min_dist :  0.020908199402361986
+min_dist :  0.008198164128823675
+min_dist :  0.01583064220069169
+min_dist :  0.00971201807989839
+min_dist :  0.02058587415465898
+min_dist :  0.01845510232780105
+min_dist :  0.0031463345464096955
+min_dist :  0.004091205827757858
+min_dist :  0.013018746133541296
+min_dist :  0.010559653190609468
+min_dist :  0.02000094147849492
+min_dist :  0.006520549412428676
+min_dist :  0.018084790229710043
+min_dist :  0.013077797768231286
+min_dist :  0.008488719013227458
+min_dist :  0.014201885186041329
+min_dist :  0.0
+min_dist :  0.005430195171226344
+min_dist :  0.00885544597364787
+min_dist :  0.021633564790289227
+min_dist :  0.013458022684694993
+min_dist :  0.027886057089197853
+min_dist :  0.011383498304024103
+min_dist :  0.015269681705155367
+min_dist :  0.018942802004711788
+min_dist :  0.003443073074037412
+min_dist :  0.01697741112620621
+min_dist :  0.0
+min_dist :  0.010766542642311328
+min_dist :  0.012346522753077457
+min_dist :  0.0058714139982256955
+min_dist :  0.015702953593811995
+min_dist :  0.014765419222170966
+min_dist :  0.013372247238199929
+min_dist :  0.01825410798023588
+min_dist :  0.024466328850593907
+min_dist :  0.027142306918533646
+min_dist :  0.03261597862607068
+min_dist :  0.030038701053411884
+min_dist :  0.016946721173078952
+min_dist :  0.0
+min_dist :  0.003989783410216163
+min_dist :  0.011111435053137232
+min_dist :  0.015673543971737407
+min_dist :  0.0
+min_dist :  0.0034789257858732388
+min_dist :  0.003450994830250952
+min_dist :  0.0
+min_dist :  0.013793455323684214
+min_dist :  0.0
+min_dist :  0.010960778870686043
+min_dist :  0.0030838592530342923
+min_dist :  0.0
+min_dist :  0.00870087019230501
+min_dist :  0.00680124136590634
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032619618342141013
+min_dist :  0.0
+min_dist :  0.0030721447506195875
+min_dist :  0.0038027325772092566
+min_dist :  0.0037948116036464344
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003102801608577056
+min_dist :  0.00789217509856341
+min_dist :  0.015216973073292714
+min_dist :  0.006199908447347482
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006117084208606523
+min_dist :  0.00547095708319119
+min_dist :  0.0
+min_dist :  0.0031537866321781176
+min_dist :  0.0
+min_dist :  0.0051997608973452444
+min_dist :  0.0031701658995694254
+min_dist :  0.0033358180384562056
+min_dist :  0.004078963486007086
+min_dist :  0.008239637077763488
+min_dist :  0.014585823244449313
+min_dist :  0.020518983061928713
+min_dist :  0.02343814020650186
+min_dist :  0.024174419224587382
+min_dist :  0.010709539808244637
+min_dist :  0.007879968226789496
+min_dist :  0.0031584937767634934
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007472412535517171
+min_dist :  0.0
+min_dist :  0.0036845215133368653
+min_dist :  0.0
+min_dist :  0.0035275122532462395
+min_dist :  0.0031820644176321915
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0035768099551981686
+min_dist :  0.005282555416105991
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003634009906583193
+min_dist :  0.0039696617714318
+min_dist :  0.0
+min_dist :  0.005896197360607998
+min_dist :  0.0030300033313295
+min_dist :  0.006694678923540332
+min_dist :  0.006210071488835698
+min_dist :  0.0035120800991461664
+min_dist :  0.0050167114431175774
+min_dist :  0.003089991829283222
+min_dist :  0.007011840734091471
+min_dist :  0.0030655188022078554
+min_dist :  0.003916837270684375
+min_dist :  0.0030958457443712025
+min_dist :  0.003185182756151679
+min_dist :  0.0035687591951445827
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009775150622237626
+min_dist :  0.008394227726549398
+min_dist :  0.012492319308634127
+min_dist :  0.0
+min_dist :  0.0030737917411682593
+min_dist :  0.0
+min_dist :  0.003070379083411765
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004222013303188453
+min_dist :  0.008649889441280315
+min_dist :  0.009069995614270101
+min_dist :  0.0033265168535812446
+min_dist :  0.0053976960397194166
+min_dist :  0.004508409588922546
+min_dist :  0.0
+min_dist :  0.010590458350465456
+min_dist :  0.018514579614157475
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004907768726708105
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  326  out of :  436
+number of true landmark correspondences returned from mesh edge filtering :  153  out of  326
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.46932515337423314
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([326, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.551 
+full-AccS: 0.000 
+full-AccR: 3.426 
+full-outlier: 92.405 
+vis-epe: 15.091 
+vis-AccS: 0.000 
+vis-AccR: 2.160 
+vis-outlier: 96.495 
+occ-epe: 7.339 
+occ-AccS: 0.000 
+occ-AccR: 4.932 
+occ-outlier: 87.539 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.06771123140093659
+Strict IR :  0.0003593675131768088
+Relaxed IR :  0.21741734547196934
+model 167
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([316, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([316])
+ti.shape :  torch.Size([316])
+s_pos.shape :  torch.Size([316, 3])
+t_pos.shape :  torch.Size([316, 3])
+ind.shape :  torch.Size([316, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([316])
+ti.shape :  torch.Size([316])
+s_pos.shape :  torch.Size([316, 3])
+t_pos.shape :  torch.Size([316, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  138  out of  316
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.43670886075949367
+vec6d.shape :  torch.Size([316, 6])
+ldmk_s.shape :  torch.Size([316, 3])
+ldmk_t.shape :  torch.Size([316, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  138  out of  264
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.5227272727272727
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.003024362805212853
+min_dist :  0.0030152149040220872
+min_dist :  0.008180747798279578
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031651176603615635
+min_dist :  0.011731754929299277
+min_dist :  0.0031512463943485533
+min_dist :  0.006212232222449617
+min_dist :  0.0
+min_dist :  0.005302320962036411
+min_dist :  0.0052747542917701475
+min_dist :  0.007837339492217371
+min_dist :  0.0069219160046035235
+min_dist :  0.0
+min_dist :  0.0030529621028239882
+min_dist :  0.0
+min_dist :  0.003436124471249664
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005706537245750212
+min_dist :  0.006677095621231347
+min_dist :  0.010917222092725519
+min_dist :  0.003300758144333291
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00480395723963227
+min_dist :  0.007671382457905213
+min_dist :  0.005307272546424342
+min_dist :  0.005632687847395577
+min_dist :  0.0030992613550061446
+min_dist :  0.0063084544225007816
+min_dist :  0.007992877943570764
+min_dist :  0.009214922677470658
+min_dist :  0.007937762300204449
+min_dist :  0.004371698851744302
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00933946694282868
+min_dist :  0.011145061741893435
+min_dist :  0.009936348605097739
+min_dist :  0.014929145572427957
+min_dist :  0.003344862100466624
+min_dist :  0.009171590155551485
+min_dist :  0.012774034520243257
+min_dist :  0.009451060768230036
+min_dist :  0.0
+min_dist :  0.009526994435771308
+min_dist :  0.011009418993669185
+min_dist :  0.011347076065229868
+min_dist :  0.006005125644927573
+min_dist :  0.006157699399077344
+min_dist :  0.0077852552972197155
+min_dist :  0.005542509507215098
+min_dist :  0.007266163991861454
+min_dist :  0.0
+min_dist :  0.0032531341048997256
+min_dist :  0.0
+min_dist :  0.003563901715608767
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006051307387134158
+min_dist :  0.015050360783763908
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.008394740923607367
+min_dist :  0.00606842248351951
+min_dist :  0.006051814588846891
+min_dist :  0.0035689559608256213
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0034014652891332744
+min_dist :  0.003412175717998198
+min_dist :  0.0
+min_dist :  0.005788050323901439
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00847980559436755
+min_dist :  0.008264051613530174
+min_dist :  0.008939814294392728
+min_dist :  0.0032242264687126717
+min_dist :  0.015985303664625423
+min_dist :  0.0
+min_dist :  0.0031017092424844225
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032242428633163984
+min_dist :  0.003411667144877484
+min_dist :  0.011203733985576485
+min_dist :  0.004862851874606015
+min_dist :  0.003105288990066841
+min_dist :  0.0066833754527955615
+min_dist :  0.004846637882754274
+min_dist :  0.0032086949989587684
+min_dist :  0.003666853967259992
+min_dist :  0.006411257374279093
+min_dist :  0.0039731801062687635
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005875831566178388
+min_dist :  0.0030069690301538945
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030752166049867464
+min_dist :  0.003205194237129327
+min_dist :  0.0
+min_dist :  0.0033457815954211875
+min_dist :  0.0
+min_dist :  0.003178067323869284
+min_dist :  0.00680493753821906
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003202790206748304
+min_dist :  0.004418103753994774
+min_dist :  0.0033832306860507783
+min_dist :  0.0031927589599064525
+min_dist :  0.005314223939548863
+min_dist :  0.0
+min_dist :  0.0030773773622192898
+min_dist :  0.006721544550340865
+min_dist :  0.0034193560441521257
+min_dist :  0.00311049761930575
+min_dist :  0.003335226252763934
+min_dist :  0.0
+min_dist :  0.004202459088578063
+min_dist :  0.005757070946433441
+min_dist :  0.0033992814107292623
+min_dist :  0.0
+min_dist :  0.0038496250509571684
+min_dist :  0.0081977906833297
+min_dist :  0.010876406000826599
+min_dist :  0.0
+min_dist :  0.0030950115428695964
+min_dist :  0.0035827038408462477
+min_dist :  0.0030541018150563636
+min_dist :  0.0
+min_dist :  0.014485317742960444
+min_dist :  0.0035754877439263043
+min_dist :  0.0
+min_dist :  0.003095662797549508
+min_dist :  0.021059889128445468
+min_dist :  0.0
+min_dist :  0.0037632745936031758
+min_dist :  0.0
+min_dist :  0.003164008823830996
+min_dist :  0.0
+min_dist :  0.010075956090097779
+min_dist :  0.029642461140497386
+min_dist :  0.0
+min_dist :  0.003029610741542451
+min_dist :  0.023726764458940456
+min_dist :  0.003501643540778702
+min_dist :  0.03236581165054256
+min_dist :  0.008299617388241882
+min_dist :  0.011882254120868426
+min_dist :  0.003271624474386617
+min_dist :  0.0
+min_dist :  0.003726843690416052
+min_dist :  0.0
+min_dist :  0.016209493862130324
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00339448324060395
+min_dist :  0.0
+min_dist :  0.003183991117508277
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01091156365164275
+min_dist :  0.012625573728305577
+min_dist :  0.020241523945765914
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.007328579426845405
+min_dist :  0.015363449716373732
+min_dist :  0.0030733684393828556
+min_dist :  0.010105892315301804
+min_dist :  0.003054718295475457
+min_dist :  0.0032515650627694846
+min_dist :  0.004900240213539881
+min_dist :  0.021972059789417756
+min_dist :  0.007906027243887268
+min_dist :  0.020831463457756362
+min_dist :  0.006038244228436574
+min_dist :  0.0057944316704347755
+min_dist :  0.004015622669336843
+min_dist :  0.003715980485117452
+min_dist :  0.005310124940451311
+min_dist :  0.005868509133239652
+min_dist :  0.0059746201210952995
+min_dist :  0.0
+min_dist :  0.0031807469136319417
+min_dist :  0.027182411901037408
+min_dist :  0.02581561076948729
+min_dist :  0.027960624785287196
+min_dist :  0.02533036565472876
+min_dist :  0.01674399871198065
+min_dist :  0.00316175007489073
+min_dist :  0.02705691976404898
+min_dist :  0.008539522046383492
+min_dist :  0.0214426062956105
+min_dist :  0.01699906449502268
+min_dist :  0.03267507517274582
+min_dist :  0.003749563211287718
+min_dist :  0.013659365171061276
+min_dist :  0.03269275572154402
+min_dist :  0.0337467287818127
+min_dist :  0.0033174981457877507
+min_dist :  0.02963166388108142
+min_dist :  0.008851081508135962
+min_dist :  0.004369947024309279
+min_dist :  0.029317888968131825
+min_dist :  0.029694161498292442
+min_dist :  0.007007923556073444
+min_dist :  0.028508592100308938
+min_dist :  0.029181562052927462
+min_dist :  0.01350320562806346
+min_dist :  0.030267724043950374
+min_dist :  0.03372808625991554
+min_dist :  0.037591527640839395
+min_dist :  0.02807525118705381
+min_dist :  0.03847336468811922
+min_dist :  0.03654617811565431
+min_dist :  0.031042020068376388
+min_dist :  0.03223292754511376
+min_dist :  0.031217714597607596
+min_dist :  0.0
+min_dist :  0.02039728666942268
+min_dist :  0.00910303234178201
+min_dist :  0.034683247928549675
+min_dist :  0.023424330948330834
+min_dist :  0.02957152155866212
+min_dist :  0.015110270473593954
+min_dist :  0.02278156963103293
+min_dist :  0.033915240654325225
+min_dist :  0.02957771260159591
+min_dist :  0.03140767382433501
+min_dist :  0.011399115606081553
+min_dist :  0.027257407432725984
+min_dist :  0.02678768864717343
+min_dist :  0.024352458406326945
+min_dist :  0.023458603419624312
+min_dist :  0.013111036421181853
+min_dist :  0.004858100787727487
+min_dist :  0.003537208318076529
+min_dist :  0.0
+min_dist :  0.009701028584136165
+min_dist :  0.009981788571018013
+min_dist :  0.010560759989378363
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006296892602543756
+min_dist :  0.02089262647958253
+min_dist :  0.025295711458919054
+min_dist :  0.027159598131037417
+min_dist :  0.016781387073212833
+min_dist :  0.021024457651634857
+min_dist :  0.03164466413352517
+min_dist :  0.0
+min_dist :  0.0034693684806573824
+min_dist :  0.007653724797663323
+min_dist :  0.0064686972828467805
+min_dist :  0.003332500757142297
+min_dist :  0.005643367623248505
+min_dist :  0.0
+min_dist :  0.0030656513861290332
+min_dist :  0.012251174553032271
+min_dist :  0.0
+min_dist :  0.003164941542436951
+min_dist :  0.0031076246602653413
+min_dist :  0.0033885311524628034
+min_dist :  0.004719690254962115
+min_dist :  0.004026068775942833
+min_dist :  0.005124519821088598
+min_dist :  0.005432396350542619
+min_dist :  0.0031487811257788273
+min_dist :  0.005659042604341004
+min_dist :  0.005104410717828484
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0059101851704880925
+min_dist :  0.00500735822689618
+min_dist :  0.0
+min_dist :  0.009598608269963886
+min_dist :  0.00867162135084525
+min_dist :  0.0
+min_dist :  0.005651112608535676
+min_dist :  0.004695698122069967
+min_dist :  0.0030078917433780886
+min_dist :  0.0
+min_dist :  0.005379756884029655
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0040779218650181396
+min_dist :  0.003300243133853427
+min_dist :  0.0
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  240  out of :  316
+number of true landmark correspondences returned from mesh edge filtering :  122  out of  240
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5083333333333333
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([240, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 8.683 
+full-AccS: 0.026 
+full-AccR: 12.223 
+full-outlier: 88.569 
+vis-epe: 11.178 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 100.000 
+occ-epe: 5.436 
+occ-AccS: 0.059 
+occ-AccR: 28.127 
+occ-outlier: 73.693 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04767887710394077
+Strict IR :  0.033426894615973465
+Relaxed IR :  0.5121204388874713
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([383, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       device='cuda:0')
+si.shape :  torch.Size([383])
+ti.shape :  torch.Size([383])
+s_pos.shape :  torch.Size([383, 3])
+t_pos.shape :  torch.Size([383, 3])
+ind.shape :  torch.Size([383, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       device='cuda:0')
+si.shape :  torch.Size([383])
+ti.shape :  torch.Size([383])
+s_pos.shape :  torch.Size([383, 3])
+t_pos.shape :  torch.Size([383, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  285  out of  383
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.7441253263707572
+vec6d.shape :  torch.Size([383, 6])
+ldmk_s.shape :  torch.Size([383, 3])
+ldmk_t.shape :  torch.Size([383, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  254  out of  331
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.7673716012084593
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006000130756991574
+min_dist :  0.0
+min_dist :  0.01006616912724641
+min_dist :  0.012534791513561863
+min_dist :  0.006381027513233579
+min_dist :  0.012005072351674358
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031440070550548763
+min_dist :  0.0
+min_dist :  0.006971170251764864
+min_dist :  0.0032367492467117237
+min_dist :  0.0
+min_dist :  0.007515781416542826
+min_dist :  0.003007710926301459
+min_dist :  0.011963285935649135
+min_dist :  0.0
+min_dist :  0.012516242567284397
+min_dist :  0.003175549291059154
+min_dist :  0.007456413784149131
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011254339706592993
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.021481316676521943
+min_dist :  0.017875168000499844
+min_dist :  0.003005215226698937
+min_dist :  0.019419488882313454
+min_dist :  0.0060679576474794135
+min_dist :  0.014701722459695105
+min_dist :  0.003050955901413871
+min_dist :  0.0
+min_dist :  0.0030959574857016515
+min_dist :  0.008871320874073609
+min_dist :  0.010779135583180232
+min_dist :  0.019058066615428526
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030532696288218747
+min_dist :  0.0033061584216080285
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005830418496522161
+min_dist :  0.0
+min_dist :  0.0059411816439225084
+min_dist :  0.012258067721944507
+min_dist :  0.014222734072046222
+min_dist :  0.019742104412294674
+min_dist :  0.007805089387247256
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003058976768169202
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005662218244844808
+min_dist :  0.003634415625870268
+min_dist :  0.011752474563537792
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00414170380909935
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003086987265481821
+min_dist :  0.00305721984802821
+min_dist :  0.012526349290369412
+min_dist :  0.0
+min_dist :  0.003029340821684397
+min_dist :  0.0031236702221549605
+min_dist :  0.007125213882864613
+min_dist :  0.003112327957097294
+min_dist :  0.014909677821372886
+min_dist :  0.019525705508301006
+min_dist :  0.0057596668586754616
+min_dist :  0.006289578848950187
+min_dist :  0.0
+min_dist :  0.016791404605745165
+min_dist :  0.004384694517355362
+min_dist :  0.019204270331748506
+min_dist :  0.007352217411961639
+min_dist :  0.015594965065410483
+min_dist :  0.011033431812042605
+min_dist :  0.008135511098348265
+min_dist :  0.003879625570255047
+min_dist :  0.0
+min_dist :  0.003603030725004032
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0033721463236450334
+min_dist :  0.012946075726591132
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005149783871195727
+min_dist :  0.0
+min_dist :  0.004401809777063029
+min_dist :  0.0
+min_dist :  0.005964429432814833
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003050474991787121
+min_dist :  0.0049273359875331105
+min_dist :  0.003164050156480515
+min_dist :  0.004003422107659017
+min_dist :  0.0
+min_dist :  0.003107207386911817
+min_dist :  0.013292509804943361
+min_dist :  0.0
+min_dist :  0.0053785796610016385
+min_dist :  0.0067774476364715714
+min_dist :  0.017759281322003776
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032863344356056875
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.011846975074812532
+min_dist :  0.009139592807881397
+min_dist :  0.0
+min_dist :  0.015135073552141252
+min_dist :  0.005669646833433068
+min_dist :  0.019030183575724904
+min_dist :  0.0
+min_dist :  0.0030368535039277562
+min_dist :  0.006203698991779459
+min_dist :  0.014255948780444816
+min_dist :  0.0031907833488767664
+min_dist :  0.0
+min_dist :  0.008863950684017644
+min_dist :  0.006305223203441485
+min_dist :  0.016305582156697595
+min_dist :  0.0062419516558466425
+min_dist :  0.012370585914076145
+min_dist :  0.005534028239360118
+min_dist :  0.0033711519249764203
+min_dist :  0.009494068767317626
+min_dist :  0.01758029916037082
+min_dist :  0.009686240160820106
+min_dist :  0.006564107094201779
+min_dist :  0.004865420497647442
+min_dist :  0.01104807153326407
+min_dist :  0.016793387017362365
+min_dist :  0.014260688212182026
+min_dist :  0.009461604477572374
+min_dist :  0.006565139909102952
+min_dist :  0.006078313152042934
+min_dist :  0.0
+min_dist :  0.005538354540437818
+min_dist :  0.011969083572316136
+min_dist :  0.009477187136356317
+min_dist :  0.010430930214289582
+min_dist :  0.004603725941752696
+min_dist :  0.0032665203710374145
+min_dist :  0.0
+min_dist :  0.013105605003158731
+min_dist :  0.0
+min_dist :  0.003335209586692211
+min_dist :  0.0
+min_dist :  0.012470424337650415
+min_dist :  0.003127683048758076
+min_dist :  0.005172988031192585
+min_dist :  0.0059833654227174505
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031196513939919625
+min_dist :  0.005267763808007427
+min_dist :  0.010232091273267385
+min_dist :  0.012779561522429863
+min_dist :  0.0
+min_dist :  0.007248878836596968
+min_dist :  0.010205177790364879
+min_dist :  0.009109282412164965
+min_dist :  0.0030389609693576157
+min_dist :  0.0
+min_dist :  0.01413728796709833
+min_dist :  0.0035826746078705626
+min_dist :  0.009533595581604151
+min_dist :  0.0
+min_dist :  0.011203427750976965
+min_dist :  0.013926736507451224
+min_dist :  0.007891860091559472
+min_dist :  0.0
+min_dist :  0.01628255112062192
+min_dist :  0.0
+min_dist :  0.007613380782892593
+min_dist :  0.013861772043631372
+min_dist :  0.008990248172593324
+min_dist :  0.0
+min_dist :  0.0033834475081034924
+min_dist :  0.007491301294190448
+min_dist :  0.0
+min_dist :  0.010677032788918354
+min_dist :  0.007486505400427742
+min_dist :  0.013941277405169487
+min_dist :  0.004251176790687695
+min_dist :  0.005285834814932792
+min_dist :  0.0030949142346184937
+min_dist :  0.0
+min_dist :  0.012845281801328537
+min_dist :  0.007612122496529226
+min_dist :  0.0032511360700860285
+min_dist :  0.0
+min_dist :  0.0033531451037356382
+min_dist :  0.0062209029004227645
+min_dist :  0.009468239596385496
+min_dist :  0.0030248452912106046
+min_dist :  0.0030343586332604055
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003074423578309855
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003145937604791932
+min_dist :  0.0032164325277989564
+min_dist :  0.0
+min_dist :  0.0030811102800939348
+min_dist :  0.0
+min_dist :  0.012287734238418108
+min_dist :  0.012476593656177652
+min_dist :  0.0128355262999705
+min_dist :  0.010358237287949448
+min_dist :  0.00938754257421603
+min_dist :  0.00971903074663614
+min_dist :  0.01392944478980761
+min_dist :  0.0
+min_dist :  0.006278691551066492
+min_dist :  0.005881931338096138
+min_dist :  0.0031387074386747737
+min_dist :  0.004138476290734926
+min_dist :  0.006179242215324982
+min_dist :  0.00593962798124341
+min_dist :  0.0
+min_dist :  0.012003640896273045
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031616758847532508
+min_dist :  0.004361988641188022
+min_dist :  0.0031934192695526635
+min_dist :  0.005864349918373595
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0076227300600706
+min_dist :  0.0
+min_dist :  0.003012531125229014
+min_dist :  0.004944014706899388
+min_dist :  0.008849547307381505
+min_dist :  0.0030229565606561862
+min_dist :  0.006963205038223612
+min_dist :  0.01324920279187697
+min_dist :  0.019545679062731747
+min_dist :  0.015909846140508933
+min_dist :  0.01021462187584667
+min_dist :  0.0163273648862119
+min_dist :  0.022126199925118918
+min_dist :  0.003197105665516006
+min_dist :  0.02352207058609988
+min_dist :  0.01800587204729047
+min_dist :  0.007654008437464362
+min_dist :  0.009565116537974261
+min_dist :  0.02223372017499989
+min_dist :  0.003348635407435807
+min_dist :  0.010607553537204646
+min_dist :  0.023200279282922592
+min_dist :  0.025255588476473075
+min_dist :  0.0031199928898434114
+min_dist :  0.023089995139303224
+min_dist :  0.0030229401124742274
+min_dist :  0.005980047365591127
+min_dist :  0.019804024183557305
+min_dist :  0.0
+min_dist :  0.014062473892562764
+min_dist :  0.009265810985105266
+min_dist :  0.006375039147891794
+min_dist :  0.0
+min_dist :  0.011154687578505431
+min_dist :  0.017438331332760418
+min_dist :  0.013475788599099014
+min_dist :  0.012158772070002764
+min_dist :  0.008608641555310074
+min_dist :  0.0
+min_dist :  0.009768361161462088
+min_dist :  0.005047523432504729
+min_dist :  0.0053388273637497916
+min_dist :  0.0
+min_dist :  0.006535906711602398
+min_dist :  0.008842889529504157
+min_dist :  0.008073447582608468
+min_dist :  0.0084731609275767
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003079963205508138
+min_dist :  0.0041359536362464205
+min_dist :  0.0030491232683311762
+min_dist :  0.0034081161681834343
+min_dist :  0.004059732597048789
+min_dist :  0.00413248103076784
+min_dist :  0.003219961037817143
+min_dist :  0.00324702038031536
+min_dist :  0.0
+min_dist :  0.0032617819256657043
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003456611147673165
+min_dist :  0.005008421491273843
+min_dist :  0.0035459187033123015
+min_dist :  0.0046174427487665
+min_dist :  0.0054281221588384655
+min_dist :  0.005690109222659505
+min_dist :  0.0034122165460878724
+min_dist :  0.006635784355243048
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006337007765065281
+min_dist :  0.0034744292919109626
+min_dist :  0.005268361436064913
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031472228510183134
+min_dist :  0.0
+min_dist :  0.0031576967112414986
+min_dist :  0.006537252885655086
+min_dist :  0.003344583103840299
+min_dist :  0.0036132176154678786
+min_dist :  0.005408553097959569
+min_dist :  0.0034447553205984326
+min_dist :  0.003326672388597132
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006387620214353944
+min_dist :  0.008113896403670304
+min_dist :  0.013338806030999592
+min_dist :  0.0059737599042435936
+min_dist :  0.0
+min_dist :  0.00549696615361181
+min_dist :  0.004000400183798149
+min_dist :  0.0030083813501755184
+min_dist :  0.003980987141526393
+min_dist :  0.021289308035270054
+min_dist :  0.0
+min_dist :  0.0030094724393771926
+min_dist :  0.0
+min_dist :  0.005774833877668
+min_dist :  0.0
+min_dist :  0.006831585758007363
+min_dist :  0.006153063384316653
+min_dist :  0.0030119404530914826
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00358783193004224
+min_dist :  0.0
+min_dist :  0.00309630205823593
+min_dist :  0.0031505368677409995
+min_dist :  0.0032637109022741854
+min_dist :  0.009021641611219855
+min_dist :  0.003137363900535745
+min_dist :  0.004295651014908476
+min_dist :  0.0076370212176998745
+min_dist :  0.0030359873041210495
+min_dist :  0.0
+min_dist :  0.003226101757059452
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030069910102790225
+number correspondences kept in mesh edge filtering :  305  out of :  383
+number of true landmark correspondences returned from mesh edge filtering :  241  out of  305
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.7901639344262295
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([305, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 7.722 
+full-AccS: 4.287 
+full-AccR: 27.379 
+full-outlier: 62.567 
+vis-epe: 10.160 
+vis-AccS: 0.000 
+vis-AccR: 0.590 
+vis-outlier: 87.420 
+occ-epe: 5.088 
+occ-AccS: 8.917 
+occ-AccR: 56.316 
+occ-outlier: 35.722 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.04972755864905573
+Strict IR :  0.293952538912988
+Relaxed IR :  0.7532533809645318
+model 207
+Partial Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([196, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([196])
+ti.shape :  torch.Size([196])
+s_pos.shape :  torch.Size([196, 3])
+t_pos.shape :  torch.Size([196, 3])
+ind.shape :  torch.Size([196, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([196])
+ti.shape :  torch.Size([196])
+s_pos.shape :  torch.Size([196, 3])
+t_pos.shape :  torch.Size([196, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  60  out of  196
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.30612244897959184
+vec6d.shape :  torch.Size([196, 6])
+ldmk_s.shape :  torch.Size([196, 3])
+ldmk_t.shape :  torch.Size([196, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  60  out of  193
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.31088082901554404
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.0031345062237676793
+min_dist :  0.0
+min_dist :  0.010485437378883902
+min_dist :  0.004430275015530629
+min_dist :  0.0030258158247386015
+min_dist :  0.006573143772035818
+min_dist :  0.0030242802329675197
+min_dist :  0.005967322590183568
+min_dist :  0.009042420389472772
+min_dist :  0.008776185691763218
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.009748375458057184
+min_dist :  0.006534013465800813
+min_dist :  0.0034780571064319064
+min_dist :  0.003032741768352256
+min_dist :  0.006775107882911476
+min_dist :  0.0036336120180951617
+min_dist :  0.006314792596633913
+min_dist :  0.00930731349352462
+min_dist :  0.0
+min_dist :  0.006655553437485775
+min_dist :  0.0
+min_dist :  0.0030674165496082564
+min_dist :  0.009694823704675346
+min_dist :  0.005566177298309093
+min_dist :  0.010275997906378575
+min_dist :  0.003082647395813146
+min_dist :  0.0
+min_dist :  0.0035951071664207163
+min_dist :  0.0
+min_dist :  0.011053624628069015
+min_dist :  0.007192736487514707
+min_dist :  0.008038024858708468
+min_dist :  0.0035167304998056843
+min_dist :  0.007561062392311196
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01290360416230521
+min_dist :  0.012497241315363108
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.012661584368816335
+min_dist :  0.0
+min_dist :  0.00759982559119517
+min_dist :  0.018077150273363218
+min_dist :  0.006263652493239585
+min_dist :  0.016107802791147242
+min_dist :  0.0
+min_dist :  0.007038894953668501
+min_dist :  0.0
+min_dist :  0.0038650792580643195
+min_dist :  0.005082783182081164
+min_dist :  0.005733172407566738
+min_dist :  0.005186465425562981
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006517631204078103
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.02538448568826546
+min_dist :  0.028159430093563767
+min_dist :  0.010333602090041132
+min_dist :  0.013080441400631504
+min_dist :  0.0
+min_dist :  0.0031603416303916305
+min_dist :  0.006328098253747181
+min_dist :  0.019783052656672247
+min_dist :  0.02059749059526305
+min_dist :  0.01997037221748538
+min_dist :  0.012362575388048982
+min_dist :  0.006464499913634586
+min_dist :  0.0
+min_dist :  0.006504942656511732
+min_dist :  0.004266743469630336
+min_dist :  0.020708271761609227
+min_dist :  0.0
+min_dist :  0.003091662727595603
+min_dist :  0.007691611035825031
+min_dist :  0.005375326651449247
+min_dist :  0.0
+min_dist :  0.00331558417289843
+min_dist :  0.0034826395794363848
+min_dist :  0.012601941415433797
+min_dist :  0.006772286016566537
+min_dist :  0.0
+min_dist :  0.004941924679863311
+min_dist :  0.009354372152086968
+min_dist :  0.00855793716727907
+min_dist :  0.004189536791759211
+min_dist :  0.007500479019076507
+min_dist :  0.006564989660966679
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0241028269885086
+min_dist :  0.024679935171196758
+min_dist :  0.010059355958877423
+min_dist :  0.02329796172242889
+min_dist :  0.027390637531359462
+min_dist :  0.012557330074862112
+min_dist :  0.012269693428842675
+min_dist :  0.0
+min_dist :  0.011845152900965945
+min_dist :  0.0038007149398852015
+min_dist :  0.021950808327655398
+min_dist :  0.003982399256838128
+min_dist :  0.02071708632728337
+min_dist :  0.013791460708603147
+min_dist :  0.009486473552654261
+min_dist :  0.01100565845786653
+min_dist :  0.006411623192701046
+min_dist :  0.0034561342982064288
+min_dist :  0.0038318786013712817
+min_dist :  0.0
+min_dist :  0.0030157894588774357
+min_dist :  0.0031501166382738926
+min_dist :  0.005963457931676694
+min_dist :  0.0
+min_dist :  0.013762892384145296
+min_dist :  0.0
+min_dist :  0.006759651449721024
+min_dist :  0.004866374693499527
+min_dist :  0.007019277449982372
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.004307627053685174
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006893220947648153
+min_dist :  0.003436084019937147
+min_dist :  0.003368731797595997
+min_dist :  0.0
+min_dist :  0.004416528770311332
+min_dist :  0.0
+min_dist :  0.0032133816109701802
+min_dist :  0.003346824314319557
+min_dist :  0.00331601844785709
+min_dist :  0.004952332477751566
+min_dist :  0.007746297941672214
+min_dist :  0.0
+min_dist :  0.0041757069200994154
+min_dist :  0.0031451141042763485
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.01991556062008103
+min_dist :  0.0031790376181151134
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031233818895994663
+min_dist :  0.005444235871888415
+min_dist :  0.009712853096829727
+min_dist :  0.008282929578896201
+min_dist :  0.011066580289975208
+min_dist :  0.006059206601106713
+min_dist :  0.0
+min_dist :  0.01148186740096963
+min_dist :  0.023917738298981486
+min_dist :  0.015919912085251918
+min_dist :  0.012031820686192582
+min_dist :  0.014316967261906455
+min_dist :  0.01455249799146858
+min_dist :  0.0
+min_dist :  0.006744999077120482
+min_dist :  0.006368221748547848
+min_dist :  0.01247871524052635
+min_dist :  0.00506090078103972
+min_dist :  0.0
+min_dist :  0.006405616967115336
+min_dist :  0.007511557594579344
+min_dist :  0.004047148025372626
+min_dist :  0.009144255549407612
+min_dist :  0.00825441299157175
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0048417440353718975
+min_dist :  0.010166034397479071
+min_dist :  0.008409554635698223
+min_dist :  0.008729549882300989
+min_dist :  0.0
+min_dist :  0.003092700380387154
+min_dist :  0.003307199493129639
+min_dist :  0.008413715205475927
+min_dist :  0.009307474466019034
+min_dist :  0.0
+min_dist :  0.006974761950220186
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003036666966322488
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006551534166987807
+min_dist :  0.00302923666359109
+min_dist :  0.0
+min_dist :  0.0030533360849144217
+min_dist :  0.0031413821228279282
+min_dist :  0.0
+number correspondences kept in mesh edge filtering :  155  out of :  196
+number of true landmark correspondences returned from mesh edge filtering :  50  out of  155
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.3225806451612903
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([155, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 11.110 
+full-AccS: 0.000 
+full-AccR: 0.073 
+full-outlier: 35.529 
+vis-epe: 13.211 
+vis-AccS: 0.000 
+vis-AccR: 0.087 
+vis-outlier: 56.925 
+occ-epe: 8.479 
+occ-AccS: 0.000 
+occ-AccR: 0.055 
+occ-outlier: 8.729 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.07420625859040345
+Strict IR :  0.0004843787842092516
+Relaxed IR :  0.11649309760232501
+Partial Non Deformed
+Edge filtering used
+feature_extractor :  fcgf
+feature extractor inside of get_dataloader :  fcgf
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  fcgf
+coarse_level :  None
+
+
+knn_matching :  False
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+confidence threshold used in the matching :  1e-06
+preprocessing :  mutual
+ind.shape :  torch.Size([218, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([218])
+ti.shape :  torch.Size([218])
+s_pos.shape :  torch.Size([218, 3])
+t_pos.shape :  torch.Size([218, 3])
+ind.shape :  torch.Size([218, 3])
+bi :  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0], device='cuda:0')
+si.shape :  torch.Size([218])
+ti.shape :  torch.Size([218])
+s_pos.shape :  torch.Size([218, 3])
+t_pos.shape :  torch.Size([218, 3])
+number of true landmarks correspondences returned from FCGF based Lepard :  80  out of  218
+fraction of true landmark correspondences returned from FCGF based Lepard :  0.3669724770642202
+vec6d.shape :  torch.Size([218, 6])
+ldmk_s.shape :  torch.Size([218, 3])
+ldmk_t.shape :  torch.Size([218, 3])
+number of true landmark correspondences returned from FCGF based Outlier Rejection :  67  out of  175
+fraction of true landmark correspondences returned from FCGF based Outlier Rejection :  0.38285714285714284
+using mesh exterior boundary detection
+minimum distance threshold :  0.01
+min_dist :  0.007753881054269866
+min_dist :  0.01298791307259523
+min_dist :  0.0
+min_dist :  0.003193016274058268
+min_dist :  0.004478162892963682
+min_dist :  0.003036306008711818
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003047465294724393
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0030839705316684255
+min_dist :  0.0
+min_dist :  0.009029319141250408
+min_dist :  0.0
+min_dist :  0.004872262761217946
+min_dist :  0.004827224276664971
+min_dist :  0.0
+min_dist :  0.007843180609443617
+min_dist :  0.008662475802014253
+min_dist :  0.008439065590556015
+min_dist :  0.011376856709051595
+min_dist :  0.0
+min_dist :  0.010935585938666913
+min_dist :  0.010132007560150012
+min_dist :  0.014108133676019917
+min_dist :  0.010152312302062016
+min_dist :  0.008377812791030703
+min_dist :  0.017220213544724944
+min_dist :  0.014683882267088106
+min_dist :  0.02146129833848928
+min_dist :  0.01947867478048918
+min_dist :  0.018312409277060338
+min_dist :  0.0
+min_dist :  0.003560380555740913
+min_dist :  0.003284139715709941
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.024498901542130372
+min_dist :  0.0
+min_dist :  0.02945521312397046
+min_dist :  0.02837395857969218
+min_dist :  0.036793349020123586
+min_dist :  0.009172641945397948
+min_dist :  0.028527654499187115
+min_dist :  0.01112248847436428
+min_dist :  0.007872085249785412
+min_dist :  0.010543903612809869
+min_dist :  0.023388997948585906
+min_dist :  0.03505572238570608
+min_dist :  0.0052873505673371535
+min_dist :  0.023585965117018215
+min_dist :  0.022474347199520447
+min_dist :  0.013186935835164169
+min_dist :  0.018089717331740175
+min_dist :  0.011662403777166524
+min_dist :  0.009867524468458426
+min_dist :  0.005388017055032162
+min_dist :  0.010157886433062398
+min_dist :  0.012204189743699542
+min_dist :  0.0
+min_dist :  0.0043696286583709614
+min_dist :  0.006700453973843284
+min_dist :  0.0031473371566709727
+min_dist :  0.013773804133437623
+min_dist :  0.004261863449183155
+min_dist :  0.008728482835197166
+min_dist :  0.010765185155327327
+min_dist :  0.01607756951234292
+min_dist :  0.01024896943549193
+min_dist :  0.008834967582467117
+min_dist :  0.014594293359989002
+min_dist :  0.016230122925065954
+min_dist :  0.00712482760404648
+min_dist :  0.0030127673451882434
+min_dist :  0.0030977250290221423
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031580319464820637
+min_dist :  0.0038308536175382115
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.006614639243337077
+min_dist :  0.003687751176987122
+min_dist :  0.011274807878288776
+min_dist :  0.005415655070616663
+min_dist :  0.006825996023702419
+min_dist :  0.0
+min_dist :  0.0031613182516854665
+min_dist :  0.01081414716590484
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003150204518942864
+min_dist :  0.0030263750075997047
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00417793953779721
+min_dist :  0.003265696607554292
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0032688421197060126
+min_dist :  0.003009306071160625
+min_dist :  0.006572540539768101
+min_dist :  0.0057806846461534315
+min_dist :  0.0032644594454813345
+min_dist :  0.006212432757885256
+min_dist :  0.0
+min_dist :  0.012247089244274862
+min_dist :  0.012777522720236611
+min_dist :  0.006258445308963395
+min_dist :  0.0030769059772819103
+min_dist :  0.004415097835776737
+min_dist :  0.016565111272239943
+min_dist :  0.0
+min_dist :  0.022698281062145772
+min_dist :  0.010498186718576727
+min_dist :  0.0
+min_dist :  0.003259803029047454
+min_dist :  0.0
+min_dist :  0.0030035126707985897
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.010284575840021593
+min_dist :  0.013873239200877721
+min_dist :  0.0
+min_dist :  0.0034938819312878852
+min_dist :  0.0
+min_dist :  0.0034637020665452952
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0031553147309960547
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.005918470410154832
+min_dist :  0.011409578392066511
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.00314820451546058
+min_dist :  0.0
+min_dist :  0.0039096986155064345
+min_dist :  0.003961376676558445
+min_dist :  0.00562823815250453
+min_dist :  0.0131663005626237
+min_dist :  0.004809921740952831
+min_dist :  0.01526747317553492
+min_dist :  0.0030762442153016876
+min_dist :  0.0038034442676389236
+min_dist :  0.008012006678015549
+min_dist :  0.006012551695701619
+min_dist :  0.003247408951832361
+min_dist :  0.008309611154253937
+min_dist :  0.003208336401825397
+min_dist :  0.004606530556061906
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003331853922589317
+min_dist :  0.004251539509616119
+min_dist :  0.014847879863908342
+min_dist :  0.003031715062928577
+min_dist :  0.0034723405216250227
+min_dist :  0.0030867614403437007
+min_dist :  0.0034200851491074193
+min_dist :  0.0
+min_dist :  0.003381325445977923
+min_dist :  0.0037234121374443985
+min_dist :  0.012903249478965458
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.003207200417979356
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.012787020419676411
+min_dist :  0.01624011169323011
+min_dist :  0.006367899692172513
+min_dist :  0.015063432352886472
+min_dist :  0.0
+min_dist :  0.0
+min_dist :  0.0040565067050861115
+min_dist :  0.0
+min_dist :  0.012436735475145505
+min_dist :  0.015769944615355743
+min_dist :  0.013755693985824153
+min_dist :  0.015161053751051558
+min_dist :  0.007133271769410194
+min_dist :  0.012326832950124754
+min_dist :  0.010458819406127013
+min_dist :  0.008297471753894356
+min_dist :  0.0
+min_dist :  0.0034458590228698895
+min_dist :  0.0038727445479155792
+min_dist :  0.0
+min_dist :  0.005347763149755263
+min_dist :  0.0
+min_dist :  0.003199590934782087
+min_dist :  0.0
+min_dist :  0.008920428924026775
+min_dist :  0.003247585979262498
+min_dist :  0.0
+min_dist :  0.004993838453418732
+min_dist :  0.0033347901757777945
+min_dist :  0.004228386293532634
+min_dist :  0.010227354245869867
+min_dist :  0.01310619010556714
+min_dist :  0.0051887320718712795
+min_dist :  0.004280582288714523
+min_dist :  0.0033773908823143267
+min_dist :  0.0036312809242588185
+min_dist :  0.0
+min_dist :  0.0034223321945091303
+min_dist :  0.003133696574443228
+number correspondences kept in mesh edge filtering :  160  out of :  218
+number of true landmark correspondences returned from mesh edge filtering :  67  out of  160
+fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.41875
+k0 :  -8
+levels :  10
+posenc function :  None
+samples :  2000
+src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([160, 3])
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+strict threshold :  0.01
+relaxed threhold :  0.03
+outlier threshold :  0.1
+0/1: full-epe: 10.287 
+full-AccS: 0.000 
+full-AccR: 0.355 
+full-outlier: 29.394 
+vis-epe: 13.385 
+vis-AccS: 0.000 
+vis-AccR: 0.000 
+vis-outlier: 51.302 
+occ-epe: 6.131 
+occ-AccS: 0.000 
+occ-AccR: 0.832 
+occ-outlier: 0.000 
+
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.05324102489117346
+Strict IR :  0.0
+Relaxed IR :  0.11440075793462814
