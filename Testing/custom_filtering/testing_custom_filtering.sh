@@ -24,16 +24,17 @@ confidence_default=0.000001
 
 # number_centers=(50 100 200 300 500 700)
 # number_centers=(5 10 15 20 30)
-number_centers=(50 100 500 1000 2000 3000)
+# number_centers=(50 100 500 1000 2000 3000)
+number_centers=(500)
 
-# average_distance_multipliers=(1.0 2.0 3.0 4.0 5.0 6.0)
-average_distance_multipliers=(3.0)
+average_distance_multipliers=(1.0 2.0 3.0 4.0 5.0 6.0)
+# average_distance_multipliers=(3.0)
 
 inlier_outlier_thrs=(0.01)
 
 sampling=linspace
 
-model_numbers=('002' '042' '085' '126' '167' '207')
+model_numbers=('002' '042' '085') #  '126' '167' '207'
 
 max_ldmks=None
 
@@ -352,8 +353,8 @@ if [ $type == "fcgf" ]; then
         
         # Using Lepard matching
 
-        folder_name=output_lepard_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_lepard_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_lepard_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_lepard_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}
@@ -449,8 +450,8 @@ if [ $type == "fcgf" ]; then
 
         # Using Outlier Rejection
 
-        folder_name=output_outlier_rejection_default_${type}_td_${td}
-        file_name=Testing/custom_filtering/output_outlier_rejection_default_${type}_td_${td}_model_${k}.txt
+        folder_name=output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}
+        file_name=Testing/custom_filtering/output_outlier_rejection_default_pre_${preprocessing}_${type}_td_${td}_model_${k}.txt
 
         rm -rf TestData/FullNonDeformed/model${k}/${folder_name}
         mkdir TestData/FullNonDeformed/model${k}/${folder_name}

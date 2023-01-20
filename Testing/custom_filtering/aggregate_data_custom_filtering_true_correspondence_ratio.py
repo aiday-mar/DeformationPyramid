@@ -70,17 +70,19 @@ elif preprocessing == 'none':
     if adm_changed is False:
         weights = {
             # 'kpfcn' : {
-            #    'full_deformed' : '0.000001'
+            #    'full_deformed' : {
+            #        '0.000001',
+            #    }
             #    'partial_deformed' : '0.000001'
-            # }
+            # },
             'fcgf' : {
-                # 'full_deformed' : {
-                #    'conf' : '0.000001',
-                #    'nc' : [10, 50, 100, 150, 200]
-                # },
+                'full_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [50, 100, 500, 1000, 2000, 3000]
+                },
                 'partial_deformed' : {
                     'conf' : '0.000001',
-                    'nc' : [50, 100, 200, 300, 500, 700, 1000, 2000, 3000]
+                    'nc' : [50, 100, 500, 1000, 2000, 3000]
                 }
             }   
         }
@@ -294,6 +296,10 @@ if adm_changed is False:
                     plt.bar(modified_nc_pos, true_data, color='r')
                     plt.bar(modified_nc_pos, total_data, bottom=true_data, color='b')
                     plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+
+                    if preprocessing == 'none':
+                        plt.axhline(y=final_matrices[feature_extractor][training_data][model_number][data_type]['n_distinct'], linewidth=1, color='r', linestyle='dashed')
+
                     plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_adm_' + str(adm[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_nc_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
                 
         
