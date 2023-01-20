@@ -123,7 +123,7 @@ for training_data in weights:
             rmse.append(final_matrices[model_number][training_data][feature_extractor]['final'])
         
         bar = bars[count]
-        weights_legend = feature_extractor + ' - ' + training_data
+        weights_legend = feature_extractor + ' - ' + training_data.replace('_', ' ')
         plt.bar(bar, rmse, width = barWidthPlot, label = weights_legend) 
         plt.bar(bar, initial_rmse, width = barWidthPlot, fill = False, linestyle='dashed', label='_nolegend_')
         count += 1
