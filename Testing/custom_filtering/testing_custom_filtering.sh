@@ -694,17 +694,13 @@ then
         do
 
             ### Using Custom Filtering
+
             for number_center in "${number_centers[@]}"
             do
                 for average_distance_multiplier in "${average_distance_multipliers[@]}"
                 do
                     for inlier_outlier_thr in "${inlier_outlier_thrs[@]}"
                     do
-                        echo "model ${k}" >> ${file_name}
-                        echo "Using ARP" >> ${file_name}
-                        echo "number of centers ${number_center}" >> ${file_name}
-                        echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
-                        echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
                         folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_current_deformation
                         file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_current_deformation_model_${k}.txt
@@ -720,6 +716,12 @@ then
 
                         rm ${file_name}
                         touch ${file_name}
+
+                        echo "model ${k}" >> ${file_name}
+                        echo "Using ARP" >> ${file_name}
+                        echo "number of centers ${number_center}" >> ${file_name}
+                        echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
+                        echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
 
                         if [ $td == "partial_deformed" ] 
                         then
@@ -834,6 +836,7 @@ then
     if [ $type == "fcgf" ]; then
         for k in ${model_numbers[@]}
         do
+            
             # Using Custom Filtering
 
             for number_center in "${number_centers[@]}"
@@ -842,12 +845,7 @@ then
                 do
                     for inlier_outlier_thr in "${inlier_outlier_thrs[@]}"
                     do
-                        echo "model ${k}" >> ${file_name}
-                        echo "Using ARP" >> ${file_name}
-                        echo "number of centers ${number_center}" >> ${file_name}
-                        echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
-                        echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
-
+            
                         folder_name=output_final_p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_current_deformation
                         file_name=Testing/custom_filtering/p_${preprocessing}_c_${confidence}_nc_${number_center}_adm_${average_distance_multiplier}_iot_${inlier_outlier_thr}_s_${sampling}_max_ldmks_${max_ldmks}_${type}_td_${td}_current_deformation_model_${k}.txt
 
@@ -863,6 +861,12 @@ then
                         rm ${file_name}
                         touch ${file_name}
                         
+                        echo "model ${k}" >> ${file_name}
+                        echo "Using ARP" >> ${file_name}
+                        echo "number of centers ${number_center}" >> ${file_name}
+                        echo "average distance multiplier ${average_distance_multiplier}" >> ${file_name}
+                        echo "inlier outlier thresholds ${inlier_outlier_thr}" >> ${file_name}
+
                         if [ $td == "partial_deformed" ] 
                         then
 
