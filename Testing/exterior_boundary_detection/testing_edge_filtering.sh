@@ -92,6 +92,7 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
             
             if [ "$?" != "1" ]; then
@@ -126,6 +127,7 @@ if [ $type == "kpfcn" ]; then
             --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -255,6 +257,7 @@ if [ $type == "fcgf" ]; then
             --intermediate_output_folder="PartialDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
@@ -291,6 +294,7 @@ if [ $type == "fcgf" ]; then
             --intermediate_output_folder="PartialNonDeformed/model${k}/${folder}/" \
             --base='/home/aiday.kyzy/code/DeformationPyramid/TestData/' \
             --confidence_threshold=${confidence_threshold} \
+            --preprocessing=${preprocessing} \
             --print_keypoints >> ${file}
 
             if [ "$?" != "1" ]; then
