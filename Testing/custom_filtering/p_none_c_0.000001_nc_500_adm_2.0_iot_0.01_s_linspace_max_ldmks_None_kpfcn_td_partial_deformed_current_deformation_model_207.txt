@@ -33,28 +33,28 @@ confidence threshold used in the matching :  1e-06
 preprocessing :  none
 confidence threshold used in the matching :  1e-06
 preprocessing :  none
-ind.shape :  torch.Size([2219, 3])
+ind.shape :  torch.Size([1770, 3])
 bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([2219])
-ti.shape :  torch.Size([2219])
-s_pos.shape :  torch.Size([2219, 3])
-t_pos.shape :  torch.Size([2219, 3])
-ind.shape :  torch.Size([2219, 3])
+si.shape :  torch.Size([1770])
+ti.shape :  torch.Size([1770])
+s_pos.shape :  torch.Size([1770, 3])
+t_pos.shape :  torch.Size([1770, 3])
+ind.shape :  torch.Size([1770, 3])
 bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
-si.shape :  torch.Size([2219])
-ti.shape :  torch.Size([2219])
-s_pos.shape :  torch.Size([2219, 3])
-t_pos.shape :  torch.Size([2219, 3])
-number of true landmarks correspondences returned from Lepard :  35  out of  2219
-fraction of true landmark correspondences returned from Lepard :  0.015772870662460567
-vec6d.shape :  torch.Size([2219, 6])
-ldmk_s.shape :  torch.Size([2219, 3])
-ldmk_t.shape :  torch.Size([2219, 3])
-number of true landmark correspondences returned from Outlier Rejection :  34  out of  2132
-fraction of true landmark correspondences returned from Outlier Rejection :  0.01594746716697936
+si.shape :  torch.Size([1770])
+ti.shape :  torch.Size([1770])
+s_pos.shape :  torch.Size([1770, 3])
+t_pos.shape :  torch.Size([1770, 3])
+number of true landmarks correspondences returned from Lepard :  41  out of  1770
+fraction of true landmark correspondences returned from Lepard :  0.023163841807909605
+vec6d.shape :  torch.Size([1770, 6])
+ldmk_s.shape :  torch.Size([1770, 3])
+ldmk_t.shape :  torch.Size([1770, 3])
+number of true landmark correspondences returned from Outlier Rejection :  40  out of  1701
+fraction of true landmark correspondences returned from Outlier Rejection :  0.023515579071134628
 Custom filtering is used
-number of landmarks before custom filtering :  2219
-average distance :  0.033356196492568095
+number of landmarks before custom filtering :  1770
+average distance :  0.03226250979239091
 average distance multiplier :  2.0
 number of unique source landmarks :  51
 number of centers :  500
@@ -65,438 +65,449 @@ inlier outlier threshold :  0.01
 number of distinct source landmarks :  51
 max_ldmks :  None
 number of landmarks after custom filtering :  51
-number of true landmark correspondences returned from custom filtering :  0  out of  51
-fraction of true landmark correspondences returned from custom filtering :  0.0
-fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  0
+number of true landmark correspondences returned from custom filtering :  1  out of  51
+fraction of true landmark correspondences returned from custom filtering :  0.0196078431372549
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(AlignAndNonRigidMerge) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L167:#points1: 51
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L168:#points2: 51
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L169:#matches: 51
 Before Run of ransac
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SquentialRANSAC) {
-num_inliers : 8
-num_inliers : 9
-num_inliers : 7
-num_inliers : 7
-num_inliers : 3
-num_inliers : 13
-num_inliers : 14
-num_inliers : 13
-num_inliers : 7
-num_inliers : 9
-num_inliers : 14
-num_inliers : 13
-num_inliers : 9
-num_inliers : 7
-num_inliers : 11
-num_inliers : 9
-num_inliers : 3
-num_inliers : 4
+num_inliers : 12
 num_inliers : 10
+num_inliers : 8
+num_inliers : 8
+num_inliers : 10
+num_inliers : 8
+num_inliers : 3
+num_inliers : 14
 num_inliers : 5
+num_inliers : 7
 num_inliers : 10
-num_inliers : 6
-num_inliers : 8
+num_inliers : 10
+num_inliers : 4
+num_inliers : 13
+num_inliers : 9
+num_inliers : 7
+num_inliers : 5
+num_inliers : 7
+num_inliers : 7
+num_inliers : 4
+num_inliers : 7
+num_inliers : 7
 num_inliers : 4
 num_inliers : 5
 num_inliers : 2
+num_inliers : 6
+num_inliers : 12
 num_inliers : 5
-num_inliers : 14
-num_inliers : 10
+num_inliers : 9
+num_inliers : 9
+num_inliers : 6
 num_inliers : 11
+num_inliers : 5
+num_inliers : 11
+num_inliers : 1
+num_inliers : 4
+num_inliers : 11
+num_inliers : 11
+num_inliers : 8
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 12
+num_inliers : 8
+num_inliers : 7
+num_inliers : 6
+num_inliers : 11
+num_inliers : 9
+num_inliers : 6
+num_inliers : 6
+num_inliers : 6
+num_inliers : 9
+num_inliers : 5
+num_inliers : 10
+num_inliers : 2
+num_inliers : 8
+num_inliers : 3
+num_inliers : 5
+num_inliers : 9
+num_inliers : 9
+num_inliers : 6
+num_inliers : 4
+num_inliers : 7
+num_inliers : 3
+num_inliers : 6
+num_inliers : 10
+num_inliers : 4
+num_inliers : 9
+num_inliers : 3
+num_inliers : 14
+num_inliers : 8
+num_inliers : 8
+num_inliers : 8
+num_inliers : 13
+num_inliers : 4
+num_inliers : 3
+num_inliers : 11
+num_inliers : 11
+num_inliers : 12
+num_inliers : 10
+num_inliers : 10
+num_inliers : 8
+num_inliers : 5
+num_inliers : 5
+num_inliers : 7
+num_inliers : 10
+num_inliers : 3
+num_inliers : 10
+num_inliers : 8
+num_inliers : 5
+num_inliers : 1
+num_inliers : 7
+num_inliers : 7
+num_inliers : 4
+num_inliers : 12
+num_inliers : 10
+num_inliers : 6
+num_inliers : 6
+num_inliers : 4
+num_inliers : 11
+num_inliers : 7
+num_inliers : 8
+num_inliers : 7
+num_inliers : 1
+num_inliers : 5
+num_inliers : 3
+num_inliers : 14
+num_inliers : 13
+num_inliers : 4
+num_inliers : 5
+num_inliers : 5
+num_inliers : 7
+num_inliers : 6
+num_inliers : 9
+num_inliers : 6
+num_inliers : 5
+num_inliers : 12
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 8
+num_inliers : 6
+num_inliers : 8
+num_inliers : 14
+num_inliers : 3
+num_inliers : 11
+num_inliers : 4
+num_inliers : 5
+num_inliers : 9
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 7
+num_inliers : 8
+num_inliers : 4
+num_inliers : 6
+num_inliers : 3
+num_inliers : 10
+num_inliers : 1
+num_inliers : 3
+num_inliers : 3
+num_inliers : 8
+num_inliers : 4
+num_inliers : 9
+num_inliers : 5
+num_inliers : 10
+num_inliers : 13
+num_inliers : 11
+num_inliers : 13
+num_inliers : 6
+num_inliers : 4
 num_inliers : 8
 num_inliers : 7
 num_inliers : 4
-num_inliers : 14
+num_inliers : 11
+num_inliers : 5
+num_inliers : 9
+num_inliers : 2
+num_inliers : 5
+num_inliers : 6
+num_inliers : 9
+num_inliers : 5
+num_inliers : 7
+num_inliers : 11
+num_inliers : 7
+num_inliers : 3
+num_inliers : 9
+num_inliers : 13
+num_inliers : 3
+num_inliers : 6
+num_inliers : 10
+num_inliers : 10
+num_inliers : 3
+num_inliers : 12
+num_inliers : 7
+num_inliers : 7
+num_inliers : 7
+num_inliers : 13
+num_inliers : 10
 num_inliers : 1
 num_inliers : 16
-num_inliers : 9
-num_inliers : 5
-num_inliers : 6
-num_inliers : 5
-num_inliers : 11
-num_inliers : 8
-num_inliers : 9
-num_inliers : 4
-num_inliers : 11
-num_inliers : 5
-num_inliers : 9
-num_inliers : 11
-num_inliers : 4
-num_inliers : 2
-num_inliers : 6
-num_inliers : 7
-num_inliers : 4
-num_inliers : 7
-num_inliers : 12
-num_inliers : 4
-num_inliers : 4
-num_inliers : 9
-num_inliers : 12
-num_inliers : 7
-num_inliers : 6
-num_inliers : 8
-num_inliers : 10
-num_inliers : 8
-num_inliers : 5
-num_inliers : 13
-num_inliers : 6
-num_inliers : 3
-num_inliers : 2
-num_inliers : 12
-num_inliers : 6
-num_inliers : 12
-num_inliers : 5
-num_inliers : 10
-num_inliers : 8
-num_inliers : 3
-num_inliers : 9
-num_inliers : 1
-num_inliers : 15
-num_inliers : 11
-num_inliers : 9
-num_inliers : 11
-num_inliers : 6
-num_inliers : 6
-num_inliers : 6
-num_inliers : 11
-num_inliers : 3
-num_inliers : 4
-num_inliers : 7
-num_inliers : 9
-num_inliers : 3
-num_inliers : 11
-num_inliers : 7
-num_inliers : 9
-num_inliers : 15
-num_inliers : 7
-num_inliers : 4
-num_inliers : 10
-num_inliers : 4
-num_inliers : 7
-num_inliers : 6
-num_inliers : 10
-num_inliers : 9
-num_inliers : 4
-num_inliers : 5
-num_inliers : 4
-num_inliers : 15
-num_inliers : 15
-num_inliers : 5
-num_inliers : 3
-num_inliers : 7
-num_inliers : 14
-num_inliers : 4
-num_inliers : 8
-num_inliers : 4
-num_inliers : 6
-num_inliers : 8
-num_inliers : 11
-num_inliers : 14
-num_inliers : 3
-num_inliers : 7
-num_inliers : 3
-num_inliers : 6
-num_inliers : 15
-num_inliers : 2
-num_inliers : 11
-num_inliers : 13
-num_inliers : 5
-num_inliers : 10
-num_inliers : 6
-num_inliers : 4
-num_inliers : 8
-num_inliers : 7
-num_inliers : 2
-num_inliers : 10
-num_inliers : 9
-num_inliers : 3
-num_inliers : 3
-num_inliers : 4
-num_inliers : 3
-num_inliers : 2
-num_inliers : 10
-num_inliers : 9
-num_inliers : 8
-num_inliers : 9
-num_inliers : 4
-num_inliers : 6
-num_inliers : 14
 num_inliers inside of Run : 16
-num_inliers : 6
-num_inliers : 6
-num_inliers : 3
-num_inliers : 9
-num_inliers : 1
-num_inliers : 3
-num_inliers : 4
-num_inliers : 7
-num_inliers : 8
 num_inliers : 5
-num_inliers : 9
-num_inliers : 5
-num_inliers : 5
-num_inliers : 2
-num_inliers : 5
-num_inliers : 8
-num_inliers : 3
-num_inliers : 7
-num_inliers : 11
-num_inliers : 11
-num_inliers : 7
-num_inliers : 9
-num_inliers : 5
-num_inliers : 6
-num_inliers : 5
-num_inliers : 5
-num_inliers : 4
-num_inliers : 5
-num_inliers : 6
-num_inliers : 3
-num_inliers : 3
-num_inliers : 3
-num_inliers : 5
-num_inliers : 6
-num_inliers : 7
-num_inliers : 2
-num_inliers : 2
-num_inliers : 3
-num_inliers : 6
-num_inliers : 2
-num_inliers : 8
-num_inliers : 5
-num_inliers : 7
-num_inliers : 4
-num_inliers : 5
-num_inliers : 3
-num_inliers : 7
 num_inliers : 10
-num_inliers : 7
 num_inliers : 5
-num_inliers : 3
 num_inliers : 2
-num_inliers : 6
-num_inliers : 8
+num_inliers : 5
 num_inliers : 9
 num_inliers : 5
-num_inliers : 7
+num_inliers : 2
+num_inliers : 5
+num_inliers : 8
+num_inliers : 2
+num_inliers : 4
+num_inliers : 8
+num_inliers : 5
+num_inliers : 6
+num_inliers : 4
+num_inliers : 6
+num_inliers : 1
+num_inliers : 6
+num_inliers : 2
+num_inliers : 6
+num_inliers : 2
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 6
+num_inliers : 5
+num_inliers : 4
 num_inliers : 4
 num_inliers : 7
 num_inliers : 10
-num_inliers : 6
-num_inliers : 4
-num_inliers : 10
-num_inliers : 7
-num_inliers : 4
-num_inliers : 8
 num_inliers : 5
-num_inliers : 1
-num_inliers : 6
-num_inliers : 1
-num_inliers : 5
-num_inliers : 4
-num_inliers : 7
-num_inliers : 6
-num_inliers : 5
-num_inliers : 4
-num_inliers : 7
-num_inliers : 6
-num_inliers : 3
-num_inliers : 7
-num_inliers : 6
-num_inliers : 6
 num_inliers : 8
-num_inliers : 2
 num_inliers : 6
+num_inliers : 7
 num_inliers : 8
-num_inliers : 3
+num_inliers : 6
 num_inliers : 9
+num_inliers : 6
+num_inliers : 7
+num_inliers : 5
+num_inliers : 5
+num_inliers : 6
+num_inliers : 1
+num_inliers : 5
+num_inliers : 7
+num_inliers : 3
 num_inliers : 8
+num_inliers : 5
+num_inliers : 2
+num_inliers : 2
+num_inliers : 7
+num_inliers : 9
+num_inliers : 7
+num_inliers : 5
 num_inliers : 3
 num_inliers : 5
-num_inliers : 13
+num_inliers : 9
 num_inliers : 5
+num_inliers : 9
+num_inliers : 3
+num_inliers : 6
+num_inliers : 7
+num_inliers : 3
+num_inliers : 6
+num_inliers : 5
+num_inliers : 3
+num_inliers : 8
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 9
+num_inliers : 9
+num_inliers : 1
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 1
+num_inliers : 5
+num_inliers : 8
+num_inliers : 7
+num_inliers : 0
+num_inliers : 7
+num_inliers : 8
+num_inliers : 9
+num_inliers : 5
+num_inliers : 5
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 6
+num_inliers : 5
+num_inliers : 4
+num_inliers : 3
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 6
+num_inliers : 2
+num_inliers : 3
+num_inliers : 7
 num_inliers : 10
 num_inliers : 6
-num_inliers : 6
-num_inliers : 3
-num_inliers : 4
+num_inliers : 9
 num_inliers : 5
+num_inliers : 4
+num_inliers : 6
 num_inliers : 8
-num_inliers : 5
-num_inliers inside of Run : 13
+num_inliers : 7
 num_inliers : 6
-num_inliers : 4
-num_inliers : 4
-num_inliers : 3
 num_inliers : 5
-num_inliers : 5
-num_inliers : 3
-num_inliers : 3
-num_inliers : 2
+num_inliers : 7
 num_inliers : 4
-num_inliers : 6
+num_inliers : 7
+num_inliers : 8
+num_inliers : 7
+num_inliers : 1
 num_inliers : 3
 num_inliers : 1
-num_inliers : 2
 num_inliers : 4
-num_inliers : 4
-num_inliers : 3
-num_inliers : 4
-num_inliers : 2
-num_inliers : 6
-num_inliers : 5
-num_inliers : 2
-num_inliers : 5
-num_inliers : 3
-num_inliers : 6
-num_inliers : 4
-num_inliers : 3
-num_inliers : 2
-num_inliers : 3
-num_inliers : 5
-num_inliers : 4
-num_inliers : 5
-num_inliers : 2
-num_inliers : 3
-num_inliers : 1
-num_inliers : 5
-num_inliers : 4
-num_inliers : 3
-num_inliers : 3
-num_inliers : 3
-num_inliers : 3
+num_inliers : 7
 num_inliers : 0
 num_inliers : 5
-num_inliers : 4
-num_inliers : 2
-num_inliers : 4
-num_inliers : 4
-num_inliers : 3
-num_inliers : 3
 num_inliers : 3
 num_inliers : 4
-num_inliers : 3
-num_inliers : 7
-num_inliers : 4
+num_inliers : 1
 num_inliers : 4
 num_inliers : 6
 num_inliers : 1
-num_inliers : 5
-num_inliers : 3
-num_inliers : 4
-num_inliers : 6
-num_inliers : 4
-num_inliers : 5
-num_inliers : 5
-num_inliers : 4
-num_inliers : 4
-num_inliers : 4
-num_inliers : 4
-num_inliers : 6
-num_inliers : 5
-num_inliers : 4
-num_inliers : 6
-num_inliers : 3
-num_inliers : 4
-num_inliers : 4
-num_inliers : 0
-num_inliers : 3
-num_inliers : 6
-num_inliers : 5
-num_inliers : 3
-num_inliers : 3
-num_inliers : 5
-num_inliers : 7
-num_inliers : 6
-num_inliers : 3
-num_inliers : 6
-num_inliers : 4
-num_inliers : 4
-num_inliers : 6
-num_inliers : 4
-num_inliers : 2
-num_inliers : 5
-num_inliers : 5
-num_inliers : 4
-num_inliers : 6
-num_inliers : 3
-num_inliers : 3
-num_inliers : 1
-num_inliers : 7
-num_inliers : 6
-num_inliers : 6
-num_inliers : 3
-num_inliers : 3
-num_inliers : 6
-num_inliers : 4
-num_inliers : 4
-num_inliers : 2
-num_inliers : 3
-num_inliers : 5
-num_inliers : 4
-num_inliers : 6
-num_inliers : 4
-num_inliers : 3
-num_inliers : 4
-num_inliers : 0
+num_inliers : 10
 num_inliers : 4
 num_inliers : 8
-num_inliers inside of Run : 8
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SquentialRANSAC) [0.010660 s]
--0.436647 -0.518888 -0.538273   0.83763
--0.716765   0.46784  0.130448    1.3204
- 0.212674  0.511395 -0.665499 0.0607753
-        0         0         0         1
--0.129766  0.730419 0.0916412  0.136161
--0.420826 0.0027448 -0.617776   1.41664
-   -0.604 -0.158839  0.410736  0.494993
-        0         0         0         1
+num_inliers : 10
+num_inliers : 6
+num_inliers : 7
+num_inliers : 3
+num_inliers : 8
+num_inliers : 9
+num_inliers : 3
+num_inliers : 5
+num_inliers : 4
+num_inliers : 8
+num_inliers : 2
+num_inliers : 5
+num_inliers : 2
+num_inliers : 5
+num_inliers : 7
+num_inliers : 3
+num_inliers : 2
+num_inliers : 10
+num_inliers : 3
+num_inliers : 9
+num_inliers : 5
+num_inliers : 8
+num_inliers : 8
+num_inliers : 4
+num_inliers : 7
+num_inliers : 5
+num_inliers : 7
+num_inliers : 5
+num_inliers : 6
+num_inliers : 10
+num_inliers : 3
+num_inliers : 5
+num_inliers : 6
+num_inliers : 3
+num_inliers : 1
+num_inliers : 4
+num_inliers : 4
+num_inliers : 5
+num_inliers : 6
+num_inliers : 3
+num_inliers : 4
+num_inliers : 7
+num_inliers : 5
+num_inliers : 4
+num_inliers : 8
+num_inliers : 6
+num_inliers : 9
+num_inliers : 5
+num_inliers : 4
+num_inliers : 4
+num_inliers : 4
+num_inliers : 3
+num_inliers : 6
+num_inliers : 8
+num_inliers : 5
+num_inliers : 5
+num_inliers : 4
+num_inliers : 6
+num_inliers : 7
+num_inliers : 5
+num_inliers : 10
+num_inliers : 4
+num_inliers : 5
+num_inliers inside of Run : 10
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SquentialRANSAC) [0.048063 s]
+  -0.373099   -0.308739   -0.870455    0.921479
+    0.90951   0.0404582   -0.404189    0.120853
+   0.160632   -0.946181    0.266746 -0.00130032
+          0           0           0           1
+  0.220219   0.028711  -0.334673 -0.0197953
+ -0.314659  -0.122424  -0.217552    1.19815
+ -0.117559   0.381464 -0.0446297  0.0977793
+         0          0          0          1
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(DenseGaussNewton::optimize()) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L118:# parameters: 7
 VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L119:# residuals: 4129
 INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L258:Gauss-Newton max iterations: #20 reached.
 INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L259:Gauss-Newton did not converge.
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (DenseGaussNewton::optimize()) [0.049645 s]
-Affine transform:   -0.342324 -0.00740454   -0.153037    0.511318
-  -0.084809    0.321144    0.174168    0.729194
-   0.127603    0.193578   -0.294798    0.049728
-          0           0           0           1
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (DenseGaussNewton::optimize()) [0.043141 s]
+Affine transform: -0.285443  0.161062 -0.917701  0.724161
+ 0.915342  0.227686 -0.244748 0.0304989
+ 0.173969 -0.933709 -0.217983  0.132025
+        0         0         0         1
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L232:#models: 2
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 0 | #inliers 16
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 1 | #inliers 13
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L235:#inilers: 29
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 1 | #inliers 10
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L235:#inilers: 26
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L257:Mesh1: #vertices: 4064
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L258:Mesh2: #vertices: 4129
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L784:SampleDeformationNodes
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.003818 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.004357 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L790:Create balltree...
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L797:Build kdtree...
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L804:Create matches...
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L826:#matches / #inliers: 51/51
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L827:Mesh1: #points | #normals: 29 | 29
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L828:Mesh2: #points | #normals: 29 | 29
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L827:Mesh1: #points | #normals: 26 | 26
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L828:Mesh2: #points | #normals: 26 | 26
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000753 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.003450 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  6.640771e-04    0.00e+00    1.37e-03   0.00e+00   0.00e+00  1.00e+04        0    1.76e-03    2.76e-03
-   1  4.014078e-05    6.24e-04    4.13e-04   9.69e+00   1.02e+00  3.00e+04        1    2.08e-01    2.11e-01
-   2  9.210899e-06    3.09e-05    3.61e-04   4.95e+00   7.72e-01  3.58e+04        1    2.45e-02    2.35e-01
-   3  1.259127e-06    7.95e-06    1.11e-04   2.74e+00   8.71e-01  6.04e+04        1    2.34e-02    2.59e-01
-   4  3.451254e-06   -2.19e-06    1.11e-04   3.30e+00  -1.85e+00  3.02e+04        1    1.34e-02    2.72e-01
-   5  3.026463e-06   -1.77e-06    1.11e-04   3.07e+00  -1.49e+00  7.55e+03        1    1.34e-02    2.86e-01
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.285933 s]
+   0  1.065072e-03    0.00e+00    1.75e-03   0.00e+00   0.00e+00  1.00e+04        0    4.98e-03    7.88e-03
+   1  2.881247e-04    7.77e-04    1.27e-03   1.50e+01   8.73e-01  1.71e+04        1    8.83e-02    9.62e-02
+   2  6.219034e-05    2.26e-04    7.16e-04   7.29e+00   9.15e-01  4.01e+04        1    8.56e-02    1.82e-01
+   3  9.470236e-07    6.12e-05    7.45e-05   4.80e+00   9.86e-01  1.20e+05        1    8.95e-02    2.71e-01
+   4  5.347834e-05   -5.25e-05    7.45e-05   6.06e+00  -5.75e+01  6.01e+04        1    1.69e-01    4.41e-01
+   5  4.885311e-05   -4.79e-05    7.45e-05   5.11e+00  -5.24e+01  1.50e+04        1    7.42e-02    5.15e-01
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.516064 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L881:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          326                      326
-Parameters                               1956                     1956
-Residual blocks                          1659                     1659
-Residuals                                4919                     4919
+Parameter blocks                         1449                     1449
+Parameters                               8694                     8694
+Residual blocks                          7271                     7271
+Residuals                               21761                    21761
 
 Minimizer                        TRUST_REGION
 
@@ -506,58 +517,58 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      326
+Linear solver ordering              AUTOMATIC                     1449
 
 Cost:
-Initial                          6.640771e-04
-Final                            1.259127e-06
-Change                           6.628179e-04
+Initial                          1.065072e-03
+Final                            9.470236e-07
+Change                           1.064125e-03
 
 Minimizer iterations                        6
 Successful steps                            4
 Unsuccessful steps                          2
 
 Time (in seconds):
-Preprocessor                         0.000996
+Preprocessor                         0.002901
 
-  Residual only evaluation           0.002966 (5)
-  Jacobian & residual evaluation     0.032505 (4)
-  Linear solver                      0.247818 (5)
-Minimizer                            0.284694
+  Residual only evaluation           0.008690 (5)
+  Jacobian & residual evaluation     0.047706 (4)
+  Linear solver                      0.449584 (5)
+Minimizer                            0.512236
 
-Postprocessor                        0.000024
-Total                                0.285726
+Postprocessor                        0.000093
+Total                                0.515242
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000068 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.305129 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000222 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.547742 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.006314 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.006563 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.006813 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.006247 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(meshing) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudTsdf) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeGridExtrinsics) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L159:Set automatic grid position
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputePointDensity) {
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_utils.cc:L400:Size / SubsetSize : 4070 / 41
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputePointDensity) [0.000681 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_utils.cc:L400:Size / SubsetSize : 4129 / 42
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputePointDensity) [0.000671 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L174:Set automatic grid resolution
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L179:Set automatic grid scale
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L192:Resolution: [30, 31, 32], Margin: 3
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L193:Scale: [357.292053, 357.292053, 357.292053]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L194:Position: [0.144882, 0.771571, 0.092002]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L192:Resolution: [37, 26, 26], Margin: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L193:Scale: [145.472534, 145.472534, 145.472534]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L194:Position: [0.127637, 0.807687, 0.071716]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L195:Orientation: [0.000000, 0.000000, 0.000000]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeGridExtrinsics) [0.000724 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeGridExtrinsics) [0.000740 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L225:trace_distance: 3
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(GridErode) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (GridErode) [0.002717 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (GridErode) [0.002081 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L329:Extract single surface mesh
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ExtractMeshUniqueVertices) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/./graphics/meshing/generic_mc_unique_vertices.h:L281:Using array for vertex_list and edge_vertex_ids
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ExtractMeshUniqueVertices) [0.002354 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ExtractMeshUniqueVertices) [0.002327 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Mesh2Utils::FixMesh) {
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L844:Build vertex lookup table
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L873:Check for broken edges
@@ -641,6 +652,8 @@ ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:S
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L885:Expected #vertices: 4 | Actual #vertices: 2
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L886:Fix vertex: 382
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
@@ -896,80 +909,136 @@ ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:S
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
 ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Mesh2Utils::FixMesh) [0.002086 s]
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Mesh2Utils::FixMesh) [0.002145 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeVertexNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000456 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000474 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L346:Mesh2::CheckConsistency
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L352:Meshing:: Mesh2Transform::ComputeNormals(.)
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000114 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000121 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeVertexNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000326 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000810 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L370:MeshRepair::PlanarHoleFilling
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PlanarHoleFilling) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FindHoles) {
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L1106:#holes: 11
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FindHoles) [0.000259 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L123:Fill holes, #holes: 11
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 0 / 11 | Size: 3
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 1 / 11 | Size: 3
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 2 / 11 | Size: 3
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 3 / 11 | Size: 3
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 4 / 11 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L1106:#holes: 19
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FindHoles) [0.000367 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L123:Fill holes, #holes: 19
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 0 / 19 | Size: 3
 WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 5 / 11 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 1 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 2 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 3 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 4 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 5 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 6 / 19 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 7 / 19 | Size: 4
 WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 6 / 11 | Size: 5
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 8 / 19 | Size: 4
 WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 7 / 11 | Size: 23
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 9 / 19 | Size: 5
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 10 / 19 | Size: 7
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 11 / 19 | Size: 7
 WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 8 / 11 | Size: 29
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 12 / 19 | Size: 8
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 13 / 19 | Size: 10
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 14 / 19 | Size: 11
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 15 / 19 | Size: 24
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 16 / 19 | Size: 29
 WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
 VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PlanarHoleFilling) [0.000554 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudTsdf) [0.010861 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (meshing) [0.011030 s]
-DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L318:Template mesh #vertices: 1045
-DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L319:Template mesh #faces: 1810
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 17 / 19 | Size: 32
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PlanarHoleFilling) [0.000970 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudTsdf) [0.011404 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (meshing) [0.011572 s]
+DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L318:Template mesh #vertices: 1043
+DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L319:Template mesh #faces: 1821
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 1 / 5
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000118 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000119 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.001287 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.005292
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.001406 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.012372
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000768 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.004141 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  4.286217e-06    0.00e+00    9.19e-05   0.00e+00   0.00e+00  1.00e+04        0    4.40e-03    5.18e-03
-   1  4.088537e-07    3.88e-06    3.46e-05   5.81e+00   9.43e-01  3.00e+04        1    4.32e-01    4.37e-01
-   2  1.311136e-07    2.78e-07    2.56e-06   1.95e+00   9.72e-01  9.00e+04        1    1.92e-02    4.56e-01
-   3  1.235450e-07    7.57e-09    2.74e-06   1.38e+00   6.40e-01  9.20e+04        1    1.99e-02    4.76e-01
-   4  1.201051e-07    3.44e-09    6.37e-07   6.74e-01   6.84e-01  9.68e+04        1    1.93e-02    4.95e-01
-   5  1.193207e-07    7.84e-10    6.55e-07   6.70e-01   4.65e-01  9.68e+04        1    1.82e-02    5.14e-01
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.513823 s]
+   0  1.934311e-05    0.00e+00    5.22e-05   0.00e+00   0.00e+00  1.00e+04        0    1.15e-02    1.38e-02
+   1  1.589428e-06    1.78e-05    1.62e-05   1.04e+01   9.73e-01  3.00e+04        1    4.38e-01    4.52e-01
+   2  6.678031e-07    9.22e-07    2.35e-06   3.96e+00   1.02e+00  9.00e+04        1    3.30e-01    7.82e-01
+   3  6.245072e-07    4.33e-08    4.53e-07   1.44e+00   1.13e+00  2.70e+05        1    9.37e-02    8.76e-01
+   4  6.114793e-07    1.30e-08    9.00e-07   1.00e+00   1.57e+00  8.10e+05        1    6.23e-01    1.50e+00
+   5  6.005140e-07    1.10e-08    9.11e-07   7.63e-01   1.67e+00  2.43e+06        1    1.02e-01    1.60e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.601349 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          207                      207
-Parameters                               1242                     1242
-Residual blocks                          1130                     1130
-Residuals                                3200                     3200
+Parameter blocks                          643                      643
+Parameters                               3858                     3858
+Residual blocks                          4680                     4680
+Residuals                               11110                    11110
 
 Minimizer                        TRUST_REGION
 
@@ -979,59 +1048,59 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      207
+Linear solver ordering              AUTOMATIC                      643
 
 Cost:
-Initial                          4.286217e-06
-Final                            1.193207e-07
-Change                           4.166896e-06
+Initial                          1.934311e-05
+Final                            6.005140e-07
+Change                           1.874260e-05
 
 Minimizer iterations                        6
 Successful steps                            6
 Unsuccessful steps                          0
 
 Time (in seconds):
-Preprocessor                         0.000779
+Preprocessor                         0.002325
 
-  Residual only evaluation           0.002406 (5)
-  Jacobian & residual evaluation     0.059166 (6)
-  Linear solver                      0.449924 (5)
-Minimizer                            0.512966
+  Residual only evaluation           0.009959 (5)
+  Jacobian & residual evaluation     0.308206 (6)
+  Linear solver                      1.275373 (5)
+Minimizer                            1.598734
 
-Postprocessor                        0.000020
-Total                                0.513778
+Postprocessor                        0.000066
+Total                                1.601138
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000036 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.538609 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000113 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.641089 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 2 / 5
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000121 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000088 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.001094 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.005075
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.001007 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.012444
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000926 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.003394 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  1.872290e-06    0.00e+00    3.27e-05   0.00e+00   0.00e+00  1.00e+04        0    4.96e-03    5.82e-03
-   1  3.661414e-07    1.51e-06    8.35e-06   4.85e+00   9.97e-01  3.00e+04        1    4.94e-01    5.00e-01
-   2  2.743585e-07    9.18e-08    1.56e-06   1.68e+00   1.05e+00  9.00e+04        1    2.01e-02    5.20e-01
-   3  2.653771e-07    8.98e-09    7.42e-07   6.70e-01   1.31e+00  2.70e+05        1    2.21e-02    5.42e-01
-   4  2.619969e-07    3.38e-09    5.68e-07   4.64e-01   1.54e+00  8.10e+05        1    3.94e-02    5.81e-01
-   5  2.606074e-07    1.39e-09    2.45e-07   2.79e-01   1.55e+00  2.43e+06        1    2.70e-02    6.08e-01
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.608357 s]
+   0  3.725621e-06    0.00e+00    4.46e-05   0.00e+00   0.00e+00  1.00e+04        0    1.10e-02    1.30e-02
+   1  6.614328e-07    3.06e-06    1.23e-05   6.54e+00   9.83e-01  3.00e+04        1    5.42e-01    5.55e-01
+   2  5.350009e-07    1.26e-07    6.01e-07   1.84e+00   1.02e+00  9.00e+04        1    3.58e-01    9.13e-01
+   3  5.267667e-07    8.23e-09    2.53e-07   8.43e-01   1.23e+00  2.70e+05        1    4.00e-01    1.31e+00
+   4  5.248943e-07    1.87e-09    1.21e-07   4.05e-01   1.28e+00  8.10e+05        1    4.34e-01    1.75e+00
+   5  5.242995e-07    5.95e-10    4.85e-08   2.64e-01   1.36e+00  2.43e+06        1    1.11e-01    1.86e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.858777 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          202                      202
-Parameters                               1212                     1212
-Residual blocks                          1227                     1227
-Residuals                                3247                     3247
+Parameter blocks                          646                      646
+Parameters                               3876                     3876
+Residual blocks                          5350                     5350
+Residuals                               11810                    11810
 
 Minimizer                        TRUST_REGION
 
@@ -1041,59 +1110,59 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      202
+Linear solver ordering              AUTOMATIC                      646
 
 Cost:
-Initial                          1.872290e-06
-Final                            2.606074e-07
-Change                           1.611683e-06
+Initial                          3.725621e-06
+Final                            5.242995e-07
+Change                           3.201322e-06
 
 Minimizer iterations                        6
 Successful steps                            6
 Unsuccessful steps                          0
 
 Time (in seconds):
-Preprocessor                         0.000856
+Preprocessor                         0.001954
 
-  Residual only evaluation           0.002611 (5)
-  Jacobian & residual evaluation     0.070161 (6)
-  Linear solver                      0.533204 (5)
-Minimizer                            0.607413
+  Residual only evaluation           0.010942 (5)
+  Jacobian & residual evaluation     0.359796 (6)
+  Linear solver                      1.481378 (5)
+Minimizer                            1.856532
 
-Postprocessor                        0.000025
-Total                                0.608307
+Postprocessor                        0.000075
+Total                                1.858574
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000036 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.631298 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000102 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.895090 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 3 / 5
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000123 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000087 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.001115 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.005014
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.000980 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.012784
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000987 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.003578 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  1.002390e-06    0.00e+00    2.70e-05   0.00e+00   0.00e+00  1.00e+04        0    5.10e-03    5.98e-03
-   1  2.160281e-07    7.86e-07    5.21e-06   3.41e+00   9.90e-01  3.00e+04        1    2.12e-02    2.72e-02
-   2  1.790546e-07    3.70e-08    9.70e-07   1.05e+00   9.80e-01  9.00e+04        1    1.42e-02    4.14e-02
-   3  1.767937e-07    2.26e-09    5.70e-07   4.29e-01   8.55e-01  1.40e+05        1    1.64e-02    5.79e-02
-   4  1.760546e-07    7.39e-10    4.22e-07   2.40e-01   8.17e-01  1.88e+05        1    1.68e-02    7.47e-02
-   5  1.756861e-07    3.69e-10    2.73e-07   1.93e-01   8.49e-01  2.84e+05        1    1.79e-02    9.26e-02
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.092698 s]
+   0  1.015331e-06    0.00e+00    1.15e-05   0.00e+00   0.00e+00  1.00e+04        0    1.18e-02    1.38e-02
+   1  4.299841e-07    5.85e-07    1.35e-06   3.60e+00   1.01e+00  3.00e+04        1    2.76e-01    2.90e-01
+   2  4.101772e-07    1.98e-08    7.49e-07   9.62e-01   1.29e+00  9.00e+04        1    2.73e-01    5.63e-01
+   3  4.046038e-07    5.57e-09    4.38e-07   5.76e-01   1.52e+00  2.70e+05        1    2.92e-01    8.55e-01
+   4  4.028507e-07    1.75e-09    1.35e-07   3.77e-01   1.50e+00  8.10e+05        1    2.83e-01    1.14e+00
+   5  4.022340e-07    6.17e-10    6.50e-08   2.26e-01   1.61e+00  2.43e+06        1    2.85e-01    1.42e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.423547 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          199                      199
-Parameters                               1194                     1194
-Residual blocks                          1275                     1275
-Residuals                                3265                     3265
+Parameter blocks                          651                      651
+Parameters                               3906                     3906
+Residual blocks                          5484                     5484
+Residuals                               11994                    11994
 
 Minimizer                        TRUST_REGION
 
@@ -1103,59 +1172,59 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      199
+Linear solver ordering              AUTOMATIC                      651
 
 Cost:
-Initial                          1.002390e-06
-Final                            1.756861e-07
-Change                           8.267036e-07
+Initial                          1.015331e-06
+Final                            4.022340e-07
+Change                           6.130972e-07
 
 Minimizer iterations                        6
 Successful steps                            6
 Unsuccessful steps                          0
 
 Time (in seconds):
-Preprocessor                         0.000881
+Preprocessor                         0.002019
 
-  Residual only evaluation           0.007541 (5)
-  Jacobian & residual evaluation     0.046183 (6)
-  Linear solver                      0.036458 (5)
-Minimizer                            0.091741
+  Residual only evaluation           0.011742 (5)
+  Jacobian & residual evaluation     0.396209 (6)
+  Linear solver                      1.007998 (5)
+Minimizer                            1.421166
 
-Postprocessor                        0.000020
-Total                                0.092655
+Postprocessor                        0.000065
+Total                                1.423261
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000034 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.112538 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000069 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.455478 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 4 / 5
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000086 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000087 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.000892 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.004973
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.000990 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.012753
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000708 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.003655 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  5.730882e-07    0.00e+00    1.90e-05   0.00e+00   0.00e+00  1.00e+04        0    5.41e-03    6.08e-03
-   1  1.519185e-07    4.21e-07    1.41e-06   2.58e+00   1.01e+00  3.00e+04        1    2.78e-01    2.84e-01
-   2  1.402083e-07    1.17e-08    6.67e-07   6.07e-01   1.14e+00  9.00e+04        1    2.40e-02    3.08e-01
-   3  1.391881e-07    1.02e-09    1.31e-07   2.23e-01   1.35e+00  2.70e+05        1    2.48e-02    3.33e-01
-   4  1.389973e-07    1.91e-10    6.62e-08   1.05e-01   1.46e+00  8.10e+05        1    2.35e-02    3.56e-01
-   5  1.389486e-07    4.87e-11    4.69e-08   5.77e-02   1.53e+00  2.43e+06        1    1.10e-01    4.66e-01
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.466555 s]
+   0  8.515370e-07    0.00e+00    8.53e-06   0.00e+00   0.00e+00  1.00e+04        0    1.18e-02    1.39e-02
+   1  4.024758e-07    4.49e-07    1.74e-06   2.93e+00   1.03e+00  3.00e+04        1    6.07e-01    6.21e-01
+   2  3.846349e-07    1.78e-08    2.96e-07   8.22e-01   1.21e+00  9.00e+04        1    6.18e-01    1.24e+00
+   3  3.816833e-07    2.95e-09    1.74e-07   3.96e-01   1.49e+00  2.70e+05        1    9.28e-02    1.33e+00
+   4  3.806107e-07    1.07e-09    1.12e-07   2.93e-01   1.64e+00  8.10e+05        1    9.46e-02    1.43e+00
+   5  3.800834e-07    5.27e-10    8.91e-08   2.32e-01   1.72e+00  2.43e+06        1    4.35e-01    1.86e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.861774 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          206                      206
-Parameters                               1236                     1236
-Residual blocks                          1338                     1338
-Residuals                                3398                     3398
+Parameter blocks                          651                      651
+Parameters                               3906                     3906
+Residual blocks                          5573                     5573
+Residuals                               12083                    12083
 
 Minimizer                        TRUST_REGION
 
@@ -1165,59 +1234,59 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      206
+Linear solver ordering              AUTOMATIC                      651
 
 Cost:
-Initial                          5.730882e-07
-Final                            1.389486e-07
-Change                           4.341396e-07
+Initial                          8.515370e-07
+Final                            3.800834e-07
+Change                           4.714536e-07
 
 Minimizer iterations                        6
 Successful steps                            6
 Unsuccessful steps                          0
 
 Time (in seconds):
-Preprocessor                         0.000673
+Preprocessor                         0.002049
 
-  Residual only evaluation           0.002810 (5)
-  Jacobian & residual evaluation     0.083609 (6)
-  Linear solver                      0.377605 (5)
-Minimizer                            0.465772
+  Residual only evaluation           0.011227 (5)
+  Jacobian & residual evaluation     0.367221 (6)
+  Linear solver                      1.475574 (5)
+Minimizer                            1.859513
 
-Postprocessor                        0.000022
-Total                                0.466480
+Postprocessor                        0.000078
+Total                                1.861651
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000041 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.487767 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000071 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.894967 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 5 / 5
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000094 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000093 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.000899 s]
-VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.005008
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.000994 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.012791
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.000790 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.003984 s]
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
 iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
-   0  6.214424e-07    0.00e+00    2.33e-05   0.00e+00   0.00e+00  1.00e+04        0    7.76e-03    8.53e-03
-   1  1.490436e-07    4.72e-07    2.24e-06   2.44e+00   9.98e-01  3.00e+04        1    2.90e-02    3.75e-02
-   2  1.332868e-07    1.58e-08    1.36e-06   9.12e-01   1.17e+00  9.00e+04        1    2.85e-01    3.23e-01
-   3  1.303114e-07    2.98e-09    5.12e-07   4.34e-01   1.29e+00  2.70e+05        1    3.08e-02    3.54e-01
-   4  1.297716e-07    5.40e-10    1.25e-07   1.73e-01   1.35e+00  8.10e+05        1    2.80e-01    6.33e-01
-   5  1.296661e-07    1.06e-10    4.85e-08   8.23e-02   1.45e+00  2.43e+06        1    3.27e-02    6.66e-01
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.666053 s]
+   0  7.900414e-07    0.00e+00    1.30e-05   0.00e+00   0.00e+00  1.00e+04        0    1.22e-02    1.44e-02
+   1  3.597772e-07    4.30e-07    1.56e-06   2.78e+00   1.04e+00  3.00e+04        1    2.45e-01    2.59e-01
+   2  3.475166e-07    1.23e-08    7.95e-07   7.34e-01   1.15e+00  9.00e+04        1    1.43e-01    4.03e-01
+   3  3.459629e-07    1.55e-09    2.01e-07   2.61e-01   1.44e+00  2.70e+05        1    2.40e-01    6.42e-01
+   4  3.452835e-07    6.79e-10    2.25e-07   1.97e-01   1.75e+00  8.10e+05        1    2.44e-01    8.87e-01
+   5  3.448160e-07    4.68e-10    1.87e-07   1.57e-01   1.83e+00  2.43e+06        1    8.80e-02    9.75e-01
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.975043 s]
 VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
 Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
 
                                      Original                  Reduced
-Parameter blocks                          212                      212
-Parameters                               1272                     1272
-Residual blocks                          1398                     1398
-Residuals                                3518                     3518
+Parameter blocks                          654                      654
+Parameters                               3924                     3924
+Residual blocks                          5684                     5684
+Residuals                               12224                    12224
 
 Minimizer                        TRUST_REGION
 
@@ -1227,39 +1296,39 @@ Trust region strategy     LEVENBERG_MARQUARDT
                                         Given                     Used
 Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
 Threads                                    16                       16
-Linear solver ordering              AUTOMATIC                      212
+Linear solver ordering              AUTOMATIC                      654
 
 Cost:
-Initial                          6.214424e-07
-Final                            1.296661e-07
-Change                           4.917763e-07
+Initial                          7.900414e-07
+Final                            3.448160e-07
+Change                           4.452255e-07
 
 Minimizer iterations                        6
 Successful steps                            6
 Unsuccessful steps                          0
 
 Time (in seconds):
-Preprocessor                         0.000763
+Preprocessor                         0.002181
 
-  Residual only evaluation           0.012033 (5)
-  Jacobian & residual evaluation     0.104945 (6)
-  Linear solver                      0.546426 (5)
-Minimizer                            0.665178
+  Residual only evaluation           0.010378 (5)
+  Jacobian & residual evaluation     0.381274 (6)
+  Linear solver                      0.575801 (5)
+Minimizer                            0.972494
 
-Postprocessor                        0.000023
-Total                                0.665976
+Postprocessor                        0.000068
+Total                                0.974753
 
 Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
 
 INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000047 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [0.689871 s]
-INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (AlignAndNonRigidMerge) [2.851677 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000072 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.009831 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (AlignAndNonRigidMerge) [8.562076 s]
 FLAGS.base :  
 FLAGS.file1 :  /home/aiday.kyzy/code/DeformationPyramid/TestData//PartialDeformed/model207/020_0.ply
 FLAGS.landmarks1 :  /home/aiday.kyzy/code/DeformationPyramid/TestData//PartialDeformed/model207/output_final_p_none_c_0.000001_nc_500_adm_2.0_iot_0.01_s_linspace_max_ldmks_None_kpfcn_td_partial_deformed_current_deformation/kpfcn_custom_filtering_ldmk/s_custom_filtering_pcd.ply
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.08894936465128069
-Strict IR :  0.0
-Relaxed IR :  0.017195446839428433
+RMSE :  0.015418810842524769
+Strict IR :  0.1537902639864374
+Relaxed IR :  0.9953984015500121
