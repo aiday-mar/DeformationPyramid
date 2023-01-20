@@ -746,7 +746,7 @@ then
                     --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                     --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --final="TestData/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -791,7 +791,7 @@ then
                     --file2="${base}/FullDeformed/model${k}/104.ply" \
                     --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -854,7 +854,7 @@ then
                     --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                     --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --final="TestData/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -899,7 +899,7 @@ then
                     --file2="${base}/FullDeformed/model${k}/104.ply" \
                     --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -979,7 +979,7 @@ then
                                 --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                                 --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                                 --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                                --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                                --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
 
                                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
@@ -1033,7 +1033,7 @@ then
                                 --file2="${base}/FullDeformed/model${k}/104.ply" \
                                 --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                                 --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                                --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                                --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                                 --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1108,7 +1108,7 @@ then
                     --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                     --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --final="TestData/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1156,7 +1156,7 @@ then
                     --file2="${base}/FullDeformed/model${k}/104.ply" \
                     --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1222,7 +1222,7 @@ then
                     --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                     --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --final="TestData/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1270,7 +1270,7 @@ then
                     --file2="${base}/FullDeformed/model${k}/104.ply" \
                     --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                     --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                    --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                     python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                     --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1354,7 +1354,7 @@ then
                                 --file2="${base}/PartialDeformed/model${k}/104_1.ply" \
                                 --landmarks1="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                                 --landmarks2="${base}/PartialDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                                --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                                --save_path="${base}/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                                 --final="TestData/PartialDeformed/model${k}/${folder_name}/current_deformation.ply" \
@@ -1410,7 +1410,7 @@ then
                                 --file2="${base}/FullDeformed/model${k}/104.ply" \
                                 --landmarks1="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/s_custom_filtering_pcd.ply" \
                                 --landmarks2="${base}/FullDeformed/model${k}/${folder_name}/${type}_custom_filtering_ldmk/t_custom_filtering_pcd.ply" \
-                                --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${filename}
+                                --save_path="${base}/FullDeformed/model${k}/${folder_name}/current_deformation.ply" >> ${file_name}
 
                                 python3 ../../code/sfm/python/graphics/mesh/compute_pointcloud_rmse_ir.py \
                                 --input1="TestData/FullDeformed/model${k}/${folder_name}/current_deformation.ply" \
