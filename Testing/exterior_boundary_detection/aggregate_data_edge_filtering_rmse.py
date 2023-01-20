@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-# FCGF TODO
-# KPFCN TODO
-
 feature_extractor='kpfcn'
 # feature_extractor='fcgf'
 
