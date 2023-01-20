@@ -1,16 +1,16 @@
 
-# criterion=none
+criterion=none
 # criterion=simple
 # criterion=angle
 # criterion=shape
 # criterion=disc
-criterion=mesh
+# criterion=mesh
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
-# preprocessing=none
-preprocessing=mutual
+preprocessing=none
+# preprocessing=mutual
 
 training_data=partial_deformed
 # training_data=pretrained

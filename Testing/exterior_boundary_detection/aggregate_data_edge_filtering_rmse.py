@@ -1,101 +1,97 @@
-import re
 import matplotlib.pyplot as plt
-import numpy as np
 import copy
+import re
+import numpy as np
 
-feature_extractor='kpfcn'
-# feature_extractor='fcgf'
+criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
+data_types = ['Partial Deformed', 'Partial Non Deformed']
+model_numbers=['002', '042', '085', '126', '167', '207']
 
-preprocessing='none'
-# preprocessing='mutual'
+feature_extractor='fcgf'
+# feature_extractor='kpfcn'
+training_data='partial_deformed'
+epoch='5'
+preprocessing='mutual'
 
-epoch = 'null'
-training_data = 'pretrained'
+barWidth = 0.10
+br1 = np.array([0, 1, 2, 3, 4, 5])
+br2 = np.array([x + barWidth for x in br1])
+br3 = np.array([x + barWidth for x in br2])
+br4 = np.array([x + barWidth for x in br3])
+br5 = np.array([x + barWidth for x in br4])
+br6 = np.array([x + barWidth for x in br5])
+bars = [br1, br2, br3, br4, br5, br6]
 
-models=['002', '042', '085', '126', '167', '207']
-criteria = ['simple', 'angle', 'shape', 'disc', 'mesh', 'none']
-data_types=['Partial Deformed', 'Partial Non Deformed']
-base = 'Testing/'
-folder = 'exterior_boundary_detection/'
-
-sub_sub_matrix = {'rmse' : 0., 'strict-ir' : 0., 'relaxed-ir' : 0., 'vis-epe' : 0., 'vis-outlier' :  0.}
-sub_matrix = {
-    'Partial Deformed': {criterion : copy.deepcopy(sub_sub_matrix) for criterion in criteria},  
-    'Partial Non Deformed': {criterion : copy.deepcopy(sub_sub_matrix) for criterion in criteria}
-}
-final_matrices = {model : copy.deepcopy(sub_matrix) for model in models}
+final_sub_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : 0.0}
+final_sub_sub_matrix = {data_type : copy.deepcopy(final_sub_sub_sub_matrix) for data_type in data_types}
+final_submatrix = {model_number : copy.deepcopy(final_sub_sub_matrix) for model_number in model_numbers}
+final_matrices = {criterion : copy.deepcopy(final_submatrix) for criterion in criteria}
 
 for criterion in criteria:
+    for model_number in model_numbers:
+        file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+        file_txt = open(file_txt, 'r')
+        Lines = file_txt.readlines()
+        
+        current_model = None
+        current_data_type = None
 
-    if criterion == 'none':
-        file='testing_none_edge_filtering_pre_mutual_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
-    else:
-        file='testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
-    
-    file_txt = open(base + folder + file, 'r')
-    Lines = file_txt.readlines()
-    current_data_type = ''
-    current_model = None
-    criterion_val = None
+        for line in Lines:
+            if 'model' in line and len(line) < 100:
+                current_model = re.findall(r'\b\d+\b',line)[0]
+            
+            for data_type in data_types:
+                if data_type in line:
+                    current_data_type = data_type
 
-    for line in Lines:
-        if 'model ' in line:
-            current_model = re.findall(r'\b\d+\b',line)[0]
+            if criterion == 'none':
+                if feature_extractor == 'kpfcn':
+                    line_to_check = 'number of true landmark correspondences returned from Outlier Rejection'
+                else:
+                    line_to_check = 'number of true landmark correspondences returned from FCGF based Outlier Rejection'
                 
-        if 'using angle exterior boundary detection' in line:
-            criterion_val = 'angle'
-
-        if 'using disc exterior boundary detection' in line:
-            criterion_val = 'disc'
-
-        if 'using shape exterior boundary detection' in line:
-            criterion_val = 'shape'
-        
-        if 'using simple exterior boundary detection' in line:
-            criterion_val = 'simple'
-
-        if 'using mesh exterior boundary detection' in line:
-            criterion_val = 'mesh'
-
-        if 'Edge filtering not used' in line:
-            criterion_val = 'none'
-        
-        if line[:-1] in data_types:
-            current_data_type = line[:-1]
+                if line_to_check in line and current_data_type and current_model:
+                    search = list(map(int, re.findall(r'\d+', line)))
+                    true = int(search[0])
+                    total = int(search[1])
+                    final_matrices[criterion][current_model][current_data_type]['true'] = true
+                    final_matrices[criterion][current_model][current_data_type]['total'] = total - true
             
-        if 'RMSE' in line and current_model is not None and criterion_val is not None:
-            rmse = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][criterion_val]['rmse'] = rmse
+            else:
 
-        if 'Strict IR' in line and current_model is not None and criterion_val is not None:
-            strict_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][criterion_val]['strict-ir'] = strict_ir
+                line_to_check = 'number of true landmark correspondences returned from ' + criterion + ' edge filtering'
+                if line_to_check in line and current_data_type and current_model:
+                    search = list(map(int, re.findall(r'\d+', line)))
+                    true = int(search[0])
+                    total = int(search[1])
+                    final_matrices[criterion][current_model][current_data_type]['true'] = true
+                    final_matrices[criterion][current_model][current_data_type]['total'] = total - true
+          
+            if 'RMSE' in line and current_data_type and current_model:
+                rmse = float(re.findall("\d+\.\d+", line)[0])
+                final_matrices[criterion][current_model][current_data_type]['rmse'] = rmse
 
-        if 'Relaxed IR' in line and current_model is not None and criterion_val is not None:
-            relaxed_ir = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][criterion_val]['relaxed-ir'] = relaxed_ir
-            
-        if 'vis-epe' in line and current_model is not None and criterion_val is not None:
-            vis_epe = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][criterion_val]['vis-epe'] = vis_epe
-            
-        if 'vis-outlier' in line and current_model is not None and criterion_val is not None:
-            vis_outlier = list(map(float, re.findall("\d+\.\d+", line)))[0]
-            final_matrices[current_model][current_data_type][criterion_val]['vis-outlier'] = vis_outlier
-            
 for data_type in data_types:
-    plt.clf()
-    for criterion in criteria:
-        criterion_res = []
 
-        for model_number in models:
-            criterion_res.append(final_matrices[model_number][data_type][criterion]['rmse'])
-        
-        print(criterion_res)
-        plt.plot(models, criterion_res)
+    plt.clf()
+
+    count = 0
+    for criterion in criteria:
     
+        rmse = []
+        for model_number in model_numbers:
+            rmse.append(final_matrices[criterion][model_number][data_type]['rmse'])
+
+        bar = bars[count]
+        plt.bar(bar, rmse, width = barWidth, label = criterion)
+
+        count += 1
+
     plt.title(data_type)
+    plt.xticks([0, 1, 2, 3, 4, 5], model_numbers)
+    plt.xlabel('Model number')
     plt.ylabel('RMSE')
-    plt.xlabel('model numbers')
-    plt.legend(criteria, loc = "upper right")
-    plt.savefig(base + folder + data_type.replace(' ', '_') + '_rmse_' + feature_extractor + '.png', bbox_inches='tight')
+    plt.legend(loc = 'upper right')
+    data_type_mod = data_type.lower()
+    data_type_mod = data_type_mod.replace(' ', '_')
+    plt.savefig('Testing/exterior_boundary_detection/rmse_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
