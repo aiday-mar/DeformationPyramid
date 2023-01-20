@@ -42,22 +42,22 @@ for criterion in criteria:
                 else:
                     line_to_check = 'number of true landmark correspondences returned from FCGF based Outlier Rejection'
                 
-                if line_to_check in line and current_data_type:
+                if line_to_check in line and current_data_type and current_model:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[criterion][model_number][current_data_type]['true'] = true
-                    final_matrices[criterion][model_number][current_data_type]['total'] = total - true
+                    final_matrices[criterion][current_model][current_data_type]['true'] = true
+                    final_matrices[criterion][current_model][current_data_type]['total'] = total - true
             
             else:
 
                 line_to_check = 'number of true landmark correspondences returned from ' + criterion + ' edge filtering'
-                if line_to_check in line and current_data_type:
+                if line_to_check in line and current_data_type and current_model:
                     search = list(map(int, re.findall(r'\d+', line)))
                     true = int(search[0])
                     total = int(search[1])
-                    final_matrices[criterion][model_number][current_data_type]['true'] = true
-                    final_matrices[criterion][model_number][current_data_type]['total'] = total - true
+                    final_matrices[criterion][current_model][current_data_type]['true'] = true
+                    final_matrices[criterion][current_model][current_data_type]['total'] = total - true
           
             if 'RMSE' in line and current_data_type:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
