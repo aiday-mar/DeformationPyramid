@@ -9,7 +9,7 @@ data_types=['Full Deformed', 'Partial Deformed']
 model_numbers = ['002', '042', '085', '126', '167', '207']
 base = 'Testing/custom_filtering/'
 
-preprocessing = 'mutual'
+preprocessing = 'none'
 iot=0.01
 
 barWidth = 0.30
@@ -47,20 +47,22 @@ if preprocessing == 'mutual':
     }
 elif preprocessing == 'none':
     weights = {
-        'full_deformed' : {
-            'kpfcn' : {
-                'conf' : '0.000001',
-            },
-            'fcgf' : {
-                'conf' : '0.000001',
-            }
-        },
+        # 'full_deformed' : {
+        #    'kpfcn' : {
+        #        'conf' : '0.000001',
+        #    },
+        #    'fcgf' : {
+        #        'conf' : '0.000001',
+        #    }
+        # },
         'partial_deformed' : {
-            'kpfcn' : {
-                'conf' : '0.000001',
-            },
+            # 'kpfcn' : {
+            #    'conf' : '0.000001',
+            # },
             'fcgf' : {
                 'conf' : '0.000001',
+                'adm' : 2.0,
+                'nc' : 500
             }
         }   
     }
@@ -90,8 +92,14 @@ for training_data in weights:
             nc = weights[training_data][feature_extractor]['nc']
             adm = weights[training_data][feature_extractor]['adm']
             confidence = weights[training_data][feature_extractor]['conf']
-
-            file = 'p_' + preprocessing + '_c_' + str(confidence) + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            
+            if preprocessing == 'mutual':
+                file = 'p_' + preprocessing + '_c_' + str(confidence) + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            elif preprocessing == 'none':
+                file = 'p_' + preprocessing + '_c_' + str(confidence) + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_current_deformation_model_' + model_number + '.txt'
+            else:
+                raise Exception('Choose a valid preprocessing technique')
+            
             file_txt = open(base + file, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
@@ -101,15 +109,16 @@ for training_data in weights:
                     rmse = float(re.findall("\d+\.\d+", line)[0])
                     final_matrices[model_number][training_data][feature_extractor]['final'] = rmse
 
-            file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
-            file_txt = open(file_txt, 'r')
-            Lines = file_txt.readlines()
-            current_data_type = ''
-            for line in Lines:
-                
-                if 'RMSE' in line:
-                    rmse = float(re.findall("\d+\.\d+", line)[0])
-                    final_matrices[model_number][training_data][feature_extractor]['initial'] = rmse
+            if preprocessing == 'mutual':
+                file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+                file_txt = open(file_txt, 'r')
+                Lines = file_txt.readlines()
+                current_data_type = ''
+                for line in Lines:
+                    
+                    if 'RMSE' in line:
+                        rmse = float(re.findall("\d+\.\d+", line)[0])
+                        final_matrices[model_number][training_data][feature_extractor]['initial'] = rmse
 
 for training_data in weights:
     plt.clf()
@@ -134,4 +143,12 @@ for training_data in weights:
     plt.xticks([r + barWidth/2 for r in br1], model_numbers)
     plt.xlabel('Model number')
     plt.ylabel('RMSE')
-    plt.savefig('Testing/custom_filtering/ndp_final_rmse_' + training_data + '.png', bbox_inches='tight')
+    
+    if preprocessing == 'mutual':
+        filename = 'Testing/custom_filtering/ndp_final_rmse_' + training_data + '.png'
+    elif preprocessing == 'none':
+        filename = 'Testing/custom_filtering/ndp_final_rmse_' + training_data + '_current_deformation.png'
+    else:
+        raise Exception('Choose a valid preprocessing technique')
+    
+    plt.savefig(filename, bbox_inches='tight')
