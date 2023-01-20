@@ -2,6 +2,7 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 import copy
+import numpy as np
 
 # Replaces the code in the all folder which also calculates the RMSE
 
@@ -49,34 +50,34 @@ elif preprocessing == 'none':
     weights = {
         'full_deformed' : {
             'kpfcn' : {
-                'conf' : '0.000001',
                 'adm' : 2.0,
                 'nc' : 500,
                 'epoch' : 10,
-                'conf' : '1e-06'
+                'conf_n' : '1e-06',
+                'conf' : '0.000001'
             },
             'fcgf' : {
-                'conf' : '0.000001',
                 'adm' : 2.0,
                 'nc' : 500,
                 'epoch' : 10,
-                'conf' : '1e-06'
+                'conf_n' : '1e-06',
+                'conf' : '0.000001'
             }
         },
         'partial_deformed' : {
             'kpfcn' : {
-                'conf' : '0.000001',
                 'adm' : 2.0,
                 'nc' : 500,
                 'epoch' : 5,
-                'conf' : '1e-04'
+                'conf_n' : '1e-04',
+                'conf' : '0.000001'
             },
             'fcgf' : {
-                'conf' : '0.000001',
                 'adm' : 2.0,
                 'nc' : 500,
                 'epoch' : 5,
-                'conf' : '1e-06'
+                'conf_n' : '1e-06',
+                'conf' : '0.000001'
             }
         }   
     }
@@ -96,8 +97,8 @@ for model_number in model_numbers:
 
         for feature_extractor in weights[training_data]:
             final_matrices[model_number][training_data][feature_extractor] = {}
-            final_matrices[model_number][training_data][feature_extractor]['initial'] = 0
-            final_matrices[model_number][training_data][feature_extractor]['final'] = 0
+            final_matrices[model_number][training_data][feature_extractor]['initial'] = np.nan
+            final_matrices[model_number][training_data][feature_extractor]['final'] = np.nan
 
 for training_data in weights:
     for feature_extractor in weights[training_data]:
@@ -136,7 +137,21 @@ for training_data in weights:
         
         if preprocessing == 'none':
 
-            file_txt = 'Testing/custom_filtering/test_astrivis_' + training_data + '_current_deformation_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_e_' +  weights[training_data][feature_extractor]['epoch'] + '_knn_False_conf_' + weights[training_data][feature_extractor]['conf'] + '.txt'
+            file_txt = 'Testing/custom_filtering/test_astrivis_' + training_data + '_current_deformation_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_e_' +  str(weights[training_data][feature_extractor]['epoch']) + '_knn_False_conf_' + weights[training_data][feature_extractor]['conf_n'] + '.txt'
+            file_txt = open(file_txt, 'r')
+            Lines = file_txt.readlines()
+            current_data_type = ''
+            model_number = None
+
+            for line in Lines:
+                if 'model' in line and len(line) < 100:
+                    words = line.split(' ')
+                    model_number = words[1]
+                
+                if 'RMSE' in line:
+                    list_rmse = re.findall("\d+\.\d+", line)
+                    rmse = list_rmse[0]
+                    final_matrices[model_number][training_data][feature_extractor]['initial']  = float(rmse)
 
 for training_data in weights:
     plt.clf()
@@ -151,6 +166,16 @@ for training_data in weights:
         
         bar = bars[count]
         weights_legend = feature_extractor + ' - ' + training_data.replace('_', ' ')
+        
+        if np.nan in rmse:
+            print(training_data)
+            print(feature_extractor)
+            print(rmse)
+        if np.nan in initial_rmse:
+            print(training_data)
+            print(feature_extractor)
+            print(initial_rmse)
+
         plt.bar(bar, rmse, width = barWidthPlot, label = weights_legend) 
         plt.bar(bar, initial_rmse, width = barWidthPlot, fill = False, linestyle='dashed', label='_nolegend_')
         count += 1
