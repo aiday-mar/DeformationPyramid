@@ -41,15 +41,16 @@ if preprocessing == 'mutual':
     else:
         weights = {
             'kpfcn' : {
-                'full_deformed' : {
+                 'full_deformed' : {
                     'conf' : '0.000001',
                     'nc' : [15],
                     'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
                 },
-            #    'partial_deformed' : {
-            #        'conf' : '0.000001',
-            #        'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-            #    }
+                'partial_deformed' : {
+                    'conf' : '0.000001',
+                    'nc' : [15],
+                    'adm' : [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+                }
             },
             'fcgf' : {
                 'full_deformed' : {
@@ -368,7 +369,8 @@ else:
                     plt.bar(modified_adm_pos, true_data, color='r')
                     plt.bar(modified_adm_pos, total_data, bottom=true_data, color='b')
                     plt.xticks(modified_adm_pos, modified_adm, rotation=90)
-                    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
+                    nc_val =  weights[feature_extractor][training_data]['nc'][0]
+                    plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc_val) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_gt_ratio_model_' + model_number + '.png', bbox_inches='tight')
                 
         
         for feature_extractor in weights:
@@ -402,5 +404,6 @@ else:
                 plt.title(data_type)
                 plt.legend(loc ="upper right")
                 plt.xticks(modified_adm_pos, modified_adm, rotation=90)
-                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc[0]) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_rmse.png', bbox_inches='tight')
+                nc_val =  weights[feature_extractor][training_data]['nc'][0]
+                plt.savefig('Testing/custom_filtering/' + data_type.replace(' ', '_') + '_pre_' + preprocessing + '_max_ldmks_' + max_ldmks + '_c_' + confidence + '_nc_' + str(nc_val) + '_iot_' + str(iot[0]) + '_s_' + sampling + '_' + feature_extractor + '_td_' + training_data + '_varying_adm_rmse.png', bbox_inches='tight')
                         
