@@ -80,4 +80,6 @@ for data_type in data_types:
 
         plt.title('Model ' + model_number + ' - ' + data_type)
         plt.xticks(bar, criteria)
-        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '_' + data_type + '.png')
+        data_type_mod = data_type.lower()
+        data_type_mod = data_type_mod.replace(' ', '_')
+        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
