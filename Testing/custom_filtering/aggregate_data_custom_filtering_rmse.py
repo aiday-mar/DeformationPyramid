@@ -48,9 +48,11 @@ if preprocessing == 'mutual':
 elif preprocessing == 'none':
     weights = {
         'full_deformed' : {
-        #    'kpfcn' : {
-        #        'conf' : '0.000001',
-        #    },
+            'kpfcn' : {
+                'conf' : '0.000001',
+                'adm' : 2.0,
+                'nc' : 500
+            },
             'fcgf' : {
                 'conf' : '0.000001',
                 'adm' : 2.0,
