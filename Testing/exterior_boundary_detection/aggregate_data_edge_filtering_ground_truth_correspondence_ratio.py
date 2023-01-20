@@ -63,6 +63,8 @@ for criterion in criteria:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
                 final_matrices[criterion][model_number][current_data_type]['rmse'] = rmse
 
+print(final_matrices)
+
 for data_type in data_types:
     for model_number in model_numbers:
 
