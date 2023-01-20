@@ -3,11 +3,12 @@ import copy
 import re
 import numpy as np
 
-criteria = ['none', 'mesh', 'angle', 'shape', 'disc', 'simple']
+criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-feature_extractor='fcgf'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
 training_data='partial_deformed'
 epoch='5'
 preprocessing='mutual'
