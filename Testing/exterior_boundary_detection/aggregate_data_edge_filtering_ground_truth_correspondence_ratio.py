@@ -3,12 +3,12 @@ import copy
 import re
 import numpy as np
 
-criteria = ['none', 'simple', 'angle', 'shape', 'disc', 'mesh']
+criteria = ['none', 'mesh', 'angle', 'shape', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
 feature_extractor='fcgf'
-training_data='full_deformed'
+training_data='partial_deformed'
 epoch='5'
 preprocessing='mutual'
 
@@ -36,34 +36,48 @@ for criterion in criteria:
                 if data_type in line:
                     current_data_type = data_type
 
-            line_to_check = 'number of true landmark correspondences returned from ' + criterion + ' edge filtering'
-            if line_to_check in line and current_data_type:
-                search = list(map(int, re.findall(r'\d+', line)))
-                true = int(search[0])
-                total = int(search[1])
-                final_matrices[criterion][model_number][current_data_type]['true'] = true
-                final_matrices[criterion][model_number][current_data_type]['total'] = total - true
+            if criterion == 'none':
+                if feature_extractor == 'kpfcn':
+                    line_to_check = 'number of true landmark correspondences returned from Outlier Rejection'
+                else:
+                    line_to_check = 'number of true landmark correspondences returned from FCGF based Outlier Rejection'
+                
+                if line_to_check in line and current_data_type:
+                    search = list(map(int, re.findall(r'\d+', line)))
+                    true = int(search[0])
+                    total = int(search[1])
+                    final_matrices[criterion][model_number][current_data_type]['true'] = true
+                    final_matrices[criterion][model_number][current_data_type]['total'] = total - true
+            
+            else:
+
+                line_to_check = 'number of true landmark correspondences returned from ' + criterion + ' edge filtering'
+                if line_to_check in line and current_data_type:
+                    search = list(map(int, re.findall(r'\d+', line)))
+                    true = int(search[0])
+                    total = int(search[1])
+                    final_matrices[criterion][model_number][current_data_type]['true'] = true
+                    final_matrices[criterion][model_number][current_data_type]['total'] = total - true
           
             if 'RMSE' in line and current_data_type:
                 rmse = float(re.findall("\d+\.\d+", line)[0])
                 final_matrices[criterion][model_number][current_data_type]['rmse'] = rmse
 
-print(final_matrices)
+for data_type in data_types:
+    for model_number in model_numbers:
 
-for model_number in model_numbers:
+        plt.clf()
 
-    plt.clf()
+        true = []
+        total = []
 
-    true = []
-    total = []
+        for criterion in criteria:
+            true.append(final_matrices[criterion][model_number][data_type]['true'])
+            total.append(final_matrices[criterion][model_number][data_type]['total'])
 
-    for criterion in criteria:
-        true.append(final_matrices[criterion][model_number]['true'])
-        total.append(final_matrices[criterion][model_number]['total'])
+        plt.bar(bar, true, color='r')
+        plt.bar(bar, total, bottom=true, color='b')
 
-    plt.bar(bar, true, color='r')
-    plt.bar(bar, total, bottom=true, color='b')
-
-    plt.title('Model ' + model_number)
-    plt.xticks(bar, criteria, rotation=90)
-    plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '.png')
+        plt.title('Model ' + model_number + ' - ' + data_type)
+        plt.xticks(bar, criteria, rotation=90)
+        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '_' + data_type + '.png')
