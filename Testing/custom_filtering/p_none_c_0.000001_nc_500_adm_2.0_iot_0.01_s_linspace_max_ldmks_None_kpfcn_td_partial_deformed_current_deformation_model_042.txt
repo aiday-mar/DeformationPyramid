@@ -1,0 +1,2334 @@
+model 042
+Using ARP
+number of centers 500
+average distance multiplier 2.0
+inlier outlier thresholds 0.01
+Partial Deformed
+feature_extractor :  kpfcn
+feature extractor inside of get_dataloader :  kpfcn
+coarse_level :  None
+feature extractor inside of collate_fn_4dmatch :  kpfcn
+coarse_level :  None
+coarse_level :  -2
+pts_num_coarse :  tensor([[117, 114]], dtype=torch.int32)
+
+
+knn_matching :  False
+index_at_which_to_return_coarse_feats :  1
+block_i :  0
+x.shape :  torch.Size([231, 2048])
+block_i :  1
+x.shape :  torch.Size([231, 1024])
+coarse_feats.shape :  torch.Size([1, 1024, 231])
+coarse_feats.shape :  torch.Size([1, 528, 231])
+coarse_feats.shape :  torch.Size([231, 528])
+coarse_level :  -2
+src_mask.shape :  torch.Size([1, 117])
+tgt_mask.shape :  torch.Size([1, 114])
+src_ind_coarse_split.shape :  torch.Size([117])
+tgt_ind_coarse_split.shape :  torch.Size([114])
+src_ind_coarse.shape :  torch.Size([117])
+tgt_ind_coarse.shape :  torch.Size([114])
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+confidence threshold used in the matching :  1e-06
+preprocessing :  none
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+ind.shape :  torch.Size([5000, 3])
+bi :  tensor([0, 0, 0,  ..., 0, 0, 0], device='cuda:0')
+si.shape :  torch.Size([5000])
+ti.shape :  torch.Size([5000])
+s_pos.shape :  torch.Size([5000, 3])
+t_pos.shape :  torch.Size([5000, 3])
+number of true landmarks correspondences returned from Lepard :  92  out of  5000
+fraction of true landmark correspondences returned from Lepard :  0.0184
+vec6d.shape :  torch.Size([5000, 6])
+ldmk_s.shape :  torch.Size([5000, 3])
+ldmk_t.shape :  torch.Size([5000, 3])
+number of true landmark correspondences returned from Outlier Rejection :  78  out of  3835
+fraction of true landmark correspondences returned from Outlier Rejection :  0.020338983050847456
+Custom filtering is used
+number of landmarks before custom filtering :  5000
+average distance :  0.03322503060386514
+average distance multiplier :  2.0
+number of unique source landmarks :  117
+number of centers :  500
+sampling :  linspace
+number of neighborhood centers :  500
+number of iterations of custom filtering :  1
+inlier outlier threshold :  0.01
+number of distinct source landmarks :  117
+max_ldmks :  None
+number of landmarks after custom filtering :  116
+number of true landmark correspondences returned from custom filtering :  4  out of  116
+fraction of true landmark correspondences returned from custom filtering :  0.034482758620689655
+fraction of true landmark correspondences returned from custom filtering also returned from Lepard :  1.0
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(AlignAndNonRigidMerge) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L167:#points1: 116
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L168:#points2: 116
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L169:#matches: 116
+Before Run of ransac
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SquentialRANSAC) {
+num_inliers : 10
+num_inliers : 13
+num_inliers : 7
+num_inliers : 5
+num_inliers : 15
+num_inliers : 21
+num_inliers : 12
+num_inliers : 13
+num_inliers : 8
+num_inliers : 7
+num_inliers : 35
+num_inliers : 18
+num_inliers : 21
+num_inliers : 17
+num_inliers : 27
+num_inliers : 5
+num_inliers : 7
+num_inliers : 7
+num_inliers : 20
+num_inliers : 18
+num_inliers : 22
+num_inliers : 10
+num_inliers : 10
+num_inliers : 25
+num_inliers : 9
+num_inliers : 10
+num_inliers : 8
+num_inliers : 10
+num_inliers : 16
+num_inliers : 25
+num_inliers : 19
+num_inliers : 17
+num_inliers : 29
+num_inliers : 10
+num_inliers : 12
+num_inliers : 15
+num_inliers : 12
+num_inliers : 9
+num_inliers : 22
+num_inliers : 6
+num_inliers : 14
+num_inliers : 20
+num_inliers : 19
+num_inliers : 10
+num_inliers : 17
+num_inliers : 17
+num_inliers : 20
+num_inliers : 17
+num_inliers : 0
+num_inliers : 18
+num_inliers : 5
+num_inliers : 19
+num_inliers : 10
+num_inliers : 6
+num_inliers : 15
+num_inliers : 12
+num_inliers : 7
+num_inliers : 10
+num_inliers : 25
+num_inliers : 18
+num_inliers : 19
+num_inliers : 18
+num_inliers : 14
+num_inliers : 9
+num_inliers : 10
+num_inliers : 1
+num_inliers : 24
+num_inliers : 18
+num_inliers : 19
+num_inliers : 10
+num_inliers : 17
+num_inliers : 15
+num_inliers : 16
+num_inliers : 8
+num_inliers : 9
+num_inliers : 19
+num_inliers : 10
+num_inliers : 24
+num_inliers : 29
+num_inliers : 10
+num_inliers : 14
+num_inliers : 21
+num_inliers : 9
+num_inliers : 6
+num_inliers : 18
+num_inliers : 17
+num_inliers : 19
+num_inliers : 14
+num_inliers : 23
+num_inliers : 16
+num_inliers : 30
+num_inliers : 13
+num_inliers : 21
+num_inliers : 13
+num_inliers : 22
+num_inliers : 15
+num_inliers : 11
+num_inliers : 20
+num_inliers : 18
+num_inliers : 12
+num_inliers : 11
+num_inliers : 20
+num_inliers : 23
+num_inliers : 18
+num_inliers : 10
+num_inliers : 24
+num_inliers : 8
+num_inliers : 17
+num_inliers : 19
+num_inliers : 5
+num_inliers : 19
+num_inliers : 10
+num_inliers : 7
+num_inliers : 13
+num_inliers : 9
+num_inliers : 22
+num_inliers : 12
+num_inliers : 13
+num_inliers : 30
+num_inliers : 21
+num_inliers : 25
+num_inliers : 17
+num_inliers : 11
+num_inliers : 24
+num_inliers : 11
+num_inliers : 13
+num_inliers : 17
+num_inliers : 8
+num_inliers : 8
+num_inliers : 26
+num_inliers : 19
+num_inliers : 4
+num_inliers : 19
+num_inliers : 12
+num_inliers : 16
+num_inliers : 22
+num_inliers : 36
+num_inliers : 20
+num_inliers : 19
+num_inliers : 19
+num_inliers : 11
+num_inliers : 11
+num_inliers : 15
+num_inliers : 18
+num_inliers : 21
+num_inliers : 29
+num_inliers : 22
+num_inliers : 16
+num_inliers : 17
+num_inliers : 19
+num_inliers : 19
+num_inliers : 9
+num_inliers : 10
+num_inliers inside of Run : 36
+num_inliers : 4
+num_inliers : 5
+num_inliers : 16
+num_inliers : 4
+num_inliers : 8
+num_inliers : 9
+num_inliers : 17
+num_inliers : 12
+num_inliers : 14
+num_inliers : 10
+num_inliers : 8
+num_inliers : 3
+num_inliers : 6
+num_inliers : 13
+num_inliers : 6
+num_inliers : 13
+num_inliers : 9
+num_inliers : 4
+num_inliers : 4
+num_inliers : 20
+num_inliers : 9
+num_inliers : 3
+num_inliers : 9
+num_inliers : 3
+num_inliers : 4
+num_inliers : 12
+num_inliers : 12
+num_inliers : 12
+num_inliers : 7
+num_inliers : 6
+num_inliers : 24
+num_inliers : 9
+num_inliers : 10
+num_inliers : 5
+num_inliers : 10
+num_inliers : 5
+num_inliers : 7
+num_inliers : 13
+num_inliers : 12
+num_inliers : 18
+num_inliers : 6
+num_inliers : 13
+num_inliers : 13
+num_inliers : 13
+num_inliers : 3
+num_inliers : 6
+num_inliers : 9
+num_inliers : 11
+num_inliers : 12
+num_inliers : 6
+num_inliers : 8
+num_inliers : 15
+num_inliers : 11
+num_inliers : 6
+num_inliers : 15
+num_inliers : 3
+num_inliers : 9
+num_inliers : 8
+num_inliers : 10
+num_inliers : 6
+num_inliers : 14
+num_inliers : 3
+num_inliers : 4
+num_inliers : 11
+num_inliers : 7
+num_inliers : 12
+num_inliers : 10
+num_inliers : 4
+num_inliers : 8
+num_inliers : 11
+num_inliers : 13
+num_inliers : 7
+num_inliers : 16
+num_inliers : 8
+num_inliers : 8
+num_inliers : 10
+num_inliers : 7
+num_inliers : 8
+num_inliers : 13
+num_inliers : 22
+num_inliers : 19
+num_inliers : 13
+num_inliers : 4
+num_inliers : 7
+num_inliers : 13
+num_inliers : 2
+num_inliers : 9
+num_inliers : 6
+num_inliers : 5
+num_inliers : 8
+num_inliers : 11
+num_inliers : 10
+num_inliers : 8
+num_inliers : 5
+num_inliers : 14
+num_inliers : 11
+num_inliers : 8
+num_inliers : 5
+num_inliers : 5
+num_inliers : 14
+num_inliers : 6
+num_inliers : 15
+num_inliers : 13
+num_inliers : 10
+num_inliers : 20
+num_inliers : 4
+num_inliers : 13
+num_inliers : 3
+num_inliers : 7
+num_inliers : 7
+num_inliers : 5
+num_inliers : 9
+num_inliers : 14
+num_inliers : 12
+num_inliers : 9
+num_inliers : 6
+num_inliers : 14
+num_inliers : 4
+num_inliers : 8
+num_inliers : 12
+num_inliers : 12
+num_inliers : 13
+num_inliers : 12
+num_inliers : 13
+num_inliers : 8
+num_inliers : 9
+num_inliers : 9
+num_inliers : 3
+num_inliers : 5
+num_inliers : 23
+num_inliers : 14
+num_inliers : 11
+num_inliers : 9
+num_inliers : 13
+num_inliers : 16
+num_inliers : 4
+num_inliers : 9
+num_inliers : 11
+num_inliers : 3
+num_inliers : 12
+num_inliers : 8
+num_inliers : 21
+num_inliers : 18
+num_inliers : 18
+num_inliers : 9
+num_inliers : 8
+num_inliers : 14
+num_inliers : 17
+num_inliers : 4
+num_inliers : 11
+num_inliers : 9
+num_inliers : 15
+num_inliers : 5
+num_inliers : 5
+num_inliers : 8
+num_inliers : 9
+num_inliers : 13
+num_inliers : 3
+num_inliers : 5
+num_inliers : 9
+num_inliers : 10
+num_inliers : 16
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 7
+num_inliers : 8
+num_inliers : 4
+num_inliers : 4
+num_inliers : 15
+num_inliers inside of Run : 24
+num_inliers : 4
+num_inliers : 11
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 6
+num_inliers : 1
+num_inliers : 3
+num_inliers : 13
+num_inliers : 7
+num_inliers : 3
+num_inliers : 5
+num_inliers : 9
+num_inliers : 3
+num_inliers : 4
+num_inliers : 7
+num_inliers : 6
+num_inliers : 3
+num_inliers : 4
+num_inliers : 6
+num_inliers : 3
+num_inliers : 9
+num_inliers : 10
+num_inliers : 10
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 7
+num_inliers : 5
+num_inliers : 9
+num_inliers : 8
+num_inliers : 9
+num_inliers : 2
+num_inliers : 2
+num_inliers : 6
+num_inliers : 8
+num_inliers : 10
+num_inliers : 9
+num_inliers : 7
+num_inliers : 4
+num_inliers : 5
+num_inliers : 14
+num_inliers : 1
+num_inliers : 5
+num_inliers : 8
+num_inliers : 2
+num_inliers : 5
+num_inliers : 8
+num_inliers : 5
+num_inliers : 9
+num_inliers : 10
+num_inliers : 0
+num_inliers : 9
+num_inliers : 5
+num_inliers : 2
+num_inliers : 3
+num_inliers : 13
+num_inliers : 7
+num_inliers : 13
+num_inliers : 5
+num_inliers : 9
+num_inliers : 6
+num_inliers : 6
+num_inliers : 7
+num_inliers : 9
+num_inliers : 3
+num_inliers : 3
+num_inliers : 7
+num_inliers : 4
+num_inliers : 3
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 7
+num_inliers : 6
+num_inliers : 7
+num_inliers : 5
+num_inliers : 5
+num_inliers : 10
+num_inliers : 2
+num_inliers : 9
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 8
+num_inliers : 3
+num_inliers : 7
+num_inliers : 7
+num_inliers : 2
+num_inliers : 3
+num_inliers : 4
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 2
+num_inliers : 8
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 7
+num_inliers : 4
+num_inliers : 2
+num_inliers : 5
+num_inliers : 5
+num_inliers : 5
+num_inliers : 5
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 10
+num_inliers : 4
+num_inliers : 8
+num_inliers : 8
+num_inliers : 7
+num_inliers : 4
+num_inliers : 8
+num_inliers : 4
+num_inliers : 6
+num_inliers : 4
+num_inliers : 4
+num_inliers : 8
+num_inliers : 9
+num_inliers : 4
+num_inliers : 10
+num_inliers : 3
+num_inliers : 3
+num_inliers : 1
+num_inliers : 5
+num_inliers : 2
+num_inliers : 5
+num_inliers : 6
+num_inliers : 8
+num_inliers : 12
+num_inliers : 9
+num_inliers : 3
+num_inliers : 4
+num_inliers : 6
+num_inliers : 7
+num_inliers : 7
+num_inliers : 6
+num_inliers : 8
+num_inliers : 3
+num_inliers : 2
+num_inliers : 6
+num_inliers : 4
+num_inliers : 6
+num_inliers : 7
+num_inliers : 8
+num_inliers : 5
+num_inliers : 8
+num_inliers : 7
+num_inliers : 8
+num_inliers : 5
+num_inliers : 6
+num_inliers : 5
+num_inliers : 6
+num_inliers : 4
+num_inliers : 3
+num_inliers : 10
+num_inliers : 7
+num_inliers : 7
+num_inliers : 4
+num_inliers : 1
+num_inliers : 6
+num_inliers : 8
+num_inliers : 9
+num_inliers : 7
+num_inliers : 6
+num_inliers : 4
+num_inliers : 9
+num_inliers : 4
+num_inliers : 6
+num_inliers : 8
+num_inliers : 10
+num_inliers : 12
+num_inliers : 8
+num_inliers : 4
+num_inliers : 1
+num_inliers : 5
+num_inliers : 7
+num_inliers : 5
+num_inliers : 4
+num_inliers : 5
+num_inliers : 7
+num_inliers : 6
+num_inliers : 3
+num_inliers : 9
+num_inliers : 5
+num_inliers : 4
+num_inliers : 7
+num_inliers : 7
+num_inliers : 6
+num_inliers : 9
+num_inliers : 3
+num_inliers : 7
+num_inliers : 4
+num_inliers : 7
+num_inliers : 9
+num_inliers : 5
+num_inliers : 6
+num_inliers : 8
+num_inliers : 7
+num_inliers : 5
+num_inliers : 5
+num_inliers : 6
+num_inliers : 9
+num_inliers : 11
+num_inliers : 3
+num_inliers : 8
+num_inliers : 3
+num_inliers : 7
+num_inliers : 3
+num_inliers : 5
+num_inliers : 8
+num_inliers : 9
+num_inliers : 9
+num_inliers : 12
+num_inliers : 3
+num_inliers : 15
+num_inliers : 6
+num_inliers : 9
+num_inliers : 7
+num_inliers : 8
+num_inliers : 5
+num_inliers : 3
+num_inliers : 6
+num_inliers : 3
+num_inliers : 3
+num_inliers : 13
+num_inliers : 5
+num_inliers : 8
+num_inliers : 7
+num_inliers : 4
+num_inliers : 5
+num_inliers : 6
+num_inliers : 4
+num_inliers : 3
+num_inliers : 13
+num_inliers : 7
+num_inliers inside of Run : 15
+num_inliers : 6
+num_inliers : 0
+num_inliers : 2
+num_inliers : 2
+num_inliers : 6
+num_inliers : 1
+num_inliers : 6
+num_inliers : 4
+num_inliers : 3
+num_inliers : 8
+num_inliers : 3
+num_inliers : 4
+num_inliers : 0
+num_inliers : 5
+num_inliers : 4
+num_inliers : 2
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 5
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 0
+num_inliers : 6
+num_inliers : 2
+num_inliers : 2
+num_inliers : 4
+num_inliers : 3
+num_inliers : 4
+num_inliers : 6
+num_inliers : 6
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 6
+num_inliers : 6
+num_inliers : 4
+num_inliers : 8
+num_inliers : 4
+num_inliers : 3
+num_inliers : 7
+num_inliers : 3
+num_inliers : 7
+num_inliers : 6
+num_inliers : 4
+num_inliers : 4
+num_inliers : 5
+num_inliers : 2
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 6
+num_inliers : 4
+num_inliers : 2
+num_inliers : 2
+num_inliers : 11
+num_inliers : 7
+num_inliers : 2
+num_inliers : 6
+num_inliers : 1
+num_inliers : 6
+num_inliers : 2
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 4
+num_inliers : 9
+num_inliers : 4
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 0
+num_inliers : 5
+num_inliers : 3
+num_inliers : 4
+num_inliers : 3
+num_inliers : 7
+num_inliers : 6
+num_inliers : 7
+num_inliers : 5
+num_inliers : 0
+num_inliers : 4
+num_inliers : 3
+num_inliers : 2
+num_inliers : 5
+num_inliers : 7
+num_inliers : 6
+num_inliers : 1
+num_inliers : 8
+num_inliers : 4
+num_inliers : 7
+num_inliers : 5
+num_inliers : 4
+num_inliers : 4
+num_inliers : 4
+num_inliers : 9
+num_inliers : 5
+num_inliers : 3
+num_inliers : 2
+num_inliers : 4
+num_inliers : 8
+num_inliers : 4
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 3
+num_inliers : 2
+num_inliers : 4
+num_inliers : 6
+num_inliers : 5
+num_inliers : 5
+num_inliers : 3
+num_inliers : 6
+num_inliers : 6
+num_inliers : 3
+num_inliers : 6
+num_inliers : 6
+num_inliers : 7
+num_inliers : 5
+num_inliers : 8
+num_inliers : 4
+num_inliers : 5
+num_inliers : 5
+num_inliers : 3
+num_inliers : 6
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 6
+num_inliers : 4
+num_inliers : 3
+num_inliers : 2
+num_inliers : 6
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 1
+num_inliers : 6
+num_inliers : 4
+num_inliers : 1
+num_inliers : 2
+num_inliers : 8
+num_inliers : 1
+num_inliers : 5
+num_inliers : 1
+num_inliers : 5
+num_inliers : 1
+num_inliers : 6
+num_inliers : 6
+num_inliers : 1
+num_inliers : 3
+num_inliers : 2
+num_inliers : 6
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 6
+num_inliers : 6
+num_inliers : 1
+num_inliers : 3
+num_inliers : 7
+num_inliers : 3
+num_inliers : 0
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 9
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 0
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 9
+num_inliers : 2
+num_inliers : 3
+num_inliers : 7
+num_inliers : 0
+num_inliers : 3
+num_inliers : 4
+num_inliers : 4
+num_inliers : 5
+num_inliers : 6
+num_inliers : 1
+num_inliers : 2
+num_inliers : 7
+num_inliers : 2
+num_inliers : 1
+num_inliers : 3
+num_inliers : 5
+num_inliers : 6
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 3
+num_inliers : 7
+num_inliers : 3
+num_inliers : 7
+num_inliers : 5
+num_inliers : 2
+num_inliers : 8
+num_inliers : 5
+num_inliers : 5
+num_inliers : 3
+num_inliers : 2
+num_inliers : 3
+num_inliers : 2
+num_inliers : 4
+num_inliers : 0
+num_inliers : 3
+num_inliers : 6
+num_inliers : 3
+num_inliers : 5
+num_inliers : 6
+num_inliers : 2
+num_inliers : 2
+num_inliers : 5
+num_inliers : 4
+num_inliers : 8
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers inside of Run : 11
+num_inliers : 1
+num_inliers : 4
+num_inliers : 1
+num_inliers : 1
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 4
+num_inliers : 2
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 2
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 5
+num_inliers : 4
+num_inliers : 0
+num_inliers : 5
+num_inliers : 2
+num_inliers : 0
+num_inliers : 5
+num_inliers : 3
+num_inliers : 5
+num_inliers : 0
+num_inliers : 5
+num_inliers : 4
+num_inliers : 4
+num_inliers : 2
+num_inliers : 0
+num_inliers : 2
+num_inliers : 2
+num_inliers : 1
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 1
+num_inliers : 3
+num_inliers : 5
+num_inliers : 5
+num_inliers : 2
+num_inliers : 1
+num_inliers : 8
+num_inliers : 2
+num_inliers : 5
+num_inliers : 4
+num_inliers : 8
+num_inliers : 2
+num_inliers : 2
+num_inliers : 7
+num_inliers : 3
+num_inliers : 5
+num_inliers : 1
+num_inliers : 4
+num_inliers : 3
+num_inliers : 0
+num_inliers : 1
+num_inliers : 3
+num_inliers : 2
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 5
+num_inliers : 2
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 1
+num_inliers : 6
+num_inliers : 4
+num_inliers : 4
+num_inliers : 4
+num_inliers : 4
+num_inliers : 3
+num_inliers : 1
+num_inliers : 5
+num_inliers : 4
+num_inliers : 3
+num_inliers : 1
+num_inliers : 6
+num_inliers : 3
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 1
+num_inliers : 5
+num_inliers : 6
+num_inliers : 3
+num_inliers : 7
+num_inliers : 5
+num_inliers : 4
+num_inliers : 3
+num_inliers : 4
+num_inliers : 4
+num_inliers : 6
+num_inliers : 1
+num_inliers : 2
+num_inliers : 3
+num_inliers : 2
+num_inliers : 0
+num_inliers : 6
+num_inliers : 4
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 5
+num_inliers : 5
+num_inliers : 1
+num_inliers : 1
+num_inliers : 5
+num_inliers : 4
+num_inliers : 7
+num_inliers : 7
+num_inliers : 5
+num_inliers : 4
+num_inliers : 0
+num_inliers : 5
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 4
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 1
+num_inliers : 1
+num_inliers : 4
+num_inliers : 5
+num_inliers : 6
+num_inliers : 0
+num_inliers : 1
+num_inliers : 3
+num_inliers : 2
+num_inliers : 4
+num_inliers : 5
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 6
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 0
+num_inliers : 2
+num_inliers : 3
+num_inliers : 1
+num_inliers : 3
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 4
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 4
+num_inliers : 7
+num_inliers : 4
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 1
+num_inliers : 4
+num_inliers : 6
+num_inliers : 4
+num_inliers : 6
+num_inliers : 5
+num_inliers : 2
+num_inliers : 4
+num_inliers : 2
+num_inliers : 2
+num_inliers : 2
+num_inliers : 5
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 2
+num_inliers : 0
+num_inliers : 3
+num_inliers : 2
+num_inliers : 4
+num_inliers : 4
+num_inliers : 1
+num_inliers : 1
+num_inliers : 1
+num_inliers : 5
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 3
+num_inliers : 4
+num_inliers : 5
+num_inliers : 3
+num_inliers : 1
+num_inliers : 2
+num_inliers : 2
+num_inliers : 2
+num_inliers : 6
+num_inliers : 5
+num_inliers : 4
+num_inliers : 2
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 2
+num_inliers : 1
+num_inliers : 4
+num_inliers : 0
+num_inliers : 2
+num_inliers : 3
+num_inliers : 3
+num_inliers : 5
+num_inliers : 4
+num_inliers : 4
+num_inliers : 5
+num_inliers inside of Run : 8
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SquentialRANSAC) [0.029518 s]
+-0.477764 -0.320809 -0.565791   1.32639
+0.0286439 -0.711727  0.379369   1.27345
+-0.649783  0.204506  0.432731  0.169729
+        0         0         0         1
+ -0.690955  -0.172017   0.510189   0.334446
+  0.384223   0.423931   0.663292 -0.0621048
+ -0.377167    0.74699  -0.258944   0.211775
+         0          0          0          1
+ -0.565397   0.588161 -0.0962918    0.18623
+  0.527352   0.431869   -0.45855   0.898783
+ -0.277678  -0.377405  -0.674788    1.53916
+         0          0          0          1
+ -0.495651 -0.0980903  -0.634327    1.18283
+ -0.175988  -0.749957   0.253484    1.47361
+ -0.617269   0.292582   0.437078    0.13818
+         0          0          0          1
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(DenseGaussNewton::optimize()) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L118:# parameters: 7
+VERBOSE: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L119:# residuals: 8843
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L258:Gauss-Newton max iterations: #20 reached.
+INFO: /home/aiday.kyzy/code/sfm/src/./vision/geometry/dense_gauss_newton.h:L259:Gauss-Newton did not converge.
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (DenseGaussNewton::optimize()) [0.102202 s]
+Affine transform: -0.718463 -0.524905 -0.317541   1.37395
+0.0585883  -0.54548  0.769134  0.797232
+-0.610676   0.56522  0.447379 -0.138063
+        0         0         0         1
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L232:#models: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 0 | #inliers 36
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 1 | #inliers 24
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 2 | #inliers 15
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L91:#model 3 | #inliers 11
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L235:#inilers: 86
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L257:Mesh1: #vertices: 9379
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L258:Mesh2: #vertices: 8843
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L784:SampleDeformationNodes
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.010308 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L790:Create balltree...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L797:Build kdtree...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L804:Create matches...
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L826:#matches / #inliers: 116/116
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L827:Mesh1: #points | #normals: 86 | 86
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L828:Mesh2: #points | #normals: 86 | 86
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.007829 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  8.300146e-04    0.00e+00    1.22e-03   0.00e+00   0.00e+00  1.00e+04        0    1.02e-02    1.62e-02
+   1  2.063650e-04    6.24e-04    5.53e-04   2.39e+01   7.73e-01  1.19e+04        1    9.16e-01    9.32e-01
+   2  5.273937e-05    1.54e-04    3.44e-04   1.03e+01   7.45e-01  1.35e+04        1    2.22e-01    1.15e+00
+   3  4.445655e-05    8.28e-06    1.77e-04   6.06e+00   1.57e-01  1.02e+04        1    2.18e-01    1.37e+00
+   4  3.411359e-07    4.41e-05    1.60e-05   4.56e+00   9.93e-01  3.07e+04        1    2.98e-01    1.67e+00
+   5  1.413005e-07    2.00e-07    1.59e-05   3.50e+00   6.74e-01  3.21e+04        1    6.46e-01    2.32e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [2.317982 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L881:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         3182                     3182
+Parameters                              19092                    19092
+Residual blocks                         15996                    15996
+Residuals                               47816                    47816
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     3182
+
+Cost:
+Initial                          8.300146e-04
+Final                            1.413005e-07
+Change                           8.298733e-04
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.005929
+
+  Residual only evaluation           0.018904 (5)
+  Jacobian & residual evaluation     0.332674 (6)
+  Linear solver                      1.943846 (5)
+Minimizer                            2.310158
+
+Postprocessor                        0.000505
+Total                                2.316616
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000574 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [2.387444 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.012263 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.011768 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(meshing) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudTsdf) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeGridExtrinsics) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L159:Set automatic grid position
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputePointDensity) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_utils.cc:L400:Size / SubsetSize : 8842 / 89
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputePointDensity) [0.001174 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L174:Set automatic grid resolution
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L179:Set automatic grid scale
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L192:Resolution: [42, 39, 44], Margin: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L193:Scale: [140.665604, 140.665604, 140.665604]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L194:Position: [0.403536, 0.994304, 0.512085]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L195:Orientation: [0.000000, 0.000000, 0.000000]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeGridExtrinsics) [0.001220 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L225:trace_distance: 3
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(GridErode) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (GridErode) [0.004358 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L329:Extract single surface mesh
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ExtractMeshUniqueVertices) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/./graphics/meshing/generic_mc_unique_vertices.h:L281:Using array for vertex_list and edge_vertex_ids
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ExtractMeshUniqueVertices) [0.004125 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Mesh2Utils::FixMesh) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L844:Build vertex lookup table
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L873:Check for broken edges
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+ERROR: /home/aiday.kyzy/code/sfm/src/./graphics/mesh2/vertex2_iterators.h:L140:Sanity check failed: next.opposite() invalid.
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Mesh2Utils::FixMesh) [0.003017 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeVertexNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000795 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L346:Mesh2::CheckConsistency
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L352:Meshing:: Mesh2Transform::ComputeNormals(.)
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000185 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(ComputeVertexNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (ComputeVertexNormals) [0.000533 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/meshing/meshing.cc:L370:MeshRepair::PlanarHoleFilling
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PlanarHoleFilling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FindHoles) {
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_utils.cc:L1106:#holes: 36
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FindHoles) [0.000571 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L123:Fill holes, #holes: 36
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 0 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 1 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 2 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 3 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 4 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 5 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 6 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 7 / 36 | Size: 3
+WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 8 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 9 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 10 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 11 / 36 | Size: 3
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 12 / 36 | Size: 3
+WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 13 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 14 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 15 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 16 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 17 / 36 | Size: 4
+WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 18 / 36 | Size: 4
+WARN: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L217:Skip remaining hole edges due to too large angles
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L218:======================== SKIP ==================== 
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 19 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 20 / 36 | Size: 4
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 21 / 36 | Size: 5
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 22 / 36 | Size: 5
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 23 / 36 | Size: 6
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 24 / 36 | Size: 6
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 25 / 36 | Size: 6
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 26 / 36 | Size: 6
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 27 / 36 | Size: 7
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 28 / 36 | Size: 11
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 29 / 36 | Size: 11
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 30 / 36 | Size: 16
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 31 / 36 | Size: 19
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 32 / 36 | Size: 24
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 33 / 36 | Size: 28
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L125:Filling hole: 34 / 36 | Size: 31
+VERBOSE: /home/aiday.kyzy/code/sfm/src/graphics/mesh2/mesh2_repair.cc:L313:--------------------------------------------------------
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PlanarHoleFilling) [0.001282 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudTsdf) [0.018134 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (meshing) [0.018380 s]
+DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L318:Template mesh #vertices: 2390
+DEBUG: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L319:Template mesh #faces: 4343
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 1 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000218 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002664 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.019642
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.006538 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  4.061834e-05    0.00e+00    6.45e-05   0.00e+00   0.00e+00  1.00e+04        0    1.90e-02    2.26e-02
+   1  3.516891e-06    3.71e-05    5.18e-05   1.95e+01   9.57e-01  3.00e+04        1    4.40e-01    4.63e-01
+   2  1.079595e-06    2.44e-06    6.15e-06   9.63e+00   9.66e-01  9.00e+04        1    1.52e-01    6.15e-01
+   3  8.932280e-07    1.86e-07    8.24e-07   4.98e+00   9.06e-01  1.94e+05        1    1.31e-01    7.46e-01
+   4  8.602573e-07    3.30e-08    2.13e-06   3.49e+00   7.65e-01  2.28e+05        1    5.15e-01    1.26e+00
+   5  8.402624e-07    2.00e-08    1.03e-06   2.37e+00   8.22e-01  3.11e+05        1    2.01e-01    1.46e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.463124 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1400                     1400
+Parameters                               8400                     8400
+Residual blocks                         10467                    10467
+Residuals                               24467                    24467
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1400
+
+Cost:
+Initial                          4.061834e-05
+Final                            8.402624e-07
+Change                           3.977807e-05
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.003646
+
+  Residual only evaluation           0.015303 (5)
+  Jacobian & residual evaluation     0.410203 (6)
+  Linear solver                      1.024192 (5)
+Minimizer                            1.459153
+
+Postprocessor                        0.000130
+Total                                1.462940
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000159 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.556013 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 2 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000239 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002348 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.019474
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.008589 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  8.596492e-06    0.00e+00    5.30e-05   0.00e+00   0.00e+00  1.00e+04        0    2.67e-02    3.11e-02
+   1  1.132164e-06    7.46e-06    6.82e-06   1.15e+01   9.67e-01  3.00e+04        1    2.59e-01    2.90e-01
+   2  7.407306e-07    3.91e-07    7.07e-07   4.50e+00   9.87e-01  9.00e+04        1    1.66e-01    4.56e-01
+   3  7.142276e-07    2.65e-08    2.66e-07   2.04e+00   1.07e+00  2.70e+05        1    1.54e-01    6.10e-01
+   4  7.075370e-07    6.69e-09    1.88e-07   1.15e+00   1.18e+00  8.10e+05        1    1.52e-01    7.62e-01
+   5  7.050219e-07    2.52e-09    8.10e-08   6.92e-01   1.26e+00  2.43e+06        1    1.61e-01    9.23e-01
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [0.923415 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1419                     1419
+Parameters                               8514                     8514
+Residual blocks                         12399                    12399
+Residuals                               26589                    26589
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1419
+
+Cost:
+Initial                          8.596492e-06
+Final                            7.050219e-07
+Change                           7.891470e-06
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.004303
+
+  Residual only evaluation           0.018297 (5)
+  Jacobian & residual evaluation     0.445053 (6)
+  Linear solver                      0.444841 (5)
+Minimizer                            0.918705
+
+Postprocessor                        0.000192
+Total                                0.923210
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000155 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.011861 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 3 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000201 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002400 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.019652
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.009159 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  2.621873e-06    0.00e+00    1.45e-05   0.00e+00   0.00e+00  1.00e+04        0    2.99e-02    3.44e-02
+   1  6.949379e-07    1.93e-06    7.84e-06   7.72e+00   9.72e-01  3.00e+04        1    2.27e-01    2.61e-01
+   2  5.549051e-07    1.40e-07    6.61e-07   2.11e+00   1.00e+00  9.00e+04        1    7.26e-01    9.87e-01
+   3  5.494483e-07    5.46e-09    3.14e-07   9.79e-01   1.07e+00  2.70e+05        1    4.74e-01    1.46e+00
+   4  5.478625e-07    1.59e-09    6.69e-08   5.11e-01   1.29e+00  8.10e+05        1    1.55e-01    1.62e+00
+   5  5.469528e-07    9.10e-10    1.21e-07   4.35e-01   1.53e+00  2.43e+06        1    1.59e-01    1.78e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.775762 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1423                     1423
+Parameters                               8538                     8538
+Residual blocks                         13087                    13087
+Residuals                               27317                    27317
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1423
+
+Cost:
+Initial                          2.621873e-06
+Final                            5.469528e-07
+Change                           2.074920e-06
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.004507
+
+  Residual only evaluation           0.022092 (5)
+  Jacobian & residual evaluation     0.472939 (6)
+  Linear solver                      1.263924 (5)
+Minimizer                            1.770648
+
+Postprocessor                        0.000277
+Total                                1.775444
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000151 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.864108 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 4 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000242 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002404 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.019647
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.009259 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  1.833329e-06    0.00e+00    1.91e-05   0.00e+00   0.00e+00  1.00e+04        0    3.14e-02    3.60e-02
+   1  5.265952e-07    1.31e-06    4.81e-06   5.72e+00   1.00e+00  3.00e+04        1    1.96e-01    2.32e-01
+   2  4.677556e-07    5.88e-08    4.20e-07   1.84e+00   1.02e+00  9.00e+04        1    2.99e-01    5.31e-01
+   3  4.645427e-07    3.21e-09    3.05e-07   1.07e+00   9.96e-01  2.70e+05        1    1.51e-01    6.82e-01
+   4  4.637714e-07    7.71e-10    1.28e-07   4.83e-01   8.33e-01  3.83e+05        1    1.56e-01    8.38e-01
+   5  4.635121e-07    2.59e-10    8.32e-08   2.91e-01   6.87e-01  4.05e+05        1    1.78e-01    1.02e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.016211 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1437                     1437
+Parameters                               8622                     8622
+Residual blocks                         13474                    13474
+Residuals                               27844                    27844
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1437
+
+Cost:
+Initial                          1.833329e-06
+Final                            4.635121e-07
+Change                           1.369817e-06
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.004568
+
+  Residual only evaluation           0.022412 (5)
+  Jacobian & residual evaluation     0.428292 (6)
+  Linear solver                      0.548365 (5)
+Minimizer                            1.011205
+
+Postprocessor                        0.000217
+Total                                1.016002
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000157 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.111247 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/point_cloud_non_rigid_merge.cc:L333:iteration: # 5 / 5
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Registration2::Register) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(FaceNormals) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (FaceNormals) [0.000198 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(PointCloudSampling::PoissonSphereSampling) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (PointCloudSampling::PoissonSphereSampling) [0.002459 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L414:Absolute threshold: 0.019804
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SetupRegistrationProblem) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SetupRegistrationProblem) [0.010343 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(SolveCeresProblem) {
+iter      cost      cost_change  |gradient|   |step|    tr_ratio  tr_radius  ls_iter  iter_time  total_time
+   0  1.262138e-06    0.00e+00    1.14e-05   0.00e+00   0.00e+00  1.00e+04        0    3.25e-02    3.72e-02
+   1  4.644654e-07    7.98e-07    1.87e-06   4.55e+00   1.03e+00  3.00e+04        1    1.61e-01    1.99e-01
+   2  4.408175e-07    2.36e-08    3.98e-07   1.13e+00   1.09e+00  9.00e+04        1    7.30e-01    9.29e-01
+   3  4.383883e-07    2.43e-09    2.34e-07   5.23e-01   1.59e+00  2.70e+05        1    1.61e-01    1.09e+00
+   4  4.370687e-07    1.32e-09    1.80e-07   4.10e-01   1.72e+00  8.10e+05        1    1.55e-01    1.24e+00
+   5  4.365194e-07    5.49e-10    9.74e-08   2.51e-01   1.60e+00  2.43e+06        1    1.71e-01    1.42e+00
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (SolveCeresProblem) [1.416568 s]
+VERBOSE: /home/aiday.kyzy/code/sfm/src/vision/point_cloud/registration/non_rigid_registration.cc:L736:Summary: 
+Solver Summary (v 2.1.0-eigen-(3.3.4)-lapack-suitesparse-(5.1.2)-cxsparse-(3.1.9)-eigensparse-no_openmp-cuda-(11030))
+
+                                     Original                  Reduced
+Parameter blocks                         1448                     1448
+Parameters                               8688                     8688
+Residual blocks                         13750                    13750
+Residuals                               28230                    28230
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Threads                                    16                       16
+Linear solver ordering              AUTOMATIC                     1448
+
+Cost:
+Initial                          1.262138e-06
+Final                            4.365194e-07
+Change                           8.256186e-07
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.004729
+
+  Residual only evaluation           0.018799 (5)
+  Jacobian & residual evaluation     0.457695 (6)
+  Linear solver                      0.922969 (5)
+Minimizer                            1.411245
+
+Postprocessor                        0.000220
+Total                                1.416205
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 5.)
+
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L87:ScopedTimer(Update nodes) {
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Update nodes) [0.000151 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (Registration2::Register) [1.509822 s]
+INFO: /home/aiday.kyzy/code/sfm/src/base/scoped_timer.cc:L74:} // ScopedTimer (AlignAndNonRigidMerge) [9.618404 s]
+FLAGS.base :  
+FLAGS.file1 :  /home/aiday.kyzy/code/DeformationPyramid/TestData//PartialDeformed/model042/020_0.ply
+FLAGS.landmarks1 :  /home/aiday.kyzy/code/DeformationPyramid/TestData//PartialDeformed/model042/output_final_p_none_c_0.000001_nc_500_adm_2.0_iot_0.01_s_linspace_max_ldmks_None_kpfcn_td_partial_deformed_current_deformation/kpfcn_custom_filtering_ldmk/s_custom_filtering_pcd.ply
+strict inlier ratio threshold :  0.01
+relaxed inlier ratio threshold :  0.03
+RMSE :  0.03439950280460468
+Strict IR :  0.12213049869953635
+Relaxed IR :  0.5423498812620151
