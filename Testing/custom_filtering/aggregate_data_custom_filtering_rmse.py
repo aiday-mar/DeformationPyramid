@@ -10,8 +10,6 @@ model_numbers = ['002', '042', '085', '126', '167', '207']
 base = 'Testing/custom_filtering/'
 
 preprocessing = 'mutual'
-nc=150
-adm=4.0
 iot=0.01
 
 barWidth = 0.30
@@ -25,17 +23,25 @@ if preprocessing == 'mutual':
         'full_deformed' : {
             'kpfcn' : {
                 'conf' : '0.000001',
+                'adm' : '2.0',
+                'nc' : '15'
             },
             'fcgf' : {
                 'conf' : '0.000001',
+                'adm' : '5.0',
+                'nc' : '150'
             }
         },
         'partial_deformed' : {
             'kpfcn' : {
                 'conf' : '0.000001',
+                'adm' : '2.0',
+                'nc' : '15'
             },
             'fcgf' : {
                 'conf' : '0.000001',
+                'adm' : '5.0',
+                'nc' : '150'
             }
         }   
     }
@@ -61,7 +67,6 @@ elif preprocessing == 'none':
 else:
     raise Exception('Must be one of the preprocessing options')
 
-confidence = '1e-06'
 sampling='linspace'
 max_ldmks = 'None'
 
@@ -78,13 +83,15 @@ for model_number in model_numbers:
             final_matrices[model_number][training_data][feature_extractor]['initial'] = 0
             final_matrices[model_number][training_data][feature_extractor]['final'] = 0
 
-print(final_matrices)
-
 for training_data in weights:
     for feature_extractor in weights[training_data]:
         for model_number in model_numbers:
+            
+            nc = weights[training_data][feature_extractor]['nc']
+            adm = weights[training_data][feature_extractor]['adm']
+            confidence = weights[training_data][feature_extractor]['conf']
 
-            file = 'p_' + preprocessing + '_c_' + confidence + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
+            file = 'p_' + preprocessing + '_c_' + str(confidence) + '_nc_' + str(nc) + '_adm_' + str(adm) + '_iot_' + str(iot) + '_s_' + sampling + '_max_ldmks_' +  max_ldmks + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(base + file, 'r')
             Lines = file_txt.readlines()
             current_data_type = ''
@@ -92,7 +99,7 @@ for training_data in weights:
 
                 if 'RMSE' in line:
                     rmse = float(re.findall("\d+\.\d+", line)[0])
-                    final_matrices[model_number][training_data][model_number][feature_extractor]['final'] = rmse
+                    final_matrices[model_number][training_data][feature_extractor]['final'] = rmse
 
             file_txt = 'Testing/custom_filtering/output_outlier_rejection_default_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_model_' + model_number + '.txt'
             file_txt = open(file_txt, 'r')
@@ -102,7 +109,7 @@ for training_data in weights:
                 
                 if 'RMSE' in line:
                     rmse = float(re.findall("\d+\.\d+", line)[0])
-                    final_matrices[model_number][training_data][model_number][feature_extractor]['final'] = rmse
+                    final_matrices[model_number][training_data][feature_extractor]['initial'] = rmse
 
 for training_data in weights:
     plt.clf()
@@ -116,9 +123,14 @@ for training_data in weights:
             rmse.append(final_matrices[model_number][training_data][feature_extractor]['final'])
         
         bar = bars[count]
-        weights_legend = feature_extractor
-        plt.bar(bar, rmse, width = barWidthPlot, edgecolor='white', label = weights_legend) 
-        plt.bar(bar, rmse, linestyle='dashed', label='_nolegend_')
+        weights_legend = feature_extractor + ' - ' + training_data
+        plt.bar(bar, rmse, width = barWidthPlot, label = weights_legend) 
+        plt.bar(bar, initial_rmse, width = barWidthPlot, fill = False, linestyle='dashed', label='_nolegend_')
         count += 1
-    
+
+    title = training_data.replace('_', ' ').title()
+    plt.title(title)
+    plt.legend(loc = 'upper right')
+    plt.xlabel('Model number')
+    plt.ylabel('RMSE')
     plt.savefig('Testing/custom_filtering/ndp_final_rmse_' + training_data + '.png', bbox_inches='tight')

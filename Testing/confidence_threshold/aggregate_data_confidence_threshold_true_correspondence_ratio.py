@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-feature_extractor = 'fcgf'
-# feature_extractor = 'kpfcn'
-# preprocessing='mutual'
-preprocessing='none'
-# training_data='full_deformed'
-training_data='partial_deformed'
+# feature_extractor = 'fcgf'
+feature_extractor = 'kpfcn'
+preprocessing='mutual'
+# preprocessing='none'
+training_data='full_deformed'
+# training_data='partial_deformed'
 
 models=['002', '042', '085', '126', '167', '207']
 
@@ -85,7 +85,7 @@ for data_type in data_types:
     plt.title(data_type + ' - ' + feature_extractor.upper() + ' ' + training_data, y=1.0)
     confidence_thresholds_pos = range(0, len(confidence_thresholds))
     plt.xticks(confidence_thresholds_pos, confidence_thresholds, rotation=90)
-    plt.xlabel('model')
+    plt.xlabel('Confidence Threshold')
     plt.ylabel('RMSE')
 
     for model in models:
@@ -93,7 +93,7 @@ for data_type in data_types:
         for i in range(len(confidence_thresholds)):
             rmse.append(final_matrices_rmse[model][data_type][i])
         plt.plot(confidence_thresholds_pos, rmse)
-    plt.legend(models)
+    plt.legend(models, loc = 'upper right')
     plt.savefig('Testing/confidence_threshold/' + data_type.replace(' ', '_') + '_graph_' + feature_extractor + '_pre_' + preprocessing + '_td_' + training_data + '_rmse.png', bbox_inches='tight')
     
     '''
