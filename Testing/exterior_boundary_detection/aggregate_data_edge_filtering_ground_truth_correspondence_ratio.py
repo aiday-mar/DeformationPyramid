@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import copy
 import re
+import numpy as np
 
-criteria = ['simple', 'angle', 'shape', 'disc', 'mesh', 'none']
+criteria = ['none', 'simple', 'angle', 'shape', 'disc', 'mesh']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
 feature_extractor='fcgf'
@@ -10,7 +11,9 @@ training_data='full_deformed'
 epoch='5'
 preprocessing='mutual'
 
-final_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : 0}
+bar = np.array([0, 1, 2, 3, 4, 5])
+
+final_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : 0.0}
 final_submatrix = {model_number : copy.deepcopy(final_sub_sub_matrix) for model_number in model_numbers}
 final_matrices = {criterion : copy.deepcopy(final_submatrix) for criterion in criteria}
 
@@ -41,4 +44,14 @@ print(final_matrices)
 for model_number in model_numbers:
 
     plt.clf()
-    # plt.savefig('Testing/exterior_boundary_detection/')
+
+    count = 0
+    for criterion in criteria:
+        bar = bars[count]
+        plt.bar(bar, true_data, color='r')
+        plt.bar(bar, total_data, bottom=true_data, color='b')
+        count += 1
+
+    plt.title('Model ' + model_number + ' - ' + data_type)
+    plt.xticks(modified_nc_pos, modified_nc, rotation=90)
+    plt.savefig('Testing/exterior_boundary_detection/')
