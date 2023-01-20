@@ -79,5 +79,5 @@ for data_type in data_types:
         plt.bar(bar, total, bottom=true, color='b')
 
         plt.title('Model ' + model_number + ' - ' + data_type)
-        plt.xticks(bar, criteria, rotation=90)
+        plt.xticks(bar, criteria)
         plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '_' + data_type + '.png')
