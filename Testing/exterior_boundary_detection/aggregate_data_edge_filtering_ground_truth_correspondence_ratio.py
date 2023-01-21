@@ -11,6 +11,7 @@ model_numbers=['002', '042', '085', '126', '167', '207']
 feature_extractor='kpfcn'
 training_data='partial_deformed'
 epoch='5'
+# preprocessing='none'
 preprocessing='mutual'
 
 bar = np.array([0, 1, 2, 3, 4, 5])
@@ -85,4 +86,4 @@ for data_type in data_types:
         plt.xticks(bar, criteria)
         data_type_mod = data_type.lower()
         data_type_mod = data_type_mod.replace(' ', '_')
-        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
+        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_pre_' + preprocessing + '_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
