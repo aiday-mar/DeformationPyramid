@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 
 # initial tests using FCGF, KNN matching and Deformation Algorithm From Astrivis
 
-training_data = 'full_deformed'
-# training_data = 'partial_deformed'
+# training_data = 'full_deformed'
+training_data = 'partial_deformed'
 
-epoch='10'
-# epoch='5'
+# epoch='10'
+epoch='5'
 
 data_types = ['Full Non Deformed', 'Full Deformed', 'Partial Non Deformed', 'Partial Deformed']
 
