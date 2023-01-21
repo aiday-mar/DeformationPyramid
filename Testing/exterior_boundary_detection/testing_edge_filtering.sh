@@ -537,10 +537,10 @@ if [ $current_deformation == "True" ]; then
                 if [ "$?" != "1" ]; then
 
                     rm "${base}/PartialNonDeformed/model${k}/${folder}/current_deformation.ply"
-                            
+
                     python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
-                    --file1="${base}/PartialNonDeformed/model${k}/020_0.ply" \
-                    --file2="${base}/PartialNonDeformed/model${k}/104_1.ply" \
+                    --file1="${base}/PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
+                    --file2="${base}/PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
                     --landmarks1="${base}/PartialNonDeformed/model${k}/${folder}/${type}_${criterion}_edge_filtering_ldmk/${criterion}_edge_filtered_ldmk_s_pcd.ply" \
                     --landmarks2="${base}/PartialNonDeformed/model${k}/${folder}/${type}_${criterion}_edge_filtering_ldmk/${criterion}_edge_filtered_ldmk_t_pcd.ply" \
                     --save_path="${base}/PartialNonDeformed/model${k}/${folder}/current_deformation.ply" >> ${file}
@@ -733,10 +733,10 @@ if [ $current_deformation == "True" ]; then
                 if [ "$?" != "1" ]; then
 
                     rm "${base}/PartialNonDeformed/model${k}/${folder}/current_deformation.ply"
-                            
+
                     python3 ../../code/sfm/python/learning/fusion/fusion_cli.py \
-                    --file1="${base}/PartialNonDeformed/model${k}/020_0.ply" \
-                    --file2="${base}/PartialNonDeformed/model${k}/104_1.ply" \
+                    --file1="${base}/PartialNonDeformed/model${k}/mesh_transformed_0.ply" \
+                    --file2="${base}/PartialNonDeformed/model${k}/mesh_transformed_1.ply" \
                     --landmarks1="${base}/PartialNonDeformed/model${k}/${folder}/${type}_${criterion}_edge_filtering_ldmk/${criterion}_edge_filtered_ldmk_s_pcd.ply" \
                     --landmarks2="${base}/PartialNonDeformed/model${k}/${folder}/${type}_${criterion}_edge_filtering_ldmk/${criterion}_edge_filtered_ldmk_t_pcd.ply" \
                     --save_path="${base}/PartialNonDeformed/model${k}/${folder}/current_deformation.ply" >> ${file}
