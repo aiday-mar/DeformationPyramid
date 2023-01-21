@@ -3,8 +3,8 @@
 # criterion=simple
 # criterion=angle
 # criterion=shape
-criterion=disc
-# criterion=mesh
+# criterion=disc
+criterion=mesh
 
 type=fcgf
 # type=kpfcn
