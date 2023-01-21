@@ -7,12 +7,15 @@ criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-# feature_extractor='fcgf'
-feature_extractor='kpfcn'
+feature_extractor='fcgf'
+# feature_extractor='kpfcn'
 training_data='partial_deformed'
 epoch='5'
-# preprocessing='none'
-preprocessing='mutual'
+preprocessing='none'
+# preprocessing='mutual'
+
+# current_deformation=False
+current_deformation=True
 
 bar = np.array([0, 1, 2, 3, 4, 5])
 
@@ -23,7 +26,11 @@ final_matrices = {criterion : copy.deepcopy(final_submatrix) for criterion in cr
 
 for criterion in criteria:
     for model_number in model_numbers:
-        file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+        if current_deformation is False:
+            file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '.txt'
+        else:
+            file_txt = 'Testing/exterior_boundary_detection/testing_' + criterion + '_edge_filtering_pre_' + preprocessing + '_' + feature_extractor + '_td_' + training_data + '_epoch_' + epoch + '_current_deformation.txt'
+
         file_txt = open(file_txt, 'r')
         Lines = file_txt.readlines()
         
@@ -86,4 +93,9 @@ for data_type in data_types:
         plt.xticks(bar, criteria)
         data_type_mod = data_type.lower()
         data_type_mod = data_type_mod.replace(' ', '_')
-        plt.savefig('Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_pre_' + preprocessing + '_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
+        if current_deformation  is False:
+            filename = 'Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_pre_' + preprocessing + '_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png'
+        else:
+            filename = 'Testing/exterior_boundary_detection/ground_truth_correspondence_ratio_pre_' + preprocessing + '_model_' + model_number + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '_current_deformation.png'
+
+        plt.savefig()
