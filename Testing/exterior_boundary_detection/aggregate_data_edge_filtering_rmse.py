@@ -7,11 +7,12 @@ criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-feature_extractor='fcgf'
-# feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
 training_data='partial_deformed'
 epoch='5'
-preprocessing='mutual'
+# preprocessing='mutual'
+preprocessing='none'
 
 barWidth = 0.10
 br1 = np.array([0, 1, 2, 3, 4, 5])
@@ -94,4 +95,4 @@ for data_type in data_types:
     plt.legend(loc = 'upper right')
     data_type_mod = data_type.lower()
     data_type_mod = data_type_mod.replace(' ', '_')
-    plt.savefig('Testing/exterior_boundary_detection/rmse_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
+    plt.savefig('Testing/exterior_boundary_detection/rmse_pre_' + preprocessing + '_' + data_type_mod + '_' + feature_extractor + '_td_' + training_data + '.png')
