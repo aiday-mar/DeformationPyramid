@@ -23,7 +23,7 @@ bar = np.array([0, 1, 2, 3, 4, 5])
 for data_type in data_types:
     data_type_mod = data_type.lower().replace(' ', '_')
     file_name = 'Testing/current_deformation/test_astrivis_' + data_type_mod + '_current_deformation_pre_none_fcgf_td_' + training_data + '_e_' + epoch + '_knn_True_conf_1e-06.txt'
-
+    print(file_name)
     file = open(file_name, 'r')
     lines = file.readlines()
     current_model_number = None 
