@@ -15,7 +15,7 @@ data_types = ['Full Non Deformed', 'Full Deformed', 'Partial Non Deformed', 'Par
 
 model_numbers = ['002', '042', '085', '126', '167', '207']
 
-sub_matrix = {model_number : 0 for model_number in model_numbers}
+sub_matrix = {model_number : 0.0 for model_number in model_numbers}
 final_data = {data_type : copy.deepcopy(sub_matrix) for data_type in data_types}
 
 bar = np.array([0, 1, 2, 3, 4, 5])
@@ -32,18 +32,22 @@ for data_type in data_types:
         if 'model' in line and len(line) < 35:
             words = line.split(' ')
             current_model_number = words[1]
-            current_model_number = current_model_number[:len(current_model_number)-1]
+            if data_type == 'Partial Non Deformed' or data_type == 'Full Non Deformed':
+                current_model_number = current_model_number[:len(current_model_number)-1]
         
         if 'RMSE' in line and current_model_number:
             list_res = re.findall("\d+\.\d+", line)
             rmse = list_res[0]
-            final_data[data_type][current_model_number] = rmse
+            final_data[data_type][current_model_number] = float(rmse)
 
     rmse_arr = []
     for model_number in model_numbers:
         rmse_arr.append(final_data[data_type][model_number])
 
-    print(rmse_arr)
     plt.clf()
-    plt.bar(bar, rmse_arr, width = 1)
+    plt.bar(bar, rmse_arr, width = 0.9)
+    plt.xticks(np.array([0, 1, 2, 3, 4, 5]), model_numbers)
+    plt.xlabel('Model numbers')
+    plt.ylabel('RMSE')
+    plt.title(data_type)
     plt.savefig('Testing/current_deformation/initial_test_' + data_type_mod + '_fcgf_td_' + training_data + '.png')
