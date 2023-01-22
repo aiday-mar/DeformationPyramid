@@ -7,15 +7,18 @@ criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-feature_extractor='fcgf'
-# feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
+
 training_data='partial_deformed'
 epoch='5'
+
 # preprocessing='mutual'
 preprocessing='none'
 
 current_deformation = True
 # current_deformation = False
+
 barWidth = 0.10
 br1 = np.array([0, 1, 2, 3, 4, 5])
 br2 = np.array([x + barWidth for x in br1])
@@ -25,7 +28,7 @@ br5 = np.array([x + barWidth for x in br4])
 br6 = np.array([x + barWidth for x in br5])
 bars = [br1, br2, br3, br4, br5, br6]
 
-final_sub_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : 0.0}
+final_sub_sub_sub_matrix = {'true' : 0, 'total' : 0, 'rmse' : np.nan}
 final_sub_sub_matrix = {data_type : copy.deepcopy(final_sub_sub_sub_matrix) for data_type in data_types}
 final_submatrix = {model_number : copy.deepcopy(final_sub_sub_matrix) for model_number in model_numbers}
 final_matrices = {criterion : copy.deepcopy(final_submatrix) for criterion in criteria}
@@ -80,6 +83,9 @@ for criterion in criteria:
 
 for data_type in data_types:
 
+    print('data_type : ', data_type)
+    print('feature_extractor : ', feature_extractor)
+
     plt.clf()
 
     count = 0
@@ -91,6 +97,10 @@ for data_type in data_types:
 
         bar = bars[count]
         plt.bar(bar, rmse, width = barWidth, label = criterion)
+
+        if np.nan in rmse:
+            print('np.nan value for criterion : ', criterion)
+            print('rmse : ', rmse)
 
         count += 1
 
