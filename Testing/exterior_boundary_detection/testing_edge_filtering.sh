@@ -1,3 +1,5 @@
+# TODO: do fcgf from angle, including angle
+# TODO: do kpfcn all
 
 # criterion=none
 criterion=simple
