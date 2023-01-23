@@ -7,8 +7,8 @@ criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-feature_extractor='fcgf'
-# feature_extractor='kpfcn'
+# feature_extractor='fcgf'
+feature_extractor='kpfcn'
 
 training_data='partial_deformed'
 epoch='5'
@@ -101,6 +101,9 @@ for data_type in data_types:
         if np.nan in rmse:
             print('np.nan value for criterion : ', criterion)
             print('rmse : ', rmse)
+
+        if data_type == 'Partial Deformed' and criterion != 'none':
+            plt.axvline(x=bar[2], color='r', ls='--')
 
         count += 1
 
