@@ -577,7 +577,7 @@ if [ $current_deformation == "True" ]; then
         do
 
             echo "model ${k}" >> ${file}
-            folder=${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}
+            folder=${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}_current_deformation
             rm -rf TestData/FullNonDeformed/model${k}/${folder}
             mkdir TestData/FullNonDeformed/model${k}/${folder}
             rm -rf TestData/FullDeformed/model${k}/${folder}
