@@ -1,8 +1,8 @@
 # TODO: do fcgf from angle, including angle
 # TODO: do kpfcn all
 
-criterion=none
-# criterion=simple
+# criterion=none
+criterion=simple
 # criterion=angle
 # criterion=shape
 # criterion=disc
