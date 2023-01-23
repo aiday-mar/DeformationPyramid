@@ -173,7 +173,7 @@ if __name__ == "__main__":
         edge_filtering_shape = True if args.edge_filtering_shape else False
         edge_filtering_disc = True if args.edge_filtering_disc else False
         edge_filtering_mesh = True if args.edge_filtering_mesh else False
-        min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 0.05 # 1.0e-4
+        min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 0.02 # 1.0e-4
         print('min_dist_thr : ', min_dist_thr)
         knn_matching = True if args.knn_matching else False
 
