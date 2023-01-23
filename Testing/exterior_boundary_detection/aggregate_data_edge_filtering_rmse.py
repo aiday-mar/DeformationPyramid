@@ -7,14 +7,14 @@ criteria = ['none', 'mesh', 'shape', 'angle', 'disc', 'simple']
 data_types = ['Partial Deformed', 'Partial Non Deformed']
 model_numbers=['002', '042', '085', '126', '167', '207']
 
-# feature_extractor='fcgf'
-feature_extractor='kpfcn'
+feature_extractor='fcgf'
+# feature_extractor='kpfcn'
 
 training_data='partial_deformed'
 epoch='5'
 
-# preprocessing='mutual'
-preprocessing='none'
+preprocessing='mutual'
+# preprocessing='none'
 
 # current_deformation = True
 current_deformation = False
@@ -105,8 +105,8 @@ for data_type in data_types:
         count += 1
 
     plt.title(data_type)
-    plt.xticks([0, 1, 2, 3, 4, 5], model_numbers)
-    plt.xlabel('Model number')
+    plt.xticks(np.array([0, 1, 2, 3, 4, 5]) + 2.5*barWidth, model_numbers)
+    plt.xlabel('Model Number')
     plt.ylabel('RMSE')
     plt.legend(loc = 'upper right')
     data_type_mod = data_type.lower()
