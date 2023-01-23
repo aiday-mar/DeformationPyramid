@@ -26,7 +26,7 @@ if [ "$type" == "kpfcn" ] ; then
     min_dist_thr_kpfcn=0.01 # 0.01
 else
 	config=LNDP_fcgf.yaml
-    min_dist_thr_fcgf= 0.0001 # 0.01
+    min_dist_thr_fcgf= 0.05 # 0.01
 fi
 
 if [ "$training_data" == "full_deformed" ] ; then
