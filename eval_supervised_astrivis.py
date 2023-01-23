@@ -77,13 +77,13 @@ if __name__ == "__main__":
     parser.add_argument('--edge_filtering_disc', action = 'store_true', help= 'wether to perform edge filtering using the disc criterion')
     parser.add_argument('--edge_filtering_mesh', action = 'store_true', help= 'wether to perform edge filtering using the mesh criterion')
     parser.add_argument('--min_dist_thr', type=str, help='threshold used for the edge filtering computation')
+    parser.add_argument('--n_points_edge_filtering', type=str, help='number of points from the exterior edge filtering')
     
     parser.add_argument('--visualize', action = 'store_true', help= 'visualizing the point-clouds')
     parser.add_argument('--custom_filtering', action='store_true', help= 'custom filtering the correspondences')
     parser.add_argument('--print_keypoints', action = 'store_true', help= 'store the intermediate keypoints')
     parser.add_argument('--use_gt_ldmks', action = 'store_true', help= 'store the intermediate keypoints')
     parser.add_argument('--only_inference', action = 'store_true', help= 'only do the inference in order to find the landmarks')
-    
     parser.add_argument('--knn_matching', action = 'store_true', help= 'whether to use knn matching instead of default matching')
     args = parser.parse_args()
     
@@ -175,13 +175,19 @@ if __name__ == "__main__":
         edge_filtering_mesh = True if args.edge_filtering_mesh else False
         min_dist_thr = float(args.min_dist_thr) if args.min_dist_thr else 1.0e-4
         knn_matching = True if args.knn_matching else False
+
         if isinstance(args.max_ldmks, str) and args.max_ldmks.isnumeric():
             max_ldmks = int(args.max_ldmks)
         else:
             max_ldmks = None
 
+        if args.n_points_edge_filtering and args.n_points_edge_filtering != 'None':
+            n_points_edge_filtering = int(args.n_points_edge_filtering)
+        else:
+            n_points_edge_filtering = None
+
         if not args.use_gt_ldmks:
-            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering_simple = edge_filtering_simple, edge_filtering_angle = edge_filtering_angle, edge_filtering_shape = edge_filtering_shape, edge_filtering_disc = edge_filtering_disc, edge_filtering_mesh = edge_filtering_mesh, min_dist_thr = min_dist_thr, max_ldmks = max_ldmks, knn_matching = knn_matching)
+            ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = ldmk_model.inference(inputs = inputs, mesh_path = mesh_path, source_trans = source_trans, sampling = sampling, inlier_outlier_thr = inlier_outlier_thr, matches_path = matches_path, custom_filtering = custom_filtering, number_iterations_custom_filtering = number_iterations_custom_filtering, average_distance_multiplier = average_distance_multiplier,  reject_outliers=reject_outliers, confidence_threshold = args.confidence_threshold, preprocessing = preprocessing, coarse_level = args.coarse_level, inlier_thr=config.inlier_thr, timer=timer, number_centers = number_centers, intermediate_output_folder = intermediate_output_folder, base = args.base, index_at_which_to_return_coarse_feats = index_coarse_feats, gt_thr = gt_thr, edge_filtering_simple = edge_filtering_simple, edge_filtering_angle = edge_filtering_angle, edge_filtering_shape = edge_filtering_shape, edge_filtering_disc = edge_filtering_disc, edge_filtering_mesh = edge_filtering_mesh, min_dist_thr = min_dist_thr, max_ldmks = max_ldmks, knn_matching = knn_matching, n_points_edge_filtering = n_points_edge_filtering)
             if args.only_inference:
                 sys.exit(0)
         elif args.use_gt_ldmks and args.base:

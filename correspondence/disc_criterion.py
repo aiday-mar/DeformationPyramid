@@ -77,7 +77,7 @@ def find_norm_indices(pcd_points,n):
     indices = np.array(differences).argsort()[:n]
     return indices
 
-def get_disc_criterion_edge_vertices(pcd_points, use_proba = False):
+def get_disc_criterion_edge_vertices(pcd_points, n_points_edge_filtering = None, use_proba = False):
     n = 1000
     n_pcd_points = pcd_points.shape[0]
     if use_proba:
@@ -93,7 +93,11 @@ def get_disc_criterion_edge_vertices(pcd_points, use_proba = False):
         final_edge_point_indices = find_norm_indices(edge_points, n)
     final_edge_points = edge_points[final_edge_point_indices]
 
-    n = 500
+    if n_points_edge_filtering is not None:
+        n = n_points_edge_filtering
+    else:
+        n = 500
+
     if use_proba:
         final_final_edge_point_indices = find_proba_indices(final_edge_points, n)
     else:

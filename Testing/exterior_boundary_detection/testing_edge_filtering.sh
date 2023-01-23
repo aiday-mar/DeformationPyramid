@@ -2,23 +2,23 @@
 # TODO: do kpfcn all
 
 # criterion=none
-# criterion=simple
+criterion=simple
 # criterion=angle
 # criterion=shape
 # criterion=disc
-criterion=mesh
+# criterion=mesh
 
-# type=fcgf
-type=kpfcn
+type=fcgf
+# type=kpfcn
 
-# preprocessing=none
-preprocessing=mutual
+preprocessing=none
+# preprocessing=mutual
 
 training_data=partial_deformed
 # training_data=pretrained
 
-# current_deformation=True
-current_deformation=False
+current_deformation=True
+# current_deformation=False
 
 n_deformed_levels=8
 n_non_deformed_levels=1
@@ -65,12 +65,18 @@ if [ $criterion == "mesh" ]; then
     edge_filtering_type=edge_filtering_mesh
 fi
 
-model_numbers=('002' '042' '085' '126' '167' '207')
+one_model=True
+# one_model=False
+
+# model_numbers=('002', '042', '085', '126', '167', '207')
+model_numbers=('085')
+
+n_points_edge_filtering='300'
+
 base='/home/aiday.kyzy/code/DeformationPyramid/TestData/'
 
 if [ $current_deformation == "False" ]; then
 
-    file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}.txt"
     rm ${file}
     touch ${file}
 
@@ -370,7 +376,14 @@ fi
 
 if [ $current_deformation == "True" ]; then
 
-    file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}_current_deformation.txt"
+    if [ $one_model == "True" ]; then
+        file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}_current_deformation_one_model_${model_numbers[0]}.txt"
+    fi
+
+    if [ $one_model == "False" ]; then
+        file="Testing/exterior_boundary_detection/testing_${criterion}_edge_filtering_pre_${preprocessing}_${type}_td_${training_data}_epoch_${epoch}_current_deformation.txt"
+    fi
+
     rm ${file}
     touch ${file}
 

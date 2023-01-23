@@ -13,11 +13,11 @@ feature_extractor='fcgf'
 training_data='partial_deformed'
 epoch='5'
 
-preprocessing='mutual'
-# preprocessing='none'
+# preprocessing='mutual'
+preprocessing='none'
 
-# current_deformation = True
-current_deformation = False
+current_deformation = True
+# current_deformation = False
 
 barWidth = 0.10
 br1 = np.array([0, 1, 2, 3, 4, 5])

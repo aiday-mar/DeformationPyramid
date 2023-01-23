@@ -70,7 +70,7 @@ def find_indices(pcd_points, n):
 
     return indices_proba, indices_norm
 
-def get_shape_criterion_edge_vertices(pcd_points, use_proba=False):
+def get_shape_criterion_edge_vertices(pcd_points, n_points_edge_filtering = None,  use_proba=False):
     n = 1000
     n_pcd_points = pcd_points.shape[0]
     indices_proba, edge_point_indices = find_indices(pcd_points, n)
@@ -84,7 +84,11 @@ def get_shape_criterion_edge_vertices(pcd_points, use_proba=False):
         final_edge_point_indices = indices_proba
     final_edge_points = edge_points[final_edge_point_indices]
 
-    n = 500
+    if n_points_edge_filtering is not None:
+        n = n_points_edge_filtering
+    else:
+        n = 500
+        
     indices_proba, final_final_edge_point_indices = find_indices(final_edge_points, n)
     if use_proba:
         final_final_edge_point_indices = indices_proba

@@ -89,7 +89,7 @@ def find_indices(points, n):
 
     return proba_indices, final_edge_point_indices
 
-def get_angle_criterion_edge_vertices(pcd_points, use_proba = False):
+def get_angle_criterion_edge_vertices(pcd_points, n_points_edge_filtering = None, use_proba = False):
     n = 1000
     proba_indices, edge_point_indices = find_indices(pcd_points, n)
     if use_proba:
@@ -102,7 +102,11 @@ def get_angle_criterion_edge_vertices(pcd_points, use_proba = False):
         final_edge_point_indices = proba_indices
     final_edge_points = edge_points[final_edge_point_indices]
 
-    n = 500
+    if n_points_edge_filtering is not None:
+        n = n_points_edge_filtering
+    else:
+        n = 500
+        
     proba_indices, final_final_edge_point_indices = find_indices(final_edge_points, n)
     if use_proba:
         final_final_edge_point_indices = proba_indices

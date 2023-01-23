@@ -184,7 +184,7 @@ class Landmark_Model():
         inlier_rate_2 = match_filtered.sum()/(match_filtered.shape[0])
         return ldmk_s, ldmk_t, inlier_rate, inlier_rate_2
         
-    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2, max_ldmks = None, knn_matching = False):
+    def inference(self, inputs, sampling = 'linspace', mesh_path = None, source_trans = None, inlier_outlier_thr = 0.05, matches_path = None, custom_filtering = None, number_iterations_custom_filtering = 1, average_distance_multiplier = 2.0, intermediate_output_folder = None, number_centers = 1000, base = None, preprocessing = 'mutual', confidence_threshold = None, coarse_level = None, reject_outliers=True, inlier_thr=0.5, index_at_which_to_return_coarse_feats = 1, timer=None, gt_thr = 0.01, edge_filtering_simple = False, edge_filtering_angle = False, edge_filtering_shape = False, edge_filtering_disc = False, edge_filtering_mesh = False, min_dist_thr = 1.0e-2, max_ldmks = None, knn_matching = False, n_points_edge_filtering = None):
         if base:
             self.path = base
         else:
@@ -1443,22 +1443,24 @@ class Landmark_Model():
                 initial_edge_points = src_pcd_points[initial_edge_point_indices]
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_points = initial_edge_points, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'simple')
 
+            print('n_points_edge_filtering : ', n_points_edge_filtering)
+
             if edge_filtering_angle:
                 print('using angle exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
-                initial_edge_points = get_angle_criterion_edge_vertices(src_pcd_points)
+                initial_edge_points = get_angle_criterion_edge_vertices(src_pcd_points, n_points_edge_filtering)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_points = initial_edge_points, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'angle')
             
             if edge_filtering_shape:
                 print('using shape exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
-                initial_edge_points = get_shape_criterion_edge_vertices(src_pcd_points)
+                initial_edge_points = get_shape_criterion_edge_vertices(src_pcd_points, n_points_edge_filtering)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_points = initial_edge_points, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'shape')
 
             if edge_filtering_disc:
                 print('using disc exterior boundary detection')
                 src_pcd_points = np.array(data['src_pcd_list'][0].cpu())
-                initial_edge_points = get_disc_criterion_edge_vertices(src_pcd_points)
+                initial_edge_points = get_disc_criterion_edge_vertices(src_pcd_points, n_points_edge_filtering)
                 ldmk_s, ldmk_t, inlier_rate, inlier_rate_2 = self.do_edge_filtering(initial_edge_points = initial_edge_points, data = data, ldmk_s = ldmk_s, ldmk_t = ldmk_t, inlier_conf = inlier_conf, min_dist_thr = min_dist_thr, matches_path = matches_path, gt_thr = gt_thr, intermediate_output_folder = intermediate_output_folder, folder_name = folder_name, final_indices = final_indices, inlier_thr = inlier_thr, coarse_flow = coarse_flow, type = 'disc')
             
             if edge_filtering_mesh:
