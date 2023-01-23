@@ -69,7 +69,7 @@ one_model=True
 # model_numbers=('002', '042', '085', '126', '167', '207')
 model_numbers=('085')
 
-n_points_edge_filtering='300'
+n_points_edge_filtering='200'
 
 base='/home/aiday.kyzy/code/DeformationPyramid/TestData/'
 
