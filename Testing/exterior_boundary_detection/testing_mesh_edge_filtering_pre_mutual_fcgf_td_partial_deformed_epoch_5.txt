@@ -455,7 +455,7 @@ number correspondences kept in mesh edge filtering :  275  out of :  385
 number of true landmark correspondences returned from mesh edge filtering :  60  out of  275
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.21818181818181817
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([275, 3])
@@ -468,24 +468,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 12.951 
+0/1: full-epe: 11.896 
 full-AccS: 0.000 
-full-AccR: 0.263 
-full-outlier: 79.422 
-vis-epe: 17.271 
+full-AccR: 4.464 
+full-outlier: 73.771 
+vis-epe: 16.513 
 vis-AccS: 0.000 
-vis-AccR: 0.565 
-vis-outlier: 94.708 
-occ-epe: 9.204 
+vis-AccR: 0.588 
+vis-outlier: 94.369 
+occ-epe: 7.891 
 occ-AccS: 0.000 
-occ-AccR: 0.000 
-occ-outlier: 66.163 
+occ-AccR: 7.827 
+occ-outlier: 55.904 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.08363454540751278
+RMSE :  0.07578797088547906
 Strict IR :  0.0
-Relaxed IR :  0.0125
+Relaxed IR :  0.07573529411764705
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -1140,7 +1140,7 @@ number correspondences kept in mesh edge filtering :  366  out of :  569
 number of true landmark correspondences returned from mesh edge filtering :  209  out of  366
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5710382513661202
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([366, 3])
@@ -1153,24 +1153,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 11.210 
+0/1: full-epe: 7.665 
 full-AccS: 0.000 
-full-AccR: 0.714 
-full-outlier: 92.324 
-vis-epe: 16.516 
+full-AccR: 46.588 
+full-outlier: 44.925 
+vis-epe: 14.171 
 vis-AccS: 0.000 
-vis-AccR: 0.000 
-vis-outlier: 99.953 
-occ-epe: 6.850 
+vis-AccR: 0.307 
+vis-outlier: 98.298 
+occ-epe: 2.320 
 occ-AccS: 0.000 
-occ-AccR: 1.301 
-occ-outlier: 86.056 
+occ-AccR: 84.618 
+occ-outlier: 1.068 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.06253464771876631
-Strict IR :  0.006609808102345416
-Relaxed IR :  0.14616204690831555
+RMSE :  0.022536852793807592
+Strict IR :  0.01162046908315565
+Relaxed IR :  0.8826226012793177
 model 042
 Partial Deformed
 Edge filtering used
@@ -1738,7 +1738,7 @@ number correspondences kept in mesh edge filtering :  375  out of :  487
 number of true landmark correspondences returned from mesh edge filtering :  102  out of  375
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.272
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([375, 3])
@@ -1751,24 +1751,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 16.336 
-full-AccS: 0.034 
-full-AccR: 1.481 
-full-outlier: 97.444 
-vis-epe: 19.423 
-vis-AccS: 0.031 
-vis-AccR: 0.623 
-vis-outlier: 98.801 
-occ-epe: 8.154 
-occ-AccS: 0.041 
-occ-AccR: 3.757 
-occ-outlier: 93.848 
+0/1: full-epe: 15.654 
+full-AccS: 0.317 
+full-AccR: 1.674 
+full-outlier: 96.144 
+vis-epe: 18.650 
+vis-AccS: 0.047 
+vis-AccR: 0.779 
+vis-outlier: 98.380 
+occ-epe: 7.711 
+occ-AccS: 1.032 
+occ-AccR: 4.046 
+occ-outlier: 90.215 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.07038160286479916
-Strict IR :  0.0041841004184100415
-Relaxed IR :  0.08051566210562026
+RMSE :  0.06789466958426692
+Strict IR :  0.009159787402465227
+Relaxed IR :  0.11839873346149497
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -2471,7 +2471,7 @@ number correspondences kept in mesh edge filtering :  387  out of :  613
 number of true landmark correspondences returned from mesh edge filtering :  231  out of  387
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5968992248062015
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([387, 3])
@@ -2484,24 +2484,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 13.979 
-full-AccS: 0.252 
-full-AccR: 3.045 
-full-outlier: 94.699 
-vis-epe: 14.682 
-vis-AccS: 0.045 
-vis-AccR: 2.072 
-vis-outlier: 96.481 
-occ-epe: 12.032 
-occ-AccS: 0.825 
-occ-AccR: 5.737 
-occ-outlier: 89.765 
+0/1: full-epe: 10.130 
+full-AccS: 0.131 
+full-AccR: 8.740 
+full-outlier: 83.056 
+vis-epe: 12.439 
+vis-AccS: 0.179 
+vis-AccR: 2.371 
+vis-outlier: 95.214 
+occ-epe: 3.740 
+occ-AccS: 0.000 
+occ-AccR: 26.372 
+occ-outlier: 49.402 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.08677024626305227
-Strict IR :  0.05312157721796276
-Relaxed IR :  0.3670317634173056
+RMSE :  0.03550950876996572
+Strict IR :  0.0
+Relaxed IR :  0.4007667031763417
 model 085
 Partial Deformed
 Edge filtering used
@@ -2792,7 +2792,7 @@ number correspondences kept in mesh edge filtering :  138  out of :  232
 number of true landmark correspondences returned from mesh edge filtering :  11  out of  138
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.07971014492753623
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([138, 3])
@@ -2805,24 +2805,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 11.167 
+0/1: full-epe: 11.107 
 full-AccS: 0.019 
-full-AccR: 0.827 
-full-outlier: 60.762 
-vis-epe: 14.946 
+full-AccR: 1.058 
+full-outlier: 60.492 
+vis-epe: 14.875 
 vis-AccS: 0.000 
 vis-AccR: 0.000 
-vis-outlier: 83.253 
-occ-epe: 8.213 
+vis-outlier: 83.034 
+occ-epe: 8.162 
 occ-AccS: 0.034 
-occ-AccR: 1.474 
-occ-outlier: 43.180 
+occ-AccR: 1.885 
+occ-outlier: 42.872 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.08212878125470222
-Strict IR :  0.0026928255433737256
-Relaxed IR :  0.04366224273898827
+RMSE :  0.08155609777575598
+Strict IR :  0.0030775149067128293
+Relaxed IR :  0.04520100019234468
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -3235,7 +3235,7 @@ number correspondences kept in mesh edge filtering :  239  out of :  345
 number of true landmark correspondences returned from mesh edge filtering :  134  out of  239
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5606694560669456
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([239, 3])
@@ -3248,24 +3248,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 12.742 
-full-AccS: 0.878 
-full-AccR: 10.454 
-full-outlier: 86.379 
-vis-epe: 15.359 
+0/1: full-epe: 18.880 
+full-AccS: 0.114 
+full-AccR: 1.870 
+full-outlier: 97.329 
+vis-epe: 22.956 
 vis-AccS: 0.000 
-vis-AccR: 0.686 
-vis-outlier: 98.665 
-occ-epe: 10.123 
-occ-AccS: 1.756 
-occ-AccR: 20.229 
-occ-outlier: 74.084 
+vis-AccR: 0.381 
+vis-outlier: 99.542 
+occ-epe: 14.801 
+occ-AccS: 0.229 
+occ-AccR: 3.359 
+occ-outlier: 95.115 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.09262896968186042
-Strict IR :  0.013735215566577643
-Relaxed IR :  0.2396032048836322
+RMSE :  0.1448590609535315
+Strict IR :  0.0011446012972148034
+Relaxed IR :  0.030713468141930562
 model 126
 Partial Deformed
 Edge filtering used
@@ -3805,7 +3805,7 @@ number correspondences kept in mesh edge filtering :  346  out of :  461
 number of true landmark correspondences returned from mesh edge filtering :  81  out of  346
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.23410404624277456
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([346, 3])
@@ -3818,24 +3818,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 14.609 
+0/1: full-epe: 14.177 
 full-AccS: 0.000 
-full-AccR: 0.545 
-full-outlier: 89.939 
-vis-epe: 19.279 
+full-AccR: 0.678 
+full-outlier: 86.211 
+vis-epe: 19.065 
 vis-AccS: 0.000 
-vis-AccR: 0.276 
-vis-outlier: 98.728 
-occ-epe: 8.395 
+vis-AccR: 0.700 
+vis-outlier: 98.325 
+occ-epe: 7.671 
 occ-AccS: 0.000 
-occ-AccR: 0.903 
-occ-outlier: 78.245 
+occ-AccR: 0.649 
+occ-outlier: 70.090 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.07491485172605515
-Strict IR :  0.007627118644067797
-Relaxed IR :  0.0937046004842615
+RMSE :  0.07172626873977267
+Strict IR :  0.0
+Relaxed IR :  0.04878934624697336
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -4347,7 +4347,7 @@ number correspondences kept in mesh edge filtering :  326  out of :  436
 number of true landmark correspondences returned from mesh edge filtering :  153  out of  326
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.46932515337423314
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([326, 3])
@@ -4360,24 +4360,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 11.551 
-full-AccS: 0.000 
-full-AccR: 3.426 
-full-outlier: 92.405 
-vis-epe: 15.091 
+0/1: full-epe: 8.390 
+full-AccS: 0.108 
+full-AccR: 28.833 
+full-outlier: 54.899 
+vis-epe: 13.051 
 vis-AccS: 0.000 
-vis-AccR: 2.160 
-vis-outlier: 96.495 
-occ-epe: 7.339 
-occ-AccS: 0.000 
-occ-AccR: 4.932 
-occ-outlier: 87.539 
+vis-AccR: 1.918 
+vis-outlier: 97.288 
+occ-epe: 2.845 
+occ-AccS: 0.236 
+occ-AccR: 60.860 
+occ-outlier: 4.460 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.06771123140093659
-Strict IR :  0.0003593675131768088
-Relaxed IR :  0.21741734547196934
+RMSE :  0.029971547466597737
+Strict IR :  0.01413512218495448
+Relaxed IR :  0.5739099185433637
 model 167
 Partial Deformed
 Edge filtering used
@@ -4760,7 +4760,7 @@ number correspondences kept in mesh edge filtering :  240  out of :  316
 number of true landmark correspondences returned from mesh edge filtering :  122  out of  240
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.5083333333333333
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([240, 3])
@@ -4773,24 +4773,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 8.683 
-full-AccS: 0.026 
-full-AccR: 12.223 
-full-outlier: 88.569 
-vis-epe: 11.178 
+0/1: full-epe: 7.855 
+full-AccS: 5.052 
+full-AccR: 17.989 
+full-outlier: 82.725 
+vis-epe: 10.333 
 vis-AccS: 0.000 
 vis-AccR: 0.000 
 vis-outlier: 100.000 
-occ-epe: 5.436 
-occ-AccS: 0.059 
-occ-AccR: 28.127 
-occ-outlier: 73.693 
+occ-epe: 4.630 
+occ-AccS: 11.627 
+occ-AccR: 41.398 
+occ-outlier: 60.247 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.04767887710394077
-Strict IR :  0.033426894615973465
-Relaxed IR :  0.5121204388874713
+RMSE :  0.04404682210390418
+Strict IR :  0.15258994641490176
+Relaxed IR :  0.5835672365399337
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -5245,7 +5245,7 @@ number correspondences kept in mesh edge filtering :  305  out of :  383
 number of true landmark correspondences returned from mesh edge filtering :  241  out of  305
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.7901639344262295
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([305, 3])
@@ -5258,24 +5258,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 7.722 
-full-AccS: 4.287 
-full-AccR: 27.379 
-full-outlier: 62.567 
-vis-epe: 10.160 
+0/1: full-epe: 5.368 
+full-AccS: 13.294 
+full-AccR: 48.941 
+full-outlier: 41.133 
+vis-epe: 9.095 
 vis-AccS: 0.000 
-vis-AccR: 0.590 
-vis-outlier: 87.420 
-occ-epe: 5.088 
-occ-AccS: 8.917 
-occ-AccR: 56.316 
-occ-outlier: 35.722 
+vis-AccR: 1.671 
+vis-outlier: 79.214 
+occ-epe: 1.341 
+occ-AccS: 27.654 
+occ-AccR: 100.000 
+occ-outlier: 0.000 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.04972755864905573
-Strict IR :  0.293952538912988
-Relaxed IR :  0.7532533809645318
+RMSE :  0.014025941433841886
+Strict IR :  0.3388619545802501
+Relaxed IR :  1.0
 model 207
 Partial Deformed
 Edge filtering used
@@ -5528,7 +5528,7 @@ number correspondences kept in mesh edge filtering :  155  out of :  196
 number of true landmark correspondences returned from mesh edge filtering :  50  out of  155
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.3225806451612903
 k0 :  -8
-levels :  10
+levels :  8
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([155, 3])
@@ -5541,24 +5541,24 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 11.110 
+0/1: full-epe: 11.113 
 full-AccS: 0.000 
-full-AccR: 0.073 
+full-AccR: 0.048 
 full-outlier: 35.529 
-vis-epe: 13.211 
+vis-epe: 13.069 
 vis-AccS: 0.000 
 vis-AccR: 0.087 
-vis-outlier: 56.925 
-occ-epe: 8.479 
+vis-outlier: 56.098 
+occ-epe: 8.663 
 occ-AccS: 0.000 
-occ-AccR: 0.055 
-occ-outlier: 8.729 
+occ-AccR: 0.000 
+occ-outlier: 9.765 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.07420625859040345
-Strict IR :  0.0004843787842092516
-Relaxed IR :  0.11649309760232501
+RMSE :  0.07529381756844448
+Strict IR :  0.004843787842092516
+Relaxed IR :  0.1162509082102204
 Partial Non Deformed
 Edge filtering used
 feature_extractor :  fcgf
@@ -5834,7 +5834,7 @@ number correspondences kept in mesh edge filtering :  160  out of :  218
 number of true landmark correspondences returned from mesh edge filtering :  67  out of  160
 fraction of true landmark correspondences returned from FCGF based mesh edge filtering :  0.41875
 k0 :  -8
-levels :  10
+levels :  1
 posenc function :  None
 samples :  2000
 src_ldmk.shape in optimize_deformation_pyramid :  torch.Size([160, 3])
@@ -5847,21 +5847,21 @@ outlier threshold :  0.1
 strict threshold :  0.01
 relaxed threhold :  0.03
 outlier threshold :  0.1
-0/1: full-epe: 10.287 
-full-AccS: 0.000 
-full-AccR: 0.355 
-full-outlier: 29.394 
-vis-epe: 13.385 
+0/1: full-epe: 15.279 
+full-AccS: 0.024 
+full-AccR: 3.932 
+full-outlier: 56.916 
+vis-epe: 18.592 
 vis-AccS: 0.000 
-vis-AccR: 0.000 
-vis-outlier: 51.302 
-occ-epe: 6.131 
-occ-AccS: 0.000 
-occ-AccR: 0.832 
-occ-outlier: 0.000 
+vis-AccR: 1.819 
+vis-outlier: 74.246 
+occ-epe: 10.834 
+occ-AccS: 0.055 
+occ-AccR: 6.767 
+occ-outlier: 33.666 
 
 strict inlier ratio threshold :  0.01
 relaxed inlier ratio threshold :  0.03
-RMSE :  0.05324102489117346
+RMSE :  0.11041014619381283
 Strict IR :  0.0
-Relaxed IR :  0.11440075793462814
+Relaxed IR :  0.052344860255802934
