@@ -23,10 +23,10 @@ n_non_deformed_levels=1
 
 if [ "$type" == "kpfcn" ] ; then
 	config=LNDP.yaml
-    min_dist_thr_kpfcn=0.01
+    min_dist_thr_kpfcn=0.01 # 0.01
 else
 	config=LNDP_fcgf.yaml
-    min_dist_thr_fcgf=0.01
+    min_dist_thr_fcgf=0.005 # 0.01
 fi
 
 if [ "$training_data" == "full_deformed" ] ; then
@@ -69,7 +69,7 @@ one_model=True
 # model_numbers=('002', '042', '085', '126', '167', '207')
 model_numbers=('085')
 
-n_points_edge_filtering='200'
+n_points_edge_filtering='500'
 
 base='/home/aiday.kyzy/code/DeformationPyramid/TestData/'
 
