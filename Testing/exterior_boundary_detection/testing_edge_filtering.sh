@@ -1,15 +1,15 @@
 # TODO: do fcgf from angle, including angle
 # TODO: do kpfcn all
 
-# criterion=none
+criterion=none
 # criterion=simple
 # criterion=angle
 # criterion=shape
 # criterion=disc
-criterion=mesh
+# criterion=mesh
 
-type=fcgf
-# type=kpfcn
+# type=fcgf
+type=kpfcn
 
 # preprocessing=none
 preprocessing=mutual
