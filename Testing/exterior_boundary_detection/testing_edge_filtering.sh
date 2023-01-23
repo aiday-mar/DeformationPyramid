@@ -503,6 +503,7 @@ if [ $current_deformation == "True" ]; then
                 --preprocessing=${preprocessing} \
                 --only_inference \
                 --level=${n_deformed_levels} \
+                --n_points_edge_filtering=${n_points_edge_filtering} \
                 --print_keypoints >> ${file}
                 
                 if [ "$?" != "1" ]; then
@@ -547,6 +548,7 @@ if [ $current_deformation == "True" ]; then
                 --preprocessing=${preprocessing} \
                 --only_inference \
                 --level=${n_non_deformed_levels} \
+                --n_points_edge_filtering=${n_points_edge_filtering} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -697,6 +699,7 @@ if [ $current_deformation == "True" ]; then
                 --min_dist_thr=${min_dist_thr_fcgf} \
                 --only_inference \
                 --level=${n_deformed_levels} \
+                --n_points_edge_filtering=${n_points_edge_filtering} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
@@ -743,6 +746,7 @@ if [ $current_deformation == "True" ]; then
                 --min_dist_thr=${min_dist_thr_fcgf} \
                 --only_inference \
                 --level=${n_non_deformed_levels} \
+                --n_points_edge_filtering=${n_points_edge_filtering} \
                 --print_keypoints >> ${file}
 
                 if [ "$?" != "1" ]; then
