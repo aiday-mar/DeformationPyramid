@@ -26,7 +26,7 @@ using_gt_ldmks: testing the case when the ground-truth landmarks are used in NDP
 w_cd_w_reg: testing different regularization and chamfer distance weights
 ```
 
-The tests are all run from the shell files. These call the eval_supervised_astrivis.py file with different flags as follows:
+The tests are all run from the shell files. These call the eval_supervised_astrivis.py file with different flags which are:
 
 ```
 s
@@ -75,3 +75,5 @@ use_gt_ldmks
 only_inference
 knn_matching
 ```
+
+The flags are explained in more detail in the code.
